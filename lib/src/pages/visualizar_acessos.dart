@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:condosocio/src/components/box_search.dart';
+import 'package:condosocio/src/controllers/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/services/acessos/api_acessos_visualizacao.dart';
 import 'package:condosocio/src/services/acessos/mapa_acessos_visualizacao.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VisualizarAcessos extends StatefulWidget {
@@ -13,21 +15,9 @@ class VisualizarAcessos extends StatefulWidget {
 }
 
 class _VisualizarAcessosState extends State<VisualizarAcessos> {
-  var acessos = List<MapaAcessosVisu>();
+  VisualizarAcessosController acessosController =
+      Get.put(VisualizarAcessosController());
   List<MapaAcessosVisu> _searchResult = [];
-  bool isLoading = true;
-  TextEditingController search = TextEditingController();
-
-  _getAcessos() {
-    ApiAcessosVisualizacao.getAcessos().then((response) {
-      setState(() {
-        Iterable lista = json.decode(response.body);
-        acessos =
-            lista.map((model) => MapaAcessosVisu.fromJson(model)).toList();
-        isLoading = false;
-      });
-    });
-  }
 
   onSearchTextChanged(String text) {
     _searchResult.clear();
@@ -36,17 +26,15 @@ class _VisualizarAcessosState extends State<VisualizarAcessos> {
       return;
     }
 
-    acessos.forEach((details) {
+    acessosController.acessos.forEach((details) {
       if (details.pessoa.toLowerCase().contains(text.toLowerCase()))
         _searchResult.add(details);
     });
-
-    setState(() {});
   }
 
   @override
   void initState() {
-    _getAcessos();
+    acessosController.getAcessos();
     super.initState();
   }
 
@@ -58,76 +46,81 @@ class _VisualizarAcessosState extends State<VisualizarAcessos> {
           'Visualizar acessos',
         ),
       ),
-      body: isLoading
-          ? Container(
-              height: MediaQuery.of(context).size.height,
-              color: Theme.of(context).primaryColor,
-              child: Center(
-                child: SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 4,
-                    valueColor:
-                        AlwaysStoppedAnimation(Theme.of(context).accentColor),
+      body: Obx(
+        () {
+          return acessosController.isLoading.value
+              ? Container(
+                  height: MediaQuery.of(context).size.height,
+                  color: Theme.of(context).primaryColor,
+                  child: Center(
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 4,
+                        valueColor: AlwaysStoppedAnimation(
+                            Theme.of(context).accentColor),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            )
-          : Column(
-              children: [
-                boxSearch(context, search, onSearchTextChanged),
-                Container(
-                  color: Theme.of(context).accentColor,
-                  margin: EdgeInsets.symmetric(vertical: 5),
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Data',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                      ),
-                      Text(
-                        'Nome',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                      ),
-                      Text(
-                        'Entrada',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                      ),
-                      Text(
-                        'Saída',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: _listaVisualizarAcessos(),
                 )
-              ],
-            ),
+              : Column(
+                  children: [
+                    boxSearch(context, acessosController.search.value,
+                        onSearchTextChanged),
+                    Container(
+                      color: Theme.of(context).accentColor,
+                      margin: EdgeInsets.symmetric(vertical: 5),
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Data',
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                          ),
+                          Text(
+                            'Nome',
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                          ),
+                          Text(
+                            'Entrada',
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                          ),
+                          Text(
+                            'Saída',
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: _listaVisualizarAcessos(),
+                    )
+                  ],
+                );
+        },
+      ),
     );
   }
 
@@ -275,7 +268,8 @@ class _VisualizarAcessosState extends State<VisualizarAcessos> {
   }
 
   Widget _listaVisualizarAcessos() {
-    return _searchResult.isNotEmpty || search.text.isNotEmpty
+    return _searchResult.isNotEmpty ||
+            acessosController.search.value.text.isNotEmpty
         ? ListView.builder(
             itemCount: _searchResult.length,
             itemBuilder: (context, index) {
@@ -434,23 +428,23 @@ class _VisualizarAcessosState extends State<VisualizarAcessos> {
             },
           )
         : ListView.builder(
-            itemCount: acessos.length,
+            itemCount: acessosController.acessos.length,
             itemBuilder: (context, index) {
-              var data = acessos[index].data;
+              var data = acessosController.acessos[index].data;
               var cutDate = data.split(" ");
               var day = cutDate[0];
 
               var cuthour = cutDate[1].split("h<");
               var hour = cuthour[0];
 
-              var dataEnt = acessos[index].dataent;
+              var dataEnt = acessosController.acessos[index].dataent;
               var cutDataEnt = dataEnt.split('<');
               var dayIn = cutDataEnt[0];
 
               var cutHoraEnt = cutDataEnt[1].split('>');
               var hourIn = cutHoraEnt[1];
 
-              var dataSai = acessos[index].datasai;
+              var dataSai = acessosController.acessos[index].datasai;
               var cutDataSai = dataSai.split('<');
               var dayOut = cutDataSai[0];
 
@@ -462,14 +456,14 @@ class _VisualizarAcessosState extends State<VisualizarAcessos> {
                       context,
                       day,
                       hour,
-                      acessos[index].pessoa,
+                      acessosController.acessos[index].pessoa,
                       dayIn,
                       hourIn,
                       dayOut,
                       hourOut,
-                      acessos[index].placa,
-                      acessos[index].tipodoc,
-                      acessos[index].documento);
+                      acessosController.acessos[index].placa,
+                      acessosController.acessos[index].tipodoc,
+                      acessosController.acessos[index].documento);
                 },
                 child: Column(
                   children: [
@@ -511,7 +505,7 @@ class _VisualizarAcessosState extends State<VisualizarAcessos> {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.25,
                             child: Text(
-                              acessos[index].pessoa,
+                              acessosController.acessos[index].pessoa,
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   color: Theme.of(context)
