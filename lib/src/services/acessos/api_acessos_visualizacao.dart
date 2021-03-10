@@ -7,7 +7,8 @@ class ApiAcessosVisualizacao {
     final String id = prefs.getString('idusu');
     print(id);
     return await http.get(
-      Uri.https("www.condosocio.com.br", "/flutter/acessovis.php?idUsu=$id"),
+      Uri.https(
+          "www.condosocio.com.br", "/flutter/acessovis.php", {"idUsu": "$id"}),
     );
   }
 }

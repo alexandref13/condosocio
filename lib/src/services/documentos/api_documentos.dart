@@ -6,8 +6,8 @@ class ApiDocumentos {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('idusu');
     return await http.get(
-      Uri.https("https://www.condosocio.com.br",
-          "/flutter/documentos.php?idUsu=$id&pasta=1"),
+      Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
+          {"idUsu": "$id", "pasta": "1"}),
     );
   }
 
@@ -15,8 +15,8 @@ class ApiDocumentos {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('idusu');
     return await http.get(
-      Uri.https("https://www.condosocio.com.br",
-          "/flutter/documentos.php?idUsu=$id&pasta=2"),
+      Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
+          {"idUsu": "$id", "pasta": "2"}),
     );
   }
 
@@ -24,36 +24,36 @@ class ApiDocumentos {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('idusu');
     return await http.get(
-      Uri.https("https://www.condosocio.com.br",
-          "/flutter/documentos.php?idUsu=$id&pasta=3"),
+      Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
+          {"idUsu": "$id", "pasta": "3"}),
     );
   }
 
   static Future getDocumentosPrestacao() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('idusu');
-    return await http.get(Uri.https("https://www.condosocio.com.br",
-        "/flutter/documentos.php?idUsu=$id&pasta=4"));
+    return await http.get(Uri.https("www.condosocio.com.br",
+        "/flutter/documentos.php", {"idUsu": "$id", "pasta": "4"}));
   }
 
   static Future getDocumentosRegulamento() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('idusu');
-    return await http.get(Uri.https("https://www.condosocio.com.br",
-        "/flutter/documentos.php?idUsu=$id&pasta=5"));
+    return await http.get(Uri.https("www.condosocio.com.br",
+        "/flutter/documentos.php", {"idUsu": "$id", "pasta": "5"}));
   }
 
   static Future getDocumentosEdital() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('idusu');
-    return await http.get(Uri.https("https://www.condosocio.com.br",
-        "/flutter/documentos.php?idUsu=$id&pasta=6"));
+    return await http.get(Uri.https("www.condosocio.com.br",
+        "/flutter/documentos.php", {"idUsu": "$id", "pasta": "6"}));
   }
 
   static Future getDocumentosOutros() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('idusu');
-    return await http.get(Uri.https("https://www.condosocio.com.br",
-        "/flutter/documentos.php?idUsu=$id&pasta=7"));
+    return await http.get(Uri.https("www.condosocio.com.br",
+        "/flutter/documentos.php", {"idUsu": "$id", "pasta": "7"}));
   }
 }

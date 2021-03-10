@@ -20,12 +20,12 @@ class LoginController extends GetxController {
 
   final LocalAuthentication _localAuthentication = LocalAuthentication();
 
-  authenticate() async {
-    if (await _isBiometricAvailable()) {
-      await _getListOfBiometricTypes();
-      await autoLogin();
-    }
-  }
+  // authenticate() async {
+  //   if (await _isBiometricAvailable()) {
+  //     await _getListOfBiometricTypes();
+  //     await autoLogin();
+  //   }
+  // }
 
   Future<bool> _isBiometricAvailable() async {
     bool isAvailable = await _localAuthentication.canCheckBiometrics;
@@ -39,9 +39,9 @@ class LoginController extends GetxController {
 
   Future<void> autoLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String hasId = prefs.getString('id');
+    String id = prefs.getString('id');
 
-    if (hasId != null) {
+    if (id != null) {
       bool isAuthenticated = await _localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
         useErrorDialogs: true,
@@ -63,7 +63,6 @@ class LoginController extends GetxController {
     });
 
     var dadosUsuario = json.decode(response.body);
-    print(dadosUsuario);
     if (dadosUsuario['valida'] == 1) {
       id(dadosUsuario['idusu']);
       tipo(dadosUsuario['tipo']);
@@ -74,6 +73,11 @@ class LoginController extends GetxController {
       nome(dadosUsuario['nome']);
 
       prefs.setString('id', id.value);
+      String getId = prefs.getString('id');
+      print({
+        'getId: $getId',
+        'id: $id',
+      });
 
       Get.toNamed('/home');
     } else {

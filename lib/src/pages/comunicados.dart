@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:condosocio/src/controllers/comunicados_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:condosocio/src/pages/detalhes.dart';
 import 'package:condosocio/src/services/comunicados/api_comunicados.dart';
 import 'package:condosocio/src/services/comunicados/mapa_comunicados.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Comunicados extends StatefulWidget {
@@ -11,57 +13,65 @@ class Comunicados extends StatefulWidget {
 }
 
 class _ComunicadosState extends State<Comunicados> {
-  var comunicados = new List<DadosComunicados>();
-  bool isLoading = true;
+  ComunicadosController comunicadosController =
+      Get.put(ComunicadosController());
+  // List<DadosComunicados> comunicados =
+  //     List<DadosComunicados>.empty(growable: true);
+  // bool isLoading = true;
 
-  _getComunicados() {
-    API_COMUN.getComunicados().then((response) {
-      setState(() {
-        Iterable lista = json.decode(response.body);
-        comunicados =
-            lista.map((model) => DadosComunicados.fromJson(model)).toList();
-        isLoading = false;
-      });
-    });
-  }
+  // _getComunicados() {
+  //   API_COMUN.getComunicados().then((response) {
+  //     print(json.decode(response.body));
+  //     setState(() {
+  //       Iterable lista = json.decode(response.body);
+  //       comunicados =
+  //           lista.map((model) => DadosComunicados.fromJson(model)).toList();
+  //       isLoading = false;
+  //     });
+  //   });
+  // }
 
   @override
   void initState() {
     super.initState();
-    _getComunicados();
+    comunicadosController.getComunicados();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title:
-                Text('Comunicados', style: GoogleFonts.poppins(fontSize: 20)),
-            centerTitle: true,
-          ),
-          body: isLoading
-              ? Container(
-                  height: MediaQuery.of(context).size.height,
-                  color: Theme.of(context).primaryColor,
-                  child: Center(
-                    child: SizedBox(
-                      height: 40,
-                      width: 40,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 4,
-                        valueColor: AlwaysStoppedAnimation(
-                            Theme.of(context).accentColor),
+        appBar: AppBar(
+          title: Text('Comunicados', style: GoogleFonts.poppins(fontSize: 20)),
+          centerTitle: true,
+        ),
+        body: Obx(
+          () {
+            return comunicadosController.isLoading.value
+                ? Container(
+                    height: MediaQuery.of(context).size.height,
+                    color: Theme.of(context).primaryColor,
+                    child: Center(
+                      child: SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 4,
+                          valueColor: AlwaysStoppedAnimation(
+                              Theme.of(context).accentColor),
+                        ),
                       ),
                     ),
-                  ),
-                )
-              : _listaComunicados()),
+                  )
+                : _listaComunicados();
+          },
+        ),
+      ),
     );
   }
 
   _listaComunicados() {
-    if (comunicados.length == 0) {
+    if (comunicadosController.comunicados.length == 0) {
       return Stack(
         children: <Widget>[
           Container(
@@ -116,7 +126,7 @@ class _ComunicadosState extends State<Comunicados> {
                   ),
                   height: MediaQuery.of(context).size.height,
                   child: ListView.builder(
-                      itemCount: comunicados.length,
+                      itemCount: comunicadosController.comunicados.length,
                       itemBuilder: (context, index) {
                         return Card(
                           shape: RoundedRectangleBorder(
@@ -127,11 +137,16 @@ class _ComunicadosState extends State<Comunicados> {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => Detalhes(
-                                        comunicados[index].titulo,
-                                        comunicados[index].texto,
-                                        comunicados[index].dia,
-                                        comunicados[index].mes,
-                                        comunicados[index].hora)));
+                                        comunicadosController
+                                            .comunicados[index].titulo,
+                                        comunicadosController
+                                            .comunicados[index].texto,
+                                        comunicadosController
+                                            .comunicados[index].dia,
+                                        comunicadosController
+                                            .comunicados[index].mes,
+                                        comunicadosController
+                                            .comunicados[index].hora)));
                               },
                               leading: RichText(
                                 text: TextSpan(
@@ -143,12 +158,15 @@ class _ComunicadosState extends State<Comunicados> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                          text: comunicados[index].dia + "  ",
+                                          text: comunicadosController
+                                                  .comunicados[index].dia +
+                                              "  ",
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold)),
                                       TextSpan(
-                                          text: comunicados[index].mes,
+                                          text: comunicadosController
+                                              .comunicados[index].mes,
                                           style: GoogleFonts.poppins(
                                               fontSize: 14,
                                               color: Theme.of(context)
@@ -160,7 +178,8 @@ class _ComunicadosState extends State<Comunicados> {
                               title: Padding(
                                 padding: EdgeInsets.only(left: 30),
                                 child: Text(
-                                  comunicados[index].titulo,
+                                  comunicadosController
+                                      .comunicados[index].titulo,
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       color: Theme.of(context)

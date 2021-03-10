@@ -14,7 +14,7 @@ class Contratos extends StatefulWidget {
 }
 
 class _ContratosState extends State<Contratos> {
-  var contratos = List<MapaDocumentos>();
+  List<MapaDocumentos> contratos = [];
   List<MapaDocumentos> _searchResult = [];
   bool isLoading = true;
   TextEditingController controller = TextEditingController();

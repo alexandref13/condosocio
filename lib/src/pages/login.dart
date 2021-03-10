@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     // TODO: implement initState
-    loginController.authenticate();
+    // loginController.authenticate();
     super.initState();
   }
 

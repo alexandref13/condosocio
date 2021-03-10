@@ -19,7 +19,7 @@ class _SenhaState extends State<Senha> {
   TextEditingController senha_nova = new TextEditingController();
   TextEditingController senha_confirma = new TextEditingController();
 
-  Future<List> _alterarsenha() async {
+  Future<void> _alterarsenha() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String idusu = prefs.getString('idusu');
 

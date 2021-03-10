@@ -6,6 +6,6 @@ class API_COMUN {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('idusu');
     return await http.get(Uri.https(
-        "https://www.condosocio.com.br", "/flutter/comunicados.php?idUsu=$id"));
+        "www.condosocio.com.br", "/flutter/comunicados.php", {"idUsu": "$id"}));
   }
 }

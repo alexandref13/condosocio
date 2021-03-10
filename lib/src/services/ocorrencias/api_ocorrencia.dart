@@ -6,6 +6,6 @@ class ApiOcorrencias {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('idusu');
     return await http.get(Uri.https(
-        "https://www.condosocio.com.br", "/flutter/ocovis.php?idUsu=$id"));
+        "www.condosocio.com.br", "/flutter/ocovis.php", {"idUsu": "$id"}));
   }
 }
