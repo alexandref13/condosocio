@@ -8,6 +8,18 @@ class VisualizarAcessosController extends GetxController {
   List<MapaAcessosVisu> acessos;
   var search = TextEditingController().obs;
   var isLoading = true.obs;
+  var searchResult = [].obs;
+
+  onSearchTextChanged(String text) {
+    searchResult.clear();
+    if (text.isEmpty) {
+      return;
+    }
+    acessos.forEach((details) {
+      if (details.pessoa.toLowerCase().contains(text.toLowerCase()))
+        searchResult.add(details);
+    });
+  }
 
   void getAcessos() {
     ApiAcessosVisualizacao.getAcessos().then((response) {
@@ -15,5 +27,11 @@ class VisualizarAcessosController extends GetxController {
       acessos = lista.map((model) => MapaAcessosVisu.fromJson(model)).toList();
       isLoading(false);
     });
+  }
+
+  @override
+  void onInit() {
+    getAcessos();
+    super.onInit();
   }
 }

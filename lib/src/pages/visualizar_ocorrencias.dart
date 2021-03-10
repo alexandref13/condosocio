@@ -1,242 +1,17 @@
-import 'dart:convert';
-
 import 'package:condosocio/src/components/box_search.dart';
+import 'package:condosocio/src/components/visualizar_ocorrencias/modal_bottom_sheet.dart';
 import 'package:condosocio/src/controllers/visualizar_ocorrencias_controller.dart';
-import 'package:condosocio/src/services/ocorrencias/api_ocorrencia.dart';
-import 'package:condosocio/src/services/ocorrencias/map_ocorrencia.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class VisualizarOcorrencias extends StatefulWidget {
-  @override
-  _VisualizarOcorrenciasState createState() => _VisualizarOcorrenciasState();
-}
-
-class _VisualizarOcorrenciasState extends State<VisualizarOcorrencias> {
-  VisualizarOcorrenciasController ocorrenciasController =
-      Get.put(VisualizarOcorrenciasController());
-  List<MapaOcorrencias> _searchResult = [];
-
-  @override
-  void initState() {
-    super.initState();
-    ocorrenciasController.getOcorrencias();
-  }
-
-  onSearchTextChanged(String text) {
-    _searchResult.clear();
-    if (text.isEmpty) {
-      setState(() {});
-      return;
-    }
-
-    ocorrenciasController.ocorrencias.forEach((details) {
-      if (details.titulo.toLowerCase().contains(text.toLowerCase()))
-        _searchResult.add(details);
-    });
-
-    setState(() {});
-  }
-
-  void _configurandoModalBottomSheet(
-    context,
-    String data,
-    String hora,
-    String titulo,
-    String dataoco,
-    String horaoco,
-    String status,
-  ) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          return Container(
-            height: MediaQuery.of(context).size.height * 0.4,
-            padding: EdgeInsets.all(8),
-            color: Theme.of(context).accentColor,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  child: Text(
-                    titulo,
-                    style: GoogleFonts.poppins(
-                        fontSize: 24,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor),
-                  ),
-                ),
-                Container(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Data da ocorrência',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor),
-                            ),
-                            Text(
-                              dataoco,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Hora da ocorrência',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor),
-                            ),
-                            Text(
-                              horaoco,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: status == '1'
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Ocorrencia Finalizada',
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor),
-                                    ),
-                                    Icon(
-                                      Feather.check,
-                                      size: 40,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Ocorrencia em andamento',
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor),
-                                    ),
-                                    Icon(
-                                      Feather.alert_triangle,
-                                      size: 40,
-                                      color: Colors.red,
-                                    ),
-                                  ],
-                                )),
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ButtonTheme(
-                      height: 50.0,
-                      child: RaisedButton(
-                        elevation: 3,
-                        onPressed: () {},
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        child: Icon(
-                          Icons.delete,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        color: Color(0xFFD11A2A),
-                      ),
-                    ),
-                    ButtonTheme(
-                      height: 50.0,
-                      child: RaisedButton(
-                        elevation: 3,
-                        onPressed: () {},
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        child: Icon(
-                          FontAwesome.heart,
-                          size: 30,
-                          color: Color(0xFFD11A2A),
-                        ),
-                        color: Colors.white,
-                      ),
-                    ),
-                    ButtonTheme(
-                      height: 50.0,
-                      child: RaisedButton(
-                        elevation: 3,
-                        onPressed: () {},
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        child: Icon(
-                          FontAwesome.whatsapp,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        color: Color(0xFF075e54),
-                      ),
-                    ),
-                    ButtonTheme(
-                      height: 50.0,
-                      child: RaisedButton(
-                        elevation: 3,
-                        onPressed: () {},
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        child: Icon(
-                          FontAwesome.telegram,
-                          size: 30,
-                          color: Color(0xFF0088CC),
-                        ),
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
-        });
-  }
-
+class VisualizarOcorrencias extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    VisualizarOcorrenciasController ocorrenciasController =
+        Get.put(VisualizarOcorrenciasController());
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Visualizar Ocorrencias'),
@@ -262,7 +37,7 @@ class _VisualizarOcorrenciasState extends State<VisualizarOcorrencias> {
               : Column(
                   children: [
                     boxSearch(context, ocorrenciasController.search.value,
-                        onSearchTextChanged),
+                        ocorrenciasController.onSearchTextChanged),
                     Container(
                       color: Theme.of(context).accentColor,
                       padding: EdgeInsets.symmetric(horizontal: 15),
@@ -309,15 +84,17 @@ class _VisualizarOcorrenciasState extends State<VisualizarOcorrencias> {
                       ),
                     ),
                     Expanded(
-                      child: _searchResult.length != 0 ||
+                      child: ocorrenciasController.searchResult.length != 0 ||
                               ocorrenciasController.search.value.text.isNotEmpty
                           ? ListView.builder(
-                              itemCount: _searchResult.length,
+                              itemCount:
+                                  ocorrenciasController.searchResult.length,
                               itemBuilder: (context, index) {
-                                var ocorrencia = _searchResult[index];
+                                var ocorrencia =
+                                    ocorrenciasController.searchResult[index];
                                 return GestureDetector(
                                   onTap: () {
-                                    _configurandoModalBottomSheet(
+                                    configurandoModalBottomSheet(
                                         context,
                                         ocorrencia.data,
                                         ocorrencia.hora,
@@ -427,7 +204,7 @@ class _VisualizarOcorrenciasState extends State<VisualizarOcorrencias> {
                                     ocorrenciasController.ocorrencias[index];
                                 return GestureDetector(
                                   onTap: () {
-                                    _configurandoModalBottomSheet(
+                                    configurandoModalBottomSheet(
                                         context,
                                         ocorrencia.data,
                                         ocorrencia.hora,

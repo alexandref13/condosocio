@@ -280,19 +280,22 @@ class _LoginState extends State<Login> {
                           child: ButtonTheme(
                             height: 50.0,
                             child: ElevatedButton(
-                              style: ButtonStyle(backgroundColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                (Set<MaterialState> states) {
-                                  return Theme.of(context).accentColor;
-                                },
-                              ), shape: MaterialStateProperty.resolveWith<
-                                  OutlinedBorder>(
-                                (Set<MaterialState> states) {
-                                  return RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  );
-                                },
-                              )),
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    return Theme.of(context).accentColor;
+                                  },
+                                ),
+                                shape: MaterialStateProperty.resolveWith<
+                                    OutlinedBorder>(
+                                  (Set<MaterialState> states) {
+                                    return RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    );
+                                  },
+                                ),
+                              ),
                               onPressed: () {
                                 loginController.login();
                                 // if (_formKey.currentState.validate()) {

@@ -1,5 +1,5 @@
-import 'package:condosocio/src/components/widget_entrada_acessos.dart';
-import 'package:condosocio/src/components/widget_saida_acessos.dart';
+import 'package:condosocio/src/components/acessos/widget_entrada_acessos.dart';
+import 'package:condosocio/src/components/acessos/widget_saida_acessos.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

@@ -9,6 +9,19 @@ class VisualizarOcorrenciasController extends GetxController {
   List<MapaOcorrencias> ocorrencias;
   var isLoading = true.obs;
   var search = TextEditingController().obs;
+  var searchResult = [].obs;
+
+  onSearchTextChanged(String text) {
+    searchResult.clear();
+    if (text.isEmpty) {
+      return;
+    }
+
+    ocorrencias.forEach((details) {
+      if (details.titulo.toLowerCase().contains(text.toLowerCase()))
+        searchResult.add(details);
+    });
+  }
 
   void getOcorrencias() {
     ApiOcorrencias.getOcorrencias().then((response) {
@@ -17,5 +30,11 @@ class VisualizarOcorrenciasController extends GetxController {
           lista.map((model) => MapaOcorrencias.fromJson(model)).toList();
       isLoading(false);
     });
+  }
+
+  @override
+  void onInit() {
+    getOcorrencias();
+    super.onInit();
   }
 }

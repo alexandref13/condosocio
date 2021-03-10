@@ -1,6 +1,7 @@
 import 'package:condosocio/src/pages/perfil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,7 +44,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/sobre');
+                        Get.toNamed('/sobre');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -82,7 +83,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/servicos');
+                        print('Não tem page aq');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -121,7 +122,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/alvoTv');
+                        Get.toNamed('/alvoTv');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -160,7 +161,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/acessos');
+                        Get.toNamed('/acessos');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -199,7 +200,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/servicos');
+                        print('Não tem page aq');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -238,7 +239,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/comunicados');
+                        Get.toNamed('/comunicados');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -277,7 +278,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/documentos');
+                        Get.toNamed('/documentos');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -316,7 +317,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/servicos');
+                        print('Nao tem page aq');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -355,7 +356,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/ocorrencias');
+                        Get.toNamed('/ocorrencias');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -430,7 +431,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/servicos');
+                        print('Nao tem page aq');
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -469,7 +470,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/ouvidoria');
+                        Get.toNamed('/ouvidoria');
                       },
                       child: Container(
                           decoration: BoxDecoration(

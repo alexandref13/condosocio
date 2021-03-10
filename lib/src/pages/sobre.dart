@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Sobre extends StatefulWidget {
-  @override
-  _SobreState createState() => _SobreState();
-}
-
-class _SobreState extends State<Sobre> {
+class Sobre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -69,46 +65,55 @@ class _SobreState extends State<Sobre> {
                   child: ListView(
                     children: [
                       sobreLista(
+                          context,
                           "Galeria",
                           "Aqui você vai ver as imagens dos eventos dos condomínios.",
                           "galeria",
                           FontAwesome.picture_o),
                       sobreLista(
+                          context,
                           "Alvo Tv",
                           "Videos toda a semana pra você ficar super antenado com as questões dos condomínios.",
                           "alvotv",
                           FontAwesome.tv),
                       sobreLista(
+                          context,
                           "Controle de Acessos",
                           "Autorize a entrada de visitantes (convidados ou prestadores eventuais) ou autorize a saída de funcionários ou materiais",
                           "acessos",
                           FontAwesome.arrows_h),
                       sobreLista(
+                          context,
                           "Reservas",
                           "Visualize e faça reservas de eventos e dos espaços comuns.",
                           "reservas",
                           FontAwesome.calendar),
                       sobreLista(
+                          context,
                           "Comunicados",
                           "Aqui você vai ver os comunicados dos eventos dos condomínios.",
                           "comunicados",
                           FontAwesome.comment),
                       sobreLista(
+                          context,
                           "Documentos",
                           "Tenha sempre em mãos os documentos do seu condomínio. Regimento interno. Convenção, Atas, etc.",
                           "documentos",
                           FontAwesome.file),
                       sobreLista(
+                          context,
                           "Enquetes",
                           "Participe das enquetes e dê a sua opinião",
                           "enquetes",
                           FontAwesome.comments),
                       sobreLista(
+                          context,
                           "Ocorrências",
                           "Registre ocorrências, sugestões, reclamações que ocorram em seu condomínio",
                           "ocorrencias",
                           Icons.event_note),
                       sobreLista(
+                          context,
                           "Ache Aqui",
                           "Busque por produtos e serviços e avalie",
                           "acheAqui",
@@ -121,37 +126,38 @@ class _SobreState extends State<Sobre> {
   }
 
   Widget sobreLista(
-      String title, String description, String route, IconData icon) {
+      context, String title, String description, String route, IconData icon) {
     return Container(
       padding: EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
           border: Border(bottom: BorderSide(width: 1, color: Colors.black))),
       child: ListTile(
-          onTap: () {
-            Navigator.pushNamed(context, '/$route');
-          },
-          leading: Icon(
-            icon,
-            size: 35,
-            color: Colors.white,
-          ),
-          title: Text(title,
-              style: GoogleFonts.poppins(
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          subtitle: Text(
-            description,
+        onTap: () {
+          Get.toNamed('/$route');
+        },
+        leading: Icon(
+          icon,
+          size: 35,
+          color: Colors.white,
+        ),
+        title: Text(title,
             style: GoogleFonts.poppins(
                 color: Theme.of(context).textSelectionTheme.selectionColor,
-                fontWeight: FontWeight.w300,
-                fontSize: 13),
-          ),
-          trailing: Icon(
-            FontAwesome.arrow_right,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
-            size: 23,
-          )),
+                fontSize: 16,
+                fontWeight: FontWeight.bold)),
+        subtitle: Text(
+          description,
+          style: GoogleFonts.poppins(
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+              fontWeight: FontWeight.w300,
+              fontSize: 13),
+        ),
+        trailing: Icon(
+          FontAwesome.arrow_right,
+          color: Theme.of(context).textSelectionTheme.selectionColor,
+          size: 23,
+        ),
+      ),
     );
   }
 }
