@@ -180,7 +180,7 @@ class _DocumentosState extends State<Documentos> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.14,
+                                width: MediaQuery.of(context).size.width * 0.2,
                                 child: Text(
                                   "Prestação de Serviços",
                                   style: GoogleFonts.poppins(
