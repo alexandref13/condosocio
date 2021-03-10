@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:local_auth/local_auth.dart';
 
 class LoginController extends GetxController {
   var email = TextEditingController().obs;
@@ -17,14 +18,38 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   var isLoggedIn = false.obs;
 
-  Future<void> auth() async {
+  final LocalAuthentication _localAuthentication = LocalAuthentication();
+
+  authenticate() async {
+    if (await _isBiometricAvailable()) {
+      await _getListOfBiometricTypes();
+      await autoLogin();
+    }
+  }
+
+  Future<bool> _isBiometricAvailable() async {
+    bool isAvailable = await _localAuthentication.canCheckBiometrics;
+    return isAvailable;
+  }
+
+  Future<void> _getListOfBiometricTypes() async {
+    List<BiometricType> listOfBiometrics =
+        await _localAuthentication.getAvailableBiometrics();
+  }
+
+  Future<void> autoLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String hasId = prefs.getString('id');
 
-    if (hasId == null) {
-      print('nao existe um id aq');
-    } else {
-      print('existe um id aq $hasId');
+    if (hasId != null) {
+      bool isAuthenticated = await _localAuthentication.authenticate(
+        localizedReason: "Autenticar para realizar Login na plataforma",
+        useErrorDialogs: true,
+        stickyAuth: true,
+      );
+      if (isAuthenticated) {
+        isLoading(true);
+      }
     }
   }
 
@@ -38,7 +63,7 @@ class LoginController extends GetxController {
     });
 
     var dadosUsuario = json.decode(response.body);
-
+    print(dadosUsuario);
     if (dadosUsuario['valida'] == 1) {
       id(dadosUsuario['idusu']);
       tipo(dadosUsuario['tipo']);
