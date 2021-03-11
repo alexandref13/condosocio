@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AtaController extends GetxController {
-  List<MapaDocumentos> atas;
+class PrestacaoController extends GetxController {
   var searchResult = [].obs;
+  List<MapaDocumentos> prestacao;
   var isLoading = true.obs;
   var controller = TextEditingController().obs;
 
   getDocumentos() {
-    ApiDocumentos.getDocumentosAtas().then((response) {
+    ApiDocumentos.getDocumentosPrestacao().then((response) {
       Iterable lista = json.decode(response.body);
-      atas = lista.map((model) => MapaDocumentos.fromJson(model)).toList();
+      prestacao = lista.map((model) => MapaDocumentos.fromJson(model)).toList();
       isLoading(false);
     });
   }
@@ -47,7 +47,7 @@ class AtaController extends GetxController {
       return;
     }
 
-    atas.forEach((details) {
+    prestacao.forEach((details) {
       if (details.nome.toLowerCase().contains(text.toLowerCase()))
         searchResult.add(details);
     });

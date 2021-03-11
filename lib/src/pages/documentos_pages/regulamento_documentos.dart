@@ -1,112 +1,60 @@
-import 'dart:convert';
-
 import 'package:condosocio/src/components/box_search.dart';
-import 'package:condosocio/src/services/documentos/api_documentos.dart';
-import 'package:condosocio/src/services/documentos/mapa_documentos.dart';
+import 'package:condosocio/src/controllers/documentos_controllers/regulamento_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class Regulamento extends StatefulWidget {
-  @override
-  _RegulamentoState createState() => _RegulamentoState();
-}
-
-class _RegulamentoState extends State<Regulamento> {
-  var regulamento = List<MapaDocumentos>();
-  List<MapaDocumentos> _searchResult = [];
-  bool isLoading = true;
-  TextEditingController controller = TextEditingController();
-
-  _getDocumentos() {
-    ApiDocumentos.getDocumentosRegulamento().then((response) {
-      setState(() {
-        Iterable lista = json.decode(response.body);
-        regulamento =
-            lista.map((model) => MapaDocumentos.fromJson(model)).toList();
-        isLoading = false;
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    _getDocumentos();
-    super.initState();
-  }
-
-  Future<void> _launched;
-
-  Future<void> _launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  onSearchTextChanged(String text) {
-    _searchResult.clear();
-    if (text.isEmpty) {
-      setState(() {});
-      return;
-    }
-
-    regulamento.forEach((details) {
-      if (details.nome.toLowerCase().contains(text.toLowerCase()))
-        _searchResult.add(details);
-    });
-
-    setState(() {});
-  }
-
+class Regulamento extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    RegulamentoController regulamentoController =
+        Get.put(RegulamentoController());
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Regulamento',
         ),
       ),
-      body: isLoading
-          ? Container(
-              height: MediaQuery.of(context).size.height,
-              color: Theme.of(context).primaryColor,
-              child: Center(
-                child: SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 4,
-                    valueColor:
-                        AlwaysStoppedAnimation(Theme.of(context).accentColor),
+      body: Obx(
+        () {
+          return regulamentoController.isLoading.value
+              ? Container(
+                  height: MediaQuery.of(context).size.height,
+                  color: Theme.of(context).primaryColor,
+                  child: Center(
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 4,
+                        valueColor: AlwaysStoppedAnimation(
+                            Theme.of(context).accentColor),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            )
-          : Container(
-              padding: EdgeInsets.all(5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  boxSearch(context, controller, onSearchTextChanged),
-                  Expanded(
-                    child:
-                        _searchResult.isNotEmpty || controller.text.isNotEmpty
+                )
+              : Container(
+                  padding: EdgeInsets.all(5),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      boxSearch(context, regulamentoController.controller.value,
+                          regulamentoController.onSearchTextChanged),
+                      Expanded(
+                        child: regulamentoController.searchResult.isNotEmpty ||
+                                regulamentoController
+                                    .controller.value.text.isNotEmpty
                             ? ListView.builder(
-                                itemCount: _searchResult.length,
+                                itemCount:
+                                    regulamentoController.searchResult.length,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     color: Theme.of(context).accentColor,
                                     child: ListTile(
                                       title: Text(
-                                        _searchResult[index].nome,
+                                        regulamentoController
+                                            .searchResult[index].nome,
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -116,7 +64,8 @@ class _RegulamentoState extends State<Regulamento> {
                                         ),
                                       ),
                                       subtitle: Text(
-                                        _searchResult[index].data,
+                                        regulamentoController
+                                            .searchResult[index].data,
                                         style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: Theme.of(context)
@@ -130,25 +79,26 @@ class _RegulamentoState extends State<Regulamento> {
                                             .textSelectionTheme
                                             .selectionColor,
                                         iconSize: 30,
-                                        onPressed: () => setState(
-                                          () {
-                                            _launched = _launchInBrowser(
-                                                "https://condosocio.com.br/acond/downloads/documentos/${_searchResult[index].imgdoc}");
-                                          },
-                                        ),
+                                        onPressed: () {
+                                          regulamentoController.launched =
+                                              regulamentoController.launchInBrowser(
+                                                  "https://condosocio.com.br/acond/downloads/documentos/${regulamentoController.searchResult[index].imgdoc}");
+                                        },
                                       ),
                                     ),
                                   );
                                 },
                               )
                             : ListView.builder(
-                                itemCount: regulamento.length,
+                                itemCount:
+                                    regulamentoController.regulamento.length,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     color: Theme.of(context).accentColor,
                                     child: ListTile(
                                       title: Text(
-                                        regulamento[index].nome,
+                                        regulamentoController
+                                            .regulamento[index].nome,
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -158,7 +108,8 @@ class _RegulamentoState extends State<Regulamento> {
                                         ),
                                       ),
                                       subtitle: Text(
-                                        regulamento[index].data,
+                                        regulamentoController
+                                            .regulamento[index].data,
                                         style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: Theme.of(context)
@@ -172,21 +123,22 @@ class _RegulamentoState extends State<Regulamento> {
                                             .textSelectionTheme
                                             .selectionColor,
                                         iconSize: 30,
-                                        onPressed: () => setState(
-                                          () {
-                                            _launched = _launchInBrowser(
-                                                "https://condosocio.com.br/acond/downloads/documentos/${regulamento[index].imgdoc}");
-                                          },
-                                        ),
+                                        onPressed: () {
+                                          regulamentoController.launched =
+                                              regulamentoController.launchInBrowser(
+                                                  "https://condosocio.com.br/acond/downloads/documentos/${regulamentoController.regulamento[index].imgdoc}");
+                                        },
                                       ),
                                     ),
                                   );
                                 },
                               ),
-                  )
-                ],
-              ),
-            ),
+                      )
+                    ],
+                  ),
+                );
+        },
+      ),
     );
   }
 }

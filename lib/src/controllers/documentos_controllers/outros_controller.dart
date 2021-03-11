@@ -6,23 +6,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AtaController extends GetxController {
-  List<MapaDocumentos> atas;
+class OutrosController extends GetxController {
+  List<MapaDocumentos> outros;
   var searchResult = [].obs;
   var isLoading = true.obs;
   var controller = TextEditingController().obs;
 
-  getDocumentos() {
-    ApiDocumentos.getDocumentosAtas().then((response) {
+  _getDocumentos() {
+    ApiDocumentos.getDocumentosOutros().then((response) {
       Iterable lista = json.decode(response.body);
-      atas = lista.map((model) => MapaDocumentos.fromJson(model)).toList();
+      outros = lista.map((model) => MapaDocumentos.fromJson(model)).toList();
       isLoading(false);
     });
   }
 
   @override
   void onInit() {
-    getDocumentos();
+    _getDocumentos();
     super.onInit();
   }
 
@@ -47,7 +47,7 @@ class AtaController extends GetxController {
       return;
     }
 
-    atas.forEach((details) {
+    outros.forEach((details) {
       if (details.nome.toLowerCase().contains(text.toLowerCase()))
         searchResult.add(details);
     });

@@ -1,112 +1,59 @@
-import 'dart:convert';
-
 import 'package:condosocio/src/components/box_search.dart';
-import 'package:condosocio/src/services/documentos/api_documentos.dart';
-import 'package:condosocio/src/services/documentos/mapa_documentos.dart';
+import 'package:condosocio/src/controllers/documentos_controllers/convencao_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class Convencao extends StatefulWidget {
-  @override
-  _ConvencaoState createState() => _ConvencaoState();
-}
-
-class _ConvencaoState extends State<Convencao> {
-  var convencao = List<MapaDocumentos>();
-  List<MapaDocumentos> _searchResult = [];
-  bool isLoading = true;
-  TextEditingController controller = TextEditingController();
-
-  _getDocumentos() {
-    ApiDocumentos.getDocumentosConvencao().then((response) {
-      setState(() {
-        Iterable lista = json.decode(response.body);
-        convencao =
-            lista.map((model) => MapaDocumentos.fromJson(model)).toList();
-        isLoading = false;
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    _getDocumentos();
-    super.initState();
-  }
-
-  Future<void> _launched;
-
-  Future<void> _launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  onSearchTextChanged(String text) {
-    _searchResult.clear();
-    if (text.isEmpty) {
-      setState(() {});
-      return;
-    }
-
-    convencao.forEach((details) {
-      if (details.nome.toLowerCase().contains(text.toLowerCase()))
-        _searchResult.add(details);
-    });
-
-    setState(() {});
-  }
-
+class Convencao extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ConvencaoController convencaoController = Get.put(ConvencaoController());
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Convenção',
         ),
       ),
-      body: isLoading
-          ? Container(
-              height: MediaQuery.of(context).size.height,
-              color: Theme.of(context).primaryColor,
-              child: Center(
-                child: SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 4,
-                    valueColor:
-                        AlwaysStoppedAnimation(Theme.of(context).accentColor),
+      body: Obx(
+        () {
+          return convencaoController.isLoading.value
+              ? Container(
+                  height: MediaQuery.of(context).size.height,
+                  color: Theme.of(context).primaryColor,
+                  child: Center(
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 4,
+                        valueColor: AlwaysStoppedAnimation(
+                            Theme.of(context).accentColor),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            )
-          : Container(
-              padding: EdgeInsets.all(5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  boxSearch(context, controller, onSearchTextChanged),
-                  Expanded(
-                    child:
-                        _searchResult.isNotEmpty || controller.text.isNotEmpty
+                )
+              : Container(
+                  padding: EdgeInsets.all(5),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      boxSearch(context, convencaoController.controller.value,
+                          convencaoController.onSearchTextChanged),
+                      Expanded(
+                        child: convencaoController.searchResult.isNotEmpty ||
+                                convencaoController
+                                    .controller.value.text.isNotEmpty
                             ? ListView.builder(
-                                itemCount: _searchResult.length,
+                                itemCount:
+                                    convencaoController.searchResult.length,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     color: Theme.of(context).accentColor,
                                     child: ListTile(
                                       title: Text(
-                                        _searchResult[index].nome,
+                                        convencaoController
+                                            .searchResult[index].nome,
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -116,7 +63,8 @@ class _ConvencaoState extends State<Convencao> {
                                         ),
                                       ),
                                       subtitle: Text(
-                                        _searchResult[index].data,
+                                        convencaoController
+                                            .searchResult[index].data,
                                         style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: Theme.of(context)
@@ -130,25 +78,25 @@ class _ConvencaoState extends State<Convencao> {
                                             .textSelectionTheme
                                             .selectionColor,
                                         iconSize: 30,
-                                        onPressed: () => setState(
-                                          () {
-                                            _launched = _launchInBrowser(
-                                                "https://condosocio.com.br/acond/downloads/documentos/${_searchResult[index].imgdoc}");
-                                          },
-                                        ),
+                                        onPressed: () {
+                                          convencaoController.launched =
+                                              convencaoController.launchInBrowser(
+                                                  "https://condosocio.com.br/acond/downloads/documentos/${convencaoController.searchResult[index].imgdoc}");
+                                        },
                                       ),
                                     ),
                                   );
                                 },
                               )
                             : ListView.builder(
-                                itemCount: convencao.length,
+                                itemCount: convencaoController.convencao.length,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     color: Theme.of(context).accentColor,
                                     child: ListTile(
                                       title: Text(
-                                        convencao[index].nome,
+                                        convencaoController
+                                            .convencao[index].nome,
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -158,7 +106,8 @@ class _ConvencaoState extends State<Convencao> {
                                         ),
                                       ),
                                       subtitle: Text(
-                                        convencao[index].data,
+                                        convencaoController
+                                            .convencao[index].data,
                                         style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: Theme.of(context)
@@ -172,21 +121,22 @@ class _ConvencaoState extends State<Convencao> {
                                             .textSelectionTheme
                                             .selectionColor,
                                         iconSize: 30,
-                                        onPressed: () => setState(
-                                          () {
-                                            _launched = _launchInBrowser(
-                                                "https://condosocio.com.br/acond/downloads/documentos/${convencao[index].imgdoc}");
-                                          },
-                                        ),
+                                        onPressed: () {
+                                          convencaoController.launched =
+                                              convencaoController.launchInBrowser(
+                                                  "https://condosocio.com.br/acond/downloads/documentos/${convencaoController.convencao[index].imgdoc}");
+                                        },
                                       ),
                                     ),
                                   );
                                 },
                               ),
-                  )
-                ],
-              ),
-            ),
+                      )
+                    ],
+                  ),
+                );
+        },
+      ),
     );
   }
 }

@@ -1,112 +1,60 @@
-import 'dart:convert';
-
 import 'package:condosocio/src/components/box_search.dart';
-import 'package:condosocio/src/services/documentos/api_documentos.dart';
-import 'package:condosocio/src/services/documentos/mapa_documentos.dart';
+import 'package:condosocio/src/controllers/documentos_controllers/contratos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class Contratos extends StatefulWidget {
-  @override
-  _ContratosState createState() => _ContratosState();
-}
-
-class _ContratosState extends State<Contratos> {
-  List<MapaDocumentos> contratos = [];
-  List<MapaDocumentos> _searchResult = [];
-  bool isLoading = true;
-  TextEditingController controller = TextEditingController();
-
-  _getDocumentos() {
-    ApiDocumentos.getDocumentosContratos().then((response) {
-      setState(() {
-        Iterable lista = json.decode(response.body);
-        contratos =
-            lista.map((model) => MapaDocumentos.fromJson(model)).toList();
-        isLoading = false;
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    _getDocumentos();
-    super.initState();
-  }
-
-  Future<void> _launched;
-
-  Future<void> _launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  onSearchTextChanged(String text) {
-    _searchResult.clear();
-    if (text.isEmpty) {
-      setState(() {});
-      return;
-    }
-
-    contratos.forEach((details) {
-      if (details.nome.toLowerCase().contains(text.toLowerCase()))
-        _searchResult.add(details);
-    });
-
-    setState(() {});
-  }
-
+class Contratos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ContratosController contratosController = Get.put(ContratosController());
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Contratos',
         ),
       ),
-      body: isLoading
-          ? Container(
-              height: MediaQuery.of(context).size.height,
-              color: Theme.of(context).primaryColor,
-              child: Center(
-                child: SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 4,
-                    valueColor:
-                        AlwaysStoppedAnimation(Theme.of(context).accentColor),
+      body: Obx(
+        () {
+          return contratosController.isLoading.value
+              ? Container(
+                  height: MediaQuery.of(context).size.height,
+                  color: Theme.of(context).primaryColor,
+                  child: Center(
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 4,
+                        valueColor: AlwaysStoppedAnimation(
+                            Theme.of(context).accentColor),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            )
-          : Container(
-              padding: EdgeInsets.all(5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  boxSearch(context, controller, onSearchTextChanged),
-                  Expanded(
-                    child:
-                        _searchResult.isNotEmpty || controller.text.isNotEmpty
+                )
+              : Container(
+                  padding: EdgeInsets.all(5),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      boxSearch(context, contratosController.controller.value,
+                          contratosController.onSearchTextChanged),
+                      Expanded(
+                        child: contratosController.searchResult.isNotEmpty ||
+                                contratosController
+                                    .controller.value.text.isNotEmpty
                             ? ListView.builder(
-                                itemCount: _searchResult.length,
+                                itemCount:
+                                    contratosController.searchResult.length,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     color: Theme.of(context).accentColor,
                                     child: ListTile(
                                       title: Text(
-                                        _searchResult[index].nome,
+                                        contratosController
+                                            .searchResult[index].nome,
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -116,7 +64,8 @@ class _ContratosState extends State<Contratos> {
                                         ),
                                       ),
                                       subtitle: Text(
-                                        _searchResult[index].data,
+                                        contratosController
+                                            .searchResult[index].data,
                                         style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: Theme.of(context)
@@ -130,25 +79,25 @@ class _ContratosState extends State<Contratos> {
                                             .textSelectionTheme
                                             .selectionColor,
                                         iconSize: 30,
-                                        onPressed: () => setState(
-                                          () {
-                                            _launched = _launchInBrowser(
-                                                "https://condosocio.com.br/acond/downloads/documentos/${_searchResult[index].imgdoc}");
-                                          },
-                                        ),
+                                        onPressed: () {
+                                          contratosController.launched =
+                                              contratosController.launchInBrowser(
+                                                  "https://condosocio.com.br/acond/downloads/documentos/${contratosController.searchResult[index].imgdoc}");
+                                        },
                                       ),
                                     ),
                                   );
                                 },
                               )
                             : ListView.builder(
-                                itemCount: contratos.length,
+                                itemCount: contratosController.contratos.length,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     color: Theme.of(context).accentColor,
                                     child: ListTile(
                                       title: Text(
-                                        contratos[index].nome,
+                                        contratosController
+                                            .contratos[index].nome,
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -158,7 +107,8 @@ class _ContratosState extends State<Contratos> {
                                         ),
                                       ),
                                       subtitle: Text(
-                                        contratos[index].data,
+                                        contratosController
+                                            .contratos[index].data,
                                         style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: Theme.of(context)
@@ -172,21 +122,22 @@ class _ContratosState extends State<Contratos> {
                                             .textSelectionTheme
                                             .selectionColor,
                                         iconSize: 30,
-                                        onPressed: () => setState(
-                                          () {
-                                            _launched = _launchInBrowser(
-                                                "https://condosocio.com.br/acond/downloads/documentos/${contratos[index].imgdoc}");
-                                          },
-                                        ),
+                                        onPressed: () {
+                                          contratosController.launched =
+                                              contratosController.launchInBrowser(
+                                                  "https://condosocio.com.br/acond/downloads/documentos/${contratosController.contratos[index].imgdoc}");
+                                        },
                                       ),
                                     ),
                                   );
                                 },
                               ),
-                  )
-                ],
-              ),
-            ),
+                      )
+                    ],
+                  ),
+                );
+        },
+      ),
     );
   }
 }
