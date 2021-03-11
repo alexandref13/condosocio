@@ -11,20 +11,6 @@ class HomeBottomTab extends StatefulWidget {
 }
 
 class _HomeBottomTabState extends State<HomeBottomTab> {
-  Future<void> goToProfile() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    final String id = prefs.getString('idusu');
-
-    final String nome = prefs.getString('nome');
-    final String tipo = prefs.getString('tipo');
-    final String imgperfil = prefs.getString('imgperfil');
-    final String email = prefs.getString('email');
-
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Perfil(id, nome, tipo, imgperfil, email)));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -392,7 +378,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        goToProfile();
+                        Get.toNamed('/perfil');
                       },
                       child: Container(
                           decoration: BoxDecoration(

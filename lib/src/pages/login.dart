@@ -1,127 +1,14 @@
+import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:ui';
 
-class Login extends StatefulWidget {
-  @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
+class Login extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
-
-  // final email = new TextEditingController();
-  // final senha = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  // bool isLoading = false;
-  // bool isLoggedIn = false;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    // loginController.authenticate();
-    super.initState();
-  }
-
-  // Future<void> logina() async {
-  // final response = await http
-  //     .post(Uri.https("condosocio.com.br", '/flutter/login.php'), body: {
-  //   "login": email.text,
-  //   "senha": senha.text,
-  // });
-
-  // var dados = response.body.split(' ');
-
-  // print(dados);
-
-  // var dadosUsuario = json.decode(dados[1] + dados[2] + dados[3]);
-
-  // print(dadosUsuario);
-
-  // if (dadosUsuario['valida'] == 1) {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.setString('idusu', dadosUsuario['idusu']);
-
-  // prefs.setString('idusu', dadosUsuario['idusu'].toString());
-  // prefs.setString('nome', dadosUsuario['nome'].toString());
-  // prefs.setString('tipo', dadosUsuario['tipo'].toString());
-  // prefs.setString('email', dadosUsuario['email'].toString());
-  // prefs.setString('nome_condo', dadosUsuario['nome_condo'].toString());
-  // prefs.setString('imgperfil', dadosUsuario['imgperfil'].toString());
-  // prefs.setString('imgcondo', dadosUsuario['imgcondo'].toString());
-
-  // setState(() {
-  //   isLoggedIn = true;
-  //   isLoading = false;
-  // });
-
-  // final String id = prefs.getString('idusu');
-  // final String nome = prefs.getString('nome');
-  // final String tipo = prefs.getString('tipo');
-  // final String email = prefs.getString('email');
-  // final String imgperfil = prefs.getString('imgperfil');
-  // final String nomeCondo = prefs.getString('nome_condo');
-  // final String imgcondo = prefs.getString('imgcondo');
-
-  // print({id, nome, email, imgperfil, nomeCondo, tipo, imgcondo});
-
-  // Navigator.of(context).pushAndRemoveUntil(
-  //     MaterialPageRoute(
-  //       builder: (context) =>
-  //           HomePage(id, nome, tipo, imgperfil, nomeCondo, imgcondo, email),
-  //     ),
-  //     (Route<dynamic> route) => false);
-  //   } else {
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-  //     _onAlertButtonPressed(context);
-  //   }
-  // }
-
-  var alertStyle = AlertStyle(
-    animationType: AnimationType.fromTop,
-    isCloseButton: false,
-    isOverlayTapDismiss: false,
-    //descStyle: GoogleFonts.poppins(color: Colors.red,),
-    animationDuration: Duration(milliseconds: 300),
-    titleStyle: GoogleFonts.poppins(
-      color: Colors.black,
-      fontSize: 18,
-    ),
-  );
-
-  _onAlertButtonPressed(context) {
-    Alert(
-      image: Icon(
-        Icons.highlight_off,
-        color: Color(0xff1A936F),
-        size: 60,
-      ),
-      style: alertStyle,
-      context: context,
-      title: "E-mail ou senha inválidos!\n Tente novamente.",
-      buttons: [
-        DialogButton(
-          child: Text(
-            "OK",
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 18,
-            ),
-          ),
-          onPressed: () => Navigator.pop(context),
-          width: 80,
-          color: Color(0xff1A936F),
-        )
-      ],
-    ).show();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -297,14 +184,17 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
                               onPressed: () {
-                                loginController.login();
-                                // if (_formKey.currentState.validate()) {
-                                //   setState(() {
-                                //     isLoading = true;
-                                //   });
-
-                                //   login();
-                                // }
+                                if (_formKey.currentState.validate()) {
+                                  loginController.login().then(
+                                    (value) {
+                                      if (value == null) {
+                                        onAlertButtonPressed(context);
+                                      } else {
+                                        Get.toNamed('/home');
+                                      }
+                                    },
+                                  );
+                                }
                               },
                               child: loginController.isLoading.value
                                   ? SizedBox(
@@ -362,36 +252,3 @@ class _LoginState extends State<Login> {
     );
   }
 }
-
-// RaisedButton(
-//                               elevation: 3,
-// onPressed: () {
-//   if (_formKey.currentState.validate()) {
-//     setState(() {
-//       isLoading = true;
-//     });
-//     _login();
-//   }
-// },
-// shape: new RoundedRectangleBorder(
-//   borderRadius: new BorderRadius.circular(10.0),
-// ),
-// child: isLoading
-//     ? SizedBox(
-//         width: 20,
-//         height: 20,
-//         child: CircularProgressIndicator(
-//           valueColor: AlwaysStoppedAnimation(
-//               Colors.white),
-//         ),
-//       )
-//     : Text(
-//         "Entrar",
-//         style: GoogleFonts.poppins(
-//             color: Theme.of(context)
-//                 .textSelectionTheme
-//                 .selectionColor,
-//             fontSize: 20),
-//       ),
-//                               color: Theme.of(context).accentColor,
-//                             ),

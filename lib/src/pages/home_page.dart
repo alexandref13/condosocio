@@ -115,34 +115,65 @@ class _HomePageState extends State<HomePage> {
           _configurandoModalBottomSheet(context);
           //Navigator.pushNamed(context, '/Home');
         },
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                  margin: EdgeInsets.only(left: 40),
-                  child: Center(
-                    child: Icon(
-                      Icons.edit,
-                      size: 20,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+        child: loginController.imgperfil.value == ''
+            ? Container(
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 40),
+                      child: Center(
+                        child: Icon(
+                          Icons.edit,
+                          size: 20,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).accentColor,
+                      ),
                     ),
+                  ],
+                ),
+              )
+            : Container(
+                child: Column(
+                  children: [
+                    Container(
+                        margin: EdgeInsets.only(left: 40),
+                        child: Center(
+                          child: Icon(
+                            Icons.edit,
+                            size: 20,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).accentColor,
+                        )),
+                  ],
+                ),
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
                   ),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).accentColor,
-                  )),
-            ],
-          ),
-          width: 70,
-          height: 70,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
-              )),
-        ),
+                ),
+              ),
       );
     }
   }

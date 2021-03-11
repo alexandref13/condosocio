@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -53,7 +55,7 @@ class LoginController extends GetxController {
     }
   }
 
-  Future<void> login() async {
+  Future<String> login() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final response = await http
@@ -73,15 +75,13 @@ class LoginController extends GetxController {
       nome(dadosUsuario['nome']);
 
       prefs.setString('id', id.value);
-      String getId = prefs.getString('id');
       print({
-        'getId: $getId',
+        'img: $imgperfil',
         'id: $id',
       });
-
-      Get.toNamed('/home');
+      return id.value;
     } else {
-      print('nao validado');
+      return null;
     }
   }
 }

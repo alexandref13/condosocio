@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:edge_alert/edge_alert.dart';
+import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:condosocio/src/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -9,19 +11,13 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
 class Perfil extends StatefulWidget {
-  String id;
-
-  String nome;
-  String tipo;
-  String imgperfil;
-  String email;
-
-  Perfil(this.id, this.nome, this.tipo, this.imgperfil, this.email);
   @override
   _PerfilState createState() => _PerfilState();
 }
 
 class _PerfilState extends State<Perfil> {
+  LoginController loginController = Get.put(LoginController());
+
   TextEditingController name = new TextEditingController();
   TextEditingController gender = new TextEditingController();
   TextEditingController date = new TextEditingController();
@@ -73,34 +69,65 @@ class _PerfilState extends State<Perfil> {
           _configurandoModalBottomSheet(context);
           //Navigator.pushNamed(context, '/Home');
         },
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                  margin: EdgeInsets.only(left: 40),
-                  child: Center(
-                    child: Icon(
-                      Icons.edit,
-                      size: 20,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+        child: loginController.imgperfil.value == ''
+            ? Container(
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 40),
+                      child: Center(
+                        child: Icon(
+                          Icons.edit,
+                          size: 20,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).accentColor,
+                      ),
                     ),
+                  ],
+                ),
+              )
+            : Container(
+                child: Column(
+                  children: [
+                    Container(
+                        margin: EdgeInsets.only(left: 40),
+                        child: Center(
+                          child: Icon(
+                            Icons.edit,
+                            size: 20,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).accentColor,
+                        )),
+                  ],
+                ),
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
                   ),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).accentColor,
-                  )),
-            ],
-          ),
-          width: 70,
-          height: 70,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: NetworkImage(
-                    'http://www.focuseg.com.br/areadm/downloads/fotosprofissionais/${widget.imgperfil}'),
-              )),
-        ),
+                ),
+              ),
       );
     }
   }
@@ -135,7 +162,7 @@ class _PerfilState extends State<Perfil> {
 
   Future uploadImage() async {
     var request = http.MultipartRequest('POST', uri);
-    request.fields['idusu'] = widget.id;
+    request.fields['idusu'] = loginController.id.value;
     var pic = await http.MultipartFile.fromPath("image", _selectedFile.path);
     request.files.add(pic);
     var response = await request.send();
@@ -288,7 +315,7 @@ class _PerfilState extends State<Perfil> {
                 customTextField(
                   context,
                   null,
-                  '${widget.nome}',
+                  '${loginController.nome.value}',
                   false,
                   1,
                   true,

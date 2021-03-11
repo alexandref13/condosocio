@@ -14,6 +14,7 @@ import 'package:condosocio/src/pages/home_page.dart';
 import 'package:condosocio/src/pages/login.dart';
 import 'package:condosocio/src/pages/ocorrencias.dart';
 import 'package:condosocio/src/pages/ouvidoria.dart';
+import 'package:condosocio/src/pages/perfil.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/visualizar_acessos.dart';
 import 'package:condosocio/src/pages/visualizar_ocorrencias.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/home', page: () => HomePage()),
         GetPage(name: '/senha', page: () => Senha()),
+        GetPage(name: '/perfil', page: () => Perfil()),
         GetPage(name: '/comunicados', page: () => Comunicados()),
         GetPage(name: '/sobre', page: () => Sobre()),
         GetPage(name: '/ouvidoria', page: () => Ouvidoria()),
