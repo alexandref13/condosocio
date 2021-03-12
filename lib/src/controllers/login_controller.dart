@@ -27,6 +27,7 @@ class LoginController extends GetxController {
     });
 
     var dadosUsuario = json.decode(response.body);
+    print(dadosUsuario);
     if (dadosUsuario['valida'] == 1) {
       id(dadosUsuario['idusu']);
       tipo(dadosUsuario['tipo']);
@@ -37,6 +38,7 @@ class LoginController extends GetxController {
       nome(dadosUsuario['nome']);
 
       prefs.setString('id', id.value);
+      print(id.value);
       return id.value;
     } else {
       return null;

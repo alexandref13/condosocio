@@ -44,7 +44,9 @@ class _HomePageState extends State<HomePage> {
   Future<void> logoutUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs?.clear();
-    Navigator.pushNamed(context, '/login');
+    loginController.email.value.text = '';
+    loginController.password.value.text = '';
+    Get.toNamed('/login');
   }
 
   Future uploadImage() async {
@@ -170,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
+                        'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgcondo.value}'),
                   ),
                 ),
               ),

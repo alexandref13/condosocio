@@ -2,6 +2,8 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class AuthController extends GetxController {
   final LoginController loginController = Get.put(LoginController());
@@ -41,13 +43,18 @@ class AuthController extends GetxController {
       );
       if (isAuthenticated) {
         loginController.isLoading.value = false;
-        loginController.tipo.value = 'ADMIN';
-        loginController.imgperfil.value = '';
-        loginController.emailUsu.value = 'alefernandeseng@gmail.com';
-        loginController.nomeCondo.value = "ALVO";
-        loginController.imgcondo.value = '';
-        loginController.nome.value = "Alexandre Fernandes";
-        Get.toNamed('/home');
+        http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
+            body: {"id": id}).then((response) {
+          var dados = json.decode(response.body);
+
+          loginController.emailUsu(dados['email']);
+          loginController.tipo(dados['tipo']);
+          loginController.imgperfil(dados['imgperfil']);
+          loginController.nomeCondo(dados['nome_condo']);
+          loginController.imgcondo(dados['imgcondo']);
+          loginController.nome(dados['nome']);
+          Get.toNamed('/home');
+        });
       } else {
         loginController.isLoading.value = false;
         return;

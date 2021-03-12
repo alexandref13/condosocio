@@ -38,39 +38,40 @@ class _DocumentosState extends State<Documentos> {
                         Navigator.pushNamed(context, '/ataDocumentos');
                       },
                       child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Theme.of(context).accentColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xff103845),
-                                spreadRadius: 3,
-                                blurRadius: 1,
-                                offset:
-                                    Offset(0, 2), // changes position of shadow
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Theme.of(context).accentColor,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xff103845),
+                              spreadRadius: 3,
+                              blurRadius: 1,
+                              offset:
+                                  Offset(0, 2), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: Icon(
+                                AntDesign.infocirlce,
+                                size: 35,
+                                color: Colors.white,
                               ),
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 10),
-                                child: Icon(
-                                  AntDesign.infocirlce,
-                                  size: 35,
-                                  color: Colors.white,
-                                ),
+                            ),
+                            Text(
+                              "Ata",
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontSize: 13,
                               ),
-                              Text(
-                                "Ata",
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ],
-                          )),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     GestureDetector(
                       onTap: () {

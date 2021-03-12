@@ -1,59 +1,68 @@
+import 'package:condosocio/src/controllers/login_controller.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiDocumentos {
   static Future getDocumentosAtas() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('idusu');
+    LoginController loginController = Get.put(LoginController());
+
     return await http.get(
       Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
-          {"idUsu": "$id", "pasta": "1"}),
+          {"idUsu": "${loginController.id.value}", "pasta": "1"}),
     );
   }
 
   static Future getDocumentosContratos() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('idusu');
+    LoginController loginController = Get.put(LoginController());
+
     return await http.get(
       Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
-          {"idUsu": "$id", "pasta": "2"}),
+          {"idUsu": "${loginController.id.value}", "pasta": "2"}),
     );
   }
 
   static Future getDocumentosConvencao() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('idusu');
+    LoginController loginController = Get.put(LoginController());
+
     return await http.get(
       Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
-          {"idUsu": "$id", "pasta": "3"}),
+          {"idUsu": "${loginController.id.value}", "pasta": "3"}),
     );
   }
 
   static Future getDocumentosPrestacao() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('idusu');
-    return await http.get(Uri.https("www.condosocio.com.br",
-        "/flutter/documentos.php", {"idUsu": "$id", "pasta": "4"}));
+    LoginController loginController = Get.put(LoginController());
+
+    return await http.get(Uri.https(
+        "www.condosocio.com.br",
+        "/flutter/documentos.php",
+        {"idUsu": "${loginController.id.value}", "pasta": "4"}));
   }
 
   static Future getDocumentosRegulamento() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('idusu');
-    return await http.get(Uri.https("www.condosocio.com.br",
-        "/flutter/documentos.php", {"idUsu": "$id", "pasta": "5"}));
+    LoginController loginController = Get.put(LoginController());
+
+    return await http.get(Uri.https(
+        "www.condosocio.com.br",
+        "/flutter/documentos.php",
+        {"idUsu": "${loginController.id.value}", "pasta": "5"}));
   }
 
   static Future getDocumentosEdital() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('idusu');
-    return await http.get(Uri.https("www.condosocio.com.br",
-        "/flutter/documentos.php", {"idUsu": "$id", "pasta": "6"}));
+    LoginController loginController = Get.put(LoginController());
+
+    return await http.get(Uri.https(
+        "www.condosocio.com.br",
+        "/flutter/documentos.php",
+        {"idUsu": "${loginController.id.value}", "pasta": "6"}));
   }
 
   static Future getDocumentosOutros() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('idusu');
-    return await http.get(Uri.https("www.condosocio.com.br",
-        "/flutter/documentos.php", {"idUsu": "$id", "pasta": "7"}));
+    LoginController loginController = Get.put(LoginController());
+
+    return await http.get(Uri.https(
+        "www.condosocio.com.br",
+        "/flutter/documentos.php",
+        {"idUsu": "${loginController.id.value}", "pasta": "7"}));
   }
 }

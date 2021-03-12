@@ -8,7 +8,7 @@ class ComunicadosController extends GetxController {
   var isLoading = true.obs;
 
   void getComunicados() {
-    API_COMUN.getComunicados().then((response) {
+    ApiComunicados.getComunicados().then((response) {
       Iterable lista = json.decode(response.body);
       comunicados =
           lista.map((model) => DadosComunicados.fromJson(model)).toList();

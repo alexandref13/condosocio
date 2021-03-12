@@ -1,14 +1,14 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:condosocio/src/controllers/login_controller.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ApiAcessosVisualizacao {
   static Future getAcessos() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('idusu');
-    print(id);
+    LoginController loginController = Get.put(LoginController());
+
     return await http.get(
-      Uri.https(
-          "www.condosocio.com.br", "/flutter/acessovis.php", {"idUsu": "$id"}),
+      Uri.https("www.condosocio.com.br", "/flutter/acessovis.php",
+          {"idUsu": "${loginController.id.value}"}),
     );
   }
 }
