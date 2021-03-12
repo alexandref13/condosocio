@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/controllers/auth_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
@@ -6,71 +7,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
-import 'package:local_auth/local_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class Login extends StatefulWidget {
-  @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
+class Login extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
-
-  final LocalAuthentication localAuthentication = LocalAuthentication();
-  bool canCheckBiometrics;
-  List<BiometricType> availableBiometrics;
-  String authorized = 'Not Authorized';
-  bool isAuthenticating = false;
-
-  @override
-  void initState() {
-    authenticate();
-    super.initState();
-  }
-
-  authenticate() async {
-    if (await _isBiometricAvailable()) {
-      await _getListOfBiometricTypes();
-      await autoLogIn();
-    }
-  }
-
-  Future<bool> _isBiometricAvailable() async {
-    bool isAvailable = await localAuthentication.canCheckBiometrics;
-    return isAvailable;
-  }
-
-  Future<void> _getListOfBiometricTypes() async {
-    List<BiometricType> availableBiometrics =
-        await localAuthentication.getAvailableBiometrics();
-  }
-
-  Future<void> autoLogIn() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('id');
-
-    if (id != null) {
-      bool isAuthenticated = await localAuthentication.authenticate(
-        localizedReason: "Autenticar para realizar Login na plataforma",
-        useErrorDialogs: true,
-        stickyAuth: true,
-      );
-      if (isAuthenticated) {
-        loginController.isLoading.value = false;
-        loginController.tipo.value = 'ADMIN';
-        loginController.imgperfil.value = '';
-        loginController.emailUsu.value = 'alefernandeseng@gmail.com';
-        loginController.nomeCondo.value = "ALVO";
-        loginController.imgcondo.value = '';
-        loginController.nome.value = "Alexandre Fernandes";
-        Get.toNamed('/home');
-      } else {
-        loginController.isLoading.value = false;
-        return;
-      }
-    }
-  }
+  final AuthController authController = Get.put(AuthController());
 
   final _formKey = GlobalKey<FormState>();
 
