@@ -9,16 +9,17 @@ class MapaOcorrencias {
   String horaoco;
   String status;
 
-  MapaOcorrencias(
-      {this.id,
-      this.titulo,
-      this.desc,
-      this.imgoco,
-      this.data,
-      this.hora,
-      this.dataoco,
-      this.horaoco,
-      this.status});
+  MapaOcorrencias({
+    this.id,
+    this.titulo,
+    this.desc,
+    this.imgoco,
+    this.data,
+    this.hora,
+    this.dataoco,
+    this.horaoco,
+    this.status,
+  });
 
   MapaOcorrencias.fromJson(Map<String, dynamic> json) {
     id = json['id'];

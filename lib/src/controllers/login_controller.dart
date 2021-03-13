@@ -8,6 +8,7 @@ class LoginController extends GetxController {
   var email = TextEditingController().obs;
   var password = TextEditingController().obs;
   var id = ''.obs;
+  var idcond = ''.obs;
   var tipo = ''.obs;
   var imgperfil = ''.obs;
   var emailUsu = ''.obs;
@@ -30,6 +31,7 @@ class LoginController extends GetxController {
     print(dadosUsuario);
     if (dadosUsuario['valida'] == 1) {
       id(dadosUsuario['idusu']);
+      idcond(dadosUsuario['idcond']);
       tipo(dadosUsuario['tipo']);
       imgperfil(dadosUsuario['imgperfil']);
       emailUsu(dadosUsuario['email']);
@@ -38,7 +40,6 @@ class LoginController extends GetxController {
       nome(dadosUsuario['nome']);
 
       prefs.setString('id', id.value);
-      print(id.value);
       return id.value;
     } else {
       return null;

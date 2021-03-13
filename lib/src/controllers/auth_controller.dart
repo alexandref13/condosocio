@@ -1,5 +1,6 @@
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
+import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -15,7 +16,7 @@ class AuthController extends GetxController {
 
   authenticate() async {
     if (await _isBiometricAvailable()) {
-      await _getListOfBiometricTypes();
+      // await _getListOfBiometricTypes();
       await autoLogIn();
     }
   }
@@ -25,21 +26,31 @@ class AuthController extends GetxController {
     return isAvailable;
   }
 
-  Future<void> _getListOfBiometricTypes() async {
-    List<BiometricType> availableBiometrics =
-        await localAuthentication.getAvailableBiometrics();
-    print(availableBiometrics);
-  }
+  // Future<void> _getListOfBiometricTypes() async {
+  //   List<BiometricType> availableBiometrics =
+  //       await localAuthentication.getAvailableBiometrics();
+  //   print(availableBiometrics);
+  // }
 
   Future<void> autoLogIn() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String id = prefs.getString('id');
+    print(id);
 
     if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
-        useErrorDialogs: true,
+        biometricOnly: true,
         stickyAuth: true,
+        useErrorDialogs: true,
+        iOSAuthStrings: IOSAuthMessages(
+          cancelButton: "Cancelar",
+        ),
+        androidAuthStrings: AndroidAuthMessages(
+          biometricHint: "Para acesso rapido entre com sua biometria",
+          signInTitle: "Entre com a biometria",
+          cancelButton: "Cancelar",
+        ),
       );
       if (isAuthenticated) {
         loginController.isLoading.value = false;
@@ -47,6 +58,8 @@ class AuthController extends GetxController {
             body: {"id": id}).then((response) {
           var dados = json.decode(response.body);
 
+          loginController.id(dados['idusu']);
+          loginController.idcond(dados['idcond']);
           loginController.emailUsu(dados['email']);
           loginController.tipo(dados['tipo']);
           loginController.imgperfil(dados['imgperfil']);

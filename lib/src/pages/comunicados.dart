@@ -15,21 +15,6 @@ class Comunicados extends StatefulWidget {
 class _ComunicadosState extends State<Comunicados> {
   ComunicadosController comunicadosController =
       Get.put(ComunicadosController());
-  // List<DadosComunicados> comunicados =
-  //     List<DadosComunicados>.empty(growable: true);
-  // bool isLoading = true;
-
-  // _getComunicados() {
-  //   API_COMUN.getComunicados().then((response) {
-  //     print(json.decode(response.body));
-  //     setState(() {
-  //       Iterable lista = json.decode(response.body);
-  //       comunicados =
-  //           lista.map((model) => DadosComunicados.fromJson(model)).toList();
-  //       isLoading = false;
-  //     });
-  //   });
-  // }
 
   @override
   void initState() {
@@ -150,30 +135,32 @@ class _ComunicadosState extends State<Comunicados> {
                               },
                               leading: RichText(
                                 text: TextSpan(
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text: comunicadosController
+                                                .comunicados[index].dia +
+                                            "  ",
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold)),
+                                    TextSpan(
+                                      text: comunicadosController
+                                          .comunicados[index].mes,
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 14,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          letterSpacing: 2),
                                     ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: comunicadosController
-                                                  .comunicados[index].dia +
-                                              "  ",
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                          text: comunicadosController
-                                              .comunicados[index].mes,
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 14,
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor,
-                                              letterSpacing: 2)),
-                                    ]),
+                                  ],
+                                ),
                               ),
                               title: Padding(
                                 padding: EdgeInsets.only(left: 30),

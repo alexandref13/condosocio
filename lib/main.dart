@@ -13,12 +13,13 @@ import 'package:condosocio/src/pages/documentos_pages/regulamento_documentos.dar
 import 'package:condosocio/src/pages/home_page.dart';
 import 'package:condosocio/src/pages/login.dart';
 import 'package:condosocio/src/pages/ocorrencias.dart';
-import 'package:condosocio/src/pages/ouvidoria.dart';
+import 'package:condosocio/src/pages/ouvidoria/ouvidoria.dart';
+import 'package:condosocio/src/pages/ouvidoria/detalhes_ouvidoria.dart';
 import 'package:condosocio/src/pages/perfil.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/visualizar_acessos.dart';
 import 'package:condosocio/src/pages/visualizar_ocorrencias.dart';
-import 'package:condosocio/src/pages/visualizar_ouvidoria.dart';
+import 'package:condosocio/src/pages/ouvidoria/visualizar_ouvidoria.dart';
 import 'package:condosocio/src/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
             page: () => VisualizarOcorrencias()),
         GetPage(
             name: '/visualizarOuvidoria', page: () => VisualizarOuvidoria()),
+        GetPage(name: '/detalhesOuvidoria', page: () => DetalhesOuvidoria()),
         GetPage(name: '/documentos', page: () => Documentos()),
         GetPage(name: '/ataDocumentos', page: () => Ata()),
         GetPage(name: '/contratosDocumentos', page: () => Contratos()),
@@ -69,5 +71,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class Servicos {}
