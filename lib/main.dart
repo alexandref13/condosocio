@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/senha.dart';
+import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:condosocio/src/pages/acessos.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
 import 'package:condosocio/src/pages/comunicados.dart';

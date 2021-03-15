@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   var email = TextEditingController().obs;
@@ -19,8 +19,7 @@ class LoginController extends GetxController {
   var isLoggedIn = false.obs;
 
   Future<String> login() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
+    await GetStorage.init();
     final response = await http
         .post(Uri.https("condosocio.com.br", '/flutter/login.php'), body: {
       "login": email.value.text,
@@ -39,7 +38,9 @@ class LoginController extends GetxController {
       imgcondo(dadosUsuario['imgcondo']);
       nome(dadosUsuario['nome']);
 
-      prefs.setString('id', id.value);
+      final box = GetStorage();
+      box.write('id', id.value.toString());
+
       return id.value;
     } else {
       return null;

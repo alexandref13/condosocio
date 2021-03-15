@@ -1,8 +1,8 @@
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -26,16 +26,10 @@ class AuthController extends GetxController {
     return isAvailable;
   }
 
-  // Future<void> _getListOfBiometricTypes() async {
-  //   List<BiometricType> availableBiometrics =
-  //       await localAuthentication.getAvailableBiometrics();
-  //   print(availableBiometrics);
-  // }
-
   Future<void> autoLogIn() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String id = prefs.getString('id');
-    print(id);
+    await GetStorage.init();
+    final box = GetStorage();
+    var id = box.read('id');
 
     if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(

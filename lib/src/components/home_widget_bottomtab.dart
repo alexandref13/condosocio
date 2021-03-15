@@ -1,3 +1,5 @@
+import 'package:condosocio/src/controllers/theme_controller.dart';
+import 'package:condosocio/src/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,8 @@ class HomeBottomTab extends StatefulWidget {
 }
 
 class _HomeBottomTabState extends State<HomeBottomTab> {
+  ThemeController themeController = Get.put(ThemeController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +71,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        print('Não tem page aq');
+                        themeController.setTheme(admin);
                       },
                       child: Container(
                           decoration: BoxDecoration(
