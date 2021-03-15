@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:condosocio/src/themes/themes.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class ThemeController extends GetxController {
-  void setTheme(ThemeData condo) async {
-    final box = GetStorage();
-    box.write('condo', condo);
+  void setTheme(String condo) async {
+    if (condo == 'cristal') {
+      Get.changeTheme(cristalVille);
+    } else if (condo == 'admin') {
+      Get.changeTheme(admin);
+    }
   }
 }

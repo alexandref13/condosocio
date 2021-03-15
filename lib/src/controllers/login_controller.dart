@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class LoginController extends GetxController {
+  ThemeController themeController = Get.put(ThemeController());
+
   var email = TextEditingController().obs;
   var password = TextEditingController().obs;
   var id = ''.obs;
@@ -13,6 +16,7 @@ class LoginController extends GetxController {
   var imgperfil = ''.obs;
   var emailUsu = ''.obs;
   var nomeCondo = ''.obs;
+  var condoTheme = 'cristal';
   var imgcondo = ''.obs;
   var nome = ''.obs;
   var isLoading = false.obs;
@@ -40,6 +44,8 @@ class LoginController extends GetxController {
 
       final box = GetStorage();
       box.write('id', id.value.toString());
+
+      themeController.setTheme(condoTheme);
 
       return id.value;
     } else {

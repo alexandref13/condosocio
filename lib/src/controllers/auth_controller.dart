@@ -1,4 +1,5 @@
 import 'package:condosocio/src/controllers/login_controller.dart';
+import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:local_auth/auth_strings.dart';
@@ -7,8 +8,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AuthController extends GetxController {
-  final LoginController loginController = Get.put(LoginController());
-  final LocalAuthentication localAuthentication = LocalAuthentication();
+  ThemeController themeController = Get.put(ThemeController());
+  LoginController loginController = Get.put(LoginController());
+  LocalAuthentication localAuthentication = LocalAuthentication();
 
   bool canCheckBiometrics;
   List<BiometricType> availableBiometrics;
@@ -60,6 +62,7 @@ class AuthController extends GetxController {
           loginController.nomeCondo(dados['nome_condo']);
           loginController.imgcondo(dados['imgcondo']);
           loginController.nome(dados['nome']);
+          themeController.setTheme(loginController.condoTheme);
           Get.toNamed('/home');
         });
       } else {
