@@ -1,8 +1,8 @@
 import 'package:condosocio/src/components/senha.dart';
-import 'package:condosocio/src/controllers/theme_controller.dart';
-import 'package:condosocio/src/pages/acessos.dart';
+import 'package:condosocio/src/pages/acessos/acessos.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
 import 'package:condosocio/src/pages/comunicados.dart';
+import 'package:condosocio/src/pages/detalhes.dart';
 import 'package:condosocio/src/pages/documento.dart';
 import 'package:condosocio/src/pages/documentos_pages/ata_documentos.dart';
 import 'package:condosocio/src/pages/documentos_pages/contratos_documentos.dart';
@@ -18,7 +18,7 @@ import 'package:condosocio/src/pages/ouvidoria/ouvidoria.dart';
 import 'package:condosocio/src/pages/ouvidoria/detalhes_ouvidoria.dart';
 import 'package:condosocio/src/pages/perfil.dart';
 import 'package:condosocio/src/pages/sobre.dart';
-import 'package:condosocio/src/pages/visualizar_acessos.dart';
+import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
 import 'package:condosocio/src/pages/visualizar_ocorrencias.dart';
 import 'package:condosocio/src/pages/ouvidoria/visualizar_ouvidoria.dart';
 import 'package:condosocio/src/themes/themes.dart';
@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/senha', page: () => Senha()),
         GetPage(name: '/perfil', page: () => Perfil()),
         GetPage(name: '/comunicados', page: () => Comunicados()),
+        GetPage(name: '/detalhes', page: () => DetalhesComunicados()),
         GetPage(name: '/sobre', page: () => Sobre()),
         GetPage(name: '/ouvidoria', page: () => Ouvidoria()),
         GetPage(name: '/ocorrencias', page: () => Ocorrencias()),

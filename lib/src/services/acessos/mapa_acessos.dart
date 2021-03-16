@@ -1,4 +1,4 @@
-class MapaAcessosVisu {
+class MapaAcessos {
   int fav;
   String heart;
   String idfav;
@@ -12,7 +12,7 @@ class MapaAcessosVisu {
   String dataent;
   String datasai;
 
-  MapaAcessosVisu(
+  MapaAcessos(
       {this.fav,
       this.heart,
       this.idfav,
@@ -26,7 +26,7 @@ class MapaAcessosVisu {
       this.dataent,
       this.datasai});
 
-  MapaAcessosVisu.fromJson(Map<String, dynamic> json) {
+  MapaAcessos.fromJson(Map<String, dynamic> json) {
     fav = json['fav'];
     heart = json['heart'];
     idfav = json['idfav'];

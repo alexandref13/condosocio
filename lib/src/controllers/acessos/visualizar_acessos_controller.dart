@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:condosocio/src/services/acessos/api_acessos_visualizacao.dart';
-import 'package:condosocio/src/services/acessos/mapa_acessos_visualizacao.dart';
+import 'package:condosocio/src/services/acessos/api_acessos.dart';
+import 'package:condosocio/src/services/acessos/mapa_acessos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VisualizarAcessosController extends GetxController {
-  List<MapaAcessosVisu> acessos;
+  List<MapaAcessos> acessos = [];
   var search = TextEditingController().obs;
   var isLoading = true.obs;
   var searchResult = [].obs;
@@ -22,9 +22,9 @@ class VisualizarAcessosController extends GetxController {
   }
 
   void getAcessos() {
-    ApiAcessosVisualizacao.getAcessos().then((response) {
+    ApiAcessos.getAcessos().then((response) {
       Iterable lista = json.decode(response.body);
-      acessos = lista.map((model) => MapaAcessosVisu.fromJson(model)).toList();
+      acessos = lista.map((model) => MapaAcessos.fromJson(model)).toList();
       print(acessos);
       isLoading(false);
     });

@@ -1,9 +1,6 @@
-import 'dart:convert';
 import 'package:condosocio/src/controllers/comunicados_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:condosocio/src/pages/detalhes.dart';
-import 'package:condosocio/src/services/comunicados/api_comunicados.dart';
-import 'package:condosocio/src/services/comunicados/mapa_comunicados.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -113,6 +110,8 @@ class _ComunicadosState extends State<Comunicados> {
                   child: ListView.builder(
                       itemCount: comunicadosController.comunicados.length,
                       itemBuilder: (context, index) {
+                        var comunicados =
+                            comunicadosController.comunicados[index];
                         return Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),
@@ -120,18 +119,17 @@ class _ComunicadosState extends State<Comunicados> {
                           color: Theme.of(context).accentColor,
                           child: ListTile(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Detalhes(
-                                        comunicadosController
-                                            .comunicados[index].titulo,
-                                        comunicadosController
-                                            .comunicados[index].texto,
-                                        comunicadosController
-                                            .comunicados[index].dia,
-                                        comunicadosController
-                                            .comunicados[index].mes,
-                                        comunicadosController
-                                            .comunicados[index].hora)));
+                                comunicados.titulo =
+                                    comunicadosController.titulo.value;
+                                comunicados.texto =
+                                    comunicadosController.texto.value;
+                                comunicados.dia =
+                                    comunicadosController.dia.value;
+                                comunicados.mes =
+                                    comunicadosController.mes.value;
+                                comunicados.hora =
+                                    comunicadosController.hora.value;
+                                Get.toNamed('/detalhes');
                               },
                               leading: RichText(
                                 text: TextSpan(
@@ -143,15 +141,12 @@ class _ComunicadosState extends State<Comunicados> {
                                   ),
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: comunicadosController
-                                                .comunicados[index].dia +
-                                            "  ",
+                                        text: comunicados.dia + "  ",
                                         style: GoogleFonts.poppins(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold)),
                                     TextSpan(
-                                      text: comunicadosController
-                                          .comunicados[index].mes,
+                                      text: comunicados.mes,
                                       style: GoogleFonts.poppins(
                                           fontSize: 14,
                                           color: Theme.of(context)
@@ -165,8 +160,7 @@ class _ComunicadosState extends State<Comunicados> {
                               title: Padding(
                                 padding: EdgeInsets.only(left: 30),
                                 child: Text(
-                                  comunicadosController
-                                      .comunicados[index].titulo,
+                                  comunicados.titulo,
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       color: Theme.of(context)

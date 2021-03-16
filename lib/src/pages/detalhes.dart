@@ -1,28 +1,20 @@
+import 'package:condosocio/src/controllers/comunicados_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 
-class Detalhes extends StatefulWidget {
-  String titulo;
-  String texto;
-  String dia;
-  String mes;
-  String hora;
-
-  Detalhes(this.titulo, this.texto, this.dia, this.mes, this.hora);
-  @override
-  _DetalhesState createState() => _DetalhesState();
-}
-
-class _DetalhesState extends State<Detalhes> {
+class DetalhesComunicados extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ComunicadosController comunicadosController =
+        Get.put(ComunicadosController());
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
             title: Text(
-              '${widget.titulo}',
+              comunicadosController.titulo.value,
               style: GoogleFonts.poppins(fontSize: 20),
             ),
             centerTitle: true,
@@ -33,7 +25,7 @@ class _DetalhesState extends State<Detalhes> {
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
               child: Html(
-                data: widget.texto,
+                data: comunicadosController.texto.value,
                 style: {
                   "h3": Style(
                       color:

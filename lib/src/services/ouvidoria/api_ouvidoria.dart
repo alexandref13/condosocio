@@ -15,7 +15,7 @@ class ApiOuvidoria {
       body: {
         "id": loginController.id.value,
         "idcond": loginController.idcond.value,
-        "assunto": ouvidoriaController.itemSelecionado,
+        "assunto": ouvidoriaController.itemSelecionado.value,
         "mensagem": ouvidoriaController.message.value.text
       },
     );

@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -77,12 +78,10 @@ class _OuvidoriaState extends State<Ouvidoria> {
                         }).toList(),
                         onChanged: (String novoItemSelecionado) {
                           _dropDownItemSelected(novoItemSelecionado);
-                          setState(() {
-                            this.ouvidoriaController.itemSelecionado =
-                                novoItemSelecionado;
-                          });
+                          this.ouvidoriaController.itemSelecionado.value =
+                              novoItemSelecionado;
                         },
-                        value: ouvidoriaController.itemSelecionado,
+                        value: ouvidoriaController.itemSelecionado.value,
                       ),
                     ),
                     SizedBox(
@@ -107,7 +106,23 @@ class _OuvidoriaState extends State<Ouvidoria> {
                         child: RaisedButton(
                           elevation: 3,
                           onPressed: () {
-                            ouvidoriaController.sendOuvidoria();
+                            ouvidoriaController
+                                .sendOuvidoria()
+                                .then((response) {
+                              if (response == 1) {
+                                onAlertButtonPressed(
+                                    context, 'Enviado com sucesso!');
+                                ouvidoriaController.isLoading.value = false;
+                              } else if (response == 'vazio') {
+                                onAlertButtonPressed(context,
+                                    'Assunto e Mensagem são campos obrigátorios');
+                                ouvidoriaController.isLoading.value = false;
+                              } else {
+                                onAlertButtonPressed(context,
+                                    'Algo deu errado\n Tente novamente');
+                                ouvidoriaController.isLoading.value = false;
+                              }
+                            });
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
@@ -167,6 +182,6 @@ class _OuvidoriaState extends State<Ouvidoria> {
   }
 
   void _dropDownItemSelected(String novoItem) {
-    ouvidoriaController.itemSelecionado = novoItem;
+    ouvidoriaController.itemSelecionado.value = novoItem;
   }
 }

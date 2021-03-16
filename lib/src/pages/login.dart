@@ -224,27 +224,37 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ),
-                        new Padding(
-                          padding: EdgeInsets.fromLTRB(0, 10, 0, 30),
-                          child: FlatButton(
-                            textColor: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                            disabledColor: Colors.grey,
-                            disabledTextColor: Colors.black,
-                            splashColor: Theme.of(context).accentColor,
-                            onPressed: () {
-                              // if (_formKey.currentState.validate()) {
-                              //   setState(() {
-                              //     isLoading = true;
-                              //   });
-                              //   login();
-                              // }
-                            },
-                            child: Text(
-                              "Esqueceu a senha?",
-                              style: GoogleFonts.poppins(fontSize: 12.0),
-                              textDirection: TextDirection.ltr,
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: ButtonTheme(
+                            height: 50,
+                            child: TextButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) =>
+                                      Theme.of(context).accentColor,
+                                ),
+                                shape: MaterialStateProperty.resolveWith<
+                                    OutlinedBorder>(
+                                  (Set<MaterialState> states) {
+                                    return RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    );
+                                  },
+                                ),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                "Esqueceu a senha?",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14.0,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                                textDirection: TextDirection.ltr,
+                              ),
                             ),
                           ),
                         ),

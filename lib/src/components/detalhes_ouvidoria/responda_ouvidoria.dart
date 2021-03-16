@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/components/custom_text_field.dart';
 import 'package:condosocio/src/controllers/ouvidoria/detalhes_ouvidoria/responda_controller.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,24 @@ class RespondaOuvidoria extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  respondaController.sendRespondaOuvidoria();
+                  respondaController.sendRespondaOuvidoria().then((value) {
+                    if (value == 1) {
+                      onAlertButtonPressed(
+                        context,
+                        'Enviado com sucesso!',
+                      );
+                    } else if (value == 'vazio') {
+                      onAlertButtonPressed(
+                        context,
+                        'O campo de texto é obrigátorio',
+                      );
+                    } else {
+                      onAlertButtonPressed(
+                        context,
+                        'Algo deu errado! \nTente novamente',
+                      );
+                    }
+                  });
                 },
                 child: respondaController.isLoading.value
                     ? SizedBox(

@@ -1,5 +1,5 @@
 import 'package:condosocio/src/components/visualizar_acessos/modal_bottom_sheet.dart';
-import 'package:condosocio/src/controllers/visualizar_acessos_controller.dart';
+import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -88,7 +88,6 @@ Widget listaVisualizarAcessos() {
                           ),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.25,
                           child: Text(
                             search.pessoa,
                             style: GoogleFonts.poppins(
@@ -244,7 +243,6 @@ Widget listaVisualizarAcessos() {
                           ),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.25,
                           child: Text(
                             acessosController.acessos[index].pessoa,
                             style: GoogleFonts.poppins(
