@@ -7,8 +7,9 @@ class ApiAcessosVisualizacao {
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(
-      Uri.https("www.condosocio.com.br", "/flutter/acessovis.php",
-          {"idUsu": "${loginController.id.value}"}),
+      Uri.https("www.condosocio.com.br", "/flutter/acessovis.php", {
+        "idUsu": loginController.id.value,
+      }),
     );
   }
 }

@@ -193,7 +193,10 @@ class Login extends StatelessWidget {
                                   loginController.login().then(
                                     (value) {
                                       if (value == null) {
-                                        onAlertButtonPressed(context);
+                                        onAlertButtonPressed(
+                                          context,
+                                          'Email ou senha invalivos \n Tente novamente',
+                                        );
                                       } else {
                                         Get.toNamed('/home');
                                       }

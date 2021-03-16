@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-onAlertButtonPressed(context) {
+onAlertButtonPressed(context, String text) {
   Alert(
     image: Icon(
       Icons.highlight_off,
@@ -11,7 +11,7 @@ onAlertButtonPressed(context) {
     ),
     style: alertStyle,
     context: context,
-    title: "E-mail ou senha inválidos!\n Tente novamente.",
+    title: text,
     buttons: [
       DialogButton(
         child: Text(

@@ -1,5 +1,6 @@
 import 'package:condosocio/src/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EntradaAcessos extends StatefulWidget {
@@ -8,8 +9,11 @@ class EntradaAcessos extends StatefulWidget {
 }
 
 class _EntradaAcessosState extends State<EntradaAcessos> {
-  TextEditingController name = new TextEditingController();
-  TextEditingController phone = new TextEditingController();
+  TextEditingController nome = new TextEditingController();
+  TextEditingController telefone = new TextEditingController();
+  TextEditingController documento = new TextEditingController();
+  TextEditingController placa = new TextEditingController();
+  TextEditingController marca = new TextEditingController();
 
   String nomeCidade = '';
   bool isLoading = false;
@@ -19,7 +23,7 @@ class _EntradaAcessosState extends State<EntradaAcessos> {
     'Alexandre Fernandes',
     'Mãe',
   ];
-  var _faloritosSelecionado = 'Selecione o favorito';
+  var _favoritosSelecionado = 'Selecione o favorito';
 
   var _tipos = [
     'Selecione o tipo de visitante',
@@ -70,10 +74,10 @@ class _EntradaAcessosState extends State<EntradaAcessos> {
                 onChanged: (String novoItemSelecionado) {
                   _dropDownFavoriteSelected(novoItemSelecionado);
                   setState(() {
-                    this._faloritosSelecionado = novoItemSelecionado;
+                    this._favoritosSelecionado = novoItemSelecionado;
                   });
                 },
-                value: _faloritosSelecionado,
+                value: _favoritosSelecionado,
               ),
             ),
             SizedBox(
@@ -92,18 +96,29 @@ class _EntradaAcessosState extends State<EntradaAcessos> {
             ),
             ButtonTheme(
               height: 50.0,
-              child: RaisedButton(
-                elevation: 3,
-                onPressed: () {
-                  if (_itemSelecionado == 'Selecione o tipo de visitante') {
-                    print('nao pode');
-                  }
-                  setState(() {
-                    isLoading = true;
-                  });
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      return Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor;
+                    },
+                  ),
+                  elevation: MaterialStateProperty.resolveWith<double>(
+                    (Set<MaterialState> states) {
+                      return 3;
+                    },
+                  ),
+                  shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                    (Set<MaterialState> states) {
+                      return RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      );
+                    },
+                  ),
+                ),
+                onPressed: () {},
                 child: isLoading
                     ? SizedBox(
                         width: 20,
@@ -117,26 +132,11 @@ class _EntradaAcessosState extends State<EntradaAcessos> {
                         style: GoogleFonts.poppins(
                             color: Theme.of(context).accentColor, fontSize: 16),
                       ),
-                color: Theme.of(context).textSelectionTheme.selectionColor,
               ),
             ),
             SizedBox(
               height: 30,
             ),
-
-            //NÃO CURTI MUITO COM O SEGUNDO "OU"
-
-            // Text(
-            //   'OU',
-            //   style: GoogleFonts.poppins(
-            //     fontSize: 20,
-            //     color: Theme.of(context).textSelectionTheme.selectionColor,
-            //   ),
-            //   textAlign: TextAlign.center,
-            // ),
-            // SizedBox(
-            //   height: 15,
-            // ),
             Container(
               height: 55,
               padding: EdgeInsets.all(7),
@@ -176,30 +176,59 @@ class _EntradaAcessosState extends State<EntradaAcessos> {
             SizedBox(
               height: 10,
             ),
-            customTextField(context, 'Entre com o nome ou empresa', null, false,
-                1, true, name),
+            customTextField(
+                context, 'Nome ou empresa', null, false, 1, true, nome),
+            SizedBox(
+              height: 10,
+            ),
+            customTextField(context, 'Celular', null, false, 1, true, telefone),
             SizedBox(
               height: 10,
             ),
             customTextField(
-                context, 'Entre com o celular', null, false, 1, true, phone),
+                context, 'Documento', null, false, 1, true, documento),
+            SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            customTextField(
+                context, 'Placa do veiculo', null, false, 1, true, placa),
+            SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            customTextField(
+                context, 'Marca do veiculo', null, false, 1, true, marca),
             SizedBox(
               height: 30,
             ),
             ButtonTheme(
               height: 50.0,
-              child: RaisedButton(
-                elevation: 3,
-                onPressed: () {
-                  if (_itemSelecionado == 'Selecione o tipo de visitante') {
-                    print('nao pode');
-                  }
-                  setState(() {
-                    isLoading = true;
-                  });
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      return Theme.of(context).accentColor;
+                    },
+                  ),
+                  elevation: MaterialStateProperty.resolveWith<double>(
+                    (Set<MaterialState> states) {
+                      return 3;
+                    },
+                  ),
+                  shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                    (Set<MaterialState> states) {
+                      return RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      );
+                    },
+                  ),
+                ),
+                onPressed: () {},
                 child: isLoading
                     ? SizedBox(
                         width: 20,
@@ -216,7 +245,6 @@ class _EntradaAcessosState extends State<EntradaAcessos> {
                                 .selectionColor,
                             fontSize: 16),
                       ),
-                color: Theme.of(context).accentColor,
               ),
             ),
             SizedBox(
@@ -224,18 +252,35 @@ class _EntradaAcessosState extends State<EntradaAcessos> {
             ),
             ButtonTheme(
               height: 50.0,
-              child: RaisedButton(
-                elevation: 3,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      return Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor;
+                    },
+                  ),
+                  elevation: MaterialStateProperty.resolveWith<double>(
+                    (Set<MaterialState> states) {
+                      return 3;
+                    },
+                  ),
+                  shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                    (Set<MaterialState> states) {
+                      return RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      );
+                    },
+                  ),
+                ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/visualizarAcessos');
+                  Get.toNamed('/visualizarAcessos');
                 },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
                 child: Text(
                   "VISUALIZE ACESSOS",
                   style: GoogleFonts.poppins(color: Colors.black, fontSize: 16),
                 ),
-                color: Theme.of(context).textSelectionTheme.selectionColor,
               ),
             ),
           ],
@@ -252,7 +297,7 @@ class _EntradaAcessosState extends State<EntradaAcessos> {
 
   void _dropDownFavoriteSelected(String novoItem) {
     setState(() {
-      this._faloritosSelecionado = novoItem;
+      this._favoritosSelecionado = novoItem;
     });
   }
 }

@@ -53,7 +53,6 @@ class AuthController extends GetxController {
         http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
           var dados = json.decode(response.body);
-
           loginController.id(dados['idusu']);
           loginController.idcond(dados['idcond']);
           loginController.emailUsu(dados['email']);
@@ -62,7 +61,7 @@ class AuthController extends GetxController {
           loginController.nomeCondo(dados['nome_condo']);
           loginController.imgcondo(dados['imgcondo']);
           loginController.nome(dados['nome']);
-          themeController.setTheme(loginController.condoTheme);
+
           Get.toNamed('/home');
         });
       } else {

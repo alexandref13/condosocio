@@ -71,7 +71,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        themeController.setTheme('cristal');
+                        themeController.setTheme('admin');
                       },
                       child: Container(
                           decoration: BoxDecoration(

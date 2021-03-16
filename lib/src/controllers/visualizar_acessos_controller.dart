@@ -25,6 +25,7 @@ class VisualizarAcessosController extends GetxController {
     ApiAcessosVisualizacao.getAcessos().then((response) {
       Iterable lista = json.decode(response.body);
       acessos = lista.map((model) => MapaAcessosVisu.fromJson(model)).toList();
+      print(acessos);
       isLoading(false);
     });
   }

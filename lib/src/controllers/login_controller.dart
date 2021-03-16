@@ -16,7 +16,7 @@ class LoginController extends GetxController {
   var imgperfil = ''.obs;
   var emailUsu = ''.obs;
   var nomeCondo = ''.obs;
-  var condoTheme = 'cristal';
+  var condoTheme = 'admin';
   var imgcondo = ''.obs;
   var nome = ''.obs;
   var isLoading = false.obs;
@@ -31,7 +31,6 @@ class LoginController extends GetxController {
     });
 
     var dadosUsuario = json.decode(response.body);
-    print(dadosUsuario);
     if (dadosUsuario['valida'] == 1) {
       id(dadosUsuario['idusu']);
       idcond(dadosUsuario['idcond']);
@@ -44,8 +43,6 @@ class LoginController extends GetxController {
 
       final box = GetStorage();
       box.write('id', id.value.toString());
-
-      themeController.setTheme(condoTheme);
 
       return id.value;
     } else {

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VisualizarOcorrenciasController extends GetxController {
-  List<MapaOcorrencias> ocorrencias;
+  List<MapaOcorrencias> ocorrencias = [];
   var isLoading = true.obs;
   var search = TextEditingController().obs;
   var searchResult = [].obs;
