@@ -59,20 +59,20 @@ class VisualizarAcessos extends StatelessWidget {
                                 text: TextSpan(
                                   // Note: Styles for TextSpans must be explicitly defined.
                                   // Child text spans will inherit styles from parent
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 14.0,
                                     color: Colors.black,
                                   ),
                                   children: <TextSpan>[
                                     TextSpan(
                                       text: 'Sem registros de ',
-                                      style: GoogleFonts.poppins(
+                                      style: GoogleFonts.montserrat(
                                         fontSize: 16,
                                       ),
                                     ),
                                     TextSpan(
                                       text: 'Acessos',
-                                      style: GoogleFonts.poppins(
+                                      style: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                       ),
@@ -102,7 +102,7 @@ class VisualizarAcessos extends StatelessWidget {
                             children: [
                               Text(
                                 'Data',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 16,
                                   color: Theme.of(context)
                                       .textSelectionTheme
@@ -111,7 +111,7 @@ class VisualizarAcessos extends StatelessWidget {
                               ),
                               Text(
                                 'Nome',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 16,
                                   color: Theme.of(context)
                                       .textSelectionTheme
@@ -120,7 +120,7 @@ class VisualizarAcessos extends StatelessWidget {
                               ),
                               Text(
                                 'Entrada',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 16,
                                   color: Theme.of(context)
                                       .textSelectionTheme
@@ -129,7 +129,7 @@ class VisualizarAcessos extends StatelessWidget {
                               ),
                               Text(
                                 'Saída',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 16,
                                   color: Theme.of(context)
                                       .textSelectionTheme

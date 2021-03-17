@@ -6,7 +6,7 @@ Widget customTextField(BuildContext context, String labelText, String hintText,
   return TextField(
     controller: controller,
     maxLines: linesBool ? lines : 1,
-    style: GoogleFonts.poppins(
+    style: GoogleFonts.montserrat(
       fontSize: 14,
       color: Theme.of(context).textSelectionTheme.selectionColor,
     ),
@@ -20,12 +20,12 @@ Widget customTextField(BuildContext context, String labelText, String hintText,
       ),
       enabled: enabled,
       hintText: hintText,
-      hintStyle: GoogleFonts.poppins(
+      hintStyle: GoogleFonts.montserrat(
         fontSize: 14,
         color: Theme.of(context).textSelectionTheme.selectionColor,
       ),
       labelText: labelText,
-      labelStyle: GoogleFonts.poppins(
+      labelStyle: GoogleFonts.montserrat(
         fontSize: 14,
         color: Theme.of(context).textSelectionTheme.selectionColor,
       ),

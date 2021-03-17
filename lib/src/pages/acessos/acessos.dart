@@ -15,19 +15,19 @@ class _AcessosState extends State<Acessos> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Acessos', style: GoogleFonts.poppins(fontSize: 20)),
+          title: Text('Acessos', style: GoogleFonts.montserrat(fontSize: 20)),
           centerTitle: true,
           bottom: TabBar(
             tabs: <Widget>[
               Text(
                 'Entrada',
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.montserrat(
                     fontSize: 16,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
               ),
               Text(
                 'Saída',
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.montserrat(
                     fontSize: 16,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
               ),

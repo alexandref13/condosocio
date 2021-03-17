@@ -29,7 +29,7 @@ class RespostaOuvidoria extends StatelessWidget {
                     children: [
                       Text(
                         loginController.nome.value,
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                           fontSize: 16,
                           color: Theme.of(context)
                               .textSelectionTheme
@@ -38,7 +38,7 @@ class RespostaOuvidoria extends StatelessWidget {
                       ),
                       Text(
                         visualizarOuvidoria.hora.value,
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                           fontSize: 16,
                           color: Theme.of(context)
                               .textSelectionTheme
@@ -51,7 +51,7 @@ class RespostaOuvidoria extends StatelessWidget {
                 ListTile(
                   title: Text(
                     visualizarOuvidoria.message.value,
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor,

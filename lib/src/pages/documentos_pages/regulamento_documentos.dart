@@ -55,7 +55,7 @@ class Regulamento extends StatelessWidget {
                                       title: Text(
                                         regulamentoController
                                             .searchResult[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -66,7 +66,7 @@ class Regulamento extends StatelessWidget {
                                       subtitle: Text(
                                         regulamentoController
                                             .searchResult[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -99,7 +99,7 @@ class Regulamento extends StatelessWidget {
                                       title: Text(
                                         regulamentoController
                                             .regulamento[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -110,7 +110,7 @@ class Regulamento extends StatelessWidget {
                                       subtitle: Text(
                                         regulamentoController
                                             .regulamento[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme

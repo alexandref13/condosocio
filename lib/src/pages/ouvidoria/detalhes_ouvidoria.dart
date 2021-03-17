@@ -12,19 +12,19 @@ class DetalhesOuvidoria extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             'Ouvidoria',
-            style: GoogleFonts.poppins(fontSize: 20),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
           bottom: TabBar(
             tabs: <Widget>[
               Text(
                 'Respostas',
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.montserrat(
                     fontSize: 16,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
               ),
               Text(
                 'Responda',
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.montserrat(
                     fontSize: 16,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
               ),

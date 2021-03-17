@@ -220,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                     title: Center(
                         child: Text(
                   "Alterar Imagem",
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w600, fontSize: 18),
                 ))),
                 Divider(
@@ -280,7 +280,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Text(
                         "Cancelar",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                             color: Colors.white, fontSize: 18),
                       ),
                     ),
@@ -339,7 +339,7 @@ class _HomePageState extends State<HomePage> {
                               padding: EdgeInsets.only(top: 5),
                               child: Text(
                                 '${loginController.nome.value}',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
@@ -351,7 +351,7 @@ class _HomePageState extends State<HomePage> {
                               padding: EdgeInsets.only(top: 2),
                               child: Text(
                                 '${loginController.emailUsu.value}',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
@@ -363,7 +363,7 @@ class _HomePageState extends State<HomePage> {
                               padding: EdgeInsets.only(top: 2),
                               child: Text(
                                 '${loginController.tipo.value}',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
@@ -380,7 +380,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           title: Text(
                             'Unidades',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -412,7 +412,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           title: Text(
                             'Dependentes',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -444,7 +444,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           title: Text(
                             'Senha',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -476,7 +476,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           title: Text(
                             'Sobre',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -503,7 +503,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           title: Text(
                             'Termos de Uso',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -535,7 +535,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           title: Text(
                             'Política de privacidade',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -567,7 +567,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           title: Text(
                             'Avalie o app',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -599,7 +599,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           title: Text(
                             'Ajuda',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -631,7 +631,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           title: Text(
                             'Sair',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,

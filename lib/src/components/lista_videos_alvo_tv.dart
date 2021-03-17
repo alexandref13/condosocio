@@ -40,7 +40,7 @@ Widget listaVideos(context) {
                                 data: alvoTv.videos[index].publi,
                                 style: {
                                   "h1": Style(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Montserrat',
                                     fontSize: FontSize(18),
                                     letterSpacing: 3,
                                     color: Theme.of(context)
@@ -54,7 +54,7 @@ Widget listaVideos(context) {
                           padding: EdgeInsets.only(left: 8, bottom: 5),
                           child: Text(
                             alvoTv.videos[index].titulo,
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context)
@@ -69,7 +69,7 @@ Widget listaVideos(context) {
                         padding: EdgeInsets.only(left: 8, bottom: 8),
                         child: Text(
                           descricao,
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                               fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme

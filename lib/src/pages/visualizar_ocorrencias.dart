@@ -39,20 +39,20 @@ class VisualizarOcorrencias extends StatelessWidget {
                       ),
                       RichText(
                         text: TextSpan(
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                             fontSize: 14.0,
                             color: Colors.black,
                           ),
                           children: <TextSpan>[
                             TextSpan(
                               text: 'Sem registros de ',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 16,
                               ),
                             ),
                             TextSpan(
                               text: 'Acessos',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               ),
@@ -94,7 +94,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                           children: [
                             Text(
                               'Data',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
                                     .textSelectionTheme
@@ -103,7 +103,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                             ),
                             Text(
                               'Titulo',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
                                     .textSelectionTheme
@@ -112,7 +112,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                             ),
                             Text(
                               'Ocorrido',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
                                     .textSelectionTheme
@@ -121,7 +121,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                             ),
                             Text(
                               'Status',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
                                     .textSelectionTheme
@@ -168,7 +168,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   ocorrencia.data,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
@@ -178,7 +178,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   ocorrencia.hora,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
@@ -196,7 +196,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 0.20,
                                             child: Text(
                                               ocorrencia.titulo,
-                                              style: GoogleFonts.poppins(
+                                              style: GoogleFonts.montserrat(
                                                   fontSize: 16,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
@@ -209,7 +209,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   ocorrencia.dataoco,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
@@ -219,7 +219,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   ocorrencia.horaoco,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
@@ -278,7 +278,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   ocorrencia.data,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
@@ -288,7 +288,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   ocorrencia.hora,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
@@ -306,7 +306,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 0.20,
                                             child: Text(
                                               ocorrencia.titulo,
-                                              style: GoogleFonts.poppins(
+                                              style: GoogleFonts.montserrat(
                                                   fontSize: 16,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
@@ -319,7 +319,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   ocorrencia.dataoco,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
@@ -329,7 +329,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   ocorrencia.horaoco,
-                                                  style: GoogleFonts.poppins(
+                                                  style: GoogleFonts.montserrat(
                                                     fontSize: 16,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme

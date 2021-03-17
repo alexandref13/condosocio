@@ -15,7 +15,7 @@ class DetalhesComunicados extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               comunicadosController.titulo.value,
-              style: GoogleFonts.poppins(fontSize: 20),
+              style: GoogleFonts.montserrat(fontSize: 20),
             ),
             centerTitle: true,
           ),
@@ -34,7 +34,7 @@ class DetalhesComunicados extends StatelessWidget {
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor),
                   "p": Style(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'montserrat',
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor),
                   "li": Style(

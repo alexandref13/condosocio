@@ -32,7 +32,7 @@ void configurandoModalBottomSheet(
             Container(
               child: Text(
                 pessoa,
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.montserrat(
                     fontSize: 24,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
               ),
@@ -46,7 +46,7 @@ void configurandoModalBottomSheet(
                       ? Container()
                       : Text(
                           'Placa do carro: $placa',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                               fontSize: 18,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -57,7 +57,7 @@ void configurandoModalBottomSheet(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Documento: $tipoDoc',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                         fontSize: 18,
                         color: Theme.of(context)
                             .textSelectionTheme
@@ -68,7 +68,7 @@ void configurandoModalBottomSheet(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Numero do documento: $documento',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                         fontSize: 18,
                         color: Theme.of(context)
                             .textSelectionTheme

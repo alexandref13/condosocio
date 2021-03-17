@@ -14,7 +14,7 @@ class _DocumentosState extends State<Documentos> {
       appBar: AppBar(
         title: Text(
           'Documentos',
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.montserrat(
             fontSize: 20,
           ),
         ),
@@ -64,7 +64,7 @@ class _DocumentosState extends State<Documentos> {
                             ),
                             Text(
                               "Ata",
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 color: Colors.white,
                                 fontSize: 13,
                               ),
@@ -104,7 +104,7 @@ class _DocumentosState extends State<Documentos> {
                               ),
                               Text(
                                 "Convenção",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -143,7 +143,7 @@ class _DocumentosState extends State<Documentos> {
                               ),
                               Text(
                                 "Editais",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -184,7 +184,7 @@ class _DocumentosState extends State<Documentos> {
                                 width: MediaQuery.of(context).size.width * 0.2,
                                 child: Text(
                                   "Prestação de Serviços",
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                     fontSize: 13,
                                   ),
@@ -224,7 +224,7 @@ class _DocumentosState extends State<Documentos> {
                               ),
                               Text(
                                 "Regulamento",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -263,7 +263,7 @@ class _DocumentosState extends State<Documentos> {
                               ),
                               Text(
                                 "Contratos",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -306,7 +306,7 @@ class _DocumentosState extends State<Documentos> {
                               ),
                               Text(
                                 "Outros",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),

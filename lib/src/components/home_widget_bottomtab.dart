@@ -60,7 +60,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Sobre",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -99,7 +99,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Galeria",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -138,7 +138,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Alvo TV",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -177,7 +177,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Acessos",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -216,7 +216,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Reservas",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -255,7 +255,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Comunicados",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -294,7 +294,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Documentos",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -333,7 +333,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Enquetes",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -369,7 +369,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Ocorrências",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -408,7 +408,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Perfil",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -447,7 +447,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Ache Aqui",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),
@@ -486,7 +486,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                               Text(
                                 "Ouvidoria",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
                                 ),

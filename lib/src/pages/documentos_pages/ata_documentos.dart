@@ -51,7 +51,7 @@ class Ata extends StatelessWidget {
                                     child: ListTile(
                                       title: Text(
                                         ata.searchResult[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -61,7 +61,7 @@ class Ata extends StatelessWidget {
                                       ),
                                       subtitle: Text(
                                         ata.searchResult[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -91,7 +91,7 @@ class Ata extends StatelessWidget {
                                     child: ListTile(
                                       title: Text(
                                         ata.atas[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -101,7 +101,7 @@ class Ata extends StatelessWidget {
                                       ),
                                       subtitle: Text(
                                         ata.atas[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme

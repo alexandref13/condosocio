@@ -18,7 +18,7 @@ class Sobre extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 Text(
                   'Saiba como o CondoSócio vai ajudar a sua vida no condomínio',
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.montserrat(
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor,
                       fontSize: 15,
@@ -37,7 +37,7 @@ class Sobre extends StatelessWidget {
                   margin: EdgeInsets.only(top: 20),
                   child: Text(
                     'Ele é uma rede de gestão colaborativa completa para os síndicos, administradores, além de formar uma rede social para os condôminos. Você pode fazer reservas dos espaços comuns, dar acesso à convidado(s), votar em enquetes, visualizar comunicados, recomendar serviços, agendar eventos e muito mais.',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                         color:
                             Theme.of(context).textSelectionTheme.selectionColor,
                         fontSize: 15),
@@ -47,7 +47,7 @@ class Sobre extends StatelessWidget {
                   margin: EdgeInsets.only(top: 20),
                   child: Text(
                     'Serviços',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context)
@@ -141,13 +141,13 @@ class Sobre extends StatelessWidget {
           color: Colors.white,
         ),
         title: Text(title,
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.montserrat(
                 color: Theme.of(context).textSelectionTheme.selectionColor,
                 fontSize: 16,
                 fontWeight: FontWeight.bold)),
         subtitle: Text(
           description,
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.montserrat(
               color: Theme.of(context).textSelectionTheme.selectionColor,
               fontWeight: FontWeight.w300,
               fontSize: 13),

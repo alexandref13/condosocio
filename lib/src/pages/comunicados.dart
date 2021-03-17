@@ -23,7 +23,8 @@ class _ComunicadosState extends State<Comunicados> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Comunicados', style: GoogleFonts.poppins(fontSize: 20)),
+          title:
+              Text('Comunicados', style: GoogleFonts.montserrat(fontSize: 20)),
           centerTitle: true,
         ),
         body: Obx(
@@ -76,17 +77,17 @@ class _ComunicadosState extends State<Comunicados> {
                     text: TextSpan(
                       // Note: Styles for TextSpans must be explicitly defined.
                       // Child text spans will inherit styles from parent
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.montserrat(
                         fontSize: 14.0,
                         color: Colors.black,
                       ),
                       children: <TextSpan>[
                         TextSpan(
                             text: 'Sem registros de ',
-                            style: GoogleFonts.poppins(fontSize: 16)),
+                            style: GoogleFonts.montserrat(fontSize: 16)),
                         TextSpan(
                             text: 'Comunicados',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                                 fontWeight: FontWeight.bold, fontSize: 16)),
                       ],
                     ),
@@ -132,7 +133,7 @@ class _ComunicadosState extends State<Comunicados> {
                               },
                               leading: RichText(
                                 text: TextSpan(
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 14,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -141,12 +142,12 @@ class _ComunicadosState extends State<Comunicados> {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text: comunicados.dia + "  ",
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold)),
                                     TextSpan(
                                       text: comunicados.mes,
-                                      style: GoogleFonts.poppins(
+                                      style: GoogleFonts.montserrat(
                                           fontSize: 14,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -160,7 +161,7 @@ class _ComunicadosState extends State<Comunicados> {
                                 padding: EdgeInsets.only(left: 30),
                                 child: Text(
                                   comunicados.titulo,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                       fontSize: 16,
                                       color: Theme.of(context)
                                           .textSelectionTheme

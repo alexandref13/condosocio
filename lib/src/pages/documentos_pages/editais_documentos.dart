@@ -54,7 +54,7 @@ class Editais extends StatelessWidget {
                                       title: Text(
                                         editaisController
                                             .searchResult[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -65,7 +65,7 @@ class Editais extends StatelessWidget {
                                       subtitle: Text(
                                         editaisController
                                             .searchResult[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -96,7 +96,7 @@ class Editais extends StatelessWidget {
                                     child: ListTile(
                                       title: Text(
                                         editaisController.editais[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -106,7 +106,7 @@ class Editais extends StatelessWidget {
                                       ),
                                       subtitle: Text(
                                         editaisController.editais[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme

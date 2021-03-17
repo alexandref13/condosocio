@@ -65,7 +65,7 @@ class Login extends StatelessWidget {
                           padding: EdgeInsets.fromLTRB(20, 310, 20, 20),
                           child: Container(
                             child: TextFormField(
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
@@ -90,7 +90,7 @@ class Login extends StatelessWidget {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor),
-                                labelStyle: GoogleFonts.poppins(
+                                labelStyle: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
@@ -101,7 +101,7 @@ class Login extends StatelessWidget {
                                 focusedErrorBorder: new OutlineInputBorder(
                                     borderSide: new BorderSide(
                                         color: Theme.of(context).accentColor)),
-                                errorStyle: GoogleFonts.poppins(
+                                errorStyle: GoogleFonts.montserrat(
                                     color: Theme.of(context).accentColor),
                               ),
                               keyboardType: TextInputType.emailAddress,
@@ -120,7 +120,7 @@ class Login extends StatelessWidget {
                           child: Container(
                             child: TextFormField(
                               obscureText: true,
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
@@ -142,7 +142,7 @@ class Login extends StatelessWidget {
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor),
-                                  labelStyle: GoogleFonts.poppins(
+                                  labelStyle: GoogleFonts.montserrat(
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -155,7 +155,7 @@ class Login extends StatelessWidget {
                                       borderSide: new BorderSide(
                                           color:
                                               Theme.of(context).accentColor)),
-                                  errorStyle: GoogleFonts.poppins(
+                                  errorStyle: GoogleFonts.montserrat(
                                       color: Theme.of(context).accentColor)),
                               validator: (valueSenha) {
                                 if (valueSenha.isEmpty) {
@@ -215,7 +215,7 @@ class Login extends StatelessWidget {
                                     )
                                   : Text(
                                       "Entrar",
-                                      style: GoogleFonts.poppins(
+                                      style: GoogleFonts.montserrat(
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor,
@@ -247,7 +247,7 @@ class Login extends StatelessWidget {
                               onPressed: () {},
                               child: Text(
                                 "Esqueceu a senha?",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.montserrat(
                                   fontSize: 14.0,
                                   color: Theme.of(context)
                                       .textSelectionTheme

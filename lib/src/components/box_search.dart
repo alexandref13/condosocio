@@ -12,13 +12,13 @@ Widget boxSearch(
     child: TextField(
       onChanged: onSearchTextChanged == '' ? null : onSearchTextChanged,
       controller: searchController,
-      style: GoogleFonts.poppins(
+      style: GoogleFonts.montserrat(
         fontSize: 18,
         color: Theme.of(context).textSelectionTheme.selectionColor,
       ),
       decoration: InputDecoration(
         labelText: "Pesquise pelo nome",
-        labelStyle: GoogleFonts.poppins(
+        labelStyle: GoogleFonts.montserrat(
           fontSize: 18,
           color: Theme.of(context).textSelectionTheme.selectionColor,
         ),

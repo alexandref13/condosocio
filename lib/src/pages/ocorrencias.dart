@@ -36,7 +36,8 @@ class _OcorrenciasState extends State<Ocorrencias> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Ocorrências', style: GoogleFonts.poppins(fontSize: 20)),
+          title:
+              Text('Ocorrências', style: GoogleFonts.montserrat(fontSize: 20)),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -49,7 +50,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
                   padding: const EdgeInsets.all(2),
                   child: Text(
                     'Tipo',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                       fontSize: 20,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor,
@@ -80,7 +81,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
                     iconEnabledColor:
                         Theme.of(context).textSelectionTheme.selectionColor,
                     dropdownColor: Theme.of(context).primaryColor,
-                    style: GoogleFonts.poppins(fontSize: 16),
+                    style: GoogleFonts.montserrat(fontSize: 16),
                     items: _tipos.map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
                         value: dropDownStringItem,
@@ -217,7 +218,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
                       ),
                       child: Text(
                         "ANEXAR IMAGEM",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                             color: Colors.black, fontSize: 16),
                       ),
                     ),
@@ -260,7 +261,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
                             )
                           : Text(
                               "ENVIAR",
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
@@ -301,7 +302,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
                       },
                       child: Text(
                         "VISUALIZE OCORRÊNCIAS",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                             color: Colors.black, fontSize: 16),
                       ),
                     ),

@@ -28,7 +28,7 @@ onAlertButtonPressed(context, String text, String page) {
       DialogButton(
         child: Text(
           "OK",
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.montserrat(
             color: Colors.white,
             fontSize: 18,
           ),

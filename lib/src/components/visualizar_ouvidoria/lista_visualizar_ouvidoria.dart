@@ -39,7 +39,7 @@ Widget listaVisualizarOuvidoria() {
                         Container(
                           child: Text(
                             ouvidoria.data,
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -51,7 +51,7 @@ Widget listaVisualizarOuvidoria() {
                         Container(
                           child: Text(
                             ouvidoria.hora,
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
                                     .textSelectionTheme
@@ -63,7 +63,7 @@ Widget listaVisualizarOuvidoria() {
                           width: MediaQuery.of(context).size.width * 0.26,
                           child: Text(
                             ouvidoria.assunto,
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -122,7 +122,7 @@ Widget listaVisualizarOuvidoria() {
                         Container(
                           child: Text(
                             ouvidoria.data,
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -134,7 +134,7 @@ Widget listaVisualizarOuvidoria() {
                         Container(
                           child: Text(
                             ouvidoria.hora,
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
                                     .textSelectionTheme
@@ -146,7 +146,7 @@ Widget listaVisualizarOuvidoria() {
                           width: MediaQuery.of(context).size.width * 0.26,
                           child: Text(
                             ouvidoria.assunto,
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Theme.of(context)
                                   .textSelectionTheme

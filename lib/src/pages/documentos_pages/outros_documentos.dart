@@ -53,7 +53,7 @@ class Outros extends StatelessWidget {
                                       title: Text(
                                         outrosController
                                             .searchResult[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -64,7 +64,7 @@ class Outros extends StatelessWidget {
                                       subtitle: Text(
                                         outrosController
                                             .searchResult[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -95,7 +95,7 @@ class Outros extends StatelessWidget {
                                     child: ListTile(
                                       title: Text(
                                         outrosController.outros[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -105,7 +105,7 @@ class Outros extends StatelessWidget {
                                       ),
                                       subtitle: Text(
                                         outrosController.outros[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme

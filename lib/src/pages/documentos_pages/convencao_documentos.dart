@@ -54,7 +54,7 @@ class Convencao extends StatelessWidget {
                                       title: Text(
                                         convencaoController
                                             .searchResult[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -65,7 +65,7 @@ class Convencao extends StatelessWidget {
                                       subtitle: Text(
                                         convencaoController
                                             .searchResult[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -97,7 +97,7 @@ class Convencao extends StatelessWidget {
                                       title: Text(
                                         convencaoController
                                             .convencao[index].nome,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -108,7 +108,7 @@ class Convencao extends StatelessWidget {
                                       subtitle: Text(
                                         convencaoController
                                             .convencao[index].data,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 15,
                                           color: Theme.of(context)
                                               .textSelectionTheme

@@ -50,7 +50,7 @@ class EntradaAcessos extends StatelessWidget {
                     iconEnabledColor:
                         Theme.of(context).textSelectionTheme.selectionColor,
                     dropdownColor: Theme.of(context).primaryColor,
-                    style: GoogleFonts.poppins(fontSize: 16),
+                    style: GoogleFonts.montserrat(fontSize: 16),
                     items: acessosController.favoritos
                         .map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
@@ -71,7 +71,7 @@ class EntradaAcessos extends StatelessWidget {
                 ),
                 Text(
                   'OU',
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.montserrat(
                     fontSize: 20,
                     color: Theme.of(context).textSelectionTheme.selectionColor,
                   ),
@@ -115,7 +115,7 @@ class EntradaAcessos extends StatelessWidget {
                           )
                         : Text(
                             "PROCURAR NOS SEUS CONTATOS",
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                                 color: Theme.of(context).accentColor,
                                 fontSize: 16),
                           ),
@@ -145,7 +145,7 @@ class EntradaAcessos extends StatelessWidget {
                     iconEnabledColor:
                         Theme.of(context).textSelectionTheme.selectionColor,
                     dropdownColor: Theme.of(context).primaryColor,
-                    style: GoogleFonts.poppins(fontSize: 16),
+                    style: GoogleFonts.montserrat(fontSize: 16),
                     items: acessosController.tipos
                         .map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
@@ -225,7 +225,7 @@ class EntradaAcessos extends StatelessWidget {
                           )
                         : Text(
                             "AUTORIZAR",
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
@@ -265,7 +265,7 @@ class EntradaAcessos extends StatelessWidget {
                     },
                     child: Text(
                       "VISUALIZE ACESSOS",
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.montserrat(
                           color: Colors.black, fontSize: 16),
                     ),
                   ),

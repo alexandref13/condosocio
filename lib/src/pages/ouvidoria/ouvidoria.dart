@@ -19,7 +19,7 @@ class _OuvidoriaState extends State<Ouvidoria> {
         appBar: AppBar(
           title: Text(
             'Ouvidoria',
-            style: GoogleFonts.poppins(fontSize: 20),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
           centerTitle: true,
         ),
@@ -35,7 +35,7 @@ class _OuvidoriaState extends State<Ouvidoria> {
                       padding: const EdgeInsets.all(2),
                       child: Text(
                         'Assunto',
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                           fontSize: 20,
                           color: Theme.of(context)
                               .textSelectionTheme
@@ -68,7 +68,7 @@ class _OuvidoriaState extends State<Ouvidoria> {
                         iconEnabledColor:
                             Theme.of(context).textSelectionTheme.selectionColor,
                         dropdownColor: Theme.of(context).primaryColor,
-                        style: GoogleFonts.poppins(fontSize: 16),
+                        style: GoogleFonts.montserrat(fontSize: 16),
                         items: ouvidoriaController.assuntos
                             .map((String dropDownStringItem) {
                           return DropdownMenuItem<String>(
@@ -163,7 +163,7 @@ class _OuvidoriaState extends State<Ouvidoria> {
                                 )
                               : Text(
                                   "ENVIAR",
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -207,7 +207,7 @@ class _OuvidoriaState extends State<Ouvidoria> {
                           },
                           child: Text(
                             "VISUALIZE MANIFESTAÇÕES",
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                                 color: Colors.black, fontSize: 16),
                           ),
                         ),

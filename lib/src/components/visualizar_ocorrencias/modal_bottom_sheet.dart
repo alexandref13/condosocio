@@ -24,7 +24,7 @@ void configurandoModalBottomSheet(
             Container(
               child: Text(
                 titulo,
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.montserrat(
                     fontSize: 24,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
               ),
@@ -39,7 +39,7 @@ void configurandoModalBottomSheet(
                       children: [
                         Text(
                           'Data da ocorrência',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                               fontSize: 18,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -47,7 +47,7 @@ void configurandoModalBottomSheet(
                         ),
                         Text(
                           dataoco,
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                               fontSize: 18,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -63,7 +63,7 @@ void configurandoModalBottomSheet(
                       children: [
                         Text(
                           'Hora da ocorrência',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                               fontSize: 18,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -71,7 +71,7 @@ void configurandoModalBottomSheet(
                         ),
                         Text(
                           horaoco,
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.montserrat(
                               fontSize: 18,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -88,7 +88,7 @@ void configurandoModalBottomSheet(
                               children: [
                                 Text(
                                   'Ocorrencia Finalizada',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                       fontSize: 18,
                                       color: Theme.of(context)
                                           .textSelectionTheme
@@ -106,7 +106,7 @@ void configurandoModalBottomSheet(
                               children: [
                                 Text(
                                   'Ocorrencia em andamento',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                       fontSize: 18,
                                       color: Theme.of(context)
                                           .textSelectionTheme

@@ -53,7 +53,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                         children: [
                           Text(
                             'Data',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -62,7 +62,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                           ),
                           Text(
                             'Hora',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -71,7 +71,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                           ),
                           Text(
                             'Assunto',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -80,7 +80,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                           ),
                           Text(
                             'Respostas',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                               fontSize: 16,
                               color: Theme.of(context)
                                   .textSelectionTheme

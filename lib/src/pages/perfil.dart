@@ -197,7 +197,7 @@ class _PerfilState extends State<Perfil> {
                     title: Center(
                         child: Text(
                   "Alterar Imagem",
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w600, fontSize: 18),
                 ))),
                 Divider(
@@ -257,7 +257,7 @@ class _PerfilState extends State<Perfil> {
                       },
                       child: Text(
                         "Cancelar",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                             color: Colors.white, fontSize: 18),
                       ),
                     ),
@@ -279,7 +279,7 @@ class _PerfilState extends State<Perfil> {
         appBar: AppBar(
           title: Text(
             'Perfil',
-            style: GoogleFonts.poppins(fontSize: 20),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
           centerTitle: true,
         ),
@@ -301,7 +301,7 @@ class _PerfilState extends State<Perfil> {
                       padding: const EdgeInsets.all(2),
                       child: Text(
                         'Alterar foto de perfil',
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                           fontSize: 14,
                           color: Theme.of(context)
                               .textSelectionTheme
@@ -315,7 +315,7 @@ class _PerfilState extends State<Perfil> {
                   padding: const EdgeInsets.all(2),
                   child: Text(
                     'Nome :',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                       fontSize: 16,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor,
@@ -341,7 +341,7 @@ class _PerfilState extends State<Perfil> {
                   padding: const EdgeInsets.all(2),
                   child: Text(
                     'Gênero :',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                       fontSize: 16,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor,
@@ -367,7 +367,7 @@ class _PerfilState extends State<Perfil> {
                   padding: const EdgeInsets.all(2),
                   child: Text(
                     'Data de nascimento:',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                       fontSize: 16,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor,
@@ -396,7 +396,7 @@ class _PerfilState extends State<Perfil> {
                   padding: const EdgeInsets.all(2),
                   child: Text(
                     'Celular :',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.montserrat(
                       fontSize: 16,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor,
@@ -454,7 +454,7 @@ class _PerfilState extends State<Perfil> {
                           )
                         : Text(
                             "ENVIAR",
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,

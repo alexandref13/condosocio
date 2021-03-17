@@ -17,7 +17,7 @@ class RespondaOuvidoria extends StatelessWidget {
           children: [
             Text(
               'Responda: ',
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.montserrat(
                 fontSize: 20,
                 color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.bold,
@@ -84,7 +84,7 @@ class RespondaOuvidoria extends StatelessWidget {
                       )
                     : Text(
                         "Enviar",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.montserrat(
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,

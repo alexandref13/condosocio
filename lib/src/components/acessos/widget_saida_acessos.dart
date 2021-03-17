@@ -64,7 +64,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
               onPressed: () {},
               child: Text(
                 "ANEXAR IMAGEM",
-                style: GoogleFonts.poppins(color: Colors.black, fontSize: 16),
+                style:
+                    GoogleFonts.montserrat(color: Colors.black, fontSize: 16),
               ),
             ),
           ),
@@ -111,7 +112,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                     )
                   : Text(
                       "AUTORIZAR",
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.montserrat(
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
@@ -147,7 +148,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
               onPressed: () {},
               child: Text(
                 "VISUALIZE SAÍDAS",
-                style: GoogleFonts.poppins(color: Colors.black, fontSize: 16),
+                style:
+                    GoogleFonts.montserrat(color: Colors.black, fontSize: 16),
               ),
             ),
           ),

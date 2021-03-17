@@ -70,7 +70,7 @@ Widget listaVisualizarAcessos() {
                               children: [
                                 Text(
                                   day,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -80,7 +80,7 @@ Widget listaVisualizarAcessos() {
                                 ),
                                 Text(
                                   hour,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -94,7 +94,7 @@ Widget listaVisualizarAcessos() {
                           Container(
                             child: Text(
                               search.pessoa,
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                   fontSize: 16,
                                   color: Theme.of(context)
                                       .textSelectionTheme
@@ -107,7 +107,7 @@ Widget listaVisualizarAcessos() {
                               children: [
                                 Text(
                                   dayIn,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -117,7 +117,7 @@ Widget listaVisualizarAcessos() {
                                 ),
                                 Text(
                                   hourIn,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -142,7 +142,7 @@ Widget listaVisualizarAcessos() {
                                     children: [
                                       Text(
                                         dayOut,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 16,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -152,7 +152,7 @@ Widget listaVisualizarAcessos() {
                                       ),
                                       Text(
                                         hourOut,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 16,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -228,7 +228,7 @@ Widget listaVisualizarAcessos() {
                               children: [
                                 Text(
                                   day,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -238,7 +238,7 @@ Widget listaVisualizarAcessos() {
                                 ),
                                 Text(
                                   hour,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -252,7 +252,7 @@ Widget listaVisualizarAcessos() {
                           Container(
                             child: Text(
                               visualizarAcessosController.acessos[index].pessoa,
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.montserrat(
                                   fontSize: 16,
                                   color: Theme.of(context)
                                       .textSelectionTheme
@@ -265,7 +265,7 @@ Widget listaVisualizarAcessos() {
                               children: [
                                 Text(
                                   dayIn,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -275,7 +275,7 @@ Widget listaVisualizarAcessos() {
                                 ),
                                 Text(
                                   hourIn,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -300,7 +300,7 @@ Widget listaVisualizarAcessos() {
                                     children: [
                                       Text(
                                         dayOut,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 16,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -310,7 +310,7 @@ Widget listaVisualizarAcessos() {
                                       ),
                                       Text(
                                         hourOut,
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.montserrat(
                                           fontSize: 16,
                                           color: Theme.of(context)
                                               .textSelectionTheme
