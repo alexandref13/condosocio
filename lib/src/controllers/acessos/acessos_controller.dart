@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:condosocio/src/services/acessos/api_acessos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 class AcessosController extends GetxController {
   var name = TextEditingController().obs;
   var phone = TextEditingController().obs;
+  var idAce = ''.obs;
   var isLoading = false.obs;
 
   var favoritos = [
@@ -25,6 +25,7 @@ class AcessosController extends GetxController {
   var itemSelecionado = 'Selecione o tipo de visitante'.obs;
 
   sendAcessos() async {
+    isLoading(true);
     final response = await ApiAcessos.sendAcesso();
 
     var dados = json.decode(response.body);
@@ -34,11 +35,22 @@ class AcessosController extends GetxController {
         itemSelecionado.value == 'Selecione o tipo de visitante') {
       return 'vazio';
     } else {
+      name.value.text = '';
+      phone.value.text = '';
+      itemSelecionado.value = 'Selecione o tipo de visitante';
       if (dados == 0) {
         return 0;
       } else {
         return 1;
       }
     }
+  }
+
+  deleteAcesso() async {
+    final response = await ApiAcessos.deleteAcesso();
+
+    var dados = json.decode(response.body);
+
+    return dados;
   }
 }

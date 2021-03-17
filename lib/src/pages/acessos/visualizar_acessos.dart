@@ -17,72 +17,73 @@ class VisualizarAcessos extends StatelessWidget {
           'Visualizar acessos',
         ),
       ),
-      body: acessosController.acessos.length == 0
-          ? Stack(
-              children: <Widget>[
-                Container(
+      body: Obx(
+        () {
+          return acessosController.isLoading.value
+              ? Container(
                   height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.black12,
-                  child: Image.asset(
-                    'images/semregistro.png',
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-                Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(top: 100),
-                        //child: Icon(Icons.block, size: 34, color: Colors.red[900]),
+                  color: Theme.of(context).primaryColor,
+                  child: Center(
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 4,
+                        valueColor: AlwaysStoppedAnimation(
+                            Theme.of(context).accentColor),
                       ),
-                      RichText(
-                        text: TextSpan(
-                          // Note: Styles for TextSpans must be explicitly defined.
-                          // Child text spans will inherit styles from parent
-                          style: GoogleFonts.poppins(
-                            fontSize: 14.0,
-                            color: Colors.black,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Sem registros de ',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'Acessos',
-                              style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                    ),
                   ),
                 )
-              ],
-            )
-          : Obx(() {
-              return acessosController.isLoading.value
-                  ? Container(
-                      height: MediaQuery.of(context).size.height,
-                      color: Theme.of(context).primaryColor,
-                      child: Center(
-                        child: SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 4,
-                            valueColor: AlwaysStoppedAnimation(
-                                Theme.of(context).accentColor),
+              : acessosController.acessos.length == 0
+                  ? Stack(
+                      children: <Widget>[
+                        Container(
+                          height: MediaQuery.of(context).size.height,
+                          width: MediaQuery.of(context).size.width,
+                          color: Colors.black12,
+                          child: Image.asset(
+                            'images/semregistro.png',
+                            fit: BoxFit.fitWidth,
                           ),
                         ),
-                      ),
+                        Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(top: 100),
+                                //child: Icon(Icons.block, size: 34, color: Colors.red[900]),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  // Note: Styles for TextSpans must be explicitly defined.
+                                  // Child text spans will inherit styles from parent
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14.0,
+                                    color: Colors.black,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: 'Sem registros de ',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: 'Acessos',
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
                     )
                   : Column(
                       children: [
@@ -143,7 +144,8 @@ class VisualizarAcessos extends StatelessWidget {
                         )
                       ],
                     );
-            }),
+        },
+      ),
     );
   }
 }

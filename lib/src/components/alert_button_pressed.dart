@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-onAlertButtonPressed(context, String text) {
+onAlertButtonPressed(context, String text, String page) {
   Alert(
     image: Icon(
       Icons.highlight_off,
@@ -34,7 +34,7 @@ onAlertButtonPressed(context, String text) {
           ),
         ),
         onPressed: () {
-          Get.back();
+          page != null ? Get.toNamed('$page') : Get.back();
         },
         width: 80,
         color: Color(0xff1A936F),

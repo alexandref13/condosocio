@@ -64,19 +64,13 @@ class RespondaOuvidoria extends StatelessWidget {
                   respondaController.sendRespondaOuvidoria().then((value) {
                     if (value == 1) {
                       onAlertButtonPressed(
-                        context,
-                        'Enviado com sucesso!',
-                      );
+                          context, 'Enviado com sucesso!', null);
                     } else if (value == 'vazio') {
                       onAlertButtonPressed(
-                        context,
-                        'O campo de texto é obrigátorio',
-                      );
+                          context, 'O campo de texto é obrigátorio', null);
                     } else {
                       onAlertButtonPressed(
-                        context,
-                        'Algo deu errado! \nTente novamente',
-                      );
+                          context, 'Algo deu errado! \nTente novamente', null);
                     }
                   });
                 },

@@ -194,9 +194,9 @@ class Login extends StatelessWidget {
                                     (value) {
                                       if (value == null) {
                                         onAlertButtonPressed(
-                                          context,
-                                          'Email ou senha invalivos \n Tente novamente',
-                                        );
+                                            context,
+                                            'Email ou senha invalivos \n Tente novamente',
+                                            null);
                                       } else {
                                         Get.toNamed('/home');
                                       }

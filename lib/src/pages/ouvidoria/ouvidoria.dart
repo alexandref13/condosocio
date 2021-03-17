@@ -111,15 +111,23 @@ class _OuvidoriaState extends State<Ouvidoria> {
                                 .then((response) {
                               if (response == 1) {
                                 onAlertButtonPressed(
-                                    context, 'Enviado com sucesso!');
+                                  context,
+                                  'Enviado com sucesso!',
+                                  null,
+                                );
                                 ouvidoriaController.isLoading.value = false;
                               } else if (response == 'vazio') {
-                                onAlertButtonPressed(context,
-                                    'Assunto e Mensagem são campos obrigátorios');
+                                onAlertButtonPressed(
+                                    context,
+                                    'Assunto e Mensagem são campos obrigátorios',
+                                    null);
                                 ouvidoriaController.isLoading.value = false;
                               } else {
-                                onAlertButtonPressed(context,
-                                    'Algo deu errado\n Tente novamente');
+                                onAlertButtonPressed(
+                                  context,
+                                  'Algo deu errado\n Tente novamente',
+                                  null,
+                                );
                                 ouvidoriaController.isLoading.value = false;
                               }
                             });

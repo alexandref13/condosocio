@@ -19,13 +19,22 @@ class ApiAcessos {
     AcessosController acessosController = Get.put(AcessosController());
 
     return await http.post(
-        Uri.https('www.condosocio.com.br', '/flutter/visitantes_inc.php'),
-        body: {
-          'id': loginController.id.value,
-          'idcond': loginController.idcond.value,
-          'tipopessoa': acessosController.itemSelecionado.value,
-          'pessoa': acessosController.name.value.text,
-          'cel': acessosController.phone.value.text,
-        });
+      Uri.https('www.condosocio.com.br', '/flutter/visitantes_inc.php'),
+      body: {
+        'id': loginController.id.value,
+        'idcond': loginController.idcond.value,
+        'tipopessoa': acessosController.itemSelecionado.value,
+        'pessoa': acessosController.name.value.text,
+        'cel': acessosController.phone.value.text,
+      },
+    );
+  }
+
+  static Future deleteAcesso() async {
+    AcessosController acessosController = Get.put(AcessosController());
+    return await http.get(
+      Uri.https('www.condosocio.com.br', '/flutter/acesso_excluir.php',
+          {'idace': acessosController.idAce.value}),
+    );
   }
 }

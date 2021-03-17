@@ -1,22 +1,27 @@
+import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void configurandoModalBottomSheet(
-    context,
-    String day,
-    String hour,
-    String pessoa,
-    String dayIn,
-    String hourIn,
-    String dayOut,
-    String hourOut,
-    String placa,
-    String tipoDoc,
-    String documento) {
+  context,
+  String day,
+  String hour,
+  String pessoa,
+  String dayIn,
+  String hourIn,
+  String dayOut,
+  String hourOut,
+  String placa,
+  String tipoDoc,
+  String documento,
+) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext bc) {
+      AcessosController acessosController = Get.put(AcessosController());
       return Container(
         height: MediaQuery.of(context).size.height * 0.4,
         padding: EdgeInsets.all(8),
@@ -78,7 +83,14 @@ void configurandoModalBottomSheet(
                 ButtonTheme(
                   height: 50.0,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      acessosController.deleteAcesso().then((value) {
+                        if (value == 1) {
+                          onAlertButtonPressed(
+                              context, 'Acesso excluido', '/acessos');
+                        }
+                      });
+                    },
                     style: ButtonStyle(
                       elevation: MaterialStateProperty.resolveWith<double>(
                         (Set<MaterialState> states) {

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VisualizarAcessosController extends GetxController {
-  List<MapaAcessos> acessos = [];
+  var acessos = [].obs;
   var search = TextEditingController().obs;
   var isLoading = true.obs;
   var searchResult = [].obs;
@@ -24,8 +24,8 @@ class VisualizarAcessosController extends GetxController {
   void getAcessos() {
     ApiAcessos.getAcessos().then((response) {
       Iterable lista = json.decode(response.body);
-      acessos = lista.map((model) => MapaAcessos.fromJson(model)).toList();
-      print(acessos);
+      acessos.value =
+          lista.map((model) => MapaAcessos.fromJson(model)).toList();
       isLoading(false);
     });
   }

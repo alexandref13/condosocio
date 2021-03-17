@@ -199,13 +199,19 @@ class EntradaAcessos extends StatelessWidget {
                     onPressed: () {
                       acessosController.sendAcessos().then((value) {
                         if (value == 'vazio') {
-                          onAlertButtonPressed(context,
-                              'Tipo de visitante, nome e celular são campos obrigátorios!');
-                        } else if (value == 1) {
-                          onAlertButtonPressed(context, 'Acesso autorizado!');
-                        } else {
                           onAlertButtonPressed(
-                              context, 'Algo deu errado! \nTente novamente');
+                              context,
+                              'Tipo de visitante, nome e celular são campos obrigátorios!',
+                              null);
+                          acessosController.isLoading.value = false;
+                        } else if (value == 1) {
+                          onAlertButtonPressed(
+                              context, 'Acesso autorizado!', null);
+                          acessosController.isLoading.value = false;
+                        } else {
+                          onAlertButtonPressed(context,
+                              'Algo deu errado! \nTente novamente', null);
+                          acessosController.isLoading.value = false;
                         }
                       });
                     },
