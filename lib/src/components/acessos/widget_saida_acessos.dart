@@ -11,15 +11,15 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
   TextEditingController name = new TextEditingController();
   TextEditingController observation = new TextEditingController();
   bool isLoading = false;
-  var _tipos = [
-    'Selecione',
-    'Ocorrência',
-    'Reclamação',
-    'Solicitação',
-    'Sugestão',
-    'Elogio',
-    'Outro'
-  ];
+  // var _tipos = [
+  //   'Selecione',
+  //   'Ocorrência',
+  //   'Reclamação',
+  //   'Solicitação',
+  //   'Sugestão',
+  //   'Elogio',
+  //   'Outro'
+  // ];
   var _itemSelecionado = 'Selecione';
   @override
   Widget build(BuildContext context) {
@@ -41,16 +41,31 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
           ),
           ButtonTheme(
             height: 50.0,
-            child: RaisedButton(
-              elevation: 3,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                    return Theme.of(context).textSelectionTheme.selectionColor;
+                  },
+                ),
+                elevation: MaterialStateProperty.resolveWith<double>(
+                  (Set<MaterialState> states) {
+                    return 3;
+                  },
+                ),
+                shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                  (Set<MaterialState> states) {
+                    return RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    );
+                  },
+                ),
+              ),
               onPressed: () {},
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
               child: Text(
                 "ANEXAR IMAGEM",
                 style: GoogleFonts.poppins(color: Colors.black, fontSize: 16),
               ),
-              color: Theme.of(context).textSelectionTheme.selectionColor,
             ),
           ),
           SizedBox(
@@ -58,8 +73,26 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
           ),
           ButtonTheme(
             height: 50.0,
-            child: RaisedButton(
-              elevation: 3,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                    return Theme.of(context).accentColor;
+                  },
+                ),
+                elevation: MaterialStateProperty.resolveWith<double>(
+                  (Set<MaterialState> states) {
+                    return 3;
+                  },
+                ),
+                shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                  (Set<MaterialState> states) {
+                    return RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    );
+                  },
+                ),
+              ),
               onPressed: () {
                 if (_itemSelecionado == 'Selecione') {
                   print('nao pode');
@@ -68,8 +101,6 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                   //isLoading = true;
                 });
               },
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
               child: isLoading
                   ? SizedBox(
                       width: 20,
@@ -86,7 +117,6 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                               .selectionColor,
                           fontSize: 16),
                     ),
-              color: Theme.of(context).accentColor,
             ),
           ),
           SizedBox(
@@ -94,16 +124,31 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
           ),
           ButtonTheme(
             height: 50.0,
-            child: RaisedButton(
-              elevation: 3,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                    return Theme.of(context).textSelectionTheme.selectionColor;
+                  },
+                ),
+                elevation: MaterialStateProperty.resolveWith<double>(
+                  (Set<MaterialState> states) {
+                    return 3;
+                  },
+                ),
+                shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                  (Set<MaterialState> states) {
+                    return RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    );
+                  },
+                ),
+              ),
               onPressed: () {},
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
               child: Text(
                 "VISUALIZE SAÍDAS",
                 style: GoogleFonts.poppins(color: Colors.black, fontSize: 16),
               ),
-              color: Theme.of(context).textSelectionTheme.selectionColor,
             ),
           ),
           SizedBox(

@@ -258,18 +258,31 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 50,
-                    child: RaisedButton(
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            return Colors.blueGrey;
+                          },
+                        ),
+                        shape:
+                            MaterialStateProperty.resolveWith<OutlinedBorder>(
+                          (Set<MaterialState> states) {
+                            return RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            );
+                          },
+                        ),
+                      ),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(10)),
                       child: Text(
                         "Cancelar",
                         style: GoogleFonts.poppins(
                             color: Colors.white, fontSize: 18),
                       ),
-                      color: Colors.blueGrey,
                     ),
                   ),
                 ),

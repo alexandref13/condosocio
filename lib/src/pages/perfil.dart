@@ -235,18 +235,31 @@ class _PerfilState extends State<Perfil> {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 50,
-                    child: RaisedButton(
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            return Colors.blueGrey;
+                          },
+                        ),
+                        shape:
+                            MaterialStateProperty.resolveWith<OutlinedBorder>(
+                          (Set<MaterialState> states) {
+                            return RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            );
+                          },
+                        ),
+                      ),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(10)),
                       child: Text(
                         "Cancelar",
                         style: GoogleFonts.poppins(
                             color: Colors.white, fontSize: 18),
                       ),
-                      color: Colors.blueGrey,
                     ),
                   ),
                 ),
@@ -407,15 +420,30 @@ class _PerfilState extends State<Perfil> {
                 ),
                 ButtonTheme(
                   height: 50.0,
-                  child: RaisedButton(
-                    elevation: 3,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          return Theme.of(context).accentColor;
+                        },
+                      ),
+                      elevation: MaterialStateProperty.resolveWith<double>(
+                          (Set<MaterialState> states) {
+                        return 3;
+                      }),
+                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                        (Set<MaterialState> states) {
+                          return RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          );
+                        },
+                      ),
+                    ),
                     onPressed: () {
                       setState(() {
                         isLoading = true;
                       });
                     },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
                     child: isLoading
                         ? SizedBox(
                             width: 20,
@@ -432,7 +460,6 @@ class _PerfilState extends State<Perfil> {
                                     .selectionColor,
                                 fontSize: 16),
                           ),
-                    color: Theme.of(context).accentColor,
                   ),
                 )
               ],

@@ -191,18 +191,35 @@ class _OcorrenciasState extends State<Ocorrencias> {
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: ButtonTheme(
                     height: 50.0,
-                    child: RaisedButton(
-                      elevation: 3,
+                    child: ElevatedButton(
                       onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            return Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor;
+                          },
+                        ),
+                        elevation: MaterialStateProperty.resolveWith<double>(
+                            (Set<MaterialState> states) {
+                          return 3;
+                        }),
+                        shape:
+                            MaterialStateProperty.resolveWith<OutlinedBorder>(
+                          (Set<MaterialState> states) {
+                            return RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            );
+                          },
+                        ),
+                      ),
                       child: Text(
                         "ANEXAR IMAGEM",
                         style: GoogleFonts.poppins(
                             color: Colors.black, fontSize: 16),
                       ),
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
                     ),
                   ),
                 ),
@@ -210,16 +227,28 @@ class _OcorrenciasState extends State<Ocorrencias> {
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: ButtonTheme(
                     height: 50.0,
-                    child: RaisedButton(
-                      elevation: 3,
-                      onPressed: () {
-                        // _itemSelecionado == 'Selecione'
-                        //     ? print('nao pode')
-                        //     // : api.enviar(title.text, description.text);
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            return Theme.of(context).accentColor;
+                          },
+                        ),
+                        elevation: MaterialStateProperty.resolveWith<double>(
+                            (Set<MaterialState> states) {
+                          return 3;
+                        }),
+                        shape:
+                            MaterialStateProperty.resolveWith<OutlinedBorder>(
+                          (Set<MaterialState> states) {
+                            return RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            );
+                          },
+                        ),
                       ),
+                      onPressed: () {},
                       child: isLoading
                           ? SizedBox(
                               width: 20,
@@ -237,7 +266,6 @@ class _OcorrenciasState extends State<Ocorrencias> {
                                       .selectionColor,
                                   fontSize: 16),
                             ),
-                      color: Theme.of(context).accentColor,
                     ),
                   ),
                 ),
@@ -245,20 +273,37 @@ class _OcorrenciasState extends State<Ocorrencias> {
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: ButtonTheme(
                     height: 50.0,
-                    child: RaisedButton(
-                      elevation: 3,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            return Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor;
+                          },
+                        ),
+                        elevation: MaterialStateProperty.resolveWith<double>(
+                            (Set<MaterialState> states) {
+                          return 3;
+                        }),
+                        shape:
+                            MaterialStateProperty.resolveWith<OutlinedBorder>(
+                          (Set<MaterialState> states) {
+                            return RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            );
+                          },
+                        ),
+                      ),
                       onPressed: () {
                         Navigator.pushNamed(context, '/visualizarOcorrencias');
                       },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
                       child: Text(
                         "VISUALIZE OCORRÊNCIAS",
                         style: GoogleFonts.poppins(
                             color: Colors.black, fontSize: 16),
                       ),
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
                     ),
                   ),
                 )

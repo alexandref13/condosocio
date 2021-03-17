@@ -16,8 +16,8 @@ class _SenhaState extends State<Senha> {
 
   final _form = GlobalKey<FormState>();
 
-  TextEditingController senha_nova = new TextEditingController();
-  TextEditingController senha_confirma = new TextEditingController();
+  TextEditingController senhaNova = new TextEditingController();
+  TextEditingController senhaConfirma = new TextEditingController();
 
   Future<void> _alterarsenha() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -26,7 +26,7 @@ class _SenhaState extends State<Senha> {
     final response = await http.post(
         Uri.https("http://www.focuseg.com.br", "/flutter/alterar_senha.php"),
         body: {
-          "senha_nova": senha_nova.text,
+          "senha_nova": senhaNova.text,
           "idusu": idusu,
         });
 
@@ -102,7 +102,7 @@ class _SenhaState extends State<Senha> {
                               //color: Color(0xfff5f5f5),
                               child: TextFormField(
                                 autovalidateMode: AutovalidateMode.always,
-                                controller: senha_nova,
+                                controller: senhaNova,
                                 validator: (val) {
                                   if (val.isEmpty) return 'Campo Vazio!';
                                   return null;
@@ -143,10 +143,10 @@ class _SenhaState extends State<Senha> {
                               //color: Color(0xfff5f5f5),
                               child: TextFormField(
                                 autovalidateMode: AutovalidateMode.always,
-                                controller: senha_confirma,
+                                controller: senhaConfirma,
                                 validator: (val) {
                                   if (val.isEmpty) return 'Campo Vazio!';
-                                  if (val != senha_nova.text)
+                                  if (val != senhaNova.text)
                                     return 'Senhas Não Conferem!';
                                   return null;
                                 },
@@ -184,7 +184,24 @@ class _SenhaState extends State<Senha> {
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 120),
                             child: ButtonTheme(
                               height: 50.0,
-                              child: RaisedButton(
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.resolveWith<Color>(
+                                    (Set<MaterialState> states) {
+                                      return Color(0xff114B5F);
+                                    },
+                                  ),
+                                  shape: MaterialStateProperty.resolveWith<
+                                      OutlinedBorder>(
+                                    (Set<MaterialState> states) {
+                                      return RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      );
+                                    },
+                                  ),
+                                ),
                                 onPressed: () {
                                   if (_form.currentState.validate()) {
                                     setState(() {
@@ -193,15 +210,11 @@ class _SenhaState extends State<Senha> {
                                     _alterarsenha();
                                   }
                                 },
-                                shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(10.0)),
                                 child: Text(
                                   "Alterar",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20),
                                 ),
-                                color: Color(0xff114B5F),
                               ),
                             ),
                           ),
