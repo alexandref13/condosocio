@@ -52,7 +52,12 @@ Widget listaVisualizarAcessos() {
                     search.placa,
                     search.tipodoc,
                     search.documento,
+                    search.fav,
                   );
+
+                  visualizarAcessosController.fav.value = search.fav;
+                  visualizarAcessosController.idfav.value = search.idfav;
+                  visualizarAcessosController.idace.value = search.idace;
                 },
                 child: Column(
                   children: [
@@ -66,6 +71,7 @@ Widget listaVisualizarAcessos() {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
                             child: Column(
                               children: [
                                 Text(
@@ -92,17 +98,19 @@ Widget listaVisualizarAcessos() {
                             ),
                           ),
                           Container(
+                            width: MediaQuery.of(context).size.width * 0.25,
                             child: Text(
                               search.pessoa,
                               style: GoogleFonts.montserrat(
-                                  fontSize: 16,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                  fontWeight: FontWeight.bold),
+                                fontSize: 14,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
                             ),
                           ),
                           Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
                             child: Column(
                               children: [
                                 Text(
@@ -130,6 +138,8 @@ Widget listaVisualizarAcessos() {
                           ),
                           dayOut == ''
                               ? Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.2,
                                   padding: EdgeInsets.only(right: 10),
                                   child: Icon(
                                     FontAwesome.clock_o,
@@ -138,6 +148,8 @@ Widget listaVisualizarAcessos() {
                                   ),
                                 )
                               : Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.2,
                                   child: Column(
                                     children: [
                                       Text(
@@ -198,6 +210,14 @@ Widget listaVisualizarAcessos() {
                 onTap: () {
                   acessosController.idAce.value =
                       visualizarAcessosController.acessos[index].idace;
+
+                  visualizarAcessosController.fav.value =
+                      visualizarAcessosController.acessos[index].fav;
+                  visualizarAcessosController.idfav.value =
+                      visualizarAcessosController.acessos[index].idfav;
+                  visualizarAcessosController.idace.value =
+                      visualizarAcessosController.acessos[index].idace;
+
                   configurandoModalBottomSheet(
                     context,
                     day,
@@ -210,6 +230,7 @@ Widget listaVisualizarAcessos() {
                     visualizarAcessosController.acessos[index].placa,
                     visualizarAcessosController.acessos[index].tipodoc,
                     visualizarAcessosController.acessos[index].documento,
+                    visualizarAcessosController.acessos[index].fav,
                   );
                 },
                 child: Column(
@@ -224,6 +245,7 @@ Widget listaVisualizarAcessos() {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
                             child: Column(
                               children: [
                                 Text(
@@ -250,17 +272,19 @@ Widget listaVisualizarAcessos() {
                             ),
                           ),
                           Container(
+                            width: MediaQuery.of(context).size.width * 0.25,
                             child: Text(
                               visualizarAcessosController.acessos[index].pessoa,
                               style: GoogleFonts.montserrat(
-                                  fontSize: 16,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                  fontWeight: FontWeight.bold),
+                                fontSize: 14,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
                             ),
                           ),
                           Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
                             child: Column(
                               children: [
                                 Text(
@@ -288,6 +312,8 @@ Widget listaVisualizarAcessos() {
                           ),
                           dayOut == ''
                               ? Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.2,
                                   padding: EdgeInsets.only(right: 10),
                                   child: Icon(
                                     FontAwesome.clock_o,
@@ -296,6 +322,8 @@ Widget listaVisualizarAcessos() {
                                   ),
                                 )
                               : Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.2,
                                   child: Column(
                                     children: [
                                       Text(

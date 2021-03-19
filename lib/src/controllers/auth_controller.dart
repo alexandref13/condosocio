@@ -32,7 +32,6 @@ class AuthController extends GetxController {
     await GetStorage.init();
     final box = GetStorage();
     var id = box.read('id');
-    print(id);
 
     if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(

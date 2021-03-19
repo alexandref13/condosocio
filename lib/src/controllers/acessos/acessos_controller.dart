@@ -6,15 +6,15 @@ import 'package:get/get.dart';
 class AcessosController extends GetxController {
   var name = TextEditingController().obs;
   var phone = TextEditingController().obs;
+  var favoriteName = ''.obs;
+  var favoritePhone = ''.obs;
   var idAce = ''.obs;
-  var isLoading = false.obs;
+  var isLoading = true.obs;
+  var fav = [].obs;
+  var favorito;
+  var firstId = '0'.obs;
 
-  var favoritos = [
-    'Selecione o favorito',
-    'Alexandre Fernandes',
-    'Mãe',
-  ];
-  var favoritosSelecionado = 'Selecione o favorito'.obs;
+  var favoritosSelecionado = ''.obs;
 
   var tipos = [
     'Selecione o tipo de visitante',
@@ -24,17 +24,21 @@ class AcessosController extends GetxController {
   ];
   var itemSelecionado = 'Selecione o tipo de visitante'.obs;
 
+  cleanController() {
+    name.value.text = '';
+    phone.value.text = '';
+  }
+
   sendAcessos() async {
     isLoading(true);
-    final response = await ApiAcessos.sendAcesso();
-
-    var dados = json.decode(response.body);
 
     if (name.value.text == '' ||
         phone.value.text == '' ||
         itemSelecionado.value == 'Selecione o tipo de visitante') {
       return 'vazio';
     } else {
+      final response = await ApiAcessos.sendAcesso();
+      var dados = json.decode(response.body);
       name.value.text = '';
       phone.value.text = '';
       itemSelecionado.value = 'Selecione o tipo de visitante';
@@ -52,5 +56,51 @@ class AcessosController extends GetxController {
     var dados = json.decode(response.body);
 
     return dados;
+  }
+
+  sendFavorite() async {
+    final response = await ApiAcessos.addFav();
+
+    var dados = json.decode(response.body);
+
+    print(dados);
+  }
+
+  void getFavoritos() async {
+    fav.addAll({
+      {"pessoa": 'Selecione um favorito', "id": '0'}
+    });
+    final response = await ApiAcessos.getFav();
+    fav.addAll(json.decode(response.body));
+
+    isLoading(false);
+  }
+
+  getAFavorite() async {
+    isLoading(true);
+    final response = await ApiAcessos.getAFavorite();
+    var dados = json.decode(response.body);
+    favorito = dados.map((item) => item).toList();
+    name.value.text = favorito[0]['pessoa'].toString();
+    phone.value.text = favorito[0]['cel'].toString();
+    isLoading(false);
+  }
+
+  deleteFav() async {
+    final response = await ApiAcessos.deleteFav();
+    var dados = json.decode(response.body);
+    return dados;
+  }
+
+  @override
+  void onInit() {
+    getFavoritos();
+    super.onInit();
+  }
+
+  @override
+  void dispose() {
+    getFavoritos();
+    super.dispose();
   }
 }

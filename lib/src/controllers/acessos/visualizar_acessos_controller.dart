@@ -10,6 +10,10 @@ class VisualizarAcessosController extends GetxController {
   var isLoading = true.obs;
   var searchResult = [].obs;
 
+  var fav = 0.obs;
+  var idfav = ''.obs;
+  var idace = ''.obs;
+
   onSearchTextChanged(String text) {
     searchResult.clear();
     if (text.isEmpty) {
@@ -24,8 +28,8 @@ class VisualizarAcessosController extends GetxController {
   void getAcessos() {
     ApiAcessos.getAcessos().then((response) {
       Iterable lista = json.decode(response.body);
-      acessos.value =
-          lista.map((model) => MapaAcessos.fromJson(model)).toList();
+      acessos.assignAll(
+          lista.map((model) => MapaAcessos.fromJson(model)).toList());
       isLoading(false);
     });
   }
@@ -34,5 +38,11 @@ class VisualizarAcessosController extends GetxController {
   void onInit() {
     getAcessos();
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    getAcessos();
+    super.dispose();
   }
 }

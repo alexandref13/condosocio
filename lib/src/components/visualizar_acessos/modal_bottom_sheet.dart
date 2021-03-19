@@ -1,5 +1,6 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
+import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -17,11 +18,14 @@ void configurandoModalBottomSheet(
   String placa,
   String tipoDoc,
   String documento,
+  int fav,
 ) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext bc) {
       AcessosController acessosController = Get.put(AcessosController());
+      VisualizarAcessosController visualizarAcessosController =
+          Get.put(VisualizarAcessosController());
       return Container(
         height: MediaQuery.of(context).size.height * 0.4,
         padding: EdgeInsets.all(8),
@@ -75,6 +79,17 @@ void configurandoModalBottomSheet(
                             .selectionColor),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'fav: $fav',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 18,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor),
+                  ),
+                ),
               ],
             )),
             Row(
@@ -87,7 +102,11 @@ void configurandoModalBottomSheet(
                       acessosController.deleteAcesso().then((value) {
                         if (value == 1) {
                           onAlertButtonPressed(
-                              context, 'Acesso excluido', '/acessos');
+                            context,
+                            'Acesso excluido',
+                            '/home',
+                          );
+                          visualizarAcessosController.dispose();
                         }
                       });
                     },
@@ -117,36 +136,81 @@ void configurandoModalBottomSheet(
                     ),
                   ),
                 ),
-                ButtonTheme(
-                  height: 50.0,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          return 3;
-                        },
+                fav == 0
+                    ? ButtonTheme(
+                        height: 50.0,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            acessosController.sendFavorite();
+                          },
+                          style: ButtonStyle(
+                            elevation:
+                                MaterialStateProperty.resolveWith<double>(
+                              (Set<MaterialState> states) {
+                                return 3;
+                              },
+                            ),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                return Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor;
+                              },
+                            ),
+                            shape: MaterialStateProperty.resolveWith<
+                                OutlinedBorder>(
+                              (Set<MaterialState> states) {
+                                return RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                );
+                              },
+                            ),
+                          ),
+                          child: Icon(
+                            FontAwesome.heart_o,
+                            size: 30,
+                            color: Color(0xFFD11A2A),
+                          ),
+                        ),
+                      )
+                    : ButtonTheme(
+                        height: 50.0,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            acessosController.sendFavorite();
+                          },
+                          style: ButtonStyle(
+                            elevation:
+                                MaterialStateProperty.resolveWith<double>(
+                              (Set<MaterialState> states) {
+                                return 3;
+                              },
+                            ),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                return Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor;
+                              },
+                            ),
+                            shape: MaterialStateProperty.resolveWith<
+                                OutlinedBorder>(
+                              (Set<MaterialState> states) {
+                                return RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                );
+                              },
+                            ),
+                          ),
+                          child: Icon(
+                            FontAwesome.heart,
+                            size: 30,
+                            color: Color(0xFFD11A2A),
+                          ),
+                        ),
                       ),
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Colors.white;
-                        },
-                      ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          );
-                        },
-                      ),
-                    ),
-                    child: Icon(
-                      FontAwesome.heart,
-                      size: 30,
-                      color: Color(0xFFD11A2A),
-                    ),
-                  ),
-                ),
                 ButtonTheme(
                   height: 50.0,
                   child: ElevatedButton(
