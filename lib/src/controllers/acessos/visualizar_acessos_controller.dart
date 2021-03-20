@@ -10,7 +10,6 @@ class VisualizarAcessosController extends GetxController {
   var isLoading = true.obs;
   var searchResult = [].obs;
 
-  var fav = 0.obs;
   var idfav = ''.obs;
   var idace = ''.obs;
 
@@ -36,13 +35,7 @@ class VisualizarAcessosController extends GetxController {
 
   @override
   void onInit() {
-    getAcessos();
     super.onInit();
-  }
-
-  @override
-  void dispose() {
     getAcessos();
-    super.dispose();
   }
 }

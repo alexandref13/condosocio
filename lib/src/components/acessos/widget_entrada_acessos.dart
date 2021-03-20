@@ -361,7 +361,7 @@ class EntradaAcessos extends StatelessWidget {
                                         if (value == 1) {
                                           onAlertButtonPressed(context,
                                               'Favorito deletado!', '/home');
-                                          acessosController.dispose();
+                                          acessosController.getFavoritos();
                                         } else {
                                           onAlertButtonPressed(
                                             context,

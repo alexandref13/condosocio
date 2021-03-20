@@ -97,10 +97,4 @@ class AcessosController extends GetxController {
     getFavoritos();
     super.onInit();
   }
-
-  @override
-  void dispose() {
-    getFavoritos();
-    super.dispose();
-  }
 }

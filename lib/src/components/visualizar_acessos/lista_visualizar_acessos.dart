@@ -11,351 +11,324 @@ Widget listaVisualizarAcessos() {
       Get.put(VisualizarAcessosController());
   AcessosController acessosController = Get.put(AcessosController());
 
-  return Obx(() {
-    return visualizarAcessosController.searchResult.isNotEmpty ||
-            visualizarAcessosController.search.value.text.isNotEmpty
-        ? ListView.builder(
-            itemCount: visualizarAcessosController.searchResult.length,
-            itemBuilder: (context, index) {
-              var search = visualizarAcessosController.searchResult[index];
-              var data = search.data;
-              var cutDate = data.split(" ");
-              var day = cutDate[0];
+  return Obx(
+    () {
+      return visualizarAcessosController.searchResult.isNotEmpty ||
+              visualizarAcessosController.search.value.text.isNotEmpty
+          ? ListView.builder(
+              itemCount: visualizarAcessosController.searchResult.length,
+              itemBuilder: (context, index) {
+                var search = visualizarAcessosController.searchResult[index];
+                var data = search.datahora;
+                var cutDate = data.split(" ");
+                var day = cutDate[0];
 
-              var cuthour = cutDate[1].split("h<");
-              var hour = cuthour[0];
+                var cuthour = cutDate[1].split("h<");
+                var hour = cuthour[0];
 
-              var dataEnt = search.dataent;
-              var cutDataEnt = dataEnt.split('<');
-              var dayIn = cutDataEnt[0];
+                var dataEnt = search.dataent;
+                var cutDataEnt = dataEnt.split('<');
+                var dayIn = cutDataEnt[0];
 
-              var cutHoraEnt = cutDataEnt[1].split('>');
-              var hourIn = cutHoraEnt[1];
+                var cutHoraEnt = cutDataEnt[1].split('>');
+                var hourIn = cutHoraEnt[1];
 
-              var dataSai = search.datasai;
-              var cutDataSai = dataSai.split('<');
-              var dayOut = cutDataSai[0];
+                var dataSai = search.datasai;
+                var cutDataSai = dataSai.split('<');
+                var dayOut = cutDataSai[0];
 
-              var cutHoraSai = cutDataSai[1].split('>');
-              var hourOut = cutHoraSai[1];
-              return GestureDetector(
-                onTap: () {
-                  configurandoModalBottomSheet(
-                    context,
-                    day,
-                    hour,
-                    search.pessoa,
-                    dayIn,
-                    hourIn,
-                    dayOut,
-                    hourOut,
-                    search.placa,
-                    search.tipodoc,
-                    search.documento,
-                    search.fav,
-                  );
+                var cutHoraSai = cutDataSai[1].split('>');
+                var hourOut = cutHoraSai[1];
+                return GestureDetector(
+                  onTap: () {
+                    configurandoModalBottomSheet(
+                      context,
+                      day,
+                      hour,
+                      search.pessoa,
+                      dayIn,
+                      hourIn,
+                      dayOut,
+                      hourOut,
+                      search.placa,
+                      search.tipodoc,
+                      search.documento,
+                    );
 
-                  visualizarAcessosController.fav.value = search.fav;
-                  visualizarAcessosController.idfav.value = search.idfav;
-                  visualizarAcessosController.idace.value = search.idace;
-                },
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                        bottom: BorderSide(width: 1, color: Colors.grey),
-                      )),
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.2,
-                            child: Column(
-                              children: [
-                                Text(
-                                  day,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 16,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontWeight: FontWeight.bold,
+                    visualizarAcessosController.idfav.value = search.idfav;
+                    visualizarAcessosController.idace.value = search.idace;
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border(
+                          bottom: BorderSide(width: 1, color: Colors.grey),
+                        )),
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    day,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 16,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  hour,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 16,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontWeight: FontWeight.bold,
+                                  Text(
+                                    hour,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 16,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.25,
-                            child: Text(
-                              search.pessoa,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 14,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
+                                ],
                               ),
                             ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.2,
-                            child: Column(
-                              children: [
-                                Text(
-                                  dayIn,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 16,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.25,
+                              child: Text(
+                                search.pessoa,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 14,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
                                 ),
-                                Text(
-                                  hourIn,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 16,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          dayOut == ''
-                              ? Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  padding: EdgeInsets.only(right: 10),
-                                  child: Icon(
-                                    FontAwesome.clock_o,
-                                    size: 40,
-                                    color: Theme.of(context).accentColor,
-                                  ),
-                                )
-                              : Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        dayOut,
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 16,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        hourOut,
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 16,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          )
-        : ListView.builder(
-            itemCount: visualizarAcessosController.acessos.length,
-            itemBuilder: (context, index) {
-              var data = visualizarAcessosController.acessos[index].data;
-              var cutDate = data.split(" ");
-              var day = cutDate[0];
-
-              var cuthour = cutDate[1].split("h<");
-              var hour = cuthour[0];
-
-              var dataEnt = visualizarAcessosController.acessos[index].dataent;
-              var cutDataEnt = dataEnt.split('<');
-              var dayIn = cutDataEnt[0];
-
-              var cutHoraEnt = cutDataEnt[1].split('>');
-              var hourIn = cutHoraEnt[1];
-
-              var dataSai = visualizarAcessosController.acessos[index].datasai;
-              var cutDataSai = dataSai.split('<');
-              var dayOut = cutDataSai[0];
-
-              var cutHoraSai = cutDataSai[1].split('>');
-              var hourOut = cutHoraSai[1];
-              return GestureDetector(
-                onTap: () {
-                  acessosController.idAce.value =
-                      visualizarAcessosController.acessos[index].idace;
-
-                  visualizarAcessosController.fav.value =
-                      visualizarAcessosController.acessos[index].fav;
-                  visualizarAcessosController.idfav.value =
-                      visualizarAcessosController.acessos[index].idfav;
-                  visualizarAcessosController.idace.value =
-                      visualizarAcessosController.acessos[index].idace;
-
-                  configurandoModalBottomSheet(
-                    context,
-                    day,
-                    hour,
-                    visualizarAcessosController.acessos[index].pessoa,
-                    dayIn,
-                    hourIn,
-                    dayOut,
-                    hourOut,
-                    visualizarAcessosController.acessos[index].placa,
-                    visualizarAcessosController.acessos[index].tipodoc,
-                    visualizarAcessosController.acessos[index].documento,
-                    visualizarAcessosController.acessos[index].fav,
-                  );
-                },
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                        bottom: BorderSide(width: 1, color: Colors.grey),
-                      )),
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.2,
-                            child: Column(
-                              children: [
-                                Text(
-                                  day,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 16,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  hour,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 16,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.25,
-                            child: Text(
-                              visualizarAcessosController.acessos[index].pessoa,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 14,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
                               ),
                             ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.2,
-                            child: Column(
-                              children: [
-                                Text(
-                                  dayIn,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 16,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontWeight: FontWeight.bold,
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    dayIn,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 16,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  hourIn,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 16,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontWeight: FontWeight.bold,
+                                  Text(
+                                    hourIn,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 16,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          dayOut == ''
-                              ? Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  padding: EdgeInsets.only(right: 10),
-                                  child: Icon(
-                                    FontAwesome.clock_o,
-                                    size: 40,
-                                    color: Theme.of(context).accentColor,
-                                  ),
-                                )
-                              : Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        dayOut,
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 16,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                          fontWeight: FontWeight.bold,
+                            dayOut == ''
+                                ? Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    padding: EdgeInsets.only(right: 10),
+                                    child: Icon(
+                                      FontAwesome.clock_o,
+                                      size: 40,
+                                      color: Theme.of(context).accentColor,
+                                    ),
+                                  )
+                                : Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          dayOut,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 16,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        hourOut,
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 16,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                          fontWeight: FontWeight.bold,
+                                        Text(
+                                          hourOut,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 16,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-  });
+                    ],
+                  ),
+                );
+              },
+            )
+          : ListView.builder(
+              itemCount: visualizarAcessosController.acessos.length,
+              itemBuilder: (context, index) {
+                var data = visualizarAcessosController.acessos[index].datahora
+                    .split('h');
+                var newData = data[0];
+
+                return GestureDetector(
+                  onTap: () {
+                    acessosController.idAce.value =
+                        visualizarAcessosController.acessos[index].idace;
+
+                    visualizarAcessosController.idfav.value =
+                        visualizarAcessosController.acessos[index].idfav;
+                    visualizarAcessosController.idace.value =
+                        visualizarAcessosController.acessos[index].idace;
+
+                    configurandoModalBottomSheet(
+                      context,
+                      newData,
+                      '10',
+                      visualizarAcessosController.acessos[index].pessoa,
+                      '10',
+                      '10',
+                      '10',
+                      '10',
+                      visualizarAcessosController.acessos[index].placa,
+                      visualizarAcessosController.acessos[index].tipodoc,
+                      visualizarAcessosController.acessos[index].documento,
+                    );
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border(
+                          bottom: BorderSide(width: 1, color: Colors.grey),
+                        )),
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    newData,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  visualizarAcessosController
+                                              .acessos[index].nome_dep !=
+                                          null
+                                      ? Container(
+                                          padding: EdgeInsets.only(top: 7),
+                                          child: Text(
+                                            visualizarAcessosController
+                                                .acessos[index].nome_dep,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.25,
+                              child: Text(
+                                visualizarAcessosController
+                                    .acessos[index].pessoa,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 14,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    visualizarAcessosController
+                                        .acessos[index].dataent,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            visualizarAcessosController
+                                        .acessos[index].datasai ==
+                                    ''
+                                ? Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    padding: EdgeInsets.only(right: 10),
+                                    child: Icon(
+                                      FontAwesome.clock_o,
+                                      size: 40,
+                                      color: Theme.of(context).accentColor,
+                                    ),
+                                  )
+                                : Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          visualizarAcessosController
+                                              .acessos[index].datasai,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+    },
+  );
 }
