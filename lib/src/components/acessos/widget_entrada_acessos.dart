@@ -1,5 +1,5 @@
-import 'package:condosocio/src/components/alert_button_pressed.dart';
-import 'package:condosocio/src/components/custom_text_field.dart';
+import 'package:condosocio/src/controllers/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

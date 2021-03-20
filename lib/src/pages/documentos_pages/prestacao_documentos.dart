@@ -1,4 +1,4 @@
-import 'package:condosocio/src/components/box_search.dart';
+import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/controllers/documentos_controllers/prestacao_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';

@@ -3,7 +3,7 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:edge_alert/edge_alert.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:condosocio/src/components/custom_text_field.dart';
+import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';

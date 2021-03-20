@@ -70,45 +70,6 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        themeController.setTheme('admin');
-                      },
-                      child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Theme.of(context).accentColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xff103845),
-                                spreadRadius: 3,
-                                blurRadius: 1,
-                                offset:
-                                    Offset(0, 2), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 10),
-                                child: Icon(
-                                  FontAwesome.picture_o,
-                                  size: 35,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                "Galeria",
-                                style: GoogleFonts.montserrat(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ],
-                          )),
-                    ),
-                    GestureDetector(
-                      onTap: () {
                         Get.toNamed('/alvoTv');
                       },
                       child: Container(
@@ -454,6 +415,12 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ),
                             ],
                           )),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed('/alvoTv');
+                      },
+                      child: Container(),
                     ),
                     GestureDetector(
                       onTap: () {
