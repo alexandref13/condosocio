@@ -1,17 +1,18 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
-import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../controllers/acessos/agenda_contatos_controller.dart';
 
 class EntradaAcessos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AcessosController acessosController = Get.put(AcessosController());
-    VisualizarAcessosController visualizarAcessosController =
-        Get.put(VisualizarAcessosController());
+    AgendaContatosController agendaContatosController =
+        Get.put(AgendaContatosController());
 
     void dropDownItemSelected(String novoItem) {
       acessosController.itemSelecionado.value = novoItem;
@@ -133,7 +134,9 @@ class EntradaAcessos extends StatelessWidget {
                               },
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            agendaContatosController.pickContact();
+                          },
                           child: acessosController.isLoading.value
                               ? SizedBox(
                                   width: 20,

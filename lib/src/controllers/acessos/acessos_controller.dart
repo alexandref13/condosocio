@@ -60,7 +60,6 @@ class AcessosController extends GetxController {
 
     var dados = json.decode(response.body);
     idfav('');
-    print(dados);
     return dados;
   }
 
@@ -70,7 +69,6 @@ class AcessosController extends GetxController {
     var dados = json.decode(response.body);
     fav.assignAll(dados);
     fav.refresh();
-    print(fav);
     isLoading(false);
     return dados;
   }
