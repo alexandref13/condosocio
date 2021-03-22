@@ -34,7 +34,7 @@ onAlertButtonPressed(context, String text, String page) {
           ),
         ),
         onPressed: () {
-          page != null ? Get.toNamed('$page') : Get.back();
+          page != null ? Get.offAllNamed('$page') : Get.back();
         },
         width: 80,
         color: Color(0xff1A936F),

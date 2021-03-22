@@ -9,12 +9,11 @@ class AcessosController extends GetxController {
   var favoriteName = ''.obs;
   var favoritePhone = ''.obs;
   var idAce = ''.obs;
+  var idfav = ''.obs;
   var isLoading = true.obs;
   var fav = [].obs;
   var favorito;
   var firstId = '0'.obs;
-
-  var favoritosSelecionado = ''.obs;
 
   var tipos = [
     'Selecione o tipo de visitante',
@@ -52,9 +51,7 @@ class AcessosController extends GetxController {
 
   deleteAcesso() async {
     final response = await ApiAcessos.deleteAcesso();
-
     var dados = json.decode(response.body);
-
     return dados;
   }
 
@@ -62,18 +59,20 @@ class AcessosController extends GetxController {
     final response = await ApiAcessos.addFav();
 
     var dados = json.decode(response.body);
-
+    idfav('');
     print(dados);
+    return dados;
   }
 
   void getFavoritos() async {
-    fav.addAll({
-      {"pessoa": 'Selecione um favorito', "id": '0'}
-    });
+    isLoading(true);
     final response = await ApiAcessos.getFav();
-    fav.addAll(json.decode(response.body));
-
+    var dados = json.decode(response.body);
+    fav.assignAll(dados);
+    fav.refresh();
+    print(fav);
     isLoading(false);
+    return dados;
   }
 
   getAFavorite() async {
@@ -89,6 +88,7 @@ class AcessosController extends GetxController {
   deleteFav() async {
     final response = await ApiAcessos.deleteFav();
     var dados = json.decode(response.body);
+    getFavoritos();
     return dados;
   }
 

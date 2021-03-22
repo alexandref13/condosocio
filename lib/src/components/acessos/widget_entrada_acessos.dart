@@ -1,6 +1,7 @@
-import 'package:condosocio/src/controllers/alert_button_pressed.dart';
+import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
+import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,8 @@ class EntradaAcessos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AcessosController acessosController = Get.put(AcessosController());
+    VisualizarAcessosController visualizarAcessosController =
+        Get.put(VisualizarAcessosController());
 
     void dropDownItemSelected(String novoItem) {
       acessosController.itemSelecionado.value = novoItem;
@@ -355,21 +358,23 @@ class EntradaAcessos extends StatelessWidget {
                                       ),
                                     ),
                                     onPressed: () {
-                                      acessosController
-                                          .deleteFav()
-                                          .then((value) {
-                                        if (value == 1) {
-                                          onAlertButtonPressed(context,
-                                              'Favorito deletado!', '/home');
-                                          acessosController.getFavoritos();
-                                        } else {
-                                          onAlertButtonPressed(
-                                            context,
-                                            'Algo deu errado \n Tente novamente',
-                                            null,
-                                          );
-                                        }
-                                      });
+                                      acessosController.deleteFav().then(
+                                        (value) {
+                                          if (value == 1) {
+                                            onAlertButtonPressed(
+                                              context,
+                                              'Favorito deletado!',
+                                              '/home',
+                                            );
+                                          } else {
+                                            onAlertButtonPressed(
+                                              context,
+                                              'Algo deu errado \n Tente novamente',
+                                              '/home',
+                                            );
+                                          }
+                                        },
+                                      );
                                     },
                                     child: Text(
                                       "APAGAR FAVORITO",

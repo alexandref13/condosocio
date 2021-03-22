@@ -1,4 +1,4 @@
-import 'package:condosocio/src/controllers/alert_button_pressed.dart';
+import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:flutter/material.dart';
@@ -6,19 +6,8 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void configurandoModalBottomSheet(
-  context,
-  String day,
-  String hour,
-  String pessoa,
-  String dayIn,
-  String hourIn,
-  String dayOut,
-  String hourOut,
-  String placa,
-  String tipoDoc,
-  String documento,
-) {
+void configurandoModalBottomSheet(context, String pessoa, String placa,
+    String tipoDoc, String documento, idFav) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext bc) {
@@ -97,7 +86,6 @@ void configurandoModalBottomSheet(
                           );
                         }
                       });
-                      visualizarAcessosController.getAcessos();
                     },
                     style: ButtonStyle(
                       elevation: MaterialStateProperty.resolveWith<double>(
@@ -122,6 +110,53 @@ void configurandoModalBottomSheet(
                       Icons.delete,
                       size: 30,
                       color: Colors.white,
+                    ),
+                  ),
+                ),
+                ButtonTheme(
+                  height: 50.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      acessosController.sendFavorite().then(
+                        (value) {
+                          if (value == 1) {
+                            onAlertButtonPressed(
+                                context, 'Novo favorito adicionado', '/home');
+                          }
+                          if (value == 0) {
+                            onAlertButtonPressed(
+                                context, 'Favorito deletado', '/home');
+                            acessosController.getFavoritos();
+                            visualizarAcessosController.getAcessos();
+                          }
+                        },
+                      );
+                    },
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.resolveWith<double>(
+                        (Set<MaterialState> states) {
+                          return 3;
+                        },
+                      ),
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          return Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor;
+                        },
+                      ),
+                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                        (Set<MaterialState> states) {
+                          return RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          );
+                        },
+                      ),
+                    ),
+                    child: Icon(
+                      idFav != null ? FontAwesome.heart : FontAwesome.heart_o,
+                      size: 30,
+                      color: Color(0xff8a0000),
                     ),
                   ),
                 ),

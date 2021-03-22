@@ -42,21 +42,17 @@ Widget listaVisualizarAcessos() {
                 return GestureDetector(
                   onTap: () {
                     configurandoModalBottomSheet(
-                      context,
-                      day,
-                      hour,
-                      search.pessoa,
-                      dayIn,
-                      hourIn,
-                      dayOut,
-                      hourOut,
-                      search.placa,
-                      search.tipodoc,
-                      search.documento,
-                    );
+                        context,
+                        search.pessoa,
+                        search.placa,
+                        search.tipodoc,
+                        search.documento,
+                        search.idfav);
 
-                    visualizarAcessosController.idfav.value = search.idfav;
-                    visualizarAcessosController.idace.value = search.idace;
+                    acessosController.idAce.value =
+                        visualizarAcessosController.acessos[index].idace;
+                    acessosController.idfav.value =
+                        visualizarAcessosController.acessos[index].idfav;
                   },
                   child: Column(
                     children: [
@@ -193,25 +189,16 @@ Widget listaVisualizarAcessos() {
                   onTap: () {
                     acessosController.idAce.value =
                         visualizarAcessosController.acessos[index].idace;
-
-                    visualizarAcessosController.idfav.value =
+                    acessosController.idfav.value =
                         visualizarAcessosController.acessos[index].idfav;
-                    visualizarAcessosController.idace.value =
-                        visualizarAcessosController.acessos[index].idace;
-
+                    print(visualizarAcessosController.acessos[index].idfav);
                     configurandoModalBottomSheet(
-                      context,
-                      newData,
-                      '10',
-                      visualizarAcessosController.acessos[index].pessoa,
-                      '10',
-                      '10',
-                      '10',
-                      '10',
-                      visualizarAcessosController.acessos[index].placa,
-                      visualizarAcessosController.acessos[index].tipodoc,
-                      visualizarAcessosController.acessos[index].documento,
-                    );
+                        context,
+                        visualizarAcessosController.acessos[index].pessoa,
+                        visualizarAcessosController.acessos[index].placa,
+                        visualizarAcessosController.acessos[index].tipodoc,
+                        visualizarAcessosController.acessos[index].documento,
+                        visualizarAcessosController.acessos[index].idfav);
                   },
                   child: Column(
                     children: [

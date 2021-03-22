@@ -1,5 +1,4 @@
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
-import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -65,8 +64,7 @@ class ApiAcessos {
   }
 
   static Future addFav() async {
-    VisualizarAcessosController visualizarAcessosController =
-        Get.put(VisualizarAcessosController());
+    AcessosController acessosController = Get.put(AcessosController());
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(
@@ -75,8 +73,8 @@ class ApiAcessos {
         "/flutter/favoritos_alternar.php",
         {
           "idusu": loginController.id.value,
-          "idfav": visualizarAcessosController.idfav.value,
-          "idace ": visualizarAcessosController.idace.value,
+          "idfav": acessosController.idfav.value,
+          "idace ": acessosController.idAce.value,
         },
       ),
     );
