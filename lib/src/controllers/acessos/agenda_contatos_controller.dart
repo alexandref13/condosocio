@@ -16,6 +16,7 @@ class AgendaContatosController extends GetxController {
       acessosController.name.value.text = contacts.displayName;
       var phones = (contacts.phones).map((e) => e.value);
       acessosController.phone.value.text = phones.first;
+      acessosController.tel.value = phones.first;
     } catch (e) {
       print(e.toString());
     }

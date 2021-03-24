@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/components/whatsapp_button_pressed.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:flutter/material.dart';
@@ -163,7 +164,9 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
                 ButtonTheme(
                   height: 50.0,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      onWhatsappButtonPressed(context, null);
+                    },
                     style: ButtonStyle(
                       elevation: MaterialStateProperty.resolveWith<double>(
                         (Set<MaterialState> states) {

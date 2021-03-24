@@ -1,10 +1,10 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
+import 'package:condosocio/src/components/whatsapp_button_pressed.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../controllers/acessos/agenda_contatos_controller.dart';
 
 class EntradaAcessos extends StatelessWidget {
@@ -251,8 +251,9 @@ class EntradaAcessos extends StatelessWidget {
                                       null);
                                   acessosController.isLoading.value = false;
                                 } else if (value == 1) {
-                                  onAlertButtonPressed(
-                                      context, 'Acesso autorizado!', null);
+                                  acessosController.tel.value =
+                                      acessosController.phone.value.text;
+                                  onWhatsappButtonPressed(context, null);
                                   acessosController.isLoading.value = false;
                                 } else {
                                   onAlertButtonPressed(

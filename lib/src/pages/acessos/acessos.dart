@@ -28,8 +28,9 @@ class _AcessosState extends State<Acessos> {
               Text(
                 'Saída',
                 style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
+                  fontSize: 16,
+                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                ),
               ),
             ],
           ),

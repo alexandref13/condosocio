@@ -191,7 +191,8 @@ Widget listaVisualizarAcessos() {
                         visualizarAcessosController.acessos[index].idace;
                     acessosController.idfav.value =
                         visualizarAcessosController.acessos[index].idfav;
-                    print(visualizarAcessosController.acessos[index].idfav);
+                    acessosController.tel.value =
+                        visualizarAcessosController.acessos[index].datasai;
                     configurandoModalBottomSheet(
                         context,
                         visualizarAcessosController.acessos[index].pessoa,

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 class AcessosController extends GetxController {
   var name = TextEditingController().obs;
   var phone = TextEditingController().obs;
+  var tel = ''.obs;
   var favoriteName = ''.obs;
   var favoritePhone = ''.obs;
   var idAce = ''.obs;

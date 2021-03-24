@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VisualizarAcessosController extends GetxController {
-  var acessos = [].obs;
+  var acessos = <MapaAcessos>[].obs;
   var search = TextEditingController().obs;
   var isLoading = true.obs;
   var searchResult = [].obs;
