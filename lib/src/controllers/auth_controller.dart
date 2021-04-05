@@ -54,6 +54,7 @@ class AuthController extends GetxController {
         http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
           var dados = json.decode(response.body);
+          print(dados);
           loginController.id(dados['idusu']);
           loginController.idcond(dados['idcond']);
           loginController.emailUsu(dados['email']);

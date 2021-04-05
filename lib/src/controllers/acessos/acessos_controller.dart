@@ -69,7 +69,7 @@ class AcessosController extends GetxController {
     final response = await ApiAcessos.getFav();
     var dados = json.decode(response.body);
     fav.assignAll(dados);
-    fav.refresh();
+    print(dados);
     isLoading(false);
     return dados;
   }
@@ -85,9 +85,11 @@ class AcessosController extends GetxController {
   }
 
   deleteFav() async {
+    isLoading(true);
     final response = await ApiAcessos.deleteFav();
     var dados = json.decode(response.body);
     getFavoritos();
+    isLoading(false);
     return dados;
   }
 

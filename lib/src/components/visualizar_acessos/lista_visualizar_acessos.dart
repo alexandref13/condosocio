@@ -194,12 +194,13 @@ Widget listaVisualizarAcessos() {
                     acessosController.tel.value =
                         visualizarAcessosController.acessos[index].datasai;
                     configurandoModalBottomSheet(
-                        context,
-                        visualizarAcessosController.acessos[index].pessoa,
-                        visualizarAcessosController.acessos[index].placa,
-                        visualizarAcessosController.acessos[index].tipodoc,
-                        visualizarAcessosController.acessos[index].documento,
-                        visualizarAcessosController.acessos[index].idfav);
+                      context,
+                      visualizarAcessosController.acessos[index].pessoa,
+                      visualizarAcessosController.acessos[index].placa,
+                      visualizarAcessosController.acessos[index].tipodoc,
+                      visualizarAcessosController.acessos[index].documento,
+                      visualizarAcessosController.acessos[index].idfav,
+                    );
                   },
                   child: Column(
                     children: [

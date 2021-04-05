@@ -16,7 +16,12 @@ class AgendaContatosController extends GetxController {
       acessosController.name.value.text = contacts.displayName;
       var phones = (contacts.phones).map((e) => e.value);
       acessosController.phone.value.text = phones.first;
-      acessosController.tel.value = phones.first;
+      var celular = phones.first
+          .replaceAll("(", "")
+          .replaceAll(")", "")
+          .replaceAll("-", "")
+          .replaceAll(" ", "");
+      acessosController.tel.value = celular;
     } catch (e) {
       print(e.toString());
     }

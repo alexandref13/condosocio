@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgcondo.value}'),
+                        'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
                   ),
                 ),
               ),
