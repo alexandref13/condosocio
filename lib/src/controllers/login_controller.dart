@@ -21,7 +21,6 @@ class LoginController extends GetxController {
   var nome = ''.obs;
   var isLoading = false.obs;
   var isLoggedIn = false.obs;
-  var testing = ''.obs;
 
   Future<String> login() async {
     await GetStorage.init();
