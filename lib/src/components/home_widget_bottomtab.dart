@@ -18,7 +18,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
       backgroundColor: Theme.of(context).primaryColor,
       body: Center(
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.7,
+          height: MediaQuery.of(context).size.height * 0.9,
           child: CustomScrollView(
             primary: false,
             slivers: <Widget>[

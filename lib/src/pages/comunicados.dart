@@ -112,70 +112,69 @@ class _ComunicadosState extends State<Comunicados> {
                       itemBuilder: (context, index) {
                         var comunicados =
                             comunicadosController.comunicados[index];
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          color: Theme.of(context).accentColor,
-                          child: ListTile(
-                              onTap: () {
-                                comunicados.titulo =
-                                    comunicadosController.titulo.value;
-                                comunicados.texto =
-                                    comunicadosController.texto.value;
-                                comunicados.dia =
-                                    comunicadosController.dia.value;
-                                comunicados.mes =
-                                    comunicadosController.mes.value;
-                                comunicados.hora =
-                                    comunicadosController.hora.value;
-                                Get.toNamed('/detalhes');
-                              },
-                              leading: RichText(
-                                text: TextSpan(
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 14,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: comunicados.dia + "  ",
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold)),
-                                    TextSpan(
-                                      text: comunicados.mes,
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                          letterSpacing: 2),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              title: Padding(
-                                padding: EdgeInsets.only(left: 30),
-                                child: Text(
-                                  comunicados.titulo,
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 16,
+                        return GestureDetector(
+                          onTap: () {
+                            comunicadosController.titulo.value =
+                                comunicados.titulo;
+                            comunicadosController.texto.value =
+                                comunicados.texto;
+                            comunicadosController.dia.value = comunicados.dia;
+                            comunicadosController.mes.value = comunicados.mes;
+                            comunicadosController.hora.value = comunicados.hora;
+                            Get.toNamed('/detalhes');
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            color: Theme.of(context).accentColor,
+                            child: ListTile(
+                                leading: RichText(
+                                  text: TextSpan(
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 14,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
-                                      fontWeight: FontWeight.bold),
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: comunicados.dia + "  ",
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                        text: comunicados.mes,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                            letterSpacing: 2),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              trailing: Icon(
-                                Icons.arrow_right_alt_rounded,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                                size: 30,
-                              )),
+                                title: Padding(
+                                  padding: EdgeInsets.only(left: 30),
+                                  child: Text(
+                                    comunicados.titulo,
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                trailing: Icon(
+                                  Icons.arrow_right_alt_rounded,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  size: 30,
+                                )),
+                          ),
                         );
                       }))
             ],

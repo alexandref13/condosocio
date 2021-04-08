@@ -12,46 +12,42 @@ class DetalhesComunicados extends StatelessWidget {
         Get.put(ComunicadosController());
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              comunicadosController.titulo.value,
-              style: GoogleFonts.montserrat(fontSize: 20),
-            ),
-            centerTitle: true,
+        appBar: AppBar(
+          title: Text(
+            comunicadosController.titulo.value,
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
-          body: SingleChildScrollView(
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
-              child: Html(
-                data: comunicadosController.texto.value,
-                style: {
-                  "h3": Style(
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
-                  "h1": Style(
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
-                  "p": Style(
-                      fontFamily: 'montserrat',
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
-                  "li": Style(
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                      display: Display.BLOCK),
-                  "a": Style(
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
+            child: Html(
+              data: comunicadosController.texto.value,
+              style: {
+                "h3": Style(
+                    color: Theme.of(context).textSelectionTheme.selectionColor),
+                "h1": Style(
+                    color: Theme.of(context).textSelectionTheme.selectionColor),
+                "p": Style(
+                    fontFamily: 'montserrat',
+                    color: Theme.of(context).textSelectionTheme.selectionColor),
+                "li": Style(
                     color: Theme.of(context).textSelectionTheme.selectionColor,
-                    textDecoration: TextDecoration.none,
-                  ),
-                  "h2": Style(
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor)
-                },
-              ),
+                    display: Display.BLOCK),
+                "a": Style(
+                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  textDecoration: TextDecoration.none,
+                ),
+                "h2": Style(
+                    color: Theme.of(context).textSelectionTheme.selectionColor)
+              },
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
