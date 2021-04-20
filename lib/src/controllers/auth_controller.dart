@@ -18,7 +18,6 @@ class AuthController extends GetxController {
 
   authenticate() async {
     if (await _isBiometricAvailable()) {
-      // await _getListOfBiometricTypes();
       await autoLogIn();
     }
   }
@@ -32,8 +31,6 @@ class AuthController extends GetxController {
     await GetStorage.init();
     final box = GetStorage();
     var id = box.read('id');
-    print(id);
-
     if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
@@ -54,7 +51,6 @@ class AuthController extends GetxController {
         http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
           var dados = json.decode(response.body);
-          print(dados);
           loginController.id(dados['idusu']);
           loginController.idcond(dados['idcond']);
           loginController.emailUsu(dados['email']);

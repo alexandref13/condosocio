@@ -17,6 +17,7 @@ import 'package:condosocio/src/pages/ocorrencias.dart';
 import 'package:condosocio/src/pages/ouvidoria/ouvidoria.dart';
 import 'package:condosocio/src/pages/ouvidoria/detalhes_ouvidoria.dart';
 import 'package:condosocio/src/pages/perfil.dart';
+import 'package:condosocio/src/pages/reserva.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
 import 'package:condosocio/src/pages/visualizar_ocorrencias.dart';
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/outrosDocumentos', page: () => Outros()),
         GetPage(name: '/prestacaoDocumentos', page: () => Prestacao()),
         GetPage(name: '/regulamentoDocumentos', page: () => Regulamento()),
+        GetPage(name: '/reserva', page: () => Reserva()),
       ],
     );
   }

@@ -35,7 +35,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -74,7 +74,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -113,7 +113,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -148,11 +148,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        print('Não tem page aq');
+                        Get.toNamed('/reserva');
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -191,7 +191,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -230,7 +230,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -269,7 +269,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -308,7 +308,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -344,7 +344,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -383,7 +383,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -428,7 +428,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(

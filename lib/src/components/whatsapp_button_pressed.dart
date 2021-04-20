@@ -1,3 +1,4 @@
+import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/whatsapp_controller.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,10 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 onWhatsappButtonPressed(context, String page) {
   WhatsappController whatsappController = Get.put(WhatsappController());
   LoginController loginController = Get.put(LoginController());
+  AcessosController acessosController = Get.put(AcessosController());
   var nome = loginController.nome.value.split(' ');
+
+  print(acessosController.tel.value);
   Alert(
     image: Icon(
       Icons.highlight_off,
@@ -55,7 +59,7 @@ onWhatsappButtonPressed(context, String page) {
         ),
         onPressed: () {
           whatsappController.launched = whatsappController.launchInBrowser(
-            'https://api.whatsapp.com/send?phone=5591981220670_blank&text=Olá!%20você%20foi%20convidado%20pelo%20${nome[0]}%20morador%20do%20condomínio%20${loginController.nomeCondo.value}.%20Agilize%20seu%20acesso%20clicando%20no%20link%20e%20preencha%20os%20campos%20em%20abertos.%20Grato!%20https://condosocio.com.br/paginas/acesso_visitante?chave=NzcxMjgy',
+            'https://api.whatsapp.com/send?phone=55${acessosController.tel.value}_blank&text=Olá!%20você%20foi%20convidado%20pelo%20${nome[0]}%20morador%20do%20condomínio%20${loginController.nomeCondo.value}.%20Agilize%20seu%20acesso%20clicando%20no%20link%20e%20preencha%20os%20campos%20em%20abertos.%20Grato!%20https://condosocio.com.br/paginas/acesso_visitante?chave=NzcxMjgy',
           );
         },
         width: 80,

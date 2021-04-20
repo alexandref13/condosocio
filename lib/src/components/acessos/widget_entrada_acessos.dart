@@ -211,8 +211,53 @@ class EntradaAcessos extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      customTextField(context, 'Celular', null, false, 1, true,
-                          acessosController.phone.value),
+                      TextField(
+                        keyboardType: TextInputType.number,
+                        controller: acessosController.phone.value,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 14,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                        decoration: InputDecoration(
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              width: 1,
+                            ),
+                          ),
+                          labelText: 'Celular',
+                          labelStyle: GoogleFonts.montserrat(
+                            fontSize: 14,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                          ),
+                          isDense: true,
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              width: 2,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         height: 20,
                       ),
@@ -257,9 +302,10 @@ class EntradaAcessos extends StatelessWidget {
                                   acessosController.isLoading.value = false;
                                 } else {
                                   onAlertButtonPressed(
-                                      context,
-                                      'Algo deu errado! \nTente novamente',
-                                      null);
+                                    context,
+                                    'Algo deu errado! \nTente novamente',
+                                    null,
+                                  );
                                   acessosController.isLoading.value = false;
                                 }
                               },

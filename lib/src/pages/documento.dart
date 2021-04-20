@@ -39,7 +39,7 @@ class _DocumentosState extends State<Documentos> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
+                          borderRadius: BorderRadius.circular(10),
                           color: Theme.of(context).accentColor,
                           boxShadow: [
                             BoxShadow(
@@ -79,7 +79,7 @@ class _DocumentosState extends State<Documentos> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -118,7 +118,7 @@ class _DocumentosState extends State<Documentos> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -157,7 +157,7 @@ class _DocumentosState extends State<Documentos> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -199,7 +199,7 @@ class _DocumentosState extends State<Documentos> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -238,7 +238,7 @@ class _DocumentosState extends State<Documentos> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
@@ -281,7 +281,7 @@ class _DocumentosState extends State<Documentos> {
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
