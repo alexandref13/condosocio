@@ -296,16 +296,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Image.asset(
-              'images/condosocio_logo.png',
-              width: 75,
-            ),
-            centerTitle: true,
+        appBar: AppBar(
+          title: Image.asset(
+            'images/condosocio_logo.png',
+            width: 75,
           ),
+          centerTitle: true,
+        ),
 
-          // TOLBAR NAVEGAÇÃO
-          /* bottomNavigationBar: BottomNavigationBar(
+        // TOLBAR NAVEGAÇÃO
+        /* bottomNavigationBar: BottomNavigationBar(
             backgroundColor: Colors.black12,
             fixedColor: Colors.red[900],
             items: const <BottomNavigationBarItem>[
@@ -322,345 +322,339 @@ class _HomePageState extends State<HomePage> {
             currentIndex: selectedIndex,
             onTap: onItemTapped,
           ),*/
-          drawer: Drawer(
-            child: Container(
-              color: Theme.of(context).accentColor,
-              child: ListView(
-                children: <Widget>[
-                  DrawerHeader(
-                      padding: EdgeInsets.all(0),
-                      child: Container(
-                        padding: EdgeInsets.only(top: 15),
-                        color: Theme.of(context).primaryColor,
-                        child: Column(
-                          children: <Widget>[
-                            getImageWidget(),
-                            Container(
-                              padding: EdgeInsets.only(top: 5),
-                              child: Text(
-                                '${loginController.nome.value}',
-                                style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 2),
-                              child: Text(
-                                '${loginController.emailUsu.value}',
-                                style: GoogleFonts.montserrat(
+        drawer: Drawer(
+          child: Container(
+            color: Theme.of(context).accentColor,
+            child: ListView(
+              children: <Widget>[
+                DrawerHeader(
+                    padding: EdgeInsets.all(0),
+                    child: Container(
+                      padding: EdgeInsets.only(top: 15),
+                      color: Theme.of(context).primaryColor,
+                      child: Column(
+                        children: <Widget>[
+                          getImageWidget(),
+                          Container(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Text(
+                              '${loginController.nome.value}',
+                              style: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
-                                  fontSize: 12,
-                                ),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(top: 2),
+                            child: Text(
+                              '${loginController.emailUsu.value}',
+                              style: GoogleFonts.montserrat(
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontSize: 12,
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.only(top: 2),
-                              child: Text(
-                                '${loginController.tipo.value}',
-                                style: GoogleFonts.montserrat(
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                  fontSize: 12,
-                                ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(top: 2),
+                            child: Text(
+                              '${loginController.tipo.value}',
+                              style: GoogleFonts.montserrat(
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontSize: 12,
                               ),
                             ),
-                          ],
-                        ),
-                      )),
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        child: ListTile(
-                          title: Text(
-                            'Unidades',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16,
-                            ),
                           ),
-                          leading: Icon(
-                            Feather.home,
+                        ],
+                      ),
+                    )),
+                Column(
+                  children: <Widget>[
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          'Unidades',
+                          style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            size: 25,
+                            fontSize: 16,
                           ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Senha()));
-                          },
                         ),
+                        leading: Icon(
+                          Feather.home,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Senha()));
+                        },
                       ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      Container(
-                        child: ListTile(
-                          title: Text(
-                            'Dependentes',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: Icon(
-                            Feather.users,
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          'Dependentes',
+                          style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            size: 25,
+                            fontSize: 16,
                           ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Senha()));
-                          },
                         ),
+                        leading: Icon(
+                          Feather.users,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Senha()));
+                        },
                       ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      Container(
-                        child: ListTile(
-                          title: Text(
-                            'Senha',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: Icon(
-                            FontAwesome.info_circle,
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          'Senha',
+                          style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            size: 25,
+                            fontSize: 16,
                           ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Senha()));
-                          },
                         ),
+                        leading: Icon(
+                          FontAwesome.info_circle,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Senha()));
+                        },
                       ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      Container(
-                        child: ListTile(
-                          title: Text(
-                            'Sobre',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: Icon(
-                            Icons.help,
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          'Sobre',
+                          style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            size: 25,
+                            fontSize: 16,
                           ),
-                          onTap: () {
-                            Navigator.pushNamed(context, '/ajuda');
-                          },
                         ),
+                        leading: Icon(
+                          Icons.help,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(context, '/ajuda');
+                        },
                       ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      Container(
-                        child: ListTile(
-                          title: Text(
-                            'Termos de Uso',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: Icon(
-                            FontAwesome.check_square_o,
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          'Termos de Uso',
+                          style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            size: 25,
+                            fontSize: 16,
                           ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Senha()));
-                          },
                         ),
+                        leading: Icon(
+                          FontAwesome.check_square_o,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Senha()));
+                        },
                       ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      Container(
-                        child: ListTile(
-                          title: Text(
-                            'Política de privacidade',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: Icon(
-                            FontAwesome.shield,
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          'Política de privacidade',
+                          style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            size: 25,
+                            fontSize: 16,
                           ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Senha()));
-                          },
                         ),
+                        leading: Icon(
+                          FontAwesome.shield,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Senha()));
+                        },
                       ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      Container(
-                        child: ListTile(
-                          title: Text(
-                            'Avalie o app',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: Icon(
-                            Feather.star,
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          'Avalie o app',
+                          style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            size: 25,
+                            fontSize: 16,
                           ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Senha()));
-                          },
                         ),
+                        leading: Icon(
+                          Feather.star,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Senha()));
+                        },
                       ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      Container(
-                        child: ListTile(
-                          title: Text(
-                            'Ajuda',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: Icon(
-                            FontAwesome.question_circle,
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          'Ajuda',
+                          style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            size: 25,
+                            fontSize: 16,
                           ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Senha()));
-                          },
                         ),
+                        leading: Icon(
+                          FontAwesome.question_circle,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Senha()));
+                        },
                       ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      Container(
-                        child: ListTile(
-                          title: Text(
-                            'Sair',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          leading: Icon(
-                            Icons.exit_to_app,
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          'Sair',
+                          style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            size: 25,
+                            fontSize: 16,
                           ),
-                          onTap: () {
-                            logoutUser();
-                          },
                         ),
+                        leading: Icon(
+                          Icons.exit_to_app,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          size: 25,
+                        ),
+                        onTap: () {
+                          logoutUser();
+                        },
                       ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ],
-                  )
-                ],
-              ),
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
-          body: bottomNavigationList.elementAt(selectedIndex)),
+        ),
+        body: Center(child: HomeBottomTab()),
+      ),
     );
   }
 }

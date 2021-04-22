@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 Widget listaVideos(context) {
   AlvoTvController alvoTv = Get.put(AlvoTvController());
   return Container(
-    padding: EdgeInsets.all(8),
+    padding: EdgeInsets.all(4),
     child: ListView(
       children: [
         Container(
@@ -41,7 +41,7 @@ Widget listaVideos(context) {
                                 style: {
                                   "h1": Style(
                                     fontFamily: 'Montserrat',
-                                    fontSize: FontSize(18),
+                                    fontSize: FontSize(14),
                                     letterSpacing: 3,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -55,7 +55,7 @@ Widget listaVideos(context) {
                           child: Text(
                             alvoTv.videos[index].titulo,
                             style: GoogleFonts.montserrat(
-                                fontSize: 18,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context)
                                     .textSelectionTheme
@@ -70,7 +70,7 @@ Widget listaVideos(context) {
                         child: Text(
                           descricao,
                           style: GoogleFonts.montserrat(
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor),

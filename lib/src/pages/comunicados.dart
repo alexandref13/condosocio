@@ -168,7 +168,7 @@ class _ComunicadosState extends State<Comunicados> {
                                   ),
                                 ),
                                 trailing: Icon(
-                                  Icons.arrow_right_alt_rounded,
+                                  Icons.arrow_right,
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,

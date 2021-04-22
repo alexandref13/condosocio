@@ -9,7 +9,7 @@ class AlvoTv extends StatelessWidget {
     AlvoTvController alvoTv = Get.put(AlvoTvController());
     return Scaffold(
       appBar: AppBar(
-        title: Text('Alvo Tv'),
+        title: Text('CondoPlay'),
       ),
       body: Obx(
         () {

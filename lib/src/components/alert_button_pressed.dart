@@ -7,18 +7,18 @@ onAlertButtonPressed(context, String text, String page) {
   Alert(
     image: Icon(
       Icons.highlight_off,
-      color: Color(0xff1A936F),
+      color: Colors.yellowAccent,
       size: 60,
     ),
     style: AlertStyle(
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
       animationType: AnimationType.fromTop,
       isCloseButton: false,
       isOverlayTapDismiss: false,
       //descStyle: GoogleFonts.poppins(color: Colors.red,),
       animationDuration: Duration(milliseconds: 300),
       titleStyle: GoogleFonts.poppins(
-        color: Theme.of(context).textSelectionTheme.selectionColor,
+        color: Theme.of(context).errorColor,
         fontSize: 18,
       ),
     ),
@@ -37,7 +37,7 @@ onAlertButtonPressed(context, String text, String page) {
           page != null ? Get.offAllNamed('$page') : Get.back();
         },
         width: 80,
-        color: Color(0xff1A936F),
+        color: Theme.of(context).errorColor,
       )
     ],
   ).show();

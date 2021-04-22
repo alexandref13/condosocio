@@ -102,7 +102,7 @@ class Login extends StatelessWidget {
                                     borderSide: new BorderSide(
                                         color: Theme.of(context).accentColor)),
                                 errorStyle: GoogleFonts.montserrat(
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context).errorColor),
                               ),
                               keyboardType: TextInputType.emailAddress,
                               validator: (valueEmail) {
@@ -126,37 +126,36 @@ class Login extends StatelessWidget {
                                     .selectionColor,
                               ),
                               decoration: InputDecoration(
-                                  enabled: !loginController.isLoading.value,
-                                  focusedBorder: OutlineInputBorder(
+                                enabled: !loginController.isLoading.value,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color(0xffF3E9D2), width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
                                     borderSide: BorderSide(
-                                        color: Color(0xffF3E9D2), width: 1.0),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor)),
-                                  labelText: 'Entre com a senha',
-                                  prefixIcon: Icon(Icons.lock_outline,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor),
-                                  labelStyle: GoogleFonts.montserrat(
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
-                                      fontSize: 16),
-                                  errorBorder: new OutlineInputBorder(
-                                      borderSide: new BorderSide(
-                                          color:
-                                              Theme.of(context).accentColor)),
-                                  focusedErrorBorder: new OutlineInputBorder(
-                                      borderSide: new BorderSide(
-                                          color:
-                                              Theme.of(context).accentColor)),
-                                  errorStyle: GoogleFonts.montserrat(
-                                      color: Theme.of(context).accentColor)),
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor)),
+                                labelText: 'Entre com a senha',
+                                prefixIcon: Icon(Icons.lock_outline,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor),
+                                labelStyle: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 16),
+                                errorBorder: new OutlineInputBorder(
+                                    borderSide: new BorderSide(
+                                        color: Theme.of(context).accentColor)),
+                                focusedErrorBorder: new OutlineInputBorder(
+                                    borderSide: new BorderSide(
+                                        color: Theme.of(context).accentColor)),
+                                errorStyle: GoogleFonts.montserrat(
+                                    color: Theme.of(context).errorColor),
+                              ),
                               validator: (valueSenha) {
                                 if (valueSenha.isEmpty) {
                                   return 'Campo senha vazio!';
@@ -230,19 +229,13 @@ class Login extends StatelessWidget {
                             height: 50,
                             child: TextButton(
                               style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.resolveWith<Color>(
-                                  (Set<MaterialState> states) =>
-                                      Theme.of(context).accentColor,
+                                overlayColor: MaterialStateProperty.all(
+                                  Theme.of(context).accentColor.withOpacity(.5),
                                 ),
-                                shape: MaterialStateProperty.resolveWith<
-                                    OutlinedBorder>(
-                                  (Set<MaterialState> states) {
-                                    return RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    );
-                                  },
-                                ),
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
                               ),
                               onPressed: () {},
                               child: Text(

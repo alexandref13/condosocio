@@ -12,6 +12,7 @@ ThemeData admin = ThemeData(
     elevation: 0,
     centerTitle: true,
   ),
+  errorColor: Color(0xffa3000b),
 );
 
 ThemeData cristalVille = ThemeData(
