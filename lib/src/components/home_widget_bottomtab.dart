@@ -1,4 +1,3 @@
-import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -10,8 +9,6 @@ class HomeBottomTab extends StatefulWidget {
 }
 
 class _HomeBottomTabState extends State<HomeBottomTab> {
-  ThemeController themeController = Get.put(ThemeController());
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,7 +38,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -80,7 +77,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -119,7 +116,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -158,7 +155,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -197,7 +194,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -236,7 +233,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -275,7 +272,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -314,7 +311,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -353,7 +350,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -389,7 +386,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -428,7 +425,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -467,7 +464,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               color: Theme.of(context).accentColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff103845),
+                                  color: Theme.of(context).buttonColor,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(

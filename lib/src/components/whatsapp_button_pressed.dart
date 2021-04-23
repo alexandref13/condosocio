@@ -12,7 +12,7 @@ onWhatsappButtonPressed(context, String page) {
   AcessosController acessosController = Get.put(AcessosController());
   var nome = loginController.nome.value.split(' ');
 
-  print(acessosController.tel.value);
+  print('NUMERO: ${acessosController.tel.value}');
   Alert(
     image: Icon(
       Icons.highlight_off,

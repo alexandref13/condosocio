@@ -31,6 +31,8 @@ class AuthController extends GetxController {
     await GetStorage.init();
     final box = GetStorage();
     var id = box.read('id');
+    var email = box.read('email');
+    print('id $id email $email');
     if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
@@ -50,17 +52,27 @@ class AuthController extends GetxController {
         loginController.isLoading.value = false;
         http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
-          var dados = json.decode(response.body);
-          loginController.id(dados['idusu']);
-          loginController.idcond(dados['idcond']);
-          loginController.emailUsu(dados['email']);
-          loginController.tipo(dados['tipo']);
-          loginController.imgperfil(dados['imgperfil']);
-          loginController.nomeCondo(dados['nome_condo']);
-          loginController.imgcondo(dados['imgcondo']);
-          loginController.nome(dados['nome']);
+          loginController.hasMoreEmail(email).then((value) {
+            print(value);
+            if (value.length > 1) {
+              Get.toNamed('/listOfCondo');
+            } else {
+              var dados = json.decode(response.body);
+              loginController.id(dados['idusu']);
+              loginController.idcond(dados['idcond']);
+              loginController.emailUsu(dados['email']);
+              loginController.tipo(dados['tipo']);
+              loginController.imgperfil(dados['imgperfil']);
+              loginController.nomeCondo(dados['nome_condo']);
+              loginController.imgcondo(dados['imgcondo']);
+              loginController.nome(dados['nome']);
+              loginController.condoTheme(dados['cor']);
 
-          Get.toNamed('/home');
+              themeController.setTheme(loginController.condoTheme.value);
+
+              Get.toNamed('/home');
+            }
+          });
         });
       } else {
         loginController.isLoading.value = false;

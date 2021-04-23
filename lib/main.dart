@@ -27,6 +27,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
+import 'src/pages/list_of_condo.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -71,6 +73,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/prestacaoDocumentos', page: () => Prestacao()),
         GetPage(name: '/regulamentoDocumentos', page: () => Regulamento()),
         GetPage(name: '/reserva', page: () => Reserva()),
+        GetPage(name: '/listOfCondo', page: () => ListOfCondo()),
       ],
     );
   }

@@ -1,16 +1,19 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/controllers/auth_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
+import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
 class Login extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
   final AuthController authController = Get.put(AuthController());
+  final ThemeController themeController = Get.put(ThemeController());
 
   final _formKey = GlobalKey<FormState>();
 
@@ -193,11 +196,51 @@ class Login extends StatelessWidget {
                                     (value) {
                                       if (value == null) {
                                         onAlertButtonPressed(
-                                            context,
-                                            'Email ou senha invalivos \n Tente novamente',
-                                            null);
+                                          context,
+                                          'Email ou senha invalivos \n Tente novamente',
+                                          null,
+                                        );
                                       } else {
-                                        Get.toNamed('/home');
+                                        loginController
+                                            .hasMoreEmail(loginController
+                                                .email.value.text)
+                                            .then(
+                                          (response) {
+                                            if (response.length > 1) {
+                                              Get.toNamed('/listOfCondo');
+                                            } else {
+                                              GetStorage.init()
+                                                  .then((value) => null);
+
+                                              loginController.id.value =
+                                                  value['idusu'];
+                                              loginController.idcond.value =
+                                                  value['idcond'];
+                                              loginController.tipo.value =
+                                                  value['tipo'];
+                                              loginController.imgperfil.value =
+                                                  value['imgperfil'];
+                                              loginController.emailUsu.value =
+                                                  value['email'];
+                                              loginController.nomeCondo.value =
+                                                  value['nome_condo'];
+                                              loginController.imgcondo.value =
+                                                  value['imgcondo'];
+                                              loginController.nome.value =
+                                                  value['nome'];
+                                              loginController.condoTheme.value =
+                                                  value['cor'];
+
+                                              loginController.storageId();
+
+                                              themeController.setTheme(
+                                                loginController
+                                                    .condoTheme.value,
+                                              );
+                                              Get.offNamed('/home');
+                                            }
+                                          },
+                                        );
                                       }
                                     },
                                   );

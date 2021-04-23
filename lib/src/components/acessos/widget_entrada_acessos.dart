@@ -230,7 +230,7 @@ class EntradaAcessos extends StatelessWidget {
                               width: 1,
                             ),
                           ),
-                          labelText: 'Celular',
+                          labelText: 'Celular (com DDD)',
                           labelStyle: GoogleFonts.montserrat(
                             fontSize: 14,
                             color: Theme.of(context)
@@ -296,8 +296,6 @@ class EntradaAcessos extends StatelessWidget {
                                       null);
                                   acessosController.isLoading.value = false;
                                 } else if (value == 1) {
-                                  acessosController.tel.value =
-                                      acessosController.phone.value.text;
                                   onWhatsappButtonPressed(context, null);
                                   acessosController.isLoading.value = false;
                                 } else {

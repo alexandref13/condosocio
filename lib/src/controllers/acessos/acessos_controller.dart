@@ -37,6 +37,7 @@ class AcessosController extends GetxController {
         itemSelecionado.value == 'Selecione o tipo de visitante') {
       return 'vazio';
     } else {
+      tel(phone.value.text);
       final response = await ApiAcessos.sendAcesso();
       var dados = json.decode(response.body);
       itemSelecionado.value = 'Selecione o tipo de visitante';

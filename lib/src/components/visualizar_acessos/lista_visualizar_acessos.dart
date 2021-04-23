@@ -70,7 +70,7 @@ Widget listaVisualizarAcessos() {
                               child: Column(
                                 children: [
                                   Text(
-                                    day,
+                                    search.datahora,
                                     style: GoogleFonts.montserrat(
                                       fontSize: 16,
                                       color: Theme.of(context)
@@ -79,16 +79,16 @@ Widget listaVisualizarAcessos() {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text(
-                                    hour,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 16,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                  // Text(
+                                  //   hour,
+                                  //   style: GoogleFonts.montserrat(
+                                  //     fontSize: 16,
+                                  //     color: Theme.of(context)
+                                  //         .textSelectionTheme
+                                  //         .selectionColor,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
