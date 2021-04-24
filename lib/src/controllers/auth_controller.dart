@@ -68,7 +68,7 @@ class AuthController extends GetxController {
 
               themeController.setTheme(loginController.condoTheme.value);
 
-              Get.toNamed('/home');
+              Get.offNamed('/home');
             }
           });
         });
