@@ -169,7 +169,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.tv,
+                                    AntDesign.adduser,
                                     size: 35,
                                     color: Colors.white,
                                   ),
