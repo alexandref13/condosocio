@@ -71,7 +71,7 @@ ThemeData grayscale = ThemeData(
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffD4D6B9),
   ),
-  scaffoldBackgroundColor: Color(0xff150811),
+  scaffoldBackgroundColor: Color(0xff140110),
   appBarTheme: AppBarTheme(
     elevation: 0,
     centerTitle: true,

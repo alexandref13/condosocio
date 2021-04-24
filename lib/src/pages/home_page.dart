@@ -1,12 +1,14 @@
+import 'package:condosocio/src/components/home_page_app_bar/app_bar_widget.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
+import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:condosocio/src/components/home_widget_bottomtab.dart';
 import 'package:condosocio/src/components/senha.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import './login.dart';
 import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -21,14 +23,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final LoginController loginController = Get.put(LoginController());
+  final ThemeController themeController = Get.put(ThemeController());
 
   int selectedIndex = 0;
-
-  static List<Widget> bottomNavigationList = <Widget>[
-    HomeBottomTab(),
-    Senha(),
-    Login()
-  ];
 
   void onItemTapped(int index) {
     setState(() {
@@ -42,10 +39,14 @@ class _HomePageState extends State<HomePage> {
   final uri = Uri.parse("http://focuseg.com.br/flutter/upload_imagem.php");
 
   Future<void> logoutUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs?.clear();
+    await GetStorage.init();
+
+    final box = GetStorage();
+    box.erase();
+
     loginController.email.value.text = '';
     loginController.password.value.text = '';
+    themeController.setTheme('admin');
     Get.toNamed('/login');
   }
 
@@ -292,36 +293,20 @@ class _HomePageState extends State<HomePage> {
         });
   }
 
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Image.asset(
-            'images/condosocio_logo.png',
-            width: 75,
-          ),
-          centerTitle: true,
+        key: scaffoldKey,
+        appBar: AppBarWidget(
+          context: context,
+          onTap: () {
+            scaffoldKey.currentState.openDrawer();
+          },
+          image: loginController.imgcondo.value,
         ),
-
-        // TOLBAR NAVEGAÇÃO
-        /* bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Colors.black12,
-            fixedColor: Colors.red[900],
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.business),
-                activeIcon: Icon(
-                  Icons.home,
-                ),
-                title: Text('Home'),
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.people_outline), title: Text('Clientes')),
-            ],
-            currentIndex: selectedIndex,
-            onTap: onItemTapped,
-          ),*/
         drawer: Drawer(
           child: Container(
             color: Theme.of(context).accentColor,
@@ -362,7 +347,7 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             padding: EdgeInsets.only(top: 2),
                             child: Text(
-                              '${loginController.tipo.value}',
+                              '${loginController.tipo.value} | ${loginController.unidade.value}',
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
@@ -395,11 +380,10 @@ class _HomePageState extends State<HomePage> {
                           size: 25,
                         ),
                         onTap: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => Senha()));
+                          loginController.hasMoreEmail(
+                            loginController.emailUsu.value,
+                          );
+                          Get.toNamed('/listOfCondo');
                         },
                       ),
                     ),

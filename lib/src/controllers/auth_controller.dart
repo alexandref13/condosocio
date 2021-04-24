@@ -32,7 +32,6 @@ class AuthController extends GetxController {
     final box = GetStorage();
     var id = box.read('id');
     var email = box.read('email');
-    print('id $id email $email');
     if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
@@ -53,7 +52,6 @@ class AuthController extends GetxController {
         http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
           loginController.hasMoreEmail(email).then((value) {
-            print(value);
             if (value.length > 1) {
               Get.toNamed('/listOfCondo');
             } else {

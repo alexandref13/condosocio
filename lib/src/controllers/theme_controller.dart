@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 
 class ThemeController extends GetxController {
   void setTheme(String condo) async {
-    if (condo == 'magenta') {
-      Get.changeTheme(magenta);
-    } else if (condo == 'admin') {
+    if (condo == 'admin') {
       Get.changeTheme(admin);
+    } else if (condo == 'magenta') {
+      Get.changeTheme(magenta);
     } else if (condo == 'turquoise') {
       Get.changeTheme(turquoise);
     } else if (condo == 'blue') {

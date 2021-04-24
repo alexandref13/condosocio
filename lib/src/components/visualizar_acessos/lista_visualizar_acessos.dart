@@ -19,26 +19,10 @@ Widget listaVisualizarAcessos() {
               itemCount: visualizarAcessosController.searchResult.length,
               itemBuilder: (context, index) {
                 var search = visualizarAcessosController.searchResult[index];
-                var data = search.datahora;
-                var cutDate = data.split(" ");
-                var day = cutDate[0];
 
-                var cuthour = cutDate[1].split("h<");
-                var hour = cuthour[0];
+                var data = search.datahora.split('h');
+                var newData = data[0];
 
-                var dataEnt = search.dataent;
-                var cutDataEnt = dataEnt.split('<');
-                var dayIn = cutDataEnt[0];
-
-                var cutHoraEnt = cutDataEnt[1].split('>');
-                var hourIn = cutHoraEnt[1];
-
-                var dataSai = search.datasai;
-                var cutDataSai = dataSai.split('<');
-                var dayOut = cutDataSai[0];
-
-                var cutHoraSai = cutDataSai[1].split('>');
-                var hourOut = cutHoraSai[1];
                 return GestureDetector(
                   onTap: () {
                     configurandoModalBottomSheet(
@@ -70,25 +54,29 @@ Widget listaVisualizarAcessos() {
                               child: Column(
                                 children: [
                                   Text(
-                                    search.datahora,
+                                    newData,
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  // Text(
-                                  //   hour,
-                                  //   style: GoogleFonts.montserrat(
-                                  //     fontSize: 16,
-                                  //     color: Theme.of(context)
-                                  //         .textSelectionTheme
-                                  //         .selectionColor,
-                                  //     fontWeight: FontWeight.bold,
-                                  //   ),
-                                  // ),
+                                  search.nome_dep != null
+                                      ? Container(
+                                          padding: EdgeInsets.only(top: 7),
+                                          child: Text(
+                                            search.nome_dep,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        )
+                                      : Container(),
                                 ],
                               ),
                             ),
@@ -109,19 +97,9 @@ Widget listaVisualizarAcessos() {
                               child: Column(
                                 children: [
                                   Text(
-                                    dayIn,
+                                    search.dataent,
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 16,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    hourIn,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -131,7 +109,7 @@ Widget listaVisualizarAcessos() {
                                 ],
                               ),
                             ),
-                            dayOut == ''
+                            search.datasai == ''
                                 ? Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
@@ -139,7 +117,9 @@ Widget listaVisualizarAcessos() {
                                     child: Icon(
                                       FontAwesome.clock_o,
                                       size: 40,
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
                                     ),
                                   )
                                 : Container(
@@ -148,19 +128,9 @@ Widget listaVisualizarAcessos() {
                                     child: Column(
                                       children: [
                                         Text(
-                                          dayOut,
+                                          search.datasai,
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 16,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          hourOut,
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 16,
+                                            fontSize: 14,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
@@ -288,7 +258,9 @@ Widget listaVisualizarAcessos() {
                                     child: Icon(
                                       FontAwesome.clock_o,
                                       size: 40,
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
                                     ),
                                   )
                                 : Container(

@@ -19,10 +19,10 @@ class LoginController extends GetxController {
   var nomeCondo = ''.obs;
   var imgcondo = ''.obs;
   var nome = ''.obs;
+  var unidade = ''.obs;
   var condoTheme = ''.obs;
   var isLoading = false.obs;
-  var isLoggedIn = false.obs;
-  var listOfCondo = [].obs;
+  var listOfCondo = [];
 
   Future hasMoreEmail(String emailS) async {
     await GetStorage.init();
@@ -32,8 +32,7 @@ class LoginController extends GetxController {
         '/flutter/unidadesLista.php', {"email": emailS}));
     var dados = json.decode(response.body);
 
-    listOfCondo.value =
-        dados.map((model) => ListOfCondo.fromJson(model)).toList();
+    listOfCondo = dados.map((model) => ListOfCondo.fromJson(model)).toList();
     return dados;
   }
 
@@ -56,6 +55,12 @@ class LoginController extends GetxController {
     await GetStorage.init();
     final box = GetStorage();
     box.write('id', id.value.toString());
+  }
+
+  searchEmail() async {
+    await GetStorage.init();
+    final box = GetStorage();
+    email.value.text = box.read('email');
   }
 
   newLogin(String newId) {
