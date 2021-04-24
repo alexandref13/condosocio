@@ -10,6 +10,7 @@ class DetalhesComunicados extends StatelessWidget {
   Widget build(BuildContext context) {
     ComunicadosController comunicadosController =
         Get.put(ComunicadosController());
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -20,30 +21,37 @@ class DetalhesComunicados extends StatelessWidget {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
-            child: Html(
-              data: comunicadosController.texto.value,
-              style: {
-                "h3": Style(
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
-                "h1": Style(
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
-                "p": Style(
-                    fontFamily: 'montserrat',
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
-                "li": Style(
+          child: Expanded(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
+              child: Html(
+                data: comunicadosController.texto.value,
+                style: {
+                  "h3": Style(
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor),
+                  "h1": Style(
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor),
+                  "p": Style(
+                      fontFamily: 'montserrat',
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor),
+                  "li": Style(
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                      display: Display.BLOCK),
+                  "a": Style(
                     color: Theme.of(context).textSelectionTheme.selectionColor,
-                    display: Display.BLOCK),
-                "a": Style(
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
-                  textDecoration: TextDecoration.none,
-                ),
-                "h2": Style(
-                    color: Theme.of(context).textSelectionTheme.selectionColor)
-              },
+                    textDecoration: TextDecoration.none,
+                  ),
+                  "h2": Style(
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor)
+                },
+              ),
             ),
           ),
         ),

@@ -30,7 +30,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     children: <Widget>[
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed('/sobre');
+                          Get.toNamed('/visualizarAcessos');
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -50,15 +50,15 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Padding(
-                                  padding: EdgeInsets.only(bottom: 10),
+                                  padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    AntDesign.infocirlce,
-                                    size: 35,
+                                    Icons.swap_horiz,
+                                    size: 40,
                                     color: Colors.white,
                                   ),
                                 ),
                                 Text(
-                                  "Sobre",
+                                  "Acessos",
                                   style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                     fontSize: 13,
@@ -147,7 +147,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed('/acessos');
+                          Get.toNamed('/convites');
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -169,13 +169,13 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    Icons.swap_horiz,
-                                    size: 40,
+                                    FontAwesome.tv,
+                                    size: 35,
                                     color: Colors.white,
                                   ),
                                 ),
                                 Text(
-                                  "Acessos",
+                                  "Convites",
                                   style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                     fontSize: 13,
@@ -417,7 +417,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed('/alvoTv');
+                          Get.toNamed('/sobre');
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -437,15 +437,15 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
+                                  padding: EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    Icons.search,
+                                    AntDesign.infocirlce,
                                     size: 35,
                                     color: Colors.white,
                                   ),
                                 ),
                                 Text(
-                                  "Classificados",
+                                  "Sobre",
                                   style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                     fontSize: 13,

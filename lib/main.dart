@@ -19,6 +19,7 @@ import 'package:condosocio/src/pages/ouvidoria/detalhes_ouvidoria.dart';
 import 'package:condosocio/src/pages/perfil.dart';
 import 'package:condosocio/src/pages/reserva.dart';
 import 'package:condosocio/src/pages/sobre.dart';
+import 'package:condosocio/src/pages/convites.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
 import 'package:condosocio/src/pages/visualizar_ocorrencias.dart';
 import 'package:condosocio/src/pages/ouvidoria/visualizar_ouvidoria.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/sobre', page: () => Sobre()),
         GetPage(name: '/ouvidoria', page: () => Ouvidoria()),
         GetPage(name: '/ocorrencias', page: () => Ocorrencias()),
-        GetPage(name: '/acessos', page: () => Acessos()),
+        // GetPage(name: '/acessos', page: () => Acessos()),
         GetPage(name: '/alvoTv', page: () => AlvoTv()),
         GetPage(name: '/visualizarAcessos', page: () => VisualizarAcessos()),
         GetPage(
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/regulamentoDocumentos', page: () => Regulamento()),
         GetPage(name: '/reserva', page: () => Reserva()),
         GetPage(name: '/listOfCondo', page: () => ListOfCondo()),
+        GetPage(name: '/convites', page: () => Convites()),
       ],
     );
   }
