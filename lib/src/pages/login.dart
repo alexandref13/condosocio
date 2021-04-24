@@ -32,11 +32,11 @@ class Login extends StatelessWidget {
                 child: Column(children: <Widget>[
                   Center(
                     child: Container(
-                      padding: const EdgeInsets.only(top: 75),
+                      padding: const EdgeInsets.only(top: 90),
                       child: Image.asset(
                         "images/condosocio_logo.png",
                         fit: BoxFit.fill,
-                        width: 150,
+                        width: 120,
                       ),
                     ),
                   ),
