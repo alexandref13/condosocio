@@ -57,13 +57,13 @@ class _DocumentosState extends State<Documentos> {
                             Padding(
                               padding: EdgeInsets.only(bottom: 10),
                               child: Icon(
-                                AntDesign.infocirlce,
+                                Icons.file_present,
                                 size: 35,
                                 color: Colors.white,
                               ),
                             ),
                             Text(
-                              "Ata",
+                              "Atas",
                               style: GoogleFonts.montserrat(
                                 color: Colors.white,
                                 fontSize: 13,
@@ -97,7 +97,7 @@ class _DocumentosState extends State<Documentos> {
                               Padding(
                                 padding: EdgeInsets.only(bottom: 10),
                                 child: Icon(
-                                  FontAwesome.picture_o,
+                                  Icons.file_present,
                                   size: 35,
                                   color: Colors.white,
                                 ),
@@ -136,7 +136,7 @@ class _DocumentosState extends State<Documentos> {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 10),
                                 child: Icon(
-                                  FontAwesome.tv,
+                                  Icons.file_present,
                                   size: 35,
                                   color: Colors.white,
                                 ),
@@ -175,7 +175,7 @@ class _DocumentosState extends State<Documentos> {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 10),
                                 child: Icon(
-                                  FontAwesome.arrows_h,
+                                  Icons.file_present,
                                   size: 35,
                                   color: Colors.white,
                                 ),
@@ -183,7 +183,7 @@ class _DocumentosState extends State<Documentos> {
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.2,
                                 child: Text(
-                                  "Prestação de Serviços",
+                                  "Prestação de Contas",
                                   style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                     fontSize: 13,
@@ -217,7 +217,7 @@ class _DocumentosState extends State<Documentos> {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 10),
                                 child: Icon(
-                                  FontAwesome.calendar,
+                                  Icons.file_present,
                                   size: 35,
                                   color: Colors.white,
                                 ),
@@ -256,7 +256,7 @@ class _DocumentosState extends State<Documentos> {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 10),
                                 child: Icon(
-                                  FontAwesome.comment,
+                                  Icons.file_present,
                                   size: 35,
                                   color: Colors.white,
                                 ),
@@ -270,10 +270,6 @@ class _DocumentosState extends State<Documentos> {
                               ),
                             ],
                           )),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -299,7 +295,39 @@ class _DocumentosState extends State<Documentos> {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 10),
                                 child: Icon(
-                                  FontAwesome.comments,
+                                  Icons.anchor_outlined,
+                                  size: 35,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/outrosDocumentos');
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).accentColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Theme.of(context).buttonColor,
+                                spreadRadius: 3,
+                                blurRadius: 1,
+                                offset:
+                                    Offset(0, 2), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: Icon(
+                                  Icons.file_present,
                                   size: 35,
                                   color: Colors.white,
                                 ),
@@ -309,6 +337,38 @@ class _DocumentosState extends State<Documentos> {
                                 style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/outrosDocumentos');
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).accentColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Theme.of(context).buttonColor,
+                                spreadRadius: 3,
+                                blurRadius: 1,
+                                offset:
+                                    Offset(0, 2), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: Icon(
+                                  Icons.anchor_outlined,
+                                  size: 35,
+                                  color: Colors.white,
                                 ),
                               ),
                             ],

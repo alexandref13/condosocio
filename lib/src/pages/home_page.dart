@@ -362,13 +362,15 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Container(
                       child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
                         title: Text(
                           'Unidades',
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         leading: Icon(
@@ -376,7 +378,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
-                          size: 25,
+                          size: 22,
                         ),
                         onTap: () {
                           loginController.hasMoreEmail(
@@ -387,18 +389,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Divider(
-                      height: 15,
+                      height: 5,
                       color: Theme.of(context).primaryColor,
                     ),
                     Container(
                       child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
                         title: Text(
                           'Dependentes',
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         leading: Icon(
@@ -406,7 +410,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
-                          size: 25,
+                          size: 22,
                         ),
                         onTap: () {
                           Navigator.pop(context);
@@ -418,18 +422,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Divider(
-                      height: 15,
+                      height: 5,
                       color: Theme.of(context).primaryColor,
                     ),
                     Container(
                       child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
                         title: Text(
                           'Senha',
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         leading: Icon(
@@ -437,7 +443,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
-                          size: 25,
+                          size: 22,
                         ),
                         onTap: () {
                           Navigator.pop(context);
@@ -449,18 +455,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Divider(
-                      height: 15,
+                      height: 5,
                       color: Theme.of(context).primaryColor,
                     ),
                     Container(
                       child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
                         title: Text(
                           'Sobre',
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         leading: Icon(
@@ -468,7 +476,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
-                          size: 25,
+                          size: 22,
                         ),
                         onTap: () {
                           Navigator.pushNamed(context, '/ajuda');
@@ -476,18 +484,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Divider(
-                      height: 15,
+                      height: 5,
                       color: Theme.of(context).primaryColor,
                     ),
                     Container(
                       child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
                         title: Text(
                           'Termos de Uso',
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         leading: Icon(
@@ -495,7 +505,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
-                          size: 25,
+                          size: 22,
                         ),
                         onTap: () {
                           Navigator.pop(context);
@@ -507,18 +517,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Divider(
-                      height: 15,
+                      height: 5,
                       color: Theme.of(context).primaryColor,
                     ),
                     Container(
                       child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
                         title: Text(
-                          'Política de privacidade',
+                          'Política de Privacidade',
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         leading: Icon(
@@ -526,7 +538,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
-                          size: 25,
+                          size: 22,
                         ),
                         onTap: () {
                           Navigator.pop(context);
@@ -538,18 +550,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Divider(
-                      height: 15,
+                      height: 5,
                       color: Theme.of(context).primaryColor,
                     ),
                     Container(
                       child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
                         title: Text(
                           'Avalie o app',
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         leading: Icon(
@@ -557,7 +571,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
-                          size: 25,
+                          size: 22,
                         ),
                         onTap: () {
                           Navigator.pop(context);
@@ -569,18 +583,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Divider(
-                      height: 15,
+                      height: 5,
                       color: Theme.of(context).primaryColor,
                     ),
                     Container(
                       child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
                         title: Text(
                           'Ajuda',
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         leading: Icon(
@@ -588,7 +604,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
-                          size: 25,
+                          size: 22,
                         ),
                         onTap: () {
                           Navigator.pop(context);
@@ -600,18 +616,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Divider(
-                      height: 15,
+                      height: 5,
                       color: Theme.of(context).primaryColor,
                     ),
                     Container(
                       child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
                         title: Text(
                           'Sair',
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         leading: Icon(
@@ -619,7 +637,7 @@ class _HomePageState extends State<HomePage> {
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
-                          size: 25,
+                          size: 22,
                         ),
                         onTap: () {
                           logoutUser();
