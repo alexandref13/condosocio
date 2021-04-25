@@ -17,7 +17,7 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
           Get.put(VisualizarAcessosController());
 
       return Container(
-        height: MediaQuery.of(context).size.height * 0.4,
+        height: MediaQuery.of(context).size.height * 0.3,
         padding: EdgeInsets.all(8),
         color: Theme.of(context).accentColor,
         child: Column(
@@ -25,57 +25,17 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
           children: [
             Container(
               child: Text(
-                pessoa,
+                "Você pode deletar o regitro, incluir o visitante em seus favoritos ou mandar um convite por meio do Whatsapp ou Telegram para $pessoa",
                 style: GoogleFonts.montserrat(
-                    fontSize: 24,
+                    fontSize: 12,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
               ),
             ),
-            Container(
-                child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: placa == ''
-                      ? Container()
-                      : Text(
-                          'Placa do carro: $placa',
-                          style: GoogleFonts.montserrat(
-                              fontSize: 18,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor),
-                        ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Documento: $tipoDoc',
-                    style: GoogleFonts.montserrat(
-                        fontSize: 18,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Numero do documento: $documento',
-                    style: GoogleFonts.montserrat(
-                        fontSize: 18,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor),
-                  ),
-                ),
-              ],
-            )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ButtonTheme(
-                  height: 50.0,
+                  height: 30,
                   child: ElevatedButton(
                     onPressed: () {
                       acessosController.deleteAcesso().then((value) {
@@ -109,13 +69,13 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
                     ),
                     child: Icon(
                       Icons.delete,
-                      size: 30,
+                      size: 24,
                       color: Colors.white,
                     ),
                   ),
                 ),
                 ButtonTheme(
-                  height: 50.0,
+                  height: 30,
                   child: ElevatedButton(
                     onPressed: () {
                       acessosController.sendFavorite().then(
@@ -156,13 +116,13 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
                     ),
                     child: Icon(
                       idFav != null ? FontAwesome.heart : FontAwesome.heart_o,
-                      size: 30,
+                      size: 24,
                       color: Color(0xff8a0000),
                     ),
                   ),
                 ),
                 ButtonTheme(
-                  height: 50.0,
+                  height: 30,
                   child: ElevatedButton(
                     onPressed: () {
                       onWhatsappButtonPressed(context, null);
@@ -188,13 +148,13 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
                     ),
                     child: Icon(
                       FontAwesome.whatsapp,
-                      size: 30,
+                      size: 24,
                       color: Colors.white,
                     ),
                   ),
                 ),
                 ButtonTheme(
-                  height: 50.0,
+                  height: 30,
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
@@ -218,7 +178,7 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
                     ),
                     child: Icon(
                       FontAwesome.telegram,
-                      size: 30,
+                      size: 24,
                       color: Color(0xFF0088CC),
                     ),
                   ),
