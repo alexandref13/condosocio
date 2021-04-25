@@ -15,7 +15,7 @@ class VisualizarAcessos extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Visualizar acessos',
+            'Acessos',
           ),
           bottom: TabBar(
             indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,

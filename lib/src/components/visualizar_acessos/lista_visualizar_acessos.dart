@@ -56,7 +56,7 @@ Widget listaVisualizarAcessos() {
                                   Text(
                                     newData,
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -69,7 +69,7 @@ Widget listaVisualizarAcessos() {
                                           child: Text(
                                             search.nome_dep,
                                             style: GoogleFonts.montserrat(
-                                              fontSize: 14,
+                                              fontSize: 12,
                                               color:
                                                   Theme.of(context).accentColor,
                                               fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ Widget listaVisualizarAcessos() {
                               child: Text(
                                 search.pessoa,
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
@@ -99,7 +99,7 @@ Widget listaVisualizarAcessos() {
                                   Text(
                                     search.dataent,
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -116,7 +116,7 @@ Widget listaVisualizarAcessos() {
                                     padding: EdgeInsets.only(right: 10),
                                     child: Icon(
                                       FontAwesome.clock_o,
-                                      size: 40,
+                                      size: 24,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -130,7 +130,7 @@ Widget listaVisualizarAcessos() {
                                         Text(
                                           search.datasai,
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
@@ -190,7 +190,7 @@ Widget listaVisualizarAcessos() {
                                   Text(
                                     newData,
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -206,7 +206,7 @@ Widget listaVisualizarAcessos() {
                                             visualizarAcessosController
                                                 .acessos[index].nome_dep,
                                             style: GoogleFonts.montserrat(
-                                              fontSize: 14,
+                                              fontSize: 12,
                                               color:
                                                   Theme.of(context).accentColor,
                                               fontWeight: FontWeight.bold,
@@ -223,7 +223,7 @@ Widget listaVisualizarAcessos() {
                                 visualizarAcessosController
                                     .acessos[index].pessoa,
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
@@ -238,7 +238,7 @@ Widget listaVisualizarAcessos() {
                                     visualizarAcessosController
                                         .acessos[index].dataent,
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -257,7 +257,7 @@ Widget listaVisualizarAcessos() {
                                     padding: EdgeInsets.only(right: 10),
                                     child: Icon(
                                       FontAwesome.clock_o,
-                                      size: 40,
+                                      size: 24,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -272,7 +272,7 @@ Widget listaVisualizarAcessos() {
                                           visualizarAcessosController
                                               .acessos[index].datasai,
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,

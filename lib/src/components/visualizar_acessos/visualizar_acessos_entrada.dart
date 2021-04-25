@@ -86,7 +86,7 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                     children: [
                       boxSearch(context, acessosController.search.value,
                           acessosController.onSearchTextChanged),
-                      Container(
+                      /* Container(
                         color: Theme.of(context).accentColor,
                         margin: EdgeInsets.symmetric(
                           vertical: 5,
@@ -98,7 +98,7 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Data',
+                              'Solicitação',
                               style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
@@ -107,7 +107,7 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Nome',
+                              'Visitante',
                               style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
@@ -116,7 +116,7 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Entrada',
+                              'Ent',
                               style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
@@ -125,7 +125,7 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Saída',
+                              'Saí',
                               style: GoogleFonts.montserrat(
                                 fontSize: 16,
                                 color: Theme.of(context)
@@ -135,7 +135,7 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                             ),
                           ],
                         ),
-                      ),
+                      ),*/
                       Expanded(
                         child: listaVisualizarAcessos(),
                       )
