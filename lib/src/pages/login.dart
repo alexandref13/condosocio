@@ -211,55 +211,19 @@ class Login extends StatelessWidget {
                                           fontSize: 15,
                                         ),
                                       ),
-
-                                      // Text.rich(
-                                      //     TextSpan(
-                                      //       text: 'Li e concordo com o ',
-
-                                      //       children: [
-                                      //         TextSpan(
-                                      //           text: 'TERMO DE USO ',
-                                      //           style: GoogleFonts.montserrat(
-                                      //             color: Colors.amberAccent,
-                                      //           ),
-                                      //           children: [
-                                      //             TextSpan(
-                                      //               text: 'e com a ',
-                                      //               style: GoogleFonts.montserrat(
-                                      //                 color: Theme.of(context)
-                                      //                     .textSelectionTheme
-                                      //                     .selectionColor,
-                                      //               ),
-                                      //               children: [
-                                      //                 TextSpan(
-                                      //                   text:
-                                      //                       'POLÍTICA DE PRIVACIDADE',
-                                      //                   style:
-                                      //                       GoogleFonts.montserrat(
-                                      //                     color: Colors.amberAccent,
-                                      //                   ),
-                                      //                 )
-                                      //               ],
-                                      //             ),
-                                      //           ],
-                                      //         ),
-                                      //       ],
-                                      //     ),
-                                      //   ),
                                     ],
                                   ),
-                                  Row(
-                                    children: [
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: Text(
-                                          'POLÍTICA DE PRIVACIDADE',
-                                          style: GoogleFonts.montserrat(
-                                            color: Colors.amberAccent,
-                                          ),
+                                  Align(
+                                    alignment: Alignment(-1, 0),
+                                    child: TextButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        'POLÍTICA DE PRIVACIDADE',
+                                        style: GoogleFonts.montserrat(
+                                          color: Colors.amberAccent,
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   )
                                 ],
                               ),
