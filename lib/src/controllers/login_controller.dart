@@ -22,6 +22,7 @@ class LoginController extends GetxController {
   var unidade = ''.obs;
   var condoTheme = ''.obs;
   var isLoading = false.obs;
+  var isChecked = false.obs;
   var listOfCondo = [];
 
   Future hasMoreEmail(String emailS) async {
@@ -81,5 +82,9 @@ class LoginController extends GetxController {
 
       Get.toNamed('/home');
     });
+  }
+
+  checkbox() {
+    isChecked(!isChecked.value);
   }
 }
