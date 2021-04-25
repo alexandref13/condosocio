@@ -1,4 +1,3 @@
-import 'package:condosocio/src/components/acessos/widget_entrada_acessos.dart';
 import 'package:condosocio/src/components/acessos/widget_saida_acessos.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +11,7 @@ class _AcessosState extends State<Acessos> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 1,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Acessos', style: GoogleFonts.montserrat(fontSize: 20)),
@@ -35,7 +34,7 @@ class _AcessosState extends State<Acessos> {
             ],
           ),
         ),
-        body: TabBarView(children: [EntradaAcessos(), SaidaAcessos()]),
+        body: TabBarView(children: [SaidaAcessos()]),
       ),
     );
   }
