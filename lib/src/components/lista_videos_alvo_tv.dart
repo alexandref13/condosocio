@@ -35,14 +35,14 @@ Widget listaVideos(context) {
                                 borderRadius: BorderRadius.circular(8),
                                 color: Theme.of(context).accentColor,
                               ),
-                              margin: EdgeInsets.only(bottom: 8),
+                              margin: EdgeInsets.only(bottom: 10),
                               child: Html(
                                 data: alvoTv.videos[index].publi,
                                 style: {
                                   "h1": Style(
                                     fontFamily: 'Montserrat',
-                                    fontSize: FontSize(14),
-                                    letterSpacing: 3,
+                                    fontSize: FontSize(10),
+                                    letterSpacing: 6,
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,

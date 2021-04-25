@@ -132,7 +132,7 @@ class _ComunicadosState extends State<Comunicados> {
                                 leading: RichText(
                                   text: TextSpan(
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -141,7 +141,7 @@ class _ComunicadosState extends State<Comunicados> {
                                       TextSpan(
                                           text: comunicados.dia + "  ",
                                           style: GoogleFonts.montserrat(
-                                              fontSize: 16,
+                                              fontSize: 14,
                                               fontWeight: FontWeight.bold)),
                                       TextSpan(
                                         text: comunicados.mes,
@@ -160,7 +160,7 @@ class _ComunicadosState extends State<Comunicados> {
                                   child: Text(
                                     comunicados.titulo,
                                     style: GoogleFonts.montserrat(
-                                        fontSize: 16,
+                                        fontSize: 12,
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
