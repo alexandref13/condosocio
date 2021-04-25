@@ -25,7 +25,7 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
           children: [
             Container(
               child: Text(
-                "Você pode deletar o regitro, incluir o visitante em seus favoritos ou mandar um convite por meio do Whatsapp ou Telegram para $pessoa",
+                "Você pode deletar o registro, incluir o visitante em seus favoritos ou mandar um convite por meio do Whatsapp ou Telegram para $pessoa.",
                 style: GoogleFonts.montserrat(
                     fontSize: 12,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
