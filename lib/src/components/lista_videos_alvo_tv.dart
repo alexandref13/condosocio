@@ -87,7 +87,8 @@ Widget listaVideos(context) {
                         ),
                         onPressed: () {
                           alvoTv.launched = alvoTv.launchInBrowser(
-                              "https://www.youtube.com/embed/$id");
+                            "https://www.youtube.com/embed/$id",
+                          );
                         },
                         child: Stack(
                           alignment: Alignment.center,

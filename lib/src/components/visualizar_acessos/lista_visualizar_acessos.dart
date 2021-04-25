@@ -26,12 +26,14 @@ Widget listaVisualizarAcessos() {
                 return GestureDetector(
                   onTap: () {
                     configurandoModalBottomSheet(
-                        context,
-                        search.pessoa,
-                        search.placa,
-                        search.tipodoc,
-                        search.documento,
-                        search.idfav);
+                      context,
+                      search.pessoa,
+                      search.placa,
+                      search.tipodoc,
+                      search.documento,
+                      search.idfav,
+                      search.dataent,
+                    );
 
                     acessosController.idAce.value =
                         visualizarAcessosController.acessos[index].idace;
@@ -164,13 +166,13 @@ Widget listaVisualizarAcessos() {
                     acessosController.tel.value =
                         visualizarAcessosController.acessos[index].datasai;
                     configurandoModalBottomSheet(
-                      context,
-                      visualizarAcessosController.acessos[index].pessoa,
-                      visualizarAcessosController.acessos[index].placa,
-                      visualizarAcessosController.acessos[index].tipodoc,
-                      visualizarAcessosController.acessos[index].documento,
-                      visualizarAcessosController.acessos[index].idfav,
-                    );
+                        context,
+                        visualizarAcessosController.acessos[index].pessoa,
+                        visualizarAcessosController.acessos[index].placa,
+                        visualizarAcessosController.acessos[index].tipodoc,
+                        visualizarAcessosController.acessos[index].documento,
+                        visualizarAcessosController.acessos[index].idfav,
+                        visualizarAcessosController.acessos[index].dataent);
                   },
                   child: Column(
                     children: [

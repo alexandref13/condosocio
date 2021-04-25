@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void configurandoModalBottomSheet(context, String pessoa, String placa,
-    String tipoDoc, String documento, idFav) {
+    String tipoDoc, String documento, idFav, String dataEntrada) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext bc) {
@@ -34,155 +34,177 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ButtonTheme(
-                  height: 30,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      acessosController.deleteAcesso().then((value) {
-                        if (value == 1) {
-                          onAlertButtonPressed(
-                            context,
-                            'Acesso excluido',
-                            '/home',
-                          );
-                        }
-                      });
-                    },
-                    style: ButtonStyle(
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          return 3;
-                        },
+                dataEntrada == ''
+                    ? Container()
+                    : ButtonTheme(
+                        height: 30,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            acessosController.deleteAcesso().then((value) {
+                              if (value == 1) {
+                                onAlertButtonPressed(
+                                  context,
+                                  'Acesso excluido',
+                                  '/home',
+                                );
+                              }
+                            });
+                          },
+                          style: ButtonStyle(
+                            elevation:
+                                MaterialStateProperty.resolveWith<double>(
+                              (Set<MaterialState> states) {
+                                return 3;
+                              },
+                            ),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                return Color(0xFFD11A2A);
+                              },
+                            ),
+                            shape: MaterialStateProperty.resolveWith<
+                                OutlinedBorder>(
+                              (Set<MaterialState> states) {
+                                return RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                );
+                              },
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.delete,
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Color(0xFFD11A2A);
-                        },
+                dataEntrada != ''
+                    ? Container()
+                    : ButtonTheme(
+                        height: 30,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            acessosController.sendFavorite().then(
+                              (value) {
+                                if (value == 1) {
+                                  onAlertButtonPressed(context,
+                                      'Novo favorito adicionado', '/home');
+                                }
+                                if (value == 0) {
+                                  onAlertButtonPressed(
+                                      context, 'Favorito deletado', '/home');
+                                  acessosController.getFavoritos();
+                                  visualizarAcessosController.getAcessos();
+                                }
+                              },
+                            );
+                          },
+                          style: ButtonStyle(
+                            elevation:
+                                MaterialStateProperty.resolveWith<double>(
+                              (Set<MaterialState> states) {
+                                return 3;
+                              },
+                            ),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                return Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor;
+                              },
+                            ),
+                            shape: MaterialStateProperty.resolveWith<
+                                OutlinedBorder>(
+                              (Set<MaterialState> states) {
+                                return RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                );
+                              },
+                            ),
+                          ),
+                          child: Icon(
+                            idFav != null
+                                ? FontAwesome.heart
+                                : FontAwesome.heart_o,
+                            size: 24,
+                            color: Color(0xff8a0000),
+                          ),
+                        ),
                       ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          );
-                        },
+                dataEntrada == ''
+                    ? Container()
+                    : ButtonTheme(
+                        height: 30,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            onWhatsappButtonPressed(context, null);
+                          },
+                          style: ButtonStyle(
+                            elevation:
+                                MaterialStateProperty.resolveWith<double>(
+                              (Set<MaterialState> states) {
+                                return 3;
+                              },
+                            ),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                return Color(0xFF075e54);
+                              },
+                            ),
+                            shape: MaterialStateProperty.resolveWith<
+                                OutlinedBorder>(
+                              (Set<MaterialState> states) {
+                                return RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                );
+                              },
+                            ),
+                          ),
+                          child: Icon(
+                            FontAwesome.whatsapp,
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
-                    child: Icon(
-                      Icons.delete,
-                      size: 24,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                ButtonTheme(
-                  height: 30,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      acessosController.sendFavorite().then(
-                        (value) {
-                          if (value == 1) {
-                            onAlertButtonPressed(
-                                context, 'Novo favorito adicionado', '/home');
-                          }
-                          if (value == 0) {
-                            onAlertButtonPressed(
-                                context, 'Favorito deletado', '/home');
-                            acessosController.getFavoritos();
-                            visualizarAcessosController.getAcessos();
-                          }
-                        },
-                      );
-                    },
-                    style: ButtonStyle(
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          return 3;
-                        },
+                dataEntrada == ''
+                    ? Container()
+                    : ButtonTheme(
+                        height: 30,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            elevation:
+                                MaterialStateProperty.resolveWith<double>(
+                              (Set<MaterialState> states) {
+                                return 3;
+                              },
+                            ),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                return Colors.white;
+                              },
+                            ),
+                            shape: MaterialStateProperty.resolveWith<
+                                OutlinedBorder>(
+                              (Set<MaterialState> states) {
+                                return RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                );
+                              },
+                            ),
+                          ),
+                          child: Icon(
+                            FontAwesome.telegram,
+                            size: 24,
+                            color: Color(0xFF0088CC),
+                          ),
+                        ),
                       ),
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor;
-                        },
-                      ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          );
-                        },
-                      ),
-                    ),
-                    child: Icon(
-                      idFav != null ? FontAwesome.heart : FontAwesome.heart_o,
-                      size: 24,
-                      color: Color(0xff8a0000),
-                    ),
-                  ),
-                ),
-                ButtonTheme(
-                  height: 30,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      onWhatsappButtonPressed(context, null);
-                    },
-                    style: ButtonStyle(
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          return 3;
-                        },
-                      ),
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Color(0xFF075e54);
-                        },
-                      ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          );
-                        },
-                      ),
-                    ),
-                    child: Icon(
-                      FontAwesome.whatsapp,
-                      size: 24,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                ButtonTheme(
-                  height: 30,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          return 3;
-                        },
-                      ),
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Colors.white;
-                        },
-                      ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          );
-                        },
-                      ),
-                    ),
-                    child: Icon(
-                      FontAwesome.telegram,
-                      size: 24,
-                      color: Color(0xFF0088CC),
-                    ),
-                  ),
-                ),
               ],
             ),
           ],

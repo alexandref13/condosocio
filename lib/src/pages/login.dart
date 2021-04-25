@@ -197,7 +197,11 @@ class Login extends StatelessWidget {
                                         ),
                                       ),
                                       TextButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          loginController.launched =
+                                              loginController.launchInBrowser(
+                                                  "https://condosocio.com.br/termo.html");
+                                        },
                                         child: Text(
                                           'TERMO DE USO',
                                           style: GoogleFonts.montserrat(
@@ -216,7 +220,11 @@ class Login extends StatelessWidget {
                                   Align(
                                     alignment: Alignment(-1, 0),
                                     child: TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        loginController.launched =
+                                            loginController.launchInBrowser(
+                                                'https://condosocio.com.br/privacidade.html');
+                                      },
                                       child: Text(
                                         'POLÍTICA DE PRIVACIDADE',
                                         style: GoogleFonts.montserrat(

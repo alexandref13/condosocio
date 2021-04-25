@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginController extends GetxController {
   ThemeController themeController = Get.put(ThemeController());
@@ -24,6 +25,21 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   var isChecked = false.obs;
   var listOfCondo = [];
+
+  Future<void> launched;
+
+  Future<void> launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   Future hasMoreEmail(String emailS) async {
     await GetStorage.init();
