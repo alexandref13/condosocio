@@ -18,351 +18,371 @@ class VisualizarOcorrencias extends StatelessWidget {
       ),
       body: Obx(
         () {
-          if (ocorrenciasController.ocorrencias.length == 0) {
-            return Stack(
-              children: <Widget>[
-                Container(
+          return ocorrenciasController.isLoading.value
+              ? Container(
                   height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.black12,
-                  child: Image.asset(
-                    'images/semregistro.png',
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-                Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(top: 100),
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          style: GoogleFonts.montserrat(
-                            fontSize: 14.0,
-                            color: Colors.black,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Sem registros de ',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'Acessos',
-                              style: GoogleFonts.montserrat(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            );
-          } else {
-            return ocorrenciasController.isLoading.value
-                ? Container(
-                    height: MediaQuery.of(context).size.height,
-                    color: Theme.of(context).primaryColor,
-                    child: Center(
-                      child: SizedBox(
-                        height: 40,
-                        width: 40,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 4,
-                          valueColor: AlwaysStoppedAnimation(
-                              Theme.of(context).accentColor),
-                        ),
+                  color: Theme.of(context).primaryColor,
+                  child: Center(
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 4,
+                        valueColor: AlwaysStoppedAnimation(Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor),
                       ),
                     ),
-                  )
-                : Column(
-                    children: [
-                      boxSearch(context, ocorrenciasController.search.value,
-                          ocorrenciasController.onSearchTextChanged),
-                      Container(
-                        color: Theme.of(context).accentColor,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Data',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                            Text(
-                              'Titulo',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                            Text(
-                              'Ocorrido',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                            Text(
-                              'Status',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                          ],
+                  ),
+                )
+              : ocorrenciasController.ocorrencias.length == 0
+                  ? Stack(
+                      children: <Widget>[
+                        Container(
+                          height: MediaQuery.of(context).size.height,
+                          width: MediaQuery.of(context).size.width,
+                          color: Colors.black12,
+                          child: Image.asset(
+                            'images/semregistro.png',
+                            fit: BoxFit.fitWidth,
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: ocorrenciasController.searchResult.length != 0 ||
-                                ocorrenciasController
-                                    .search.value.text.isNotEmpty
-                            ? ListView.builder(
-                                itemCount:
-                                    ocorrenciasController.searchResult.length,
-                                itemBuilder: (context, index) {
-                                  var ocorrencia =
-                                      ocorrenciasController.searchResult[index];
-                                  return GestureDetector(
-                                    onTap: () {
-                                      configurandoModalBottomSheet(
-                                          context,
-                                          ocorrencia.data,
-                                          ocorrencia.hora,
-                                          ocorrencia.titulo,
-                                          ocorrencia.dataoco,
-                                          ocorrencia.horaoco,
-                                          ocorrencia.status);
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                        bottom: BorderSide(
-                                            width: 1, color: Colors.grey),
-                                      )),
-                                      padding: EdgeInsets.all(10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  ocorrencia.data,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 16,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  ocorrencia.hora,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 16,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.20,
-                                            child: Text(
-                                              ocorrencia.titulo,
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 16,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  ocorrencia.dataoco,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 16,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  ocorrencia.horaoco,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 16,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.only(right: 10),
-                                            child: Icon(
-                                              FontAwesome.clock_o,
-                                              size: 40,
-                                              color:
-                                                  Theme.of(context).accentColor,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              )
-                            : ListView.builder(
-                                itemCount:
-                                    ocorrenciasController.ocorrencias.length,
-                                itemBuilder: (context, index) {
-                                  var ocorrencia =
-                                      ocorrenciasController.ocorrencias[index];
-                                  return GestureDetector(
-                                    onTap: () {
-                                      configurandoModalBottomSheet(
-                                          context,
-                                          ocorrencia.data,
-                                          ocorrencia.hora,
-                                          ocorrencia.titulo,
-                                          ocorrencia.dataoco,
-                                          ocorrencia.horaoco,
-                                          ocorrencia.status);
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                        bottom: BorderSide(
-                                            width: 1, color: Colors.grey),
-                                      )),
-                                      padding: EdgeInsets.all(10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  ocorrencia.data,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 16,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  ocorrencia.hora,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 16,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.20,
-                                            child: Text(
-                                              ocorrencia.titulo,
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 16,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  ocorrencia.dataoco,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 16,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  ocorrencia.horaoco,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 16,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.only(right: 10),
-                                            child: Icon(
-                                              ocorrencia.status == '1'
-                                                  ? Feather.check
-                                                  : Feather.alert_triangle,
-                                              size: 40,
-                                              color: ocorrencia.status == '1'
-                                                  ? Theme.of(context)
-                                                      .accentColor
-                                                  : Colors.red,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
+                        Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(top: 100),
                               ),
-                      ),
-                    ],
-                  );
-          }
+                              RichText(
+                                text: TextSpan(
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 14.0,
+                                    color: Colors.black,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: 'Sem registros de ',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: 'Acessos',
+                                      style: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        boxSearch(context, ocorrenciasController.search.value,
+                            ocorrenciasController.onSearchTextChanged),
+                        Container(
+                          color: Theme.of(context).accentColor,
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Data',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                              ),
+                              Text(
+                                'Titulo',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                              ),
+                              Text(
+                                'Ocorrido',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                              ),
+                              Text(
+                                'Status',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: ocorrenciasController.searchResult.length !=
+                                      0 ||
+                                  ocorrenciasController
+                                      .search.value.text.isNotEmpty
+                              ? ListView.builder(
+                                  itemCount:
+                                      ocorrenciasController.searchResult.length,
+                                  itemBuilder: (context, index) {
+                                    var ocorrencia = ocorrenciasController
+                                        .searchResult[index];
+                                    return GestureDetector(
+                                      onTap: () {
+                                        configurandoModalBottomSheet(
+                                            context,
+                                            ocorrencia.data,
+                                            ocorrencia.hora,
+                                            ocorrencia.titulo,
+                                            ocorrencia.dataoco,
+                                            ocorrencia.horaoco,
+                                            ocorrencia.status);
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                          bottom: BorderSide(
+                                              width: 1, color: Colors.grey),
+                                        )),
+                                        padding: EdgeInsets.all(10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    ocorrencia.data,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 16,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    ocorrencia.hora,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 16,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.20,
+                                              child: Text(
+                                                ocorrencia.titulo,
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 16,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                            Container(
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    ocorrencia.dataoco,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 16,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    ocorrencia.horaoco,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 16,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              padding:
+                                                  EdgeInsets.only(right: 10),
+                                              child: Icon(
+                                                FontAwesome.clock_o,
+                                                size: 40,
+                                                color: Theme.of(context)
+                                                    .accentColor,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )
+                              : ListView.builder(
+                                  itemCount:
+                                      ocorrenciasController.ocorrencias.length,
+                                  itemBuilder: (context, index) {
+                                    var ocorrencia = ocorrenciasController
+                                        .ocorrencias[index];
+                                    return GestureDetector(
+                                      onTap: () {
+                                        configurandoModalBottomSheet(
+                                            context,
+                                            ocorrencia.data,
+                                            ocorrencia.hora,
+                                            ocorrencia.titulo,
+                                            ocorrencia.dataoco,
+                                            ocorrencia.horaoco,
+                                            ocorrencia.status);
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                          bottom: BorderSide(
+                                              width: 1, color: Colors.grey),
+                                        )),
+                                        padding: EdgeInsets.all(10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    ocorrencia.data,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 16,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    ocorrencia.hora,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 16,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.20,
+                                              child: Text(
+                                                ocorrencia.titulo,
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 16,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                            Container(
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    ocorrencia.dataoco,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 16,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    ocorrencia.horaoco,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 16,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              padding:
+                                                  EdgeInsets.only(right: 10),
+                                              child: Icon(
+                                                ocorrencia.status == '1'
+                                                    ? Feather.check
+                                                    : Feather.alert_triangle,
+                                                size: 40,
+                                                color: ocorrencia.status == '1'
+                                                    ? Theme.of(context)
+                                                        .accentColor
+                                                    : Colors.red,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                        ),
+                      ],
+                    );
         },
       ),
     );

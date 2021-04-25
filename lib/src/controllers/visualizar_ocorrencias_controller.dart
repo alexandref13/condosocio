@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VisualizarOcorrenciasController extends GetxController {
-  List<MapaOcorrencias> ocorrencias = [];
+  var ocorrencias = [].obs;
   var isLoading = true.obs;
   var search = TextEditingController().obs;
   var searchResult = [].obs;
@@ -26,8 +26,9 @@ class VisualizarOcorrenciasController extends GetxController {
   void getOcorrencias() {
     ApiOcorrencias.getOcorrencias().then((response) {
       Iterable lista = json.decode(response.body);
-      ocorrencias =
+      ocorrencias.value =
           lista.map((model) => MapaOcorrencias.fromJson(model)).toList();
+      print(ocorrencias.length);
       isLoading(false);
     });
   }
