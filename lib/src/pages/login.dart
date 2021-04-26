@@ -178,7 +178,7 @@ class Login extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              width: MediaQuery.of(context).size.width * .6,
+                              // width: MediaQuery.of(context).size.width,
                               child: Column(
                                 children: [
                                   Row(
@@ -191,9 +191,9 @@ class Login extends StatelessWidget {
                                         },
                                       ),
                                       Text(
-                                        'Li e concordo com o',
+                                        'Li e concordo com',
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 15,
+                                          fontSize: 10,
                                         ),
                                       ),
                                       TextButton(
@@ -203,36 +203,38 @@ class Login extends StatelessWidget {
                                                   "https://condosocio.com.br/termo.html");
                                         },
                                         child: Text(
-                                          'TERMO DE USO',
+                                          ' TERMO DE USO',
                                           style: GoogleFonts.montserrat(
                                             color: Colors.amberAccent,
+                                            fontSize: 10,
                                           ),
                                         ),
                                       ),
                                       Text(
-                                        'e com a ',
+                                        'e com a',
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 15,
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          loginController.launched =
+                                              loginController.launchInBrowser(
+                                                  'https://condosocio.com.br/privacidade.html');
+                                        },
+                                        child: Text(
+                                          'POLÍTICA DE PRIVACIDADE',
+                                          overflow: TextOverflow.fade,
+                                          maxLines: 1,
+                                          softWrap: false,
+                                          style: GoogleFonts.montserrat(
+                                            color: Colors.amberAccent,
+                                            fontSize: 10,
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  Align(
-                                    alignment: Alignment(-1, 0),
-                                    child: TextButton(
-                                      onPressed: () {
-                                        loginController.launched =
-                                            loginController.launchInBrowser(
-                                                'https://condosocio.com.br/privacidade.html');
-                                      },
-                                      child: Text(
-                                        'POLÍTICA DE PRIVACIDADE',
-                                        style: GoogleFonts.montserrat(
-                                          color: Colors.amberAccent,
-                                        ),
-                                      ),
-                                    ),
-                                  )
                                 ],
                               ),
                             ),
@@ -266,7 +268,7 @@ class Login extends StatelessWidget {
                                               '') {
                                         onAlertButtonPressed(
                                           context,
-                                          'Campo email ou senha vazio!',
+                                          'Campo e-mail ou senha vazio!',
                                           null,
                                         );
                                       }
@@ -276,7 +278,7 @@ class Login extends StatelessWidget {
                                             if (value == null) {
                                               onAlertButtonPressed(
                                                 context,
-                                                'Email ou senha invalivos \n Tente novamente',
+                                                'Email ou senha inválidos! \n Tente novamente',
                                                 null,
                                               );
                                             } else {
@@ -331,7 +333,7 @@ class Login extends StatelessWidget {
                                     } else {
                                       onAlertButtonPressed(
                                           context,
-                                          'Você precisa aceitar os termos de uso para entrar!',
+                                          'Você precisa aceitar os termos de uso e a política de privacidade para entrar!',
                                           null);
                                     }
                                   },

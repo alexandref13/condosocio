@@ -121,7 +121,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
                       context: context,
                       initialDate: data,
                       firstDate: DateTime.now(),
-                      lastDate: DateTime(2022),
+                      lastDate: DateTime(2024),
                     ).then((value) => {
                           setState(() {
                             data = value;
