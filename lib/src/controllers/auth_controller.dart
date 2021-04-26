@@ -32,6 +32,7 @@ class AuthController extends GetxController {
     final box = GetStorage();
     var id = box.read('id');
     var email = box.read('email');
+    print(id);
     if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",

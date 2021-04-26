@@ -71,7 +71,7 @@ class LoginController extends GetxController {
   storageId() async {
     await GetStorage.init();
     final box = GetStorage();
-    box.write('id', id.value.toString());
+    box.write('id', id.value);
   }
 
   searchEmail() async {
@@ -93,6 +93,8 @@ class LoginController extends GetxController {
       imgcondo(dados['imgcondo']);
       nome(dados['nome']);
       condoTheme(dados['cor']);
+
+      storageId();
 
       themeController.setTheme(condoTheme.value);
 

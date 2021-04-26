@@ -2,6 +2,7 @@ import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/controllers/auth_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/services.dart';
@@ -124,7 +125,7 @@ class Login extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(20, 0, 20, 30),
+                              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
                               child: Container(
                                 child: TextFormField(
                                   obscureText: true,
@@ -178,10 +179,12 @@ class Login extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsets.fromLTRB(7, 0, 0, 0),
+                              width: MediaQuery.of(context).size.width,
                               child: Column(
                                 children: [
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Checkbox(
                                         value: loginController.isChecked.value,
@@ -190,49 +193,46 @@ class Login extends StatelessWidget {
                                               value;
                                         },
                                       ),
-                                      Text(
-                                        'Li e concordo com',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 10,
-                                        ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          loginController.launched =
-                                              loginController.launchInBrowser(
-                                                  "https://condosocio.com.br/termo.html");
-                                        },
-                                        child: Text(
-                                          ' TERMO DE USO',
-                                          style: GoogleFonts.montserrat(
-                                            color: Colors.amberAccent,
-                                            fontSize: 10,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'e com a',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 10,
-                                        ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          loginController.launched =
-                                              loginController.launchInBrowser(
-                                                  'https://condosocio.com.br/privacidade.html');
-                                        },
-                                        child: Text(
-                                          'POLÍTICA DE PRIVACIDADE',
-                                          overflow: TextOverflow.fade,
-                                          maxLines: 1,
-                                          softWrap: false,
-                                          style: GoogleFonts.montserrat(
-                                            color: Colors.amberAccent,
-                                            fontSize: 10,
-                                          ),
-                                        ),
-                                      ),
+                                      Container(
+                                        child: Text.rich(TextSpan(
+                                            text: '\nLi e concordo com os ',
+                                            children: [
+                                              TextSpan(
+                                                text: 'TERMOS DE USO ',
+                                                style: GoogleFonts.montserrat(
+                                                  color: Colors.amberAccent,
+                                                ),
+                                                recognizer:
+                                                    TapGestureRecognizer()
+                                                      ..onTap = () {
+                                                        loginController
+                                                                .launched =
+                                                            loginController
+                                                                .launchInBrowser(
+                                                          'https://condosocio.com.br/termo.html',
+                                                        );
+                                                      },
+                                              ),
+                                              TextSpan(text: '\n\ne com a '),
+                                              TextSpan(
+                                                text:
+                                                    'POLÍTICA DE PRIVACIDADE ',
+                                                style: GoogleFonts.montserrat(
+                                                  color: Colors.amberAccent,
+                                                ),
+                                                recognizer:
+                                                    TapGestureRecognizer()
+                                                      ..onTap = () {
+                                                        loginController
+                                                                .launched =
+                                                            loginController
+                                                                .launchInBrowser(
+                                                          'https://condosocio.com.br/privacidade.html',
+                                                        );
+                                                      },
+                                              ),
+                                            ])),
+                                      )
                                     ],
                                   ),
                                 ],
@@ -283,16 +283,15 @@ class Login extends StatelessWidget {
                                               );
                                             } else {
                                               loginController
-                                                  .hasMoreEmail(loginController
-                                                      .email.value.text)
+                                                  .hasMoreEmail(
+                                                loginController
+                                                    .email.value.text,
+                                              )
                                                   .then(
                                                 (response) {
                                                   if (response.length > 1) {
                                                     Get.toNamed('/listOfCondo');
                                                   } else {
-                                                    GetStorage.init()
-                                                        .then((value) => null);
-
                                                     loginController.id.value =
                                                         value['idusu'];
                                                     loginController
