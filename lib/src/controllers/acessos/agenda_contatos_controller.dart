@@ -1,3 +1,4 @@
+import 'package:condosocio/src/controllers/convites_controller.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -6,6 +7,7 @@ import 'acessos_controller.dart';
 
 class AgendaContatosController extends GetxController {
   AcessosController acessosController = Get.put(AcessosController());
+  ConvitesController convitesController = Get.put(ConvitesController());
   Contact contacts;
   var phone;
 
@@ -13,15 +15,14 @@ class AgendaContatosController extends GetxController {
     try {
       final Contact contact = await ContactsService.openDeviceContactPicker();
       contacts = contact;
-      acessosController.name.value.text = contacts.displayName;
       var phones = (contacts.phones).map((e) => e.value);
-      acessosController.phone.value.text = phones.first;
-      var celular = phones.first
-          .replaceAll("(", "")
-          .replaceAll(")", "")
-          .replaceAll("-", "")
-          .replaceAll(" ", "");
-      acessosController.tel.value = celular;
+      convitesController.guestList.addAll({
+        {
+          'nome': contacts.displayName,
+          'tel': phones.first,
+          'tipo': 'Convidado',
+        }
+      });
     } catch (e) {
       print(e.toString());
     }

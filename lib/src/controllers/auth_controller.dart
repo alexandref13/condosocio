@@ -52,6 +52,7 @@ class AuthController extends GetxController {
         loginController.isLoading.value = false;
         http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
+          print(response);
           loginController.hasMoreEmail(email).then((value) {
             if (value.length > 1) {
               Get.toNamed('/listOfCondo');

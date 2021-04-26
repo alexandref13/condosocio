@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
@@ -290,7 +289,8 @@ class Login extends StatelessWidget {
                                                   .then(
                                                 (response) {
                                                   if (response.length > 1) {
-                                                    Get.toNamed('/listOfCondo');
+                                                    Get.offNamed(
+                                                        '/listOfCondo');
                                                   } else {
                                                     loginController.id.value =
                                                         value['idusu'];
@@ -321,7 +321,7 @@ class Login extends StatelessWidget {
                                                       loginController
                                                           .condoTheme.value,
                                                     );
-                                                    Get.offNamed('/home');
+                                                    Get.toNamed('/home');
                                                   }
                                                 },
                                               );

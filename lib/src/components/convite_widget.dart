@@ -5,6 +5,7 @@ import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/acessos/agenda_contatos_controller.dart';
@@ -19,9 +20,9 @@ class ConviteWidget extends StatelessWidget {
     ConvitesController convitesController = Get.put(ConvitesController());
     LoginController loginController = Get.put(LoginController());
 
-    // void dropDownItemSelected(String novoItem) {
-    //   acessosController.itemSelecionado.value = novoItem;
-    // }
+    void dropDownItemSelected(String novoItem) {
+      acessosController.itemSelecionado.value = novoItem;
+    }
 
     // void dropDownFavoriteSelected(String novoItem) {
     //   acessosController.firstId.value = novoItem;
@@ -52,117 +53,6 @@ class ConviteWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 10),
-                            child: Text(
-                              'Quando irá acontecer?',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                bottom: 20, left: 10, right: 10),
-                            child: Text(
-                              'Inicio do evento',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                bottom: 20, left: 10, right: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    margin: EdgeInsets.only(right: 4),
-                                    child: customTextField(
-                                      context,
-                                      null,
-                                      (DateFormat("dd/MM/yyyy").format(
-                                          convitesController.date.value)),
-                                      false,
-                                      1,
-                                      false,
-                                      convitesController.dataController.value,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: customTextField(
-                                    context,
-                                    null,
-                                    (DateFormat("hh:mm")
-                                        .format(convitesController.date.value)),
-                                    false,
-                                    1,
-                                    false,
-                                    convitesController.dataController.value,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                bottom: 20, left: 10, right: 10),
-                            child: Text(
-                              'Término do evento',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                bottom: 20, left: 10, right: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    margin: EdgeInsets.only(right: 4),
-                                    child: customTextField(
-                                      context,
-                                      null,
-                                      (DateFormat("dd/MM/yyyy").format(
-                                          convitesController.date.value)),
-                                      false,
-                                      1,
-                                      false,
-                                      convitesController.dataController.value,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: customTextField(
-                                    context,
-                                    null,
-                                    (DateFormat("hh:mm")
-                                        .format(convitesController.date.value)),
-                                    false,
-                                    1,
-                                    false,
-                                    convitesController.dataController.value,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
@@ -190,6 +80,240 @@ class ConviteWidget extends StatelessWidget {
                             ),
                           ],
                         ),
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                bottom: 20, left: 10, right: 10),
+                            child: Text(
+                              'Inicio do evento',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                bottom: 20, left: 10, right: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      convitesController
+                                              .startSelectedDate.value =
+                                          await convitesController
+                                              .selectDateTime(context);
+                                      if (convitesController
+                                              .startSelectedDate.value ==
+                                          null) return;
+                                      convitesController
+                                          .startSelectedDate.value = DateTime(
+                                        convitesController
+                                            .startSelectedDate.value.year,
+                                        convitesController
+                                            .startSelectedDate.value.month,
+                                        convitesController
+                                            .startSelectedDate.value.day,
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 12,
+                                        horizontal: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      margin: EdgeInsets.only(right: 4),
+                                      child: Text(
+                                        convitesController.dateFormat
+                                            .format(convitesController
+                                                .startSelectedDate.value)
+                                            .toString(),
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      convitesController
+                                              .startSelectedTime.value =
+                                          await convitesController
+                                              .selectTime(context);
+                                      if (convitesController
+                                              .startSelectedTime.value ==
+                                          null) return;
+                                      convitesController
+                                          .startSelectedDate.value = DateTime(
+                                        convitesController
+                                            .startSelectedTime.value.hour,
+                                        convitesController
+                                            .startSelectedTime.value.minute,
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 12,
+                                        horizontal: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      margin: EdgeInsets.only(right: 4),
+                                      child: Text(
+                                        '${convitesController.startSelectedTime.value.hour}:${convitesController.startSelectedTime.value.minute}',
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                bottom: 20, left: 10, right: 10),
+                            child: Text(
+                              'Término do evento',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                bottom: 20, left: 10, right: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      convitesController.endSelectedDate.value =
+                                          await convitesController
+                                              .selectDateTime(context);
+                                      if (convitesController
+                                              .endSelectedDate.value ==
+                                          null) return;
+                                      convitesController.endSelectedDate.value =
+                                          DateTime(
+                                        convitesController
+                                            .endSelectedDate.value.year,
+                                        convitesController
+                                            .endSelectedDate.value.month,
+                                        convitesController
+                                            .endSelectedDate.value.day,
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 12,
+                                        horizontal: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      margin: EdgeInsets.only(right: 4),
+                                      child: Text(
+                                        convitesController.dateFormat
+                                            .format(convitesController
+                                                .endSelectedDate.value)
+                                            .toString(),
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      convitesController.endSelectedTime.value =
+                                          await convitesController
+                                              .selectTime(context);
+                                      if (convitesController
+                                              .endSelectedTime.value ==
+                                          null) return;
+                                      convitesController.endSelectedDate.value =
+                                          DateTime(
+                                        convitesController
+                                            .endSelectedTime.value.hour,
+                                        convitesController
+                                            .endSelectedTime.value.minute,
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 12,
+                                        horizontal: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      margin: EdgeInsets.only(right: 4),
+                                      child: Text(
+                                        '${convitesController.endSelectedTime.value.hour}:${convitesController.endSelectedTime.value.minute}',
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(
@@ -231,7 +355,7 @@ class ConviteWidget extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
-                                  convitesController.handleCount();
+                                  convitesController.handleAddCount();
                                 },
                                 child: acessosController.isLoading.value
                                     ? SizedBox(
@@ -243,7 +367,7 @@ class ConviteWidget extends StatelessWidget {
                                         ),
                                       )
                                     : Text(
-                                        "Insira o nome",
+                                        "INSIRA O NOME",
                                         style: GoogleFonts.montserrat(
                                             color:
                                                 Theme.of(context).accentColor,
@@ -315,19 +439,122 @@ class ConviteWidget extends StatelessWidget {
                           ],
                         ),
                       ),
+                      for (var i = 0;
+                          i < convitesController.guestList.length;
+                          i++)
+                        Container(
+                          margin: EdgeInsets.only(bottom: 12, top: 12),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                width: 1,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              )),
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: Icon(Feather.user_check),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '${convitesController.guestList[i]['nome']} | ${convitesController.guestList[i]['tipo']} ',
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                          ),
+                                        ),
+                                        Text(
+                                          convitesController.guestList[i]
+                                              ['tel'],
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 15,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () =>
+                                    convitesController.guestList.removeAt(i),
+                              )
+                            ],
+                          ),
+                        ),
                       for (var i = 0; i < convitesController.count.value; i++)
                         Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 10,
+                          ),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              SizedBox(
-                                height: 20,
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 7),
+                                padding: EdgeInsets.symmetric(horizontal: 7),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  underline: Container(),
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_down,
+                                    size: 27,
+                                  ),
+                                  iconEnabledColor: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  dropdownColor: Theme.of(context).primaryColor,
+                                  style: GoogleFonts.montserrat(fontSize: 16),
+                                  items: acessosController.tipos
+                                      .map((String dropDownStringItem) {
+                                    return DropdownMenuItem<String>(
+                                      value: dropDownStringItem,
+                                      child: Text(dropDownStringItem),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String novoItemSelecionado) {
+                                    dropDownItemSelected(novoItemSelecionado);
+                                    acessosController.itemSelecionado.value =
+                                        novoItemSelecionado;
+                                  },
+                                  value:
+                                      acessosController.itemSelecionado.value,
+                                ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(
-                                  left: 4,
-                                  top: 5,
-                                  right: 4,
-                                ),
+                                margin: EdgeInsets.only(top: 7),
                                 padding: EdgeInsets.all(7),
                                 child: customTextField(
                                   context,
@@ -340,7 +567,7 @@ class ConviteWidget extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                margin: EdgeInsets.only(bottom: 5),
                                 padding: EdgeInsets.all(7),
                                 child: customTextField(
                                   context,
@@ -350,6 +577,102 @@ class ConviteWidget extends StatelessWidget {
                                   1,
                                   true,
                                   acessosController.phone.value,
+                                ),
+                              ),
+                              ButtonTheme(
+                                height: 50.0,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty
+                                        .resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                        return Theme.of(context).accentColor;
+                                      },
+                                    ),
+                                    elevation: MaterialStateProperty
+                                        .resolveWith<double>(
+                                      (Set<MaterialState> states) {
+                                        return 3;
+                                      },
+                                    ),
+                                    shape: MaterialStateProperty.resolveWith<
+                                        OutlinedBorder>(
+                                      (Set<MaterialState> states) {
+                                        return RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    convitesController.handleAddGuestList();
+                                  },
+                                  child: acessosController.isLoading.value
+                                      ? SizedBox(
+                                          width: 20,
+                                          height: 20,
+                                          child: CircularProgressIndicator(
+                                            valueColor: AlwaysStoppedAnimation(
+                                                Colors.white),
+                                          ),
+                                        )
+                                      : Text(
+                                          "ADICIONAR",
+                                          style: GoogleFonts.montserrat(
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
+                                              fontSize: 16),
+                                        ),
+                                ),
+                              ),
+                              ButtonTheme(
+                                height: 50.0,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty
+                                        .resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                        return Theme.of(context).accentColor;
+                                      },
+                                    ),
+                                    elevation: MaterialStateProperty
+                                        .resolveWith<double>(
+                                      (Set<MaterialState> states) {
+                                        return 3;
+                                      },
+                                    ),
+                                    shape: MaterialStateProperty.resolveWith<
+                                        OutlinedBorder>(
+                                      (Set<MaterialState> states) {
+                                        return RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    convitesController.handleRemoveCount();
+                                  },
+                                  child: acessosController.isLoading.value
+                                      ? SizedBox(
+                                          width: 20,
+                                          height: 20,
+                                          child: CircularProgressIndicator(
+                                            valueColor: AlwaysStoppedAnimation(
+                                                Colors.white),
+                                          ),
+                                        )
+                                      : Text(
+                                          "CANCELAR",
+                                          style: GoogleFonts.montserrat(
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
+                                              fontSize: 16),
+                                        ),
                                 ),
                               ),
                             ],
@@ -515,47 +838,6 @@ class ConviteWidget extends StatelessWidget {
     );
   }
 }
-
-// Container(
-//                       //   height: 55,
-//                       //   margin: EdgeInsets.only(left: 10, right: 10),
-//                       //   padding: EdgeInsets.all(7),
-//                       //   decoration: BoxDecoration(
-//                       //     borderRadius: BorderRadius.circular(10),
-//                       //     border: Border.all(
-//                       //       color: Theme.of(context)
-//                       //           .textSelectionTheme
-//                       //           .selectionColor,
-//                       //       width: 1,
-//                       //     ),
-//                       //   ),
-//                       //   child: DropdownButton<String>(
-//                       //     isExpanded: true,
-//                       //     underline: Container(),
-//                       //     icon: Icon(
-//                       //       Icons.keyboard_arrow_down,
-//                       //       size: 27,
-//                       //     ),
-//                       //     iconEnabledColor: Theme.of(context)
-//                       //         .textSelectionTheme
-//                       //         .selectionColor,
-//                       //     dropdownColor: Theme.of(context).primaryColor,
-//                       //     style: GoogleFonts.montserrat(fontSize: 16),
-//                       //     items: acessosController.tipos
-//                       //         .map((String dropDownStringItem) {
-//                       //       return DropdownMenuItem<String>(
-//                       //         value: dropDownStringItem,
-//                       //         child: Text(dropDownStringItem),
-//                       //       );
-//                       //     }).toList(),
-//                       //     onChanged: (String novoItemSelecionado) {
-//                       //       dropDownItemSelected(novoItemSelecionado);
-//                       //       acessosController.itemSelecionado.value =
-//                       //           novoItemSelecionado;
-//                       //     },
-//                       //     value: acessosController.itemSelecionado.value,
-//                       //   ),
-//                       // ),
 
 //  Container(
 //                                 padding: EdgeInsets.all(7),

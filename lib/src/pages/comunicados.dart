@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/comunicados_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,21 +31,7 @@ class _ComunicadosState extends State<Comunicados> {
         body: Obx(
           () {
             return comunicadosController.isLoading.value
-                ? Container(
-                    height: MediaQuery.of(context).size.height,
-                    color: Theme.of(context).primaryColor,
-                    child: Center(
-                      child: SizedBox(
-                        height: 40,
-                        width: 40,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 4,
-                          valueColor: AlwaysStoppedAnimation(
-                              Theme.of(context).accentColor),
-                        ),
-                      ),
-                    ),
-                  )
+                ? CircularProgressIndicatorWidget()
                 : _listaComunicados();
           },
         ),
