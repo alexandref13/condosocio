@@ -12,7 +12,7 @@ class Ata extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Ata',
+          'Atas',
         ),
       ),
       body: Obx(
