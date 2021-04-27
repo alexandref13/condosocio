@@ -48,7 +48,6 @@ class LoginController extends GetxController {
     final response = await http.get(Uri.https('www.condosocio.com.br',
         '/flutter/unidadesLista.php', {"email": emailS}));
     var dados = json.decode(response.body);
-
     listOfCondo = dados.map((model) => ListOfCondo.fromJson(model)).toList();
     return dados;
   }
@@ -84,6 +83,7 @@ class LoginController extends GetxController {
     http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
+      print(dados);
       id(dados['idusu']);
       idcond(dados['idcond']);
       emailUsu(dados['email']);

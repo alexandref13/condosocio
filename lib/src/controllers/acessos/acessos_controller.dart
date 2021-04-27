@@ -72,16 +72,6 @@ class AcessosController extends GetxController {
     return dados;
   }
 
-  getAFavorite() async {
-    isLoading(true);
-    final response = await ApiAcessos.getAFavorite();
-    var dados = json.decode(response.body);
-    favorito = dados.map((item) => item).toList();
-    name.value.text = favorito[0]['pessoa'].toString();
-    phone.value.text = favorito[0]['cel'].toString();
-    isLoading(false);
-  }
-
   deleteFav() async {
     isLoading(true);
     final response = await ApiAcessos.deleteFav();

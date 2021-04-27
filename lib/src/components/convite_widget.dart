@@ -1,9 +1,9 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/components/whatsapp_button_pressed.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites_controller.dart';
-import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -11,41 +11,67 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controllers/acessos/agenda_contatos_controller.dart';
 import 'package:intl/intl.dart';
 
-class ConviteWidget extends StatelessWidget {
+class ConviteWidget extends StatefulWidget {
+  @override
+  _ConviteWidgetState createState() => _ConviteWidgetState();
+}
+
+class _ConviteWidgetState extends State<ConviteWidget> {
+  var startSelectedDate = DateTime.now();
+  var startSelectedTime = TimeOfDay.now();
+  var endSelectedDate = DateTime.now();
+  var endSelectedTime = TimeOfDay.now();
+  var startDate = TextEditingController();
+  var startTime = TextEditingController();
+  var endDate = TextEditingController();
+  var endTime = TextEditingController();
+
+  Future<TimeOfDay> selectTime(BuildContext context) {
+    final now = DateTime.now();
+
+    return showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
+      builder: (BuildContext context, Widget child) {
+        return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            child: child);
+      },
+    );
+  }
+
+  Future<DateTime> selectDateTime(BuildContext context) => showDatePicker(
+        context: context,
+        initialDate: DateTime.now().add(Duration(seconds: 1)),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2100),
+      );
+
+  Future<DateTime> selectDateOnEndTime(BuildContext context) => showDatePicker(
+        context: context,
+        initialDate: startSelectedDate,
+        firstDate: startSelectedDate,
+        lastDate: DateTime(2100),
+      );
   @override
   Widget build(BuildContext context) {
     AcessosController acessosController = Get.put(AcessosController());
     AgendaContatosController agendaContatosController =
         Get.put(AgendaContatosController());
     ConvitesController convitesController = Get.put(ConvitesController());
-    LoginController loginController = Get.put(LoginController());
 
     void dropDownItemSelected(String novoItem) {
       acessosController.itemSelecionado.value = novoItem;
     }
 
-    // void dropDownFavoriteSelected(String novoItem) {
-    //   acessosController.firstId.value = novoItem;
-    // }
+    void dropDownFavoriteSelected(String novoItem) {
+      acessosController.firstId.value = novoItem;
+    }
 
     return Obx(
       () {
         return acessosController.isLoading.value
-            ? Container(
-                height: MediaQuery.of(context).size.height,
-                color: Theme.of(context).primaryColor,
-                child: Center(
-                  child: SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 4,
-                      valueColor:
-                          AlwaysStoppedAnimation(Theme.of(context).accentColor),
-                    ),
-                  ),
-                ),
-              )
+            ? CircularProgressIndicatorWidget()
             : SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.only(bottom: 10),
@@ -54,11 +80,12 @@ class ConviteWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         child: Column(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(bottom: 20),
+                              padding: EdgeInsets.only(bottom: 15),
                               child: Text(
                                 'Nome do convite',
                                 style: GoogleFonts.montserrat(
@@ -67,11 +94,11 @@ class ConviteWidget extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(bottom: 20),
+                              padding: EdgeInsets.only(bottom: 10),
                               child: customTextField(
                                 context,
                                 null,
-                                'Convite de ${loginController.nome.value}',
+                                'Convite de ${convitesController.inviteName.value}',
                                 true,
                                 1,
                                 true,
@@ -96,105 +123,40 @@ class ConviteWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(
                                 bottom: 20, left: 10, right: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      convitesController
-                                              .startSelectedDate.value =
-                                          await convitesController
-                                              .selectDateTime(context);
-                                      if (convitesController
-                                              .startSelectedDate.value ==
-                                          null) return;
-                                      convitesController
-                                          .startSelectedDate.value = DateTime(
-                                        convitesController
-                                            .startSelectedDate.value.year,
-                                        convitesController
-                                            .startSelectedDate.value.month,
-                                        convitesController
-                                            .startSelectedDate.value.day,
-                                      );
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 12,
-                                        horizontal: 10,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 1,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      margin: EdgeInsets.only(right: 4),
-                                      child: Text(
-                                        convitesController.dateFormat
-                                            .format(convitesController
-                                                .startSelectedDate.value)
-                                            .toString(),
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                            child: GestureDetector(
+                              onTap: () async {
+                                startSelectedDate =
+                                    await selectDateTime(context);
+                                if (startSelectedDate == null) return;
+
+                                startSelectedTime = await selectTime(context);
+                                if (startSelectedTime == null) return;
+
+                                startSelectedDate = DateTime(
+                                  startSelectedDate.year,
+                                  startSelectedDate.month,
+                                  startSelectedDate.day,
+                                  startSelectedTime.hour,
+                                  startSelectedTime.minute,
+                                );
+
+                                print({
+                                  startSelectedDate,
+                                  startSelectedTime.hour,
+                                  startSelectedTime.minute
+                                });
+                              },
+                              child: customTextField(
+                                context,
+                                null,
+                                DateFormat("dd/MM/yyyy HH:mm").format(
+                                  startSelectedDate,
                                 ),
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      convitesController
-                                              .startSelectedTime.value =
-                                          await convitesController
-                                              .selectTime(context);
-                                      if (convitesController
-                                              .startSelectedTime.value ==
-                                          null) return;
-                                      convitesController
-                                          .startSelectedDate.value = DateTime(
-                                        convitesController
-                                            .startSelectedTime.value.hour,
-                                        convitesController
-                                            .startSelectedTime.value.minute,
-                                      );
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 12,
-                                        horizontal: 10,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 1,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      margin: EdgeInsets.only(right: 4),
-                                      child: Text(
-                                        '${convitesController.startSelectedTime.value.hour}:${convitesController.startSelectedTime.value.minute}',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                                false,
+                                1,
+                                false,
+                                startDate,
+                              ),
                             ),
                           ),
                         ],
@@ -214,103 +176,34 @@ class ConviteWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(
                                 bottom: 20, left: 10, right: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      convitesController.endSelectedDate.value =
-                                          await convitesController
-                                              .selectDateTime(context);
-                                      if (convitesController
-                                              .endSelectedDate.value ==
-                                          null) return;
-                                      convitesController.endSelectedDate.value =
-                                          DateTime(
-                                        convitesController
-                                            .endSelectedDate.value.year,
-                                        convitesController
-                                            .endSelectedDate.value.month,
-                                        convitesController
-                                            .endSelectedDate.value.day,
-                                      );
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 12,
-                                        horizontal: 10,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 1,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      margin: EdgeInsets.only(right: 4),
-                                      child: Text(
-                                        convitesController.dateFormat
-                                            .format(convitesController
-                                                .endSelectedDate.value)
-                                            .toString(),
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      convitesController.endSelectedTime.value =
-                                          await convitesController
-                                              .selectTime(context);
-                                      if (convitesController
-                                              .endSelectedTime.value ==
-                                          null) return;
-                                      convitesController.endSelectedDate.value =
-                                          DateTime(
-                                        convitesController
-                                            .endSelectedTime.value.hour,
-                                        convitesController
-                                            .endSelectedTime.value.minute,
-                                      );
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 12,
-                                        horizontal: 10,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 1,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      margin: EdgeInsets.only(right: 4),
-                                      child: Text(
-                                        '${convitesController.endSelectedTime.value.hour}:${convitesController.endSelectedTime.value.minute}',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            child: GestureDetector(
+                              onTap: () async {
+                                endSelectedDate =
+                                    await selectDateOnEndTime(context);
+                                if (endSelectedDate == null) return;
+
+                                endSelectedTime = await selectTime(context);
+                                if (endSelectedTime == null) return;
+
+                                endSelectedDate = DateTime(
+                                  endSelectedDate.year,
+                                  endSelectedDate.month,
+                                  endSelectedDate.day,
+                                  endSelectedTime.hour,
+                                  endSelectedTime.minute,
+                                );
+                              },
+                              child: customTextField(
+                                context,
+                                null,
+                                (DateFormat("dd/MM/yyyy HH:mm").format(
+                                  endSelectedDate,
+                                )),
+                                false,
+                                1,
+                                false,
+                                endTime,
+                              ),
                             ),
                           ),
                         ],
@@ -326,6 +219,60 @@ class ConviteWidget extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
+                            Container(
+                              padding: EdgeInsets.all(7),
+                              margin: EdgeInsets.only(
+                                bottom: 10,
+                              ),
+                              height: 55,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  width: 1,
+                                ),
+                              ),
+                              child: DropdownButton<String>(
+                                autofocus: false,
+                                isExpanded: true,
+                                underline: Container(),
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  size: 27,
+                                ),
+                                iconEnabledColor: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                dropdownColor: Theme.of(context).primaryColor,
+                                style: GoogleFonts.montserrat(fontSize: 16),
+                                items: acessosController.fav.map((item) {
+                                  return DropdownMenuItem(
+                                    value: item['id'].toString(),
+                                    child: Text(item['pessoa']),
+                                  );
+                                }).toList(),
+                                onChanged: (String novoItemSelecionado) {
+                                  dropDownFavoriteSelected(novoItemSelecionado);
+                                  acessosController.firstId.value =
+                                      novoItemSelecionado;
+                                  acessosController.firstId.value != '0'
+                                      ? convitesController.getAFavorite()
+                                      : acessosController.cleanController();
+                                },
+                                value: acessosController.firstId.value,
+                              ),
+                            ),
+                            Center(
+                              child: Text(
+                                'OU',
+                                style: GoogleFonts.montserrat(fontSize: 13),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             ButtonTheme(
                               height: 50.0,
                               child: ElevatedButton(
@@ -504,180 +451,189 @@ class ConviteWidget extends StatelessWidget {
                             ],
                           ),
                         ),
-                      for (var i = 0; i < convitesController.count.value; i++)
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 10,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.symmetric(horizontal: 7),
-                                padding: EdgeInsets.symmetric(horizontal: 7),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: DropdownButton<String>(
-                                  isExpanded: true,
-                                  underline: Container(),
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_down,
-                                    size: 27,
-                                  ),
-                                  iconEnabledColor: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                  dropdownColor: Theme.of(context).primaryColor,
-                                  style: GoogleFonts.montserrat(fontSize: 16),
-                                  items: acessosController.tipos
-                                      .map((String dropDownStringItem) {
-                                    return DropdownMenuItem<String>(
-                                      value: dropDownStringItem,
-                                      child: Text(dropDownStringItem),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String novoItemSelecionado) {
-                                    dropDownItemSelected(novoItemSelecionado);
-                                    acessosController.itemSelecionado.value =
-                                        novoItemSelecionado;
-                                  },
-                                  value:
-                                      acessosController.itemSelecionado.value,
-                                ),
+                      convitesController.count.value
+                          ? Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 10,
                               ),
-                              Container(
-                                margin: EdgeInsets.only(top: 7),
-                                padding: EdgeInsets.all(7),
-                                child: customTextField(
-                                  context,
-                                  'Nome ou empresa',
-                                  null,
-                                  false,
-                                  1,
-                                  true,
-                                  acessosController.name.value,
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 5),
-                                padding: EdgeInsets.all(7),
-                                child: customTextField(
-                                  context,
-                                  'Celular (ex: 91 989900290)',
-                                  null,
-                                  false,
-                                  1,
-                                  true,
-                                  acessosController.phone.value,
-                                ),
-                              ),
-                              ButtonTheme(
-                                height: 50.0,
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                        return Theme.of(context).accentColor;
-                                      },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.symmetric(horizontal: 7),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 7),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                        width: 1,
+                                      ),
                                     ),
-                                    elevation: MaterialStateProperty
-                                        .resolveWith<double>(
-                                      (Set<MaterialState> states) {
-                                        return 3;
-                                      },
-                                    ),
-                                    shape: MaterialStateProperty.resolveWith<
-                                        OutlinedBorder>(
-                                      (Set<MaterialState> states) {
-                                        return RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
+                                    child: DropdownButton<String>(
+                                      isExpanded: true,
+                                      underline: Container(),
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down,
+                                        size: 27,
+                                      ),
+                                      iconEnabledColor: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      dropdownColor:
+                                          Theme.of(context).primaryColor,
+                                      style:
+                                          GoogleFonts.montserrat(fontSize: 16),
+                                      items: acessosController.tipos
+                                          .map((String dropDownStringItem) {
+                                        return DropdownMenuItem<String>(
+                                          value: dropDownStringItem,
+                                          child: Text(dropDownStringItem),
                                         );
+                                      }).toList(),
+                                      onChanged: (String novoItemSelecionado) {
+                                        dropDownItemSelected(
+                                            novoItemSelecionado);
+                                        acessosController.itemSelecionado
+                                            .value = novoItemSelecionado;
                                       },
+                                      value: acessosController
+                                          .itemSelecionado.value,
                                     ),
                                   ),
-                                  onPressed: () {
-                                    convitesController.handleAddGuestList();
-                                  },
-                                  child: acessosController.isLoading.value
-                                      ? SizedBox(
-                                          width: 20,
-                                          height: 20,
-                                          child: CircularProgressIndicator(
-                                            valueColor: AlwaysStoppedAnimation(
-                                                Colors.white),
-                                          ),
-                                        )
-                                      : Text(
-                                          "ADICIONAR",
-                                          style: GoogleFonts.montserrat(
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor,
-                                              fontSize: 16),
-                                        ),
-                                ),
-                              ),
-                              ButtonTheme(
-                                height: 50.0,
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                        return Theme.of(context).accentColor;
-                                      },
-                                    ),
-                                    elevation: MaterialStateProperty
-                                        .resolveWith<double>(
-                                      (Set<MaterialState> states) {
-                                        return 3;
-                                      },
-                                    ),
-                                    shape: MaterialStateProperty.resolveWith<
-                                        OutlinedBorder>(
-                                      (Set<MaterialState> states) {
-                                        return RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        );
-                                      },
+                                  Container(
+                                    margin: EdgeInsets.only(top: 7),
+                                    padding: EdgeInsets.all(7),
+                                    child: customTextField(
+                                      context,
+                                      'Nome ou empresa',
+                                      null,
+                                      false,
+                                      1,
+                                      true,
+                                      acessosController.name.value,
                                     ),
                                   ),
-                                  onPressed: () {
-                                    convitesController.handleRemoveCount();
-                                  },
-                                  child: acessosController.isLoading.value
-                                      ? SizedBox(
-                                          width: 20,
-                                          height: 20,
-                                          child: CircularProgressIndicator(
-                                            valueColor: AlwaysStoppedAnimation(
-                                                Colors.white),
-                                          ),
-                                        )
-                                      : Text(
-                                          "CANCELAR",
-                                          style: GoogleFonts.montserrat(
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor,
-                                              fontSize: 16),
+                                  Container(
+                                    margin: EdgeInsets.only(bottom: 5),
+                                    padding: EdgeInsets.all(7),
+                                    child: customTextField(
+                                      context,
+                                      'Celular (ex: 91 989900290)',
+                                      null,
+                                      false,
+                                      1,
+                                      true,
+                                      acessosController.phone.value,
+                                    ),
+                                  ),
+                                  ButtonTheme(
+                                    height: 50.0,
+                                    child: ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty
+                                            .resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                            return Theme.of(context)
+                                                .accentColor;
+                                          },
                                         ),
-                                ),
+                                        elevation: MaterialStateProperty
+                                            .resolveWith<double>(
+                                          (Set<MaterialState> states) {
+                                            return 3;
+                                          },
+                                        ),
+                                        shape: MaterialStateProperty
+                                            .resolveWith<OutlinedBorder>(
+                                          (Set<MaterialState> states) {
+                                            return RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        convitesController.handleAddGuestList();
+                                      },
+                                      child: acessosController.isLoading.value
+                                          ? SizedBox(
+                                              width: 20,
+                                              height: 20,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation(
+                                                        Colors.white),
+                                              ),
+                                            )
+                                          : Text(
+                                              "ADICIONAR",
+                                              style: GoogleFonts.montserrat(
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                  fontSize: 16),
+                                            ),
+                                    ),
+                                  ),
+                                  ButtonTheme(
+                                    height: 50.0,
+                                    child: ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty
+                                            .resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                            return Theme.of(context)
+                                                .accentColor;
+                                          },
+                                        ),
+                                        elevation: MaterialStateProperty
+                                            .resolveWith<double>(
+                                          (Set<MaterialState> states) {
+                                            return 3;
+                                          },
+                                        ),
+                                        shape: MaterialStateProperty
+                                            .resolveWith<OutlinedBorder>(
+                                          (Set<MaterialState> states) {
+                                            return RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        convitesController.handleRemoveCount();
+                                      },
+                                      child: acessosController.isLoading.value
+                                          ? SizedBox(
+                                              width: 20,
+                                              height: 20,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation(
+                                                        Colors.white),
+                                              ),
+                                            )
+                                          : Text(
+                                              "CANCELAR",
+                                              style: GoogleFonts.montserrat(
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                  fontSize: 16),
+                                            ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
+                            )
+                          : Container(),
                       SizedBox(
                         height: 20,
                       ),
@@ -838,49 +794,3 @@ class ConviteWidget extends StatelessWidget {
     );
   }
 }
-
-//  Container(
-//                                 padding: EdgeInsets.all(7),
-//                                 margin: EdgeInsets.only(
-//                                     top: 10, bottom: 20, left: 10, right: 10),
-//                                 height: 55,
-//                                 decoration: BoxDecoration(
-//                                   borderRadius: BorderRadius.circular(10),
-//                                   border: Border.all(
-//                                     color: Theme.of(context)
-//                                         .textSelectionTheme
-//                                         .selectionColor,
-//                                     width: 1,
-//                                   ),
-//                                 ),
-//                                 child: DropdownButton<String>(
-//                                   autofocus: false,
-//                                   isExpanded: true,
-//                                   underline: Container(),
-//                                   icon: Icon(
-//                                     Icons.keyboard_arrow_down,
-//                                     size: 27,
-//                                   ),
-//                                   iconEnabledColor: Theme.of(context)
-//                                       .textSelectionTheme
-//                                       .selectionColor,
-//                                   dropdownColor: Theme.of(context).primaryColor,
-//                                   style: GoogleFonts.montserrat(fontSize: 16),
-//                                   items: acessosController.fav.map((item) {
-//                                     return DropdownMenuItem(
-//                                       value: item['id'].toString(),
-//                                       child: Text(item['pessoa']),
-//                                     );
-//                                   }).toList(),
-//                                   onChanged: (String novoItemSelecionado) {
-//                                     dropDownFavoriteSelected(
-//                                         novoItemSelecionado);
-//                                     acessosController.firstId.value =
-//                                         novoItemSelecionado;
-//                                     acessosController.firstId.value != '0'
-//                                         ? acessosController.getAFavorite()
-//                                         : acessosController.cleanController();
-//                                   },
-//                                   value: acessosController.firstId.value,
-//                                 ),
-//                               ),

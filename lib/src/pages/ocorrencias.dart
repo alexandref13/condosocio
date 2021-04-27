@@ -166,7 +166,6 @@ class _OcorrenciasState extends State<Ocorrencias> {
                   child: customTextField(
                     context,
                     null,
-                    // (DateFormat("HH:mm").format(data)),
                     hora.format(context),
                     false,
                     1,

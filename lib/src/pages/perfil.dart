@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:condosocio/src/controllers/login_controller.dart';
+import 'package:condosocio/src/controllers/perfil_controller.dart';
 import 'package:edge_alert/edge_alert.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -17,6 +18,7 @@ class Perfil extends StatefulWidget {
 
 class _PerfilState extends State<Perfil> {
   LoginController loginController = Get.put(LoginController());
+  PerfilController perfilController = Get.put(PerfilController());
 
   TextEditingController name = new TextEditingController();
   TextEditingController gender = new TextEditingController();
@@ -295,7 +297,7 @@ class _PerfilState extends State<Perfil> {
                   children: [
                     getImageWidget(),
                     SizedBox(
-                      height: 3,
+                      height: 10,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(2),
@@ -332,36 +334,10 @@ class _PerfilState extends State<Perfil> {
                   false,
                   1,
                   true,
-                  name,
+                  perfilController.name.value,
                 ),
                 SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    'Gênero :',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                customTextField(
-                  context,
-                  null,
-                  'Masculino',
-                  false,
-                  1,
-                  true,
-                  gender,
-                ),
-                SizedBox(
-                  height: 5,
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(2),
@@ -386,11 +362,11 @@ class _PerfilState extends State<Perfil> {
                     false,
                     1,
                     false,
-                    date,
+                    perfilController.birthdate.value,
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(2),
@@ -413,7 +389,7 @@ class _PerfilState extends State<Perfil> {
                   false,
                   1,
                   true,
-                  phone,
+                  perfilController.phone.value,
                 ),
                 SizedBox(
                   height: 10,
