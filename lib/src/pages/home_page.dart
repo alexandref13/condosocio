@@ -302,7 +302,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBarWidget(
           context: context,
           onTap: () {
-            print(loginController.imgcondo.value);
+            scaffoldKey.currentState.openDrawer();
           },
           image: loginController.imgcondo.value,
         ),

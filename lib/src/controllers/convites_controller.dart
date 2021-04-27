@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/acessos/api_acessos.dart';
+import 'package:condosocio/src/services/convites/api_convites.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -14,19 +15,31 @@ class ConvitesController extends GetxController {
   var date = DateTime.now().obs;
   var dataController = TextEditingController().obs;
   var inviteName = TextEditingController().obs;
+  var carBoard = TextEditingController().obs;
 
   var count = false.obs;
+  var countApp = false.obs;
   var guestList = [].obs;
 
   final DateFormat dateFormat = DateFormat('dd/MM/yyyy');
   final DateFormat timeFormat = DateFormat('HH:mm');
 
   handleAddCount() {
+    countApp(false);
     count(true);
+  }
+
+  handleAddCountApp() {
+    count(false);
+    countApp(true);
   }
 
   handleRemoveCount() {
     count(false);
+  }
+
+  handleRemoveCountApp() {
+    countApp(false);
   }
 
   handleAddGuestList() {
@@ -37,10 +50,22 @@ class ConvitesController extends GetxController {
         'tipo': acessosController.itemSelecionado.value,
       }
     });
-    print(guestList);
     acessosController.name.value.text = '';
     acessosController.phone.value.text = '';
     count(false);
+  }
+
+  handleAddAppList() {
+    guestList.addAll({
+      {
+        'nome': acessosController.name.value.text,
+        'placa': carBoard.value.text,
+        'tipo': 'App Mobilidade',
+      }
+    });
+    acessosController.name.value.text = '';
+    carBoard.value.text = '';
+    countApp(false);
   }
 
   getAFavorite() async {
@@ -48,7 +73,6 @@ class ConvitesController extends GetxController {
     final response = await ApiAcessos.getAFavorite();
     var dados = json.decode(response.body);
     acessosController.favorito = await dados.map((item) => item).toList();
-    print(dados);
 
     guestList.addAll({
       {
@@ -59,6 +83,14 @@ class ConvitesController extends GetxController {
     });
 
     acessosController.isLoading.value = false;
+  }
+
+  sendConvites(String startDate, String endDate) async {
+    var response = await ApiConvites.sendAcesso(startDate, endDate);
+
+    var data = json.decode(response.body);
+
+    return data;
   }
 
   @override

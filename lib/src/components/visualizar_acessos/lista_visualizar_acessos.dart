@@ -179,7 +179,7 @@ Widget listaVisualizarAcessos() {
                       Container(
                         decoration: BoxDecoration(
                             border: Border(
-                          bottom: BorderSide(width: 1, color: Colors.grey),
+                          bottom: BorderSide(width: 2, color: Colors.grey),
                         )),
                         padding: EdgeInsets.all(10),
                         child: Row(

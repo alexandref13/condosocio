@@ -28,10 +28,21 @@ class _ConviteWidgetState extends State<ConviteWidget> {
 
   Future<TimeOfDay> selectTime(BuildContext context) {
     final now = DateTime.now();
-
     return showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
+      builder: (BuildContext context, Widget child) {
+        return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            child: child);
+      },
+    );
+  }
+
+  Future<TimeOfDay> selectEndTime(BuildContext context) {
+    return showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: 23, minute: 59),
       builder: (BuildContext context, Widget child) {
         return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
@@ -53,6 +64,19 @@ class _ConviteWidgetState extends State<ConviteWidget> {
         firstDate: startSelectedDate,
         lastDate: DateTime(2100),
       );
+
+  @override
+  void initState() {
+    endSelectedDate = DateTime(
+      startSelectedDate.year,
+      startSelectedDate.month,
+      startSelectedDate.day,
+      23,
+      59,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     AcessosController acessosController = Get.put(AcessosController());
@@ -98,7 +122,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               child: customTextField(
                                 context,
                                 null,
-                                'Convite de ${convitesController.inviteName.value}',
+                                '${convitesController.inviteName.value.text}',
                                 true,
                                 1,
                                 true,
@@ -132,13 +156,15 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                 startSelectedTime = await selectTime(context);
                                 if (startSelectedTime == null) return;
 
-                                startSelectedDate = DateTime(
-                                  startSelectedDate.year,
-                                  startSelectedDate.month,
-                                  startSelectedDate.day,
-                                  startSelectedTime.hour,
-                                  startSelectedTime.minute,
-                                );
+                                setState(() {
+                                  startSelectedDate = DateTime(
+                                    startSelectedDate.year,
+                                    startSelectedDate.month,
+                                    startSelectedDate.day,
+                                    startSelectedTime.hour,
+                                    startSelectedTime.minute,
+                                  );
+                                });
 
                                 print({
                                   startSelectedDate,
@@ -182,16 +208,18 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                     await selectDateOnEndTime(context);
                                 if (endSelectedDate == null) return;
 
-                                endSelectedTime = await selectTime(context);
+                                endSelectedTime = await selectEndTime(context);
                                 if (endSelectedTime == null) return;
 
-                                endSelectedDate = DateTime(
-                                  endSelectedDate.year,
-                                  endSelectedDate.month,
-                                  endSelectedDate.day,
-                                  endSelectedTime.hour,
-                                  endSelectedTime.minute,
-                                );
+                                setState(() {
+                                  endSelectedDate = DateTime(
+                                    endSelectedDate.year,
+                                    endSelectedDate.month,
+                                    endSelectedDate.day,
+                                    endSelectedTime.hour,
+                                    endSelectedTime.minute,
+                                  );
+                                });
                               },
                               child: customTextField(
                                 context,
@@ -207,6 +235,9 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                             ),
                           ),
                         ],
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(
@@ -264,6 +295,70 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                 value: acessosController.firstId.value,
                               ),
                             ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Center(
+                              child: Text(
+                                'OU',
+                                style: GoogleFonts.montserrat(fontSize: 13),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            ButtonTheme(
+                              height: 50.0,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.resolveWith<Color>(
+                                    (Set<MaterialState> states) {
+                                      return Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor;
+                                    },
+                                  ),
+                                  elevation:
+                                      MaterialStateProperty.resolveWith<double>(
+                                    (Set<MaterialState> states) {
+                                      return 3;
+                                    },
+                                  ),
+                                  shape: MaterialStateProperty.resolveWith<
+                                      OutlinedBorder>(
+                                    (Set<MaterialState> states) {
+                                      return RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                onPressed: () {
+                                  convitesController.handleAddCountApp();
+                                },
+                                child: acessosController.isLoading.value
+                                    ? SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                        child: CircularProgressIndicator(
+                                          valueColor: AlwaysStoppedAnimation(
+                                              Colors.white),
+                                        ),
+                                      )
+                                    : Text(
+                                        "App Mobilidade",
+                                        style: GoogleFonts.montserrat(
+                                            color:
+                                                Theme.of(context).accentColor,
+                                            fontSize: 16),
+                                      ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Center(
                               child: Text(
                                 'OU',
@@ -314,7 +409,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                         ),
                                       )
                                     : Text(
-                                        "INSIRA O NOME",
+                                        "Adicione um convidado",
                                         style: GoogleFonts.montserrat(
                                             color:
                                                 Theme.of(context).accentColor,
@@ -375,7 +470,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                         ),
                                       )
                                     : Text(
-                                        "PROCURAR NOS SEUS CONTATOS",
+                                        "Procurar nos contatos",
                                         style: GoogleFonts.montserrat(
                                             color:
                                                 Theme.of(context).accentColor,
@@ -428,16 +523,41 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                                 .selectionColor,
                                           ),
                                         ),
-                                        Text(
-                                          convitesController.guestList[i]
-                                              ['tel'],
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 15,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor,
-                                          ),
-                                        ),
+                                        convitesController.guestList[i]
+                                                    ['tel'] !=
+                                                null
+                                            ? Text(
+                                                convitesController.guestList[i]
+                                                    ['tel'],
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 15,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                ),
+                                              )
+                                            : Container(
+                                                child: convitesController
+                                                                .guestList[i]
+                                                            ['placa'] !=
+                                                        null
+                                                    ? Text(
+                                                        convitesController
+                                                            .guestList[i]
+                                                                ['placa']
+                                                            .toString()
+                                                            .toUpperCase(),
+                                                        style: GoogleFonts
+                                                            .montserrat(
+                                                          fontSize: 15,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .textSelectionTheme
+                                                              .selectionColor,
+                                                        ),
+                                                      )
+                                                    : Container(),
+                                              )
                                       ],
                                     ),
                                   ],
@@ -451,6 +571,146 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                             ],
                           ),
                         ),
+                      convitesController.countApp.value
+                          ? Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 10,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(top: 7),
+                                    padding: EdgeInsets.all(7),
+                                    child: customTextField(
+                                      context,
+                                      'Nome do motorista',
+                                      null,
+                                      false,
+                                      1,
+                                      true,
+                                      acessosController.name.value,
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(bottom: 5),
+                                    padding: EdgeInsets.all(7),
+                                    child: customTextField(
+                                      context,
+                                      'Placa do carro',
+                                      null,
+                                      false,
+                                      1,
+                                      true,
+                                      convitesController.carBoard.value,
+                                    ),
+                                  ),
+                                  ButtonTheme(
+                                    height: 50.0,
+                                    child: ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty
+                                            .resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                            return Theme.of(context)
+                                                .accentColor;
+                                          },
+                                        ),
+                                        elevation: MaterialStateProperty
+                                            .resolveWith<double>(
+                                          (Set<MaterialState> states) {
+                                            return 3;
+                                          },
+                                        ),
+                                        shape: MaterialStateProperty
+                                            .resolveWith<OutlinedBorder>(
+                                          (Set<MaterialState> states) {
+                                            return RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        convitesController.handleAddAppList();
+                                      },
+                                      child: acessosController.isLoading.value
+                                          ? SizedBox(
+                                              width: 20,
+                                              height: 20,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation(
+                                                        Colors.white),
+                                              ),
+                                            )
+                                          : Text(
+                                              "ADICIONAR",
+                                              style: GoogleFonts.montserrat(
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                  fontSize: 16),
+                                            ),
+                                    ),
+                                  ),
+                                  ButtonTheme(
+                                    height: 50.0,
+                                    child: ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty
+                                            .resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                            return Theme.of(context)
+                                                .accentColor;
+                                          },
+                                        ),
+                                        elevation: MaterialStateProperty
+                                            .resolveWith<double>(
+                                          (Set<MaterialState> states) {
+                                            return 3;
+                                          },
+                                        ),
+                                        shape: MaterialStateProperty
+                                            .resolveWith<OutlinedBorder>(
+                                          (Set<MaterialState> states) {
+                                            return RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        convitesController
+                                            .handleRemoveCountApp();
+                                      },
+                                      child: acessosController.isLoading.value
+                                          ? SizedBox(
+                                              width: 20,
+                                              height: 20,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation(
+                                                        Colors.white),
+                                              ),
+                                            )
+                                          : Text(
+                                              "CANCELAR",
+                                              style: GoogleFonts.montserrat(
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                  fontSize: 16),
+                                            ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : Container(),
                       convitesController.count.value
                           ? Container(
                               padding: EdgeInsets.symmetric(
@@ -669,32 +929,14 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  acessosController.sendAcessos().then(
-                                    (value) {
-                                      if (value == 'vazio') {
-                                        onAlertButtonPressed(
-                                            context,
-                                            'Tipo de visitante, nome e celular são campos obrigátorios!',
-                                            null);
-                                        acessosController.isLoading.value =
-                                            false;
-                                      } else if (value == 1) {
-                                        onWhatsappButtonPressed(context, null);
-                                        acessosController.isLoading.value =
-                                            false;
-                                      } else {
-                                        onAlertButtonPressed(
-                                          context,
-                                          'Algo deu errado! \nTente novamente',
-                                          null,
-                                        );
-                                        acessosController.isLoading.value =
-                                            false;
-                                      }
-                                    },
-                                  );
-                                  acessosController.name.value.text = '';
-                                  acessosController.phone.value.text = '';
+                                  convitesController
+                                      .sendConvites(
+                                    startSelectedDate.toString(),
+                                    endSelectedDate.toString(),
+                                  )
+                                      .then((value) {
+                                    print(value);
+                                  });
                                   acessosController.firstId.value = '0';
                                 },
                                 child: acessosController.isLoading.value
@@ -707,7 +949,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                         ),
                                       )
                                     : Text(
-                                        "AUTORIZAR",
+                                        "Autorizar",
                                         style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
