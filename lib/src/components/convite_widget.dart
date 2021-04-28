@@ -1,7 +1,6 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
-import 'package:condosocio/src/components/whatsapp_button_pressed.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites_controller.dart';
 import 'package:flutter/material.dart';
@@ -606,107 +605,144 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                       convitesController.carBoard.value,
                                     ),
                                   ),
-                                  ButtonTheme(
-                                    height: 50.0,
-                                    child: ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty
-                                            .resolveWith<Color>(
-                                          (Set<MaterialState> states) {
-                                            return Theme.of(context)
-                                                .accentColor;
-                                          },
-                                        ),
-                                        elevation: MaterialStateProperty
-                                            .resolveWith<double>(
-                                          (Set<MaterialState> states) {
-                                            return 3;
-                                          },
-                                        ),
-                                        shape: MaterialStateProperty
-                                            .resolveWith<OutlinedBorder>(
-                                          (Set<MaterialState> states) {
-                                            return RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            );
-                                          },
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: ButtonTheme(
+                                          height: 50.0,
+                                          child: ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty
+                                                      .resolveWith<Color>(
+                                                (Set<MaterialState> states) {
+                                                  return Theme.of(context)
+                                                      .errorColor;
+                                                },
+                                              ),
+                                              elevation: MaterialStateProperty
+                                                  .resolveWith<double>(
+                                                (Set<MaterialState> states) {
+                                                  return 3;
+                                                },
+                                              ),
+                                              shape: MaterialStateProperty
+                                                  .resolveWith<OutlinedBorder>(
+                                                (Set<MaterialState> states) {
+                                                  return RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              acessosController
+                                                  .name.value.text = '';
+                                              convitesController
+                                                  .carBoard.value.text = '';
+                                              convitesController
+                                                  .handleRemoveCountApp();
+                                            },
+                                            child: acessosController
+                                                    .isLoading.value
+                                                ? SizedBox(
+                                                    width: 20,
+                                                    height: 20,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation(
+                                                              Colors.white),
+                                                    ),
+                                                  )
+                                                : Text(
+                                                    "Cancelar",
+                                                    style: GoogleFonts.montserrat(
+                                                        color: Theme.of(context)
+                                                            .textSelectionTheme
+                                                            .selectionColor,
+                                                        fontSize: 16),
+                                                  ),
+                                          ),
                                         ),
                                       ),
-                                      onPressed: () {
-                                        convitesController.handleAddAppList();
-                                      },
-                                      child: acessosController.isLoading.value
-                                          ? SizedBox(
-                                              width: 20,
-                                              height: 20,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation(
-                                                        Colors.white),
+                                      SizedBox(
+                                        width: 12,
+                                      ),
+                                      Expanded(
+                                        child: ButtonTheme(
+                                          height: 50.0,
+                                          child: ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty
+                                                      .resolveWith<Color>(
+                                                (Set<MaterialState> states) {
+                                                  return Theme.of(context)
+                                                      .accentColor;
+                                                },
                                               ),
-                                            )
-                                          : Text(
-                                              "ADICIONAR",
-                                              style: GoogleFonts.montserrat(
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                  fontSize: 16),
+                                              elevation: MaterialStateProperty
+                                                  .resolveWith<double>(
+                                                (Set<MaterialState> states) {
+                                                  return 3;
+                                                },
+                                              ),
+                                              shape: MaterialStateProperty
+                                                  .resolveWith<OutlinedBorder>(
+                                                (Set<MaterialState> states) {
+                                                  return RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  );
+                                                },
+                                              ),
                                             ),
-                                    ),
-                                  ),
-                                  ButtonTheme(
-                                    height: 50.0,
-                                    child: ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty
-                                            .resolveWith<Color>(
-                                          (Set<MaterialState> states) {
-                                            return Theme.of(context)
-                                                .accentColor;
-                                          },
-                                        ),
-                                        elevation: MaterialStateProperty
-                                            .resolveWith<double>(
-                                          (Set<MaterialState> states) {
-                                            return 3;
-                                          },
-                                        ),
-                                        shape: MaterialStateProperty
-                                            .resolveWith<OutlinedBorder>(
-                                          (Set<MaterialState> states) {
-                                            return RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            );
-                                          },
+                                            onPressed: () {
+                                              if (acessosController
+                                                          .name.value.text ==
+                                                      '' ||
+                                                  convitesController.carBoard
+                                                          .value.text ==
+                                                      '') {
+                                                onAlertButtonPressed(
+                                                  context,
+                                                  'Campo nome ou placa vazio!',
+                                                  null,
+                                                );
+                                              } else {
+                                                convitesController
+                                                    .handleAddAppList();
+                                              }
+                                            },
+                                            child: acessosController
+                                                    .isLoading.value
+                                                ? SizedBox(
+                                                    width: 20,
+                                                    height: 20,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation(
+                                                              Colors.white),
+                                                    ),
+                                                  )
+                                                : Text(
+                                                    "Adicionar",
+                                                    style: GoogleFonts.montserrat(
+                                                        color: Theme.of(context)
+                                                            .textSelectionTheme
+                                                            .selectionColor,
+                                                        fontSize: 16),
+                                                  ),
+                                          ),
                                         ),
                                       ),
-                                      onPressed: () {
-                                        convitesController
-                                            .handleRemoveCountApp();
-                                      },
-                                      child: acessosController.isLoading.value
-                                          ? SizedBox(
-                                              width: 20,
-                                              height: 20,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation(
-                                                        Colors.white),
-                                              ),
-                                            )
-                                          : Text(
-                                              "CANCELAR",
-                                              style: GoogleFonts.montserrat(
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                  fontSize: 16),
-                                            ),
-                                    ),
-                                  ),
+                                    ],
+                                  )
                                 ],
                               ),
                             )
@@ -790,106 +826,146 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                       acessosController.phone.value,
                                     ),
                                   ),
-                                  ButtonTheme(
-                                    height: 50.0,
-                                    child: ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty
-                                            .resolveWith<Color>(
-                                          (Set<MaterialState> states) {
-                                            return Theme.of(context)
-                                                .accentColor;
-                                          },
-                                        ),
-                                        elevation: MaterialStateProperty
-                                            .resolveWith<double>(
-                                          (Set<MaterialState> states) {
-                                            return 3;
-                                          },
-                                        ),
-                                        shape: MaterialStateProperty
-                                            .resolveWith<OutlinedBorder>(
-                                          (Set<MaterialState> states) {
-                                            return RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        convitesController.handleAddGuestList();
-                                      },
-                                      child: acessosController.isLoading.value
-                                          ? SizedBox(
-                                              width: 20,
-                                              height: 20,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation(
-                                                        Colors.white),
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: ButtonTheme(
+                                            height: 50.0,
+                                            child: ElevatedButton(
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty
+                                                        .resolveWith<Color>(
+                                                  (Set<MaterialState> states) {
+                                                    return Theme.of(context)
+                                                        .errorColor;
+                                                  },
+                                                ),
+                                                elevation: MaterialStateProperty
+                                                    .resolveWith<double>(
+                                                  (Set<MaterialState> states) {
+                                                    return 3;
+                                                  },
+                                                ),
+                                                shape: MaterialStateProperty
+                                                    .resolveWith<
+                                                        OutlinedBorder>(
+                                                  (Set<MaterialState> states) {
+                                                    return RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                    );
+                                                  },
+                                                ),
                                               ),
-                                            )
-                                          : Text(
-                                              "ADICIONAR",
-                                              style: GoogleFonts.montserrat(
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                  fontSize: 16),
+                                              onPressed: () {
+                                                convitesController
+                                                    .handleRemoveCount();
+                                              },
+                                              child: acessosController
+                                                      .isLoading.value
+                                                  ? SizedBox(
+                                                      width: 20,
+                                                      height: 20,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation(
+                                                                Colors.white),
+                                                      ),
+                                                    )
+                                                  : Text(
+                                                      "Cancelar",
+                                                      style: GoogleFonts.montserrat(
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .textSelectionTheme
+                                                              .selectionColor,
+                                                          fontSize: 16),
+                                                    ),
                                             ),
-                                    ),
-                                  ),
-                                  ButtonTheme(
-                                    height: 50.0,
-                                    child: ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty
-                                            .resolveWith<Color>(
-                                          (Set<MaterialState> states) {
-                                            return Theme.of(context)
-                                                .accentColor;
-                                          },
+                                          ),
                                         ),
-                                        elevation: MaterialStateProperty
-                                            .resolveWith<double>(
-                                          (Set<MaterialState> states) {
-                                            return 3;
-                                          },
+                                        SizedBox(
+                                          width: 12,
                                         ),
-                                        shape: MaterialStateProperty
-                                            .resolveWith<OutlinedBorder>(
-                                          (Set<MaterialState> states) {
-                                            return RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        convitesController.handleRemoveCount();
-                                      },
-                                      child: acessosController.isLoading.value
-                                          ? SizedBox(
-                                              width: 20,
-                                              height: 20,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation(
-                                                        Colors.white),
+                                        Expanded(
+                                          child: ButtonTheme(
+                                            height: 50.0,
+                                            child: ElevatedButton(
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty
+                                                        .resolveWith<Color>(
+                                                  (Set<MaterialState> states) {
+                                                    return Theme.of(context)
+                                                        .accentColor;
+                                                  },
+                                                ),
+                                                elevation: MaterialStateProperty
+                                                    .resolveWith<double>(
+                                                  (Set<MaterialState> states) {
+                                                    return 3;
+                                                  },
+                                                ),
+                                                shape: MaterialStateProperty
+                                                    .resolveWith<
+                                                        OutlinedBorder>(
+                                                  (Set<MaterialState> states) {
+                                                    return RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                    );
+                                                  },
+                                                ),
                                               ),
-                                            )
-                                          : Text(
-                                              "CANCELAR",
-                                              style: GoogleFonts.montserrat(
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                  fontSize: 16),
+                                              onPressed: () {
+                                                if (acessosController
+                                                            .name.value.text ==
+                                                        '' ||
+                                                    acessosController
+                                                            .itemSelecionado
+                                                            .value ==
+                                                        'Selecione o tipo de visitante') {
+                                                  onAlertButtonPressed(
+                                                    context,
+                                                    'Campo nome ou tipo de visitante vazio!',
+                                                    null,
+                                                  );
+                                                } else {
+                                                  convitesController
+                                                      .handleAddGuestList();
+                                                }
+                                              },
+                                              child: acessosController
+                                                      .isLoading.value
+                                                  ? SizedBox(
+                                                      width: 20,
+                                                      height: 20,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation(
+                                                                Colors.white),
+                                                      ),
+                                                    )
+                                                  : Text(
+                                                      "Adicionar",
+                                                      style: GoogleFonts.montserrat(
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .textSelectionTheme
+                                                              .selectionColor,
+                                                          fontSize: 16),
+                                                    ),
                                             ),
-                                    ),
-                                  ),
+                                          ),
+                                        ),
+                                      ])
                                 ],
                               ),
                             )

@@ -14,8 +14,26 @@ class _AcessosState extends State<Acessos> {
       length: 1,
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(
+                Icons.add,
+                color: Theme.of(context).textSelectionTheme.selectionColor,
+              ),
+              onPressed: () {}),
+          actions: [
+            Row(
+              children: [
+                IconButton(
+                    icon: Icon(
+                      Icons.add,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                    ),
+                    onPressed: () {}),
+              ],
+            )
+          ],
           title: Text('Acessos', style: GoogleFonts.montserrat(fontSize: 20)),
-          centerTitle: true,
           bottom: TabBar(
             tabs: <Widget>[
               Text(

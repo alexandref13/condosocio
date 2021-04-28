@@ -20,12 +20,19 @@ class _PerfilState extends State<Perfil> {
   LoginController loginController = Get.put(LoginController());
   PerfilController perfilController = Get.put(PerfilController());
 
-  TextEditingController name = new TextEditingController();
-  TextEditingController gender = new TextEditingController();
-  TextEditingController date = new TextEditingController();
-  TextEditingController phone = new TextEditingController();
+  var startSelectedDate = DateTime.now();
+  var startSelectedTime = TimeOfDay.now();
+  var startDate = TextEditingController();
+  var startTime = TextEditingController();
 
-  final uri = Uri.parse("http://focuseg.com.br/flutter/upload_imagem.php");
+  Future<DateTime> selectDateTime(BuildContext context) => showDatePicker(
+        context: context,
+        initialDate: DateTime.now().add(Duration(seconds: 1)),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2100),
+      );
+
+  final uri = Uri.parse("https://focuseg.com.br/flutter/upload_imagem.php");
   File _selectedFile;
   final _picker = ImagePicker();
 
@@ -287,6 +294,7 @@ class _PerfilState extends State<Perfil> {
         ),
         body: SingleChildScrollView(
           child: Container(
+            margin: EdgeInsets.only(top: 10),
             padding: EdgeInsets.all(8),
             height: MediaQuery.of(context).size.height * .95,
             width: MediaQuery.of(context).size.width,
@@ -313,10 +321,13 @@ class _PerfilState extends State<Perfil> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(2),
                   child: Text(
-                    'Nome :',
+                    'Nome: ',
                     style: GoogleFonts.montserrat(
                       fontSize: 16,
                       color:
@@ -330,7 +341,7 @@ class _PerfilState extends State<Perfil> {
                 customTextField(
                   context,
                   null,
-                  '${loginController.nome.value}',
+                  null,
                   false,
                   1,
                   true,
@@ -342,36 +353,7 @@ class _PerfilState extends State<Perfil> {
                 Padding(
                   padding: const EdgeInsets.all(2),
                   child: Text(
-                    'Data de nascimento:',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: customTextField(
-                    context,
-                    null,
-                    (DateFormat("dd/MM/yyyy").format(data)),
-                    false,
-                    1,
-                    false,
-                    perfilController.birthdate.value,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    'Celular :',
+                    'Sobrenome: ',
                     style: GoogleFonts.montserrat(
                       fontSize: 16,
                       color:
@@ -385,7 +367,75 @@ class _PerfilState extends State<Perfil> {
                 customTextField(
                   context,
                   null,
-                  '(91) 989999999',
+                  null,
+                  false,
+                  1,
+                  true,
+                  perfilController.secondName.value,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    'Data de aniversário: ',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    startSelectedDate = await selectDateTime(context);
+                    if (startSelectedDate == null) return;
+
+                    setState(() {
+                      startSelectedDate = DateTime(
+                        startSelectedDate.year,
+                        startSelectedDate.month,
+                        startSelectedDate.day,
+                      );
+                    });
+                  },
+                  child: customTextField(
+                    context,
+                    null,
+                    DateFormat("dd/MM/yyyy").format(
+                      startSelectedDate,
+                    ),
+                    false,
+                    1,
+                    false,
+                    startDate,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    'Celular: ',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                customTextField(
+                  context,
+                  null,
+                  null,
                   false,
                   1,
                   true,

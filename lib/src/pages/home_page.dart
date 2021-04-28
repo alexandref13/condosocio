@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/home_page_app_bar/app_bar_widget.dart';
+import 'package:condosocio/src/controllers/home_page_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final LoginController loginController = Get.put(LoginController());
   final ThemeController themeController = Get.put(ThemeController());
+  final HomePageController homePageController = Get.put(HomePageController());
 
   int selectedIndex = 0;
 
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   final _picker = ImagePicker();
   File _selectedFile;
 
-  final uri = Uri.parse("http://focuseg.com.br/flutter/upload_imagem.php");
+  final uri = Uri.parse("https://focuseg.com.br/flutter/upload_imagem.php");
 
   Future<void> logoutUser() async {
     await GetStorage.init();
@@ -574,11 +576,8 @@ class _HomePageState extends State<HomePage> {
                           size: 22,
                         ),
                         onTap: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => Senha()));
+                          homePageController.launched = homePageController
+                              .launchInBrowser('http://onelink.to/r8p97m');
                         },
                       ),
                     ),

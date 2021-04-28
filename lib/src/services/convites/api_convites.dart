@@ -1,9 +1,6 @@
 import 'dart:convert';
-
-import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
-import 'package:condosocio/src/services/convites/mapa_convites.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
