@@ -1,5 +1,7 @@
+import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:ui';
@@ -37,7 +39,7 @@ class _SenhaState extends State<Senha> {
         isLoading = false;
       });
       EdgeAlert.show(context,
-          title: 'Senha Alterada Com Sucesso!',
+          title: 'Email enviado com sucesso!',
           gravity: EdgeAlert.BOTTOM,
           backgroundColor: Colors.green,
           icon: Icons.check);
@@ -57,29 +59,13 @@ class _SenhaState extends State<Senha> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          elevation: 0,
           title: Text('Alterar Senha'),
-          centerTitle: true,
-          backgroundColor: Color(0xff1A936F),
         ),
         body: SingleChildScrollView(
           child: isLoading
-              ? Container(
-                  height: MediaQuery.of(context).size.height,
-                  color: Colors.black,
-                  child: Center(
-                    child: SizedBox(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 4,
-                        valueColor: AlwaysStoppedAnimation(Colors.red[900]),
-                      ),
-                      height: 40,
-                      width: 40,
-                    ),
-                  ),
-                )
+              ? CircularProgressIndicatorWidget()
               : Container(
-                  color: Colors.black,
+                  color: Theme.of(context).primaryColor,
                   child: Center(
                     child: Form(
                       key: _form,
@@ -108,74 +94,46 @@ class _SenhaState extends State<Senha> {
                                   return null;
                                 },
                                 obscureText: true,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'SFUIDisplay'),
-                                decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.white, width: 1.0),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
-                                  labelText: 'Entre com a nova senha',
-                                  prefixIcon: Icon(Icons.mail_outline,
-                                      color: Colors.white),
-                                  labelStyle: TextStyle(
-                                      color: Colors.white, fontSize: 16),
-                                  errorBorder: new OutlineInputBorder(
-                                      borderSide: new BorderSide(
-                                          color: Color(0xff114B5F))),
-                                  focusedErrorBorder: new OutlineInputBorder(
-                                      borderSide: new BorderSide(
-                                          color: Color(0xff114B5F))),
-                                  errorStyle:
-                                      TextStyle(color: Color(0xff114B5F)),
+                                style: GoogleFonts.montserrat(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
                                 ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 50),
-                            child: Container(
-                              //color: Color(0xfff5f5f5),
-                              child: TextFormField(
-                                autovalidateMode: AutovalidateMode.always,
-                                controller: senhaConfirma,
-                                validator: (val) {
-                                  if (val.isEmpty) return 'Campo Vazio!';
-                                  if (val != senhaNova.text)
-                                    return 'Senhas Não Conferem!';
-                                  return null;
-                                },
-                                obscureText: true,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'SFUIDisplay'),
                                 decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Colors.white, width: 1.0),
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      width: 1.0,
+                                    ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8.0),
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
-                                  labelText: 'Confirme a nova senha',
+                                      borderSide: BorderSide(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor)),
+                                  labelText: 'Entre com o seu email',
                                   prefixIcon: Icon(Icons.mail_outline,
-                                      color: Colors.white),
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor),
                                   labelStyle: TextStyle(
-                                      color: Colors.white, fontSize: 16),
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      fontSize: 16),
                                   errorBorder: new OutlineInputBorder(
-                                      borderSide: new BorderSide(
-                                          color: Color(0xff114B5F))),
+                                    borderSide: new BorderSide(
+                                      color: Theme.of(context).errorColor,
+                                    ),
+                                  ),
                                   focusedErrorBorder: new OutlineInputBorder(
                                       borderSide: new BorderSide(
-                                          color: Color(0xff114B5F))),
-                                  errorStyle:
-                                      TextStyle(color: Color(0xff114B5F)),
+                                          color: Theme.of(context).errorColor)),
+                                  errorStyle: TextStyle(
+                                      color: Theme.of(context).errorColor),
                                 ),
                               ),
                             ),
@@ -211,7 +169,7 @@ class _SenhaState extends State<Senha> {
                                   }
                                 },
                                 child: Text(
-                                  "Alterar",
+                                  "Enviar",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20),
                                 ),

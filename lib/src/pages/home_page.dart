@@ -4,7 +4,7 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:condosocio/src/components/home_widget_bottomtab.dart';
-import 'package:condosocio/src/components/senha.dart';
+import 'package:condosocio/src/pages/senha.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
     loginController.email.value.text = '';
     loginController.password.value.text = '';
     themeController.setTheme('admin');
-    Get.toNamed('/login');
+    Get.offAllNamed('/login');
   }
 
   Future uploadImage() async {
@@ -448,11 +448,7 @@ class _HomePageState extends State<HomePage> {
                           size: 22,
                         ),
                         onTap: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => Senha()));
+                          Get.toNamed('/senha');
                         },
                       ),
                     ),
@@ -481,7 +477,7 @@ class _HomePageState extends State<HomePage> {
                           size: 22,
                         ),
                         onTap: () {
-                          Navigator.pushNamed(context, '/ajuda');
+                          Get.toNamed('/sobre');
                         },
                       ),
                     ),
@@ -510,11 +506,9 @@ class _HomePageState extends State<HomePage> {
                           size: 22,
                         ),
                         onTap: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => Senha()));
+                          homePageController.launched =
+                              homePageController.launchInBrowser(
+                                  'https://condosocio.com.br/termo.html');
                         },
                       ),
                     ),
@@ -543,11 +537,9 @@ class _HomePageState extends State<HomePage> {
                           size: 22,
                         ),
                         onTap: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => Senha()));
+                          homePageController.launched =
+                              homePageController.launchInBrowser(
+                                  'https://condosocio.com.br/privacidade.html');
                         },
                       ),
                     ),
