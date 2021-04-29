@@ -117,16 +117,9 @@ class _HomePageState extends State<HomePage> {
       return GestureDetector(
         onTap: () {
           _configurandoModalBottomSheet(context);
-          //Navigator.pushNamed(context, '/Home');
         },
         child: loginController.imgperfil.value == ''
             ? Container(
-                width: 70,
-                height: 70,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
                 child: Column(
                   children: [
                     Container(
@@ -147,25 +140,34 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('images/user.png'),
+                  ),
+                ),
               )
             : Container(
                 child: Column(
                   children: [
                     Container(
-                        margin: EdgeInsets.only(left: 40),
-                        child: Center(
-                          child: Icon(
-                            Icons.edit,
-                            size: 20,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
+                      margin: EdgeInsets.only(left: 40),
+                      child: Center(
+                        child: Icon(
+                          Icons.edit,
+                          size: 20,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
                         ),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).accentColor,
-                        )),
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
                   ],
                 ),
                 width: 70,

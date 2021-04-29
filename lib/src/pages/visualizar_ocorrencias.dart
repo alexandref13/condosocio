@@ -86,51 +86,6 @@ class VisualizarOcorrencias extends StatelessWidget {
                       children: [
                         boxSearch(context, ocorrenciasController.search.value,
                             ocorrenciasController.onSearchTextChanged),
-                        Container(
-                          color: Theme.of(context).accentColor,
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Data',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 16,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                ),
-                              ),
-                              Text(
-                                'Titulo',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 16,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                ),
-                              ),
-                              Text(
-                                'Ocorrido',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 16,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                ),
-                              ),
-                              Text(
-                                'Status',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 16,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                         Expanded(
                           child: ocorrenciasController.searchResult.length !=
                                       0 ||
@@ -242,13 +197,20 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             ),
                                             Container(
                                               padding:
-                                                  EdgeInsets.only(right: 10),
+                                                  EdgeInsets.only(right: 5),
                                               child: Icon(
                                                 FontAwesome.clock_o,
                                                 size: 40,
                                                 color: Theme.of(context)
                                                     .accentColor,
                                               ),
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.05,
+                                              child: Icon(Icons.arrow_right),
                                             )
                                           ],
                                         ),
@@ -362,7 +324,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             ),
                                             Container(
                                               padding:
-                                                  EdgeInsets.only(right: 10),
+                                                  EdgeInsets.only(right: 5),
                                               child: Icon(
                                                 ocorrencia.status == '1'
                                                     ? Feather.check
@@ -373,6 +335,13 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                         .accentColor
                                                     : Colors.red,
                                               ),
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.05,
+                                              child: Icon(Icons.arrow_right),
                                             )
                                           ],
                                         ),

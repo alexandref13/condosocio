@@ -45,51 +45,6 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                       visualizarOuvidoria.search.value,
                       visualizarOuvidoria.onSearchTextChanged,
                     ),
-                    Container(
-                      color: Theme.of(context).accentColor,
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Data',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 16,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
-                          ),
-                          Text(
-                            'Hora',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 16,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
-                          ),
-                          Text(
-                            'Assunto',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 16,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
-                          ),
-                          Text(
-                            'Respostas',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 16,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                     Expanded(child: listaVisualizarOuvidoria())
                   ],
                 );

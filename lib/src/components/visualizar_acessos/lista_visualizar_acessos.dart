@@ -142,6 +142,9 @@ Widget listaVisualizarAcessos() {
                                       ],
                                     ),
                                   ),
+                            Container(
+                              child: Icon(Icons.arrow_right),
+                            )
                           ],
                         ),
                       ),
@@ -284,6 +287,9 @@ Widget listaVisualizarAcessos() {
                                       ],
                                     ),
                                   ),
+                            Container(
+                              child: Icon(Icons.arrow_right),
+                            )
                           ],
                         ),
                       ),

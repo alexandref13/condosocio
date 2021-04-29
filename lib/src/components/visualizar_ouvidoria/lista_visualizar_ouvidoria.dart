@@ -73,7 +73,6 @@ Widget listaVisualizarOuvidoria() {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(right: 10),
                           child: ouvidoria.status == 0
                               ? Icon(
                                   FontAwesome.clock_o,
@@ -85,6 +84,10 @@ Widget listaVisualizarOuvidoria() {
                                   size: 40,
                                   color: Theme.of(context).accentColor,
                                 ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.05,
+                          child: Icon(Icons.arrow_right),
                         )
                       ],
                     ),
@@ -156,7 +159,6 @@ Widget listaVisualizarOuvidoria() {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(right: 10),
                           child: ouvidoria.status == 0
                               ? Icon(
                                   FontAwesome.clock_o,
@@ -168,6 +170,10 @@ Widget listaVisualizarOuvidoria() {
                                   size: 40,
                                   color: Theme.of(context).accentColor,
                                 ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.05,
+                          child: Icon(Icons.arrow_right),
                         )
                       ],
                     ),
