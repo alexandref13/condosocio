@@ -1,3 +1,4 @@
+import 'package:condosocio/src/pages/enquetes.dart';
 import 'package:condosocio/src/pages/senha.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
 import 'package:condosocio/src/pages/comunicados.dart';
@@ -75,6 +76,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/reserva', page: () => Reserva()),
         GetPage(name: '/listOfCondo', page: () => ListOfCondo()),
         GetPage(name: '/convites', page: () => Convite()),
+        GetPage(name: '/enquetes', page: () => Enquetes()),
       ],
     );
   }

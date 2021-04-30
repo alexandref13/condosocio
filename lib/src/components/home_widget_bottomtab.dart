@@ -303,7 +303,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          print('Nao tem page aq');
+                          Get.toNamed('/enquetes');
                         },
                         child: Container(
                             decoration: BoxDecoration(
