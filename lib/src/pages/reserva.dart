@@ -33,7 +33,7 @@ class Reserva extends StatelessWidget {
                             color: Theme.of(context).accentColor,
                             boxShadow: [
                               BoxShadow(
-                                color: Color(0xff103845),
+                                color: Theme.of(context).buttonColor,
                                 spreadRadius: 3,
                                 blurRadius: 1,
                                 offset:
@@ -72,7 +72,7 @@ class Reserva extends StatelessWidget {
                           color: Theme.of(context).accentColor,
                           boxShadow: [
                             BoxShadow(
-                              color: Color(0xff103845),
+                              color: Theme.of(context).buttonColor,
                               spreadRadius: 3,
                               blurRadius: 1,
                               offset:
@@ -112,7 +112,7 @@ class Reserva extends StatelessWidget {
                           color: Theme.of(context).accentColor,
                           boxShadow: [
                             BoxShadow(
-                              color: Color(0xff103845),
+                              color: Theme.of(context).buttonColor,
                               spreadRadius: 3,
                               blurRadius: 1,
                               offset:
