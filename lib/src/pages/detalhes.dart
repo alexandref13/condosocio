@@ -21,7 +21,10 @@ class DetalhesComunicados extends StatelessWidget {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          child: Expanded(
+          child: GestureDetector(
+            onTap: () {
+              print(comunicadosController.texto.value);
+            },
             child: Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
@@ -29,6 +32,11 @@ class DetalhesComunicados extends StatelessWidget {
               child: Html(
                 data: comunicadosController.texto.value,
                 style: {
+                  'img': Style(
+                    width: 400,
+                    height: 400,
+                    backgroundColor: Colors.red,
+                  ),
                   "h3": Style(
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor),
@@ -36,9 +44,9 @@ class DetalhesComunicados extends StatelessWidget {
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor),
                   "p": Style(
-                      fontFamily: 'montserrat',
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+                    fontFamily: 'montserrat',
+                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                  ),
                   "li": Style(
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor,

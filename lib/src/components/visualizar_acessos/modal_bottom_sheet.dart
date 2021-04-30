@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/whatsapp_button_pressed.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
@@ -40,14 +41,17 @@ void configurandoModalBottomSheet(context, String pessoa, String placa,
                         height: 30,
                         child: ElevatedButton(
                           onPressed: () {
-                            acessosController.deleteAcesso().then((value) {
-                              if (value == 1) {
-                                onAlertButtonPressed(
-                                  context,
-                                  'Acesso excluido',
-                                  '/home',
-                                );
-                              }
+                            deleteAlert(context, 'Deseja excluir este acesso?',
+                                () {
+                              acessosController.deleteAcesso().then((value) {
+                                if (value == 1) {
+                                  onAlertButtonPressed(
+                                    context,
+                                    'Acesso excluido',
+                                    '/home',
+                                  );
+                                }
+                              });
                             });
                           },
                           style: ButtonStyle(

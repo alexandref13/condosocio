@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-onAlertButtonPressed(context, String text, String page) {
+deleteAlert(context, String text, VoidCallback function) {
   Alert(
     image: Icon(
       Icons.highlight_off,
@@ -27,19 +27,29 @@ onAlertButtonPressed(context, String text, String page) {
     buttons: [
       DialogButton(
         child: Text(
-          "OK",
+          "Cancelar",
           style: GoogleFonts.montserrat(
-            color: Colors.white,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
             fontSize: 18,
           ),
         ),
         onPressed: () {
-          page != null
-              ? Get.offNamedUntil('$page', ModalRoute.withName('$page'))
-              : Get.back();
+          Get.back();
         },
         width: 80,
         color: Theme.of(context).errorColor,
+      ),
+      DialogButton(
+        child: Text(
+          "OK",
+          style: GoogleFonts.montserrat(
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+            fontSize: 18,
+          ),
+        ),
+        onPressed: function,
+        width: 80,
+        color: Theme.of(context).primaryColor,
       )
     ],
   ).show();
