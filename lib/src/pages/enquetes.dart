@@ -37,7 +37,7 @@ class Enquetes extends StatelessWidget {
                     )
                   : Container(),
               Container(
-                margin: EdgeInsets.only(top: 15),
+                margin: EdgeInsets.only(top: 40),
                 child: Center(
                     child: Text(
                   'O que você prefere como prioridade?',

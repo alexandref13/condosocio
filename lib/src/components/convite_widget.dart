@@ -238,96 +238,6 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                           ),
                         ],
                       ),
-                      for (var i = 0;
-                          i < convitesController.guestList.length;
-                          i++)
-                        Container(
-                          margin: EdgeInsets.only(bottom: 12, top: 12),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                width: 1,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              )),
-                          padding: EdgeInsets.all(10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 20),
-                                      child: Icon(Feather.user_check),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '${convitesController.guestList[i]['nome']} | ${convitesController.guestList[i]['tipo']} ',
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor,
-                                          ),
-                                        ),
-                                        convitesController.guestList[i]
-                                                    ['tel'] !=
-                                                null
-                                            ? Text(
-                                                convitesController.guestList[i]
-                                                    ['tel'],
-                                                style: GoogleFonts.montserrat(
-                                                  fontSize: 15,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                ),
-                                              )
-                                            : Container(
-                                                child: convitesController
-                                                                .guestList[i]
-                                                            ['placa'] !=
-                                                        null
-                                                    ? Text(
-                                                        convitesController
-                                                            .guestList[i]
-                                                                ['placa']
-                                                            .toString()
-                                                            .toUpperCase(),
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                          fontSize: 15,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .textSelectionTheme
-                                                              .selectionColor,
-                                                        ),
-                                                      )
-                                                    : Container(),
-                                              )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.delete),
-                                onPressed: () =>
-                                    convitesController.guestList.removeAt(i),
-                              )
-                            ],
-                          ),
-                        ),
                       convitesController.countApp.value
                           ? Container(
                               padding: EdgeInsets.symmetric(
@@ -749,9 +659,99 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               ),
                             )
                           : Container(),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      for (var i = 0;
+                          i < convitesController.guestList.length;
+                          i++)
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 10,
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                width: 1,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              )),
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: Icon(Feather.user_check),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '${convitesController.guestList[i]['nome']} | ${convitesController.guestList[i]['tipo']} ',
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                          ),
+                                        ),
+                                        convitesController.guestList[i]
+                                                    ['tel'] !=
+                                                null
+                                            ? Text(
+                                                convitesController.guestList[i]
+                                                    ['tel'],
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 15,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                ),
+                                              )
+                                            : Container(
+                                                child: convitesController
+                                                                .guestList[i]
+                                                            ['placa'] !=
+                                                        null
+                                                    ? Text(
+                                                        convitesController
+                                                            .guestList[i]
+                                                                ['placa']
+                                                            .toString()
+                                                            .toUpperCase(),
+                                                        style: GoogleFonts
+                                                            .montserrat(
+                                                          fontSize: 15,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .textSelectionTheme
+                                                              .selectionColor,
+                                                        ),
+                                                      )
+                                                    : Container(),
+                                              )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () =>
+                                    convitesController.guestList.removeAt(i),
+                              )
+                            ],
+                          ),
+                        ),
                       SizedBox(
                         height: 20,
                       ),
@@ -997,7 +997,9 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                           ],
                         ),
                       ),
-
+                      SizedBox(
+                        height: 20,
+                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
@@ -1036,7 +1038,18 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                     endSelectedDate.toString(),
                                   )
                                       .then((value) {
-                                    print(value);
+                                    if (value == 1) {
+                                      onAlertButtonPressed(
+                                          context,
+                                          'Seu convite foi enviado com sucesso!',
+                                          '/home');
+                                    } else {
+                                      onAlertButtonPressed(
+                                        context,
+                                        'Algo deu errado \n Tente novamente',
+                                        '/home',
+                                      );
+                                    }
                                   });
                                   acessosController.firstId.value = '0';
                                 },
@@ -1137,4 +1150,3 @@ class _ConviteWidgetState extends State<ConviteWidget> {
     );
   }
 }
-
