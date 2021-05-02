@@ -6,7 +6,6 @@ import 'package:condosocio/src/services/acessos/api_acessos.dart';
 import 'package:condosocio/src/services/convites/api_convites.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class ConvitesController extends GetxController {
   AcessosController acessosController = Get.put(AcessosController());
@@ -22,8 +21,9 @@ class ConvitesController extends GetxController {
 
   var count = false.obs;
   var countApp = false.obs;
-  var isDropdownSelected = false.obs;
   var guestList = [].obs;
+
+  var isLoading = false.obs;
 
   handleAddCount() {
     countApp(false);
@@ -87,9 +87,12 @@ class ConvitesController extends GetxController {
   }
 
   sendConvites(String startDate, String endDate) async {
+    isLoading(true);
     var response = await ApiConvites.sendAcesso(startDate, endDate);
 
     var data = json.decode(response.body);
+
+    isLoading(false);
 
     return data;
   }

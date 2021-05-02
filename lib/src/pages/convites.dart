@@ -16,6 +16,16 @@ class Convite extends StatelessWidget {
       length: 2,
       child: Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                if (convitesController.page.value == 2) {
+                  convitesController.handleMinusPage();
+                } else if (convitesController.page.value == 1) {
+                  Get.offNamed('/home');
+                }
+              },
+              icon: Icon(Icons.arrow_back),
+            ),
             title: Text(
               'Convites',
             ),
@@ -26,14 +36,14 @@ class Convite extends StatelessWidget {
                 Text(
                   'Adicionar',
                   style: GoogleFonts.montserrat(
-                      fontSize: 16,
+                      fontSize: 14,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor),
                 ),
                 Text(
                   'Visualizar',
                   style: GoogleFonts.montserrat(
-                    fontSize: 16,
+                    fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor,
                   ),
                 ),

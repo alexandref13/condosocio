@@ -73,6 +73,13 @@ class _ConviteWidgetState extends State<ConviteWidget> {
       23,
       59,
     );
+    startSelectedDate = DateTime(
+      startSelectedDate.year,
+      startSelectedDate.month,
+      startSelectedDate.day,
+      startSelectedTime.hour,
+      startSelectedTime.minute,
+    );
     super.initState();
   }
 
@@ -89,7 +96,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
             : SingleChildScrollView(
                 child: Container(
                   height: MediaQuery.of(context).size.height,
-                  padding: EdgeInsets.only(bottom: 10),
+                  padding: EdgeInsets.only(bottom: 10, top: 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -129,7 +136,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                             padding: EdgeInsets.only(
                                 bottom: 20, left: 10, right: 10),
                             child: Text(
-                              'Inicio do evento',
+                              'Início',
                               style: GoogleFonts.montserrat(
                                 fontSize: 14,
                               ),
@@ -185,7 +192,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                             padding: EdgeInsets.only(
                                 bottom: 20, left: 10, right: 10),
                             child: Text(
-                              'Término do evento',
+                              'Término',
                               style: GoogleFonts.montserrat(
                                 fontSize: 14,
                               ),
@@ -232,26 +239,34 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                       Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        child: Align(
-                          alignment: Alignment(1, 1),
-                          child: TextButton(
-                            child: Text(
-                              'Continue',
-                              style: GoogleFonts.montserrat(
-                                fontWeight: FontWeight.bold,
+                        child: TextButton(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                'Continue',
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                              ),
+                              Icon(
+                                Icons.arrow_forward,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
                               ),
-                            ),
-                            onPressed: () {
-                              convitesController.startDate.value =
-                                  startSelectedDate.toString();
-                              convitesController.endDate.value =
-                                  endSelectedDate.toString();
-                              convitesController.handleAddPage();
-                            },
+                            ],
                           ),
+                          onPressed: () {
+                            convitesController.startDate.value =
+                                startSelectedDate.toString();
+                            convitesController.endDate.value =
+                                endSelectedDate.toString();
+                            convitesController.handleAddPage();
+                          },
                         ),
                       ),
                     ],
