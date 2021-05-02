@@ -48,12 +48,13 @@ class AuthController extends GetxController {
         ),
       );
       if (isAuthenticated) {
-        loginController.isLoading.value = false;
+        loginController.isLoading.value = true;
         http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
           loginController.hasMoreEmail(email).then((value) {
             if (value.length > 1) {
               Get.toNamed('/listOfCondo');
+              loginController.isLoading.value = false;
             } else {
               var dados = json.decode(response.body);
               loginController.id(dados['idusu']);
@@ -69,6 +70,7 @@ class AuthController extends GetxController {
               themeController.setTheme(loginController.condoTheme.value);
 
               Get.toNamed('/home');
+              loginController.isLoading.value = false;
             }
           });
         });

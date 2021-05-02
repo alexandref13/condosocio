@@ -80,6 +80,7 @@ class LoginController extends GetxController {
   }
 
   newLogin(String newId) {
+    isLoading(true);
     http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
@@ -98,6 +99,8 @@ class LoginController extends GetxController {
       themeController.setTheme(condoTheme.value);
 
       Get.toNamed('/home');
+
+      isLoading(false);
     });
   }
 

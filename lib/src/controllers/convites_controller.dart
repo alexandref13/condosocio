@@ -12,17 +12,18 @@ class ConvitesController extends GetxController {
   AcessosController acessosController = Get.put(AcessosController());
   LoginController loginController = Get.put(LoginController());
 
-  var date = DateTime.now().obs;
-  var dataController = TextEditingController().obs;
   var inviteName = TextEditingController().obs;
   var carBoard = TextEditingController().obs;
 
+  var startDate = ''.obs;
+  var endDate = ''.obs;
+
+  var page = 1.obs;
+
   var count = false.obs;
   var countApp = false.obs;
+  var isDropdownSelected = false.obs;
   var guestList = [].obs;
-
-  final DateFormat dateFormat = DateFormat('dd/MM/yyyy');
-  final DateFormat timeFormat = DateFormat('HH:mm');
 
   handleAddCount() {
     countApp(false);
@@ -91,6 +92,14 @@ class ConvitesController extends GetxController {
     var data = json.decode(response.body);
 
     return data;
+  }
+
+  handleAddPage() {
+    page.value = 2;
+  }
+
+  handleMinusPage() {
+    page.value = 1;
   }
 
   @override

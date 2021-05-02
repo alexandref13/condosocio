@@ -1,4 +1,5 @@
-import 'package:condosocio/src/components/convite_widget.dart';
+import 'package:condosocio/src/components/convites/convite_widget.dart';
+import 'package:condosocio/src/components/convites/convites_convidados_widget.dart';
 import 'package:condosocio/src/components/visualizar_acessos/visualizar_acessos_entrada.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites_controller.dart';
@@ -14,33 +15,41 @@ class Convite extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Convites',
-          ),
-          bottom: TabBar(
-            indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
-            tabs: <Widget>[
-              Text(
-                'Adicionar',
-                style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
-              ),
-              Text(
-                'Visualizar',
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+          appBar: AppBar(
+            title: Text(
+              'Convites',
+            ),
+            bottom: TabBar(
+              indicatorColor:
+                  Theme.of(context).textSelectionTheme.selectionColor,
+              tabs: <Widget>[
+                Text(
+                  'Adicionar',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor),
                 ),
-              ),
-            ],
+                Text(
+                  'Visualizar',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        body: TabBarView(
-          children: [ConviteWidget(), VisualizarAcessosEntrada()],
-        ),
-      ),
+          body: Obx(() {
+            return TabBarView(
+              children: [
+                convitesController.page.value == 1
+                    ? ConviteWidget()
+                    : ConvitesConvidadosWidget(),
+                VisualizarAcessosEntrada()
+              ],
+            );
+          })),
     );
   }
 }
