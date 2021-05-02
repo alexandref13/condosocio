@@ -4,6 +4,7 @@ import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/acessos/api_acessos.dart';
 import 'package:condosocio/src/services/convites/api_convites.dart';
+import 'package:condosocio/src/services/convites/mapa_convites.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,6 +23,8 @@ class ConvitesController extends GetxController {
   var count = false.obs;
   var countApp = false.obs;
   var guestList = [].obs;
+
+  List<ConvitesMapa> convites;
 
   var isLoading = false.obs;
 
@@ -97,6 +100,17 @@ class ConvitesController extends GetxController {
     return data;
   }
 
+  getConvites() async {
+    isLoading(true);
+
+    var response = await ApiConvites.getConvites();
+
+    Iterable lista = json.decode(response.body);
+    convites = lista.map((model) => ConvitesMapa.fromJson(model)).toList();
+    print(lista);
+    isLoading(false);
+  }
+
   handleAddPage() {
     page.value = 2;
   }
@@ -108,6 +122,7 @@ class ConvitesController extends GetxController {
   @override
   void onInit() {
     inviteName.value.text = 'Convite de ${loginController.nome.value}';
+    getConvites();
     super.onInit();
   }
 }

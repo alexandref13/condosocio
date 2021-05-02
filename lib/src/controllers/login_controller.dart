@@ -53,11 +53,13 @@ class LoginController extends GetxController {
   }
 
   login() async {
+    isLoading(true);
     final response = await http
         .post(Uri.https("condosocio.com.br", '/flutter/login.php'), body: {
       "login": email.value.text,
       "senha": password.value.text,
     });
+    isLoading(false);
 
     var dadosUsuario = json.decode(response.body);
     if (dadosUsuario['valida'] == 1) {

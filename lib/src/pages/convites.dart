@@ -1,6 +1,6 @@
 import 'package:condosocio/src/components/convites/convite_widget.dart';
+import 'package:condosocio/src/components/convites/visualizar_convite_widget.dart';
 import 'package:condosocio/src/components/convites/convites_convidados_widget.dart';
-import 'package:condosocio/src/components/visualizar_acessos/visualizar_acessos_entrada.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites_controller.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,7 @@ class Convite extends StatelessWidget {
                 convitesController.page.value == 1
                     ? ConviteWidget()
                     : ConvitesConvidadosWidget(),
-                VisualizarAcessosEntrada()
+                VisualizarConviteWidget()
               ],
             );
           })),

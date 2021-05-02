@@ -5,6 +5,17 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ApiConvites {
+  static Future getConvites() async {
+    LoginController loginController = Get.put(LoginController());
+
+    return await http.post(
+      Uri.https('www.condosocio.com.br', '/flutter/convites_buscar.php'),
+      body: {
+        'idusu': loginController.id.value,
+      },
+    );
+  }
+
   static Future sendAcesso(String startDate, String endDate) async {
     LoginController loginController = Get.put(LoginController());
     ConvitesController convitesController = Get.put(ConvitesController());

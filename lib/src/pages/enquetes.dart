@@ -1,6 +1,5 @@
 import 'package:condosocio/src/components/progress_indicator_widget.dart';
 import 'package:condosocio/src/controllers/enquetes_controller.dart';
-import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +11,6 @@ class Enquetes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     EnquetesController enquetesController = Get.put(EnquetesController());
-    LoginController loginController = Get.put(LoginController());
 
     return Scaffold(
       appBar: AppBar(
