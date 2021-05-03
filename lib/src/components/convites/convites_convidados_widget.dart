@@ -835,7 +835,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               ),
                             ),
                             IconButton(
-                              icon: Icon(Icons.delete_outline,
+                              icon: Icon(Icons.delete,
                                   color: Theme.of(context).errorColor),
                               onPressed: () =>
                                   convitesController.guestList.removeAt(i),
