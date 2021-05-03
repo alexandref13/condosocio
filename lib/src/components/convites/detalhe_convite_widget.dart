@@ -386,7 +386,9 @@ class DetalheConviteWidget extends StatelessWidget {
                               IconButton(
                                 icon: Icon(
                                   FontAwesome.whatsapp,
-                                  color: Color(0xff128C7E),
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
                                 ),
                                 onPressed: () {},
                               ),
