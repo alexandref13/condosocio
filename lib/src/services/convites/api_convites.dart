@@ -16,6 +16,15 @@ class ApiConvites {
     );
   }
 
+  static Future getAConvites(String id) async {
+    return await http.post(
+      Uri.https('www.condosocio.com.br', '/flutter/convites_info.php'),
+      body: {
+        'idconv': id,
+      },
+    );
+  }
+
   static Future sendAcesso(String startDate, String endDate) async {
     LoginController loginController = Get.put(LoginController());
     ConvitesController convitesController = Get.put(ConvitesController());

@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/utils/box_search.dart';
+import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,8 @@ class VisualizarConviteWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ConvitesController convitesController = Get.put(ConvitesController());
+    VisualizarConvitesController visualizarConviteController =
+        Get.put(VisualizarConvitesController());
 
     return Obx(() {
       return Container(
@@ -22,12 +25,19 @@ class VisualizarConviteWidget extends StatelessWidget {
                       itemCount: convitesController.searchResult.length,
                       itemBuilder: (_, i) {
                         var convites = convitesController.searchResult[i];
+
+                        var date = DateTime.now();
+                        var endDate = DateTime.parse(convites.datafinal);
+
+                        var before = endDate.isBefore(date);
                         return Container(
                             margin: EdgeInsets.only(top: 5),
                             child: GestureDetector(
                               onTap: () {},
                               child: Card(
-                                color: Theme.of(context).accentColor,
+                                color: before
+                                    ? Theme.of(context).accentColor
+                                    : Theme.of(context).buttonColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -62,12 +72,25 @@ class VisualizarConviteWidget extends StatelessWidget {
                       itemBuilder: (_, i) {
                         var convites = convitesController.convites[i];
 
+                        var date = DateTime.now();
+                        var endDate = DateTime.parse(convites.datafinal);
+                        var before = endDate.isBefore(date);
+
                         return Container(
-                            margin: EdgeInsets.only(top: 5),
+                            margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                visualizarConviteController.titulo.value =
+                                    convites.titulo;
+                                visualizarConviteController.qtdconv.value =
+                                    convites.qtdconv;
+                                visualizarConviteController
+                                    .getAConvite(convites.idconv);
+                              },
                               child: Card(
-                                color: Theme.of(context).accentColor,
+                                color: before
+                                    ? Theme.of(context).accentColor
+                                    : Theme.of(context).buttonColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
