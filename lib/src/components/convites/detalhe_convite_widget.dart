@@ -158,7 +158,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(bottom: 15),
                                   child: Text(
-                                    'Início do evento',
+                                    'Início',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -227,7 +227,7 @@ class DetalheConviteWidget extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(20, 20, 20, 50),
+                    margin: EdgeInsets.fromLTRB(20, 0, 20, 50),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -239,7 +239,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(bottom: 10),
                                   child: Text(
-                                    'Término do evento',
+                                    'Término',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
