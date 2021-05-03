@@ -605,7 +605,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   padding: EdgeInsets.all(7),
                                   child: customTextField(
                                     context,
-                                    'Celular (ex: 91 989900290)',
+                                    'Celular (ex: 91 XXXXX-XXXX)',
                                     null,
                                     false,
                                     1,

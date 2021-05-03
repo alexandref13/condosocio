@@ -114,7 +114,13 @@ class DetalheConviteWidget extends StatelessWidget {
             var invite = visualizarConvitesController.invite[i];
 
             var convidados = json.decode(invite['convidados']);
+            var x = 0;
+            var conv = "";
 
+            for (x = 0; x < convidados.length; x++) {
+              conv +=
+                  'Text(${convidados[x]['nome']}\n${convidados[x]['tel']} | ${convidados[x]['tel']}${convidados[x]['tipo']})\n';
+            }
             var startDate = invite['datainicial'];
             var formatStartDate = startDate.split(' ');
 
@@ -385,12 +391,14 @@ class DetalheConviteWidget extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(top: 10, bottom: 5),
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        width: .3,
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
-                      ),
-                    ),
+                        border: Border.all(
+                            width: .3,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                            child: Row(children: [
+                              Text(conv),
+                            ]))),
                   ),
                 ],
               ),
