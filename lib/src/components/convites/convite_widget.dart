@@ -22,6 +22,10 @@ class _ConviteWidgetState extends State<ConviteWidget> {
   var endDate = TextEditingController();
   var endTime = TextEditingController();
 
+  AcessosController acessosController = Get.put(AcessosController());
+
+  ConvitesController convitesController = Get.put(ConvitesController());
+
   Future<TimeOfDay> selectTime(BuildContext context) {
     final now = DateTime.now();
     return showTimePicker(
@@ -63,29 +67,48 @@ class _ConviteWidgetState extends State<ConviteWidget> {
 
   @override
   void initState() {
-    endSelectedDate = DateTime(
-      startSelectedDate.year,
-      startSelectedDate.month,
-      startSelectedDate.day,
-      23,
-      59,
-    );
-    startSelectedDate = DateTime(
-      startSelectedDate.year,
-      startSelectedDate.month,
-      startSelectedDate.day,
-      startSelectedTime.hour,
-      startSelectedTime.minute,
-    );
+    var formatDate = convitesController.endDate.value != ''
+        ? DateTime.parse(convitesController.endDate.value)
+        : null;
+
+    print('format: $formatDate');
+
+    convitesController.endDate.value != ''
+        ? endSelectedDate = DateTime(
+            formatDate.year,
+            formatDate.month,
+            formatDate.day,
+            formatDate.hour,
+            formatDate.minute,
+          )
+        : endSelectedDate = DateTime(
+            startSelectedDate.year,
+            startSelectedDate.month,
+            startSelectedDate.day,
+            23,
+            59,
+          );
+
+    convitesController.endDate.value != ''
+        ? startSelectedDate = DateTime(
+            formatDate.year,
+            formatDate.month,
+            formatDate.day,
+            formatDate.hour,
+            formatDate.minute,
+          )
+        : startSelectedDate = DateTime(
+            startSelectedDate.year,
+            startSelectedDate.month,
+            startSelectedDate.day,
+            startSelectedTime.hour,
+            startSelectedTime.minute,
+          );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    AcessosController acessosController = Get.put(AcessosController());
-
-    ConvitesController convitesController = Get.put(ConvitesController());
-
     return Obx(
       () {
         return acessosController.isLoading.value

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -14,6 +15,7 @@ class DetalheConviteWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     VisualizarConvitesController visualizarConvitesController =
         Get.put(VisualizarConvitesController());
+    ConvitesController convitesController = Get.put(ConvitesController());
 
     var endDate = DateTime.parse(visualizarConvitesController.endDate.value);
 
@@ -28,99 +30,6 @@ class DetalheConviteWidget extends StatelessWidget {
       appBar: AppBar(
         title: Text(visualizarConvitesController.titulo.value),
       ),
-      bottomSheet: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          border: Border(
-            top: BorderSide(
-              width: .5,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
-            ),
-          ),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        child: Container(
-          child: Row(
-            children: [
-              Expanded(
-                child: ButtonTheme(
-                  height: 70,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Theme.of(context).errorColor;
-                        },
-                      ),
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          return 0;
-                        },
-                      ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            side:
-                                BorderSide(color: Theme.of(context).errorColor),
-                            borderRadius: BorderRadius.circular(10.0),
-                          );
-                        },
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      "Deletar",
-                      style: GoogleFonts.montserrat(
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          fontSize: 14),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 12,
-              ),
-              Expanded(
-                child: ButtonTheme(
-                  height: 70,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Theme.of(context).accentColor;
-                        },
-                      ),
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          return 0;
-                        },
-                      ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          );
-                        },
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      "Editar",
-                      style: GoogleFonts.montserrat(
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          fontSize: 14),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
       body: Container(
         child: ListView.builder(
           itemCount: visualizarConvitesController.invite.length,
@@ -128,14 +37,11 @@ class DetalheConviteWidget extends StatelessWidget {
             var invite = visualizarConvitesController.invite[i];
 
             var convidados = json.decode(invite['convidados']);
-            var x = 0;
-            var conv = "";
 
-            for (x = 0; x < convidados.length; x++) {
-              conv +=
-                  'Text(${convidados[x]['nome']}\n${convidados[x]['tel']} | ${convidados[x]['tel']}${convidados[x]['tipo']})\n';
-            }
+            visualizarConvitesController.convidados.assignAll(convidados);
+
             var startDate = invite['datainicial'];
+            visualizarConvitesController.startDate.value = startDate;
             var formatStartDate = startDate.split(' ');
 
             var formatStartDateDay = formatStartDate[0];
@@ -408,6 +314,126 @@ class DetalheConviteWidget extends StatelessWidget {
               ),
             );
           },
+        ),
+      ),
+      bottomSheet: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          border: Border(
+            top: BorderSide(
+              width: .5,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
+          ),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: Container(
+          child: Row(
+            children: [
+              Expanded(
+                child: ButtonTheme(
+                  height: 70,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          return Theme.of(context).errorColor;
+                        },
+                      ),
+                      elevation: MaterialStateProperty.resolveWith<double>(
+                        (Set<MaterialState> states) {
+                          return 0;
+                        },
+                      ),
+                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                        (Set<MaterialState> states) {
+                          return RoundedRectangleBorder(
+                            side:
+                                BorderSide(color: Theme.of(context).errorColor),
+                            borderRadius: BorderRadius.circular(10.0),
+                          );
+                        },
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "Deletar",
+                      style: GoogleFonts.montserrat(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          fontSize: 14),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 12,
+              ),
+              Expanded(
+                child: ButtonTheme(
+                  height: 70,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          return Theme.of(context).accentColor;
+                        },
+                      ),
+                      elevation: MaterialStateProperty.resolveWith<double>(
+                        (Set<MaterialState> states) {
+                          return 0;
+                        },
+                      ),
+                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                        (Set<MaterialState> states) {
+                          return RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          );
+                        },
+                      ),
+                    ),
+                    onPressed: () {
+                      convitesController.isEdited.value = true;
+                      for (var i = 0;
+                          i < visualizarConvitesController.convidados.length;
+                          i++) {
+                        convitesController.guestList.addAll({
+                          {
+                            'nome': visualizarConvitesController.convidados[i]
+                                ['nome'],
+                            'tel': visualizarConvitesController.convidados[i]
+                                ['tel'],
+                            'tipo': visualizarConvitesController.convidados[i]
+                                ['tipo'],
+                            'placa': visualizarConvitesController.convidados[i]
+                                ['placa'],
+                          }
+                        });
+                      }
+                      convitesController.inviteName.value.text =
+                          visualizarConvitesController.titulo.value;
+                      convitesController.startDate.value =
+                          visualizarConvitesController.startDate.value;
+                      convitesController.endDate.value =
+                          visualizarConvitesController.endDate.value;
+
+                      convitesController.page.value = 2;
+                      Get.toNamed('/convites');
+                    },
+                    child: Text(
+                      "Editar",
+                      style: GoogleFonts.montserrat(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          fontSize: 14),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

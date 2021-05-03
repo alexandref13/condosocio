@@ -874,28 +874,36 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
-                                  convitesController
-                                      .sendConvites(
-                                    convitesController.startDate.value,
-                                    convitesController.endDate.value,
-                                  )
-                                      .then(
-                                    (value) {
-                                      if (value == 1) {
-                                        confirmedButtonPressed(
+                                  if (convitesController.isEdited.value) {
+                                    confirmedButtonPressed(
+                                      context,
+                                      'Seu convite foi editado com sucesso!',
+                                      '/home',
+                                    );
+                                  } else {
+                                    convitesController
+                                        .sendConvites(
+                                      convitesController.startDate.value,
+                                      convitesController.endDate.value,
+                                    )
+                                        .then(
+                                      (value) {
+                                        if (value == 1) {
+                                          confirmedButtonPressed(
+                                              context,
+                                              'Seu convite foi enviado com sucesso!',
+                                              '/home');
+                                        } else {
+                                          confirmedButtonPressed(
                                             context,
-                                            'Seu convite foi enviado com sucesso!',
-                                            '/home');
-                                      } else {
-                                        confirmedButtonPressed(
-                                          context,
-                                          'Algo deu errado \n Tente novamente',
-                                          '/home',
-                                        );
-                                      }
-                                    },
-                                  );
-                                  acessosController.firstId.value = '0';
+                                            'Algo deu errado \n Tente novamente',
+                                            '/home',
+                                          );
+                                        }
+                                      },
+                                    );
+                                    acessosController.firstId.value = '0';
+                                  }
                                 },
                                 child: Text(
                                   'AUTORIZAR',

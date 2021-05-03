@@ -27,6 +27,7 @@ class ConvitesController extends GetxController {
   var search = TextEditingController().obs;
   var searchResult = <ConvitesMapa>[].obs;
 
+  var isEdited = false.obs;
   var isLoading = false.obs;
 
   handleAddCount() {
