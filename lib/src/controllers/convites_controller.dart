@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/acessos/api_acessos.dart';
@@ -24,7 +23,9 @@ class ConvitesController extends GetxController {
   var countApp = false.obs;
   var guestList = [].obs;
 
-  List<ConvitesMapa> convites;
+  var convites = <ConvitesMapa>[].obs;
+  var search = TextEditingController().obs;
+  var searchResult = <ConvitesMapa>[].obs;
 
   var isLoading = false.obs;
 
@@ -106,9 +107,22 @@ class ConvitesController extends GetxController {
     var response = await ApiConvites.getConvites();
 
     Iterable lista = json.decode(response.body);
-    convites = lista.map((model) => ConvitesMapa.fromJson(model)).toList();
+    convites
+        .assignAll(lista.map((model) => ConvitesMapa.fromJson(model)).toList());
     print(lista);
     isLoading(false);
+  }
+
+  onSearchTextChanged(String text) {
+    searchResult.clear();
+    if (text.isEmpty) {
+      return;
+    }
+
+    convites.forEach((details) {
+      if (details.titulo.toLowerCase().contains(text.toLowerCase()))
+        searchResult.add(details);
+    });
   }
 
   handleAddPage() {
