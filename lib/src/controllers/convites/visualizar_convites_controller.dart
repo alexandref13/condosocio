@@ -4,7 +4,7 @@ import 'package:condosocio/src/services/convites/api_convites.dart';
 import 'package:get/get.dart';
 
 class VisualizarConvitesController extends GetxController {
-  var convite = [];
+  var invite = [];
   var titulo = ''.obs;
   var endDate = ''.obs;
   var qtdconv = 0.obs;
@@ -16,7 +16,8 @@ class VisualizarConvitesController extends GetxController {
     var response = await ApiConvites.getAConvites(id);
     var data = json.decode(response.body);
 
-    convite = data;
+    invite = data;
+    print(invite);
 
     Get.toNamed('/detalhesConvite');
 

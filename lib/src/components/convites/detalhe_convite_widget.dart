@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -29,34 +31,80 @@ class DetalheConviteWidget extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.all(20),
         padding: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: ListView.builder(
+          itemCount: visualizarConvitesController.invite.length,
+          itemBuilder: (_, i) {
+            var invite = visualizarConvitesController.invite[i];
+
+            var convidados = json.decode(invite['convidados']);
+
+            var startDate = invite['datainicial'];
+            var formatStartDate = startDate.split(' ');
+
+            var formatStartDateDay = formatStartDate[0];
+            var formatStartDateHour = formatStartDate[1];
+
+            return Container(
+              child: Column(
                 children: [
                   Container(
-                    child: Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(bottom: 10),
-                            child: Text(
-                              'Término do evento',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
+                    margin: EdgeInsets.only(bottom: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          child: Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(bottom: 10),
+                                  child: Text(
+                                    'Início do evento',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Feather.calendar,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      size: 20,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(left: 5),
+                                      child: Text(
+                                        formatStartDateDay,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
                             ),
                           ),
-                          Row(
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            top: 20,
+                          ),
+                          child: Row(
                             children: [
                               Icon(
-                                Feather.calendar,
+                                Icons.watch_later_outlined,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
@@ -65,53 +113,104 @@ class DetalheConviteWidget extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.only(left: 5),
                                 child: Text(
-                                  formatEndDateDay,
+                                  formatStartDateHour,
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        child: Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(bottom: 10),
+                                child: Text(
+                                  'Término do evento',
                                   style: GoogleFonts.montserrat(
                                     fontSize: 14,
+                                    fontWeight: FontWeight.bold,
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
                                   ),
                                 ),
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Feather.calendar,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    size: 20,
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(left: 5),
+                                    child: Text(
+                                      formatEndDateDay,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                      ),
+                                    ),
+                                  )
+                                ],
                               )
                             ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: 20,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.watch_later_outlined,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 20,
+                          ),
                         ),
-                        Container(
-                          padding: EdgeInsets.only(left: 5),
-                          child: Text(
-                            formatEndDateHour,
-                            style: GoogleFonts.montserrat(
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: 20,
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.watch_later_outlined,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              size: 20,
                             ),
-                          ),
+                            Container(
+                              padding: EdgeInsets.only(left: 5),
+                              child: Text(
+                                formatEndDateHour,
+                                style: GoogleFonts.montserrat(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  )
+                      )
+                    ],
+                  ),
+                  Text(invite['convidados'][0]['nome'])
                 ],
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

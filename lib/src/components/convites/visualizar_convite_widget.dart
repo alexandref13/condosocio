@@ -1,9 +1,10 @@
 import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
-import 'package:condosocio/src/controllers/convites_controller.dart';
+import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class VisualizarConviteWidget extends StatelessWidget {
   const VisualizarConviteWidget({Key key}) : super(key: key);
@@ -45,9 +46,24 @@ class VisualizarConviteWidget extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: ListTile(
-                                        title: Text(convites.titulo),
+                                        title: Text(
+                                          convites.titulo,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                          ),
+                                        ),
                                         subtitle: Text(
-                                            'Convidados: ${convites.qtdconv}'),
+                                          'Convidados: ${convites.qtdconv}',
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                          ),
+                                        ),
                                         leading: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -55,6 +71,9 @@ class VisualizarConviteWidget extends StatelessWidget {
                                             Icon(
                                               Icons.email_outlined,
                                               size: 30,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
                                             ),
                                           ],
                                         ),
@@ -64,7 +83,10 @@ class VisualizarConviteWidget extends StatelessWidget {
                                           children: [
                                             Icon(
                                               Icons.arrow_right,
-                                              size: 30,
+                                              size: 25,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
                                             ),
                                           ],
                                         ),
@@ -103,9 +125,24 @@ class VisualizarConviteWidget extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: ListTile(
-                                        title: Text(convites.titulo),
+                                        title: Text(
+                                          convites.titulo,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                          ),
+                                        ),
                                         subtitle: Text(
-                                            'Convidados: ${convites.qtdconv}'),
+                                          'Convidados: ${convites.qtdconv}',
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                          ),
+                                        ),
                                         leading: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -113,6 +150,9 @@ class VisualizarConviteWidget extends StatelessWidget {
                                             Icon(
                                               Icons.email_outlined,
                                               size: 30,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
                                             ),
                                           ],
                                         ),
@@ -123,6 +163,9 @@ class VisualizarConviteWidget extends StatelessWidget {
                                             Icon(
                                               Icons.arrow_right,
                                               size: 30,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
                                             ),
                                           ],
                                         ),

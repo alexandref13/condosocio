@@ -3,7 +3,7 @@ import 'package:condosocio/src/components/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
-import 'package:condosocio/src/controllers/convites_controller.dart';
+import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';

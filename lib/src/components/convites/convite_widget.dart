@@ -1,7 +1,7 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
-import 'package:condosocio/src/controllers/convites_controller.dart';
+import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -108,6 +108,9 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                 'Nome do convite',
                                 style: GoogleFonts.montserrat(
                                   fontSize: 14,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
                                 ),
                               ),
                             ),
@@ -136,6 +139,9 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               'Início',
                               style: GoogleFonts.montserrat(
                                 fontSize: 14,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
                               ),
                             ),
                           ),
@@ -192,6 +198,9 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               'Término',
                               style: GoogleFonts.montserrat(
                                 fontSize: 14,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
                               ),
                             ),
                           ),
@@ -241,7 +250,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                'Continue',
+                                'Continuar',
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
@@ -250,7 +259,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                 ),
                               ),
                               Icon(
-                                Icons.arrow_forward,
+                                Icons.arrow_right,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
