@@ -100,7 +100,7 @@ class Login extends StatelessWidget {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        fontSize: 16),
+                                        fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
                                             color:
@@ -155,7 +155,7 @@ class Login extends StatelessWidget {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        fontSize: 16),
+                                        fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
                                             color:
@@ -345,12 +345,12 @@ class Login extends StatelessWidget {
                                           ),
                                         )
                                       : Text(
-                                          "Entrar",
+                                          "ENTRAR",
                                           style: GoogleFonts.montserrat(
                                               color: Theme.of(context)
                                                   .textSelectionTheme
                                                   .selectionColor,
-                                              fontSize: 20),
+                                              fontSize: 14),
                                         ),
                                 ),
                               ),
@@ -375,7 +375,7 @@ class Login extends StatelessWidget {
                                   child: Text(
                                     "Esqueceu a senha?",
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 14.0,
+                                      fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,

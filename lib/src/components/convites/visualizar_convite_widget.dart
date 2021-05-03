@@ -56,7 +56,7 @@ class VisualizarConviteWidget extends StatelessWidget {
                                           ),
                                         ),
                                         subtitle: Text(
-                                          'Convidados: ${convites.qtdconv}',
+                                          '${convites.qtdconv} convidados',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 14,
                                             color: Theme.of(context)
@@ -135,7 +135,7 @@ class VisualizarConviteWidget extends StatelessWidget {
                                           ),
                                         ),
                                         subtitle: Text(
-                                          'Convidados: ${convites.qtdconv}',
+                                          '${convites.qtdconv} convidados',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 14,
                                             color: Theme.of(context)

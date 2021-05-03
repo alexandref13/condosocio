@@ -37,6 +37,12 @@ class DetalheConviteWidget extends StatelessWidget {
             var invite = visualizarConvitesController.invite[i];
 
             var convidados = json.decode(invite['convidados']);
+            var x = 0;
+            var conv = "";
+
+            for (x = 0; x < convidados.length; x++) {
+              conv += '${convidados[x]['nome']} | ${convidados[x]['tipo']}\n';
+            }
 
             var startDate = invite['datainicial'];
             var formatStartDate = startDate.split(' ');
@@ -58,7 +64,7 @@ class DetalheConviteWidget extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(bottom: 10),
+                                  margin: EdgeInsets.only(bottom: 15),
                                   child: Text(
                                     'Início do evento',
                                     style: GoogleFonts.montserrat(
@@ -99,7 +105,7 @@ class DetalheConviteWidget extends StatelessWidget {
                         ),
                         Container(
                           margin: EdgeInsets.only(
-                            top: 20,
+                            top: 30,
                           ),
                           child: Row(
                             children: [
@@ -206,7 +212,13 @@ class DetalheConviteWidget extends StatelessWidget {
                       )
                     ],
                   ),
-                  Text(invite['convidados'][0]['nome'])
+                  Container(
+                      margin: EdgeInsets.only(
+                        top: 20,
+                      ),
+                      child: Row(
+                        children: [Text(conv)],
+                      ))
                 ],
               ),
             );
