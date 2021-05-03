@@ -41,7 +41,8 @@ class DetalheConviteWidget extends StatelessWidget {
             var conv = "";
 
             for (x = 0; x < convidados.length; x++) {
-              conv += '${convidados[x]['nome']} | ${convidados[x]['tipo']}\n';
+              conv +=
+                  'Text(${convidados[x]['nome']}\n${convidados[x]['tel']} | ${convidados[x]['tel']}${convidados[x]['tipo']})\n';
             }
 
             var startDate = invite['datainicial'];
@@ -216,9 +217,9 @@ class DetalheConviteWidget extends StatelessWidget {
                       margin: EdgeInsets.only(
                         top: 20,
                       ),
-                      child: Row(
-                        children: [Text(conv)],
-                      ))
+                      child: Row(children: [
+                        Text(conv),
+                      ]))
                 ],
               ),
             );
