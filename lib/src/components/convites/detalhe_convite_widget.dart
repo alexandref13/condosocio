@@ -28,6 +28,85 @@ class DetalheConviteWidget extends StatelessWidget {
       appBar: AppBar(
         title: Text(visualizarConvitesController.titulo.value),
       ),
+      bottomSheet: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: Row(
+          children: [
+            Expanded(
+              child: ButtonTheme(
+                height: 70,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        return Theme.of(context).errorColor;
+                      },
+                    ),
+                    elevation: MaterialStateProperty.resolveWith<double>(
+                      (Set<MaterialState> states) {
+                        return 0;
+                      },
+                    ),
+                    shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                      (Set<MaterialState> states) {
+                        return RoundedRectangleBorder(
+                          side: BorderSide(color: Theme.of(context).errorColor),
+                          borderRadius: BorderRadius.circular(10.0),
+                        );
+                      },
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    "Deletar",
+                    style: GoogleFonts.montserrat(
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        fontSize: 14),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 12,
+            ),
+            Expanded(
+              child: ButtonTheme(
+                height: 70,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        return Theme.of(context).accentColor;
+                      },
+                    ),
+                    elevation: MaterialStateProperty.resolveWith<double>(
+                      (Set<MaterialState> states) {
+                        return 0;
+                      },
+                    ),
+                    shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                      (Set<MaterialState> states) {
+                        return RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        );
+                      },
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    "Editar",
+                    style: GoogleFonts.montserrat(
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        fontSize: 14),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Container(
         child: ListView.builder(
           itemCount: visualizarConvitesController.invite.length,
@@ -44,6 +123,7 @@ class DetalheConviteWidget extends StatelessWidget {
 
             return Container(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     margin: EdgeInsets.fromLTRB(20, 20, 20, 40),
@@ -310,95 +390,6 @@ class DetalheConviteWidget extends StatelessWidget {
                         color:
                             Theme.of(context).textSelectionTheme.selectionColor,
                       ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                    alignment: Alignment(0, 1),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ButtonTheme(
-                            height: 70,
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.resolveWith<Color>(
-                                  (Set<MaterialState> states) {
-                                    return Theme.of(context).errorColor;
-                                  },
-                                ),
-                                elevation:
-                                    MaterialStateProperty.resolveWith<double>(
-                                  (Set<MaterialState> states) {
-                                    return 3;
-                                  },
-                                ),
-                                shape: MaterialStateProperty.resolveWith<
-                                    OutlinedBorder>(
-                                  (Set<MaterialState> states) {
-                                    return RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          color: Theme.of(context).errorColor),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    );
-                                  },
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: Text(
-                                "Deletar",
-                                style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Expanded(
-                          child: ButtonTheme(
-                            height: 70,
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.resolveWith<Color>(
-                                  (Set<MaterialState> states) {
-                                    return Theme.of(context).accentColor;
-                                  },
-                                ),
-                                elevation:
-                                    MaterialStateProperty.resolveWith<double>(
-                                  (Set<MaterialState> states) {
-                                    return 3;
-                                  },
-                                ),
-                                shape: MaterialStateProperty.resolveWith<
-                                    OutlinedBorder>(
-                                  (Set<MaterialState> states) {
-                                    return RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    );
-                                  },
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: Text(
-                                "Editar",
-                                style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ],
