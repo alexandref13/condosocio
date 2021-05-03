@@ -298,13 +298,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                 ),
                                 onPressed: () {},
                               ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.delete_outline,
-                                  color: Theme.of(context).errorColor,
-                                ),
-                                onPressed: () {},
-                              ),
                             ],
                           ))
                         ],
@@ -394,6 +387,7 @@ class DetalheConviteWidget extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
+                      convitesController.guestList.clear();
                       convitesController.isEdited.value = true;
                       for (var i = 0;
                           i < visualizarConvitesController.convidados.length;

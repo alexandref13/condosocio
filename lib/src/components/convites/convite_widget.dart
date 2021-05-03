@@ -23,7 +23,6 @@ class _ConviteWidgetState extends State<ConviteWidget> {
   var endTime = TextEditingController();
 
   AcessosController acessosController = Get.put(AcessosController());
-
   ConvitesController convitesController = Get.put(ConvitesController());
 
   Future<TimeOfDay> selectTime(BuildContext context) {
