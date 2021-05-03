@@ -31,6 +31,12 @@ class DetalheConviteWidget extends StatelessWidget {
       bottomSheet: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
+          border: Border(
+            top: BorderSide(
+              width: .5,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
+          ),
         ),
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Container(
