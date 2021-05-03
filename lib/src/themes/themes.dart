@@ -9,6 +9,8 @@ ThemeData admin = ThemeData(
   ),
   scaffoldBackgroundColor: Color(0xff1A936F),
   appBarTheme: AppBarTheme(
+    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
+    iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
     elevation: 0,
     centerTitle: true,
   ),
@@ -21,10 +23,12 @@ ThemeData magenta = ThemeData(
   accentColor: Color(0xff49182d),
   buttonColor: Color(0xff33141a),
   textSelectionTheme: TextSelectionThemeData(
-    selectionColor: Color(0xffD4D6B9),
+    selectionColor: Color(0xffe2e3d3),
   ),
   scaffoldBackgroundColor: Color(0xff833545),
   appBarTheme: AppBarTheme(
+    iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
+    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
     elevation: 0,
     centerTitle: true,
   ),
@@ -37,10 +41,12 @@ ThemeData turquoise = ThemeData(
   accentColor: Color(0xff1a715e),
   buttonColor: Color(0xff2b8a67),
   textSelectionTheme: TextSelectionThemeData(
-    selectionColor: Color(0xffD4D6B9),
+    selectionColor: Color(0xffe2e3d3),
   ),
   scaffoldBackgroundColor: Color(0xff054437),
   appBarTheme: AppBarTheme(
+    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
+    iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
     elevation: 0,
     centerTitle: true,
   ),
@@ -53,10 +59,12 @@ ThemeData blue = ThemeData(
   accentColor: Color(0xff2a5571),
   buttonColor: Color(0xff394A59),
   textSelectionTheme: TextSelectionThemeData(
-    selectionColor: Color(0xffD4D6B9),
+    selectionColor: Color(0xffe2e3d3),
   ),
   scaffoldBackgroundColor: Color(0xff375a70),
   appBarTheme: AppBarTheme(
+    iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
+    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
     elevation: 0,
     centerTitle: true,
   ),
@@ -69,10 +77,12 @@ ThemeData grayscale = ThemeData(
   accentColor: Color(0xff26081C),
   buttonColor: Color(0xff380036),
   textSelectionTheme: TextSelectionThemeData(
-    selectionColor: Color(0xffD4D6B9),
+    selectionColor: Color(0xffe2e3d3),
   ),
   scaffoldBackgroundColor: Color(0xff140110),
   appBarTheme: AppBarTheme(
+    iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
+    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
     elevation: 0,
     centerTitle: true,
   ),
@@ -85,10 +95,12 @@ ThemeData red = ThemeData(
   accentColor: Color(0xff8a2015),
   buttonColor: Color(0xffb83a2d),
   textSelectionTheme: TextSelectionThemeData(
-    selectionColor: Color(0xffD4D6B9),
+    selectionColor: Color(0xffe2e3d3),
   ),
   scaffoldBackgroundColor: Color(0xff811308),
   appBarTheme: AppBarTheme(
+    iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
+    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
     elevation: 0,
     centerTitle: true,
   ),
@@ -101,10 +113,12 @@ ThemeData orange = ThemeData(
   accentColor: Color(0xff612c07),
   buttonColor: Color(0xff8b410d),
   textSelectionTheme: TextSelectionThemeData(
-    selectionColor: Color(0xffD4D6B9),
+    selectionColor: Color(0xffe2e3d3),
   ),
   scaffoldBackgroundColor: Color(0xff792404),
   appBarTheme: AppBarTheme(
+    iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
+    titleTextStyle: TextStyle(color: Color(0xff666666)),
     elevation: 0,
     centerTitle: true,
   ),

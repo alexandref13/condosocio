@@ -8,7 +8,13 @@ class Reserva extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reservas'),
+        title: Text(
+          'Reservas',
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
+        ),
       ),
       body: Center(
         child: Container(

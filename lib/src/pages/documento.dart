@@ -14,7 +14,8 @@ class _DocumentosState extends State<Documentos> {
         title: Text(
           'Documentos',
           style: GoogleFonts.montserrat(
-            fontSize: 20,
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
           ),
         ),
       ),

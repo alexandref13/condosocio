@@ -24,8 +24,13 @@ class _OcorrenciasState extends State<Ocorrencias> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title:
-              Text('Ocorrências', style: GoogleFonts.montserrat(fontSize: 20)),
+          title: Text(
+            'Ocorrências',
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
+          ),
         ),
         body: SingleChildScrollView(
           child: Container(

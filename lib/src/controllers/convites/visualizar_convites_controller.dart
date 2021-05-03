@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 class VisualizarConvitesController extends GetxController {
   var convite = [];
   var titulo = ''.obs;
+  var endDate = ''.obs;
   var qtdconv = 0.obs;
+
   var isLoading = false.obs;
 
   getAConvite(String id) async {
@@ -15,6 +17,8 @@ class VisualizarConvitesController extends GetxController {
     var data = json.decode(response.body);
 
     convite = data;
+
+    Get.toNamed('/detalhesConvite');
 
     isLoading(false);
   }

@@ -3,6 +3,7 @@ import 'package:condosocio/src/components/utils/circular_progress_indicator.dart
 import 'package:condosocio/src/controllers/alvo_tv_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AlvoTv extends StatelessWidget {
   @override
@@ -10,7 +11,13 @@ class AlvoTv extends StatelessWidget {
     AlvoTvController alvoTv = Get.put(AlvoTvController());
     return Scaffold(
       appBar: AppBar(
-        title: Text('CondoPlay'),
+        title: Text(
+          'CondoPlay',
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
+        ),
       ),
       body: Obx(
         () {

@@ -19,7 +19,10 @@ class _OuvidoriaState extends State<Ouvidoria> {
         appBar: AppBar(
           title: Text(
             'Ouvidoria',
-            style: GoogleFonts.montserrat(fontSize: 20),
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
           ),
           centerTitle: true,
         ),

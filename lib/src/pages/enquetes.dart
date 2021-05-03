@@ -14,7 +14,13 @@ class Enquetes extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Enquete'),
+        title: Text(
+          'Enquete',
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
+        ),
       ),
       body: Container(
         child: Obx(() {

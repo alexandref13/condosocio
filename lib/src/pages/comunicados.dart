@@ -24,8 +24,13 @@ class _ComunicadosState extends State<Comunicados> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title:
-              Text('Comunicados', style: GoogleFonts.montserrat(fontSize: 20)),
+          title: Text(
+            'Comunicados',
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
+          ),
           centerTitle: true,
         ),
         body: Obx(

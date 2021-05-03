@@ -54,13 +54,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     Icons.swap_horiz,
                                     size: 40,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Acessos",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -93,13 +97,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     Icons.person,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Perfil",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -132,13 +140,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     FontAwesome.tv,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "CondoPlay",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -171,13 +183,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     Icons.receipt,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Convites",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -210,13 +226,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     FontAwesome.calendar,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Reservas",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -249,13 +269,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     FontAwesome.comment,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Comunicados",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -288,13 +312,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     FontAwesome.file,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Documentos",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -327,13 +355,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     FontAwesome.comments,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Enquetes",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -364,12 +396,16 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Icon(
                                   Icons.event_note,
                                   size: 50,
-                                  color: Colors.white,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
                                 ),
                                 Text(
                                   "Ocorrências",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -402,13 +438,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     FontAwesome.cart_plus,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Ache Aqui",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -441,13 +481,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     AntDesign.infocirlce,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Sobre",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -480,13 +524,17 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   child: Icon(
                                     FontAwesome.comments,
                                     size: 35,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                                 Text(
                                   "Ouvidoria",
                                   style: GoogleFonts.montserrat(
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                     fontSize: 13,
                                   ),
                                 ),

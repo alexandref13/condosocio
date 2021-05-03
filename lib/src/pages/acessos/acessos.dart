@@ -33,7 +33,11 @@ class _AcessosState extends State<Acessos> {
               ],
             )
           ],
-          title: Text('Acessos', style: GoogleFonts.montserrat(fontSize: 20)),
+          title: Text('Acessos',
+              style: GoogleFonts.montserrat(
+                fontSize: 16,
+                color: Theme.of(context).textSelectionTheme.selectionColor,
+              )),
           bottom: TabBar(
             tabs: <Widget>[
               Text(

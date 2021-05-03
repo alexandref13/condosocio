@@ -14,7 +14,13 @@ class VisualizarOcorrencias extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Visualizar Ocorrencias'),
+        title: Text(
+          'Visualizar Ocorrencias',
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
+        ),
       ),
       body: Obx(
         () {

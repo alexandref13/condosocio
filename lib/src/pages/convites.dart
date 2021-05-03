@@ -28,6 +28,10 @@ class Convite extends StatelessWidget {
             ),
             title: Text(
               'Convites',
+              style: GoogleFonts.montserrat(
+                fontSize: 16,
+                color: Theme.of(context).textSelectionTheme.selectionColor,
+              ),
             ),
             bottom: TabBar(
               indicatorColor:

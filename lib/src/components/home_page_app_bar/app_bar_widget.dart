@@ -26,7 +26,12 @@ class AppBarWidget extends PreferredSize {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: Icon(FontAwesome.bars),
+                        icon: Icon(
+                          FontAwesome.bars,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
                         onPressed: onTap,
                       ),
                       Container(

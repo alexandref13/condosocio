@@ -288,7 +288,10 @@ class _PerfilState extends State<Perfil> {
         appBar: AppBar(
           title: Text(
             'Perfil',
-            style: GoogleFonts.montserrat(fontSize: 20),
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
           ),
           centerTitle: true,
         ),

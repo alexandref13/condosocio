@@ -28,6 +28,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
+import 'src/components/convites/detalhe_convite_widget.dart';
 import 'src/pages/list_of_condo.dart';
 
 void main() {
@@ -77,6 +78,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/listOfCondo', page: () => ListOfCondo()),
         GetPage(name: '/convites', page: () => Convite()),
         GetPage(name: '/enquetes', page: () => Enquetes()),
+        GetPage(name: '/detalhesConvite', page: () => DetalheConviteWidget()),
       ],
     );
   }
