@@ -297,8 +297,10 @@ class DetalheConviteWidget extends StatelessWidget {
                                 onPressed: () {},
                               ),
                               IconButton(
-                                icon: Icon(Icons.delete,
-                                    color: Theme.of(context).errorColor),
+                                icon: Icon(
+                                  Icons.delete_outline,
+                                  color: Theme.of(context).errorColor,
+                                ),
                                 onPressed: () {},
                               ),
                             ],
@@ -307,7 +309,7 @@ class DetalheConviteWidget extends StatelessWidget {
                       ),
                     ),
                   Container(
-                    margin: EdgeInsets.only(top: 10),
+                    margin: EdgeInsets.only(top: 10, bottom: 5),
                     decoration: BoxDecoration(
                         border: Border.all(
                             width: .3,
@@ -317,6 +319,95 @@ class DetalheConviteWidget extends StatelessWidget {
                             child: Row(children: [
                               Text(conv),
                             ]))),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    alignment: Alignment(0, 1),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ButtonTheme(
+                            height: 70,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    return Theme.of(context).errorColor;
+                                  },
+                                ),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                  (Set<MaterialState> states) {
+                                    return 3;
+                                  },
+                                ),
+                                shape: MaterialStateProperty.resolveWith<
+                                    OutlinedBorder>(
+                                  (Set<MaterialState> states) {
+                                    return RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: Theme.of(context).errorColor),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    );
+                                  },
+                                ),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                "Deletar",
+                                style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 14),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Expanded(
+                          child: ButtonTheme(
+                            height: 70,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    return Theme.of(context).accentColor;
+                                  },
+                                ),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                  (Set<MaterialState> states) {
+                                    return 3;
+                                  },
+                                ),
+                                shape: MaterialStateProperty.resolveWith<
+                                    OutlinedBorder>(
+                                  (Set<MaterialState> states) {
+                                    return RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    );
+                                  },
+                                ),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                "Editar",
+                                style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 14),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
