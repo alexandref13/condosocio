@@ -1,6 +1,7 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     VisualizarConvitesController visualizarConvitesController =
         Get.put(VisualizarConvitesController());
+    LoginController loginController = Get.put(LoginController());
 
     return Scaffold(
       appBar: AppBar(
@@ -88,7 +90,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                       13) {
                     FlutterOpenWhatsapp.sendSingleMessage(
                       visualizarConvitesController.whatsappNumber.value.text,
-                      'ola',
+                      'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=',
                     );
                   } else {
                     onAlertButtonPressed(
