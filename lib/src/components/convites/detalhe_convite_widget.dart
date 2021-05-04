@@ -30,6 +30,13 @@ class DetalheConviteWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(visualizarConvitesController.titulo.value),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,
+              color: Theme.of(context).textSelectionTheme.selectionColor),
+          onPressed: () {
+            Get.offNamedUntil('/convites', ModalRoute.withName('/convites'));
+          },
+        ),
       ),
       body: Container(
         child: ListView.builder(

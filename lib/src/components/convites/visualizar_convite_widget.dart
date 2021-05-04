@@ -37,7 +37,17 @@ class VisualizarConviteWidget extends StatelessWidget {
                               return Container(
                                   margin: EdgeInsets.only(top: 5),
                                   child: GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      visualizarConviteController.titulo.value =
+                                          convites.titulo;
+                                      visualizarConviteController
+                                          .qtdconv.value = convites.qtdconv;
+                                      visualizarConviteController
+                                          .endDate.value = convites.datafinal;
+
+                                      visualizarConviteController
+                                          .getAConvite(convites.idconv);
+                                    },
                                     child: Card(
                                       color: before
                                           ? Theme.of(context).buttonColor

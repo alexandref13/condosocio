@@ -1,14 +1,16 @@
 import 'package:condosocio/src/components/alert_button_pressed.dart';
-import 'package:condosocio/src/components/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
+import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../controllers/acessos/agenda_contatos_controller.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ConvitesConvidadosWidget extends StatelessWidget {
   const ConvitesConvidadosWidget({Key key}) : super(key: key);
@@ -19,6 +21,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
     AgendaContatosController agendaContatosController =
         Get.put(AgendaContatosController());
     ConvitesController convitesController = Get.put(ConvitesController());
+    VisualizarConvitesController visualizarConvitesController =
+        Get.put(VisualizarConvitesController());
+    LoginController loginController = Get.put(LoginController());
 
     void dropDownItemSelected(String novoItem) {
       acessosController.itemSelecionado.value = novoItem;
@@ -166,7 +171,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       },
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    convitesController.handleAddCountApp();
+                                  },
                                   child: Text(
                                     "App Mobilidade",
                                     style: GoogleFonts.montserrat(
@@ -234,7 +241,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       },
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    convitesController.handleAddCount();
+                                  },
                                   child: Text(
                                     "Adicione um convidado",
                                     style: GoogleFonts.montserrat(
@@ -302,7 +311,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       },
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    agendaContatosController.pickContact();
+                                  },
                                   child: Text(
                                     "Procurar nos contatos",
                                     style: GoogleFonts.montserrat(
@@ -860,10 +871,10 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   if (convitesController.isEdited.value) {
-                                    confirmedButtonPressed(
+                                    confirmedInviteAlert(
                                       context,
                                       'Seu convite foi editado com sucesso!',
-                                      '/home',
+                                      () {},
                                     );
                                   } else {
                                     convitesController
@@ -873,13 +884,37 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     )
                                         .then(
                                       (value) {
-                                        if (value == 1) {
-                                          confirmedButtonPressed(
-                                              context,
-                                              'Seu convite foi enviado com sucesso!',
-                                              '/home');
+                                        if (value != 0) {
+                                          visualizarConvitesController
+                                                  .endDate.value =
+                                              convitesController.endDate.value;
+                                          visualizarConvitesController
+                                                  .qtdconv.value =
+                                              convitesController
+                                                  .guestList.length;
+                                          if (convitesController
+                                                  .inviteName.value.text ==
+                                              '') {
+                                            visualizarConvitesController
+                                                    .titulo.value =
+                                                'Convite de ${loginController.nome.value}';
+                                          } else {
+                                            visualizarConvitesController
+                                                    .titulo.value =
+                                                convitesController
+                                                    .inviteName.value.text;
+                                          }
+                                          confirmedInviteAlert(
+                                            context,
+                                            'Seu convite foi incluído com sucesso! \nVocê pode enviar para o WhatsApp dele(s)',
+                                            () {
+                                              visualizarConvitesController
+                                                  .getAConvite(
+                                                      value.toString());
+                                            },
+                                          );
                                         } else {
-                                          confirmedButtonPressed(
+                                          onAlertButtonPressed(
                                             context,
                                             'Algo deu errado \n Tente novamente',
                                             '/home',
@@ -909,5 +944,42 @@ class ConvitesConvidadosWidget extends StatelessWidget {
               ),
             );
     });
+  }
+
+  confirmedInviteAlert(context, String text, VoidCallback onTap) {
+    Alert(
+      image: Icon(
+        Icons.check,
+        color: Colors.green,
+        size: 60,
+      ),
+      style: AlertStyle(
+        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
+        animationType: AnimationType.fromTop,
+        isCloseButton: false,
+        isOverlayTapDismiss: false,
+        animationDuration: Duration(milliseconds: 300),
+        titleStyle: GoogleFonts.poppins(
+          color: Theme.of(context).errorColor,
+          fontSize: 18,
+        ),
+      ),
+      context: context,
+      title: text,
+      buttons: [
+        DialogButton(
+          child: Text(
+            "OK",
+            style: GoogleFonts.montserrat(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+          onPressed: onTap,
+          width: 80,
+          color: Colors.green,
+        )
+      ],
+    ).show();
   }
 }
