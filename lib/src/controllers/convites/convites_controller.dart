@@ -110,6 +110,7 @@ class ConvitesController extends GetxController {
     Iterable lista = json.decode(response.body);
     convites
         .assignAll(lista.map((model) => ConvitesMapa.fromJson(model)).toList());
+
     isLoading(false);
   }
 

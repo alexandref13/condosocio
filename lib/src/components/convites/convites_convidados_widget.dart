@@ -866,14 +866,14 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   if (convitesController.isEdited.value) {
-                                    print(
-                                        'id: ${visualizarConvitesController.idConv.value}');
                                     convitesController
                                         .editAInvite()
                                         .then((value) {
                                       print('editado $value');
 
                                       if (value != 0) {
+                                        convitesController.guestList.clear();
+                                        convitesController.getConvites();
                                         visualizarConvitesController
                                                 .endDate.value =
                                             convitesController.endDate.value;
@@ -919,9 +919,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     )
                                         .then(
                                       (value) {
-                                        print(' n editado $value');
-
                                         if (value != 0) {
+                                          convitesController.guestList.clear();
+                                          convitesController.getConvites();
                                           visualizarConvitesController
                                                   .endDate.value =
                                               convitesController.endDate.value;
@@ -941,6 +941,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                 convitesController
                                                     .inviteName.value.text;
                                           }
+                                          visualizarConvitesController
+                                              .idConv.value = value.toString();
+
                                           confirmedInviteAlert(
                                             context,
                                             'Seu convite foi incluído com sucesso! \nVocê pode enviar para o WhatsApp dele(s)',
