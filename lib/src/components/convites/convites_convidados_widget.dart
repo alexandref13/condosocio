@@ -871,6 +871,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     convitesController
                                         .editAInvite()
                                         .then((value) {
+                                      print('editado $value');
+
                                       if (value != 0) {
                                         visualizarConvitesController
                                                 .endDate.value =
@@ -917,6 +919,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     )
                                         .then(
                                       (value) {
+                                        print(' n editado $value');
+
                                         if (value != 0) {
                                           visualizarConvitesController
                                                   .endDate.value =

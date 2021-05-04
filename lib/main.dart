@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
 import 'package:condosocio/src/pages/enquetes.dart';
 import 'package:condosocio/src/pages/senha.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
@@ -79,6 +80,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/convites', page: () => Convite()),
         GetPage(name: '/enquetes', page: () => Enquetes()),
         GetPage(name: '/detalhesConvite', page: () => DetalheConviteWidget()),
+        GetPage(name: '/whatsAppConvite', page: () => WhatsAppConvitesWidget()),
       ],
     );
   }

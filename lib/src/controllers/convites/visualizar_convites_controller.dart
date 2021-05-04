@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:condosocio/src/services/convites/api_convites.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
 
 class VisualizarConvitesController extends GetxController {
@@ -9,11 +12,14 @@ class VisualizarConvitesController extends GetxController {
   var titulo = ''.obs;
   var startDate = ''.obs;
   var endDate = ''.obs;
-  var qtdconv = 0.obs;
   var idConv = ''.obs;
+  var whatsappNumber = TextEditingController().obs;
+  var qtdconv = 0.obs;
 
   var isEdited = false.obs;
   var isLoading = false.obs;
+
+  var platformStringVersion = 'Unknown'.obs;
 
   getAConvite(String id) async {
     isLoading(true);
@@ -33,5 +39,22 @@ class VisualizarConvitesController extends GetxController {
     var data = json.decode(response.body);
     isLoading(false);
     return data;
+  }
+
+  Future<void> initPlatformState() async {
+    String platformVersion;
+    try {
+      platformVersion = await FlutterOpenWhatsapp.platformVersion;
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+
+    platformStringVersion.value = platformVersion;
+  }
+
+  @override
+  void onInit() {
+    initPlatformState();
+    super.onInit();
   }
 }
