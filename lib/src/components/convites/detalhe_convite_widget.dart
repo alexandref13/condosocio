@@ -7,6 +7,7 @@ import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -317,7 +318,20 @@ class DetalheConviteWidget extends StatelessWidget {
                                             .textSelectionTheme
                                             .selectionColor,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        if (convidados[x]['tel'].length == 13) {
+                                          FlutterOpenWhatsapp.sendSingleMessage(
+                                            convidados[x]['tel'],
+                                            'ola',
+                                          );
+                                        } else {
+                                          visualizarConvitesController
+                                              .whatsappNumber
+                                              .value
+                                              .text = convidados[x]['tel'];
+                                          Get.toNamed('/whatsAppConvite');
+                                        }
+                                      },
                                     ),
                                   ],
                                 ))
@@ -326,6 +340,7 @@ class DetalheConviteWidget extends StatelessWidget {
                           ),
                         isBefore
                             ? Container(
+                                margin: EdgeInsets.symmetric(vertical: 40),
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).primaryColor,
                                   border: Border(
@@ -339,6 +354,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                 ),
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 child: Container(
+                                  margin: EdgeInsets.symmetric(vertical: 10),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
