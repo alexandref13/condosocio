@@ -20,8 +20,8 @@ ThemeData admin = ThemeData(
 ThemeData magenta = ThemeData(
   brightness: Brightness.light,
   primaryColor: Color(0xff833545),
-  buttonColor: Color(0xff49182d),
-  accentColor: Color(0xff33141a),
+  accentColor: Color(0xff49182d),
+  buttonColor: Color(0xff33141a),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -38,8 +38,8 @@ ThemeData magenta = ThemeData(
 ThemeData turquoise = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Color(0xff054437),
-  accentColor: Color(0xff1a715e),
-  buttonColor: Color(0xff2b8a67),
+  buttonColor: Color(0xff1a715e),
+  accentColor: Color(0xff2b8a67),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -56,8 +56,8 @@ ThemeData turquoise = ThemeData(
 ThemeData blue = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Color(0xff375a70),
-  buttonColor: Color(0xff2a5571),
-  accentColor: Color(0xff394A59),
+  accentColor: Color(0xff2a5571),
+  buttonColor: Color(0xff394A59),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -74,8 +74,8 @@ ThemeData blue = ThemeData(
 ThemeData grayscale = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Color(0xff150811),
-  accentColor: Color(0xff26081C),
-  buttonColor: Color(0xff380036),
+  buttonColor: Color(0xff26081C),
+  accentColor: Color(0xff380036),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -92,8 +92,8 @@ ThemeData grayscale = ThemeData(
 ThemeData red = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Color(0xff811308),
-  accentColor: Color(0xff8a2015),
-  buttonColor: Color(0xffb83a2d),
+  buttonColor: Color(0xff8a2015),
+  accentColor: Color(0xffb83a2d),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -110,8 +110,8 @@ ThemeData red = ThemeData(
 ThemeData orange = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Color(0xff792404),
-  accentColor: Color(0xff612c07),
-  buttonColor: Color(0xff8b410d),
+  buttonColor: Color(0xff612c07),
+  accentColor: Color(0xff8b410d),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),

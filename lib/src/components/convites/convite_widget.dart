@@ -120,6 +120,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                   padding: EdgeInsets.only(bottom: 10, top: 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
                         padding:
@@ -269,34 +270,42 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                       Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        child: TextButton(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Continuar',
-                                style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                ),
+                        child: ButtonTheme(
+                          height: 50.0,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                                  return Theme.of(context).accentColor;
+                                },
                               ),
-                              Icon(
-                                Icons.arrow_right,
+                              shape: MaterialStateProperty.resolveWith<
+                                  OutlinedBorder>(
+                                (Set<MaterialState> states) {
+                                  return RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  );
+                                },
+                              ),
+                            ),
+                            onPressed: () {
+                              convitesController.startDate.value =
+                                  startSelectedDate.toString();
+                              convitesController.endDate.value =
+                                  endSelectedDate.toString();
+                              convitesController.handleAddPage();
+                            },
+                            child: Text(
+                              'Continuar',
+                              style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
                               ),
-                            ],
+                            ),
                           ),
-                          onPressed: () {
-                            convitesController.startDate.value =
-                                startSelectedDate.toString();
-                            convitesController.endDate.value =
-                                endSelectedDate.toString();
-                            convitesController.handleAddPage();
-                          },
                         ),
                       ),
                     ],

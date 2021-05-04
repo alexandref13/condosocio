@@ -1,4 +1,4 @@
-import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
@@ -85,8 +85,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 ),
                                 onPressed: () {},
                                 child: DropdownButton<String>(
-                                  isDense: true,
-                                  isExpanded: true,
                                   autofocus: false,
                                   underline: Container(),
                                   icon: Container(),
@@ -137,7 +135,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               convitesController.handleAddCountApp();
                             },
                             child: Container(
-                              alignment: Alignment(-1, 0),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     color: Theme.of(context)
@@ -207,7 +204,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               convitesController.handleAddCount();
                             },
                             child: Container(
-                              alignment: Alignment(-1, 0),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     color: Theme.of(context)
@@ -277,7 +273,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               agendaContatosController.pickContact();
                             },
                             child: Container(
-                              alignment: Alignment(-1, 0),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     color: Theme.of(context)
