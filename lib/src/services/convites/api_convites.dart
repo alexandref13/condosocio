@@ -25,6 +25,15 @@ class ApiConvites {
     );
   }
 
+  static Future deleleAConvite(String id) async {
+    return await http.post(
+      Uri.https('www.condosocio.com.br', '/flutter/convites_excluir.php'),
+      body: {
+        'idconv': id,
+      },
+    );
+  }
+
   static Future sendAcesso(String startDate, String endDate) async {
     LoginController loginController = Get.put(LoginController());
     ConvitesController convitesController = Get.put(ConvitesController());

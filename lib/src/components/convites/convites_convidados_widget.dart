@@ -1,4 +1,4 @@
-import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';

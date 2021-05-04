@@ -1,4 +1,4 @@
-import 'package:condosocio/src/components/progress_indicator_widget.dart';
+import 'package:condosocio/src/components/utils/progress_indicator_widget.dart';
 import 'package:condosocio/src/controllers/enquetes_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

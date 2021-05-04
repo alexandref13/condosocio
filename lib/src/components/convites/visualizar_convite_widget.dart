@@ -44,6 +44,8 @@ class VisualizarConviteWidget extends StatelessWidget {
                                           .qtdconv.value = convites.qtdconv;
                                       visualizarConviteController
                                           .endDate.value = convites.datafinal;
+                                      visualizarConviteController.idConv.value =
+                                          convites.idconv;
 
                                       visualizarConviteController
                                           .getAConvite(convites.idconv);
@@ -129,8 +131,8 @@ class VisualizarConviteWidget extends StatelessWidget {
                                     },
                                     child: Card(
                                       color: before
-                                          ? Theme.of(context).accentColor
-                                          : Theme.of(context).buttonColor,
+                                          ? Theme.of(context).buttonColor
+                                          : Theme.of(context).accentColor,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),

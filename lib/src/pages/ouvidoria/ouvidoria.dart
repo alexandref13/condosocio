@@ -1,4 +1,4 @@
-import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

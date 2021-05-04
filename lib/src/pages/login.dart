@@ -1,4 +1,4 @@
-import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/controllers/auth_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';

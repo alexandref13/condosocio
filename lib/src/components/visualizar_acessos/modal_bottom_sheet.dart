@@ -1,6 +1,6 @@
-import 'package:condosocio/src/components/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
-import 'package:condosocio/src/components/whatsapp_button_pressed.dart';
+import 'package:condosocio/src/components/utils/whatsapp_button_pressed.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';

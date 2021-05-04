@@ -10,6 +10,7 @@ class VisualizarConvitesController extends GetxController {
   var startDate = ''.obs;
   var endDate = ''.obs;
   var qtdconv = 0.obs;
+  var idConv = ''.obs;
 
   var isEdited = false.obs;
   var isLoading = false.obs;
@@ -24,5 +25,13 @@ class VisualizarConvitesController extends GetxController {
     Get.toNamed('/detalhesConvite');
 
     isLoading(false);
+  }
+
+  deleteAConvite() async {
+    isLoading(true);
+    var response = await ApiConvites.deleleAConvite(idConv.value);
+    var data = json.decode(response.body);
+    isLoading(false);
+    return data;
   }
 }
