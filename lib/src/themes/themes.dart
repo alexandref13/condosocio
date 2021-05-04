@@ -20,8 +20,8 @@ ThemeData admin = ThemeData(
 ThemeData magenta = ThemeData(
   brightness: Brightness.light,
   primaryColor: Color(0xff833545),
-  accentColor: Color(0xff49182d),
-  buttonColor: Color(0xff33141a),
+  buttonColor: Color(0xff49182d),
+  accentColor: Color(0xff33141a),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -56,8 +56,8 @@ ThemeData turquoise = ThemeData(
 ThemeData blue = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Color(0xff375a70),
-  accentColor: Color(0xff2a5571),
-  buttonColor: Color(0xff394A59),
+  buttonColor: Color(0xff2a5571),
+  accentColor: Color(0xff394A59),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),

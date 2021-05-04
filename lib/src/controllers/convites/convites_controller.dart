@@ -135,7 +135,6 @@ class ConvitesController extends GetxController {
 
   @override
   void onInit() {
-    inviteName.value.text = 'Convite de ${loginController.nome.value}';
     getConvites();
     super.onInit();
   }

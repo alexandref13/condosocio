@@ -33,15 +33,15 @@ class VisualizarConviteWidget extends StatelessWidget {
                               var date = DateTime.now();
                               var endDate = DateTime.parse(convites.datafinal);
 
-                              var before = endDate.isBefore(date);
+                              var before = date.isBefore(endDate);
                               return Container(
                                   margin: EdgeInsets.only(top: 5),
                                   child: GestureDetector(
                                     onTap: () {},
                                     child: Card(
                                       color: before
-                                          ? Theme.of(context).accentColor
-                                          : Theme.of(context).buttonColor,
+                                          ? Theme.of(context).buttonColor
+                                          : Theme.of(context).accentColor,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),

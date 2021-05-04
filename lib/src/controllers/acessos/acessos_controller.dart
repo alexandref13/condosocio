@@ -20,7 +20,6 @@ class AcessosController extends GetxController {
     'Selecione o tipo de visitante',
     'Convidado',
     'Prestador',
-    'App Mobilidade',
   ];
   var itemSelecionado = 'Selecione o tipo de visitante'.obs;
 

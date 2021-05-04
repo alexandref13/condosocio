@@ -78,10 +78,10 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     },
                                   ),
                                 ),
-                                onPressed: () {
-                                  convitesController.handleAddCountApp();
-                                },
+                                onPressed: () {},
                                 child: DropdownButton<String>(
+                                  isDense: true,
+                                  isExpanded: true,
                                   autofocus: false,
                                   underline: Container(),
                                   icon: Container(),
@@ -127,60 +127,55 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: ButtonTheme(
-                              height: 50.0,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.resolveWith<Color>(
-                                    (Set<MaterialState> states) {
-                                      return Theme.of(context).primaryColor;
-                                    },
+                          GestureDetector(
+                            onTap: () {
+                              convitesController.handleAddCountApp();
+                            },
+                            child: Container(
+                              alignment: Alignment(-1, 0),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ButtonTheme(
+                                height: 50.0,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty
+                                        .resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                        return Theme.of(context).primaryColor;
+                                      },
+                                    ),
+                                    elevation: MaterialStateProperty
+                                        .resolveWith<double>(
+                                      (Set<MaterialState> states) {
+                                        return 0;
+                                      },
+                                    ),
+                                    shape: MaterialStateProperty.resolveWith<
+                                        OutlinedBorder>(
+                                      (Set<MaterialState> states) {
+                                        return RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        );
+                                      },
+                                    ),
                                   ),
-                                  elevation:
-                                      MaterialStateProperty.resolveWith<double>(
-                                    (Set<MaterialState> states) {
-                                      return 0;
-                                    },
-                                  ),
-                                  shape: MaterialStateProperty.resolveWith<
-                                      OutlinedBorder>(
-                                    (Set<MaterialState> states) {
-                                      return RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      );
-                                    },
+                                  onPressed: () {},
+                                  child: Text(
+                                    "App Mobilidade",
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor),
                                   ),
                                 ),
-                                onPressed: () {
-                                  convitesController.handleAddCountApp();
-                                },
-                                child: acessosController.isLoading.value
-                                    ? SizedBox(
-                                        width: 20,
-                                        height: 20,
-                                        child: CircularProgressIndicator(
-                                          valueColor: AlwaysStoppedAnimation(
-                                              Colors.white),
-                                        ),
-                                      )
-                                    : Text(
-                                        "App Mobilidade",
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 14,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor),
-                                      ),
                               ),
                             ),
                           ),
@@ -200,60 +195,55 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: ButtonTheme(
-                              height: 50.0,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.resolveWith<Color>(
-                                    (Set<MaterialState> states) {
-                                      return Theme.of(context).primaryColor;
-                                    },
+                          GestureDetector(
+                            onTap: () {
+                              convitesController.handleAddCount();
+                            },
+                            child: Container(
+                              alignment: Alignment(-1, 0),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ButtonTheme(
+                                height: 50.0,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty
+                                        .resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                        return Theme.of(context).primaryColor;
+                                      },
+                                    ),
+                                    elevation: MaterialStateProperty
+                                        .resolveWith<double>(
+                                      (Set<MaterialState> states) {
+                                        return 0;
+                                      },
+                                    ),
+                                    shape: MaterialStateProperty.resolveWith<
+                                        OutlinedBorder>(
+                                      (Set<MaterialState> states) {
+                                        return RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        );
+                                      },
+                                    ),
                                   ),
-                                  elevation:
-                                      MaterialStateProperty.resolveWith<double>(
-                                    (Set<MaterialState> states) {
-                                      return 0;
-                                    },
-                                  ),
-                                  shape: MaterialStateProperty.resolveWith<
-                                      OutlinedBorder>(
-                                    (Set<MaterialState> states) {
-                                      return RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      );
-                                    },
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Adicione um convidado",
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor),
                                   ),
                                 ),
-                                onPressed: () {
-                                  convitesController.handleAddCount();
-                                },
-                                child: acessosController.isLoading.value
-                                    ? SizedBox(
-                                        width: 20,
-                                        height: 20,
-                                        child: CircularProgressIndicator(
-                                          valueColor: AlwaysStoppedAnimation(
-                                              Colors.white),
-                                        ),
-                                      )
-                                    : Text(
-                                        "Adicione um convidado",
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 14,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor),
-                                      ),
                               ),
                             ),
                           ),
@@ -273,60 +263,55 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: ButtonTheme(
-                              height: 50.0,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.resolveWith<Color>(
-                                    (Set<MaterialState> states) {
-                                      return Theme.of(context).primaryColor;
-                                    },
+                          GestureDetector(
+                            onTap: () {
+                              agendaContatosController.pickContact();
+                            },
+                            child: Container(
+                              alignment: Alignment(-1, 0),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ButtonTheme(
+                                height: 50.0,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty
+                                        .resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                        return Theme.of(context).primaryColor;
+                                      },
+                                    ),
+                                    elevation: MaterialStateProperty
+                                        .resolveWith<double>(
+                                      (Set<MaterialState> states) {
+                                        return 0;
+                                      },
+                                    ),
+                                    shape: MaterialStateProperty.resolveWith<
+                                        OutlinedBorder>(
+                                      (Set<MaterialState> states) {
+                                        return RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        );
+                                      },
+                                    ),
                                   ),
-                                  elevation:
-                                      MaterialStateProperty.resolveWith<double>(
-                                    (Set<MaterialState> states) {
-                                      return 0;
-                                    },
-                                  ),
-                                  shape: MaterialStateProperty.resolveWith<
-                                      OutlinedBorder>(
-                                    (Set<MaterialState> states) {
-                                      return RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      );
-                                    },
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Procurar nos contatos",
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor),
                                   ),
                                 ),
-                                onPressed: () {
-                                  agendaContatosController.pickContact();
-                                },
-                                child: acessosController.isLoading.value
-                                    ? SizedBox(
-                                        width: 20,
-                                        height: 20,
-                                        child: CircularProgressIndicator(
-                                          valueColor: AlwaysStoppedAnimation(
-                                              Colors.white),
-                                        ),
-                                      )
-                                    : Text(
-                                        "Procurar nos contatos",
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 14,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor),
-                                      ),
                               ),
                             ),
                           ),

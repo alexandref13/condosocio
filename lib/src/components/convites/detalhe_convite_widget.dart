@@ -17,6 +17,7 @@ class DetalheConviteWidget extends StatelessWidget {
         Get.put(VisualizarConvitesController());
     ConvitesController convitesController = Get.put(ConvitesController());
 
+    var date = DateTime.now();
     var endDate = DateTime.parse(visualizarConvitesController.endDate.value);
 
     var formatEndDateDay = DateFormat("dd/MM/yyyy").format(
@@ -46,6 +47,8 @@ class DetalheConviteWidget extends StatelessWidget {
 
             var formatStartDateDay = formatStartDate[0];
             var formatStartDateHour = formatStartDate[1];
+
+            var isBefore = date.isBefore(endDate);
 
             return Container(
               child: Column(
@@ -303,131 +306,133 @@ class DetalheConviteWidget extends StatelessWidget {
                         ],
                       ),
                     ),
+                  isBefore
+                      ? Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            border: Border(
+                              top: BorderSide(
+                                width: .5,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                ButtonTheme(
+                                  height: 50.0,
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty
+                                          .resolveWith<Color>(
+                                        (Set<MaterialState> states) {
+                                          return Theme.of(context).errorColor;
+                                        },
+                                      ),
+                                      shape: MaterialStateProperty.resolveWith<
+                                          OutlinedBorder>(
+                                        (Set<MaterialState> states) {
+                                          return RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Text(
+                                      "Deletar",
+                                      style: GoogleFonts.montserrat(
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                ButtonTheme(
+                                  height: 50.0,
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty
+                                          .resolveWith<Color>(
+                                        (Set<MaterialState> states) {
+                                          return Theme.of(context).accentColor;
+                                        },
+                                      ),
+                                      shape: MaterialStateProperty.resolveWith<
+                                          OutlinedBorder>(
+                                        (Set<MaterialState> states) {
+                                          return RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      convitesController.guestList.clear();
+                                      convitesController.isEdited.value = true;
+                                      for (var i = 0;
+                                          i <
+                                              visualizarConvitesController
+                                                  .convidados.length;
+                                          i++) {
+                                        convitesController.guestList.addAll({
+                                          {
+                                            'nome': visualizarConvitesController
+                                                .convidados[i]['nome'],
+                                            'tel': visualizarConvitesController
+                                                .convidados[i]['tel'],
+                                            'tipo': visualizarConvitesController
+                                                .convidados[i]['tipo'],
+                                            'placa':
+                                                visualizarConvitesController
+                                                    .convidados[i]['placa'],
+                                          }
+                                        });
+                                      }
+                                      convitesController.inviteName.value.text =
+                                          visualizarConvitesController
+                                              .titulo.value;
+                                      convitesController.startDate.value =
+                                          visualizarConvitesController
+                                              .startDate.value;
+                                      convitesController.endDate.value =
+                                          visualizarConvitesController
+                                              .endDate.value;
+
+                                      convitesController.page.value = 2;
+                                      Get.toNamed('/convites');
+                                    },
+                                    child: Text(
+                                      "Editar",
+                                      style: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : Container(),
                 ],
               ),
             );
           },
-        ),
-      ),
-      bottomSheet: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          border: Border(
-            top: BorderSide(
-              width: .5,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
-            ),
-          ),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        child: Container(
-          child: Row(
-            children: [
-              Expanded(
-                child: ButtonTheme(
-                  height: 70,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Theme.of(context).errorColor;
-                        },
-                      ),
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          return 0;
-                        },
-                      ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            side:
-                                BorderSide(color: Theme.of(context).errorColor),
-                            borderRadius: BorderRadius.circular(10.0),
-                          );
-                        },
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      "Deletar",
-                      style: GoogleFonts.montserrat(
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          fontSize: 14),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 12,
-              ),
-              Expanded(
-                child: ButtonTheme(
-                  height: 70,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Theme.of(context).accentColor;
-                        },
-                      ),
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          return 0;
-                        },
-                      ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          );
-                        },
-                      ),
-                    ),
-                    onPressed: () {
-                      convitesController.guestList.clear();
-                      convitesController.isEdited.value = true;
-                      for (var i = 0;
-                          i < visualizarConvitesController.convidados.length;
-                          i++) {
-                        convitesController.guestList.addAll({
-                          {
-                            'nome': visualizarConvitesController.convidados[i]
-                                ['nome'],
-                            'tel': visualizarConvitesController.convidados[i]
-                                ['tel'],
-                            'tipo': visualizarConvitesController.convidados[i]
-                                ['tipo'],
-                            'placa': visualizarConvitesController.convidados[i]
-                                ['placa'],
-                          }
-                        });
-                      }
-                      convitesController.inviteName.value.text =
-                          visualizarConvitesController.titulo.value;
-                      convitesController.startDate.value =
-                          visualizarConvitesController.startDate.value;
-                      convitesController.endDate.value =
-                          visualizarConvitesController.endDate.value;
-
-                      convitesController.page.value = 2;
-                      Get.toNamed('/convites');
-                    },
-                    child: Text(
-                      "Editar",
-                      style: GoogleFonts.montserrat(
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          fontSize: 14),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

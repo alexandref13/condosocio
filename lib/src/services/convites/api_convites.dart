@@ -34,7 +34,9 @@ class ApiConvites {
       body: {
         'idusu': loginController.id.value,
         'idcond': loginController.idcond.value,
-        'titulo': convitesController.inviteName.value.text,
+        'titulo': convitesController.inviteName.value.text == ''
+            ? 'Convite de ${loginController.nome.value}'
+            : convitesController.inviteName.value.text,
         'datainicial': startDate,
         'datafinal': endDate,
         'convidados': json.encode(convitesController.guestList),

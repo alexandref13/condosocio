@@ -2,6 +2,7 @@ import 'package:condosocio/src/components/utils/circular_progress_indicator.dart
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,6 +25,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
 
   AcessosController acessosController = Get.put(AcessosController());
   ConvitesController convitesController = Get.put(ConvitesController());
+  LoginController loginController = Get.put(LoginController());
 
   Future<TimeOfDay> selectTime(BuildContext context) {
     final now = DateTime.now();
@@ -142,7 +144,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               child: customTextField(
                                 context,
                                 null,
-                                '${convitesController.inviteName.value.text}',
+                                'Convite de ${loginController.nome.value}',
                                 true,
                                 1,
                                 true,
