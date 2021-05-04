@@ -120,6 +120,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                   padding: EdgeInsets.only(bottom: 10, top: 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
                         padding:
@@ -276,7 +277,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               backgroundColor:
                                   MaterialStateProperty.resolveWith<Color>(
                                 (Set<MaterialState> states) {
-                                  return Theme.of(context).errorColor;
+                                  return Theme.of(context).buttonColor;
                                 },
                               ),
                               shape: MaterialStateProperty.resolveWith<
@@ -295,25 +296,14 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                   endSelectedDate.toString();
                               convitesController.handleAddPage();
                             },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Continuar',
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.arrow_right,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                ),
-                              ],
+                            child: Text(
+                              'Continuar',
+                              style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
                             ),
                           ),
                         ),
