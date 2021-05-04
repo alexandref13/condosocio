@@ -46,7 +46,7 @@ class ListOfCondo extends StatelessWidget {
                               child: Text(
                                 condo.nomeCond,
                                 style: GoogleFonts.montserrat(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
@@ -55,8 +55,9 @@ class ListOfCondo extends StatelessWidget {
                             ),
                             subtitle: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15.0),
-                              child:
-                                  Text('${condo.logradouro} | ${condo.tipoun}'),
+                              child: Text(
+                                  '${condo.logradouro} | ${condo.tipoun}',
+                                  style: TextStyle(fontSize: 12)),
                             ),
                             trailing: Icon(
                               Icons.arrow_right,
