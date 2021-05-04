@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
+import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -30,6 +31,25 @@ class ApiConvites {
       Uri.https('www.condosocio.com.br', '/flutter/convites_excluir.php'),
       body: {
         'idconv': id,
+      },
+    );
+  }
+
+  static Future deleleAGuest() async {
+    ConvitesController convitesController = Get.put(ConvitesController());
+    LoginController loginController = Get.put(LoginController());
+    VisualizarConvitesController visualizarConvitesController =
+        Get.put(VisualizarConvitesController());
+
+    print('idConv: ${visualizarConvitesController.idConv.value}');
+    return await http.post(
+      Uri.https(
+          'www.condosocio.com.br', '/flutter/convites_excluir_convidados.php'),
+      body: {
+        'idconv': visualizarConvitesController.idConv.value,
+        'convidados': json.encode(convitesController.guestList),
+        'idusu': loginController.id.value,
+        'idcond': loginController.idcond.value,
       },
     );
   }

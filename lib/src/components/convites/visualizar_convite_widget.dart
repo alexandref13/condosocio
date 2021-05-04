@@ -125,6 +125,8 @@ class VisualizarConviteWidget extends StatelessWidget {
                                           .qtdconv.value = convites.qtdconv;
                                       visualizarConviteController
                                           .endDate.value = convites.datafinal;
+                                      visualizarConviteController.idConv.value =
+                                          convites.idconv;
 
                                       visualizarConviteController
                                           .getAConvite(convites.idconv);

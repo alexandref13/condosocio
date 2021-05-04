@@ -133,6 +133,17 @@ class ConvitesController extends GetxController {
     page.value = 1;
   }
 
+  editAInvite() async {
+    isLoading(true);
+
+    var response = await ApiConvites.deleleAGuest();
+    var data = json.decode(response.body);
+
+    isLoading(false);
+
+    return data;
+  }
+
   @override
   void onInit() {
     getConvites();

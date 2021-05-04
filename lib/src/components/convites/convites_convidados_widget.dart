@@ -866,11 +866,49 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   if (convitesController.isEdited.value) {
-                                    confirmedInviteAlert(
-                                      context,
-                                      'Seu convite foi editado com sucesso!',
-                                      () {},
-                                    );
+                                    print(
+                                        'id: ${visualizarConvitesController.idConv.value}');
+                                    convitesController
+                                        .editAInvite()
+                                        .then((value) {
+                                      if (value != 0) {
+                                        visualizarConvitesController
+                                                .endDate.value =
+                                            convitesController.endDate.value;
+                                        visualizarConvitesController
+                                                .qtdconv.value =
+                                            convitesController.guestList.length;
+                                        if (convitesController
+                                                .inviteName.value.text ==
+                                            '') {
+                                          visualizarConvitesController
+                                                  .titulo.value =
+                                              'Convite de ${loginController.nome.value}';
+                                        } else {
+                                          visualizarConvitesController
+                                                  .titulo.value =
+                                              convitesController
+                                                  .inviteName.value.text;
+                                        }
+                                        confirmedInviteAlert(
+                                          context,
+                                          'Seu convite foi editado com sucesso! \nVocê pode enviar para o WhatsApp dele(s)',
+                                          () {
+                                            visualizarConvitesController
+                                                .getAConvite(
+                                              visualizarConvitesController
+                                                  .idConv.value,
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        onAlertButtonPressed(
+                                          context,
+                                          'Algo deu errado \n Tente novamente',
+                                          '/home',
+                                        );
+                                      }
+                                    });
                                   } else {
                                     convitesController
                                         .sendConvites(
