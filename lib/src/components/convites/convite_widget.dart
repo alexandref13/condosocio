@@ -277,7 +277,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               backgroundColor:
                                   MaterialStateProperty.resolveWith<Color>(
                                 (Set<MaterialState> states) {
-                                  return Theme.of(context).buttonColor;
+                                  return Theme.of(context).accentColor;
                                 },
                               ),
                               shape: MaterialStateProperty.resolveWith<
