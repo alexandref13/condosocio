@@ -85,8 +85,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 ),
                                 onPressed: () {},
                                 child: DropdownButton<String>(
-                                  isDense: true,
-                                  isExpanded: true,
                                   autofocus: false,
                                   underline: Container(),
                                   icon: Container(),
@@ -137,7 +135,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               convitesController.handleAddCountApp();
                             },
                             child: Container(
-                              alignment: Alignment(-1, 0),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     color: Theme.of(context)
@@ -207,7 +204,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               convitesController.handleAddCount();
                             },
                             child: Container(
-                              alignment: Alignment(-1, 0),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     color: Theme.of(context)
@@ -277,7 +273,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               agendaContatosController.pickContact();
                             },
                             child: Container(
-                              alignment: Alignment(-1, 0),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     color: Theme.of(context)
