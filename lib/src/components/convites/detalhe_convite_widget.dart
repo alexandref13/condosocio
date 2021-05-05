@@ -266,7 +266,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            '${convidados[x]['nome']}',
+                                            convidados[x]['nome'],
                                             style: GoogleFonts.montserrat(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
@@ -321,16 +321,23 @@ class DetalheConviteWidget extends StatelessWidget {
                                             .selectionColor,
                                       ),
                                       onPressed: () {
+                                        visualizarConvitesController
+                                            .whatsappNumber
+                                            .value
+                                            .text = convidados[x]['tel'];
+                                        visualizarConvitesController.tel.value =
+                                            convidados[x]['tel'];
+                                        visualizarConvitesController.nameGuest
+                                            .value = convidados[x]['nome'];
                                         if (convidados[x]['tel'].length == 13) {
-                                          FlutterOpenWhatsapp.sendSingleMessage(
-                                            convidados[x]['tel'],
-                                            'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=',
-                                          );
-                                        } else {
                                           visualizarConvitesController
-                                              .whatsappNumber
-                                              .value
-                                              .text = convidados[x]['tel'];
+                                              .sendWhatsApp()
+                                              .then((value) {
+                                            if (value != 0) {
+                                              print(value);
+                                            }
+                                          });
+                                        } else {
                                           Get.toNamed('/whatsAppConvite');
                                         }
                                       },

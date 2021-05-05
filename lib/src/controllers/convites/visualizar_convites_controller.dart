@@ -13,6 +13,8 @@ class VisualizarConvitesController extends GetxController {
   var startDate = ''.obs;
   var endDate = ''.obs;
   var idConv = ''.obs;
+  var nameGuest = ''.obs;
+  var tel = ''.obs;
   var whatsappNumber = TextEditingController().obs;
   var qtdconv = 0.obs;
 
@@ -25,7 +27,7 @@ class VisualizarConvitesController extends GetxController {
     isLoading(true);
     var response = await ApiConvites.getAConvites(id);
     var data = json.decode(response.body);
-
+    print(data);
     invite = data;
 
     Get.toNamed('/detalhesConvite');
@@ -36,6 +38,14 @@ class VisualizarConvitesController extends GetxController {
   deleteAConvite() async {
     isLoading(true);
     var response = await ApiConvites.deleleAConvite(idConv.value);
+    var data = json.decode(response.body);
+    isLoading(false);
+    return data;
+  }
+
+  sendWhatsApp() async {
+    isLoading(true);
+    var response = await ApiConvites.sendWhatsApp();
     var data = json.decode(response.body);
     isLoading(false);
     return data;
