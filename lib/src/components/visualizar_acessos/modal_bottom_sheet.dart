@@ -1,114 +1,173 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
-import 'package:condosocio/src/components/utils/delete_alert.dart';
-import 'package:condosocio/src/components/utils/whatsapp_button_pressed.dart';
-import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
+import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-void configurandoModalBottomSheet(context, String pessoa, String placa,
-    String tipoDoc, String documento, idFav, String dataEntrada) {
+void configurandoModalBottomSheet(
+  context,
+  String pessoa,
+  String placa,
+  String tipoDoc,
+  String documento,
+  idFav,
+  String dataEntrada,
+  String cel,
+  String tipo,
+  String idConv,
+) {
   showModalBottomSheet(
-    context: context,
-    builder: (BuildContext bc) {
-      AcessosController acessosController = Get.put(AcessosController());
+      context: context,
+      builder: (BuildContext bc) {
+        VisualizarConvitesController visualizarConvitesController =
+            Get.put(VisualizarConvitesController());
+        LoginController loginController = Get.put(LoginController());
 
-      return Container(
-        height: MediaQuery.of(context).size.height * 0.3,
-        padding: EdgeInsets.all(8),
-        color: Theme.of(context).accentColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              child: Text(
-                "Você pode deletar o registro, incluir o visitante em seus favoritos ou mandar um convite por meio do Whatsapp ou Telegram para $pessoa.",
-                style: GoogleFonts.montserrat(
-                    fontSize: 12,
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                dataEntrada == ''
-                    ? Container()
-                    : IconButton(
-                        icon: Icon(
-                          Icons.delete,
-                          size: 24,
-                          color: Colors.white,
+        return Container(
+          color: Theme.of(context).accentColor,
+          child: Container(
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                  leading: new Icon(
+                    Feather.user,
+                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    size: 40,
+                  ),
+                  title: Text(
+                    pessoa,
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                  ),
+                  subtitle: cel != ''
+                      ? Text(
+                          '$tipo | $cel',
+                          style: TextStyle(fontSize: 14),
+                        )
+                      : Text(
+                          '$tipo',
+                          style: TextStyle(fontSize: 14),
                         ),
-                        onPressed: () {
-                          deleteAlert(context, 'Deseja excluir este acesso?',
-                              () {
-                            acessosController.deleteAcesso().then((value) {
-                              if (value == 1) {
+                ),
+                Divider(
+                  height: 20,
+                  color: Colors.blueGrey,
+                ),
+                dataEntrada == ''
+                    ? ListTile(
+                        leading: new Icon(
+                          FontAwesome.whatsapp,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                        title: Text('Enviar por WhatsApp'),
+                        trailing: Icon(
+                          Icons.arrow_right,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                        onTap: () {
+                          visualizarConvitesController.nameGuest.value = pessoa;
+                          visualizarConvitesController.idConv.value = idConv;
+                          var celular = cel
+                              .replaceAll("+", "")
+                              .replaceAll("(", "")
+                              .replaceAll(")", "")
+                              .replaceAll("-", "")
+                              .replaceAll(" ", "");
+                          if (celular.length == 13) {
+                            visualizarConvitesController
+                                .sendWhatsApp()
+                                .then((value) {
+                              print('value $value');
+                              if (value != 0) {
+                                FlutterOpenWhatsapp.sendSingleMessage(celular,
+                                    'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}');
+                              } else {
                                 onAlertButtonPressed(
-                                  context,
-                                  'Acesso excluido',
-                                  '/home',
-                                );
+                                    context,
+                                    'Algo deu errado\n Tente novamente',
+                                    '/home');
                               }
                             });
-                          });
+                          } else {
+                            Get.toNamed('/whatsAppConvite');
+                          }
                         },
-                      ),
-                // dataEntrada != ''
-                //     ? Container()
-                //     : IconButton(
-                //         icon: Icon(
-                //           idFav != null
-                //               ? FontAwesome.heart
-                //               : FontAwesome.heart_o,
-                //           size: 24,
-                //         ),
-                //         onPressed: () {
-                //           acessosController.sendFavorite().then(
-                //             (value) {
-                //               if (value == 1) {
-                //                 onAlertButtonPressed(context,
-                //                     'Novo favorito adicionado', '/home');
-                //               }
-                //               if (value == 0) {
-                //                 onAlertButtonPressed(
-                //                     context, 'Favorito deletado', '/home');
-                //                 acessosController.getFavoritos();
-                //                 visualizarAcessosController.getAcessos();
-                //               }
-                //             },
-                //           );
-                //         },
-                //       ),
-                dataEntrada == ''
-                    ? Container()
-                    : IconButton(
-                        icon: Icon(
-                          FontAwesome.whatsapp,
-                          size: 24,
-                          color: Colors.white,
+                      )
+                    : Container(),
+                dataEntrada != ''
+                    ? ListTile(
+                        leading: new Icon(
+                          FontAwesome.heart_o,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
                         ),
-                        onPressed: () {
-                          onWhatsappButtonPressed(context, null);
-                        },
-                      ),
-                dataEntrada == ''
-                    ? Container()
-                    : IconButton(
-                        icon: Icon(
-                          FontAwesome.telegram,
-                          size: 24,
+                        title: new Text('Adicionar à Favoritos'),
+                        trailing: new Icon(
+                          Icons.arrow_right,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
                         ),
+                        onTap: () {})
+                    : Container(),
+                dataEntrada == ''
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 50,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                  shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  )),
+                                  elevation: MaterialStateProperty.all(0),
+                                  backgroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).errorColor,
+                                  )),
+                              onPressed: () {},
+                              child: Text(
+                                "Deletar",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            )),
+                      )
+                    : Container(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )),
+                            elevation: MaterialStateProperty.all(0),
+                            backgroundColor: MaterialStateProperty.all(
+                              Theme.of(context).primaryColor,
+                            )),
                         onPressed: () {
-                          onWhatsappButtonPressed(context, null);
+                          Get.back();
                         },
-                      ),
+                        child: Text(
+                          "Cancelar",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      )),
+                ),
               ],
             ),
-          ],
-        ),
-      );
-    },
-  );
+          ),
+        );
+      });
 }

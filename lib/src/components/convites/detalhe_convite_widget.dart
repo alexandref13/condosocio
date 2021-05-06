@@ -329,14 +329,39 @@ class DetalheConviteWidget extends StatelessWidget {
                                             convidados[x]['tel'];
                                         visualizarConvitesController.nameGuest
                                             .value = convidados[x]['nome'];
-                                        if (convidados[x]['tel'].length == 13) {
+                                        var celular =
+                                            visualizarConvitesController
+                                                .whatsappNumber.value.text
+                                                .replaceAll("+", "")
+                                                .replaceAll("(", "")
+                                                .replaceAll(")", "")
+                                                .replaceAll("-", "")
+                                                .replaceAll(" ", "");
+                                        if (celular.length == 13) {
                                           visualizarConvitesController
                                               .sendWhatsApp()
-                                              .then((value) {
-                                            if (value != 0) {
-                                              print(value);
-                                            }
-                                          });
+                                              .then(
+                                            (value) {
+                                              print({
+                                                value,
+                                                visualizarConvitesController
+                                                    .idConv.value,
+                                                visualizarConvitesController
+                                                    .nameGuest.value,
+                                                celular
+                                              });
+                                              if (value != 0) {
+                                                FlutterOpenWhatsapp
+                                                    .sendSingleMessage(celular,
+                                                        'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}');
+                                              } else {
+                                                onAlertButtonPressed(
+                                                    context,
+                                                    'Algo deu errado\n Tente novamente',
+                                                    '/home');
+                                              }
+                                            },
+                                          );
                                         } else {
                                           Get.toNamed('/whatsAppConvite');
                                         }

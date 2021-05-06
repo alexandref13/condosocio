@@ -33,6 +33,9 @@ Widget listaVisualizarAcessos() {
                       search.documento,
                       search.idfav,
                       search.dataent,
+                      search.cel,
+                      search.tipopessoa,
+                      search.idconv,
                     );
 
                     acessosController.idAce.value =
@@ -169,13 +172,17 @@ Widget listaVisualizarAcessos() {
                     acessosController.tel.value =
                         visualizarAcessosController.acessos[index].datasai;
                     configurandoModalBottomSheet(
-                        context,
-                        visualizarAcessosController.acessos[index].pessoa,
-                        visualizarAcessosController.acessos[index].placa,
-                        visualizarAcessosController.acessos[index].tipodoc,
-                        visualizarAcessosController.acessos[index].documento,
-                        visualizarAcessosController.acessos[index].idfav,
-                        visualizarAcessosController.acessos[index].dataent);
+                      context,
+                      visualizarAcessosController.acessos[index].pessoa,
+                      visualizarAcessosController.acessos[index].placa,
+                      visualizarAcessosController.acessos[index].tipodoc,
+                      visualizarAcessosController.acessos[index].documento,
+                      visualizarAcessosController.acessos[index].idfav,
+                      visualizarAcessosController.acessos[index].dataent,
+                      visualizarAcessosController.acessos[index].cel,
+                      visualizarAcessosController.acessos[index].tipopessoa,
+                      visualizarAcessosController.acessos[index].idconv,
+                    );
                   },
                   child: Column(
                     children: [

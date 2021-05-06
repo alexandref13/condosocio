@@ -95,7 +95,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    Icons.person,
+                                    Icons.person_outline,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -138,7 +138,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.tv,
+                                    Icons.live_tv_outlined,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -181,7 +181,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    Icons.receipt,
+                                    Icons.receipt_outlined,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -224,7 +224,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.calendar,
+                                    FontAwesome.calendar_o,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -267,7 +267,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.comment,
+                                    FontAwesome.comment_o,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -310,7 +310,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.file,
+                                    FontAwesome.file_o,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -353,7 +353,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.comments,
+                                    FontAwesome.comments_o,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -394,8 +394,8 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Icon(
-                                  Icons.event_note,
-                                  size: 50,
+                                  Icons.event_note_outlined,
+                                  size: 35,
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
@@ -479,7 +479,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    AntDesign.infocirlce,
+                                    AntDesign.infocirlceo,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -522,7 +522,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.comments,
+                                    Icons.question_answer_outlined,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme

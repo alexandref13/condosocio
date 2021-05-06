@@ -9,6 +9,9 @@ class MapaAcessos {
   String nome_dep;
   String dataent;
   String datasai;
+  String tipopessoa;
+  String cel;
+  String idconv;
 
   MapaAcessos(
       {this.idfav,
@@ -20,7 +23,10 @@ class MapaAcessos {
       this.datahora,
       this.nome_dep,
       this.dataent,
-      this.datasai});
+      this.datasai,
+      this.tipopessoa,
+      this.cel,
+      this.idconv});
 
   MapaAcessos.fromJson(Map<String, dynamic> json) {
     idfav = json['idfav'];
@@ -33,6 +39,9 @@ class MapaAcessos {
     nome_dep = json['nome_dep'];
     dataent = json['dataent'];
     datasai = json['datasai'];
+    tipopessoa = json['tipopessoa'];
+    cel = json['cel'];
+    idconv = json['idconv'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +56,9 @@ class MapaAcessos {
     data['nome_dep'] = this.nome_dep;
     data['dataent'] = this.dataent;
     data['datasai'] = this.datasai;
+    data['tipopessoa'] = this.tipopessoa;
+    data['cel'] = this.cel;
+    data['idconv'] = this.idconv;
     return data;
   }
 }

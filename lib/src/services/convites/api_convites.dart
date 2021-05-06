@@ -76,14 +76,12 @@ class ApiConvites {
   static Future sendWhatsApp() async {
     VisualizarConvitesController visualizarConvitesController =
         Get.put(VisualizarConvitesController());
-    return await http.post(
+    return await http.get(
       Uri.https(
-          'www.condosocio.com.br', '/flutter/convites_whatsapp_chave.php'),
-      body: {
-        'idconv ': visualizarConvitesController.idConv.value,
-        'nome  ': visualizarConvitesController.nameGuest.value,
-        'cel  ': visualizarConvitesController.tel.value,
-      },
+          'www.condosocio.com.br', '/flutter/convites_whatsapp_chave.php', {
+        'idconv': visualizarConvitesController.idConv.value,
+        'nome': visualizarConvitesController.nameGuest.value,
+      }),
     );
   }
 }

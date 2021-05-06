@@ -6,6 +6,7 @@ import 'package:condosocio/src/services/convites/api_convites.dart';
 import 'package:condosocio/src/services/convites/mapa_convites.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ConvitesController extends GetxController {
   AcessosController acessosController = Get.put(AcessosController());
@@ -30,14 +31,19 @@ class ConvitesController extends GetxController {
   var isEdited = false.obs;
   var isLoading = false.obs;
 
+  var maskFormatter = new MaskTextInputFormatter(
+    mask: '+55 (##) #####-####',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
+
   handleAddCount() {
     countApp(false);
-    count(true);
+    count.value = !count.value;
   }
 
   handleAddCountApp() {
     count(false);
-    countApp(true);
+    countApp.value = !countApp.value;
   }
 
   handleRemoveCount() {
@@ -78,10 +84,12 @@ class ConvitesController extends GetxController {
     acessosController.isLoading.value = true;
     final response = await ApiAcessos.getAFavorite();
     var dados = json.decode(response.body);
+    print(dados);
     acessosController.favorito = await dados.map((item) => item).toList();
 
     guestList.addAll({
       {
+        'idfav': acessosController.favorito[0]['idfav'].toString(),
         'nome': acessosController.favorito[0]['pessoa'].toString(),
         'tel': acessosController.favorito[0]['cel'].toString(),
         'tipo': 'Convidado',
@@ -110,7 +118,6 @@ class ConvitesController extends GetxController {
     Iterable lista = json.decode(response.body);
     convites
         .assignAll(lista.map((model) => ConvitesMapa.fromJson(model)).toList());
-    print(lista);
 
     isLoading(false);
   }

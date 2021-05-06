@@ -86,8 +86,12 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 onPressed: () {},
                                 child: DropdownButton<String>(
                                   autofocus: false,
+                                  isExpanded: true,
                                   underline: Container(),
-                                  icon: Container(),
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_down,
+                                    size: 27,
+                                  ),
                                   dropdownColor: Theme.of(context).primaryColor,
                                   style: GoogleFonts.montserrat(
                                       fontSize: 14,
@@ -132,7 +136,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              convitesController.handleAddCountApp();
+                              agendaContatosController.pickContact();
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -142,44 +146,63 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         .selectionColor),
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: ButtonTheme(
-                                height: 50.0,
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                        return Theme.of(context).primaryColor;
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ButtonTheme(
+                                    height: 50.0,
+                                    child: ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty
+                                            .resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                            return Theme.of(context)
+                                                .primaryColor;
+                                          },
+                                        ),
+                                        elevation: MaterialStateProperty
+                                            .resolveWith<double>(
+                                          (Set<MaterialState> states) {
+                                            return 0;
+                                          },
+                                        ),
+                                        shape: MaterialStateProperty
+                                            .resolveWith<OutlinedBorder>(
+                                          (Set<MaterialState> states) {
+                                            return RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        agendaContatosController.pickContact();
                                       },
-                                    ),
-                                    elevation: MaterialStateProperty
-                                        .resolveWith<double>(
-                                      (Set<MaterialState> states) {
-                                        return 0;
-                                      },
-                                    ),
-                                    shape: MaterialStateProperty.resolveWith<
-                                        OutlinedBorder>(
-                                      (Set<MaterialState> states) {
-                                        return RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        );
-                                      },
+                                      child: Text(
+                                        "Procurar nos contatos",
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor),
+                                      ),
                                     ),
                                   ),
-                                  onPressed: () {
-                                    convitesController.handleAddCountApp();
-                                  },
-                                  child: Text(
-                                    "App Mobilidade",
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 14,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor),
-                                  ),
-                                ),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_right,
+                                      size: 27,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    ),
+                                    onPressed: () {
+                                      agendaContatosController.pickContact();
+                                    },
+                                  )
+                                ],
                               ),
                             ),
                           ),
@@ -211,44 +234,65 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         .selectionColor),
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: ButtonTheme(
-                                height: 50.0,
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                        return Theme.of(context).primaryColor;
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ButtonTheme(
+                                    height: 50.0,
+                                    child: ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty
+                                            .resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                            return Theme.of(context)
+                                                .primaryColor;
+                                          },
+                                        ),
+                                        elevation: MaterialStateProperty
+                                            .resolveWith<double>(
+                                          (Set<MaterialState> states) {
+                                            return 0;
+                                          },
+                                        ),
+                                        shape: MaterialStateProperty
+                                            .resolveWith<OutlinedBorder>(
+                                          (Set<MaterialState> states) {
+                                            return RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        convitesController.handleAddCount();
                                       },
-                                    ),
-                                    elevation: MaterialStateProperty
-                                        .resolveWith<double>(
-                                      (Set<MaterialState> states) {
-                                        return 0;
-                                      },
-                                    ),
-                                    shape: MaterialStateProperty.resolveWith<
-                                        OutlinedBorder>(
-                                      (Set<MaterialState> states) {
-                                        return RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        );
-                                      },
+                                      child: Text(
+                                        "Adicione um convidado",
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor),
+                                      ),
                                     ),
                                   ),
-                                  onPressed: () {
-                                    convitesController.handleAddCount();
-                                  },
-                                  child: Text(
-                                    "Adicione um convidado",
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 14,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor),
-                                  ),
-                                ),
+                                  IconButton(
+                                    icon: Icon(
+                                      convitesController.count.value
+                                          ? Icons.keyboard_arrow_down
+                                          : Icons.keyboard_arrow_right,
+                                      size: 27,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    ),
+                                    onPressed: () {
+                                      convitesController.handleAddCount();
+                                    },
+                                  )
+                                ],
                               ),
                             ),
                           ),
@@ -270,56 +314,77 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              agendaContatosController.pickContact();
+                              convitesController.handleAddCountApp();
                             },
                             child: Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: ButtonTheme(
-                                height: 50.0,
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                        return Theme.of(context).primaryColor;
-                                      },
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ButtonTheme(
+                                      height: 50.0,
+                                      child: ElevatedButton(
+                                        style: ButtonStyle(
+                                          backgroundColor: MaterialStateProperty
+                                              .resolveWith<Color>(
+                                            (Set<MaterialState> states) {
+                                              return Theme.of(context)
+                                                  .primaryColor;
+                                            },
+                                          ),
+                                          elevation: MaterialStateProperty
+                                              .resolveWith<double>(
+                                            (Set<MaterialState> states) {
+                                              return 0;
+                                            },
+                                          ),
+                                          shape: MaterialStateProperty
+                                              .resolveWith<OutlinedBorder>(
+                                            (Set<MaterialState> states) {
+                                              return RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          convitesController
+                                              .handleAddCountApp();
+                                        },
+                                        child: Text(
+                                          "App mobilidade",
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor),
+                                        ),
+                                      ),
                                     ),
-                                    elevation: MaterialStateProperty
-                                        .resolveWith<double>(
-                                      (Set<MaterialState> states) {
-                                        return 0;
-                                      },
-                                    ),
-                                    shape: MaterialStateProperty.resolveWith<
-                                        OutlinedBorder>(
-                                      (Set<MaterialState> states) {
-                                        return RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    agendaContatosController.pickContact();
-                                  },
-                                  child: Text(
-                                    "Procurar nos contatos",
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 14,
+                                    IconButton(
+                                      icon: Icon(
+                                        convitesController.countApp.value
+                                            ? Icons.keyboard_arrow_down
+                                            : Icons.keyboard_arrow_right,
+                                        size: 27,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor),
-                                  ),
-                                ),
-                              ),
-                            ),
+                                            .selectionColor,
+                                      ),
+                                      onPressed: () {
+                                        convitesController.handleAddCountApp();
+                                      },
+                                    )
+                                  ],
+                                )),
                           ),
                           SizedBox(
                             height: 20,
@@ -530,7 +595,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       bottom: 20, left: 10, right: 10),
                                   child: Center(
                                     child: Text(
-                                      'Convidado',
+                                      'Adicione um Convidado',
                                       style: GoogleFonts.montserrat(
                                         fontSize: 14,
                                       ),
@@ -594,14 +659,54 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(bottom: 5),
                                   padding: EdgeInsets.all(7),
-                                  child: customTextField(
-                                    context,
-                                    'Celular (ex: 91 XXXXX-XXXX)',
-                                    null,
-                                    false,
-                                    1,
-                                    true,
-                                    acessosController.phone.value,
+                                  child: TextField(
+                                    controller: acessosController.phone.value,
+                                    inputFormatters: [
+                                      convitesController.maskFormatter
+                                    ],
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    ),
+                                    decoration: InputDecoration(
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      labelText: 'Celular',
+                                      labelStyle: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                      ),
+                                      isDense: true,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          width: 2,
+                                        ),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          width: 1,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Row(
@@ -771,7 +876,12 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.only(right: 20),
-                                    child: Icon(Feather.user_check),
+                                    child: Icon(
+                                      Feather.user_check,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    ),
                                   ),
                                   Column(
                                     crossAxisAlignment:
@@ -779,7 +889,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '${convitesController.guestList[i]['nome']} | ${convitesController.guestList[i]['tipo']} ',
+                                        convitesController.guestList[i]['nome'],
                                         style: GoogleFonts.montserrat(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
@@ -826,8 +936,12 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               ),
                             ),
                             IconButton(
-                              icon: Icon(Icons.delete,
-                                  color: Theme.of(context).errorColor),
+                              icon: Icon(
+                                Icons.close,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
                               onPressed: () =>
                                   convitesController.guestList.removeAt(i),
                             )
@@ -920,6 +1034,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         .then(
                                       (value) {
                                         if (value != 0) {
+                                          print({
+                                            'Guest: ${convitesController.guestList}'
+                                          });
                                           convitesController.guestList.clear();
                                           convitesController.getConvites();
                                           visualizarConvitesController
@@ -946,7 +1063,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
 
                                           confirmedInviteAlert(
                                             context,
-                                            'Seu convite foi incluído com sucesso! \nVocê pode enviar para o WhatsApp dele(s)',
+                                            'Seu convite foi incluído com sucesso! \nVocê pode enviar por WhatsApp',
                                             () {
                                               visualizarConvitesController
                                                   .getAConvite(

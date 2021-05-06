@@ -25,103 +25,111 @@ class WhatsAppConvitesWidget extends StatelessWidget {
               color: Theme.of(context).textSelectionTheme.selectionColor),
         ),
       ),
-      body: Container(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
+      body: SingleChildScrollView(
+        child: Container(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: Image.asset(
+                'images/landing1.png',
+              ),
             ),
-            child: Text(
-              'Para o envio do convite por WhatsApp, é necessário enviar o número no formato internacional. \n\nCódigo do país + código da área e seu número. \n\nex: 5591XXXXXXXXX',
-              style: GoogleFonts.montserrat(
-                  fontSize: 14,
-                  color: Theme.of(context).textSelectionTheme.selectionColor),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
-            ),
-            child: customTextField(
-              context,
-              'Telefone',
-              null,
-              false,
-              1,
-              true,
-              visualizarConvitesController.whatsappNumber.value,
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
-            ),
-            width: MediaQuery.of(context).size.width,
-            child: ButtonTheme(
-              height: 50.0,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
-                      return Theme.of(context).accentColor;
-                    },
-                  ),
-                  elevation: MaterialStateProperty.resolveWith<double>(
-                    (Set<MaterialState> states) {
-                      return 2;
-                    },
-                  ),
-                  shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                    (Set<MaterialState> states) {
-                      return RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      );
-                    },
-                  ),
-                ),
-                onPressed: () {
-                  print('ola');
-
-                  if (visualizarConvitesController
-                          .whatsappNumber.value.text.length ==
-                      13) {
-                    visualizarConvitesController.sendWhatsApp().then((value) {
-                      print({
-                        value,
-                        visualizarConvitesController.idConv.value,
-                        visualizarConvitesController.nameGuest.value,
-                        visualizarConvitesController.tel.value,
-                      });
-                      if (value != 0) {
-                        print(value);
-                      }
-                    });
-                  } else {
-                    onAlertButtonPressed(
-                      context,
-                      'O número está no formato errado \n ex: 5591XXXXXXXXX',
-                      null,
-                    );
-                  }
-                },
-                child: Text(
-                  'ENVIAR',
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.bold,
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: Text(
+                'Envie este convite por whatsapp, para isto é necessário inserir o número no formato internacional. \n\nCódigo do país + código da área + seu número. \n\nex: 5591XXXXX-XXXX',
+                style: GoogleFonts.montserrat(
                     fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: customTextField(
+                context,
+                'Telefone',
+                null,
+                false,
+                1,
+                true,
+                visualizarConvitesController.whatsappNumber.value,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              width: MediaQuery.of(context).size.width,
+              child: ButtonTheme(
+                height: 50.0,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        return Theme.of(context).accentColor;
+                      },
+                    ),
+                    elevation: MaterialStateProperty.resolveWith<double>(
+                      (Set<MaterialState> states) {
+                        return 2;
+                      },
+                    ),
+                    shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+                      (Set<MaterialState> states) {
+                        return RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        );
+                      },
+                    ),
+                  ),
+                  onPressed: () {
+                    if (visualizarConvitesController
+                            .whatsappNumber.value.text.length ==
+                        13) {
+                      visualizarConvitesController.sendWhatsApp().then(
+                        (value) {
+                          if (value != 0) {
+                            FlutterOpenWhatsapp.sendSingleMessage(
+                                visualizarConvitesController
+                                    .whatsappNumber.value.text,
+                                'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}');
+                          } else {
+                            onAlertButtonPressed(context,
+                                'Algo deu errado\n Tente novamente', '/home');
+                          }
+                        },
+                      );
+                    } else {
+                      onAlertButtonPressed(
+                        context,
+                        'O número está no formato errado \n ex: 5591XXXXXXXXX',
+                        null,
+                      );
+                    }
+                  },
+                  child: Text(
+                    'ENVIAR',
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
-      )),
+            )
+          ],
+        )),
+      ),
     );
   }
 }

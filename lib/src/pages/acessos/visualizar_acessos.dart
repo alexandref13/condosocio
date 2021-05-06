@@ -1,6 +1,5 @@
 import 'package:condosocio/src/components/visualizar_acessos/visualizar_acessos_entrada.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +15,8 @@ class VisualizarAcessos extends StatelessWidget {
               children: [
                 IconButton(
                   icon: Icon(
-                    Feather.user_plus,
+                    Icons.add,
+                    size: 30,
                     color: Theme.of(context).textSelectionTheme.selectionColor,
                   ),
                   onPressed: () {
@@ -28,6 +28,10 @@ class VisualizarAcessos extends StatelessWidget {
           ],
           title: Text(
             'Acessos',
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
           ),
           bottom: TabBar(
             indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
