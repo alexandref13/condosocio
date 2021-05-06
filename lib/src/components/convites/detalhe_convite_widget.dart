@@ -40,7 +40,10 @@ class DetalheConviteWidget extends StatelessWidget {
           icon: Icon(Icons.arrow_back,
               color: Theme.of(context).textSelectionTheme.selectionColor),
           onPressed: () {
-            Get.offNamedUntil('/convites', ModalRoute.withName('/convites'));
+            Get.offNamedUntil(
+              '/convites',
+              ModalRoute.withName('/convites'),
+            );
           },
         ),
       ),
