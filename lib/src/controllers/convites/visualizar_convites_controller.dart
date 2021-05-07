@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VisualizarConvitesController extends GetxController {
   var invite = [];
@@ -22,6 +23,21 @@ class VisualizarConvitesController extends GetxController {
   var isLoading = false.obs;
 
   var platformStringVersion = 'Unknown'.obs;
+
+  Future<void> launched;
+
+  Future<void> launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   getAConvite(String id) async {
     isLoading(true);
