@@ -353,16 +353,7 @@ class _DocumentosState extends State<Documentos> {
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Icon(
-                                Icons.anchor_outlined,
-                                size: 35,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
+                          children: <Widget>[],
                         )),
                   ],
                 ),

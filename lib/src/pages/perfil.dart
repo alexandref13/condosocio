@@ -32,7 +32,7 @@ class _PerfilState extends State<Perfil> {
         lastDate: DateTime(2100),
       );
 
-  final uri = Uri.parse("https://focuseg.com.br/flutter/upload_imagem.php");
+  final uri = Uri.parse("https://condosocio.com.br/flutter/upload_imagem.php");
   File _selectedFile;
   final _picker = ImagePicker();
 
