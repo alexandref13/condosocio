@@ -97,10 +97,9 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                       visualizarConvitesController.sendWhatsApp().then(
                         (value) {
                           if (value != 0) {
-                            FlutterOpenWhatsapp.sendSingleMessage(
-                                visualizarConvitesController
-                                    .whatsappNumber.value.text,
-                                'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}');
+                            visualizarConvitesController.launched =
+                                visualizarConvitesController.launchInBrowser(
+                                    'https://api.whatsapp.com/send?phone=${visualizarConvitesController.whatsappNumber.value.text}&text=Olá!%20você%20foi%20convidadopelo%20${loginController.nome.value}%20morador%20do%20condomínio%20${loginController.nomeCondo.value}.%20Agilize%20seu%20acesso%20clicando%20no%20link%20e%20preencha%20os%20campos%20em%20abertos.%20Grato!%20https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}');
                           } else {
                             onAlertButtonPressed(context,
                                 'Algo deu errado\n Tente novamente', '/home');

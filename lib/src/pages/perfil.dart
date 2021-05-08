@@ -435,14 +435,40 @@ class _PerfilState extends State<Perfil> {
                 SizedBox(
                   height: 5,
                 ),
-                customTextField(
-                  context,
-                  null,
-                  null,
-                  false,
-                  1,
-                  true,
-                  perfilController.phone.value,
+                TextField(
+                  inputFormatters: [perfilController.maskFormatter],
+                  controller: perfilController.phone.value,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                  ),
+                  decoration: InputDecoration(
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        width: 1,
+                      ),
+                    ),
+                    isDense: true,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        width: 2,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        width: 1,
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 10,

@@ -1,6 +1,7 @@
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class PerfilController extends GetxController {
   LoginController loginController = Get.put(LoginController());
@@ -11,6 +12,11 @@ class PerfilController extends GetxController {
   var birthdate = TextEditingController().obs;
   var phone = TextEditingController().obs;
   var fullName = '';
+
+  var maskFormatter = new MaskTextInputFormatter(
+    mask: '+55 (##) #####-####',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
   init() {
     fullName = loginController.nome.value;
