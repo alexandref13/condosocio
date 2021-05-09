@@ -33,57 +33,58 @@ class _OcorrenciasState extends State<Ocorrencias> {
           ),
         ),
         body: SingleChildScrollView(
-          child: Container(
-              margin: EdgeInsets.all(15),
-              child: Obx(() {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      height: 40,
-                      padding: EdgeInsets.all(7),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          width: 1,
-                        ),
-                      ),
-                      child: DropdownButton<String>(
-                        isExpanded: true,
-                        underline: Container(),
-                        icon: Icon(
-                          Icons.keyboard_arrow_down,
-                          size: 27,
-                        ),
-                        iconEnabledColor:
+          child: Container(child: Obx(() {
+            return Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    height: 40,
+                    padding: EdgeInsets.all(7),
+                    margin: EdgeInsets.all(7),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color:
                             Theme.of(context).textSelectionTheme.selectionColor,
-                        dropdownColor: Theme.of(context).primaryColor,
-                        style: GoogleFonts.montserrat(fontSize: 16),
-                        items: ocorrenciasController.tipos
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (String novoItemSelecionado) {
-                          _dropDownItemSelected(novoItemSelecionado);
-                          this.ocorrenciasController.itemSelecionado.value =
-                              novoItemSelecionado;
-                        },
-                        value: ocorrenciasController.itemSelecionado.value,
+                        width: 1,
                       ),
                     ),
-                    SizedBox(
-                      height: 15,
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      underline: Container(),
+                      icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        size: 27,
+                      ),
+                      iconEnabledColor:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                      dropdownColor: Theme.of(context).primaryColor,
+                      style: GoogleFonts.montserrat(fontSize: 16),
+                      items: ocorrenciasController.tipos
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (String novoItemSelecionado) {
+                        _dropDownItemSelected(novoItemSelecionado);
+                        this.ocorrenciasController.itemSelecionado.value =
+                            novoItemSelecionado;
+                      },
+                      value: ocorrenciasController.itemSelecionado.value,
                     ),
-                    customTextField(
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(7),
+                    child: customTextField(
                       context,
                       'Titulo',
                       null,
@@ -92,24 +93,27 @@ class _OcorrenciasState extends State<Ocorrencias> {
                       true,
                       ocorrenciasController.title.value,
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        showDatePicker(
-                          context: context,
-                          initialDate: data,
-                          firstDate: DateTime.now(),
-                          lastDate: DateTime(2024),
-                        ).then((value) => {
-                              setState(() {
-                                data = value;
-                                ocorrenciasController.date.value.text =
-                                    (DateFormat("dd/MM/yyyy").format(value));
-                              })
-                            });
-                      },
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      showDatePicker(
+                        context: context,
+                        initialDate: data,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2024),
+                      ).then((value) => {
+                            setState(() {
+                              data = value;
+                              ocorrenciasController.date.value.text =
+                                  (DateFormat("dd/MM/yyyy").format(value));
+                            })
+                          });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(7),
                       child: customTextField(
                         context,
                         null,
@@ -120,27 +124,30 @@ class _OcorrenciasState extends State<Ocorrencias> {
                         ocorrenciasController.date.value,
                       ),
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        showTimePicker(
-                            context: context,
-                            initialTime: hora,
-                            builder: (BuildContext context, Widget child) {
-                              return MediaQuery(
-                                  data: MediaQuery.of(context)
-                                      .copyWith(alwaysUse24HourFormat: true),
-                                  child: child);
-                            }).then((value) => {
-                              setState(() {
-                                hora = value;
-                                ocorrenciasController.hour.value.text =
-                                    value.format(context);
-                              })
-                            });
-                      },
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      showTimePicker(
+                          context: context,
+                          initialTime: hora,
+                          builder: (BuildContext context, Widget child) {
+                            return MediaQuery(
+                                data: MediaQuery.of(context)
+                                    .copyWith(alwaysUse24HourFormat: true),
+                                child: child);
+                          }).then((value) => {
+                            setState(() {
+                              hora = value;
+                              ocorrenciasController.hour.value.text =
+                                  value.format(context);
+                            })
+                          });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(7),
                       child: customTextField(
                         context,
                         null,
@@ -151,27 +158,28 @@ class _OcorrenciasState extends State<Ocorrencias> {
                         ocorrenciasController.hour.value,
                       ),
                     ),
-                    SizedBox(
-                      height: 15,
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(7),
+                    child: customTextField(
+                      context,
+                      'Descrição',
+                      null,
+                      true,
+                      3,
+                      true,
+                      ocorrenciasController.description.value,
                     ),
-                    Container(
-                      child: customTextField(
-                        context,
-                        'Descrição',
-                        null,
-                        true,
-                        3,
-                        true,
-                        ocorrenciasController.description.value,
-                      ),
-                    ),
-                    Padding(
+                  ),
+                  Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       child: ButtonTheme(
                         height: 50.0,
                         child: ElevatedButton(
-                          onPressed: () {},
                           style: ButtonStyle(
                             backgroundColor:
                                 MaterialStateProperty.resolveWith<Color>(
@@ -195,106 +203,104 @@ class _OcorrenciasState extends State<Ocorrencias> {
                               },
                             ),
                           ),
+                          onPressed: () {},
                           child: Text(
                             "ANEXAR IMAGEM",
                             style: GoogleFonts.montserrat(
-                                color: Colors.black, fontSize: 16),
+                                color: Theme.of(context).buttonColor,
+                                fontSize: 16),
                           ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                      child: ButtonTheme(
-                        height: 50.0,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                return Theme.of(context).accentColor;
-                              },
-                            ),
-                            elevation:
-                                MaterialStateProperty.resolveWith<double>(
-                                    (Set<MaterialState> states) {
-                              return 3;
-                            }),
-                            shape: MaterialStateProperty.resolveWith<
-                                OutlinedBorder>(
-                              (Set<MaterialState> states) {
-                                return RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                );
-                              },
-                            ),
+                      )),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    child: ButtonTheme(
+                      height: 50.0,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              return Theme.of(context).accentColor;
+                            },
                           ),
-                          onPressed: () {},
-                          child: ocorrenciasController.isLoading.value
-                              ? SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: CircularProgressIndicator(
-                                    valueColor:
-                                        AlwaysStoppedAnimation(Colors.white),
-                                  ),
-                                )
-                              : Text(
-                                  "ENVIAR",
-                                  style: GoogleFonts.montserrat(
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
-                                      fontSize: 16),
+                          elevation: MaterialStateProperty.resolveWith<double>(
+                              (Set<MaterialState> states) {
+                            return 3;
+                          }),
+                          shape:
+                              MaterialStateProperty.resolveWith<OutlinedBorder>(
+                            (Set<MaterialState> states) {
+                              return RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              );
+                            },
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: ocorrenciasController.isLoading.value
+                            ? SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  valueColor:
+                                      AlwaysStoppedAnimation(Colors.white),
                                 ),
+                              )
+                            : Text(
+                                "ENVIAR",
+                                style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 16),
+                              ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    child: ButtonTheme(
+                      height: 50.0,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              return Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor;
+                            },
+                          ),
+                          elevation: MaterialStateProperty.resolveWith<double>(
+                              (Set<MaterialState> states) {
+                            return 3;
+                          }),
+                          shape:
+                              MaterialStateProperty.resolveWith<OutlinedBorder>(
+                            (Set<MaterialState> states) {
+                              return RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              );
+                            },
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, '/visualizarOcorrencias');
+                        },
+                        child: Text(
+                          "VISUALIZE OCORRÊNCIAS",
+                          style: GoogleFonts.montserrat(
+                              color: Colors.black, fontSize: 16),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                      child: ButtonTheme(
-                        height: 50.0,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                return Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor;
-                              },
-                            ),
-                            elevation:
-                                MaterialStateProperty.resolveWith<double>(
-                                    (Set<MaterialState> states) {
-                              return 3;
-                            }),
-                            shape: MaterialStateProperty.resolveWith<
-                                OutlinedBorder>(
-                              (Set<MaterialState> states) {
-                                return RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                );
-                              },
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, '/visualizarOcorrencias');
-                          },
-                          child: Text(
-                            "VISUALIZE OCORRÊNCIAS",
-                            style: GoogleFonts.montserrat(
-                                color: Colors.black, fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                );
-              })),
+                  )
+                ],
+              ),
+            );
+          })),
         ),
       ),
     );

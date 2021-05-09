@@ -417,11 +417,7 @@ class _HomePageState extends State<HomePage> {
                           size: 22,
                         ),
                         onTap: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => Senha()));
+                          Get.toNamed('/dependentes');
                         },
                       ),
                     ),

@@ -30,11 +30,11 @@ class _OuvidoriaState extends State<Ouvidoria> {
           () {
             return SingleChildScrollView(
               child: Container(
-                margin: EdgeInsets.all(15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Padding(
+                    Container(
+                      margin: EdgeInsets.all(7),
                       padding: const EdgeInsets.all(2),
                       child: Text(
                         'Assunto',
@@ -50,6 +50,7 @@ class _OuvidoriaState extends State<Ouvidoria> {
                       height: 10,
                     ),
                     Container(
+                      margin: EdgeInsets.all(7),
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -93,14 +94,17 @@ class _OuvidoriaState extends State<Ouvidoria> {
                     SizedBox(
                       height: 10,
                     ),
-                    customTextField(
-                      context,
-                      "Mensagem",
-                      null,
-                      true,
-                      5,
-                      true,
-                      ouvidoriaController.message.value,
+                    Container(
+                      margin: EdgeInsets.all(7),
+                      child: customTextField(
+                        context,
+                        "Mensagem",
+                        null,
+                        true,
+                        5,
+                        true,
+                        ouvidoriaController.message.value,
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.all(20),
