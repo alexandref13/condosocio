@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/acessos/widget_saida_acessos.dart';
 import 'package:condosocio/src/components/visualizar_acessos/visualizar_acessos_entrada.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,7 +54,7 @@ class VisualizarAcessos extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: [VisualizarAcessosEntrada(), VisualizarAcessosEntrada()],
+          children: [VisualizarAcessosEntrada(), SaidaAcessos()],
         ),
       ),
     );

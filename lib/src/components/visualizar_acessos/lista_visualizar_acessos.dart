@@ -97,23 +97,37 @@ Widget listaVisualizarAcessos() {
                                 ),
                               ),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.2,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    search.dataent,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
+                            search.dataent == ''
+                                ? Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    padding: EdgeInsets.only(right: 10),
+                                    child: Icon(
+                                      FontAwesome.clock_o,
+                                      size: 24,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
-                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                : Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          search.dataent,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 12,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
                             search.datasai == ''
                                 ? Container(
                                     width:
@@ -242,24 +256,40 @@ Widget listaVisualizarAcessos() {
                                 ),
                               ),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.2,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    visualizarAcessosController
-                                        .acessos[index].dataent,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
+                            visualizarAcessosController
+                                        .acessos[index].dataent ==
+                                    ''
+                                ? Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    padding: EdgeInsets.only(right: 10),
+                                    child: Icon(
+                                      FontAwesome.clock_o,
+                                      size: 24,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
-                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                : Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          visualizarAcessosController
+                                              .acessos[index].dataent,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 12,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
                             visualizarAcessosController
                                         .acessos[index].datasai ==
                                     ''
