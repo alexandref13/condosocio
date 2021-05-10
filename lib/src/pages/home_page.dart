@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   final _picker = ImagePicker();
   File _selectedFile;
 
-  final uri = Uri.parse("https://focuseg.com.br/flutter/upload_imagem.php");
+  final uri = Uri.parse("https://condosocio.com.br/flutter/upload_imagem.php");
 
   Future<void> logoutUser() async {
     await GetStorage.init();
@@ -58,6 +58,7 @@ class _HomePageState extends State<HomePage> {
     print(" meu arquivo => ${_selectedFile.path}");
     request.files.add(pic);
     var response = await request.send();
+    print(response.request);
 
     if (response.statusCode == 200) {
       Navigator.of(context).pop();
@@ -596,11 +597,10 @@ class _HomePageState extends State<HomePage> {
                           size: 22,
                         ),
                         onTap: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => Senha()));
+                          homePageController.launched =
+                              homePageController.launchInBrowser(
+                            'https://api.whatsapp.com/send?phone=5591981220670',
+                          );
                         },
                       ),
                     ),
