@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   final _picker = ImagePicker();
   File _selectedFile;
 
-  final uri = Uri.parse("https://focuseg.com.br/flutter/upload_imagem.php");
+  final uri = Uri.parse("https://condosocio.com.br/flutter/upload_imagem.php");
 
   Future<void> logoutUser() async {
     await GetStorage.init();
