@@ -41,7 +41,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 vertical: 10,
               ),
               child: Text(
-                'Envie este convite por whatsapp, para isto é necessário inserir o número no formato internacional. \n\nCódigo do país + código da área + seu número. \n\nex: 5591XXXXX-XXXX',
+                'Envie este convite por whatsapp, para isto é necessário inserir o número no formato internacional. \n\nCódigo do país + código da área + seu número. \n\nex: 5591XXXXXXXXX',
                 style: GoogleFonts.montserrat(
                     fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
@@ -52,14 +52,45 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 horizontal: 20,
                 vertical: 10,
               ),
-              child: customTextField(
-                context,
-                'Telefone',
-                null,
-                false,
-                1,
-                true,
-                visualizarConvitesController.whatsappNumber.value,
+              child: TextField(
+                maxLength: 13,
+                controller: visualizarConvitesController.whatsappNumber.value,
+                style: GoogleFonts.montserrat(
+                  fontSize: 14,
+                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                ),
+                decoration: InputDecoration(
+                  disabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                      width: 1,
+                    ),
+                  ),
+                  labelText: 'Telefone',
+                  labelStyle: GoogleFonts.montserrat(
+                    fontSize: 14,
+                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                  ),
+                  isDense: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                      width: 1,
+                    ),
+                  ),
+                ),
               ),
             ),
             Container(
@@ -100,12 +131,8 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                             FlutterOpenWhatsapp.sendSingleMessage(
                               visualizarConvitesController
                                   .whatsappNumber.value.text,
-                              'ola',
+                              'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}',
                             );
-
-                            // visualizarConvitesController.launched =
-                            //     visualizarConvitesController.launchInBrowser(
-                            //         'https://api.whatsapp.com/send?phone=${visualizarConvitesController.whatsappNumber.value.text}&text=Olá!%20você%20foi%20convidadopelo%20${loginController.nome.value}%20morador%20do%20condomínio%20${loginController.nomeCondo.value}.%20Agilize%20seu%20acesso%20clicando%20no%20link%20e%20preencha%20os%20campos%20em%20abertos.%20Grato!%20https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}');
                           } else {
                             onAlertButtonPressed(context,
                                 'Algo deu errado\n Tente novamente', '/home');

@@ -16,46 +16,35 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Visualizar Ouvidoria',
-          style: GoogleFonts.montserrat(
-            fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
-          ),
-        ),
-      ),
-      body: Obx(
-        () {
-          return visualizarOuvidoria.isLoading.value
-              ? Container(
-                  height: MediaQuery.of(context).size.height,
-                  color: Theme.of(context).primaryColor,
-                  child: Center(
-                    child: SizedBox(
-                      height: 40,
-                      width: 40,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 4,
-                        valueColor: AlwaysStoppedAnimation(
-                            Theme.of(context).accentColor),
-                      ),
+    return Obx(
+      () {
+        return visualizarOuvidoria.isLoading.value
+            ? Container(
+                height: MediaQuery.of(context).size.height,
+                color: Theme.of(context).primaryColor,
+                child: Center(
+                  child: SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 4,
+                      valueColor:
+                          AlwaysStoppedAnimation(Theme.of(context).accentColor),
                     ),
                   ),
-                )
-              : Column(
-                  children: [
-                    boxSearch(
-                      context,
-                      visualizarOuvidoria.search.value,
-                      visualizarOuvidoria.onSearchTextChanged,
-                    ),
-                    Expanded(child: listaVisualizarOuvidoria())
-                  ],
-                );
-        },
-      ),
+                ),
+              )
+            : Column(
+                children: [
+                  boxSearch(
+                    context,
+                    visualizarOuvidoria.search.value,
+                    visualizarOuvidoria.onSearchTextChanged,
+                  ),
+                  Expanded(child: listaVisualizarOuvidoria())
+                ],
+              );
+      },
     );
   }
 }

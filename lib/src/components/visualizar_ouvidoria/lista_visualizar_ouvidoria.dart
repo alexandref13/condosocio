@@ -40,11 +40,10 @@ Widget listaVisualizarOuvidoria() {
                           child: Text(
                             ouvidoria.data,
                             style: GoogleFonts.montserrat(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
@@ -52,11 +51,11 @@ Widget listaVisualizarOuvidoria() {
                           child: Text(
                             ouvidoria.hora,
                             style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                                fontWeight: FontWeight.bold),
+                              fontSize: 14,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
                           ),
                         ),
                         Container(
@@ -64,7 +63,7 @@ Widget listaVisualizarOuvidoria() {
                           child: Text(
                             ouvidoria.assunto,
                             style: GoogleFonts.montserrat(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -126,11 +125,10 @@ Widget listaVisualizarOuvidoria() {
                           child: Text(
                             ouvidoria.data,
                             style: GoogleFonts.montserrat(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
@@ -138,11 +136,11 @@ Widget listaVisualizarOuvidoria() {
                           child: Text(
                             ouvidoria.hora,
                             style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                                fontWeight: FontWeight.bold),
+                              fontSize: 14,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
                           ),
                         ),
                         Container(
@@ -150,7 +148,7 @@ Widget listaVisualizarOuvidoria() {
                           child: Text(
                             ouvidoria.assunto,
                             style: GoogleFonts.montserrat(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,

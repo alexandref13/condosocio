@@ -1,11 +1,8 @@
-import 'package:condosocio/src/components/utils/custom_text_field.dart';
-import 'package:condosocio/src/controllers/ocorrencias_controller.dart';
-// import 'package:condosocio/src/services/ocorrencias/api_ocorrencia.dart';
+import 'package:condosocio/src/pages/ocorrencias/adicionar_ocorrencias.dart';
+import 'package:condosocio/src/pages/ocorrencias/visualizar_ocorrencias.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:intl/intl.dart';
 
 class Ocorrencias extends StatefulWidget {
   @override
@@ -13,33 +10,42 @@ class Ocorrencias extends StatefulWidget {
 }
 
 class _OcorrenciasState extends State<Ocorrencias> {
-  OcorrenciasController ocorrenciasController =
-      Get.put(OcorrenciasController());
-
-  DateTime data = DateTime.now();
-  TimeOfDay hora = TimeOfDay.now();
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text(
-                'Ocorrências',
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Ocorrências',
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
+          ),
+          bottom: TabBar(
+            indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
+            tabs: <Widget>[
+              Text(
+                'Adicionar',
+                style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    color: Theme.of(context).textSelectionTheme.selectionColor),
+              ),
+              Text(
+                'Visualizar',
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
                   color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
               ),
-            ),
-            body: TabBarView(children: [])),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [AdicionarOcorrencias(), VisualizarOcorrencias()],
+        ),
       ),
     );
-  }
-
-  void _dropDownItemSelected(String novoItem) {
-    ocorrenciasController.itemSelecionado.value = novoItem;
   }
 }
