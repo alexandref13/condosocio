@@ -1,5 +1,6 @@
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
-import 'package:condosocio/src/pages/dependentes.dart';
+import 'package:condosocio/src/pages/dependentes/ajuda_dependentes.dart';
+import 'package:condosocio/src/pages/dependentes/dependentes.dart';
 import 'package:condosocio/src/pages/enquetes.dart';
 import 'package:condosocio/src/pages/senha.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
@@ -16,14 +17,14 @@ import 'package:condosocio/src/pages/documentos_pages/prestacao_documentos.dart'
 import 'package:condosocio/src/pages/documentos_pages/regulamento_documentos.dart';
 import 'package:condosocio/src/pages/home_page.dart';
 import 'package:condosocio/src/pages/login.dart';
-import 'package:condosocio/src/pages/ocorrencias.dart';
+import 'package:condosocio/src/pages/ocorrencias/ocorrencias.dart';
 import 'package:condosocio/src/pages/ouvidoria/ouvidoria.dart';
 import 'package:condosocio/src/pages/ouvidoria/detalhes_ouvidoria.dart';
 import 'package:condosocio/src/pages/perfil.dart';
 import 'package:condosocio/src/pages/reserva.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
-import 'package:condosocio/src/pages/visualizar_ocorrencias.dart';
+import 'package:condosocio/src/pages/ocorrencias/visualizar_ocorrencias.dart';
 import 'package:condosocio/src/pages/ouvidoria/visualizar_ouvidoria.dart';
 import 'package:condosocio/src/themes/themes.dart';
 import 'package:flutter/material.dart';
@@ -83,6 +84,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/detalhesConvite', page: () => DetalheConviteWidget()),
         GetPage(name: '/whatsAppConvite', page: () => WhatsAppConvitesWidget()),
         GetPage(name: '/dependentes', page: () => Dependentes()),
+        GetPage(name: '/ajudaDependentes', page: () => AjudaDependentes()),
       ],
     );
   }

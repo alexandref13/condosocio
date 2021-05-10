@@ -72,8 +72,6 @@ class _ConviteWidgetState extends State<ConviteWidget> {
         ? DateTime.parse(convitesController.endDate.value)
         : null;
 
-    print('format: $formatDate');
-
     convitesController.endDate.value != ''
         ? endSelectedDate = DateTime(
             formatDate.year,

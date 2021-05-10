@@ -67,6 +67,8 @@ class _HomePageState extends State<HomePage> {
           gravity: EdgeAlert.BOTTOM,
           backgroundColor: Colors.green,
           icon: Icons.check);
+    } else if (response.statusCode == 404) {
+      loginController.imgperfil.value = '';
     } else {
       Navigator.of(context).pop();
       EdgeAlert.show(context,
@@ -397,31 +399,33 @@ class _HomePageState extends State<HomePage> {
                       height: 5,
                       color: Theme.of(context).primaryColor,
                     ),
-                    Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        dense: true,
-                        title: Text(
-                          'Dependentes',
-                          style: GoogleFonts.montserrat(
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                            fontSize: 14,
-                          ),
-                        ),
-                        leading: Icon(
-                          Feather.users,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 22,
-                        ),
-                        onTap: () {
-                          Get.toNamed('/dependentes');
-                        },
-                      ),
-                    ),
+                    loginController.dep.value == '0'
+                        ? Container(
+                            child: ListTile(
+                              contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                              dense: true,
+                              title: Text(
+                                'Dependentes',
+                                style: GoogleFonts.montserrat(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              leading: Icon(
+                                Feather.users,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                size: 22,
+                              ),
+                              onTap: () {
+                                Get.toNamed('/dependentes');
+                              },
+                            ),
+                          )
+                        : Container(),
                     Divider(
                       height: 5,
                       color: Theme.of(context).primaryColor,

@@ -3,6 +3,7 @@ import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -96,9 +97,15 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                       visualizarConvitesController.sendWhatsApp().then(
                         (value) {
                           if (value != 0) {
-                            visualizarConvitesController.launched =
-                                visualizarConvitesController.launchInBrowser(
-                                    'https://api.whatsapp.com/send?phone=${visualizarConvitesController.whatsappNumber.value.text}&text=Olá!%20você%20foi%20convidadopelo%20${loginController.nome.value}%20morador%20do%20condomínio%20${loginController.nomeCondo.value}.%20Agilize%20seu%20acesso%20clicando%20no%20link%20e%20preencha%20os%20campos%20em%20abertos.%20Grato!%20https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}');
+                            FlutterOpenWhatsapp.sendSingleMessage(
+                              visualizarConvitesController
+                                  .whatsappNumber.value.text,
+                              'ola',
+                            );
+
+                            // visualizarConvitesController.launched =
+                            //     visualizarConvitesController.launchInBrowser(
+                            //         'https://api.whatsapp.com/send?phone=${visualizarConvitesController.whatsappNumber.value.text}&text=Olá!%20você%20foi%20convidadopelo%20${loginController.nome.value}%20morador%20do%20condomínio%20${loginController.nomeCondo.value}.%20Agilize%20seu%20acesso%20clicando%20no%20link%20e%20preencha%20os%20campos%20em%20abertos.%20Grato!%20https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}');
                           } else {
                             onAlertButtonPressed(context,
                                 'Algo deu errado\n Tente novamente', '/home');

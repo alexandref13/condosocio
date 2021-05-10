@@ -1,4 +1,5 @@
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,15 @@ class _DependentesState extends State<Dependentes> {
             ),
           ),
           centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(
+                AntDesign.infocirlce,
+                color: Theme.of(context).textSelectionTheme.selectionColor,
+              ),
+              onPressed: () {},
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Container(

@@ -271,33 +271,7 @@ class _DocumentosState extends State<Documentos> {
                             ],
                           )),
                     ),
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Theme.of(context).accentColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Theme.of(context).buttonColor,
-                              spreadRadius: 3,
-                              blurRadius: 1,
-                              offset:
-                                  Offset(0, 2), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Icon(
-                                Icons.anchor_outlined,
-                                size: 35,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        )),
+                    Container(),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, '/outrosDocumentos');
@@ -337,24 +311,7 @@ class _DocumentosState extends State<Documentos> {
                             ],
                           )),
                     ),
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Theme.of(context).accentColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Theme.of(context).buttonColor,
-                              spreadRadius: 3,
-                              blurRadius: 1,
-                              offset:
-                                  Offset(0, 2), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[],
-                        )),
+                    Container(),
                   ],
                 ),
               ),
