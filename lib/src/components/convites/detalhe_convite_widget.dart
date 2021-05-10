@@ -323,10 +323,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                             .selectionColor,
                                       ),
                                       onPressed: () {
-                                        visualizarConvitesController
-                                            .whatsappNumber
-                                            .value
-                                            .text = convidados[x]['tel'];
                                         visualizarConvitesController.tel.value =
                                             convidados[x]['tel'];
                                         visualizarConvitesController.nameGuest
@@ -339,6 +335,10 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 .replaceAll(")", "")
                                                 .replaceAll("-", "")
                                                 .replaceAll(" ", "");
+                                        visualizarConvitesController
+                                            .whatsappNumber
+                                            .value
+                                            .text = celular;
                                         if (celular.length == 13) {
                                           visualizarConvitesController
                                               .sendWhatsApp()
