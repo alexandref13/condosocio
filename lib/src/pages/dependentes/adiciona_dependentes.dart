@@ -168,6 +168,7 @@ class AdicionaDependentes extends StatelessWidget {
                             (value) {
                               print({loginController.id.value, value});
                               if (value == 1) {
+                                dependentesController.getDependentes();
                                 confirmedButtonPressed(
                                   context,
                                   'Dependente foi incluido com sucesso!\n Mandamos um e-mail para a definição de senha',

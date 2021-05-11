@@ -33,4 +33,26 @@ class ApiDependentes {
       },
     );
   }
+
+  static Future changeStatus(String status) async {
+    DependentesController dependentesController =
+        Get.put(DependentesController());
+
+    return await http.get(
+      Uri.https(
+          'www.condosocio.com.br',
+          '/flutter/dependentes_status_mudar.php',
+          {'idep': dependentesController.idep.value, 'status': status}),
+    );
+  }
+
+  static Future deleteDependente() async {
+    DependentesController dependentesController =
+        Get.put(DependentesController());
+
+    return await http.get(
+      Uri.https('www.condosocio.com.br', '/flutter/dependente_excluir.php',
+          {'idep': dependentesController.idep.value}),
+    );
+  }
 }

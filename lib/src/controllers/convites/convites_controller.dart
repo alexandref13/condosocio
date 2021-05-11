@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
+import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/acessos/api_acessos.dart';
 import 'package:condosocio/src/services/convites/api_convites.dart';
@@ -11,6 +12,8 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 class ConvitesController extends GetxController {
   AcessosController acessosController = Get.put(AcessosController());
   LoginController loginController = Get.put(LoginController());
+  VisualizarConvitesController visualizarConvitesController =
+      Get.put(VisualizarConvitesController());
 
   var inviteName = TextEditingController().obs;
   var carBoard = TextEditingController().obs;
@@ -111,6 +114,7 @@ class ConvitesController extends GetxController {
   }
 
   getConvites() async {
+    visualizarConvitesController.isLoading(true);
     isLoading(true);
 
     var response = await ApiConvites.getConvites();
@@ -120,6 +124,7 @@ class ConvitesController extends GetxController {
         .assignAll(lista.map((model) => ConvitesMapa.fromJson(model)).toList());
 
     isLoading(false);
+    visualizarConvitesController.isLoading(false);
   }
 
   onSearchTextChanged(String text) {

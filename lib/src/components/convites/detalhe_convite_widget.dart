@@ -428,11 +428,10 @@ class DetalheConviteWidget extends StatelessWidget {
                                                   .then((value) {
                                                 print('valor: $value');
                                                 if (value == 1) {
-                                                  confirmedButtonPressed(
-                                                    context,
-                                                    'Seu convite foi deletado!',
-                                                    '/home',
-                                                  );
+                                                  convitesController
+                                                      .getConvites();
+                                                  Get.back();
+                                                  Get.back();
                                                 } else {
                                                   onAlertButtonPressed(
                                                     context,

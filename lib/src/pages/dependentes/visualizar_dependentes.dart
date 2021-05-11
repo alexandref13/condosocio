@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/dependentes/modal_bottom_sheet.dart';
 import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
@@ -49,7 +50,19 @@ class VisualizarDependentes extends StatelessWidget {
                                   dependentesController.searchResult[i];
 
                               return GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  dependentesController.idep.value =
+                                      dependentes.idep;
+                                  dependentesController.status.value =
+                                      dependentes.status;
+                                  dependentesModalBottomSheet(
+                                    context,
+                                    dependentes.nome,
+                                    dependentes.sobrenome,
+                                    dependentes.status,
+                                    dependentes.email,
+                                  );
+                                },
                                 child: Column(
                                   children: [
                                     Container(
@@ -148,7 +161,19 @@ class VisualizarDependentes extends StatelessWidget {
                                   dependentesController.dependentes[i];
 
                               return GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  dependentesController.idep.value =
+                                      dependentes.idep;
+                                  dependentesController.status.value =
+                                      dependentes.status;
+                                  dependentesModalBottomSheet(
+                                    context,
+                                    dependentes.nome,
+                                    dependentes.sobrenome,
+                                    dependentes.status,
+                                    dependentes.email,
+                                  );
+                                },
                                 child: Column(
                                   children: [
                                     Container(
@@ -219,7 +244,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                             .selectionColor,
                                                       )
                                                     : Icon(
-                                                        FontAwesome.check,
+                                                        Icons.done,
                                                         size: 24,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme

@@ -12,6 +12,9 @@ class DependentesController extends GetxController {
   var email = TextEditingController().obs;
   var genero = TextEditingController().obs;
 
+  var idep = ''.obs;
+  var status = ''.obs;
+
   var dependentes = [].obs;
 
   var search = TextEditingController().obs;
@@ -48,11 +51,28 @@ class DependentesController extends GetxController {
     var response = await ApiDependentes.getDependentes();
 
     var dados = json.decode(response.body);
+    print(dados);
 
     dependentes.value =
         dados.map((model) => DependentesMapa.fromJson(model)).toList();
 
     isLoading(false);
+
+    return dados;
+  }
+
+  changeStatus(String status) async {
+    var response = await ApiDependentes.changeStatus(status);
+
+    var dados = response.body;
+
+    return dados;
+  }
+
+  deleteDependente() async {
+    var response = await ApiDependentes.deleteDependente();
+
+    var dados = json.decode(response.body);
 
     return dados;
   }

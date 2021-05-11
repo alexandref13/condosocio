@@ -22,6 +22,8 @@ class VisualizarAcessosController extends GetxController {
   }
 
   void getAcessos() {
+    isLoading(true);
+
     ApiAcessos.getAcessos().then((response) {
       Iterable lista = json.decode(response.body);
       acessos.assignAll(

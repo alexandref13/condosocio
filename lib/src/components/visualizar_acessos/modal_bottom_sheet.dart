@@ -1,5 +1,7 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
+import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,8 @@ void configurandoModalBottomSheet(
             Get.put(VisualizarConvitesController());
         LoginController loginController = Get.put(LoginController());
         AcessosController acessosController = Get.put(AcessosController());
+        VisualizarAcessosController visualizarAcessosController =
+            Get.put(VisualizarAcessosController());
 
         return Container(
           color: Theme.of(context).accentColor,
@@ -102,29 +106,45 @@ void configurandoModalBottomSheet(
                       )
                     : Container(),
                 dataEntrada != ''
-                    ? ListTile(
-                        leading: new Icon(
-                          FontAwesome.heart_o,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                        title: Text('Adicionar à Favoritos'),
-                        trailing: Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                        onTap: () {
-                          acessosController.sendFavorite().then((value) {
-                            print({
-                              value,
-                              acessosController.idAce,
-                              acessosController.idfav
-                            });
-                          });
-                        })
+                    ? idFav != ''
+                        ? ListTile(
+                            leading: new Icon(
+                              FontAwesome.heart_o,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            title: Text('Remover Favorito'),
+                            trailing: Icon(
+                              Icons.arrow_right,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            onTap: () {})
+                        : ListTile(
+                            leading: new Icon(
+                              FontAwesome.heart,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            title: Text('Adicionar à Favoritos'),
+                            trailing: Icon(
+                              Icons.arrow_right,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            onTap: () {
+                              acessosController.sendFavorite().then((value) {
+                                print({
+                                  value,
+                                  acessosController.idAce,
+                                  acessosController.idfav
+                                });
+                              });
+                            })
                     : Container(),
                 dataEntrada == ''
                     ? Padding(
@@ -143,8 +163,22 @@ void configurandoModalBottomSheet(
                                     Theme.of(context).errorColor,
                                   )),
                               onPressed: () {
-                                acessosController.deleteAcesso().then((value) {
-                                  print(value);
+                                deleteAlert(context, 'Deseja deletar o acesso?',
+                                    () {
+                                  acessosController
+                                      .deleteAcesso()
+                                      .then((value) {
+                                    if (value == 1) {
+                                      visualizarAcessosController.getAcessos();
+                                      Get.back();
+                                      Get.back();
+                                    } else {
+                                      onAlertButtonPressed(
+                                          context,
+                                          'Algo deu errado\n Tente novamente',
+                                          '/home');
+                                    }
+                                  });
                                 });
                               },
                               child: Text(
