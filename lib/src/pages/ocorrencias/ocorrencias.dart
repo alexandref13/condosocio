@@ -1,7 +1,6 @@
 import 'package:condosocio/src/pages/ocorrencias/adicionar_ocorrencias.dart';
 import 'package:condosocio/src/pages/ocorrencias/visualizar_ocorrencias.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Ocorrencias extends StatefulWidget {

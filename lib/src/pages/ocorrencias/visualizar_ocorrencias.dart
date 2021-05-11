@@ -180,9 +180,10 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             padding: EdgeInsets.only(right: 5),
                                             child: Icon(
                                               FontAwesome.clock_o,
-                                              size: 40,
-                                              color:
-                                                  Theme.of(context).accentColor,
+                                              size: 24,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
                                             ),
                                           ),
                                           Container(
@@ -295,7 +296,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               ocorrencia.status == '1'
                                                   ? Feather.check
                                                   : Feather.alert_triangle,
-                                              size: 40,
+                                              size: 24,
                                               color: ocorrencia.status == '1'
                                                   ? Theme.of(context)
                                                       .accentColor

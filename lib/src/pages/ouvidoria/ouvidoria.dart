@@ -1,5 +1,3 @@
-import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
-import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/pages/ouvidoria/adiciona_ouvidoria.dart';
 import 'package:condosocio/src/pages/ouvidoria/visualizar_ouvidoria.dart';
 import 'package:flutter/material.dart';

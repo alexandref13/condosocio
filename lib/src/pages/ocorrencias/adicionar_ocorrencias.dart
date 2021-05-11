@@ -26,7 +26,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
     TimeOfDay hora = TimeOfDay.now();
 
     return SingleChildScrollView(
-      child: Container(child: Obx(() {
+      child: Obx(() {
         return Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -247,7 +247,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
             ],
           ),
         );
-      })),
+      }),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ void configurandoModalBottomSheet(
   String placa,
   String tipoDoc,
   String documento,
-  idFav,
+  String idFav,
   String dataEntrada,
   String cel,
   String tipo,
@@ -24,6 +25,7 @@ void configurandoModalBottomSheet(
         VisualizarConvitesController visualizarConvitesController =
             Get.put(VisualizarConvitesController());
         LoginController loginController = Get.put(LoginController());
+        AcessosController acessosController = Get.put(AcessosController());
 
         return Container(
           color: Theme.of(context).accentColor,
@@ -107,14 +109,22 @@ void configurandoModalBottomSheet(
                               .textSelectionTheme
                               .selectionColor,
                         ),
-                        title: new Text('Adicionar à Favoritos'),
-                        trailing: new Icon(
+                        title: Text('Adicionar à Favoritos'),
+                        trailing: Icon(
                           Icons.arrow_right,
                           color: Theme.of(context)
                               .textSelectionTheme
                               .selectionColor,
                         ),
-                        onTap: () {})
+                        onTap: () {
+                          acessosController.sendFavorite().then((value) {
+                            print({
+                              value,
+                              acessosController.idAce,
+                              acessosController.idfav
+                            });
+                          });
+                        })
                     : Container(),
                 dataEntrada == ''
                     ? Padding(
@@ -132,7 +142,11 @@ void configurandoModalBottomSheet(
                                   backgroundColor: MaterialStateProperty.all(
                                     Theme.of(context).errorColor,
                                   )),
-                              onPressed: () {},
+                              onPressed: () {
+                                acessosController.deleteAcesso().then((value) {
+                                  print(value);
+                                });
+                              },
                               child: Text(
                                 "Deletar",
                                 style: TextStyle(

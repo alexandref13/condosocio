@@ -75,12 +75,12 @@ Widget listaVisualizarOuvidoria() {
                           child: ouvidoria.status == 0
                               ? Icon(
                                   FontAwesome.clock_o,
-                                  size: 40,
+                                  size: 24,
                                   color: Theme.of(context).accentColor,
                                 )
                               : Icon(
                                   FontAwesome.check,
-                                  size: 40,
+                                  size: 24,
                                   color: Theme.of(context).accentColor,
                                 ),
                         ),
@@ -160,12 +160,12 @@ Widget listaVisualizarOuvidoria() {
                           child: ouvidoria.status == 0
                               ? Icon(
                                   FontAwesome.clock_o,
-                                  size: 40,
+                                  size: 24,
                                   color: Theme.of(context).accentColor,
                                 )
                               : Icon(
                                   FontAwesome.check,
-                                  size: 40,
+                                  size: 24,
                                   color: Theme.of(context).accentColor,
                                 ),
                         ),

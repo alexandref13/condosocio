@@ -58,7 +58,9 @@ class AcessosController extends GetxController {
     final response = await ApiAcessos.addFav();
 
     var dados = json.decode(response.body);
-    idfav('');
+
+    print(dados);
+
     return dados;
   }
 
