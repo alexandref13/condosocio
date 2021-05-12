@@ -93,14 +93,13 @@ class VisualizarOcorrencias extends StatelessWidget {
                                       ocorrenciasController.searchResult[index];
                                   return GestureDetector(
                                     onTap: () {
-                                      configurandoModalBottomSheet(
-                                          context,
-                                          ocorrencia.data,
-                                          ocorrencia.hora,
-                                          ocorrencia.titulo,
-                                          ocorrencia.dataoco,
-                                          ocorrencia.horaoco,
-                                          ocorrencia.status);
+                                      ocorrenciasModalBottomSheet(
+                                        context,
+                                        ocorrencia.titulo,
+                                        ocorrencia.data,
+                                        ocorrencia.hora,
+                                        ocorrencia.status,
+                                      );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -207,14 +206,13 @@ class VisualizarOcorrencias extends StatelessWidget {
                                       ocorrenciasController.ocorrencias[index];
                                   return GestureDetector(
                                     onTap: () {
-                                      configurandoModalBottomSheet(
-                                          context,
-                                          ocorrencia.data,
-                                          ocorrencia.hora,
-                                          ocorrencia.titulo,
-                                          ocorrencia.dataoco,
-                                          ocorrencia.horaoco,
-                                          ocorrencia.status);
+                                      ocorrenciasModalBottomSheet(
+                                        context,
+                                        ocorrencia.titulo,
+                                        ocorrencia.data,
+                                        ocorrencia.hora,
+                                        ocorrencia.status,
+                                      );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -294,13 +292,14 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             padding: EdgeInsets.only(right: 5),
                                             child: Icon(
                                               ocorrencia.status == '1'
-                                                  ? Feather.check
+                                                  ? Icons.done
                                                   : Feather.alert_triangle,
                                               size: 24,
                                               color: ocorrencia.status == '1'
                                                   ? Theme.of(context)
                                                       .accentColor
-                                                  : Colors.red,
+                                                  : Theme.of(context)
+                                                      .errorColor,
                                             ),
                                           ),
                                           Container(
