@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/home_page_app_bar/app_bar_widget.dart';
+import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/home_page_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
@@ -61,11 +62,7 @@ class _HomePageState extends State<HomePage> {
 
     if (response.statusCode == 200) {
       Navigator.of(context).pop();
-      EdgeAlert.show(context,
-          title: 'Imagem do perfil alterada',
-          gravity: EdgeAlert.BOTTOM,
-          backgroundColor: Colors.green,
-          icon: Icons.check);
+      edgeAlertWidget(context, 'Imagem do perfil alterada');
     } else if (response.statusCode == 404) {
       loginController.imgperfil.value = '';
     } else {

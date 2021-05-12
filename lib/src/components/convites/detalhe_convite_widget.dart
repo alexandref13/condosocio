@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
-import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
@@ -316,60 +316,58 @@ class DetalheConviteWidget extends StatelessWidget {
                                     child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    IconButton(
-                                      icon: Icon(
-                                        FontAwesome.whatsapp,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor,
-                                      ),
-                                      onPressed: () {
-                                        visualizarConvitesController.tel.value =
-                                            convidados[x]['tel'];
-                                        visualizarConvitesController.nameGuest
-                                            .value = convidados[x]['nome'];
-                                        var celular = convidados[x]['tel']
-                                            .replaceAll("+", "")
-                                            .replaceAll("(", "")
-                                            .replaceAll(")", "")
-                                            .replaceAll("-", "")
-                                            .replaceAll(" ", "");
-                                        visualizarConvitesController
-                                            .whatsappNumber
-                                            .value
-                                            .text = celular;
-                                        if (celular.length == 13) {
-                                          visualizarConvitesController
-                                              .sendWhatsApp()
-                                              .then(
-                                            (value) {
-                                              print({
-                                                value,
+                                    isBefore
+                                        ? IconButton(
+                                            icon: Icon(
+                                              FontAwesome.whatsapp,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
+                                            ),
+                                            onPressed: () {
+                                              visualizarConvitesController.tel
+                                                  .value = convidados[x]['tel'];
+                                              visualizarConvitesController
+                                                      .nameGuest.value =
+                                                  convidados[x]['nome'];
+                                              var celular = convidados[x]['tel']
+                                                  .replaceAll("+", "")
+                                                  .replaceAll("(", "")
+                                                  .replaceAll(")", "")
+                                                  .replaceAll("-", "")
+                                                  .replaceAll(" ", "");
+                                              visualizarConvitesController
+                                                  .whatsappNumber
+                                                  .value
+                                                  .text = celular;
+                                              if (celular.length == 13) {
                                                 visualizarConvitesController
-                                                    .idConv.value,
-                                                visualizarConvitesController
-                                                    .nameGuest.value,
-                                                celular
-                                              });
-                                              if (value != 0) {
-                                                FlutterOpenWhatsapp
-                                                    .sendSingleMessage(
-                                                  celular,
-                                                  'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}',
+                                                    .sendWhatsApp()
+                                                    .then(
+                                                  (value) {
+                                                    if (value != 0) {
+                                                      String message =
+                                                          'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}';
+
+                                                      FlutterOpenWhatsapp
+                                                          .sendSingleMessage(
+                                                        celular,
+                                                        Uri.encodeFull(message),
+                                                      );
+                                                    } else {
+                                                      onAlertButtonPressed(
+                                                          context,
+                                                          'Algo deu errado\n Tente novamente',
+                                                          '/home');
+                                                    }
+                                                  },
                                                 );
                                               } else {
-                                                onAlertButtonPressed(
-                                                    context,
-                                                    'Algo deu errado\n Tente novamente',
-                                                    '/home');
+                                                Get.toNamed('/whatsAppConvite');
                                               }
                                             },
-                                          );
-                                        } else {
-                                          Get.toNamed('/whatsAppConvite');
-                                        }
-                                      },
-                                    ),
+                                          )
+                                        : Container(),
                                   ],
                                 ))
                               ],
@@ -426,10 +424,11 @@ class DetalheConviteWidget extends StatelessWidget {
                                               visualizarConvitesController
                                                   .deleteAConvite()
                                                   .then((value) {
-                                                print('valor: $value');
                                                 if (value == 1) {
                                                   convitesController
                                                       .getConvites();
+                                                  edgeAlertWidget(context,
+                                                      'Convite Deletado');
                                                   Get.back();
                                                   Get.back();
                                                 } else {

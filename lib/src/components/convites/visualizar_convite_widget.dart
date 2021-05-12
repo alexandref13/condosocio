@@ -34,6 +34,7 @@ class VisualizarConviteWidget extends StatelessWidget {
                               var endDate = DateTime.parse(convites.datafinal);
 
                               var before = date.isBefore(endDate);
+
                               return Container(
                                   margin: EdgeInsets.only(top: 5),
                                   child: GestureDetector(
@@ -114,7 +115,6 @@ class VisualizarConviteWidget extends StatelessWidget {
                               var date = DateTime.now();
                               var endDate = DateTime.parse(convites.datafinal);
                               var before = endDate.isBefore(date);
-
                               return Container(
                                   margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
                                   child: GestureDetector(

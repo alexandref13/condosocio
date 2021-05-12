@@ -1,9 +1,11 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
+import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
+import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
@@ -84,14 +86,21 @@ void configurandoModalBottomSheet(
                               .replaceAll(")", "")
                               .replaceAll("-", "")
                               .replaceAll(" ", "");
+                          visualizarConvitesController
+                              .whatsappNumber.value.text = celular;
                           if (celular.length == 13) {
                             visualizarConvitesController
                                 .sendWhatsApp()
                                 .then((value) {
                               print('value $value');
                               if (value != 0) {
-                                FlutterOpenWhatsapp.sendSingleMessage(celular,
-                                    'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}');
+                                String message =
+                                    'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}';
+
+                                FlutterOpenWhatsapp.sendSingleMessage(
+                                  celular,
+                                  Uri.encodeFull(message),
+                                );
                               } else {
                                 onAlertButtonPressed(
                                     context,
@@ -170,6 +179,10 @@ void configurandoModalBottomSheet(
                                       .then((value) {
                                     if (value == 1) {
                                       visualizarAcessosController.getAcessos();
+                                      edgeAlertWidget(
+                                        context,
+                                        'Acesso Excluido',
+                                      );
                                       Get.back();
                                       Get.back();
                                     } else {

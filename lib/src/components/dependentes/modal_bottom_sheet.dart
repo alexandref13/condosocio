@@ -1,6 +1,8 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
+import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
+import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -59,13 +61,6 @@ void dependentesModalBottomSheet(
                         ),
                         onTap: () {
                           dependentesController.changeStatus('1').then((value) {
-                            print(
-                              {
-                                'valor: $value',
-                                dependentesController.idep.value
-                              },
-                            );
-
                             dependentesController.getDependentes();
                             Get.back();
                           });
@@ -87,13 +82,6 @@ void dependentesModalBottomSheet(
                         ),
                         onTap: () {
                           dependentesController.changeStatus('2').then((value) {
-                            print(
-                              {
-                                'valor: $value',
-                                dependentesController.idep.value
-                              },
-                            );
-
                             dependentesController.getDependentes();
                             Get.back();
                           });
@@ -121,9 +109,12 @@ void dependentesModalBottomSheet(
                             () {
                               dependentesController.deleteDependente().then(
                                 (value) {
-                                  print('valor: $value');
                                   if (value == 1) {
                                     dependentesController.getDependentes();
+                                    edgeAlertWidget(
+                                      context,
+                                      'Dependente Excluido',
+                                    );
                                     Get.back();
                                     Get.back();
                                   } else {

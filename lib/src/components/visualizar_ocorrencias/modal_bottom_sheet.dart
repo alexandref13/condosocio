@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/utils/delete_alert.dart';
+import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -61,7 +62,9 @@ void ocorrenciasModalBottomSheet(
                           deleteAlert(
                             context,
                             'Deseja deletar a ocorrência?',
-                            () {},
+                            () {
+                              edgeAlertWidget(context, 'Ocorrência Deletada');
+                            },
                           );
                         },
                         child: Text(
