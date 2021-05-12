@@ -89,15 +89,15 @@ class ConvitesController extends GetxController {
     var dados = json.decode(response.body);
     print(dados);
     acessosController.favorito = await dados.map((item) => item).toList();
+    print(acessosController.favorito[0]);
 
-    guestList.addAll({
-      {
-        'idfav': acessosController.favorito[0]['idfav'].toString(),
-        'nome': acessosController.favorito[0]['pessoa'].toString(),
-        'tel': acessosController.favorito[0]['cel'].toString(),
-        'tipo': 'Convidado',
-      }
-    });
+    // guestList.addAll({
+    //   {
+    //     'idfav': acessosController.favorito[0]['idfav'].toString(),
+    //     'nome': acessosController.favorito[0]['pessoa'].toString(),
+    //     'tipo': 'Convidado',
+    //   }
+    // });
 
     acessosController.isLoading.value = false;
   }
