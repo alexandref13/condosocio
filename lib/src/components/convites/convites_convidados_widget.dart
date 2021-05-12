@@ -986,6 +986,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       print('editado $value');
 
                                       if (value != 0) {
+                                        acessosController.getAcessos();
                                         convitesController.guestList.clear();
                                         convitesController.getConvites();
                                         visualizarConvitesController

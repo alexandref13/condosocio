@@ -1,9 +1,13 @@
 import 'dart:convert';
+import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/services/acessos/api_acessos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AcessosController extends GetxController {
+  VisualizarAcessosController visualizarAcessosController =
+      Get.put(VisualizarAcessosController());
+
   var name = TextEditingController().obs;
   var phone = TextEditingController().obs;
   var tel = ''.obs;
@@ -77,6 +81,10 @@ class AcessosController extends GetxController {
     var dados = json.decode(response.body);
     isLoading(false);
     return dados;
+  }
+
+  getAcessos() {
+    visualizarAcessosController.getAcessos();
   }
 
   @override
