@@ -92,7 +92,6 @@ void configurandoModalBottomSheet(
                             visualizarConvitesController
                                 .sendWhatsApp()
                                 .then((value) {
-                              print('value $value');
                               if (value != 0) {
                                 String message =
                                     'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}';
@@ -115,7 +114,7 @@ void configurandoModalBottomSheet(
                       )
                     : Container(),
                 dataEntrada != ''
-                    ? idFav != ''
+                    ? idFav != '0'
                         ? ListTile(
                             leading: new Icon(
                               FontAwesome.heart_o,
@@ -130,7 +129,16 @@ void configurandoModalBottomSheet(
                                   .textSelectionTheme
                                   .selectionColor,
                             ),
-                            onTap: () {})
+                            onTap: () {
+                              acessosController.sendFavorite().then((value) {
+                                print({
+                                  value,
+                                  loginController.id.value,
+                                  acessosController.idAce,
+                                  acessosController.idfav
+                                });
+                              });
+                            })
                         : ListTile(
                             leading: new Icon(
                               FontAwesome.heart,

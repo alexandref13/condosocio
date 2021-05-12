@@ -29,6 +29,7 @@ class VisualizarAcessosController extends GetxController {
       acessos.assignAll(
         lista.map((model) => MapaAcessos.fromJson(model)).toList(),
       );
+      print(lista);
       isLoading(false);
     });
   }

@@ -74,7 +74,7 @@ class ApiAcessos {
         {
           "idusu": loginController.id.value,
           "idfav": acessosController.idfav.value,
-          "idace ": acessosController.idAce.value,
+          "idace": acessosController.idAce.value,
         },
       ),
     );

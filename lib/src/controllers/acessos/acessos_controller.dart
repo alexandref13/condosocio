@@ -59,8 +59,6 @@ class AcessosController extends GetxController {
 
     var dados = json.decode(response.body);
 
-    print(dados);
-
     return dados;
   }
 
