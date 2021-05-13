@@ -70,6 +70,7 @@ class AcessosController extends GetxController {
     isLoading(true);
     final response = await ApiAcessos.getFav();
     var dados = json.decode(response.body);
+    print(dados);
     fav.assignAll(dados);
     isLoading(false);
     return dados;
