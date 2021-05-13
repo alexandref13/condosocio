@@ -1,15 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/acessos/api_acessos_saida.dart';
 import 'package:condosocio/src/services/acessos/mapa_acessos_saida.dart';
-import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http;
 
 class VisualizarAcessosSaidaController extends GetxController {
   LoginController loginController = Get.put(LoginController());
