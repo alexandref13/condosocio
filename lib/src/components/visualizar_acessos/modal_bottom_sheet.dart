@@ -32,6 +32,12 @@ void configurandoModalBottomSheet(
         VisualizarAcessosController visualizarAcessosController =
             Get.put(VisualizarAcessosController());
 
+        if (idFav == "0") {
+          visualizarAcessosController.fav.value = false;
+        } else {
+          visualizarAcessosController.fav.value = true;
+        }
+
         return Container(
           color: Theme.of(context).accentColor,
           child: Container(
@@ -113,54 +119,35 @@ void configurandoModalBottomSheet(
                       )
                     : Container(),
                 dataEntrada != ''
-                    ? idFav != '0'
-                        ? ListTile(
-                            leading: new Icon(
-                              FontAwesome.heart_o,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
-                            title: Text('Remover Favorito'),
-                            trailing: Icon(
-                              Icons.arrow_right,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
-                            onTap: () {
-                              acessosController.sendFavorite().then((value) {
-                                print({
-                                  value,
-                                  loginController.id.value,
-                                  acessosController.idAce,
-                                  acessosController.idfav
-                                });
-                              });
-                            })
-                        : ListTile(
-                            leading: new Icon(
-                              FontAwesome.heart,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
-                            title: Text('Adicionar à Favoritos'),
-                            trailing: Icon(
-                              Icons.arrow_right,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
-                            onTap: () {
-                              acessosController.sendFavorite().then((value) {
-                                print({
-                                  value,
-                                  acessosController.idAce,
-                                  acessosController.idfav
-                                });
-                              });
-                            })
+                    ? ListTile(
+                        leading: Obx(
+                          () => Icon(
+                            visualizarAcessosController.fav.value == true
+                                ? FontAwesome.heart
+                                : FontAwesome.heart_o,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                          ),
+                        ),
+                        title: Obx(
+                          () => visualizarAcessosController.fav.value == true
+                              ? Text('Remover Favorito')
+                              : Text('Adicionar à Favoritos'),
+                        ),
+                        trailing: Icon(
+                          Icons.arrow_right,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                        onTap: () {
+                          visualizarAcessosController.fav.value =
+                              !visualizarAcessosController.fav.value;
+                          acessosController.sendFavorite().then((value) {
+                            visualizarAcessosController.getAcessos();
+                          });
+                        })
                     : Container(),
                 dataEntrada == ''
                     ? Padding(

@@ -9,6 +9,7 @@ class VisualizarAcessosController extends GetxController {
   var search = TextEditingController().obs;
   var isLoading = true.obs;
   var searchResult = [].obs;
+  var fav = false.obs;
 
   onSearchTextChanged(String text) {
     searchResult.clear();
@@ -30,6 +31,7 @@ class VisualizarAcessosController extends GetxController {
       acessos.assignAll(
         lista.map((model) => MapaAcessos.fromJson(model)).toList(),
       );
+
       isLoading(false);
     });
   }
