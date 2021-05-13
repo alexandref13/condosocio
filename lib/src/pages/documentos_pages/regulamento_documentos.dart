@@ -56,7 +56,7 @@ class Regulamento extends StatelessWidget {
                                         regulamentoController
                                             .searchResult[index].nome,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 18,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -67,7 +67,7 @@ class Regulamento extends StatelessWidget {
                                         regulamentoController
                                             .searchResult[index].data,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 15,
+                                          fontSize: 12,
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor,
@@ -100,7 +100,7 @@ class Regulamento extends StatelessWidget {
                                         regulamentoController
                                             .regulamento[index].nome,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 18,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -111,7 +111,7 @@ class Regulamento extends StatelessWidget {
                                         regulamentoController
                                             .regulamento[index].data,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 15,
+                                          fontSize: 12,
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor,

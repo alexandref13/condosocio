@@ -91,8 +91,6 @@ void configurandoModalBottomSheet(
                               .replaceAll(")", "")
                               .replaceAll("-", "")
                               .replaceAll(" ", "");
-                          visualizarConvitesController
-                              .whatsappNumber.value.text = celular;
                           if (celular.length == 13) {
                             visualizarConvitesController
                                 .sendWhatsApp()
@@ -146,6 +144,7 @@ void configurandoModalBottomSheet(
                               !visualizarAcessosController.fav.value;
                           acessosController.sendFavorite().then((value) {
                             visualizarAcessosController.getAcessos();
+                            Get.back();
                           });
                         })
                     : Container(),

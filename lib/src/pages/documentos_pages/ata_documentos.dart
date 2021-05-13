@@ -52,7 +52,7 @@ class Ata extends StatelessWidget {
                                       title: Text(
                                         ata.searchResult[index].nome,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 18,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -62,7 +62,7 @@ class Ata extends StatelessWidget {
                                       subtitle: Text(
                                         ata.searchResult[index].data,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 15,
+                                          fontSize: 12,
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor,
@@ -92,7 +92,7 @@ class Ata extends StatelessWidget {
                                       title: Text(
                                         ata.atas[index].nome,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 18,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -102,7 +102,7 @@ class Ata extends StatelessWidget {
                                       subtitle: Text(
                                         ata.atas[index].data,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 15,
+                                          fontSize: 12,
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor,

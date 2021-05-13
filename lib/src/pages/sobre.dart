@@ -9,7 +9,15 @@ class Sobre extends StatelessWidget {
     return SafeArea(
       bottom: true,
       child: Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: Text(
+              'Sobre',
+              style: GoogleFonts.montserrat(
+                fontSize: 16,
+                color: Theme.of(context).textSelectionTheme.selectionColor,
+              ),
+            ),
+          ),
           body: SingleChildScrollView(
             child: Container(
               color: Theme.of(context).primaryColor,
