@@ -1,3 +1,5 @@
+import 'package:condosocio/src/components/acessos_saidas/detalhes_acessos_saida.dart';
+import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_saidas.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
 import 'package:condosocio/src/pages/dependentes/ajuda_dependentes.dart';
 import 'package:condosocio/src/pages/dependentes/dependentes.dart';
@@ -85,6 +87,11 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/whatsAppConvite', page: () => WhatsAppConvitesWidget()),
         GetPage(name: '/dependentes', page: () => Dependentes()),
         GetPage(name: '/ajudaDependentes', page: () => AjudaDependentes()),
+        GetPage(
+            name: '/visualizarAcessosSaidas',
+            page: () => VisualizarAcessosSaidas()),
+        GetPage(
+            name: '/detalhesAcessosSaida', page: () => DetalhesAcessosSaida()),
       ],
     );
   }

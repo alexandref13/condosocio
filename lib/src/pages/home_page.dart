@@ -216,6 +216,7 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext bc) {
           return Container(
+            color: Theme.of(context).accentColor,
             margin: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[
@@ -228,33 +229,39 @@ class _HomePageState extends State<HomePage> {
                 ))),
                 Divider(
                   height: 20,
-                  color: Colors.blueGrey,
+                  color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
                 ListTile(
                     leading: new Icon(
                       Icons.camera_alt,
-                      color: Colors.blueGrey,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
                     ),
                     title: new Text('Câmera'),
                     trailing: new Icon(
                       Icons.arrow_right,
-                      color: Colors.blueGrey,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
                     ),
                     onTap: () => {getImage(ImageSource.camera)}),
                 Divider(
                   height: 20,
-                  color: Colors.blueGrey,
+                  color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
                 ListTile(
-                    leading:
-                        new Icon(Icons.collections, color: Colors.blueGrey),
+                    leading: new Icon(Icons.collections,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor),
                     title: new Text('Galeria de Fotos'),
-                    trailing:
-                        new Icon(Icons.arrow_right, color: Colors.blueGrey),
+                    trailing: new Icon(Icons.arrow_right,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor),
                     onTap: () => {getImage(ImageSource.gallery)}),
                 Divider(
                   height: 20,
-                  color: Colors.blueGrey,
+                  color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -266,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                         backgroundColor:
                             MaterialStateProperty.resolveWith<Color>(
                           (Set<MaterialState> states) {
-                            return Colors.blueGrey;
+                            return Theme.of(context).primaryColor;
                           },
                         ),
                         shape:
