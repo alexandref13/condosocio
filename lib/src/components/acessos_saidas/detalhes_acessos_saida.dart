@@ -155,11 +155,7 @@ class DetalhesAcessosSaida extends StatelessWidget {
               ),
             ),
             Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(''),
-                ),
-              ),
+              decoration: BoxDecoration(),
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 40),

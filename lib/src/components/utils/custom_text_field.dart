@@ -4,6 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 Widget customTextField(BuildContext context, String labelText, String hintText,
     bool linesBool, int lines, bool enabled, TextEditingController controller) {
   return TextField(
+    onTap: () {
+      FocusScopeNode currentFocus = FocusScope.of(context);
+      if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+        currentFocus.focusedChild.unfocus();
+      }
+    },
     controller: controller,
     maxLines: linesBool ? lines : 1,
     style: GoogleFonts.montserrat(

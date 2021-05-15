@@ -134,30 +134,6 @@ void dependentesModalBottomSheet(
                         ),
                       )),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            )),
-                            elevation: MaterialStateProperty.all(0),
-                            backgroundColor: MaterialStateProperty.all(
-                              Theme.of(context).primaryColor,
-                            )),
-                        onPressed: () {
-                          Get.back();
-                        },
-                        child: Text(
-                          "Cancelar",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      )),
-                ),
               ],
             ),
           ),
