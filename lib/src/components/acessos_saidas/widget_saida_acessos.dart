@@ -242,7 +242,10 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                         '';
                                     saidaController.obs.value.text = '';
                                     selectedFile = null;
-                                    print('valor: $value');
+                                    print({
+                                      'valor: $value',
+                                      'file: ${selectedFile.path}'
+                                    });
                                     if (value == '1') {
                                       alertButton();
                                     } else {
