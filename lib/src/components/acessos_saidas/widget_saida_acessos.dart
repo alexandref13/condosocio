@@ -18,6 +18,7 @@ class SaidaAcessos extends StatefulWidget {
 
 class _SaidaAcessosState extends State<SaidaAcessos> {
   LoginController loginController = Get.put(LoginController());
+
   VisualizarAcessosSaidaController saidaController =
       Get.put(VisualizarAcessosSaidaController());
 
@@ -37,7 +38,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
           compressFormat: ImageCompressFormat.jpg,
           androidUiSettings: AndroidUiSettings(
             toolbarColor: Colors.deepOrange,
-            toolbarTitle: "Imagem para o Perfil",
+            toolbarTitle: "Imagem Para Acesso de Saída",
             statusBarColor: Colors.deepOrange.shade900,
             backgroundColor: Colors.white,
           ));

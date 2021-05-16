@@ -175,7 +175,6 @@ class _PerfilState extends State<Perfil> {
     var pic = await http.MultipartFile.fromPath("image", _selectedFile.path);
     request.files.add(pic);
     var response = await request.send();
-
     if (response.statusCode == 200) {
       Navigator.of(context).pop();
       EdgeAlert.show(context,
