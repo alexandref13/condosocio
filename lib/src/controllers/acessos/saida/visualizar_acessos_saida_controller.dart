@@ -58,6 +58,8 @@ class VisualizarAcessosSaidaController extends GetxController {
 
     var response = await ApiAcessosSaida.sendAcessosSaida(path);
 
+    getAcessosSaida();
+
     isLoading(false);
 
     return response;
