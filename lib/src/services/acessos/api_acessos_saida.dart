@@ -20,7 +20,19 @@ class ApiAcessosSaida {
         Get.put(VisualizarAcessosSaidaController());
 
     var uri =
+<<<<<<< HEAD
         Uri.parse("https://condosocio.com.br/flutter/acesso_saida_inc.php");
+=======
+        Uri.parse("https://www.condosocio.com.br/flutter/acesso_saida_inc.php");
+
+    // return await http.post(uri, body: {
+    //   'idusu': loginController.id.value,
+    //   'idcond': loginController.idcond.value,
+    //   'tiposai': saidaController.itemSelecionado.value,
+    //   'nome': saidaController.nameController.value.text,
+    //   'obs': saidaController.obs.value.text,
+    // });
+>>>>>>> f967415e04b3effd9d5aa1f7c027993f35b63f5a
 
     var request = http.MultipartRequest('POST', uri);
 
@@ -30,7 +42,22 @@ class ApiAcessosSaida {
     request.fields['nome'] = saidaController.nameController.value.text;
     request.fields['obs'] = saidaController.obs.value.text;
 
+<<<<<<< HEAD
     var pic = await http.MultipartFile.fromPath("image", path);
+=======
+    if (path != '') {
+      var pic = path != '' ?? await http.MultipartFile.fromPath("image", path);
+
+      path != '' ?? request.files.add(pic);
+
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        return '1';
+      } else
+        return '0';
+    }
+>>>>>>> f967415e04b3effd9d5aa1f7c027993f35b63f5a
 
     request.files.add(pic);
     var response = await request.send();
