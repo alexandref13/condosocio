@@ -4,7 +4,7 @@ class MapaAcessosSaida {
   String idaut;
   String doc;
   String datacreate;
-  int datasaida;
+  String datasaida;
 
   MapaAcessosSaida(
       {this.nome,
