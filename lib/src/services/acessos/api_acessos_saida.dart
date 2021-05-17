@@ -20,7 +20,7 @@ class ApiAcessosSaida {
         Get.put(VisualizarAcessosSaidaController());
 
     var uri =
-        Uri.parse("https://condosocio.com.br/flutter/acesso_saida_inc.php");
+        Uri.parse("https://www.condosocio.com.br/flutter/acesso_saida_inc.php");
 
     var request = http.MultipartRequest('POST', uri);
 
@@ -30,8 +30,37 @@ class ApiAcessosSaida {
     request.fields['nome'] = saidaController.nameController.value.text;
     request.fields['obs'] = saidaController.obs.value.text;
 
-    var pic = await http.MultipartFile.fromPath("image", path);
+    if (path != '') {
+      var pic = await http.MultipartFile.fromPath("image", path);
 
+      request.files.add(pic);
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        return '1';
+      } else
+        return '0';
+    }
+
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      return '1';
+    } else
+      return '0';
+  }
+
+  static Future editarFoto(String path) async {
+    VisualizarAcessosSaidaController saidaController =
+        Get.put(VisualizarAcessosSaidaController());
+
+    var uri = Uri.parse(
+        "https://www.condosocio.com.br/flutter/imagem_autsai_alt.php");
+
+    var request = http.MultipartRequest('POST', uri);
+
+    request.fields['idaut'] = saidaController.id.value;
+    var pic = await http.MultipartFile.fromPath("image", path);
     request.files.add(pic);
     var response = await request.send();
 
@@ -39,5 +68,17 @@ class ApiAcessosSaida {
       return '1';
     } else
       return '0';
+  }
+
+  static Future deleteAcessosSaida() async {
+    VisualizarAcessosSaidaController saidaController =
+        Get.put(VisualizarAcessosSaidaController());
+
+    return await http.post(
+        Uri.https(
+            "www.condosocio.com.br", "/flutter/acesso_autsai_excluir.php"),
+        body: {
+          'idaut': saidaController.id.value,
+        });
   }
 }

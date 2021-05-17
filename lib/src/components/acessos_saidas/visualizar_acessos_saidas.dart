@@ -102,6 +102,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                   var acessos = saidaController.acessos[i];
                                   return GestureDetector(
                                     onTap: () {
+                                      saidaController.id.value = acessos.idaut;
                                       saidaController.image.value =
                                           acessos.imgaut;
                                       saidaController.name.value = acessos.nome;
@@ -109,6 +110,8 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                           acessos.datacreate;
                                       saidaController.outDate.value =
                                           acessos.datasaida;
+
+                                      saidaController.tipo.value = acessos.tipo;
                                       Get.toNamed('/detalhesAcessosSaida');
                                     },
                                     child: Column(

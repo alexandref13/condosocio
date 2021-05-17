@@ -5,6 +5,7 @@ class MapaAcessosSaida {
   String doc;
   String datacreate;
   String datasaida;
+  String tipo;
 
   MapaAcessosSaida(
       {this.nome,
@@ -12,7 +13,8 @@ class MapaAcessosSaida {
       this.idaut,
       this.doc,
       this.datacreate,
-      this.datasaida});
+      this.datasaida,
+      this.tipo});
 
   MapaAcessosSaida.fromJson(Map<String, dynamic> json) {
     nome = json['nome'];
@@ -21,6 +23,7 @@ class MapaAcessosSaida {
     doc = json['doc'];
     datacreate = json['datacreate'];
     datasaida = json['datasaida'];
+    tipo = json['tipo'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,6 +34,7 @@ class MapaAcessosSaida {
     data['doc'] = this.doc;
     data['datacreate'] = this.datacreate;
     data['datasaida'] = this.datasaida;
+    data['tipo'] = this.tipo;
     return data;
   }
 }

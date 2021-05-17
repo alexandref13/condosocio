@@ -246,16 +246,13 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                         : selectedFile.path)
                                     .then(
                                   (value) {
-                                    // saidaController.itemSelecionado.value =
-                                    //     'Selecione o tipo de visitante';
-                                    // saidaController.nameController.value.text =
-                                    //     '';
-                                    // saidaController.obs.value.text = '';
-                                    // selectedFile = null;
-                                    print({
-                                      'valor: $value',
-                                      'file: ${selectedFile.path}'
-                                    });
+                                    saidaController.itemSelecionado.value =
+                                        'Selecione o tipo de visitante';
+                                    saidaController.nameController.value.text =
+                                        '';
+                                    saidaController.obs.value.text = '';
+                                    selectedFile = null;
+
                                     if (value == '1') {
                                       alertButton();
                                     } else {
@@ -361,7 +358,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
           ),
           onPressed: () {
             saidaController.getAcessosSaida();
-            Get.toNamed('/visualizarAcessosSaidas');
+            Get.offNamed('/visualizarAcessosSaidas');
           },
           width: 80,
           color: Colors.green,

@@ -1,13 +1,10 @@
 import 'dart:convert';
-import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/acessos/api_acessos_saida.dart';
 import 'package:condosocio/src/services/acessos/mapa_acessos_saida.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VisualizarAcessosSaidaController extends GetxController {
-  LoginController loginController = Get.put(LoginController());
-
   var nameController = TextEditingController().obs;
   var obs = TextEditingController().obs;
 
@@ -21,6 +18,8 @@ class VisualizarAcessosSaidaController extends GetxController {
   var name = ''.obs;
   var createDate = ''.obs;
   var outDate = ''.obs;
+  var tipo = ''.obs;
+  var id = ''.obs;
 
   var tipos = [
     'Selecione o tipo de visitante',
@@ -63,6 +62,28 @@ class VisualizarAcessosSaidaController extends GetxController {
     isLoading(false);
 
     return response;
+  }
+
+  editarFoto(String path) async {
+    isLoading(true);
+
+    var response = await ApiAcessosSaida.editarFoto(path);
+
+    getAcessosSaida();
+
+    return response;
+  }
+
+  deleteAcessosSaida() async {
+    isLoading(true);
+
+    var response = await ApiAcessosSaida.deleteAcessosSaida();
+
+    var dados = json.decode(response.body);
+
+    getAcessosSaida();
+
+    return dados;
   }
 
   @override
