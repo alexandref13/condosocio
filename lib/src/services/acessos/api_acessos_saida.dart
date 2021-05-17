@@ -35,9 +35,10 @@ class ApiAcessosSaida {
     request.files.add(pic);
     var response = await request.send();
 
-    if (response.statusCode == 200) {
-      return '1';
-    } else
-      return '0';
+      if (response.statusCode == 200) {
+        return '1';
+      } else
+        return '0';
+    }
   }
 }
