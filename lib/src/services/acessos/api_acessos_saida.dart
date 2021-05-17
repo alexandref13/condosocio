@@ -41,13 +41,13 @@ class ApiAcessosSaida {
         return '1';
       } else
         return '0';
+    } else {
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        return '1';
+      } else
+        return '0';
     }
-
-    var response = await request.send();
-
-    if (response.statusCode == 200) {
-      return '1';
-    } else
-      return '0';
   }
 }
