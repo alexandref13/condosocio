@@ -31,9 +31,9 @@ class ApiAcessosSaida {
     request.fields['obs'] = saidaController.obs.value.text;
 
     if (path != '') {
-      var pic = path != '' ?? await http.MultipartFile.fromPath("image", path);
+      var pic = await http.MultipartFile.fromPath("image", path);
 
-      path != '' ?? request.files.add(pic);
+      request.files.add(pic);
 
       var response = await request.send();
 
