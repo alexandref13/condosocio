@@ -53,15 +53,21 @@ class VisualizarAcessosSaidaController extends GetxController {
   }
 
   sendAcessosSaida(String path) async {
-    isLoading(true);
+    if (nameController.value.text == '' ||
+        obs.value.text == '' ||
+        itemSelecionado.value == 'Selecione o tipo de visitante') {
+      return 'vazio';
+    } else {
+      isLoading(true);
 
-    var response = await ApiAcessosSaida.sendAcessosSaida(path);
+      var response = await ApiAcessosSaida.sendAcessosSaida(path);
 
-    getAcessosSaida();
+      getAcessosSaida();
 
-    isLoading(false);
+      isLoading(false);
 
-    return response;
+      return response;
+    }
   }
 
   editarFoto(String path) async {

@@ -46,6 +46,9 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
       this.setState(() {
         selectedFile = File(image.path);
         selectedFile = cropped;
+        if (cropped != null) {
+          Get.back();
+        }
       });
     }
   }
@@ -205,8 +208,9 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                               child: Text(
                                 "ANEXAR IMAGEM",
                                 style: GoogleFonts.montserrat(
-                                    color: Theme.of(context).buttonColor,
-                                    fontSize: 16),
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).accentColor,
+                                ),
                               ),
                             ),
                           )),
@@ -246,16 +250,26 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                         : selectedFile.path)
                                     .then(
                                   (value) {
-                                    saidaController.itemSelecionado.value =
-                                        'Selecione o tipo de visitante';
-                                    saidaController.nameController.value.text =
-                                        '';
-                                    saidaController.obs.value.text = '';
-                                    selectedFile = null;
-
                                     if (value == '1') {
+                                      saidaController.itemSelecionado.value =
+                                          'Selecione o tipo de visitante';
+                                      saidaController
+                                          .nameController.value.text = '';
+                                      saidaController.obs.value.text = '';
+                                      selectedFile = null;
                                       alertButton();
+                                    } else if (value == 'vazio') {
+                                      onAlertButtonPressed(
+                                          context,
+                                          'Os campos de tipo de visitante, nome e observação são obrigátorios',
+                                          null);
                                     } else {
+                                      saidaController.itemSelecionado.value =
+                                          'Selecione o tipo de visitante';
+                                      saidaController
+                                          .nameController.value.text = '';
+                                      saidaController.obs.value.text = '';
+                                      selectedFile = null;
                                       onAlertButtonPressed(
                                           context,
                                           'Houve algum problema!\n Tente novamente',
@@ -267,10 +281,11 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                               child: Text(
                                 "AUTORIZAR",
                                 style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 16),
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
                               ),
                             ),
                           )),
@@ -311,8 +326,9 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                               child: Text(
                                 "VISUALIZE SAÍDAS",
                                 style: GoogleFonts.montserrat(
-                                    color: Theme.of(context).buttonColor,
-                                    fontSize: 16),
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).accentColor,
+                                ),
                               ),
                             ),
                           )),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:condosocio/src/controllers/theme_controller.dart';
+import 'package:condosocio/src/pages/home_page.dart';
 import 'package:condosocio/src/services/listOfCondo/list_of_condo_map.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,8 @@ class LoginController extends GetxController {
   var unidade = ''.obs;
   var condoTheme = ''.obs;
   var dep = ''.obs;
+  var phone = ''.obs;
+  var birthdate = ''.obs;
   var isLoading = false.obs;
   var isChecked = false.obs;
   var listOfCondo = [];
@@ -83,11 +86,12 @@ class LoginController extends GetxController {
     email.value.text = box.read('email');
   }
 
-  newLogin(String newId) {
+  newLogin(context, String newId) {
     isLoading(true);
     http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
+      print(dados);
       id(dados['idusu']);
       idcond(dados['idcond']);
       emailUsu(dados['email']);
@@ -98,12 +102,15 @@ class LoginController extends GetxController {
       nome(dados['nome']);
       condoTheme(dados['cor']);
       dep(dados['dep']);
-
+      birthdate(dados['aniversario']);
+      phone(dados['cel']);
       storageId();
 
       themeController.setTheme(condoTheme.value);
 
-      Get.toNamed('/home');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomePage()),
+          (Route<dynamic> route) => false);
 
       isLoading(false);
     });

@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
+import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/perfil_controller.dart';
 import 'package:edge_alert/edge_alert.dart';
@@ -8,7 +11,6 @@ import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
 class Perfil extends StatefulWidget {
@@ -19,18 +21,6 @@ class Perfil extends StatefulWidget {
 class _PerfilState extends State<Perfil> {
   LoginController loginController = Get.put(LoginController());
   PerfilController perfilController = Get.put(PerfilController());
-
-  var startSelectedDate = DateTime.now();
-  var startSelectedTime = TimeOfDay.now();
-  var startDate = TextEditingController();
-  var startTime = TextEditingController();
-
-  Future<DateTime> selectDateTime(BuildContext context) => showDatePicker(
-        context: context,
-        initialDate: DateTime.now().add(Duration(seconds: 1)),
-        firstDate: DateTime.now(),
-        lastDate: DateTime(2100),
-      );
 
   final uri = Uri.parse("https://condosocio.com.br/flutter/upload_imagem.php");
   File _selectedFile;
@@ -278,249 +268,289 @@ class _PerfilState extends State<Perfil> {
   }
 
   //Mudar para os campos que terão no condosocio, por enquanto usando backend da focus
-  bool isLoading = false;
   DateTime data = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Perfil',
-            style: GoogleFonts.montserrat(
-              fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
+          appBar: AppBar(
+            title: Text(
+              'Perfil',
+              style: GoogleFonts.montserrat(
+                fontSize: 16,
+                color: Theme.of(context).textSelectionTheme.selectionColor,
+              ),
             ),
+            centerTitle: true,
           ),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.only(top: 10),
-            padding: EdgeInsets.all(8),
-            height: MediaQuery.of(context).size.height * .95,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Column(
-                  children: [
-                    getImageWidget(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Text(
-                        'Alterar foto de perfil',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    'Nome: ',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                customTextField(
-                  context,
-                  null,
-                  null,
-                  false,
-                  1,
-                  true,
-                  perfilController.name.value,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    'Sobrenome: ',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                customTextField(
-                  context,
-                  null,
-                  null,
-                  false,
-                  1,
-                  true,
-                  perfilController.secondName.value,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    'Data de aniversário: ',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    startSelectedDate = await selectDateTime(context);
-                    if (startSelectedDate == null) return;
-
-                    setState(() {
-                      startSelectedDate = DateTime(
-                        startSelectedDate.year,
-                        startSelectedDate.month,
-                        startSelectedDate.day,
-                      );
-                    });
-                  },
-                  child: customTextField(
-                    context,
-                    null,
-                    DateFormat("dd/MM/yyyy").format(
-                      startSelectedDate,
-                    ),
-                    false,
-                    1,
-                    false,
-                    startDate,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    'Celular: ',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                TextField(
-                  inputFormatters: [perfilController.maskFormatter],
-                  controller: perfilController.phone.value,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
-                  ),
-                  decoration: InputDecoration(
-                    disabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
-                        width: 1,
-                      ),
-                    ),
-                    isDense: true,
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
-                        width: 2,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
-                        width: 1,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ButtonTheme(
-                  height: 50.0,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          return Theme.of(context).accentColor;
-                        },
-                      ),
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                          (Set<MaterialState> states) {
-                        return 3;
-                      }),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                        (Set<MaterialState> states) {
-                          return RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          );
-                        },
-                      ),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isLoading = true;
-                      });
-                    },
-                    child: isLoading
-                        ? SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation(Colors.white),
-                            ),
-                          )
-                        : Text(
-                            "ENVIAR",
-                            style: GoogleFonts.montserrat(
+          body: Obx(() {
+            return perfilController.isLoading.value
+                ? CircularProgressIndicatorWidget()
+                : SingleChildScrollView(
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10),
+                      padding: EdgeInsets.all(8),
+                      height: MediaQuery.of(context).size.height * .95,
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Column(
+                            children: [
+                              getImageWidget(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: Text(
+                                  'Alterar foto de perfil',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Text(
+                              'Nome: ',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
-                                fontSize: 16),
+                              ),
+                            ),
                           ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          customTextField(
+                            context,
+                            null,
+                            null,
+                            false,
+                            1,
+                            true,
+                            perfilController.name.value,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Text(
+                              'Sobrenome: ',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          customTextField(
+                            context,
+                            null,
+                            null,
+                            false,
+                            1,
+                            true,
+                            perfilController.secondName.value,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Text(
+                              'Data de aniversário: ',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          TextField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              perfilController.birthDateMaskFormatter
+                            ],
+                            controller: perfilController.birthdate.value,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 14,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            decoration: InputDecoration(
+                              disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  width: 1,
+                                ),
+                              ),
+                              isDense: true,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  width: 2,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Text(
+                              'Celular: ',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          TextField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              perfilController.cellMaskFormatter
+                            ],
+                            controller: perfilController.phone.value,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 14,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            decoration: InputDecoration(
+                              disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  width: 1,
+                                ),
+                              ),
+                              isDense: true,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  width: 2,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          ButtonTheme(
+                            height: 50.0,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    return Theme.of(context).accentColor;
+                                  },
+                                ),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                        (Set<MaterialState> states) {
+                                  return 3;
+                                }),
+                                shape: MaterialStateProperty.resolveWith<
+                                    OutlinedBorder>(
+                                  (Set<MaterialState> states) {
+                                    return RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    );
+                                  },
+                                ),
+                              ),
+                              onPressed: () {
+                                perfilController.editPerfil().then((value) {
+                                  if (value == 1) {
+                                    edgeAlertWidget(
+                                      context,
+                                      'Perfil atualizado',
+                                    );
+
+                                    loginController.nome.value =
+                                        '${perfilController.name.value.text} ${perfilController.secondName.value.text}';
+                                  } else {
+                                    onAlertButtonPressed(
+                                        context,
+                                        'Algo deu errado\n Tente novamente',
+                                        '/home');
+                                  }
+                                });
+                              },
+                              child: Text(
+                                "ENVIAR",
+                                style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 16),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+          })),
     );
   }
 }

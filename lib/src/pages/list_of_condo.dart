@@ -23,7 +23,7 @@ class ListOfCondo extends StatelessWidget {
                       return GestureDetector(
                         onTap: () {
                           loginController.unidade.value = condo.tipoun;
-                          loginController.newLogin(condo.idusu);
+                          loginController.newLogin(context, condo.idusu);
                         },
                         child: Card(
                           shape: RoundedRectangleBorder(

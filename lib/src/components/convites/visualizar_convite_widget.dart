@@ -48,6 +48,8 @@ class VisualizarConviteWidget extends StatelessWidget {
                                       visualizarConviteController.idConv.value =
                                           convites.idconv;
 
+                                      print('data final ${convites.datafinal}');
+
                                       visualizarConviteController
                                           .getAConvite(convites.idconv);
                                     },
@@ -127,6 +129,8 @@ class VisualizarConviteWidget extends StatelessWidget {
                                           .endDate.value = convites.datafinal;
                                       visualizarConviteController.idConv.value =
                                           convites.idconv;
+
+                                      print('data final ${convites.datafinal}');
 
                                       visualizarConviteController
                                           .getAConvite(convites.idconv);
