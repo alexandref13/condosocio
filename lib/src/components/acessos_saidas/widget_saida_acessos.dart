@@ -65,14 +65,11 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 10,
-                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10),
                         padding: EdgeInsets.symmetric(horizontal: 7),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -113,13 +110,25 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                       SizedBox(
                         height: 10,
                       ),
-                      customTextField(context, 'Nome Completo', null, false, 1,
-                          true, saidaController.nameController.value),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        child: customTextField(
+                            context,
+                            'Nome Completo',
+                            null,
+                            false,
+                            1,
+                            true,
+                            saidaController.nameController.value),
+                      ),
                       SizedBox(
                         height: 10,
                       ),
-                      customTextField(context, 'Observações', null, true, 5,
-                          true, saidaController.obs.value),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        child: customTextField(context, 'Observações', null,
+                            true, 5, true, saidaController.obs.value),
+                      ),
                       SizedBox(
                         height: 10,
                       ),
@@ -162,8 +171,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                       SizedBox(
                         height: 30,
                       ),
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: ButtonTheme(
                             height: 50.0,
                             child: ElevatedButton(
@@ -204,8 +213,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                       SizedBox(
                         height: 15,
                       ),
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: ButtonTheme(
                             height: 50.0,
                             child: ElevatedButton(
@@ -237,12 +246,12 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                         : selectedFile.path)
                                     .then(
                                   (value) {
-                                    saidaController.itemSelecionado.value =
-                                        'Selecione o tipo de visitante';
-                                    saidaController.nameController.value.text =
-                                        '';
-                                    saidaController.obs.value.text = '';
-                                    selectedFile = null;
+                                    // saidaController.itemSelecionado.value =
+                                    //     'Selecione o tipo de visitante';
+                                    // saidaController.nameController.value.text =
+                                    //     '';
+                                    // saidaController.obs.value.text = '';
+                                    // selectedFile = null;
                                     print({
                                       'valor: $value',
                                       'file: ${selectedFile.path}'
@@ -271,8 +280,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                       SizedBox(
                         height: 15,
                       ),
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: ButtonTheme(
                             height: 50.0,
                             child: ElevatedButton(

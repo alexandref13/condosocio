@@ -7,11 +7,11 @@ class ApiAcessosSaida {
   static Future getAcessosSaida() async {
     LoginController loginController = Get.put(LoginController());
 
-    return await http.get(
-      Uri.https("www.condosocio.com.br", "/flutter/acesso_saida_vis.php", {
-        "idusu": loginController.id.value,
-      }),
-    );
+    return await http.post(
+        Uri.https("www.condosocio.com.br", "/flutter/acesso_saida_vis.php"),
+        body: {
+          'idusu': loginController.id.value,
+        });
   }
 
   static Future sendAcessosSaida(String path) async {
@@ -20,7 +20,7 @@ class ApiAcessosSaida {
         Get.put(VisualizarAcessosSaidaController());
 
     var uri =
-        Uri.parse("https://www.condosocio.com.br/flutter/acesso_saida_inc.php");
+        Uri.parse("https://condosocio.com.br/flutter/acesso_saida_inc.php");
 
     var request = http.MultipartRequest('POST', uri);
 
@@ -30,19 +30,9 @@ class ApiAcessosSaida {
     request.fields['nome'] = saidaController.nameController.value.text;
     request.fields['obs'] = saidaController.obs.value.text;
 
-    if (path != '') {
-      var pic = await http.MultipartFile.fromPath("image", path);
+    var pic = await http.MultipartFile.fromPath("image", path);
 
-      request.files.add(pic);
-
-      var response = await request.send();
-
-      if (response.statusCode == 200) {
-        return '1';
-      } else
-        return '0';
-    }
-
+    request.files.add(pic);
     var response = await request.send();
 
     if (response.statusCode == 200) {

@@ -275,6 +275,8 @@ class Login extends StatelessWidget {
                                         loginController.login().then(
                                           (value) {
                                             if (value == null) {
+                                              loginController
+                                                  .password.value.text = '';
                                               onAlertButtonPressed(
                                                 context,
                                                 'Email ou senha inválidos! \n Tente novamente',
