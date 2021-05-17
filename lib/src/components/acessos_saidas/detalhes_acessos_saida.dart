@@ -154,9 +154,14 @@ class DetalhesAcessosSaida extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              decoration: BoxDecoration(),
-            ),
+            saidaController.image.value != ''
+                ? Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                'https://condosocio.com.br/acond/downloads/autsaida/${saidaController.image.value}'))),
+                  )
+                : Container(),
             Container(
               margin: EdgeInsets.symmetric(vertical: 40),
               decoration: BoxDecoration(

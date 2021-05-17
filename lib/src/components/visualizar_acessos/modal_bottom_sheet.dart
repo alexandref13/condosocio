@@ -195,6 +195,9 @@ void configurandoModalBottomSheet(
                             )),
                       )
                     : Container(),
+                SizedBox(
+                  height: 15,
+                )
               ],
             ),
           ),

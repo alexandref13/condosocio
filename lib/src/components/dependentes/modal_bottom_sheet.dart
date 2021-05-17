@@ -134,6 +134,9 @@ void dependentesModalBottomSheet(
                         ),
                       )),
                 ),
+                SizedBox(
+                  height: 15,
+                )
               ],
             ),
           ),

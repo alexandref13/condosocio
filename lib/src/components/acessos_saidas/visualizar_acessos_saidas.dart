@@ -108,7 +108,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                       saidaController.createDate.value =
                                           acessos.datacreate;
                                       saidaController.outDate.value =
-                                          acessos.datasaida.toString();
+                                          acessos.datasaida;
                                       Get.toNamed('/detalhesAcessosSaida');
                                     },
                                     child: Column(
@@ -179,8 +179,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                         ],
                                                       ),
                                                     ),
-                                              acessos.datasaida.toString() ==
-                                                      '0'
+                                              acessos.datasaida == '0'
                                                   ? Container(
                                                       width:
                                                           MediaQuery.of(context)
@@ -206,8 +205,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                       child: Column(
                                                         children: [
                                                           Text(
-                                                            acessos.datasaida
-                                                                .toString(),
+                                                            acessos.datasaida,
                                                             style: GoogleFonts
                                                                 .montserrat(
                                                               fontSize: 12,

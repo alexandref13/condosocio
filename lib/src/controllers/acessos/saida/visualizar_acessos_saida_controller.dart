@@ -24,8 +24,8 @@ class VisualizarAcessosSaidaController extends GetxController {
 
   var tipos = [
     'Selecione o tipo de visitante',
-    'Convidado',
-    'Prestador',
+    'Funcionário',
+    'Prestador de Serviço',
   ];
   var itemSelecionado = 'Selecione o tipo de visitante'.obs;
 

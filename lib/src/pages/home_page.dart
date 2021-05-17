@@ -263,39 +263,9 @@ class _HomePageState extends State<HomePage> {
                   height: 20,
                   color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                            return Theme.of(context).primaryColor;
-                          },
-                        ),
-                        shape:
-                            MaterialStateProperty.resolveWith<OutlinedBorder>(
-                          (Set<MaterialState> states) {
-                            return RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            );
-                          },
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        "Cancelar",
-                        style: GoogleFonts.montserrat(
-                            color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
+                SizedBox(
+                  height: 15,
+                )
               ],
             ),
           );

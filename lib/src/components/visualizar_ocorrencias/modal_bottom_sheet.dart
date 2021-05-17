@@ -73,6 +73,9 @@ void ocorrenciasModalBottomSheet(
                         ),
                       )),
                 ),
+                SizedBox(
+                  height: 15,
+                )
               ],
             ),
           ),

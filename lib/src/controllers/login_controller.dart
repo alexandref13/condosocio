@@ -49,6 +49,7 @@ class LoginController extends GetxController {
     final response = await http.get(Uri.https('www.condosocio.com.br',
         '/flutter/unidadesLista.php', {"email": emailS}));
     var dados = json.decode(response.body);
+    print(dados);
     listOfCondo = dados.map((model) => ListOfCondo.fromJson(model)).toList();
     return dados;
   }
