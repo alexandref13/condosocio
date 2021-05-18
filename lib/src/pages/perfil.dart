@@ -525,9 +525,6 @@ class _PerfilState extends State<Perfil> {
                                       context,
                                       'Perfil atualizado',
                                     );
-
-                                    loginController.nome.value =
-                                        '${perfilController.name.value.text} ${perfilController.secondName.value.text}';
                                   } else {
                                     onAlertButtonPressed(
                                         context,

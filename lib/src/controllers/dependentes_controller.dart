@@ -51,7 +51,6 @@ class DependentesController extends GetxController {
     var response = await ApiDependentes.getDependentes();
 
     var dados = json.decode(response.body);
-    print(dados);
 
     dependentes.value =
         dados.map((model) => DependentesMapa.fromJson(model)).toList();

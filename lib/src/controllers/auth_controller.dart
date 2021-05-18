@@ -84,7 +84,9 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     localAuthentication.isDeviceSupported().then((isSupported) {
-      isSupported ? authenticate() : print('Nao suporta');
+      if (isSupported) {
+        authenticate();
+      }
     });
     super.onInit();
   }

@@ -374,7 +374,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
           ),
           onPressed: () {
             saidaController.getAcessosSaida();
-            Get.offNamed('/visualizarAcessosSaidas');
+            Get.toNamed('/visualizarAcessosSaidas');
           },
           width: 80,
           color: Colors.green,

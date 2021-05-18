@@ -1,10 +1,12 @@
 import 'package:condosocio/src/components/home_page_app_bar/app_bar_widget.dart';
+import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/home_page_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:condosocio/src/components/home_widget_bottomtab.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -276,351 +278,360 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        key: scaffoldKey,
-        appBar: AppBarWidget(
-          context: context,
-          onTap: () {
-            scaffoldKey.currentState.openDrawer();
-          },
-          image: loginController.imgcondo.value,
-        ),
-        drawer: Drawer(
-          child: Container(
-            color: Theme.of(context).accentColor,
-            child: ListView(
-              children: <Widget>[
-                DrawerHeader(
-                    padding: EdgeInsets.all(0),
-                    child: Container(
-                      padding: EdgeInsets.only(top: 15),
-                      color: Theme.of(context).primaryColor,
-                      child: Column(
-                        children: <Widget>[
-                          getImageWidget(),
-                          Container(
-                            padding: EdgeInsets.only(top: 5),
-                            child: Text(
-                              '${loginController.nome.value}',
-                              style: GoogleFonts.montserrat(
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(top: 2),
-                            child: Text(
-                              '${loginController.emailUsu.value}',
-                              style: GoogleFonts.montserrat(
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                                fontSize: 12,
+    return WillPopScope(
+      onWillPop: () async {
+        deleteAlert(context, 'Deseja realmente sair?', () {
+          SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+        });
+        return false;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          key: scaffoldKey,
+          appBar: AppBarWidget(
+            context: context,
+            onTap: () {
+              scaffoldKey.currentState.openDrawer();
+            },
+            image: loginController.imgcondo.value,
+          ),
+          drawer: Drawer(
+            child: Container(
+              color: Theme.of(context).accentColor,
+              child: ListView(
+                children: <Widget>[
+                  DrawerHeader(
+                      padding: EdgeInsets.all(0),
+                      child: Container(
+                        padding: EdgeInsets.only(top: 15),
+                        color: Theme.of(context).primaryColor,
+                        child: Column(
+                          children: <Widget>[
+                            getImageWidget(),
+                            Container(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text(
+                                '${loginController.nome.value}',
+                                style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(top: 2),
-                            child: Text(
-                              '${loginController.tipo.value} | ${loginController.unidade.value}',
-                              style: GoogleFonts.montserrat(
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )),
-                Column(
-                  children: <Widget>[
-                    Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        dense: true,
-                        title: Text(
-                          'Unidades',
-                          style: GoogleFonts.montserrat(
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                            fontSize: 14,
-                          ),
-                        ),
-                        leading: Icon(
-                          Feather.home,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 22,
-                        ),
-                        onTap: () {
-                          loginController.hasMoreEmail(
-                            loginController.emailUsu.value,
-                          );
-                          Get.toNamed('/listOfCondo');
-                        },
-                      ),
-                    ),
-                    Divider(
-                      height: 5,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    loginController.dep.value == '0'
-                        ? Container(
-                            child: ListTile(
-                              contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                              dense: true,
-                              title: Text(
-                                'Dependentes',
+                            Container(
+                              padding: EdgeInsets.only(top: 2),
+                              child: Text(
+                                '${loginController.emailUsu.value}',
                                 style: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
-                                  fontSize: 14,
+                                  fontSize: 12,
                                 ),
                               ),
-                              leading: Icon(
-                                Feather.users,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                                size: 22,
-                              ),
-                              onTap: () {
-                                Get.toNamed('/dependentes');
-                              },
                             ),
-                          )
-                        : Container(),
-                    Divider(
-                      height: 5,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        dense: true,
-                        title: Text(
-                          'Senha',
-                          style: GoogleFonts.montserrat(
+                            Container(
+                              padding: EdgeInsets.only(top: 2),
+                              child: Text(
+                                '${loginController.tipo.value} | ${loginController.unidade.value}',
+                                style: GoogleFonts.montserrat(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
+                            'Unidades',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            Feather.home,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 14,
+                            size: 22,
                           ),
+                          onTap: () {
+                            loginController.hasMoreEmail(
+                              loginController.emailUsu.value,
+                            );
+                            Get.toNamed('/listOfCondo');
+                          },
                         ),
-                        leading: Icon(
-                          FontAwesome.info_circle,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 22,
-                        ),
-                        onTap: () {
-                          Get.toNamed('/senha');
-                        },
                       ),
-                    ),
-                    Divider(
-                      height: 5,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        dense: true,
-                        title: Text(
-                          'Sobre',
-                          style: GoogleFonts.montserrat(
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      loginController.dep.value == '0'
+                          ? Container(
+                              child: ListTile(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                dense: true,
+                                title: Text(
+                                  'Dependentes',
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                leading: Icon(
+                                  Feather.users,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  size: 22,
+                                ),
+                                onTap: () {
+                                  Get.toNamed('/dependentes');
+                                },
+                              ),
+                            )
+                          : Container(),
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
+                            'Senha',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            FontAwesome.info_circle,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 14,
+                            size: 22,
                           ),
+                          onTap: () {
+                            Get.toNamed('/senha');
+                          },
                         ),
-                        leading: Icon(
-                          Icons.help,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 22,
-                        ),
-                        onTap: () {
-                          Get.toNamed('/sobre');
-                        },
                       ),
-                    ),
-                    Divider(
-                      height: 5,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        dense: true,
-                        title: Text(
-                          'Termos de Uso',
-                          style: GoogleFonts.montserrat(
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
+                            'Sobre',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            Icons.help,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 14,
+                            size: 22,
                           ),
+                          onTap: () {
+                            Get.toNamed('/sobre');
+                          },
                         ),
-                        leading: Icon(
-                          FontAwesome.check_square_o,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 22,
-                        ),
-                        onTap: () {
-                          homePageController.launched =
-                              homePageController.launchInBrowser(
-                                  'https://condosocio.com.br/termo.html');
-                        },
                       ),
-                    ),
-                    Divider(
-                      height: 5,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        dense: true,
-                        title: Text(
-                          'Política de Privacidade',
-                          style: GoogleFonts.montserrat(
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
+                            'Termos de Uso',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            FontAwesome.check_square_o,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 14,
+                            size: 22,
                           ),
+                          onTap: () {
+                            homePageController.launched =
+                                homePageController.launchInBrowser(
+                                    'https://condosocio.com.br/termo.html');
+                          },
                         ),
-                        leading: Icon(
-                          FontAwesome.shield,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 22,
-                        ),
-                        onTap: () {
-                          homePageController.launched =
-                              homePageController.launchInBrowser(
-                                  'https://condosocio.com.br/privacidade.html');
-                        },
                       ),
-                    ),
-                    Divider(
-                      height: 5,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        dense: true,
-                        title: Text(
-                          'Avalie o app',
-                          style: GoogleFonts.montserrat(
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
+                            'Política de Privacidade',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            FontAwesome.shield,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 14,
+                            size: 22,
                           ),
+                          onTap: () {
+                            homePageController.launched =
+                                homePageController.launchInBrowser(
+                                    'https://condosocio.com.br/privacidade.html');
+                          },
                         ),
-                        leading: Icon(
-                          Feather.star,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 22,
-                        ),
-                        onTap: () {
-                          homePageController.launched = homePageController
-                              .launchInBrowser('http://onelink.to/r8p97m');
-                        },
                       ),
-                    ),
-                    Divider(
-                      height: 5,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        dense: true,
-                        title: Text(
-                          'Ajuda',
-                          style: GoogleFonts.montserrat(
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
+                            'Avalie o app',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            Feather.star,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 14,
+                            size: 22,
                           ),
+                          onTap: () {
+                            homePageController.launched = homePageController
+                                .launchInBrowser('http://onelink.to/r8p97m');
+                          },
                         ),
-                        leading: Icon(
-                          FontAwesome.question_circle,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 22,
-                        ),
-                        onTap: () {
-                          homePageController.launched =
-                              homePageController.launchInBrowser(
-                            'https://api.whatsapp.com/send?phone=5591981220670',
-                          );
-                        },
                       ),
-                    ),
-                    Divider(
-                      height: 5,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    Container(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        dense: true,
-                        title: Text(
-                          'Sair',
-                          style: GoogleFonts.montserrat(
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
+                            'Ajuda',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            FontAwesome.question_circle,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 14,
+                            size: 22,
                           ),
+                          onTap: () {
+                            homePageController.launched =
+                                homePageController.launchInBrowser(
+                              'https://api.whatsapp.com/send?phone=5591981220670',
+                            );
+                          },
                         ),
-                        leading: Icon(
-                          Icons.exit_to_app,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          size: 22,
-                        ),
-                        onTap: () {
-                          logoutUser();
-                        },
                       ),
-                    ),
-                    Divider(
-                      height: 15,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ],
-                )
-              ],
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
+                            'Sair',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            Icons.exit_to_app,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                            size: 22,
+                          ),
+                          onTap: () {
+                            logoutUser();
+                          },
+                        ),
+                      ),
+                      Divider(
+                        height: 15,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
+          body: Center(child: HomeBottomTab()),
         ),
-        body: Center(child: HomeBottomTab()),
       ),
     );
   }

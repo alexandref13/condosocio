@@ -2,7 +2,6 @@ import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/controllers/auth_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
-import 'package:condosocio/src/pages/home_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
@@ -323,15 +322,7 @@ class Login extends StatelessWidget {
                                                       loginController
                                                           .condoTheme.value,
                                                     );
-                                                    Navigator.of(context)
-                                                        .pushAndRemoveUntil(
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        HomePage()),
-                                                            (Route<dynamic>
-                                                                    route) =>
-                                                                false);
+                                                    Get.offNamed('/home');
                                                   }
                                                 },
                                               );

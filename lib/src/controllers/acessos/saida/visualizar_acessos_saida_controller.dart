@@ -44,7 +44,6 @@ class VisualizarAcessosSaidaController extends GetxController {
     var response = await ApiAcessosSaida.getAcessosSaida();
 
     var lista = json.decode(response.body);
-    print(lista);
     acessos.assignAll(
       lista.map((model) => MapaAcessosSaida.fromJson(model)).toList(),
     );

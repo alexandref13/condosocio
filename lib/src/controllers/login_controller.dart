@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:condosocio/src/controllers/theme_controller.dart';
-import 'package:condosocio/src/pages/home_page.dart';
 import 'package:condosocio/src/services/listOfCondo/list_of_condo_map.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,7 +51,6 @@ class LoginController extends GetxController {
     final response = await http.get(Uri.https('www.condosocio.com.br',
         '/flutter/unidadesLista.php', {"email": emailS}));
     var dados = json.decode(response.body);
-    print(dados);
     listOfCondo = dados.map((model) => ListOfCondo.fromJson(model)).toList();
     return dados;
   }
@@ -91,7 +89,6 @@ class LoginController extends GetxController {
     http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
-      print(dados);
       id(dados['idusu']);
       idcond(dados['idcond']);
       emailUsu(dados['email']);
@@ -108,9 +105,7 @@ class LoginController extends GetxController {
 
       themeController.setTheme(condoTheme.value);
 
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomePage()),
-          (Route<dynamic> route) => false);
+      Get.offNamed('/home');
 
       isLoading(false);
     });

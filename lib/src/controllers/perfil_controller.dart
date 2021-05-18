@@ -37,6 +37,11 @@ class PerfilController extends GetxController {
 
       phone.value.text = cellMaskFormatter.getUnmaskedText();
 
+      loginController.phone.value = phone.value.text;
+      loginController.birthdate.value = birthdate.value.text;
+      loginController.nome.value =
+          '${name.value.text} ${secondName.value.text}';
+
       var date = birthdate.value.text.split('/');
       newDate.value = '${date[2]}-${date[1]}-${date[0]}';
 

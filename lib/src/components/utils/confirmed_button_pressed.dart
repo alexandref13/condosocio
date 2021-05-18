@@ -34,7 +34,8 @@ confirmedButtonPressed(context, String text, String page) {
         ),
         onPressed: () {
           page != null
-              ? Get.offNamedUntil('$page', ModalRoute.withName('$page'))
+              ? Navigator.pushNamedAndRemoveUntil(
+                  context, '$page', (route) => false)
               : Get.back();
         },
         width: 80,

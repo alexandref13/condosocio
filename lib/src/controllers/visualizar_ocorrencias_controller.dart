@@ -28,7 +28,6 @@ class VisualizarOcorrenciasController extends GetxController {
       Iterable lista = json.decode(response.body);
       ocorrencias.value =
           lista.map((model) => MapaOcorrencias.fromJson(model)).toList();
-      print(lista);
       isLoading(false);
     });
   }
