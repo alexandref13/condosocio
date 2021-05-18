@@ -1,6 +1,5 @@
 import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/controllers/acessos/saida/visualizar_acessos_saida_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -17,11 +16,8 @@ class VisualizarAcessosSaidas extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        confirmedButtonPressed(
-          context,
-          'Por favor, use o botão pra voltar no canto superior esquerdo',
-          null,
-        );
+        Get.offNamed('/visualizarAcessos');
+
         return false;
       },
       child: Scaffold(
@@ -31,14 +27,6 @@ class VisualizarAcessosSaidas extends StatelessWidget {
             style: GoogleFonts.montserrat(
               fontSize: 16,
               color: Theme.of(context).textSelectionTheme.selectionColor,
-            ),
-          ),
-          leading: IconButton(
-            onPressed: () {
-              Get.offNamed('/visualizarAcessos');
-            },
-            icon: Icon(
-              Icons.arrow_back,
             ),
           ),
         ),

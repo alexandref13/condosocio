@@ -9,52 +9,61 @@ class VisualizarAcessos extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            Row(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.add,
-                    size: 30,
+      child: WillPopScope(
+        onWillPop: () async {
+          Get.offNamed('/home');
+          return false;
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            actions: [
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.add,
+                      size: 30,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                    ),
+                    onPressed: () {
+                      Get.toNamed('/convites');
+                    },
+                  ),
+                ],
+              )
+            ],
+            title: Text(
+              'Acessos',
+              style: GoogleFonts.montserrat(
+                fontSize: 16,
+                color: Theme.of(context).textSelectionTheme.selectionColor,
+              ),
+            ),
+            bottom: TabBar(
+              indicatorColor:
+                  Theme.of(context).textSelectionTheme.selectionColor,
+              tabs: <Widget>[
+                Text(
+                  'Entrada',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor),
+                ),
+                Text(
+                  'Saída',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
                     color: Theme.of(context).textSelectionTheme.selectionColor,
                   ),
-                  onPressed: () {
-                    Get.toNamed('/convites');
-                  },
                 ),
               ],
-            )
-          ],
-          title: Text(
-            'Acessos',
-            style: GoogleFonts.montserrat(
-              fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
             ),
           ),
-          bottom: TabBar(
-            indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
-            tabs: <Widget>[
-              Text(
-                'Entrada',
-                style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
-              ),
-              Text(
-                'Saída',
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
-                ),
-              ),
-            ],
+          body: TabBarView(
+            children: [VisualizarAcessosEntrada(), SaidaAcessos()],
           ),
-        ),
-        body: TabBarView(
-          children: [VisualizarAcessosEntrada(), SaidaAcessos()],
         ),
       ),
     );

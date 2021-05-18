@@ -33,10 +33,7 @@ confirmedButtonPressed(context, String text, String page) {
           ),
         ),
         onPressed: () {
-          page != null
-              ? Navigator.pushNamedAndRemoveUntil(
-                  context, '$page', (route) => false)
-              : Get.back();
+          page != null ? Get.offNamed('$page') : Get.back();
         },
         width: 80,
         color: Colors.green,

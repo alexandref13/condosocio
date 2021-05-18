@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
@@ -36,26 +35,12 @@ class DetalheConviteWidget extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        confirmedButtonPressed(
-          context,
-          'Por favor, use o botão pra voltar no canto superior esquerdo',
-          null,
-        );
+        Get.offNamed('/convites');
         return false;
       },
       child: Scaffold(
         appBar: AppBar(
           title: Text(visualizarConvitesController.titulo.value),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).textSelectionTheme.selectionColor),
-            onPressed: () {
-              Get.offNamedUntil(
-                '/convites',
-                ModalRoute.withName('/convites'),
-              );
-            },
-          ),
         ),
         body: visualizarConvitesController.isLoading.value
             ? CircularProgressIndicatorWidget()
