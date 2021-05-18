@@ -5,6 +5,7 @@ import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarConviteWidget extends StatelessWidget {
   const VisualizarConviteWidget({Key key}) : super(key: key);
@@ -23,6 +24,10 @@ class VisualizarConviteWidget extends StatelessWidget {
                   boxSearch(context, convitesController.search.value,
                       convitesController.onSearchTextChanged),
                   Expanded(
+                      child: SmartRefresher(
+                    controller: convitesController.refreshController,
+                    onRefresh: convitesController.onRefresh,
+                    onLoading: convitesController.onLoading,
                     child: convitesController.searchResult.length != 0 ||
                             convitesController.search.value.text.isNotEmpty
                         ? ListView.builder(
@@ -191,7 +196,7 @@ class VisualizarConviteWidget extends StatelessWidget {
                                     ),
                                   ));
                             }),
-                  ),
+                  )),
                 ],
               ),
             );

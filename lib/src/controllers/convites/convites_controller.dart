@@ -8,6 +8,7 @@ import 'package:condosocio/src/services/convites/mapa_convites.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ConvitesController extends GetxController {
   AcessosController acessosController = Get.put(AcessosController());
@@ -33,6 +34,18 @@ class ConvitesController extends GetxController {
 
   var isEdited = false.obs;
   var isLoading = false.obs;
+
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
+
+  void onRefresh() async {
+    getConvites();
+    refreshController.refreshCompleted();
+  }
+
+  void onLoading() async {
+    refreshController.loadComplete();
+  }
 
   var maskFormatter = new MaskTextInputFormatter(
     mask: '+55 (##) #####-####',

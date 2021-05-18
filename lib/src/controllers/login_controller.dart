@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginController extends GetxController {
@@ -14,6 +15,7 @@ class LoginController extends GetxController {
   var password = TextEditingController().obs;
   var id = ''.obs;
   var idcond = ''.obs;
+  var newId = ''.obs;
   var tipo = ''.obs;
   var imgperfil = ''.obs;
   var emailUsu = ''.obs;
@@ -28,6 +30,21 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   var isChecked = false.obs;
   var listOfCondo = [];
+
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
+
+  void onRefresh() async {
+    await GetStorage.init();
+    final box = GetStorage();
+    var emailS = box.read('email');
+    hasMoreEmail(emailS);
+    refreshController.refreshCompleted();
+  }
+
+  void onLoading() async {
+    refreshController.loadComplete();
+  }
 
   Future<void> launched;
 
@@ -45,6 +62,7 @@ class LoginController extends GetxController {
   }
 
   Future hasMoreEmail(String emailS) async {
+    isLoading(true);
     await GetStorage.init();
     final box = GetStorage();
     box.write('email', emailS);
@@ -52,6 +70,7 @@ class LoginController extends GetxController {
         '/flutter/unidadesLista.php', {"email": emailS}));
     var dados = json.decode(response.body);
     listOfCondo = dados.map((model) => ListOfCondo.fromJson(model)).toList();
+    isLoading(false);
     return dados;
   }
 

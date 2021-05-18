@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarAcessosSaidas extends StatelessWidget {
   const VisualizarAcessosSaidas({Key key}) : super(key: key);
@@ -104,156 +105,341 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                               ),
                             ),
                             Expanded(
-                              child: ListView.builder(
-                                  itemCount: saidaController.acessos.length,
-                                  itemBuilder: (_, i) {
-                                    var acessos = saidaController.acessos[i];
-                                    return GestureDetector(
-                                      onTap: () {
-                                        saidaController.id.value =
-                                            acessos.idaut;
-                                        saidaController.image.value =
-                                            acessos.imgaut;
-                                        saidaController.name.value =
-                                            acessos.nome;
-                                        saidaController.createDate.value =
-                                            acessos.datacreate;
-                                        saidaController.outDate.value =
-                                            acessos.datasaida;
+                              child: SmartRefresher(
+                                controller: saidaController.refreshController,
+                                onRefresh: saidaController.onRefresh,
+                                onLoading: saidaController.onLoading,
+                                child: saidaController
+                                            .searchResult.isNotEmpty ||
+                                        saidaController
+                                            .search.value.text.isNotEmpty
+                                    ? ListView.builder(
+                                        itemCount:
+                                            saidaController.searchResult.length,
+                                        itemBuilder: (_, i) {
+                                          var acessos =
+                                              saidaController.searchResult[i];
+                                          return GestureDetector(
+                                            onTap: () {
+                                              saidaController.id.value =
+                                                  acessos.idaut;
+                                              saidaController.image.value =
+                                                  acessos.imgaut;
+                                              saidaController.name.value =
+                                                  acessos.nome;
+                                              saidaController.createDate.value =
+                                                  acessos.datacreate;
+                                              saidaController.outDate.value =
+                                                  acessos.datasaida;
 
-                                        saidaController.tipo.value =
-                                            acessos.tipo;
-                                        Get.toNamed('/detalhesAcessosSaida');
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                border: Border(
-                                              bottom: BorderSide(
-                                                  width: 2, color: Colors.grey),
-                                            )),
-                                            padding: EdgeInsets.all(10),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              saidaController.tipo.value =
+                                                  acessos.tipo;
+                                              Get.toNamed(
+                                                  '/detalhesAcessosSaida');
+                                            },
+                                            child: Column(
                                               children: [
                                                 Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.25,
-                                                  child: Text(
-                                                    acessos.nome,
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      fontSize: 12,
-                                                      color: Theme.of(context)
-                                                          .textSelectionTheme
-                                                          .selectionColor,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
+                                                  decoration: BoxDecoration(
+                                                      border: Border(
+                                                    bottom: BorderSide(
+                                                        width: 2,
+                                                        color: Colors.grey),
+                                                  )),
+                                                  padding: EdgeInsets.all(10),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.25,
+                                                        child: Text(
+                                                          acessos.nome,
+                                                          style: GoogleFonts
+                                                              .montserrat(
+                                                            fontSize: 12,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textSelectionTheme
+                                                                .selectionColor,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      acessos.datacreate == ''
+                                                          ? Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      right:
+                                                                          10),
+                                                              child: Icon(
+                                                                FontAwesome
+                                                                    .clock_o,
+                                                                size: 24,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .textSelectionTheme
+                                                                    .selectionColor,
+                                                              ),
+                                                            )
+                                                          : Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                              child: Column(
+                                                                children: [
+                                                                  Text(
+                                                                    acessos
+                                                                        .datacreate,
+                                                                    style: GoogleFonts
+                                                                        .montserrat(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .textSelectionTheme
+                                                                          .selectionColor,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                      acessos.datasaida == '0'
+                                                          ? Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      right:
+                                                                          10),
+                                                              child: Icon(
+                                                                FontAwesome
+                                                                    .clock_o,
+                                                                size: 24,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .textSelectionTheme
+                                                                    .selectionColor,
+                                                              ),
+                                                            )
+                                                          : Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                              child: Column(
+                                                                children: [
+                                                                  Text(
+                                                                    acessos
+                                                                        .datasaida,
+                                                                    style: GoogleFonts
+                                                                        .montserrat(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .textSelectionTheme
+                                                                          .selectionColor,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                      Container(
+                                                        child: Icon(
+                                                            Icons.arrow_right),
+                                                      )
+                                                    ],
                                                   ),
                                                 ),
-                                                acessos.datacreate == ''
-                                                    ? Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.2,
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                right: 10),
-                                                        child: Icon(
-                                                          FontAwesome.clock_o,
-                                                          size: 24,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .textSelectionTheme
-                                                              .selectionColor,
-                                                        ),
-                                                      )
-                                                    : Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.2,
-                                                        child: Column(
-                                                          children: [
-                                                            Text(
-                                                              acessos
-                                                                  .datacreate,
-                                                              style: GoogleFonts
-                                                                  .montserrat(
-                                                                fontSize: 12,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .textSelectionTheme
-                                                                    .selectionColor,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                acessos.datasaida == '0'
-                                                    ? Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.2,
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                right: 10),
-                                                        child: Icon(
-                                                          FontAwesome.clock_o,
-                                                          size: 24,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .textSelectionTheme
-                                                              .selectionColor,
-                                                        ),
-                                                      )
-                                                    : Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.2,
-                                                        child: Column(
-                                                          children: [
-                                                            Text(
-                                                              acessos.datasaida,
-                                                              style: GoogleFonts
-                                                                  .montserrat(
-                                                                fontSize: 12,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .textSelectionTheme
-                                                                    .selectionColor,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                Container(
-                                                  child:
-                                                      Icon(Icons.arrow_right),
-                                                )
                                               ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }),
+                                          );
+                                        })
+                                    : ListView.builder(
+                                        itemCount:
+                                            saidaController.acessos.length,
+                                        itemBuilder: (_, i) {
+                                          var acessos =
+                                              saidaController.acessos[i];
+                                          return GestureDetector(
+                                            onTap: () {
+                                              saidaController.id.value =
+                                                  acessos.idaut;
+                                              saidaController.image.value =
+                                                  acessos.imgaut;
+                                              saidaController.name.value =
+                                                  acessos.nome;
+                                              saidaController.createDate.value =
+                                                  acessos.datacreate;
+                                              saidaController.outDate.value =
+                                                  acessos.datasaida;
+
+                                              saidaController.tipo.value =
+                                                  acessos.tipo;
+                                              Get.toNamed(
+                                                  '/detalhesAcessosSaida');
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      border: Border(
+                                                    bottom: BorderSide(
+                                                        width: 2,
+                                                        color: Colors.grey),
+                                                  )),
+                                                  padding: EdgeInsets.all(10),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.25,
+                                                        child: Text(
+                                                          acessos.nome,
+                                                          style: GoogleFonts
+                                                              .montserrat(
+                                                            fontSize: 12,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textSelectionTheme
+                                                                .selectionColor,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      acessos.datacreate == ''
+                                                          ? Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      right:
+                                                                          10),
+                                                              child: Icon(
+                                                                FontAwesome
+                                                                    .clock_o,
+                                                                size: 24,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .textSelectionTheme
+                                                                    .selectionColor,
+                                                              ),
+                                                            )
+                                                          : Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                              child: Column(
+                                                                children: [
+                                                                  Text(
+                                                                    acessos
+                                                                        .datacreate,
+                                                                    style: GoogleFonts
+                                                                        .montserrat(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .textSelectionTheme
+                                                                          .selectionColor,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                      acessos.datasaida == '0'
+                                                          ? Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      right:
+                                                                          10),
+                                                              child: Icon(
+                                                                FontAwesome
+                                                                    .clock_o,
+                                                                size: 24,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .textSelectionTheme
+                                                                    .selectionColor,
+                                                              ),
+                                                            )
+                                                          : Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                              child: Column(
+                                                                children: [
+                                                                  Text(
+                                                                    acessos
+                                                                        .datasaida,
+                                                                    style: GoogleFonts
+                                                                        .montserrat(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .textSelectionTheme
+                                                                          .selectionColor,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                      Container(
+                                                        child: Icon(
+                                                            Icons.arrow_right),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        }),
+                              ),
                             )
                           ],
                         ),

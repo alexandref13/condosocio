@@ -3,6 +3,7 @@ import 'package:condosocio/src/services/acessos/api_acessos_saida.dart';
 import 'package:condosocio/src/services/acessos/mapa_acessos_saida.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarAcessosSaidaController extends GetxController {
   var nameController = TextEditingController().obs;
@@ -20,6 +21,19 @@ class VisualizarAcessosSaidaController extends GetxController {
   var outDate = ''.obs;
   var tipo = ''.obs;
   var id = ''.obs;
+
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
+
+  void onRefresh() async {
+    getAcessosSaida();
+    refreshController.refreshCompleted();
+  }
+
+  void onLoading() async {
+    print('loading');
+    refreshController.loadComplete();
+  }
 
   var tipos = [
     'Selecione o tipo de visitante',

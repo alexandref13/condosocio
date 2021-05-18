@@ -4,11 +4,12 @@ import 'package:condosocio/src/services/ouvidoria/api_ouvidoria.dart';
 import 'package:condosocio/src/services/ouvidoria/mapa_ouvidoria.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarOuvidoriaController extends GetxController {
-  List<MapaOuvidoria> ouvidoria = [];
+  var ouvidoria = [].obs;
   var search = TextEditingController().obs;
-  var isLoading = true.obs;
+  var isLoading = false.obs;
   var searchResult = [].obs;
 
   var data = ''.obs;
@@ -17,6 +18,19 @@ class VisualizarOuvidoriaController extends GetxController {
   var message = ''.obs;
   var assunto = ''.obs;
   var id = ''.obs;
+
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
+
+  void onRefresh() async {
+    getOuvidoria();
+    refreshController.refreshCompleted();
+  }
+
+  void onLoading() async {
+    print('loading');
+    refreshController.loadComplete();
+  }
 
   onSearchTextChanged(String text) {
     searchResult.clear();
@@ -29,12 +43,18 @@ class VisualizarOuvidoriaController extends GetxController {
     });
   }
 
-  void getOuvidoria() {
-    ApiOuvidoria.getOuvidoria().then((response) {
-      Iterable lista = json.decode(response.body);
-      ouvidoria = lista.map((model) => MapaOuvidoria.fromJson(model)).toList();
-      isLoading(false);
-    });
+  Future<void> getOuvidoria() async {
+    isLoading(true);
+    var response = await ApiOuvidoria.getOuvidoria();
+
+    Iterable lista = json.decode(response.body);
+
+    print(lista);
+
+    ouvidoria.value =
+        lista.map((model) => MapaOuvidoria.fromJson(model)).toList();
+
+    isLoading(false);
   }
 
   @override

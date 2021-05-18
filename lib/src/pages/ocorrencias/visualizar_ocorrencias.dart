@@ -1,10 +1,12 @@
 import 'package:condosocio/src/components/utils/box_search.dart';
+import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/visualizar_ocorrencias/modal_bottom_sheet.dart';
 import 'package:condosocio/src/controllers/visualizar_ocorrencias_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarOcorrencias extends StatelessWidget {
   @override
@@ -15,21 +17,7 @@ class VisualizarOcorrencias extends StatelessWidget {
     return Obx(
       () {
         return ocorrenciasController.isLoading.value
-            ? Container(
-                height: MediaQuery.of(context).size.height,
-                color: Theme.of(context).primaryColor,
-                child: Center(
-                  child: SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 4,
-                      valueColor: AlwaysStoppedAnimation(
-                          Theme.of(context).textSelectionTheme.selectionColor),
-                    ),
-                  ),
-                ),
-              )
+            ? CircularProgressIndicatorWidget()
             : ocorrenciasController.ocorrencias.length == 0
                 ? Stack(
                     children: <Widget>[
@@ -82,6 +70,10 @@ class VisualizarOcorrencias extends StatelessWidget {
                       boxSearch(context, ocorrenciasController.search.value,
                           ocorrenciasController.onSearchTextChanged),
                       Expanded(
+                          child: SmartRefresher(
+                        controller: ocorrenciasController.refreshController,
+                        onRefresh: ocorrenciasController.onRefresh,
+                        onLoading: ocorrenciasController.onLoading,
                         child: ocorrenciasController.searchResult.length != 0 ||
                                 ocorrenciasController
                                     .search.value.text.isNotEmpty
@@ -315,7 +307,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                   );
                                 },
                               ),
-                      ),
+                      )),
                     ],
                   );
       },

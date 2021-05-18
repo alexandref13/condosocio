@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/utils/box_search.dart';
+import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/ouvidoria/visualizar_ouvidoria_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,21 +19,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
     return Obx(
       () {
         return visualizarOuvidoria.isLoading.value
-            ? Container(
-                height: MediaQuery.of(context).size.height,
-                color: Theme.of(context).primaryColor,
-                child: Center(
-                  child: SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 4,
-                      valueColor:
-                          AlwaysStoppedAnimation(Theme.of(context).accentColor),
-                    ),
-                  ),
-                ),
-              )
+            ? CircularProgressIndicatorWidget()
             : Column(
                 children: [
                   boxSearch(

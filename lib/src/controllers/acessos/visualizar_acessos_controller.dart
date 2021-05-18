@@ -3,6 +3,7 @@ import 'package:condosocio/src/services/acessos/api_acessos.dart';
 import 'package:condosocio/src/services/acessos/mapa_acessos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarAcessosController extends GetxController {
   var acessos = <MapaAcessos>[].obs;
@@ -10,6 +11,19 @@ class VisualizarAcessosController extends GetxController {
   var isLoading = true.obs;
   var searchResult = [].obs;
   var fav = false.obs;
+
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
+
+  void onRefresh() async {
+    getAcessos();
+    refreshController.refreshCompleted();
+  }
+
+  void onLoading() async {
+    print('loading');
+    refreshController.loadComplete();
+  }
 
   onSearchTextChanged(String text) {
     searchResult.clear();
