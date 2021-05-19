@@ -103,7 +103,7 @@ class LoginController extends GetxController {
     email.value.text = box.read('email');
   }
 
-  newLogin(context, String newId) {
+  newLogin(String newId) {
     isLoading(true);
     http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
         body: {"id": newId}).then((response) {

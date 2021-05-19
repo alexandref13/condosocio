@@ -29,7 +29,7 @@ class ListOfCondo extends StatelessWidget {
                           onTap: () {
                             loginController.unidade.value = condo.tipoun;
                             loginController.newId.value = condo.idusu;
-                            loginController.newLogin(context, condo.idusu);
+                            loginController.newLogin(condo.idusu);
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(
