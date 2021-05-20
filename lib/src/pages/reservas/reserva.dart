@@ -39,7 +39,7 @@ class Reserva extends StatelessWidget {
                               return GestureDetector(
                                 onTap: () {
                                   reservasController.nome.value = areas.nome;
-                                  Get.toNamed('/addReservas');
+                                  Get.toNamed('/calendario');
                                 },
                                 child: Card(
                                   shape: RoundedRectangleBorder(
