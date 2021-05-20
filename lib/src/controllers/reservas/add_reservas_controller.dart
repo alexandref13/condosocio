@@ -23,12 +23,12 @@ class AddReservasController extends GetxController {
 
     var dados = json.decode(response.body);
 
-    print(dados['dados']);
-
     if (dados['dados'] != null) {
       for (var eventos in dados['dados']) {
         calendarioController.events
-            .putIfAbsent(DateTime.parse(eventos['data_agenda']), () => [])
+            .putIfAbsent(
+                DateTime.parse('${eventos['data_agenda']} 00:00:00.000Z'),
+                () => [])
             .add(
                 "${eventos['idevento']} - ${eventos['nome']} | ${eventos['data_agenda']} = ${eventos['titulo']} # ${eventos['areacom']} > ${eventos['status']}");
       }

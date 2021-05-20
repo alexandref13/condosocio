@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.only(left: 40),
+                  margin: EdgeInsets.only(left: 40, bottom: 5),
                   child: Center(
                     child: Icon(
                       Icons.edit,
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left: 40),
+                      margin: EdgeInsets.only(left: 40, bottom: 5),
                       child: Center(
                         child: Icon(
                           Icons.edit,
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left: 40),
+                      margin: EdgeInsets.only(left: 40, bottom: 5),
                       child: Center(
                         child: Icon(
                           Icons.edit,
@@ -309,7 +309,6 @@ class _HomePageState extends State<HomePage> {
                           children: <Widget>[
                             getImageWidget(),
                             Container(
-                              padding: EdgeInsets.only(top: 5),
                               child: Text(
                                 '${loginController.nome.value}',
                                 style: GoogleFonts.montserrat(
