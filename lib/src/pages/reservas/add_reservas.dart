@@ -98,7 +98,7 @@ class _AddReservasState extends State<AddReservas> {
                                     horizontal: 10, vertical: 10),
                                 child: customTextField(
                                   context,
-                                  null,
+                                  'Nome do evento',
                                   'Diga qual o seu evento',
                                   false,
                                   1,
@@ -109,39 +109,47 @@ class _AddReservasState extends State<AddReservas> {
                             ],
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          padding:
-                              EdgeInsets.only(bottom: 20, left: 10, right: 10),
-                          child: GestureDetector(
-                            onTap: () async {
-                              startSelectedTime = await selectTime(context);
-                              if (startSelectedTime == null) return;
+                        Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 10),
+                              padding: EdgeInsets.only(
+                                  bottom: 20, left: 10, right: 10),
+                              child: GestureDetector(
+                                onTap: () async {
+                                  startSelectedTime = await selectTime(context);
+                                  if (startSelectedTime == null) return;
 
-                              setState(() {
-                                startSelectedDate = DateTime(
-                                  selectedDay.year,
-                                  selectedDay.month,
-                                  selectedDay.day,
-                                  startSelectedTime.hour,
-                                  startSelectedTime.minute,
-                                );
-                              });
+                                  setState(() {
+                                    startSelectedDate = DateTime(
+                                      selectedDay.year,
+                                      selectedDay.month,
+                                      selectedDay.day,
+                                      startSelectedTime.hour,
+                                      startSelectedTime.minute,
+                                    );
 
-                              print(startSelectedDate);
-                            },
-                            child: customTextField(
-                              context,
-                              null,
-                              DateFormat("HH:mm").format(
-                                startSelectedDate,
+                                    startDate.text = DateFormat("HH:mm").format(
+                                      startSelectedDate,
+                                    );
+                                  });
+
+                                  print(startSelectedDate);
+                                },
+                                child: customTextField(
+                                  context,
+                                  'Hora Inicial',
+                                  DateFormat("HH:mm").format(
+                                    startSelectedDate,
+                                  ),
+                                  false,
+                                  1,
+                                  false,
+                                  startDate,
+                                ),
                               ),
-                              false,
-                              1,
-                              false,
-                              startDate,
                             ),
-                          ),
+                          ],
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(
