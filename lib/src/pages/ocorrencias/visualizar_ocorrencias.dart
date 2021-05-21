@@ -289,7 +289,8 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               size: 24,
                                               color: ocorrencia.status == '1'
                                                   ? Theme.of(context)
-                                                      .accentColor
+                                                      .textSelectionTheme
+                                                      .selectionColor
                                                   : Theme.of(context)
                                                       .errorColor,
                                             ),
