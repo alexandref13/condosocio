@@ -13,36 +13,8 @@ class TableCalendarWidget extends StatefulWidget {
 }
 
 class _TableCalendarWidgetState extends State<TableCalendarWidget> {
-  AddReservasController addReservasController =
-      Get.put(AddReservasController());
-
   CalendarioReservasController calendarioReservasController =
       Get.put(CalendarioReservasController());
-
-  // Widget buildEventsMarker(DateTime date, List events) {
-  //   return AnimatedContainer(
-  //     duration: const Duration(milliseconds: 300),
-  //     decoration: BoxDecoration(
-  //       shape: BoxShape.circle,
-  //       color: _calendarController.isSelected(date)
-  //           ? Colors.black
-  //           : _calendarController.isToday(date)
-  //               ? Colors.grey
-  //               : Colors.grey,
-  //     ),
-  //     width: 18.0,
-  //     height: 18.0,
-  //     child: Center(
-  //       child: Text(
-  //         '${events.length}',
-  //         style: TextStyle().copyWith(
-  //           color: Colors.white,
-  //           fontSize: 14.0,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +22,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
       appBar: AppBar(),
       body: Obx(
         () {
-          return addReservasController.isLoading.value
+          return calendarioReservasController.isLoading.value
               ? CircularProgressIndicatorWidget()
               : Column(
                   children: [
@@ -119,20 +91,6 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                             shape: BoxShape.rectangle,
                           ),
                         ),
-                        // calendarBuilders: CalendarBuilders(
-                        //   markerBuilder: (context, date, events) {
-                        //     final children = <Widget>[];
-                        //     if (events.isNotEmpty) {
-                        //       children.add(
-                        //         Positioned(
-                        //           right: 1,
-                        //           top: 1,
-                        //           child: buildEventsMarker(date, events),
-                        //         ),
-                        //       );
-                        //     }
-                        //   },
-                        // ),
                         calendarFormat:
                             calendarioReservasController.calendarFormat,
                         onDaySelected: (selectedDay, focusedDay) {

@@ -2,6 +2,7 @@ import 'package:condosocio/src/components/acessos_saidas/detalhes_acessos_saida.
 import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_saidas.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
 import 'package:condosocio/src/components/reservas/calendario_reservas.dart';
+import 'package:condosocio/src/components/reservas/termos_reservas.dart';
 import 'package:condosocio/src/pages/dependentes/ajuda_dependentes.dart';
 import 'package:condosocio/src/pages/dependentes/dependentes.dart';
 import 'package:condosocio/src/pages/enquetes.dart';
@@ -98,6 +99,7 @@ class MyApp extends StatelessWidget {
             name: '/detalhesAcessosSaida', page: () => DetalhesAcessosSaida()),
         GetPage(name: '/addReservas', page: () => AddReservas()),
         GetPage(name: '/calendario', page: () => TableCalendarWidget()),
+        GetPage(name: '/termos', page: () => TermosReservas()),
       ],
     );
   }

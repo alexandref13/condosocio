@@ -38,6 +38,7 @@ class Reserva extends StatelessWidget {
                               var areas = reservasController.areas[i];
                               return GestureDetector(
                                 onTap: () {
+                                  reservasController.termo.value = areas.termo;
                                   reservasController.nome.value = areas.nome;
                                   Get.toNamed('/calendario');
                                 },

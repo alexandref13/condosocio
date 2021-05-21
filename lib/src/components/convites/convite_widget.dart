@@ -144,7 +144,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                 context,
                                 null,
                                 'Convite de ${loginController.nome.value}',
-                                true,
+                                false,
                                 1,
                                 true,
                                 convitesController.inviteName.value,

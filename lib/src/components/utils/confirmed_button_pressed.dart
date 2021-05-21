@@ -33,7 +33,9 @@ confirmedButtonPressed(context, String text, String page) {
           ),
         ),
         onPressed: () {
-          page != null ? Get.offNamed('$page') : Get.back();
+          page != null
+              ? Get.offNamedUntil('$page', ModalRoute.withName('$page'))
+              : Get.back();
         },
         width: 80,
         color: Colors.green,

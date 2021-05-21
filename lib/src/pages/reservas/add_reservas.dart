@@ -1,7 +1,12 @@
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
+import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/reservas/add_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/calendario_reservas_controller.dart';
+import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,13 +20,13 @@ class AddReservas extends StatefulWidget {
 class _AddReservasState extends State<AddReservas> {
   final AddReservasController addReservasController =
       Get.put(AddReservasController());
-
   final CalendarioReservasController calendarioReservasController =
       Get.put(CalendarioReservasController());
+  final ReservasController reservasController = Get.put(ReservasController());
+  final LoginController loginController = Get.put(LoginController());
 
   var startSelectedDate = DateTime.now();
   var startSelectedTime = TimeOfDay.now();
-  var startDate = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +134,8 @@ class _AddReservasState extends State<AddReservas> {
                                       startSelectedTime.minute,
                                     );
 
-                                    startDate.text = DateFormat("HH:mm").format(
+                                    addReservasController.data.value.text =
+                                        DateFormat("HH:mm").format(
                                       startSelectedDate,
                                     );
                                   });
@@ -145,12 +151,49 @@ class _AddReservasState extends State<AddReservas> {
                                   false,
                                   1,
                                   false,
-                                  startDate,
+                                  addReservasController.data.value,
                                 ),
                               ),
                             ),
                           ],
                         ),
+                        reservasController.termo.value != ''
+                            ? Container(
+                                padding: EdgeInsets.only(
+                                    bottom: 20, left: 10, right: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Checkbox(
+                                      value:
+                                          addReservasController.isChecked.value,
+                                      onChanged: (bool value) {
+                                        addReservasController.isChecked.value =
+                                            value;
+                                      },
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 10),
+                                      child: Text.rich(TextSpan(
+                                          text: '\nLi e concordo com os ',
+                                          children: [
+                                            TextSpan(
+                                              text: 'TERMOS DE USO ',
+                                              style: GoogleFonts.montserrat(
+                                                color: Colors.amberAccent,
+                                              ),
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () {
+                                                  Get.toNamed('/termos');
+                                                },
+                                            ),
+                                          ])),
+                                    )
+                                  ],
+                                ),
+                              )
+                            : Container(),
                         Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
@@ -173,7 +216,40 @@ class _AddReservasState extends State<AddReservas> {
                                   },
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                addReservasController.date.value =
+                                    DateFormat('yyyy-MM-dd')
+                                        .format(startSelectedDate);
+                                addReservasController.hora.value =
+                                    DateFormat('HH:mm')
+                                        .format(startSelectedDate);
+                                addReservasController
+                                    .incluirReserva()
+                                    .then((value) {
+                                  if (value == 'vazio') {
+                                    onAlertButtonPressed(
+                                      context,
+                                      'Campo titulo, hora ou termos de uso vazio!',
+                                      null,
+                                    );
+                                  } else {
+                                    if (value == 1) {
+                                      confirmedButtonPressed(
+                                        context,
+                                        'Reserva agendada com sucesso!',
+                                        '/home',
+                                      );
+                                    }
+                                    if (value == 0) {
+                                      onAlertButtonPressed(
+                                        context,
+                                        'Algo deu errado \n Tente novamente',
+                                        '/home',
+                                      );
+                                    }
+                                  }
+                                });
+                              },
                               child: Text(
                                 'Incluir',
                                 style: GoogleFonts.montserrat(
