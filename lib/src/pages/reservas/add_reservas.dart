@@ -1,22 +1,53 @@
-import 'package:condosocio/src/components/reservas/calendario_reservas.dart';
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
+import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/reservas/add_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/calendario_reservas_controller.dart';
+import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/intl.dart';
 
-class AddReservas extends StatelessWidget {
-  const AddReservas({Key key}) : super(key: key);
+class AddReservas extends StatefulWidget {
+  @override
+  _AddReservasState createState() => _AddReservasState();
+}
+
+class _AddReservasState extends State<AddReservas> {
+  final AddReservasController addReservasController =
+      Get.put(AddReservasController());
+  final CalendarioReservasController calendarioReservasController =
+      Get.put(CalendarioReservasController());
+  final ReservasController reservasController = Get.put(ReservasController());
+  final LoginController loginController = Get.put(LoginController());
+
+  var startSelectedDate = DateTime.now();
+  var startSelectedTime = TimeOfDay.now();
 
   @override
   Widget build(BuildContext context) {
-    AddReservasController addReservasController =
-        Get.put(AddReservasController());
-    CalendarioReservasController calendarioReservasController =
-        Get.put(CalendarioReservasController());
+    var day = DateFormat('dd/MM/yyyy (EEEE)', 'pt')
+        .format(calendarioReservasController.selectedDay.value);
+
+    var selectedDay = calendarioReservasController.selectedDay.value;
+
+    Future<TimeOfDay> selectTime(BuildContext context) {
+      final now = DateTime.now();
+      return showTimePicker(
+        context: context,
+        initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            child: child,
+          );
+        },
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -39,24 +70,40 @@ class AddReservas extends StatelessWidget {
                               horizontal: 10, vertical: 10),
                           child: Column(
                             children: [
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 15),
-                                child: Text(
-                                  'Titulo',
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 14,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Reserva para o dia ',
+                                      style: GoogleFonts.montserrat(
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      day,
+                                      style: GoogleFonts.montserrat(
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Container(
                                 padding: EdgeInsets.only(bottom: 10),
-                                margin: EdgeInsets.symmetric(horizontal: 10),
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
                                 child: customTextField(
                                   context,
-                                  null,
+                                  'Nome do evento',
                                   'Diga qual o seu evento',
                                   false,
                                   1,
@@ -69,31 +116,38 @@ class AddReservas extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: 20, left: 10, right: 10),
-                              child: Text(
-                                'Data',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 14,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                ),
-                              ),
-                            ),
                             Container(
                               margin: EdgeInsets.symmetric(horizontal: 10),
                               padding: EdgeInsets.only(
                                   bottom: 20, left: 10, right: 10),
                               child: GestureDetector(
                                 onTap: () async {
-                                  Get.toNamed('/calendario');
+                                  startSelectedTime = await selectTime(context);
+                                  if (startSelectedTime == null) return;
+
+                                  setState(() {
+                                    startSelectedDate = DateTime(
+                                      selectedDay.year,
+                                      selectedDay.month,
+                                      selectedDay.day,
+                                      startSelectedTime.hour,
+                                      startSelectedTime.minute,
+                                    );
+
+                                    addReservasController.data.value.text =
+                                        DateFormat("HH:mm").format(
+                                      startSelectedDate,
+                                    );
+                                  });
+
+                                  print(startSelectedDate);
                                 },
                                 child: customTextField(
                                   context,
-                                  null,
-                                  'Entre com a data do seu evento',
+                                  'Hora Inicial',
+                                  DateFormat("HH:mm").format(
+                                    startSelectedDate,
+                                  ),
                                   false,
                                   1,
                                   false,
@@ -103,40 +157,43 @@ class AddReservas extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: 20, left: 10, right: 10),
-                              child: Text(
-                                'Hora Inicial',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 14,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
+                        reservasController.termo.value != ''
+                            ? Container(
+                                padding: EdgeInsets.only(
+                                    bottom: 20, left: 10, right: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Checkbox(
+                                      value:
+                                          addReservasController.isChecked.value,
+                                      onChanged: (bool value) {
+                                        addReservasController.isChecked.value =
+                                            value;
+                                      },
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 10),
+                                      child: Text.rich(TextSpan(
+                                          text: '\nLi e concordo com os ',
+                                          children: [
+                                            TextSpan(
+                                              text: 'TERMOS DE USO ',
+                                              style: GoogleFonts.montserrat(
+                                                color: Colors.amberAccent,
+                                              ),
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () {
+                                                  Get.toNamed('/termos');
+                                                },
+                                            ),
+                                          ])),
+                                    )
+                                  ],
                                 ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 10),
-                              padding: EdgeInsets.only(
-                                  bottom: 20, left: 10, right: 10),
-                              child: GestureDetector(
-                                onTap: () async {},
-                                child: customTextField(
-                                  context,
-                                  null,
-                                  'Entre com a hora de inicio do evento',
-                                  false,
-                                  1,
-                                  false,
-                                  addReservasController.hora.value,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                              )
+                            : Container(),
                         Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
@@ -159,9 +216,42 @@ class AddReservas extends StatelessWidget {
                                   },
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                addReservasController.date.value =
+                                    DateFormat('yyyy-MM-dd')
+                                        .format(startSelectedDate);
+                                addReservasController.hora.value =
+                                    DateFormat('HH:mm')
+                                        .format(startSelectedDate);
+                                addReservasController
+                                    .incluirReserva()
+                                    .then((value) {
+                                  if (value == 'vazio') {
+                                    onAlertButtonPressed(
+                                      context,
+                                      'Campo titulo, hora ou termos de uso vazio!',
+                                      null,
+                                    );
+                                  } else {
+                                    if (value == 1) {
+                                      confirmedButtonPressed(
+                                        context,
+                                        'Reserva agendada com sucesso!',
+                                        '/home',
+                                      );
+                                    }
+                                    if (value == 0) {
+                                      onAlertButtonPressed(
+                                        context,
+                                        'Algo deu errado \n Tente novamente',
+                                        '/home',
+                                      );
+                                    }
+                                  }
+                                });
+                              },
                               child: Text(
-                                'Enviar',
+                                'Incluir',
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)

@@ -8,6 +8,7 @@ class ReservasController extends GetxController {
   var areas = <MapaReservas>[].obs;
 
   var nome = ''.obs;
+  var termo = ''.obs;
 
   var isLoading = true.obs;
 
