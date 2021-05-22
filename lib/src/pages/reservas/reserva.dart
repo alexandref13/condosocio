@@ -13,7 +13,7 @@ class Reserva extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Reservas',
+          'Escolha a Área Comum',
           style: GoogleFonts.montserrat(
             fontSize: 16,
             color: Theme.of(context).textSelectionTheme.selectionColor,
