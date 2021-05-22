@@ -1,12 +1,13 @@
 import 'package:condosocio/src/components/acessos_saidas/detalhes_acessos_saida.dart';
 import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_saidas.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
-import 'package:condosocio/src/components/reservas/calendario_reservas.dart';
+import 'package:condosocio/src/pages/reservas/calendario_reservas.dart';
 import 'package:condosocio/src/components/reservas/termos_reservas.dart';
 import 'package:condosocio/src/pages/dependentes/ajuda_dependentes.dart';
 import 'package:condosocio/src/pages/dependentes/dependentes.dart';
 import 'package:condosocio/src/pages/enquetes.dart';
 import 'package:condosocio/src/pages/reservas/add_reservas.dart';
+import 'package:condosocio/src/pages/reservas/detalhes_reservas.dart';
 import 'package:condosocio/src/pages/senha.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
 import 'package:condosocio/src/pages/comunicados.dart';
@@ -38,7 +39,6 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'src/components/convites/detalhe_convite_widget.dart';
 import 'src/pages/list_of_condo.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
   runApp(MyApp());
@@ -100,6 +100,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/addReservas', page: () => AddReservas()),
         GetPage(name: '/calendario', page: () => TableCalendarWidget()),
         GetPage(name: '/termos', page: () => TermosReservas()),
+        GetPage(name: '/detalheReservas', page: () => DetalhesReservas()),
       ],
     );
   }

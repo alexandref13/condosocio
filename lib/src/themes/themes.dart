@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData admin = ThemeData(
   brightness: Brightness.dark,
@@ -28,7 +29,10 @@ ThemeData magenta = ThemeData(
   scaffoldBackgroundColor: Color(0xff833545),
   appBarTheme: AppBarTheme(
     iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
-    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
+    titleTextStyle: GoogleFonts.montserrat(
+      fontSize: 16,
+      color: Color(0xffe2e3d3),
+    ),
     elevation: 0,
     centerTitle: true,
   ),
@@ -45,7 +49,10 @@ ThemeData turquoise = ThemeData(
   ),
   scaffoldBackgroundColor: Color(0xff054437),
   appBarTheme: AppBarTheme(
-    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
+    titleTextStyle: GoogleFonts.montserrat(
+      fontSize: 16,
+      color: Color(0xffe2e3d3),
+    ),
     iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
     elevation: 0,
     centerTitle: true,
@@ -64,7 +71,10 @@ ThemeData blue = ThemeData(
   scaffoldBackgroundColor: Color(0xff375a70),
   appBarTheme: AppBarTheme(
     iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
-    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
+    titleTextStyle: GoogleFonts.montserrat(
+      fontSize: 16,
+      color: Color(0xffe2e3d3),
+    ),
     elevation: 0,
     centerTitle: true,
   ),
@@ -82,7 +92,10 @@ ThemeData grayscale = ThemeData(
   scaffoldBackgroundColor: Color(0xff140110),
   appBarTheme: AppBarTheme(
     iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
-    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
+    titleTextStyle: GoogleFonts.montserrat(
+      fontSize: 16,
+      color: Color(0xffe2e3d3),
+    ),
     elevation: 0,
     centerTitle: true,
   ),
@@ -100,7 +113,10 @@ ThemeData red = ThemeData(
   scaffoldBackgroundColor: Color(0xff811308),
   appBarTheme: AppBarTheme(
     iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
-    titleTextStyle: TextStyle(color: Color(0xffe2e3d3)),
+    titleTextStyle: GoogleFonts.montserrat(
+      fontSize: 16,
+      color: Color(0xffe2e3d3),
+    ),
     elevation: 0,
     centerTitle: true,
   ),
@@ -118,7 +134,10 @@ ThemeData orange = ThemeData(
   scaffoldBackgroundColor: Color(0xff792404),
   appBarTheme: AppBarTheme(
     iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
-    titleTextStyle: TextStyle(color: Color(0xff666666)),
+    titleTextStyle: GoogleFonts.montserrat(
+      fontSize: 16,
+      color: Color(0xffe2e3d3),
+    ),
     elevation: 0,
     centerTitle: true,
   ),

@@ -7,6 +7,13 @@ import 'package:condosocio/src/services/reservas/api_reservas.dart';
 class CalendarioReservasController extends GetxController {
   var isLoading = true.obs;
 
+  var nome = ''.obs;
+  var unidade = ''.obs;
+  var data = ''.obs;
+  var titulo = ''.obs;
+  var area = ''.obs;
+  var status = ''.obs;
+
   Map<DateTime, List<MapaEvento>> events = {};
   List<dynamic> selectedEvents;
 
@@ -24,6 +31,7 @@ class CalendarioReservasController extends GetxController {
     var response = await ApiReservas.agendaReservas();
 
     var dados = json.decode(response.body);
+
     print(dados['dados']);
 
     if (dados['dados'] != null) {
@@ -35,7 +43,7 @@ class CalendarioReservasController extends GetxController {
             .add(
               MapaEvento(
                 areacom: eventos['areacom'],
-                dataAgenda: eventos['dataAgenda'],
+                dataAgenda: eventos['data_agenda'],
                 descricao: eventos['descricao'],
                 idevento: eventos['idevento'],
                 img: eventos['img'],
@@ -44,12 +52,31 @@ class CalendarioReservasController extends GetxController {
                 status: eventos['status'],
                 titulo: eventos['titulo'],
                 unidade: eventos['unidade'],
+                validausu: eventos['validausu'],
               ),
             );
       }
     }
 
     isLoading(false);
+  }
+
+  goToDetails(
+    String newNome,
+    String newUnidade,
+    String newTitulo,
+    String newData,
+    String newArea,
+    String newStatus,
+  ) {
+    nome(newNome);
+    unidade(newUnidade);
+    data(newData);
+    titulo(newTitulo);
+    area(newArea);
+    status(newStatus);
+
+    Get.toNamed('/detalheReservas');
   }
 
   @override

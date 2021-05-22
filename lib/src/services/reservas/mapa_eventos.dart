@@ -9,18 +9,21 @@ class MapaEvento {
   String areacom;
   String dataAgenda;
   String status;
+  int validausu;
 
-  MapaEvento(
-      {this.idevento,
-      this.img,
-      this.nome,
-      this.unidade,
-      this.titulo,
-      this.descricao,
-      this.respevent,
-      this.areacom,
-      this.dataAgenda,
-      this.status});
+  MapaEvento({
+    this.idevento,
+    this.img,
+    this.nome,
+    this.unidade,
+    this.titulo,
+    this.descricao,
+    this.respevent,
+    this.areacom,
+    this.dataAgenda,
+    this.validausu,
+    this.status,
+  });
 
   MapaEvento.fromJson(Map<String, dynamic> json) {
     idevento = json['idevento'];
@@ -33,6 +36,7 @@ class MapaEvento {
     areacom = json['areacom'];
     dataAgenda = json['data_agenda'];
     status = json['status'];
+    validausu = json['validausu'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +51,7 @@ class MapaEvento {
     data['areacom'] = this.areacom;
     data['data_agenda'] = this.dataAgenda;
     data['status'] = this.status;
+    data['validausu'] = this.validausu;
     return data;
   }
 }

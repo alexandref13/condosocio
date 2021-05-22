@@ -15,6 +15,7 @@ class TableCalendarWidget extends StatefulWidget {
 class _TableCalendarWidgetState extends State<TableCalendarWidget> {
   CalendarioReservasController calendarioReservasController =
       Get.put(CalendarioReservasController());
+  bool oi = true;
 
   Widget buildEventsMarker(DateTime date, List events) {
     return AnimatedContainer(
@@ -154,37 +155,87 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                         .getEventsfromDay(
                             calendarioReservasController.selectedDay.value)
                         .map(
-                          (MapaEvento e) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
-                              color: e.status == 'Aprovado'
-                                  ? Colors.green
-                                  : e.status == 'Recusado'
-                                      ? Colors.red
-                                      : Colors.amber,
-                            ),
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 4.0),
-                            child: ListTile(
-                              trailing: Text(
-                                "OS ${e.idevento}",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                          (MapaEvento e) => e.status == 'Recusado'
+                              ? e.validausu == null
+                                  ? Container()
+                                  : Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                        color: e.status == 'Aprovado'
+                                            ? Colors.green
+                                            : e.status == 'Recusado'
+                                                ? Colors.red
+                                                : Colors.amber[700],
+                                      ),
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 8.0, vertical: 4.0),
+                                      child: ListTile(
+                                        trailing: Text(
+                                          e.unidade,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        title: Text(
+                                          e.nome,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 13.0,
+                                          ),
+                                        ),
+                                        onTap: () {
+                                          calendarioReservasController
+                                              .goToDetails(
+                                            e.nome,
+                                            e.unidade,
+                                            e.titulo,
+                                            e.dataAgenda,
+                                            e.areacom,
+                                            e.status,
+                                          );
+                                        },
+                                      ),
+                                    )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    color: e.status == 'Aprovado'
+                                        ? Colors.green
+                                        : e.status == 'Recusado'
+                                            ? Colors.red
+                                            : Colors.amber,
+                                  ),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 8.0, vertical: 4.0),
+                                  child: ListTile(
+                                    trailing: Text(
+                                      e.unidade,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    title: Text(
+                                      e.nome,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13.0,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      calendarioReservasController.goToDetails(
+                                        e.nome,
+                                        e.unidade,
+                                        e.titulo,
+                                        e.dataAgenda,
+                                        e.areacom,
+                                        e.status,
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
-                              title: Text(
-                                e.nome,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 13.0,
-                                ),
-                              ),
-                              onTap: () {
-                                print(e.nome);
-                              },
-                            ),
-                          ),
                         ),
                   ],
                 );

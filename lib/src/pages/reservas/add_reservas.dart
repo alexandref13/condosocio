@@ -39,10 +39,12 @@ class _AddReservasState extends State<AddReservas> {
       final now = DateTime.now();
       return showTimePicker(
         context: context,
-        initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
+        initialTime: TimeOfDay(hour: now.hour, minute: 00),
         builder: (BuildContext context, Widget child) {
           return MediaQuery(
-            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            data: MediaQuery.of(context).copyWith(
+              alwaysUse24HourFormat: true,
+            ),
             child: child,
           );
         },
@@ -51,7 +53,13 @@ class _AddReservasState extends State<AddReservas> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reservas'),
+        title: Text(
+          'Reservas',
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
+        ),
       ),
       body: Obx(
         () {
@@ -72,16 +80,19 @@ class _AddReservasState extends State<AddReservas> {
                             children: [
                               Container(
                                 padding: EdgeInsets.symmetric(vertical: 20),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      'Reserva para o dia ',
-                                      style: GoogleFonts.montserrat(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor,
-                                        fontSize: 16,
+                                    Container(
+                                      padding: EdgeInsets.only(bottom: 5),
+                                      child: Text(
+                                        'Reserva para o dia ',
+                                        style: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
                                     Text(
