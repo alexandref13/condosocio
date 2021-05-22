@@ -20,7 +20,7 @@ class PerfilController extends GetxController {
   var fullName = '';
 
   var cellMaskFormatter = new MaskTextInputFormatter(
-    mask: '+55 (##) #####-####',
+    mask: '(##) #####-####',
     filter: {"#": RegExp(r'[0-9]')},
   );
 

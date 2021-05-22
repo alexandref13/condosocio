@@ -48,7 +48,7 @@ class ConvitesController extends GetxController {
   }
 
   var maskFormatter = new MaskTextInputFormatter(
-    mask: '+55 (##) #####-####',
+    mask: '(##) #####-####',
     filter: {"#": RegExp(r'[0-9]')},
   );
 

@@ -324,24 +324,29 @@ class DetalheConviteWidget extends StatelessWidget {
                                                     .selectionColor,
                                               ),
                                               onPressed: () {
+                                                var celular;
                                                 visualizarConvitesController
                                                         .tel.value =
                                                     convidados[x]['tel'];
                                                 visualizarConvitesController
                                                         .nameGuest.value =
                                                     convidados[x]['nome'];
-                                                var celular = convidados[x]
-                                                        ['tel']
-                                                    .replaceAll("+", "")
-                                                    .replaceAll("(", "")
-                                                    .replaceAll(")", "")
-                                                    .replaceAll("-", "")
-                                                    .replaceAll(" ", "");
+
+                                                convidados[x]['tel'] != null
+                                                    ? celular = convidados[x]
+                                                            ['tel']
+                                                        .replaceAll("+", "")
+                                                        .replaceAll("(", "")
+                                                        .replaceAll(")", "")
+                                                        .replaceAll("-", "")
+                                                        .replaceAll(" ", "")
+                                                    : celular = '';
+
                                                 visualizarConvitesController
                                                     .whatsappNumber
                                                     .value
                                                     .text = celular;
-                                                if (celular.length == 13) {
+                                                if (celular.length == 11) {
                                                   visualizarConvitesController
                                                       .sendWhatsApp()
                                                       .then(
@@ -352,7 +357,9 @@ class DetalheConviteWidget extends StatelessWidget {
 
                                                         FlutterOpenWhatsapp
                                                             .sendSingleMessage(
-                                                          celular,
+                                                          celular.length == 11
+                                                              ? '55$celular'
+                                                              : celular,
                                                           Uri.encodeFull(
                                                               message),
                                                         );
@@ -368,6 +375,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                   Get.toNamed(
                                                       '/whatsAppConvite');
                                                 }
+                                                print('ola');
                                               },
                                             )
                                           : Container(),
