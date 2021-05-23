@@ -2,6 +2,7 @@ import 'package:condosocio/src/controllers/reservas/calendario_reservas_controll
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class DetalhesReservas extends StatelessWidget {
   final CalendarioReservasController calendarioReservasController =
@@ -9,6 +10,10 @@ class DetalhesReservas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var day = DateTime.parse(calendarioReservasController.data.value);
+    var newDate = DateFormat.yMMMMd('pt').format(day);
+    var newHour = DateFormat('HH:mm', 'pt').format(day);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -108,10 +113,19 @@ class DetalhesReservas extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            calendarioReservasController.data.value,
+                            newDate,
                             style: GoogleFonts.montserrat(
                               fontSize: 12,
                               color: Colors.black,
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              ' às $newHour',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ],

@@ -52,7 +52,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 vertical: 10,
               ),
               child: TextField(
-                maxLength: 13,
+                maxLength: 11,
                 controller: visualizarConvitesController.whatsappNumber.value,
                 style: GoogleFonts.montserrat(
                   fontSize: 14,
@@ -123,7 +123,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                   onPressed: () {
                     if (visualizarConvitesController
                             .whatsappNumber.value.text.length ==
-                        13) {
+                        11) {
                       visualizarConvitesController.sendWhatsApp().then(
                         (value) {
                           if (value != 0) {
@@ -144,7 +144,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                     } else {
                       onAlertButtonPressed(
                         context,
-                        'O número está no formato errado \n ex: 5591XXXXXXXXX',
+                        'O número está no formato errado \n ex: (91) XXXXX-XXXX',
                         null,
                       );
                     }

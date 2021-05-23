@@ -188,7 +188,7 @@ class _PerfilState extends State<Perfil> {
         context: context,
         builder: (BuildContext bc) {
           return Container(
-            margin: EdgeInsets.only(bottom: 30),
+            padding: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[
                 ListTile(

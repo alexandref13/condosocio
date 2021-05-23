@@ -260,9 +260,10 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                       alertButton();
                                     } else if (value == 'vazio') {
                                       onAlertButtonPressed(
-                                          context,
-                                          'Os campos de tipo de visitante, nome e observação são obrigátorios',
-                                          null);
+                                        context,
+                                        'Os campos de tipo de visitante, nome e observação são obrigátorios',
+                                        null,
+                                      );
                                     } else {
                                       saidaController.itemSelecionado.value =
                                           'Selecione o tipo de visitante';
@@ -389,7 +390,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
         builder: (BuildContext bc) {
           return Container(
             color: Theme.of(context).accentColor,
-            margin: EdgeInsets.only(bottom: 30),
+            padding: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[
                 ListTile(

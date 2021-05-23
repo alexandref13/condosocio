@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/auth_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
@@ -338,14 +339,7 @@ class Login extends StatelessWidget {
                                     }
                                   },
                                   child: loginController.isLoading.value
-                                      ? SizedBox(
-                                          width: 20,
-                                          height: 20,
-                                          child: CircularProgressIndicator(
-                                            valueColor: AlwaysStoppedAnimation(
-                                                Colors.white),
-                                          ),
-                                        )
+                                      ? CircularProgressIndicatorWidget()
                                       : Text(
                                           "ENTRAR",
                                           style: GoogleFonts.montserrat(

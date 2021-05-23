@@ -219,7 +219,7 @@ class _HomePageState extends State<HomePage> {
         builder: (BuildContext bc) {
           return Container(
             color: Theme.of(context).accentColor,
-            margin: EdgeInsets.only(bottom: 30),
+            padding: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[
                 ListTile(
