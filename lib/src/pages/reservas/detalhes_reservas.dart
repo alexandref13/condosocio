@@ -1,4 +1,5 @@
 import 'package:condosocio/src/controllers/reservas/calendario_reservas_controller.dart';
+import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,7 +36,7 @@ class DetalhesReservas extends StatelessWidget {
                     ? Colors.green
                     : calendarioReservasController.status.value == 'Recusado'
                         ? Colors.red
-                        : Colors.amber[700],
+                        : Colors.amber,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),

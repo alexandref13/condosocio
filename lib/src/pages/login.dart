@@ -339,7 +339,18 @@ class Login extends StatelessWidget {
                                     }
                                   },
                                   child: loginController.isLoading.value
-                                      ? CircularProgressIndicatorWidget()
+                                      ? SizedBox(
+                                          height: 20,
+                                          width: 20,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            valueColor: AlwaysStoppedAnimation(
+                                              Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
+                                            ),
+                                          ),
+                                        )
                                       : Text(
                                           "ENTRAR",
                                           style: GoogleFonts.montserrat(

@@ -86,6 +86,22 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                     children: [
                       boxSearch(context, acessosController.search.value,
                           acessosController.onSearchTextChanged),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        color: Theme.of(context).accentColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('CRIADO'),
+                            Text('NOME'),
+                            Text('ENTRADA'),
+                            Container(
+                              margin: EdgeInsets.only(right: 60),
+                              child: Text('SAIDA'),
+                            ),
+                          ],
+                        ),
+                      ),
                       Expanded(
                         child: listaVisualizarAcessos(),
                       )

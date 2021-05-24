@@ -1,19 +1,19 @@
 import 'package:condosocio/src/components/acessos_saidas/detalhes_acessos_saida.dart';
 import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_saidas.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
+import 'package:condosocio/src/pages/enquetes/enquetes.dart';
 import 'package:condosocio/src/pages/ocorrencias/resposta_ocorrencias.dart';
 import 'package:condosocio/src/pages/reservas/calendario_reservas.dart';
 import 'package:condosocio/src/components/reservas/termos_reservas.dart';
 import 'package:condosocio/src/pages/dependentes/ajuda_dependentes.dart';
 import 'package:condosocio/src/pages/dependentes/dependentes.dart';
-import 'package:condosocio/src/pages/enquetes.dart';
 import 'package:condosocio/src/pages/reservas/add_reservas.dart';
 import 'package:condosocio/src/pages/reservas/detalhes_reservas.dart';
 import 'package:condosocio/src/pages/senha.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
-import 'package:condosocio/src/pages/comunicados.dart';
+import 'package:condosocio/src/pages/comunicados/comunicados.dart';
 import 'package:condosocio/src/pages/convites.dart';
-import 'package:condosocio/src/pages/detalhes.dart';
+import 'package:condosocio/src/pages/comunicados/detalhes_comunicados.dart';
 import 'package:condosocio/src/pages/documento.dart';
 import 'package:condosocio/src/pages/documentos_pages/ata_documentos.dart';
 import 'package:condosocio/src/pages/documentos_pages/contratos_documentos.dart';
@@ -31,8 +31,6 @@ import 'package:condosocio/src/pages/perfil.dart';
 import 'package:condosocio/src/pages/reservas/reserva.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
-import 'package:condosocio/src/pages/ocorrencias/visualizar_ocorrencias.dart';
-import 'package:condosocio/src/pages/ouvidoria/visualizar_ouvidoria.dart';
 import 'package:condosocio/src/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -82,7 +80,6 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/reserva', page: () => Reserva()),
         GetPage(name: '/listOfCondo', page: () => ListOfCondo()),
         GetPage(name: '/convites', page: () => Convite()),
-        GetPage(name: '/enquetes', page: () => Enquetes()),
         GetPage(name: '/detalhesConvite', page: () => DetalheConviteWidget()),
         GetPage(name: '/whatsAppConvite', page: () => WhatsAppConvitesWidget()),
         GetPage(name: '/dependentes', page: () => Dependentes()),
@@ -97,6 +94,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/termos', page: () => TermosReservas()),
         GetPage(name: '/detalheReservas', page: () => DetalhesReservas()),
         GetPage(name: '/respostaOcorrencia', page: () => RespostaOcorrencias()),
+        GetPage(name: '/enquetes', page: () => Enquetes()),
       ],
     );
   }

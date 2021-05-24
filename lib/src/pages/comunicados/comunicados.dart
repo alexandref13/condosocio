@@ -147,8 +147,7 @@ class _ComunicadosState extends State<Comunicados> {
                                     ],
                                   ),
                                 ),
-                                title: Padding(
-                                  padding: EdgeInsets.only(left: 30),
+                                title: Container(
                                   child: Text(
                                     comunicados.titulo,
                                     style: GoogleFonts.montserrat(

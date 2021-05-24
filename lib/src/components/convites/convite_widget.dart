@@ -189,12 +189,13 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                     startSelectedTime.hour,
                                     startSelectedTime.minute,
                                   );
-                                });
-
-                                print({
-                                  startSelectedDate,
-                                  startSelectedTime.hour,
-                                  startSelectedTime.minute
+                                  endSelectedDate = DateTime(
+                                    startSelectedDate.year,
+                                    startSelectedDate.month,
+                                    startSelectedDate.day,
+                                    23,
+                                    59,
+                                  );
                                 });
                               },
                               child: customTextField(

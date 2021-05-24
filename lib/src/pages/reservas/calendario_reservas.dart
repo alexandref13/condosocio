@@ -1,8 +1,10 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/reservas/calendario_reservas_controller.dart';
+import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
 import 'package:condosocio/src/services/reservas/mapa_eventos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class TableCalendarWidget extends StatefulWidget {
@@ -15,6 +17,8 @@ class TableCalendarWidget extends StatefulWidget {
 class _TableCalendarWidgetState extends State<TableCalendarWidget> {
   CalendarioReservasController calendarioReservasController =
       Get.put(CalendarioReservasController());
+  ReservasController reservasController = Get.put(ReservasController());
+
   bool oi = true;
 
   Widget buildEventsMarker(DateTime date, List events) {
@@ -43,7 +47,15 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          reservasController.nome.value,
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
+        ),
+      ),
       body: Obx(
         () {
           return calendarioReservasController.isLoading.value
@@ -154,50 +166,11 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                     ...calendarioReservasController
                         .getEventsfromDay(
                             calendarioReservasController.selectedDay.value)
-                        .map(
-                          (MapaEvento e) => e.status == 'Recusado'
-                              ? e.validausu == null
-                                  ? Container()
-                                  : Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        color: e.status == 'Aprovado'
-                                            ? Colors.green
-                                            : e.status == 'Recusado'
-                                                ? Colors.red
-                                                : Colors.amber[700],
-                                      ),
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 8.0, vertical: 4.0),
-                                      child: ListTile(
-                                        trailing: Text(
-                                          e.unidade,
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        title: Text(
-                                          e.nome,
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 13.0,
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          calendarioReservasController
-                                              .goToDetails(
-                                            e.nome,
-                                            e.unidade,
-                                            e.titulo,
-                                            e.dataAgenda,
-                                            e.areacom,
-                                            e.status,
-                                          );
-                                        },
-                                      ),
-                                    )
+                        .map((MapaEvento e) {
+                      var unidades = e.unidade.split(' ');
+                      return e.status == 'Recusado'
+                          ? e.validausu == null
+                              ? Container()
                               : Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12.0),
@@ -210,18 +183,34 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                   margin: const EdgeInsets.symmetric(
                                       horizontal: 8.0, vertical: 4.0),
                                   child: ListTile(
-                                    trailing: Text(
-                                      e.unidade,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                    trailing: Icon(
+                                      Icons.arrow_right_outlined,
+                                      color: Colors.black,
                                     ),
                                     title: Text(
                                       e.nome,
-                                      style: TextStyle(
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 13,
                                         color: Colors.black,
-                                        fontSize: 13.0,
+                                      ),
+                                    ),
+                                    subtitle: RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 11,
+                                          color: Colors.black,
+                                        ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: unidades[0],
+                                              style: GoogleFonts.montserrat(
+                                                  fontWeight: FontWeight.bold)),
+                                          TextSpan(
+                                            text:
+                                                ' ${unidades[1]} ${unidades[2]}',
+                                            style: GoogleFonts.montserrat(),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     onTap: () {
@@ -235,8 +224,61 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                       );
                                     },
                                   ),
+                                )
+                          : Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.0),
+                                color: e.status == 'Aprovado'
+                                    ? Colors.green
+                                    : e.status == 'Recusado'
+                                        ? Colors.red
+                                        : Colors.amber,
+                              ),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 4.0),
+                              child: ListTile(
+                                trailing: Icon(
+                                  Icons.arrow_right_outlined,
+                                  color: Colors.black,
                                 ),
-                        ),
+                                title: Text(
+                                  e.nome,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                subtitle: RichText(
+                                  text: TextSpan(
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 11,
+                                      color: Colors.black,
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: unidades[0],
+                                          style: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                        text: ' ${unidades[1]} ${unidades[2]}',
+                                        style: GoogleFonts.montserrat(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                onTap: () {
+                                  calendarioReservasController.goToDetails(
+                                    e.nome,
+                                    e.unidade,
+                                    e.titulo,
+                                    e.dataAgenda,
+                                    e.areacom,
+                                    e.status,
+                                  );
+                                },
+                              ),
+                            );
+                    }),
                   ],
                 );
         },

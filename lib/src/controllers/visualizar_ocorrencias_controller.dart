@@ -7,6 +7,15 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarOcorrenciasController extends GetxController {
+  var data = ''.obs;
+  var hour = ''.obs;
+  var dataoco = ''.obs;
+  var houroco = ''.obs;
+  var titulo = ''.obs;
+  var status = ''.obs;
+  var descricao = ''.obs;
+  var imagem = ''.obs;
+
   var ocorrencias = [].obs;
   var isLoading = true.obs;
   var search = TextEditingController().obs;
@@ -40,6 +49,7 @@ class VisualizarOcorrenciasController extends GetxController {
     isLoading(true);
     var response = await ApiOcorrencias.getOcorrencias();
     Iterable lista = json.decode(response.body);
+    print(lista);
     ocorrencias.value =
         lista.map((model) => MapaOcorrencias.fromJson(model)).toList();
     isLoading(false);
