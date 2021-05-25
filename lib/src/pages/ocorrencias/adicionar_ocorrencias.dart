@@ -41,7 +41,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
   Future<DateTime> selectDateTime(BuildContext context) => showDatePicker(
         context: context,
         initialDate: DateTime.now().add(Duration(seconds: 1)),
-        firstDate: DateTime.now(),
+        firstDate: DateTime(2000),
         lastDate: DateTime(2100),
       );
 

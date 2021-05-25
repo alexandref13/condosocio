@@ -82,7 +82,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                             Text('TITULO'),
                             Text('RESPONDIDO'),
                             Container(
-                              margin: EdgeInsets.only(right: 60),
+                              margin: EdgeInsets.only(right: 30),
                               child: Text('STATUS'),
                             ),
                           ],
@@ -141,7 +141,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.2,
+                                                0.17,
                                             child: Column(
                                               children: [
                                                 Text(
@@ -169,7 +169,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.15,
+                                                0.25,
                                             child: Text(
                                               ocorrencia.titulo,
                                               style: GoogleFonts.montserrat(
@@ -212,7 +212,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.15,
+                                                0.10,
                                             child: Icon(
                                               ocorrencia.status == '1'
                                                   ? Icons.done
@@ -287,7 +287,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.2,
+                                                0.17,
                                             child: Column(
                                               children: [
                                                 Text(
@@ -315,7 +315,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.15,
+                                                0.25,
                                             child: Text(
                                               ocorrencia.titulo,
                                               style: GoogleFonts.montserrat(
@@ -358,7 +358,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.15,
+                                                0.1,
                                             child: Icon(
                                               ocorrencia.status == '1'
                                                   ? Icons.done
