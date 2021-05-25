@@ -2,6 +2,8 @@ import 'package:condosocio/src/components/acessos_saidas/detalhes_acessos_saida.
 import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_saidas.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
 import 'package:condosocio/src/pages/enquetes/enquetes.dart';
+import 'package:condosocio/src/pages/enquetes/info_enquetes.dart';
+import 'package:condosocio/src/pages/enquetes/votar_enquete.dart';
 import 'package:condosocio/src/pages/ocorrencias/resposta_ocorrencias.dart';
 import 'package:condosocio/src/pages/reservas/calendario_reservas.dart';
 import 'package:condosocio/src/components/reservas/termos_reservas.dart';
@@ -95,6 +97,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/detalheReservas', page: () => DetalhesReservas()),
         GetPage(name: '/respostaOcorrencia', page: () => RespostaOcorrencias()),
         GetPage(name: '/enquetes', page: () => Enquetes()),
+        GetPage(name: '/votarEnquetes', page: () => VotarEnquete()),
+        GetPage(name: '/infoEnquete', page: () => InfoEnquetes()),
       ],
     );
   }

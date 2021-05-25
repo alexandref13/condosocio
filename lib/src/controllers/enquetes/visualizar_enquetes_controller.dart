@@ -8,6 +8,8 @@ class VisualizarEnquetesController extends GetxController {
   List<MapaEnquetes> enquetes = [];
 
   var month = ''.obs;
+  var idenq = ''.obs;
+  var titulo = ''.obs;
 
   var isLoading = true.obs;
 
@@ -16,6 +18,8 @@ class VisualizarEnquetesController extends GetxController {
     var response = await ApiEnquetes.getEnquetes();
 
     Iterable dados = json.decode(response.body);
+
+    print(dados);
 
     enquetes = dados.map((model) => MapaEnquetes.fromJson(model)).toList();
 
