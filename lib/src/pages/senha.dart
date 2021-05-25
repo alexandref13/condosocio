@@ -127,7 +127,9 @@ class _SenhaState extends State<Senha> {
                                   onPressed: () {
                                     if (senhaController.form.currentState
                                         .validate()) {
-                                      senhaController.senha().then((value) {
+                                      senhaController
+                                          .senha(context)
+                                          .then((value) {
                                         if (value == 1) {
                                           edgeAlertWidget(context,
                                               'Email enviado com sucesso!');
