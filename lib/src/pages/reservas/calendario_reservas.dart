@@ -149,12 +149,22 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                             calendarioReservasController.focusedDay.value =
                                 focusedDay;
                           }
+
                           if (calendarioReservasController.events[
                                   calendarioReservasController
                                       .selectedDay.value] ==
                               null) {
-                            Get.toNamed('/addReservas');
+                            print({
+                              'ola',
+                              calendarioReservasController.selectedDay.value
+                            });
                           }
+                          // if (calendarioReservasController.events[
+                          //         calendarioReservasController
+                          //             .selectedDay.value] ==
+                          //     null) {
+                          //   Get.toNamed('/addReservas');
+                          // }
                         },
                         selectedDayPredicate: (DateTime date) {
                           return isSameDay(

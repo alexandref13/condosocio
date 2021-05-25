@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'dart:convert';
 import 'package:condosocio/src/services/reservas/api_reservas.dart';
+import 'package:intl/intl.dart';
 
 class CalendarioReservasController extends GetxController {
   var isLoading = true.obs;
@@ -79,11 +80,20 @@ class CalendarioReservasController extends GetxController {
     Get.toNamed('/detalheReservas');
   }
 
+  init() {
+    var date = DateFormat('yyyy-MM-dd').format(selectedDay.value);
+
+    var newSelectedDay = DateTime.parse('$date 00:00:00.000Z');
+
+    selectedDay.value = newSelectedDay;
+
+    print(selectedDay.value);
+  }
+
   @override
   void onInit() {
+    init();
     agendaReservas();
     super.onInit();
   }
 }
-
-// "${eventos['idevento']} - ${eventos['nome']} | ${eventos['data_agenda']} = ${eventos['titulo']} # ${eventos['areacom']} > ${eventos['status']}"

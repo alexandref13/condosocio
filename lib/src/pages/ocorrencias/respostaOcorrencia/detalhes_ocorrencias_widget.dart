@@ -200,23 +200,29 @@ class DetalhesOcorrenciasWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            ocorrenciasController.titulo.value,
-                            style: GoogleFonts.montserrat(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
+                          Container(
+                            width: MediaQuery.of(context).size.width * .55,
+                            child: Text(
+                              ocorrenciasController.titulo.value,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
                             ),
                           ),
-                          Text(
-                            ocorrenciasController.descricao.value,
-                            style: GoogleFonts.montserrat(
-                              fontSize: 15,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
+                          Container(
+                            width: MediaQuery.of(context).size.width * .55,
+                            child: Text(
+                              ocorrenciasController.descricao.value,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 15,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
                             ),
                           )
                         ],

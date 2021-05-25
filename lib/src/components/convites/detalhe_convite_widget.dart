@@ -265,43 +265,63 @@ class DetalheConviteWidget extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              convidados[x]['nome'],
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor,
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .55,
+                                              child: Text(
+                                                convidados[x]['nome'],
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                ),
                                               ),
                                             ),
                                             convidados[x]['tel'] != null
-                                                ? Text(
-                                                    convidados[x]['tel'],
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      fontSize: 15,
-                                                      color: Theme.of(context)
-                                                          .textSelectionTheme
-                                                          .selectionColor,
+                                                ? Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .55,
+                                                    child: Text(
+                                                      convidados[x]['tel'],
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                        fontSize: 15,
+                                                        color: Theme.of(context)
+                                                            .textSelectionTheme
+                                                            .selectionColor,
+                                                      ),
                                                     ),
                                                   )
                                                 : Container(
                                                     child: convidados[x]
                                                                 ['placa'] !=
                                                             null
-                                                        ? Text(
-                                                            convidados[x]
-                                                                    ['placa']
-                                                                .toString()
-                                                                .toUpperCase(),
-                                                            style: GoogleFonts
-                                                                .montserrat(
-                                                              fontSize: 15,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .textSelectionTheme
-                                                                  .selectionColor,
+                                                        ? Container(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                .55,
+                                                            child: Text(
+                                                              convidados[x]
+                                                                      ['placa']
+                                                                  .toString()
+                                                                  .toUpperCase(),
+                                                              style: GoogleFonts
+                                                                  .montserrat(
+                                                                fontSize: 15,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .textSelectionTheme
+                                                                    .selectionColor,
+                                                              ),
                                                             ),
                                                           )
                                                         : Container(),
