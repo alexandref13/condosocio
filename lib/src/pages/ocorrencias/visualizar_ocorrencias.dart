@@ -1,7 +1,7 @@
 import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/visualizar_ocorrencias/modal_bottom_sheet.dart';
-import 'package:condosocio/src/controllers/visualizar_ocorrencias_controller.dart';
+import 'package:condosocio/src/controllers/ocorrencias/visualizar_ocorrencias_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -72,22 +72,6 @@ class VisualizarOcorrencias extends StatelessWidget {
                         ocorrenciasController.search.value,
                         ocorrenciasController.onSearchTextChanged,
                       ),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        color: Theme.of(context).accentColor,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('CRIADO'),
-                            Text('TITULO'),
-                            Text('RESPONDIDO'),
-                            Container(
-                              margin: EdgeInsets.only(right: 30),
-                              child: Text('STATUS'),
-                            ),
-                          ],
-                        ),
-                      ),
                       Expanded(
                           child: SmartRefresher(
                         controller: ocorrenciasController.refreshController,
@@ -145,49 +129,6 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  ocorrencia.dataoco,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  ocorrencia.horaoco,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                            child: Text(
-                                              ocorrencia.titulo,
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.2,
-                                            child: Column(
-                                              children: [
-                                                Text(
                                                   ocorrencia.data,
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 14,
@@ -198,6 +139,54 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   ocorrencia.hora,
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 14,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: Container(
+                                              padding:
+                                                  EdgeInsets.only(right: 5.0),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.25,
+                                              child: Text(
+                                                ocorrencia.titulo,
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 14,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.2,
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  ocorrencia.dataoco,
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 14,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  ocorrencia.horaoco,
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 14,
                                                     color: Theme.of(context)
@@ -247,6 +236,8 @@ class VisualizarOcorrencias extends StatelessWidget {
                                       ocorrenciasController.ocorrencias[index];
                                   return GestureDetector(
                                     onTap: () {
+                                      ocorrenciasController.idoco.value =
+                                          ocorrencia.id;
                                       ocorrenciasController.data.value =
                                           ocorrencia.data;
                                       ocorrenciasController.hour.value =
@@ -264,13 +255,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                       ocorrenciasController.imagem.value =
                                           ocorrencia.imgoco;
 
-                                      ocorrenciasModalBottomSheet(
-                                        context,
-                                        ocorrencia.titulo,
-                                        ocorrencia.data,
-                                        ocorrencia.hora,
-                                        ocorrencia.status,
-                                      );
+                                      Get.toNamed('/respostaOcorrencia');
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -291,49 +276,6 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  ocorrencia.dataoco,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  ocorrencia.horaoco,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                            child: Text(
-                                              ocorrencia.titulo,
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.2,
-                                            child: Column(
-                                              children: [
-                                                Text(
                                                   ocorrencia.data,
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 14,
@@ -344,6 +286,55 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   ocorrencia.hora,
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 14,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Flexible(
+                                            fit: FlexFit.tight,
+                                            child: Container(
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.25,
+                                              child: Text(
+                                                ocorrencia.titulo,
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 14,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.2,
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  ocorrencia.dataoco,
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 14,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  ocorrencia.horaoco,
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 14,
                                                     color: Theme.of(context)

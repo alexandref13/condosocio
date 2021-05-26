@@ -1,4 +1,4 @@
-import 'package:condosocio/src/controllers/visualizar_ocorrencias_controller.dart';
+import 'package:condosocio/src/controllers/ocorrencias/visualizar_ocorrencias_controller.dart';
 import 'package:condosocio/src/services/ocorrencias/api_ocorrencia.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

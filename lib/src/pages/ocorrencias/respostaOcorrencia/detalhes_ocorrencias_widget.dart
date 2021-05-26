@@ -1,4 +1,4 @@
-import 'package:condosocio/src/controllers/visualizar_ocorrencias_controller.dart';
+import 'package:condosocio/src/controllers/ocorrencias/visualizar_ocorrencias_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -190,43 +190,35 @@ class DetalhesOcorrenciasWidget extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.all(8.0),
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 20),
-                        child: Icon(Feather.user_check),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * .55,
-                            child: Text(
-                              ocorrenciasController.titulo.value,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * .55,
+                        child: Text(
+                          ocorrenciasController.titulo.value,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * .55,
-                            child: Text(
-                              ocorrenciasController.descricao.value,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 15,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                          )
-                        ],
+                        ),
                       ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * .55,
+                        child: Text(
+                          ocorrenciasController.descricao.value,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 15,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),

@@ -1,9 +1,8 @@
 import 'dart:io';
-
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
-import 'package:condosocio/src/controllers/ocorrencias_controller.dart';
+import 'package:condosocio/src/controllers/ocorrencias/ocorrencias_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

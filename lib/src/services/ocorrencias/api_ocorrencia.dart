@@ -1,5 +1,6 @@
 import 'package:condosocio/src/controllers/login_controller.dart';
-import 'package:condosocio/src/controllers/ocorrencias_controller.dart';
+import 'package:condosocio/src/controllers/ocorrencias/ocorrencias_controller.dart';
+import 'package:condosocio/src/controllers/ocorrencias/visualizar_ocorrencias_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -48,5 +49,19 @@ class ApiOcorrencias {
       return '1';
     } else
       return '0';
+  }
+
+  static Future getOcorrenciasResp() async {
+    VisualizarOcorrenciasController visualizarOcorrenciasController =
+        Get.put(VisualizarOcorrenciasController());
+
+    print('idOCo: ${visualizarOcorrenciasController.idoco.value}');
+
+    return await http.post(
+      Uri.https("www.condosocio.com.br", "flutter/ocorrencias_resp_vis.php"),
+      body: {
+        'idoco': visualizarOcorrenciasController.idoco.value,
+      },
+    );
   }
 }

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarOcorrenciasController extends GetxController {
+  var idoco = ''.obs;
   var data = ''.obs;
   var hour = ''.obs;
   var dataoco = ''.obs;
