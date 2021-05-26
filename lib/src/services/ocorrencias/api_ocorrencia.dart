@@ -9,7 +9,7 @@ class ApiOcorrencias {
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(Uri.https("www.condosocio.com.br",
-        "/flutter/ocovis.php", {"idUsu": loginController.id.value}));
+        "/flutter/ocovis.php", {"idusu": loginController.id.value}));
   }
 
   static Future sendOcorrencia(String path) async {
