@@ -59,11 +59,12 @@ class PerfilController extends GetxController {
     fullName = loginController.nome.value;
 
     var nome = fullName.split(' ');
-    var sobrenome = nome[1];
+
+    for (var i = 1; i < nome.length; i++) {
+      secondName.value.text = secondName.value.text + nome[i] + ' ';
+    }
 
     name.value.text = nome[0];
-    secondName.value.text = sobrenome;
-
     phone.value.text = loginController.phone.value;
 
     var date = loginController.birthdate.value.replaceAll('-', '/').split('/');

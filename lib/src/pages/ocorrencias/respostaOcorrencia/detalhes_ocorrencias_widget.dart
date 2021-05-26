@@ -48,7 +48,7 @@ class DetalhesOcorrenciasWidget extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.only(left: 5),
                               child: Text(
-                                ocorrenciasController.dataoco.value,
+                                ocorrenciasController.data.value,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 14,
                                   color: Theme.of(context)
@@ -78,7 +78,7 @@ class DetalhesOcorrenciasWidget extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 5),
                         child: Text(
-                          ocorrenciasController.houroco.value,
+                          ocorrenciasController.hour.value,
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
@@ -106,7 +106,7 @@ class DetalhesOcorrenciasWidget extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(bottom: 10),
                           child: Text(
-                            'Respondido',
+                            'Ocorrencia',
                             style: GoogleFonts.montserrat(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -128,7 +128,7 @@ class DetalhesOcorrenciasWidget extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.only(left: 5),
                               child: Text(
-                                ocorrenciasController.data.value,
+                                ocorrenciasController.dataoco.value,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 14,
                                   color: Theme.of(context)
@@ -158,7 +158,7 @@ class DetalhesOcorrenciasWidget extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 5),
                         child: Text(
-                          ocorrenciasController.hour.value,
+                          ocorrenciasController.houroco.value,
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
@@ -190,35 +190,39 @@ class DetalhesOcorrenciasWidget extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: Row(
                     children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * .55,
-                        child: Text(
-                          ocorrenciasController.titulo.value,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * .55,
+                            child: Text(
+                              ocorrenciasController.titulo.value,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
                           ),
-                        ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .55,
+                            child: Text(
+                              ocorrenciasController.descricao.value,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 15,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * .55,
-                        child: Text(
-                          ocorrenciasController.descricao.value,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 15,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                        ),
-                      )
                     ],
                   ),
                 ),
