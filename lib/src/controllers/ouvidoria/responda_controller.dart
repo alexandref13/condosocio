@@ -19,6 +19,8 @@ class RespondaController extends GetxController {
 
       final response = await ApiOuvidoria.sendRespondaOuvidoria();
 
+      texto.value.text = '';
+
       getResposta();
 
       var dados = json.decode(response.body);
