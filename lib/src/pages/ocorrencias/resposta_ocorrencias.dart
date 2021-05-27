@@ -178,53 +178,73 @@ class RespostaOcorrencias extends StatelessWidget {
                                                         ),
                                                       ),
                                                 Expanded(
-                                                  child: Card(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15.0),
-                                                    ),
-                                                    color: Colors.green[600],
-                                                    child: Column(
-                                                      children: [
-                                                        Container(
-                                                          padding: EdgeInsets
-                                                              .fromLTRB(
-                                                                  7, 5, 7, 0),
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Container(
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width *
-                                                                        .5,
-                                                                    child: Text(
-                                                                      loginController
-                                                                          .nome
-                                                                          .value,
+                                                  child: Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 5),
+                                                    child: Card(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15.0),
+                                                      ),
+                                                      color: Colors.green[600],
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(
+                                                                    7, 5, 7, 0),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Container(
+                                                                      width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          .5,
+                                                                      child:
+                                                                          Text(
+                                                                        loginController
+                                                                            .nome
+                                                                            .value,
+                                                                        style: GoogleFonts
+                                                                            .montserrat(
+                                                                          fontSize:
+                                                                              12,
+                                                                          color: Theme.of(context)
+                                                                              .textSelectionTheme
+                                                                              .selectionColor,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                      '${resposta.dataraiz} ${resposta.horaraiz}',
                                                                       style: GoogleFonts
                                                                           .montserrat(
                                                                         fontSize:
-                                                                            12,
+                                                                            10,
                                                                         color: Theme.of(context)
                                                                             .textSelectionTheme
                                                                             .selectionColor,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
                                                                       ),
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    '${resposta.dataraiz} ${resposta.horaraiz}',
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                Container(
+                                                                  child: Text(
+                                                                    loginController
+                                                                        .tipo
+                                                                        .value,
                                                                     style: GoogleFonts
                                                                         .montserrat(
                                                                       fontSize:
@@ -234,52 +254,36 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                           .textSelectionTheme
                                                                           .selectionColor,
                                                                     ),
-                                                                  )
-                                                                ],
-                                                              ),
-                                                              Container(
-                                                                child: Text(
-                                                                  loginController
-                                                                      .tipo
-                                                                      .value,
-                                                                  style: GoogleFonts
-                                                                      .montserrat(
-                                                                    fontSize:
-                                                                        10,
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .textSelectionTheme
-                                                                        .selectionColor,
                                                                   ),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              .9,
-                                                          child: Text(
-                                                            ocorrenciasController
-                                                                .descricao
-                                                                .value,
-                                                            style: GoogleFonts
-                                                                .montserrat(
-                                                              fontSize: 12,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .textSelectionTheme
-                                                                  .selectionColor,
+                                                                )
+                                                              ],
                                                             ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                          Container(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                .9,
+                                                            child: Text(
+                                                              ocorrenciasController
+                                                                  .descricao
+                                                                  .value,
+                                                              style: GoogleFonts
+                                                                  .montserrat(
+                                                                fontSize: 12,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .textSelectionTheme
+                                                                    .selectionColor,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -375,56 +379,71 @@ class RespostaOcorrencias extends StatelessWidget {
                                                             ),
                                                           ),
                                                     Expanded(
-                                                      child: Card(
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15.0),
-                                                        ),
-                                                        color:
-                                                            Colors.green[600],
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .fromLTRB(
-                                                                          7,
-                                                                          5,
-                                                                          7,
-                                                                          0),
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Container(
-                                                                        width: MediaQuery.of(context).size.width *
-                                                                            .5,
-                                                                        child:
-                                                                            Text(
-                                                                          resposta
-                                                                              .nomeusu,
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 5),
+                                                        child: Card(
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15.0),
+                                                          ),
+                                                          color:
+                                                              Colors.green[600],
+                                                          child: Column(
+                                                            children: [
+                                                              Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            7,
+                                                                            5,
+                                                                            7,
+                                                                            0),
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Container(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width * .5,
+                                                                          child:
+                                                                              Text(
+                                                                            resposta.nomeusu,
+                                                                            style:
+                                                                                GoogleFonts.montserrat(
+                                                                              fontSize: 12,
+                                                                              color: Theme.of(context).textSelectionTheme.selectionColor,
+                                                                              fontWeight: FontWeight.bold,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          '${resposta.data} ${resposta.hora}',
                                                                           style:
                                                                               GoogleFonts.montserrat(
                                                                             fontSize:
-                                                                                12,
+                                                                                10,
                                                                             color:
                                                                                 Theme.of(context).textSelectionTheme.selectionColor,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
                                                                           ),
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        '${resposta.data} ${resposta.hora}',
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                    Container(
+                                                                      child:
+                                                                          Text(
+                                                                        resposta
+                                                                            .tipousu,
                                                                         style: GoogleFonts
                                                                             .montserrat(
                                                                           fontSize:
@@ -433,48 +452,37 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                               .textSelectionTheme
                                                                               .selectionColor,
                                                                         ),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                  Container(
-                                                                    child: Text(
-                                                                      resposta
-                                                                          .tipousu,
-                                                                      style: GoogleFonts
-                                                                          .montserrat(
-                                                                        fontSize:
-                                                                            10,
-                                                                        color: Theme.of(context)
-                                                                            .textSelectionTheme
-                                                                            .selectionColor,
                                                                       ),
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(10),
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  .9,
-                                                              child: Text(
-                                                                resposta.texto,
-                                                                style: GoogleFonts
-                                                                    .montserrat(
-                                                                  fontSize: 12,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .textSelectionTheme
-                                                                      .selectionColor,
+                                                                    )
+                                                                  ],
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                              Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            10),
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    .9,
+                                                                child: Text(
+                                                                  resposta
+                                                                      .texto,
+                                                                  style: GoogleFonts
+                                                                      .montserrat(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .textSelectionTheme
+                                                                        .selectionColor,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
@@ -497,35 +505,67 @@ class RespostaOcorrencias extends StatelessWidget {
                                                 child: Row(
                                                   children: [
                                                     Expanded(
-                                                      child: Card(
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15.0),
-                                                        ),
-                                                        color: Theme.of(context)
-                                                            .accentColor,
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          15),
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .end,
-                                                                children: [
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Text(
-                                                                        '${resposta.data} ${resposta.hora}h',
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 5),
+                                                        child: Card(
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15.0),
+                                                          ),
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .accentColor,
+                                                          child: Column(
+                                                            children: [
+                                                              Container(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        horizontal:
+                                                                            15),
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          '${resposta.data} ${resposta.hora}h',
+                                                                          style:
+                                                                              GoogleFonts.montserrat(
+                                                                            fontSize:
+                                                                                10,
+                                                                            color:
+                                                                                Theme.of(context).textSelectionTheme.selectionColor,
+                                                                          ),
+                                                                        ),
+                                                                        Container(
+                                                                          child:
+                                                                              Text(
+                                                                            resposta.nomeusu,
+                                                                            style:
+                                                                                GoogleFonts.montserrat(
+                                                                              fontSize: 12,
+                                                                              color: Theme.of(context).textSelectionTheme.selectionColor,
+                                                                              fontWeight: FontWeight.bold,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    Container(
+                                                                      child:
+                                                                          Text(
+                                                                        resposta
+                                                                            .tipousu,
                                                                         style: GoogleFonts
                                                                             .montserrat(
                                                                           fontSize:
@@ -535,63 +575,36 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                               .selectionColor,
                                                                         ),
                                                                       ),
-                                                                      Container(
-                                                                        child:
-                                                                            Text(
-                                                                          resposta
-                                                                              .nomeusu,
-                                                                          style:
-                                                                              GoogleFonts.montserrat(
-                                                                            fontSize:
-                                                                                12,
-                                                                            color:
-                                                                                Theme.of(context).textSelectionTheme.selectionColor,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  Container(
-                                                                    child: Text(
-                                                                      resposta
-                                                                          .tipousu,
-                                                                      style: GoogleFonts
-                                                                          .montserrat(
-                                                                        fontSize:
-                                                                            10,
-                                                                        color: Theme.of(context)
-                                                                            .textSelectionTheme
-                                                                            .selectionColor,
-                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(10),
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  .9,
-                                                              child: Text(
-                                                                resposta.texto,
-                                                                style: GoogleFonts
-                                                                    .montserrat(
-                                                                  fontSize: 12,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .textSelectionTheme
-                                                                      .selectionColor,
+                                                                  ],
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                              Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            10),
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    .9,
+                                                                child: Text(
+                                                                  resposta
+                                                                      .texto,
+                                                                  style: GoogleFonts
+                                                                      .montserrat(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .textSelectionTheme
+                                                                        .selectionColor,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
