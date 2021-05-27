@@ -58,8 +58,8 @@ class RespostaOcorrenciaWidget extends StatelessWidget {
                                                       ),
                                                     ],
                                                   ),
-                                                  width: 60,
-                                                  height: 60,
+                                                  width: 40,
+                                                  height: 40,
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                     image: DecorationImage(
@@ -87,8 +87,8 @@ class RespostaOcorrenciaWidget extends StatelessWidget {
                                                       ),
                                                     ],
                                                   ),
-                                                  width: 50,
-                                                  height: 50,
+                                                  width: 40,
+                                                  height: 40,
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                     image: DecorationImage(
@@ -236,8 +236,8 @@ class RespostaOcorrenciaWidget extends StatelessWidget {
                                                           ),
                                                         ],
                                                       ),
-                                                      width: 60,
-                                                      height: 60,
+                                                      width: 40,
+                                                      height: 40,
                                                       decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         image: DecorationImage(
@@ -266,8 +266,8 @@ class RespostaOcorrenciaWidget extends StatelessWidget {
                                                           ),
                                                         ],
                                                       ),
-                                                      width: 50,
-                                                      height: 50,
+                                                      width: 40,
+                                                      height: 40,
                                                       decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         image: DecorationImage(
