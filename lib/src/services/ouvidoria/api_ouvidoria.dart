@@ -13,7 +13,7 @@ class ApiOuvidoria {
     return await http.post(
       Uri.https("www.condosocio.com.br", "/flutter/ouvidoria_inc.php"),
       body: {
-        "id": loginController.id.value,
+        "idusu": loginController.id.value,
         "idcond": loginController.idcond.value,
         "assunto": ouvidoriaController.itemSelecionado.value,
         "mensagem": ouvidoriaController.message.value.text
@@ -25,7 +25,18 @@ class ApiOuvidoria {
     LoginController loginController = Get.put(LoginController());
     return await http.get(
       Uri.https("www.condosocio.com.br", "/flutter/ouvidoria_vis.php",
-          {"id": loginController.id.value}),
+          {"idusu": loginController.id.value}),
+    );
+  }
+
+  static Future getRespondaOuvidoria() async {
+    VisualizarOuvidoriaController visualizarOuvidoriaController =
+        Get.put(VisualizarOuvidoriaController());
+    return await http.post(
+      Uri.https('www.condosocio.com.br', '/flutter/ouvidoria_resp_vis.php'),
+      body: {
+        'idouv': visualizarOuvidoriaController.id.value,
+      },
     );
   }
 
@@ -35,12 +46,12 @@ class ApiOuvidoria {
     VisualizarOuvidoriaController visualizarOuvidoriaController =
         Get.put(VisualizarOuvidoriaController());
     return await http.post(
-      Uri.https('www.condosocio.com.br', '/flutter/ouvidoria_resp.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/ouvidoria_resp_inc.php'),
       body: {
         'idusu': loginController.id.value,
         'idcond': loginController.idcond.value,
         'texto': respondaController.controller.value.text,
-        'idmsg': visualizarOuvidoriaController.id.value,
+        'idouv': visualizarOuvidoriaController.id.value,
       },
     );
   }

@@ -31,10 +31,42 @@ class VisualizarDependentes extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('NOME'),
-                      Text('DESDE'),
-                      Text('ULT. ACESSOS'),
-                      Text('STATUS'),
+                      Text(
+                        'NOME',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12.0,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                      ),
+                      Text(
+                        'DESDE',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12.0,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                      ),
+                      Text(
+                        'ULT. ACESSOS',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12.0,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                      ),
+                      Text(
+                        'STATUS',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12.0,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                      ),
                     ],
                   ),
                 ),

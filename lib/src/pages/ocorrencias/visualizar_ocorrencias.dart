@@ -37,29 +37,15 @@ class VisualizarOcorrencias extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 100),
                             ),
-                            RichText(
-                              text: TextSpan(
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 14.0,
-                                  color: Colors.black,
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: 'Sem registros de ',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Acessos',
-                                    style: GoogleFonts.montserrat(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ],
+                            Text(
+                              'SEM REGISTRO',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       )
@@ -71,6 +57,42 @@ class VisualizarOcorrencias extends StatelessWidget {
                         context,
                         ocorrenciasController.search.value,
                         ocorrenciasController.onSearchTextChanged,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        color: Theme.of(context).accentColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'CRIADO',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                            Text(
+                              'TÍTULO',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                            Text(
+                              'STATUS',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Expanded(
                           child: SmartRefresher(
@@ -272,7 +294,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.17,
+                                                0.2,
                                             child: Column(
                                               children: [
                                                 Text(

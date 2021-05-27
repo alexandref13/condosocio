@@ -39,9 +39,9 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
 
   Future<DateTime> selectDateTime(BuildContext context) => showDatePicker(
         context: context,
-        initialDate: DateTime.now().add(Duration(seconds: 1)),
+        initialDate: DateTime.now(),
         firstDate: DateTime(2000),
-        lastDate: DateTime(2100),
+        lastDate: DateTime.now().add(Duration(seconds: 1)),
       );
 
   final picker = ImagePicker();
@@ -433,7 +433,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                 });
                               },
                               child: Text(
-                                "AUTORIZAR",
+                                "ENVIAR",
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
