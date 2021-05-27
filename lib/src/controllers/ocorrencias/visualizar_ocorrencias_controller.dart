@@ -16,6 +16,7 @@ class VisualizarOcorrenciasController extends GetxController {
   var status = ''.obs;
   var descricao = ''.obs;
   var imagem = ''.obs;
+  var tipo = ''.obs;
 
   var ocorrencias = [].obs;
   var isLoading = true.obs;

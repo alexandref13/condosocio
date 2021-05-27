@@ -1,5 +1,6 @@
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/ocorrencias/ocorrencias_controller.dart';
+import 'package:condosocio/src/controllers/ocorrencias/resposta_ocorrencias_controller.dart';
 import 'package:condosocio/src/controllers/ocorrencias/visualizar_ocorrencias_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -8,8 +9,15 @@ class ApiOcorrencias {
   static Future getOcorrencias() async {
     LoginController loginController = Get.put(LoginController());
 
-    return await http.get(Uri.https("www.condosocio.com.br",
-        "/flutter/ocovis.php", {"idusu": loginController.id.value}));
+    print(loginController.id.value);
+
+    return await http.get(
+      Uri.https(
+        "www.condosocio.com.br",
+        "/flutter/ocovis.php",
+        {"idUsu": loginController.id.value},
+      ),
+    );
   }
 
   static Future sendOcorrencia(String path) async {
@@ -61,6 +69,24 @@ class ApiOcorrencias {
       Uri.https("www.condosocio.com.br", "flutter/ocorrencias_resp_vis.php"),
       body: {
         'idoco': visualizarOcorrenciasController.idoco.value,
+      },
+    );
+  }
+
+  static Future sendOcorrenciasResp() async {
+    LoginController loginController = Get.put(LoginController());
+    VisualizarOcorrenciasController visualizarOcorrenciasController =
+        Get.put(VisualizarOcorrenciasController());
+    RespostaOcorrenciasController respostaOcorrenciasController =
+        Get.put(RespostaOcorrenciasController());
+
+    return await http.post(
+      Uri.https("www.condosocio.com.br", "flutter/ocorrencias_resp_inc.php"),
+      body: {
+        'idusu': loginController.id.value,
+        'idcond': loginController.idcond.value,
+        'idoco': visualizarOcorrenciasController.idoco.value,
+        'texto': respostaOcorrenciasController.texto.value.text,
       },
     );
   }
