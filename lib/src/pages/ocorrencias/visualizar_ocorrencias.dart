@@ -64,13 +64,16 @@ class VisualizarOcorrencias extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'CRIADO',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16.0,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
+                            Container(
+                              padding: EdgeInsets.only(left: 15),
+                              child: Text(
+                                'CRIADO',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16.0,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
                               ),
                             ),
                             Text(
@@ -82,13 +85,16 @@ class VisualizarOcorrencias extends StatelessWidget {
                                     .selectionColor,
                               ),
                             ),
-                            Text(
-                              'STATUS',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16.0,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
+                            Container(
+                              padding: EdgeInsets.only(right: 15),
+                              child: Text(
+                                'STATUS',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16.0,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
                               ),
                             ),
                           ],
@@ -112,6 +118,8 @@ class VisualizarOcorrencias extends StatelessWidget {
                                     onTap: () {
                                       ocorrenciasController.data.value =
                                           ocorrencia.data;
+                                      ocorrenciasController.tipo.value =
+                                          ocorrencia.tipoco;
                                       ocorrenciasController.hour.value =
                                           ocorrencia.hora;
                                       ocorrenciasController.dataoco.value =
@@ -227,14 +235,13 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             child: Icon(
                                               ocorrencia.status == '1'
                                                   ? Icons.done
-                                                  : Feather.alert_triangle,
+                                                  : Icons.schedule_outlined,
                                               size: 24,
                                               color: ocorrencia.status == '1'
                                                   ? Theme.of(context)
                                                       .textSelectionTheme
                                                       .selectionColor
-                                                  : Theme.of(context)
-                                                      .errorColor,
+                                                  : Colors.yellow,
                                             ),
                                           ),
                                           Container(
@@ -262,6 +269,8 @@ class VisualizarOcorrencias extends StatelessWidget {
                                           ocorrencia.id;
                                       ocorrenciasController.data.value =
                                           ocorrencia.data;
+                                      ocorrenciasController.tipo.value =
+                                          ocorrencia.tipoco;
                                       ocorrenciasController.hour.value =
                                           ocorrencia.hora;
                                       ocorrenciasController.dataoco.value =
@@ -375,14 +384,13 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             child: Icon(
                                               ocorrencia.status == '1'
                                                   ? Icons.done
-                                                  : Feather.alert_triangle,
+                                                  : Icons.schedule_outlined,
                                               size: 24,
                                               color: ocorrencia.status == '1'
                                                   ? Theme.of(context)
                                                       .textSelectionTheme
                                                       .selectionColor
-                                                  : Theme.of(context)
-                                                      .errorColor,
+                                                  : Colors.yellow,
                                             ),
                                           ),
                                           Container(

@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,19 +26,12 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
           child: Container(
             padding: EdgeInsets.only(top: 50),
             child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 10,
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(
-                    height: 10,
-                  ),
                   Container(
-                    margin: EdgeInsets.all(7),
-                    padding: EdgeInsets.all(5),
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 7),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
@@ -47,7 +41,6 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                       ),
                     ),
                     child: DropdownButton<String>(
-                      isDense: true,
                       isExpanded: true,
                       underline: Container(),
                       icon: Icon(
@@ -57,7 +50,7 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                       iconEnabledColor:
                           Theme.of(context).textSelectionTheme.selectionColor,
                       dropdownColor: Theme.of(context).primaryColor,
-                      style: GoogleFonts.montserrat(fontSize: 16),
+                      style: GoogleFonts.montserrat(fontSize: 14),
                       items: ouvidoriaController.assuntos
                           .map((String dropDownStringItem) {
                         return DropdownMenuItem<String>(
@@ -67,20 +60,17 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                       }).toList(),
                       onChanged: (String novoItemSelecionado) {
                         _dropDownItemSelected(novoItemSelecionado);
-                        this.ouvidoriaController.itemSelecionado.value =
+                        ouvidoriaController.itemSelecionado.value =
                             novoItemSelecionado;
                       },
                       value: ouvidoriaController.itemSelecionado.value,
                     ),
                   ),
                   SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
                   Container(
-                    margin: EdgeInsets.all(7),
+                    margin: EdgeInsets.symmetric(horizontal: 10),
                     child: customTextField(
                       context,
                       "Mensagem",
@@ -91,8 +81,8 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                       ouvidoriaController.message.value,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     child: ButtonTheme(
                       height: 50.0,
                       child: ElevatedButton(
@@ -117,47 +107,39 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                           ),
                         ),
                         onPressed: () {
-                          ouvidoriaController.sendOuvidoria().then((response) {
-                            if (response == 1) {
-                              onAlertButtonPressed(
-                                context,
-                                'Enviado com sucesso!',
-                                null,
-                              );
-                              ouvidoriaController.isLoading.value = false;
-                            } else if (response == 'vazio') {
-                              onAlertButtonPressed(
+                          ouvidoriaController.sendOuvidoria().then(
+                            (response) {
+                              if (response == 1) {
+                                confirmedButtonPressed(
+                                  context,
+                                  'Enviado com sucesso!',
+                                  null,
+                                );
+                              } else if (response == 'vazio') {
+                                onAlertButtonPressed(
                                   context,
                                   'Assunto e Mensagem são campos obrigátorios',
-                                  null);
-                              ouvidoriaController.isLoading.value = false;
-                            } else {
-                              onAlertButtonPressed(
-                                context,
-                                'Algo deu errado\n Tente novamente',
-                                null,
-                              );
-                              ouvidoriaController.isLoading.value = false;
-                            }
-                          });
+                                  null,
+                                );
+                              } else {
+                                onAlertButtonPressed(
+                                  context,
+                                  'Algo deu errado\n Tente novamente',
+                                  '/home',
+                                );
+                              }
+                            },
+                          );
                         },
-                        child: ouvidoriaController.isLoading.value
-                            ? SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  valueColor:
-                                      AlwaysStoppedAnimation(Colors.white),
-                                ),
-                              )
-                            : Text(
-                                "ENVIAR",
-                                style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 16),
-                              ),
+                        child: Text(
+                          "ENVIAR",
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                          ),
+                        ),
                       ),
                     ),
                   ),

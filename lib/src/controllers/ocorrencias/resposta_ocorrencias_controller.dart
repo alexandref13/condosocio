@@ -16,9 +16,6 @@ class RespostaOcorrenciasController extends GetxController {
   getOcorrenciasResposta() async {
     isLoading(true);
     var response = await ApiOcorrencias.getOcorrenciasResp();
-    var lista = json.decode(response.body);
-
-    print(lista);
 
     Iterable dados = json.decode(response.body);
 
@@ -41,8 +38,6 @@ class RespostaOcorrenciasController extends GetxController {
     getOcorrenciasResposta();
 
     var dados = json.decode(response.body);
-
-    print(dados);
 
     isLoading(false);
 

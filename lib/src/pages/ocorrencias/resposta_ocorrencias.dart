@@ -40,7 +40,7 @@ class RespostaOcorrencias extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  '(Sugestão)',
+                                  '(${ocorrenciasController.tipo.value})',
                                   style: GoogleFonts.montserrat(
                                     fontSize: 12,
                                     color: Theme.of(context)
@@ -508,7 +508,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                       child: Container(
                                                         padding:
                                                             EdgeInsets.only(
-                                                                left: 5),
+                                                                right: 5),
                                                         child: Card(
                                                           shape:
                                                               RoundedRectangleBorder(
@@ -654,7 +654,7 @@ class RespostaOcorrencias extends StatelessWidget {
               );
       }),
       bottomSheet: Container(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).primaryColor,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),

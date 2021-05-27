@@ -8,6 +8,7 @@ class MapaOcorrencias {
   String dataoco;
   String horaoco;
   String status;
+  String tipoco;
 
   MapaOcorrencias({
     this.id,
@@ -19,6 +20,7 @@ class MapaOcorrencias {
     this.dataoco,
     this.horaoco,
     this.status,
+    this.tipoco,
   });
 
   MapaOcorrencias.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,7 @@ class MapaOcorrencias {
     dataoco = json['dataoco'];
     horaoco = json['horaoco'];
     status = json['status'];
+    tipoco = json['tipoco'];
   }
 
   Map<String, dynamic> toJson() {
@@ -44,6 +47,7 @@ class MapaOcorrencias {
     data['dataoco'] = this.dataoco;
     data['horaoco'] = this.horaoco;
     data['status'] = this.status;
+    data['tipoco'] = this.tipoco;
     return data;
   }
 }
