@@ -3,7 +3,7 @@ class MapaOuvidoria {
   int status;
   String msg;
   String assunto;
-  String id;
+  String idouv;
   String data;
   String hora;
 
@@ -12,7 +12,7 @@ class MapaOuvidoria {
       this.status,
       this.msg,
       this.assunto,
-      this.id,
+      this.idouv,
       this.data,
       this.hora});
 
@@ -21,7 +21,7 @@ class MapaOuvidoria {
     status = json['status'];
     msg = json['msg'];
     assunto = json['assunto'];
-    id = json['id'];
+    idouv = json['idouv'];
     data = json['data'];
     hora = json['hora'];
   }
@@ -32,7 +32,7 @@ class MapaOuvidoria {
     data['status'] = this.status;
     data['msg'] = this.msg;
     data['assunto'] = this.assunto;
-    data['id'] = this.id;
+    data['idouv'] = this.idouv;
     data['data'] = this.data;
     data['hora'] = this.hora;
     return data;

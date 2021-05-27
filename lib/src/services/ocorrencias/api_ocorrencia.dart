@@ -63,8 +63,6 @@ class ApiOcorrencias {
     VisualizarOcorrenciasController visualizarOcorrenciasController =
         Get.put(VisualizarOcorrenciasController());
 
-    print('idOCo: ${visualizarOcorrenciasController.idoco.value}');
-
     return await http.post(
       Uri.https("www.condosocio.com.br", "flutter/ocorrencias_resp_vis.php"),
       body: {

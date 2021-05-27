@@ -22,13 +22,13 @@ Widget listaVisualizarOuvidoria() {
               var ouvidoria = visualizarOuvidoria.searchResult[i];
               return GestureDetector(
                 onTap: () {
+                  visualizarOuvidoria.assunto.value = ouvidoria.assunto;
+                  visualizarOuvidoria.message.value = ouvidoria.msg;
+                  visualizarOuvidoria.data.value = ouvidoria.data;
+                  visualizarOuvidoria.hora.value = ouvidoria.hora;
+                  visualizarOuvidoria.status.value = ouvidoria.status;
+                  visualizarOuvidoria.id.value = ouvidoria.idouv;
                   Get.toNamed('/detalhesOuvidoria');
-                  visualizarOuvidoria.assunto(ouvidoria.assunto);
-                  visualizarOuvidoria.message(ouvidoria.msg);
-                  visualizarOuvidoria.data(ouvidoria.data);
-                  visualizarOuvidoria.hora(ouvidoria.hora);
-                  visualizarOuvidoria.status(ouvidoria.status);
-                  visualizarOuvidoria.id(ouvidoria.id);
                 },
                 child: Column(
                   children: [
@@ -75,19 +75,6 @@ Widget listaVisualizarOuvidoria() {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                          Container(
-                            child: ouvidoria.status == 0
-                                ? Icon(
-                                    FontAwesome.clock_o,
-                                    size: 24,
-                                    color: Theme.of(context).accentColor,
-                                  )
-                                : Icon(
-                                    FontAwesome.check,
-                                    size: 24,
-                                    color: Theme.of(context).accentColor,
-                                  ),
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.05,
@@ -107,13 +94,13 @@ Widget listaVisualizarOuvidoria() {
               var ouvidoria = visualizarOuvidoria.ouvidoria[i];
               return GestureDetector(
                 onTap: () {
+                  visualizarOuvidoria.assunto.value = ouvidoria.assunto;
+                  visualizarOuvidoria.message.value = ouvidoria.msg;
+                  visualizarOuvidoria.data.value = ouvidoria.data;
+                  visualizarOuvidoria.hora.value = ouvidoria.hora;
+                  visualizarOuvidoria.status.value = ouvidoria.status;
+                  visualizarOuvidoria.id.value = ouvidoria.idouv;
                   Get.toNamed('/detalhesOuvidoria');
-                  visualizarOuvidoria.assunto(ouvidoria.assunto);
-                  visualizarOuvidoria.message(ouvidoria.msg);
-                  visualizarOuvidoria.data(ouvidoria.data);
-                  visualizarOuvidoria.hora(ouvidoria.hora);
-                  visualizarOuvidoria.status(ouvidoria.status);
-                  visualizarOuvidoria.id(ouvidoria.id);
                 },
                 child: Column(
                   children: [
@@ -160,19 +147,6 @@ Widget listaVisualizarOuvidoria() {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                          Container(
-                            child: ouvidoria.status == 0
-                                ? Icon(
-                                    FontAwesome.clock_o,
-                                    size: 24,
-                                    color: Theme.of(context).accentColor,
-                                  )
-                                : Icon(
-                                    FontAwesome.check,
-                                    size: 24,
-                                    color: Theme.of(context).accentColor,
-                                  ),
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.05,

@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/ocorrencias/resposta_ocorrencias_controller.dart';
@@ -686,7 +687,14 @@ class RespostaOcorrencias extends StatelessWidget {
                 iconSize: 25.0,
                 color: Theme.of(context).accentColor,
                 onPressed: () {
-                  respostaOcorrenciasController.sendOcorrenciaResp();
+                  respostaOcorrenciasController
+                      .sendOcorrenciaResp()
+                      .then((value) {
+                    if (value == 0) {
+                      onAlertButtonPressed(context,
+                          'Algo deu errado\n Tente novamente', '/home');
+                    }
+                  });
                 },
               ),
             ],

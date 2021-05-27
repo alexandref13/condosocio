@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -22,132 +23,137 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        return SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.only(top: 50),
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    padding: EdgeInsets.symmetric(horizontal: 7),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
-                        width: 1,
-                      ),
-                    ),
-                    child: DropdownButton<String>(
-                      isExpanded: true,
-                      underline: Container(),
-                      icon: Icon(
-                        Icons.keyboard_arrow_down,
-                        size: 27,
-                      ),
-                      iconEnabledColor:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                      dropdownColor: Theme.of(context).primaryColor,
-                      style: GoogleFonts.montserrat(fontSize: 14),
-                      items: ouvidoriaController.assuntos
-                          .map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (String novoItemSelecionado) {
-                        _dropDownItemSelected(novoItemSelecionado);
-                        ouvidoriaController.itemSelecionado.value =
-                            novoItemSelecionado;
-                      },
-                      value: ouvidoriaController.itemSelecionado.value,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    child: customTextField(
-                      context,
-                      "Mensagem",
-                      null,
-                      true,
-                      5,
-                      true,
-                      ouvidoriaController.message.value,
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: ButtonTheme(
-                      height: 50.0,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
-                              return Theme.of(context).accentColor;
-                            },
+        return ouvidoriaController.isLoading.value
+            ? CircularProgressIndicatorWidget()
+            : SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(top: 50),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10),
+                          padding: EdgeInsets.symmetric(horizontal: 7),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              width: 1,
+                            ),
                           ),
-                          elevation: MaterialStateProperty.resolveWith<double>(
-                              (Set<MaterialState> states) {
-                            return 3;
-                          }),
-                          shape:
-                              MaterialStateProperty.resolveWith<OutlinedBorder>(
-                            (Set<MaterialState> states) {
-                              return RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              );
-                            },
-                          ),
-                        ),
-                        onPressed: () {
-                          ouvidoriaController.sendOuvidoria().then(
-                            (response) {
-                              if (response == 1) {
-                                confirmedButtonPressed(
-                                  context,
-                                  'Enviado com sucesso!',
-                                  null,
-                                );
-                              } else if (response == 'vazio') {
-                                onAlertButtonPressed(
-                                  context,
-                                  'Assunto e Mensagem são campos obrigátorios',
-                                  null,
-                                );
-                              } else {
-                                onAlertButtonPressed(
-                                  context,
-                                  'Algo deu errado\n Tente novamente',
-                                  '/home',
-                                );
-                              }
-                            },
-                          );
-                        },
-                        child: Text(
-                          "ENVIAR",
-                          style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context)
+                          child: DropdownButton<String>(
+                            isExpanded: true,
+                            underline: Container(),
+                            icon: Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 27,
+                            ),
+                            iconEnabledColor: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
+                            dropdownColor: Theme.of(context).primaryColor,
+                            style: GoogleFonts.montserrat(fontSize: 14),
+                            items: ouvidoriaController.assuntos
+                                .map((String dropDownStringItem) {
+                              return DropdownMenuItem<String>(
+                                value: dropDownStringItem,
+                                child: Text(dropDownStringItem),
+                              );
+                            }).toList(),
+                            onChanged: (String novoItemSelecionado) {
+                              _dropDownItemSelected(novoItemSelecionado);
+                              ouvidoriaController.itemSelecionado.value =
+                                  novoItemSelecionado;
+                            },
+                            value: ouvidoriaController.itemSelecionado.value,
                           ),
                         ),
-                      ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10),
+                          child: customTextField(
+                            context,
+                            "Mensagem",
+                            null,
+                            true,
+                            5,
+                            true,
+                            ouvidoriaController.message.value,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: ButtonTheme(
+                            height: 50.0,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    return Theme.of(context).accentColor;
+                                  },
+                                ),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                        (Set<MaterialState> states) {
+                                  return 3;
+                                }),
+                                shape: MaterialStateProperty.resolveWith<
+                                    OutlinedBorder>(
+                                  (Set<MaterialState> states) {
+                                    return RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    );
+                                  },
+                                ),
+                              ),
+                              onPressed: () {
+                                ouvidoriaController.sendOuvidoria().then(
+                                  (response) {
+                                    if (response == 1) {
+                                      confirmedButtonPressed(
+                                        context,
+                                        'Enviado com sucesso!',
+                                        null,
+                                      );
+                                    } else if (response == 'vazio') {
+                                      onAlertButtonPressed(
+                                        context,
+                                        'Assunto e Mensagem são campos obrigátorios',
+                                        null,
+                                      );
+                                    } else {
+                                      onAlertButtonPressed(
+                                        context,
+                                        'Algo deu errado\n Tente novamente',
+                                        '/home',
+                                      );
+                                    }
+                                  },
+                                );
+                              },
+                              child: Text(
+                                "ENVIAR",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-        );
+                ),
+              );
       },
     );
   }

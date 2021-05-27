@@ -1,5 +1,5 @@
 import 'package:condosocio/src/controllers/login_controller.dart';
-import 'package:condosocio/src/controllers/ouvidoria/detalhes_ouvidoria/responda_controller.dart';
+import 'package:condosocio/src/controllers/ouvidoria/responda_controller.dart';
 import 'package:condosocio/src/controllers/ouvidoria/ouvidoria_controller.dart';
 import 'package:condosocio/src/controllers/ouvidoria/visualizar_ouvidoria_controller.dart';
 import 'package:get/get.dart';
@@ -32,6 +32,7 @@ class ApiOuvidoria {
   static Future getRespondaOuvidoria() async {
     VisualizarOuvidoriaController visualizarOuvidoriaController =
         Get.put(VisualizarOuvidoriaController());
+
     return await http.post(
       Uri.https('www.condosocio.com.br', '/flutter/ouvidoria_resp_vis.php'),
       body: {
@@ -45,12 +46,20 @@ class ApiOuvidoria {
     RespondaController respondaController = Get.put(RespondaController());
     VisualizarOuvidoriaController visualizarOuvidoriaController =
         Get.put(VisualizarOuvidoriaController());
+
+    print({
+      'id:${loginController.id.value}',
+      'idcond:${loginController.idcond.value}',
+      'texto:${respondaController.texto.value.text}',
+      'idouv:${visualizarOuvidoriaController.id.value}'
+    });
+
     return await http.post(
       Uri.https('www.condosocio.com.br', '/flutter/ouvidoria_resp_inc.php'),
       body: {
         'idusu': loginController.id.value,
         'idcond': loginController.idcond.value,
-        'texto': respondaController.controller.value.text,
+        'texto': respondaController.texto.value.text,
         'idouv': visualizarOuvidoriaController.id.value,
       },
     );
