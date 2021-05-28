@@ -1,4 +1,5 @@
 import 'package:condosocio/src/controllers/acheAqui/ache_aqui_controller.dart';
+import 'package:condosocio/src/controllers/acheAqui/detalhes_ache_aqui_controller.dart';
 import 'package:condosocio/src/controllers/acheAqui/pesquisa_ache_aqui_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
@@ -58,10 +59,29 @@ class ApiAcheAqui {
   static Future getAcheAquiAvaliacao() async {
     AcheAquiController acheAquiController = Get.put(AcheAquiController());
 
+    print(acheAquiController.idForm.value);
+
     return await http.post(
       Uri.https('www.condosocio.com.br', 'flutter/acheaqui_avaliacao.php'),
       body: {
         'idforn': acheAquiController.idForm.value,
+      },
+    );
+  }
+
+  static Future sendAcheAquiAvaliacao() async {
+    AcheAquiController acheAquiController = Get.put(AcheAquiController());
+    LoginController loginController = Get.put(LoginController());
+    DetalhesAcheAquiController detalhesAcheAquiController =
+        Get.put(DetalhesAcheAquiController());
+
+    return await http.post(
+      Uri.https('www.condosocio.com.br', 'flutter/acheaqui_avaliacao_inc.php'),
+      body: {
+        'idusu': loginController.id.value,
+        'idforn': acheAquiController.idForm.value,
+        'estrela': detalhesAcheAquiController.star.value.toString(),
+        'comente': detalhesAcheAquiController.comentario.value.text,
       },
     );
   }

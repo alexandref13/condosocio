@@ -103,7 +103,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   ),
                                 ),
                                 Text(
-                                  "Perfil",
+                                  "Avisos",
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -457,7 +457,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed('/sobre');
+                          Get.toNamed('/encomendas');
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -479,7 +479,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    AntDesign.infocirlceo,
+                                    Icons.local_shipping_outlined,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -487,7 +487,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   ),
                                 ),
                                 Text(
-                                  "Sobre",
+                                  "Encomendas",
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme

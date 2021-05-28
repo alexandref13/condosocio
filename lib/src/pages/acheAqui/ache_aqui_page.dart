@@ -1,8 +1,6 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/acheAqui/ache_aqui_controller.dart';
-import 'package:condosocio/src/controllers/acheAqui/pesquisa_ache_aqui_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,6 +15,9 @@ class AcheAquiPage extends StatelessWidget {
           : Container(
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 40,
+                  ),
                   Expanded(
                     child: CustomScrollView(
                       primary: false,
@@ -55,7 +56,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            Icons.swap_horiz,
+                                            Icons.directions_car,
                                             size: 40,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -101,7 +102,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            Icons.person_outline,
+                                            Icons.fastfood,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -147,7 +148,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            Icons.live_tv_outlined,
+                                            Icons.school,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -193,7 +194,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            Icons.receipt_outlined,
+                                            Icons.engineering,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -239,7 +240,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            FontAwesome.calendar_o,
+                                            Icons.local_police,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -285,7 +286,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            FontAwesome.comment_o,
+                                            Icons.cleaning_services,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -331,7 +332,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            FontAwesome.file_o,
+                                            Icons.medical_services,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -377,7 +378,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            FontAwesome.comments_o,
+                                            Icons.maps_home_work,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -420,7 +421,7 @@ class AcheAquiPage extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: <Widget>[
                                         Icon(
-                                          Icons.event_note_outlined,
+                                          Icons.travel_explore,
                                           size: 35,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -465,7 +466,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            FontAwesome.cart_plus,
+                                            Icons.sentiment_very_satisfied,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -510,7 +511,7 @@ class AcheAquiPage extends StatelessWidget {
                                         Padding(
                                           padding: EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            AntDesign.infocirlceo,
+                                            Icons.local_shipping,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -556,7 +557,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            Icons.question_answer_outlined,
+                                            Icons.inventory,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme

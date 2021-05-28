@@ -19,6 +19,13 @@ class EmpresaAcheAqui extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          title: Text(
+            'Empresa',
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
+          ),
           bottom: TabBar(
             indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
             tabs: <Widget>[
@@ -43,11 +50,12 @@ class EmpresaAcheAqui extends StatelessWidget {
         ),
         floatingActionButton: SpeedDial(
           icon: Icons.question_answer_outlined,
+          iconTheme: IconThemeData(color: Colors.black),
           activeIcon: Icons.close,
           visible: true,
           closeManually: false,
           renderOverlay: false,
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
           curve: Curves.elasticInOut,
           overlayColor: Colors.black,
           overlayOpacity: 0.5,
@@ -95,7 +103,7 @@ class EmpresaAcheAqui extends StatelessWidget {
               },
             ),
             SpeedDialChild(
-              child: Icon(Icons.language_outlined),
+              child: Icon(Icons.where_to_vote_outlined),
               backgroundColor: Colors.amber,
               label: 'Localização',
               labelStyle: GoogleFonts.montserrat(
@@ -108,6 +116,22 @@ class EmpresaAcheAqui extends StatelessWidget {
                         "https://www.google.com/maps/search/?api=1&query=${acheAquiController.endereco}");
               },
             ),
+            SpeedDialChild(
+              child: Icon(Icons.language_outlined),
+              backgroundColor: Theme.of(context).accentColor,
+              label: 'Site',
+              labelStyle: GoogleFonts.montserrat(
+                fontSize: 14,
+                color: Theme.of(context).textSelectionTheme.selectionColor,
+              ),
+              onTap: () {
+                if (acheAquiController.site.value != '') {
+                  detalhesAcheAquiController.launched =
+                      detalhesAcheAquiController
+                          .launchInBrowser(acheAquiController.site.value);
+                }
+              },
+            )
           ],
         ),
       ),

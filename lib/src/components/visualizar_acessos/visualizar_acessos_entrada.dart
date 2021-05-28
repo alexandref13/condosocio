@@ -38,7 +38,6 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                       Container(
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width,
-                        color: Colors.black12,
                         child: Image.asset(
                           'images/semregistro.png',
                           fit: BoxFit.fitWidth,
@@ -52,31 +51,16 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                               padding: EdgeInsets.only(top: 100),
                               //child: Icon(Icons.block, size: 34, color: Colors.red[900]),
                             ),
-                            RichText(
-                              text: TextSpan(
-                                // Note: Styles for TextSpans must be explicitly defined.
-                                // Child text spans will inherit styles from parent
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 14.0,
-                                  color: Colors.black,
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: 'Sem registros de ',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Acessos',
-                                    style: GoogleFonts.montserrat(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
+                            Text(
+                              'Sem registros',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontWeight: FontWeight.bold,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       )

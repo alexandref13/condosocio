@@ -6,6 +6,8 @@ import 'package:condosocio/src/pages/acheAqui/ache_aqui_form.dart';
 import 'package:condosocio/src/pages/acheAqui/empresa_ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/lista_ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/pesquisa_ache_aqui.dart';
+import 'package:condosocio/src/pages/encomendas/detalhes_encomendas.dart';
+import 'package:condosocio/src/pages/encomendas/encomendas.dart';
 import 'package:condosocio/src/pages/enquetes/enquetes.dart';
 import 'package:condosocio/src/pages/enquetes/info_enquetes.dart';
 import 'package:condosocio/src/pages/enquetes/votar_enquete.dart';
@@ -110,7 +112,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/listaAcheAqui', page: () => ListaAcheAqui()),
         GetPage(name: '/acheAquiForm', page: () => AcheAquiForm()),
         GetPage(name: '/detalhesAcheAqui', page: () => EmpresaAcheAqui()),
-        GetPage(name: '/pesquisar', page: () => PesquisaAcheAqui()),
+        GetPage(name: '/pesquisarAcheAqui', page: () => PesquisaAcheAqui()),
+        GetPage(name: '/encomendas', page: () => Encomendas()),
+        GetPage(name: '/detalhesEncomendas', page: () => DetalhesEncomendas()),
       ],
     );
   }
