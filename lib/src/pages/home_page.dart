@@ -426,7 +426,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           leading: Icon(
-                            FontAwesome.info_circle,
+                            Icons.person_outline,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,

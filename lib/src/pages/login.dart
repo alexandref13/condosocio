@@ -36,7 +36,7 @@ class Login extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.only(top: 90),
                           child: Image.asset(
-                            "images/logo.jpeg",
+                            "images/condosocio_logo.png",
                             fit: BoxFit.fill,
                             width: 120,
                           ),
