@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:condosocio/src/services/acheaqui/api_ache_aqui.dart';
 import 'package:condosocio/src/services/acheaqui/mapa_ache_aqui_avaliacao.dart';
 import 'package:flutter/widgets.dart';
@@ -7,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetalhesAcheAquiController extends GetxController {
+  var isLoading = false.obs;
+
   var comentario = TextEditingController().obs;
 
   var star1 = false.obs;
@@ -54,12 +55,45 @@ class DetalhesAcheAquiController extends GetxController {
   }
 
   getAcheAquiAvaliacao() async {
+    isLoading(true);
     var response = await ApiAcheAqui.getAcheAquiAvaliacao();
+
+    var lista = json.decode(response.body);
+
+    print(lista);
 
     Iterable dados = json.decode(response.body);
 
     avaliacao.assignAll(
         dados.map((model) => MapaAcheAquiAvaliacao.fromJson(model)).toList());
+
+    isLoading(false);
+  }
+
+  sendAcheAquiAvaliacao() async {
+    if (star1.value) {
+      star.value = 1;
+    }
+    if (star2.value) {
+      star.value = 2;
+    }
+    if (star3.value) {
+      star.value = 3;
+    }
+    if (star4.value) {
+      star.value = 4;
+    }
+    if (star5.value) {
+      star.value = 5;
+    }
+
+    var response = await ApiAcheAqui.sendAcheAquiAvaliacao();
+
+    getAcheAquiAvaliacao();
+
+    var dados = json.decode(response.body);
+
+    print(dados);
   }
 
   @override

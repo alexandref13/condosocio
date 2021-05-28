@@ -417,6 +417,35 @@ class _HomePageState extends State<HomePage> {
                           contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
                           dense: true,
                           title: Text(
+                            'Perfil',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            FontAwesome.info_circle,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                            size: 22,
+                          ),
+                          onTap: () {
+                            Get.toNamed('/perfil');
+                          },
+                        ),
+                      ),
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
                             'Senha',
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)

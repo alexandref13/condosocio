@@ -51,6 +51,19 @@ class PesquisaAcheAqui extends StatelessWidget {
                                     width: 1,
                                   ),
                                 ),
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    pesquisaAcheAquiController
+                                        .pesquisa.value.text = '';
+                                  },
+                                  icon: Icon(
+                                    Icons.close,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    size: 12,
+                                  ),
+                                ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Theme.of(context)
@@ -62,46 +75,16 @@ class PesquisaAcheAqui extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                            height: 50,
-                            child: ButtonTheme(
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.resolveWith<Color>(
-                                    (Set<MaterialState> states) {
-                                      return Theme.of(context).accentColor;
-                                    },
-                                  ),
-                                  elevation:
-                                      MaterialStateProperty.resolveWith<double>(
-                                          (Set<MaterialState> states) {
-                                    return 3;
-                                  }),
-                                  shape: MaterialStateProperty.resolveWith<
-                                      OutlinedBorder>(
-                                    (Set<MaterialState> states) {
-                                      return RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                onPressed: () {
-                                  pesquisaAcheAquiController.acheAquiPesquisa();
-                                },
-                                child: Text(
-                                  "ENVIAR",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
+                          GestureDetector(
+                            onTap: () {
+                              pesquisaAcheAquiController.acheAquiPesquisa();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10,
                               ),
+                              height: 50,
+                              child: Icon(Icons.send, size: 25),
                             ),
                           ),
                         ],

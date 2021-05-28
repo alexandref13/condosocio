@@ -8,12 +8,14 @@ import 'package:get/get.dart';
 
 class AcheAquiController extends GetxController {
   var isLoading = false.obs;
+  var isSearch = false.obs;
 
   var tema = ''.obs;
   var id = ''.obs;
 
   var idForm = ''.obs;
 
+  var empresa = ''.obs;
   var cel = ''.obs;
   var email = ''.obs;
   var site = ''.obs;
