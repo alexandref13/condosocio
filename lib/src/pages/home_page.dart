@@ -652,6 +652,21 @@ class _HomePageState extends State<HomePage> {
                         height: 15,
                         color: Theme.of(context).primaryColor,
                       ),
+                      Container(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Versão 7.0',
+                              style: GoogleFonts.montserrat(
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   )
                 ],

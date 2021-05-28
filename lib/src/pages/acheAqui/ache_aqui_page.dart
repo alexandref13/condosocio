@@ -378,7 +378,7 @@ class AcheAquiPage extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(bottom: 10),
                                           child: Icon(
-                                            Icons.maps_home_work,
+                                            Icons.home,
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
@@ -421,7 +421,7 @@ class AcheAquiPage extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: <Widget>[
                                         Icon(
-                                          Icons.travel_explore,
+                                          Icons.wallet_travel_outlined,
                                           size: 35,
                                           color: Theme.of(context)
                                               .textSelectionTheme
