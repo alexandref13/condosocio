@@ -103,7 +103,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   ),
                                 ),
                                 Text(
-                                  "Avisos",
+                                  "Perfil",
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
