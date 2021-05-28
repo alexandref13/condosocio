@@ -1,9 +1,14 @@
 import 'package:condosocio/src/components/acessos_saidas/detalhes_acessos_saida.dart';
 import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_saidas.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
+import 'package:condosocio/src/pages/acheAqui/ache_aqui.dart';
+import 'package:condosocio/src/pages/acheAqui/ache_aqui_form.dart';
+import 'package:condosocio/src/pages/acheAqui/empresa_ache_aqui.dart';
+import 'package:condosocio/src/pages/acheAqui/lista_ache_aqui.dart';
 import 'package:condosocio/src/pages/enquetes/enquetes.dart';
 import 'package:condosocio/src/pages/enquetes/info_enquetes.dart';
 import 'package:condosocio/src/pages/enquetes/votar_enquete.dart';
+import 'package:condosocio/src/pages/ocorrencias/foto_ocorrencia_detalhe.dart';
 import 'package:condosocio/src/pages/ocorrencias/resposta_ocorrencias.dart';
 import 'package:condosocio/src/pages/reservas/calendario_reservas.dart';
 import 'package:condosocio/src/components/reservas/termos_reservas.dart';
@@ -99,6 +104,11 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/enquetes', page: () => Enquetes()),
         GetPage(name: '/votarEnquetes', page: () => VotarEnquete()),
         GetPage(name: '/infoEnquete', page: () => InfoEnquetes()),
+        GetPage(name: '/fotoOcorrencia', page: () => FotoOcorrencia()),
+        GetPage(name: '/acheAqui', page: () => AcheAqui()),
+        GetPage(name: '/listaAcheAqui', page: () => ListaAcheAqui()),
+        GetPage(name: '/acheAquiForm', page: () => AcheAquiForm()),
+        GetPage(name: '/detalhesAcheAqui', page: () => EmpresaAcheAqui()),
       ],
     );
   }

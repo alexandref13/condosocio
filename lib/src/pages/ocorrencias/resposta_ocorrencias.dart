@@ -37,25 +37,14 @@ class RespostaOcorrencias extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '(${ocorrenciasController.tipo.value})',
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 12,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
-                                ocorrenciasController.imagem.value != ''
-                                    ? Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: Icon(Icons.image_outlined))
-                                    : Container(),
-                              ],
+                            Text(
+                              '(${ocorrenciasController.tipo.value})',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
                             ),
                             Container(
                               padding: EdgeInsets.only(top: 10),
@@ -83,7 +72,24 @@ class RespostaOcorrencias extends StatelessWidget {
                                       ' ${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}')
                                 ],
                               ),
-                            )
+                            ),
+                            ocorrenciasController.imagem.value != ''
+                                ? Container(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed('/fotoOcorrencia  ');
+                                      },
+                                      child: Ink.image(
+                                        image: NetworkImage(
+                                          'https://condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+                                        ),
+                                        width: 45,
+                                        height: 45,
+                                      ),
+                                    ),
+                                  )
+                                : Container(),
                           ],
                         )),
                     Expanded(
@@ -655,6 +661,7 @@ class RespostaOcorrencias extends StatelessWidget {
               );
       }),
       bottomSheet: Container(
+        padding: EdgeInsets.only(bottom: 15),
         color: Theme.of(context).primaryColor,
         child: Container(
           decoration: BoxDecoration(

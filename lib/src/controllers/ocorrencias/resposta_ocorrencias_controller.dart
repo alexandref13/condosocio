@@ -13,6 +13,8 @@ class RespostaOcorrenciasController extends GetxController {
   var isLoading = true.obs;
   var texto = TextEditingController().obs;
 
+  var newSize = false.obs;
+
   getOcorrenciasResposta() async {
     isLoading(true);
     var response = await ApiOcorrencias.getOcorrenciasResp();

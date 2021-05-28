@@ -13,6 +13,7 @@ class DetalhesOuvidoria extends StatelessWidget {
     LoginController loginController = Get.put(LoginController());
 
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: Text(
           'Ouvidoria',
@@ -594,6 +595,7 @@ class DetalhesOuvidoria extends StatelessWidget {
       ),
       bottomSheet: Container(
         color: Theme.of(context).primaryColor,
+        padding: EdgeInsets.only(bottom: 15),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
