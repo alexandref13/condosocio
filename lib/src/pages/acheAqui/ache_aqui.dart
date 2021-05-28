@@ -12,18 +12,12 @@ class AcheAqui extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Ache Aqui',
-            style: GoogleFonts.montserrat(
-              fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
-            ),
-          ),
+          title: Text('Ache Aqui'),
           bottom: TabBar(
             indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
             tabs: <Widget>[
               Text(
-                'Ache Aqui',
+                'Temas',
                 style: GoogleFonts.montserrat(
                     fontSize: 16,
                     color: Theme.of(context).textSelectionTheme.selectionColor),

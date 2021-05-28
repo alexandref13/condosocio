@@ -45,6 +45,10 @@ class AcheAquiController extends GetxController {
 
     Get.toNamed('/acheAquiForm');
 
+    var lista = json.decode(response.body);
+
+    print(lista);
+
     Iterable dados = json.decode(response.body);
 
     acheAquiForm.assignAll(
@@ -59,6 +63,10 @@ class AcheAquiController extends GetxController {
     var response = await ApiAcheAqui.getAcheAquidetalhes();
 
     Get.toNamed('/detalhesAcheAqui');
+
+    var lista = json.decode(response.body);
+
+    print(lista);
 
     Iterable dados = json.decode(response.body);
 
