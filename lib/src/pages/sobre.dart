@@ -78,6 +78,13 @@ class Sobre extends StatelessWidget {
                           ),
                           sobreLista(
                             context,
+                            "Encomendas",
+                            "Receba notificações das encomendas que chegam na adminstração do condominio",
+                            "Encomendas",
+                            Icons.local_shipping_outlined,
+                          ),
+                          sobreLista(
+                            context,
                             "Reservas",
                             "Visualize e faça reservas de eventos e dos espaços comuns.",
                             "reserva",
@@ -124,13 +131,6 @@ class Sobre extends StatelessWidget {
                             "Fale diretamente com a administração do seu condomínio",
                             "ouvidoria",
                             Icons.question_answer_outlined,
-                          ),
-                          sobreLista(
-                            context,
-                            "Encomendas",
-                            "Receba notificações das encomendas que chegam na adminstração do condominio",
-                            "Encomendas",
-                            Icons.local_shipping_outlined,
                           ),
                         ],
                       ),

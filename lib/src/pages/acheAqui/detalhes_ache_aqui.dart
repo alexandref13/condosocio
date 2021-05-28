@@ -1,4 +1,6 @@
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
+import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acheAqui/ache_aqui_controller.dart';
 import 'package:condosocio/src/controllers/acheAqui/detalhes_ache_aqui_controller.dart';
@@ -305,7 +307,26 @@ class DetalhesAcheAqui extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   detalhesAcheAquiController
-                                      .sendAcheAquiAvaliacao();
+                                      .sendAcheAquiAvaliacao()
+                                      .then((value) {
+                                    if (value == 1) {
+                                      confirmedButtonPressed(
+                                          context,
+                                          'Sua avaliação foi enviada com sucesso! Grato pela sua colaboração.',
+                                          null);
+                                    }
+                                    if (value == 2) {
+                                      confirmedButtonPressed(
+                                          context,
+                                          "Sua avaliação para essa empresa foi atualizada com sucesso!",
+                                          null);
+                                    } else {
+                                      onAlertButtonPressed(
+                                          context,
+                                          'Algo deu errado\n Tente novamente',
+                                          '/home');
+                                    }
+                                  });
                                 },
                                 child: Text(
                                   "ENVIAR",
