@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:condosocio/src/services/enquetes/api_enquetes.dart';
+import 'package:condosocio/src/services/enquetes/mapa_votar_enquetes.dart';
 import 'package:get/get.dart';
 
 class VotarEnqueteController extends GetxController {
-  var enquete = [].obs;
+  var enquete = <MapaVotarEnquetes>[].obs;
 
   var index = 0.obs;
 
@@ -16,8 +17,9 @@ class VotarEnqueteController extends GetxController {
 
     var response = await ApiEnquetes.votacaoEnquete();
 
-    print(json.decode(response.body));
-    enquete.assignAll(json.decode(response.body));
+    Iterable dados = json.decode(response.body);
+    enquete.assignAll(
+        dados.map((model) => MapaVotarEnquetes.fromJson(model)).toList());
 
     isLoading(false);
   }

@@ -155,6 +155,19 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                       .selectedDay.value] ==
                               null) {
                             Get.toNamed('/addReservas');
+                          } else {
+                            if (calendarioReservasController
+                                        .events[calendarioReservasController
+                                            .selectedDay.value][0]
+                                        .status ==
+                                    'Recusado' &&
+                                calendarioReservasController
+                                        .events[calendarioReservasController
+                                            .selectedDay.value][0]
+                                        .validausu ==
+                                    null) {
+                              Get.toNamed('/addReservas');
+                            }
                           }
                         },
                         selectedDayPredicate: (DateTime date) {
@@ -222,6 +235,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                         e.dataAgenda,
                                         e.areacom,
                                         e.status,
+                                        e.horaAgenda,
                                       );
                                     },
                                   ),
@@ -275,6 +289,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                     e.dataAgenda,
                                     e.areacom,
                                     e.status,
+                                    e.horaAgenda,
                                   );
                                 },
                               ),

@@ -43,7 +43,7 @@ ThemeData turquoise = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Color(0xff054437),
   buttonColor: Color(0xff1a715e),
-  accentColor: Color(0xff2b8a67),
+  accentColor: Color(0xff247557),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),

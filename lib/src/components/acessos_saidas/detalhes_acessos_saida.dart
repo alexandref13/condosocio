@@ -318,86 +318,92 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                 ),
                               )
                             : Container(),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 40),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            border: Border(
-                              top: BorderSide(
-                                width: .5,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: Container(
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                ButtonTheme(
-                                  height: 50.0,
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor: MaterialStateProperty
-                                          .resolveWith<Color>(
-                                        (Set<MaterialState> states) {
-                                          return Theme.of(context).errorColor;
-                                        },
-                                      ),
-                                      shape: MaterialStateProperty.resolveWith<
-                                          OutlinedBorder>(
-                                        (Set<MaterialState> states) {
-                                          return RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      deleteAlert(
-                                        context,
-                                        'Deseja excluir o acesso?',
-                                        () {
-                                          Get.back();
-                                          saidaController
-                                              .deleteAcessosSaida()
-                                              .then(
-                                            (value) {
-                                              if (value == 1) {
-                                                Get.offNamedUntil(
-                                                    '/visualizarAcessosSaidas',
-                                                    ModalRoute.withName(
-                                                        '/visualizarAcessosSaidas'));
-                                              } else {
-                                                onAlertButtonPressed(
-                                                    context,
-                                                    'Algo deu errado\n Tente novamente',
-                                                    '/home');
-                                              }
-                                            },
-                                          );
-                                        },
-                                      );
-                                    },
-                                    child: Text(
-                                      "Deletar",
-                                      style: GoogleFonts.montserrat(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor,
-                                        fontSize: 14,
-                                      ),
+                        saidaController.outDate.value == ''
+                            ? Container(
+                                margin: EdgeInsets.symmetric(vertical: 40),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  border: Border(
+                                    top: BorderSide(
+                                      width: .5,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        ),
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(vertical: 10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      ButtonTheme(
+                                        height: 50.0,
+                                        child: ElevatedButton(
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty
+                                                    .resolveWith<Color>(
+                                              (Set<MaterialState> states) {
+                                                return Theme.of(context)
+                                                    .errorColor;
+                                              },
+                                            ),
+                                            shape: MaterialStateProperty
+                                                .resolveWith<OutlinedBorder>(
+                                              (Set<MaterialState> states) {
+                                                return RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            deleteAlert(
+                                              context,
+                                              'Deseja excluir o acesso?',
+                                              () {
+                                                Get.back();
+                                                saidaController
+                                                    .deleteAcessosSaida()
+                                                    .then(
+                                                  (value) {
+                                                    if (value == 1) {
+                                                      Get.offNamedUntil(
+                                                          '/visualizarAcessosSaidas',
+                                                          ModalRoute.withName(
+                                                              '/visualizarAcessosSaidas'));
+                                                    } else {
+                                                      onAlertButtonPressed(
+                                                          context,
+                                                          'Algo deu errado\n Tente novamente',
+                                                          '/home');
+                                                    }
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: Text(
+                                            "Deletar",
+                                            style: GoogleFonts.montserrat(
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            : Container(),
                       ],
                     ),
                   ),

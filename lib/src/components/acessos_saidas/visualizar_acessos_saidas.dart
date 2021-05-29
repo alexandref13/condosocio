@@ -55,29 +55,13 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                   padding: EdgeInsets.only(top: 100),
                                   //child: Icon(Icons.block, size: 34, color: Colors.red[900]),
                                 ),
-                                RichText(
-                                  text: TextSpan(
-                                    // Note: Styles for TextSpans must be explicitly defined.
-                                    // Child text spans will inherit styles from parent
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 14.0,
-                                      color: Colors.black,
-                                    ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Sem registros de ',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'Acessos',
-                                        style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ],
+                                Text(
+                                  'SEM REGISTRO',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 14.0,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 )
                               ],
@@ -217,7 +201,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                 ],
                                                               ),
                                                             ),
-                                                      acessos.datasaida == '0'
+                                                      acessos.datasaida == ''
                                                           ? Container(
                                                               width: MediaQuery.of(
                                                                           context)
@@ -380,7 +364,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                 ],
                                                               ),
                                                             ),
-                                                      acessos.datasaida == '0'
+                                                      acessos.datasaida == ''
                                                           ? Container(
                                                               width: MediaQuery.of(
                                                                           context)

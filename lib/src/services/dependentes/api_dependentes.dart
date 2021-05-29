@@ -17,7 +17,7 @@ class ApiDependentes {
         'nome': dependentesController.nome.value.text,
         'sobrenome': dependentesController.sobrenome.value.text,
         'email': dependentesController.email.value.text,
-        'genero': dependentesController.genero.value.text,
+        'genero': dependentesController.itemSelecionado.value,
       },
     );
   }

@@ -460,8 +460,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                         .getConvites();
                                                     edgeAlertWidget(context,
                                                         'Convite Deletado');
-                                                    Get.back();
-                                                    Get.back();
+                                                    Get.offNamed('/convites');
                                                   } else {
                                                     onAlertButtonPressed(
                                                       context,

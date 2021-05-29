@@ -11,11 +11,14 @@ class DetalhesReservas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var day = DateTime.parse(calendarioReservasController.data.value);
+    // var hora = DateTime.parse(calendarioReservasController.hora.value);
     var newDate = DateFormat.yMMMMd('pt').format(day);
-    var newHour = DateFormat('HH:mm', 'pt').format(day);
+    // var newHour = DateFormat('HH:mm', 'pt').format(hora);
 
     return Scaffold(
+      backgroundColor: Color(0xff100329),
       appBar: AppBar(
+        backgroundColor: Color(0xff100329),
         title: Text(
           'Reservas',
           style: GoogleFonts.montserrat(
@@ -121,7 +124,7 @@ class DetalhesReservas extends StatelessWidget {
                           ),
                           Container(
                             child: Text(
-                              ' às $newHour',
+                              ' às ${calendarioReservasController.hora.value}',
                               style: GoogleFonts.montserrat(
                                 fontSize: 12,
                                 color: Colors.black,

@@ -40,7 +40,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 vertical: 10,
               ),
               child: Text(
-                'Envie este convite por whatsapp, para isto é necessário inserir o número no formato internacional. \n\ncódigo da área + seu número. \n\nex: (91) XXXXX-XXXX',
+                'Envie este convite por whatsapp, para isto é necessário inserir o número no formato internacional. \n\ncódigo da área + seu número. \n\nex: 91XXXXXXXXX',
                 style: GoogleFonts.montserrat(
                     fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
@@ -52,6 +52,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 vertical: 10,
               ),
               child: TextField(
+                keyboardType: TextInputType.number,
                 maxLength: 11,
                 controller: visualizarConvitesController.whatsappNumber.value,
                 style: GoogleFonts.montserrat(
@@ -131,8 +132,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                                 'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}';
 
                             FlutterOpenWhatsapp.sendSingleMessage(
-                              visualizarConvitesController
-                                  .whatsappNumber.value.text,
+                              '55${visualizarConvitesController.whatsappNumber.value.text}',
                               Uri.encodeFull(message),
                             );
                           } else {
@@ -144,7 +144,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                     } else {
                       onAlertButtonPressed(
                         context,
-                        'O número está no formato errado \n ex: (91) XXXXX-XXXX',
+                        'O número está no formato errado \n ex: 91XXXXXXXXX',
                         null,
                       );
                     }

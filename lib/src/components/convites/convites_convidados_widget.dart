@@ -427,14 +427,65 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(bottom: 5),
                                   padding: EdgeInsets.all(7),
-                                  child: customTextField(
-                                    context,
-                                    'Placa do carro',
-                                    null,
-                                    false,
-                                    1,
-                                    true,
-                                    convitesController.carBoard.value,
+                                  child: TextField(
+                                    onTap: () {
+                                      FocusScopeNode currentFocus =
+                                          FocusScope.of(context);
+                                      if (!currentFocus.hasPrimaryFocus &&
+                                          currentFocus.focusedChild != null) {
+                                        currentFocus.focusedChild.unfocus();
+                                      }
+                                    },
+                                    enableSuggestions: false,
+                                    textCapitalization:
+                                        TextCapitalization.characters,
+                                    maxLength: 9,
+                                    controller:
+                                        convitesController.carBoard.value,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    ),
+                                    decoration: InputDecoration(
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      enabled: true,
+                                      labelText: 'Placa do carro',
+                                      labelStyle: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                      ),
+                                      isDense: true,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          width: 2,
+                                        ),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          width: 1,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Row(
@@ -870,68 +921,64 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
+                            Padding(
+                              padding: EdgeInsets.only(right: 20),
+                              child: Icon(
+                                Feather.user_check,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                            Flexible(
+                              fit: FlexFit.tight,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 20),
-                                    child: Icon(
-                                      Feather.user_check,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .55,
+                                    child: Text(
+                                      convitesController.guestList[i]['nome'],
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                      ),
                                     ),
                                   ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        convitesController.guestList[i]['nome'],
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                      ),
-                                      convitesController.guestList[i]['tel'] !=
-                                              null
-                                          ? Text(
-                                              convitesController.guestList[i]
-                                                  ['tel'],
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 15,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor,
-                                              ),
-                                            )
-                                          : Container(
-                                              child: convitesController
-                                                              .guestList[i]
-                                                          ['placa'] !=
-                                                      null
-                                                  ? Text(
-                                                      convitesController
-                                                          .guestList[i]['placa']
-                                                          .toString()
-                                                          .toUpperCase(),
-                                                      style: GoogleFonts
-                                                          .montserrat(
-                                                        fontSize: 15,
-                                                        color: Theme.of(context)
-                                                            .textSelectionTheme
-                                                            .selectionColor,
-                                                      ),
-                                                    )
-                                                  : Container(),
-                                            )
-                                    ],
-                                  ),
+                                  convitesController.guestList[i]['tel'] != null
+                                      ? Text(
+                                          convitesController.guestList[i]
+                                              ['tel'],
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 15,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                          ),
+                                        )
+                                      : Container(
+                                          child: convitesController.guestList[i]
+                                                      ['placa'] !=
+                                                  null
+                                              ? Text(
+                                                  convitesController
+                                                      .guestList[i]['placa']
+                                                      .toString()
+                                                      .toUpperCase(),
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 15,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                  ),
+                                                )
+                                              : Container(),
+                                        )
                                 ],
                               ),
                             ),
@@ -950,7 +997,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                       ),
                     convitesController.guestList.length != 0
                         ? Container(
-                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            margin: EdgeInsets.fromLTRB(10, 0, 10, 12),
                             width: MediaQuery.of(context).size.width,
                             child: ButtonTheme(
                               height: 50.0,
@@ -1064,7 +1111,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
 
                                           confirmedInviteAlert(
                                             context,
-                                            'Seu convite foi incluído com sucesso! \nVocê pode enviar por WhatsApp',
+                                            'Seu convite foi incluído com sucesso! Seu(s) acesso(s) também já foram enviados a portaria. Não esqueça de mandar os convites para seus convidados',
                                             () {
                                               visualizarConvitesController
                                                   .getAConvite(

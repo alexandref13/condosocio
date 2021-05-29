@@ -1,4 +1,5 @@
 class MapaEvento {
+  int validausu;
   String idevento;
   String img;
   String nome;
@@ -8,24 +9,27 @@ class MapaEvento {
   String respevent;
   String areacom;
   String dataAgenda;
+  String horaAgenda;
+  String ctl;
   String status;
-  int validausu;
 
-  MapaEvento({
-    this.idevento,
-    this.img,
-    this.nome,
-    this.unidade,
-    this.titulo,
-    this.descricao,
-    this.respevent,
-    this.areacom,
-    this.dataAgenda,
-    this.validausu,
-    this.status,
-  });
+  MapaEvento(
+      {this.validausu,
+      this.idevento,
+      this.img,
+      this.nome,
+      this.unidade,
+      this.titulo,
+      this.descricao,
+      this.respevent,
+      this.areacom,
+      this.dataAgenda,
+      this.horaAgenda,
+      this.ctl,
+      this.status});
 
   MapaEvento.fromJson(Map<String, dynamic> json) {
+    validausu = json['validausu'];
     idevento = json['idevento'];
     img = json['img'];
     nome = json['nome'];
@@ -35,12 +39,14 @@ class MapaEvento {
     respevent = json['respevent'];
     areacom = json['areacom'];
     dataAgenda = json['data_agenda'];
+    horaAgenda = json['hora_agenda'];
+    ctl = json['ctl'];
     status = json['status'];
-    validausu = json['validausu'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['validausu'] = this.validausu;
     data['idevento'] = this.idevento;
     data['img'] = this.img;
     data['nome'] = this.nome;
@@ -50,8 +56,9 @@ class MapaEvento {
     data['respevent'] = this.respevent;
     data['areacom'] = this.areacom;
     data['data_agenda'] = this.dataAgenda;
+    data['hora_agenda'] = this.horaAgenda;
+    data['ctl'] = this.ctl;
     data['status'] = this.status;
-    data['validausu'] = this.validausu;
     return data;
   }
 }

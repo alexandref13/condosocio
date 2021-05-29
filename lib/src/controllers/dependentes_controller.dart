@@ -20,6 +20,13 @@ class DependentesController extends GetxController {
   var search = TextEditingController().obs;
   var searchResult = [].obs;
 
+  var firstId = '0'.obs;
+  var tipos = [
+    'Masculino',
+    'Feminino',
+  ];
+  var itemSelecionado = 'Masculino'.obs;
+
   onSearchTextChanged(String text) {
     searchResult.clear();
     if (text.isEmpty) {

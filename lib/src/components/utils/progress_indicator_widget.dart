@@ -14,7 +14,7 @@ class ProgressIndicatorWidget extends StatelessWidget {
       valueColor: AlwaysStoppedAnimation<Color>(
         Colors.green,
       ),
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).primaryColor,
     );
   }
 }

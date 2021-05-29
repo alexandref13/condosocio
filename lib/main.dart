@@ -106,7 +106,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/respostaOcorrencia', page: () => RespostaOcorrencias()),
         GetPage(name: '/enquetes', page: () => Enquetes()),
         GetPage(name: '/votarEnquetes', page: () => VotarEnquete()),
-        GetPage(name: '/infoEnquete', page: () => InfoEnquetes()),
+        // GetPage(name: '/infoEnquete', page: () => InfoEnquetes()),
         GetPage(name: '/fotoOcorrencia', page: () => FotoOcorrencia()),
         GetPage(name: '/acheAqui', page: () => AcheAqui()),
         GetPage(name: '/listaAcheAqui', page: () => ListaAcheAqui()),

@@ -1,6 +1,6 @@
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/components/utils/edge_alert_error_widget.dart';
-import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
+import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/controllers/senha_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -131,11 +131,15 @@ class _SenhaState extends State<Senha> {
                                           .senha(context)
                                           .then((value) {
                                         if (value == 1) {
-                                          edgeAlertWidget(context,
-                                              'Email enviado com sucesso!');
+                                          confirmedButtonPressed(
+                                              context,
+                                              "Enviamos um e-mail para a redefinição de senha.",
+                                              '/home');
                                         } else {
-                                          edgeAlertErrorWidget(context,
-                                              'Houve Algum Problema!\nTente novamente.');
+                                          onAlertButtonPressed(
+                                              context,
+                                              "E-mail não existe em nosso banco de dados!Tente novamente.",
+                                              '/home');
                                         }
                                       });
                                     }

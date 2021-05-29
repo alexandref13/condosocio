@@ -39,7 +39,7 @@ void configurandoModalBottomSheet(
         }
 
         return Container(
-          padding: EdgeInsets.only(bottom: 5),
+          padding: EdgeInsets.only(bottom: 8),
           color: Theme.of(context).accentColor,
           child: Container(
             child: Wrap(

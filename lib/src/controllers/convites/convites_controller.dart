@@ -52,6 +52,11 @@ class ConvitesController extends GetxController {
     filter: {"#": RegExp(r'[0-9]')},
   );
 
+  var carFormatter = MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
+
   handleAddCount() {
     countApp(false);
     count.value = !count.value;

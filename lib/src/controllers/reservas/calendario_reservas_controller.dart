@@ -14,6 +14,7 @@ class CalendarioReservasController extends GetxController {
   var titulo = ''.obs;
   var area = ''.obs;
   var status = ''.obs;
+  var hora = ''.obs;
 
   Map<DateTime, List<MapaEvento>> events = {};
   List<dynamic> selectedEvents;
@@ -53,6 +54,7 @@ class CalendarioReservasController extends GetxController {
                 status: eventos['status'],
                 titulo: eventos['titulo'],
                 unidade: eventos['unidade'],
+                horaAgenda: eventos['hora_agenda'],
                 validausu: eventos['validausu'],
               ),
             );
@@ -69,6 +71,7 @@ class CalendarioReservasController extends GetxController {
     String newData,
     String newArea,
     String newStatus,
+    String newHora,
   ) {
     nome(newNome);
     unidade(newUnidade);
@@ -76,6 +79,7 @@ class CalendarioReservasController extends GetxController {
     titulo(newTitulo);
     area(newArea);
     status(newStatus);
+    hora(newHora);
 
     Get.toNamed('/detalheReservas');
   }

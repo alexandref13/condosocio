@@ -17,6 +17,10 @@ class AdicionaDependentes extends StatelessWidget {
 
     LoginController loginController = Get.put(LoginController());
 
+    void dropDownFavoriteSelected(String novoItem) {
+      dependentesController.firstId.value = novoItem;
+    }
+
     return Obx(() {
       return dependentesController.isLoading.value
           ? CircularProgressIndicatorWidget()
@@ -128,14 +132,42 @@ class AdicionaDependentes extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    customTextField(
-                      context,
-                      null,
-                      null,
-                      false,
-                      1,
-                      true,
-                      dependentesController.genero.value,
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 7),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          width: 1,
+                        ),
+                      ),
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        underline: Container(),
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          size: 27,
+                        ),
+                        iconEnabledColor:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        dropdownColor: Theme.of(context).primaryColor,
+                        style: GoogleFonts.montserrat(fontSize: 14),
+                        items: dependentesController.tipos
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (String novoItemSelecionado) {
+                          dropDownFavoriteSelected(novoItemSelecionado);
+                          dependentesController.itemSelecionado.value =
+                              novoItemSelecionado;
+                        },
+                        value: dependentesController.itemSelecionado.value,
+                      ),
                     ),
                     SizedBox(
                       height: 20,

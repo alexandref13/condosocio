@@ -86,14 +86,11 @@ class Enquetes extends StatelessWidget {
 
                               return GestureDetector(
                                 onTap: () {
-                                  if (enquetes.datavalida !=
-                                      'Votação Encerrada') {
-                                    visualizarEnquetesController.titulo.value =
-                                        enquetes.titulo;
-                                    visualizarEnquetesController.idenq.value =
-                                        enquetes.idenq;
-                                    Get.toNamed('/votarEnquetes');
-                                  }
+                                  visualizarEnquetesController.titulo.value =
+                                      enquetes.titulo;
+                                  visualizarEnquetesController.idenq.value =
+                                      enquetes.idenq;
+                                  Get.toNamed('/votarEnquetes');
                                 },
                                 child: Card(
                                   shape: RoundedRectangleBorder(

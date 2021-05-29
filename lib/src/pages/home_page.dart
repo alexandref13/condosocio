@@ -412,10 +412,6 @@ class _HomePageState extends State<HomePage> {
                         height: 5,
                         color: Theme.of(context).primaryColor,
                       ),
-                      Divider(
-                        height: 5,
-                        color: Theme.of(context).primaryColor,
-                      ),
                       Container(
                         child: ListTile(
                           contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
