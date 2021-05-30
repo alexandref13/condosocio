@@ -93,7 +93,29 @@ class VotarEnquete extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Container(
-                            margin: EdgeInsets.only(top: 30, bottom: 12),
+                            padding: EdgeInsets.symmetric(vertical: 20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Theme.of(context).accentColor,
+                            ),
+                            margin: EdgeInsets.symmetric(
+                              vertical: 20,
+                            ),
+                            child: Center(
+                              child: Text(
+                                enquetes.valida,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 12),
                             child: Center(
                               child: Text(
                                 visualizarEnquetesController.titulo.value,
@@ -113,7 +135,7 @@ class VotarEnquete extends StatelessWidget {
                                 onTap: () {},
                                 child: Container(
                                     margin: EdgeInsets.symmetric(
-                                      vertical: 20,
+                                      vertical: 5,
                                       horizontal: 10,
                                     ),
                                     padding: EdgeInsets.all(10),
@@ -172,6 +194,13 @@ class VotarEnquete extends StatelessWidget {
                                                     enquetes.votacao[i] != 0
                                                         ? '${((enquetes.votacao[i] / enquetes.soma) * 100).toStringAsFixed(0)}%'
                                                         : '0%',
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 12,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                    ),
                                                   )
                                                 ],
                                               ),
@@ -284,20 +313,6 @@ class VotarEnquete extends StatelessWidget {
                                   ),
                                 )
                               : Container(),
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 10),
-                            child: Text(
-                              enquetes.valida,
-                              style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
                         ],
                       );
                     }));
