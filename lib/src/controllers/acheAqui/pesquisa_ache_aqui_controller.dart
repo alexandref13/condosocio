@@ -12,6 +12,7 @@ class PesquisaAcheAquiController extends GetxController {
   var pesquisa = TextEditingController().obs;
 
   var id = ''.obs;
+  var wasSearch = false.obs;
 
   var listaPesquisa = <MapaAcheAquiPesquisa>[].obs;
 
@@ -37,6 +38,7 @@ class PesquisaAcheAquiController extends GetxController {
           dados.map((model) => MapaAcheAquiPesquisa.fromJson(model)).toList());
 
       isLoading(false);
+      wasSearch(true);
     }
   }
 }

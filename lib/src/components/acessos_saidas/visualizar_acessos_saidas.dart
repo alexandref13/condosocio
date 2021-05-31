@@ -155,8 +155,6 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                     context)
                                                                 .textSelectionTheme
                                                                 .selectionColor,
-                                                            fontWeight:
-                                                                FontWeight.bold,
                                                           ),
                                                         ),
                                                       ),
@@ -200,6 +198,9 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                               context)
                                                                           .textSelectionTheme
                                                                           .selectionColor,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
                                                                     ),
                                                                   ),
                                                                 ],
@@ -322,8 +323,6 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                     context)
                                                                 .textSelectionTheme
                                                                 .selectionColor,
-                                                            fontWeight:
-                                                                FontWeight.bold,
                                                           ),
                                                         ),
                                                       ),
@@ -367,6 +366,9 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                               context)
                                                                           .textSelectionTheme
                                                                           .selectionColor,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
                                                                     ),
                                                                   ),
                                                                 ],

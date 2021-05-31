@@ -26,6 +26,10 @@ class PesquisaAcheAqui extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextField(
+                              textInputAction: TextInputAction.search,
+                              onSubmitted: (value) {
+                                pesquisaAcheAquiController.acheAquiPesquisa();
+                              },
                               controller:
                                   pesquisaAcheAquiController.pesquisa.value,
                               style: GoogleFonts.montserrat(
@@ -75,91 +79,119 @@ class PesquisaAcheAqui extends StatelessWidget {
                               ),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              pesquisaAcheAquiController.acheAquiPesquisa();
-                            },
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10,
-                              ),
-                              height: 50,
-                              child: Icon(Icons.send, size: 25),
-                            ),
-                          ),
                         ],
                       ),
                     ),
                     Expanded(
                       child: Container(
-                        child: ListView.builder(
-                          itemCount:
-                              pesquisaAcheAquiController.listaPesquisa.length,
-                          itemBuilder: (_, i) {
-                            var pesquisa =
-                                pesquisaAcheAquiController.listaPesquisa[i];
-
-                            return Container(
-                              child: Column(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      if (pesquisa.tipo == 'empresa') {
-                                        acheAquiController.idForm.value =
-                                            pesquisa.id;
-                                        acheAquiController
-                                            .getAcheAquiDetalhes();
-                                      } else {
-                                        acheAquiController.id.value =
-                                            pesquisa.id;
-                                        acheAquiController.getAcheAquiForm();
-                                      }
-                                    },
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      color: Theme.of(context).accentColor,
-                                      child: ListTile(
-                                        title: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 15.0),
-                                          child: Text(
-                                            pesquisa.nome,
-                                            style: GoogleFonts.montserrat(
-                                                fontSize: 14,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor,
-                                                fontWeight: FontWeight.bold),
+                        child: pesquisaAcheAquiController
+                                        .listaPesquisa.length ==
+                                    0 &&
+                                pesquisaAcheAquiController.wasSearch.value ==
+                                    true
+                            ? Stack(
+                                children: <Widget>[
+                                  Container(
+                                    child: Image.asset(
+                                      'images/semregistro.png',
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 100),
+                                          //child: Icon(Icons.block, size: 34, color: Colors.red[900]),
+                                        ),
+                                        Text(
+                                          'Sem registros',
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14.0,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        leading: pesquisa.imgforn != ''
-                                            ? Container(
-                                                width: 50,
-                                                height: 50,
-                                                child: Image(
-                                                  image: NetworkImage(
-                                                      'https://condosocio.com.br/acond/downloads/logofornecedores/${pesquisa.imgforn}'),
-                                                ),
-                                              )
-                                            : null,
-                                        trailing: Icon(
-                                          Icons.arrow_right,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                          size: 30,
-                                        ),
-                                      ),
+                                      ],
                                     ),
                                   )
                                 ],
+                              )
+                            : ListView.builder(
+                                itemCount: pesquisaAcheAquiController
+                                    .listaPesquisa.length,
+                                itemBuilder: (_, i) {
+                                  var pesquisa = pesquisaAcheAquiController
+                                      .listaPesquisa[i];
+
+                                  return Container(
+                                    child: Column(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            if (pesquisa.tipo == 'empresa') {
+                                              acheAquiController.idForm.value =
+                                                  pesquisa.id;
+                                              acheAquiController
+                                                  .getAcheAquiDetalhes();
+                                            } else {
+                                              acheAquiController.id.value =
+                                                  pesquisa.id;
+                                              acheAquiController
+                                                  .getAcheAquiForm();
+                                            }
+                                          },
+                                          child: Card(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                            ),
+                                            color:
+                                                Theme.of(context).accentColor,
+                                            child: ListTile(
+                                              title: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 15.0),
+                                                child: Text(
+                                                  pesquisa.nome,
+                                                  style: GoogleFonts.montserrat(
+                                                      fontSize: 14,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                              leading: pesquisa.imgforn != ''
+                                                  ? Container(
+                                                      width: 50,
+                                                      height: 50,
+                                                      child: Image(
+                                                        image: NetworkImage(
+                                                            'https://condosocio.com.br/acond/downloads/logofornecedores/${pesquisa.imgforn}'),
+                                                      ),
+                                                    )
+                                                  : null,
+                                              trailing: Icon(
+                                                Icons.arrow_right,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor,
+                                                size: 30,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
                               ),
-                            );
-                          },
-                        ),
                       ),
                     ),
                   ],

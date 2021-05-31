@@ -34,22 +34,51 @@ class RespostaOcorrencias extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            width: 1,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 10,
+                        ),
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 6,
+                        ),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Text(
-                              '(${ocorrenciasController.tipo.value})',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Tipo: ',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                                Text(
+                                  ocorrenciasController.tipo.value,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                              ],
                             ),
                             Container(
                               padding: EdgeInsets.only(top: 10),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     'Ocorrido em: ',
@@ -69,7 +98,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                     size: 12,
                                   ),
                                   Text(
-                                      ' ${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}')
+                                      ' ${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}h')
                                 ],
                               ),
                             ),
@@ -661,7 +690,7 @@ class RespostaOcorrencias extends StatelessWidget {
               );
       }),
       bottomSheet: Container(
-        padding: EdgeInsets.only(bottom: 15),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         color: Theme.of(context).primaryColor,
         child: Container(
           decoration: BoxDecoration(

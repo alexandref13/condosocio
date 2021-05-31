@@ -170,6 +170,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                                 Text(
@@ -179,6 +180,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ],
@@ -198,12 +200,11 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 overflow: TextOverflow.ellipsis,
                                                 softWrap: false,
                                                 style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                  fontSize: 14,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -217,20 +218,22 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 Text(
                                                   ocorrencia.dataoco,
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  ),
+                                                      fontSize: 14,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
                                                 Text(
                                                   ocorrencia.horaoco,
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  ),
+                                                      fontSize: 14,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
                                               ],
                                             ),
@@ -321,6 +324,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                                 Text(
@@ -330,6 +334,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ],
@@ -350,12 +355,11 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 overflow: TextOverflow.ellipsis,
                                                 softWrap: false,
                                                 style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                  fontSize: 14,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -373,6 +377,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                                 Text(
@@ -382,6 +387,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ],

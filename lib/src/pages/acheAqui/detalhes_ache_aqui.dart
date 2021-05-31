@@ -314,8 +314,7 @@ class DetalhesAcheAqui extends StatelessWidget {
                                           context,
                                           'Sua avaliação foi enviada com sucesso! Grato pela sua colaboração.',
                                           null);
-                                    }
-                                    if (value == 2) {
+                                    } else if (value == 2) {
                                       confirmedButtonPressed(
                                           context,
                                           "Sua avaliação para essa empresa foi atualizada com sucesso!",
@@ -324,7 +323,7 @@ class DetalhesAcheAqui extends StatelessWidget {
                                       onAlertButtonPressed(
                                           context,
                                           'Algo deu errado\n Tente novamente',
-                                          '/home');
+                                          '/acheAqui');
                                     }
                                   });
                                 },

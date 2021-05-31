@@ -595,7 +595,7 @@ class DetalhesOuvidoria extends StatelessWidget {
       ),
       bottomSheet: Container(
         color: Theme.of(context).primaryColor,
-        padding: EdgeInsets.only(bottom: 15),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),

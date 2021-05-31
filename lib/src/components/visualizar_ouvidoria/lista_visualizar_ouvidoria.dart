@@ -48,6 +48,7 @@ Widget listaVisualizarOuvidoria() {
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -59,6 +60,7 @@ Widget listaVisualizarOuvidoria() {
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -74,7 +76,6 @@ Widget listaVisualizarOuvidoria() {
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
-                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -123,6 +124,7 @@ Widget listaVisualizarOuvidoria() {
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -134,6 +136,7 @@ Widget listaVisualizarOuvidoria() {
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -149,7 +152,6 @@ Widget listaVisualizarOuvidoria() {
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
-                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
