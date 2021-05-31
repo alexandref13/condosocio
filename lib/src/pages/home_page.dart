@@ -417,6 +417,35 @@ class _HomePageState extends State<HomePage> {
                           contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
                           dense: true,
                           title: Text(
+                            'Perfil',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: Icon(
+                            FontAwesome.user_circle,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                            size: 22,
+                          ),
+                          onTap: () {
+                            Get.toNamed('/perfil');
+                          },
+                        ),
+                      ),
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          dense: true,
+                          title: Text(
                             'Senha',
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
@@ -624,10 +653,26 @@ class _HomePageState extends State<HomePage> {
                         color: Theme.of(context).primaryColor,
                       ),
                       Container(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Container(
+                            //color: Color(0xfff5f5f5),
+                            child: Image.asset(
+                              'images/condosocio_logo.png',
+                              width: 80,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        height: 10,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Container(
                         child: Column(
                           children: [
                             Text(
-                              'Versão 7.0 ',
+                              'Versão 7.0.0',
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme

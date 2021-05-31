@@ -25,7 +25,7 @@ class _ComunicadosState extends State<Comunicados> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Comunicados',
+            'Avisos',
             style: GoogleFonts.montserrat(
               fontSize: 16,
               color: Theme.of(context).textSelectionTheme.selectionColor,

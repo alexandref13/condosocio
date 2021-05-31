@@ -360,7 +360,8 @@ class DetalhesEncomendas extends StatelessWidget {
                                             ),
                                           ),
                                           onPressed: () {
-                                            Get.back();
+                                            Get.toNamed('/qrcode');
+                                            /*Get.back();
                                             encomendasController
                                                 .sendEncomendas()
                                                 .then((value) {
@@ -379,7 +380,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                                     'Algo deu errado\n Tente novamente',
                                                     '/home');
                                               }
-                                            });
+                                            });*/
                                           },
                                           width: 80,
                                           color: Theme.of(context).primaryColor,
