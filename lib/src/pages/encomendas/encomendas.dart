@@ -93,7 +93,10 @@ class Encomendas extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  color: Theme.of(context).accentColor,
+                                  color: encomenda.status ==
+                                          'ENTREGA CONFIRMADA PELO APP'
+                                      ? Theme.of(context).buttonColor
+                                      : Theme.of(context).accentColor,
                                   child: ListTile(
                                     title: Row(
                                       mainAxisAlignment:

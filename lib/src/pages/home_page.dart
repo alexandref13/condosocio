@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.red[900],
+                    color: Theme.of(context).accentColor,
                   )),
             ],
           ),
@@ -208,6 +208,7 @@ class _HomePageState extends State<HomePage> {
         _selectedFile = cropped;
         if (cropped != null) {
           uploadImage();
+          Get.back();
         }
       });
     }
@@ -310,7 +311,10 @@ class _HomePageState extends State<HomePage> {
                             getImageWidget(),
                             Container(
                               child: Text(
-                                '${loginController.nome.value}',
+                                loginController.nome.value,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: false,
                                 style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme

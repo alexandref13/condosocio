@@ -144,6 +144,10 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                             0.25,
                                                         child: Text(
                                                           acessos.nome,
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          softWrap: false,
                                                           style: GoogleFonts
                                                               .montserrat(
                                                             fontSize: 12,
@@ -307,6 +311,10 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                             0.25,
                                                         child: Text(
                                                           acessos.nome,
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          softWrap: false,
                                                           style: GoogleFonts
                                                               .montserrat(
                                                             fontSize: 12,

@@ -34,26 +34,11 @@ class AdicionaDependentes extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Text(
-                        'Nome: ',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
+                      height: 15,
                     ),
                     customTextField(
                       context,
-                      null,
+                      'Nome',
                       null,
                       false,
                       1,
@@ -61,26 +46,11 @@ class AdicionaDependentes extends StatelessWidget {
                       dependentesController.nome.value,
                     ),
                     SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Text(
-                        'Sobrenome: ',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
+                      height: 15,
                     ),
                     customTextField(
                       context,
-                      null,
+                      'Sobrenome',
                       null,
                       false,
                       1,
@@ -88,26 +58,11 @@ class AdicionaDependentes extends StatelessWidget {
                       dependentesController.sobrenome.value,
                     ),
                     SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Text(
-                        'Email: ',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
+                      height: 15,
                     ),
                     customTextField(
                       context,
-                      null,
+                      'Email',
                       null,
                       false,
                       1,
@@ -115,22 +70,7 @@ class AdicionaDependentes extends StatelessWidget {
                       dependentesController.email.value,
                     ),
                     SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Text(
-                        'Gênero: ',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
+                      height: 15,
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 7),
@@ -198,13 +138,15 @@ class AdicionaDependentes extends StatelessWidget {
                         onPressed: () {
                           dependentesController.sendDependentes().then(
                             (value) {
-                              print({loginController.id.value, value});
                               if (value == 1) {
                                 dependentesController.getDependentes();
                                 confirmedButtonPressed(
                                   context,
                                   'Dependente foi incluido com sucesso!\n Mandamos um e-mail para a definição de senha',
                                 );
+                              } else if (value == 'vazio') {
+                                onAlertButtonPressed(context,
+                                    'Todos os campos são obrigatórios');
                               } else if (value == 0) {
                                 onAlertButtonPressed(
                                   context,
@@ -224,7 +166,6 @@ class AdicionaDependentes extends StatelessWidget {
                             },
                             dependentesController.nome.value.text = '',
                             dependentesController.email.value.text = '',
-                            dependentesController.genero.value.text = '',
                             dependentesController.sobrenome.value.text = '',
                           );
                         },
@@ -279,7 +220,7 @@ class AdicionaDependentes extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Get.toNamed('/home');
+            Get.offNamed('/home');
           },
           width: 80,
           color: Theme.of(context).errorColor,

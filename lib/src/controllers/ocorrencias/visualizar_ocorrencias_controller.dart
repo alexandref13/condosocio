@@ -50,6 +50,7 @@ class VisualizarOcorrenciasController extends GetxController {
   Future<void> getOcorrencias() async {
     isLoading(true);
     var response = await ApiOcorrencias.getOcorrencias();
+
     Iterable lista = json.decode(response.body);
     ocorrencias.value =
         lista.map((model) => MapaOcorrencias.fromJson(model)).toList();

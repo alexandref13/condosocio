@@ -107,6 +107,9 @@ class VisualizarConviteWidget extends StatelessWidget {
                                           child: ListTile(
                                             title: Text(
                                               convites.titulo,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              softWrap: false,
                                               style: GoogleFonts.montserrat(
                                                 fontSize: 14,
                                                 color: Theme.of(context)
@@ -192,6 +195,9 @@ class VisualizarConviteWidget extends StatelessWidget {
                                           child: ListTile(
                                             title: Text(
                                               convites.titulo,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              softWrap: false,
                                               style: GoogleFonts.montserrat(
                                                 fontSize: 14,
                                                 color: Theme.of(context)

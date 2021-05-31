@@ -46,9 +46,8 @@ class _PerfilState extends State<Perfil> {
                     ),
                   ),
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.red[900],
-                  )),
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).accentColor)),
             ],
           ),
           width: 70,
@@ -154,6 +153,7 @@ class _PerfilState extends State<Perfil> {
         _selectedFile = cropped;
         if (cropped != null) {
           uploadImage();
+          Get.back();
         }
       });
     }
@@ -188,6 +188,7 @@ class _PerfilState extends State<Perfil> {
         context: context,
         builder: (BuildContext bc) {
           return Container(
+            color: Theme.of(context).accentColor,
             padding: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[
@@ -200,67 +201,43 @@ class _PerfilState extends State<Perfil> {
                 ))),
                 Divider(
                   height: 20,
-                  color: Colors.blueGrey,
+                  color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
                 ListTile(
                     leading: new Icon(
                       Icons.camera_alt,
-                      color: Colors.blueGrey,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
                     ),
                     title: new Text('Câmera'),
                     trailing: new Icon(
                       Icons.arrow_right,
-                      color: Colors.blueGrey,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
                     ),
                     onTap: () => {getImage(ImageSource.camera)}),
                 Divider(
                   height: 20,
-                  color: Colors.blueGrey,
+                  color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
                 ListTile(
-                    leading:
-                        new Icon(Icons.collections, color: Colors.blueGrey),
+                    leading: new Icon(Icons.collections,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor),
                     title: new Text('Galeria de Fotos'),
-                    trailing:
-                        new Icon(Icons.arrow_right, color: Colors.blueGrey),
+                    trailing: new Icon(Icons.arrow_right,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor),
                     onTap: () => {getImage(ImageSource.gallery)}),
                 Divider(
                   height: 20,
-                  color: Colors.blueGrey,
+                  color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                            return Colors.blueGrey;
-                          },
-                        ),
-                        shape:
-                            MaterialStateProperty.resolveWith<OutlinedBorder>(
-                          (Set<MaterialState> states) {
-                            return RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            );
-                          },
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        "Cancelar",
-                        style: GoogleFonts.montserrat(
-                            color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
+                SizedBox(
+                  height: 15,
+                )
               ],
             ),
           );
@@ -301,41 +278,31 @@ class _PerfilState extends State<Perfil> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Text(
-                                  'Alterar foto de perfil',
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 14,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
+                              GestureDetector(
+                                onTap: () {
+                                  _configurandoModalBottomSheet(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2),
+                                  child: Text(
+                                    'Alterar foto de perfil',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
                           SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(2),
-                            child: Text(
-                              'Nome: ',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
+                            height: 15,
                           ),
                           customTextField(
                             context,
-                            null,
+                            'Nome',
                             null,
                             false,
                             1,
@@ -343,26 +310,11 @@ class _PerfilState extends State<Perfil> {
                             perfilController.name.value,
                           ),
                           SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(2),
-                            child: Text(
-                              'Sobrenome: ',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
+                            height: 15,
                           ),
                           customTextField(
                             context,
-                            null,
+                            'Sobrenome',
                             null,
                             false,
                             1,
@@ -370,22 +322,7 @@ class _PerfilState extends State<Perfil> {
                             perfilController.secondName.value,
                           ),
                           SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(2),
-                            child: Text(
-                              'Data de aniversário: ',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
+                            height: 15,
                           ),
                           TextField(
                             keyboardType: TextInputType.number,
@@ -409,6 +346,13 @@ class _PerfilState extends State<Perfil> {
                                   width: 1,
                                 ),
                               ),
+                              labelText: 'Data de aniversário',
+                              labelStyle: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
                               isDense: true,
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -431,22 +375,7 @@ class _PerfilState extends State<Perfil> {
                             ),
                           ),
                           SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(2),
-                            child: Text(
-                              'Celular: ',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
+                            height: 15,
                           ),
                           TextField(
                             keyboardType: TextInputType.number,
@@ -469,6 +398,13 @@ class _PerfilState extends State<Perfil> {
                                       .selectionColor,
                                   width: 1,
                                 ),
+                              ),
+                              labelText: 'Celular',
+                              labelStyle: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
                               ),
                               isDense: true,
                               focusedBorder: OutlineInputBorder(

@@ -64,7 +64,6 @@ class VisualizarOcorrencias extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              padding: EdgeInsets.only(left: 15),
                               child: Text(
                                 'CRIADO',
                                 style: GoogleFonts.montserrat(
@@ -84,8 +83,16 @@ class VisualizarOcorrencias extends StatelessWidget {
                                     .selectionColor,
                               ),
                             ),
+                            Text(
+                              'OCORRÊNCIA',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 16.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
                             Container(
-                              padding: EdgeInsets.only(right: 15),
                               child: Text(
                                 'STATUS',
                                 style: GoogleFonts.montserrat(
@@ -115,6 +122,8 @@ class VisualizarOcorrencias extends StatelessWidget {
                                       ocorrenciasController.searchResult[index];
                                   return GestureDetector(
                                     onTap: () {
+                                      ocorrenciasController.idoco.value =
+                                          ocorrencia.id;
                                       ocorrenciasController.data.value =
                                           ocorrencia.data;
                                       ocorrenciasController.tipo.value =
@@ -131,13 +140,10 @@ class VisualizarOcorrencias extends StatelessWidget {
                                           ocorrencia.status;
                                       ocorrenciasController.descricao.value =
                                           ocorrencia.desc;
-                                      ocorrenciasModalBottomSheet(
-                                        context,
-                                        ocorrencia.titulo,
-                                        ocorrencia.data,
-                                        ocorrencia.hora,
-                                        ocorrencia.status,
-                                      );
+                                      ocorrenciasController.imagem.value =
+                                          ocorrencia.imgoco;
+
+                                      Get.toNamed('/respostaOcorrencia');
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -188,6 +194,9 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                   0.25,
                                               child: Text(
                                                 ocorrencia.titulo,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                softWrap: false,
                                                 style: GoogleFonts.montserrat(
                                                     fontSize: 14,
                                                     color: Theme.of(context)
@@ -337,6 +346,9 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                   0.25,
                                               child: Text(
                                                 ocorrencia.titulo,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                softWrap: false,
                                                 style: GoogleFonts.montserrat(
                                                     fontSize: 14,
                                                     color: Theme.of(context)

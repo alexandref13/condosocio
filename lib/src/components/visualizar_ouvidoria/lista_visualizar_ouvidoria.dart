@@ -66,6 +66,9 @@ Widget listaVisualizarOuvidoria() {
                             width: MediaQuery.of(context).size.width * 0.26,
                             child: Text(
                               ouvidoria.assunto,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: false,
                               style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: Theme.of(context)
@@ -138,6 +141,9 @@ Widget listaVisualizarOuvidoria() {
                             width: MediaQuery.of(context).size.width * 0.26,
                             child: Text(
                               ouvidoria.assunto,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: false,
                               style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: Theme.of(context)

@@ -10,7 +10,6 @@ class DependentesController extends GetxController {
   var nome = TextEditingController().obs;
   var sobrenome = TextEditingController().obs;
   var email = TextEditingController().obs;
-  var genero = TextEditingController().obs;
 
   var idep = ''.obs;
   var status = ''.obs;
@@ -22,10 +21,11 @@ class DependentesController extends GetxController {
 
   var firstId = '0'.obs;
   var tipos = [
+    'Selecione o gênero',
     'Masculino',
     'Feminino',
   ];
-  var itemSelecionado = 'Masculino'.obs;
+  var itemSelecionado = 'Selecione o gênero'.obs;
 
   onSearchTextChanged(String text) {
     searchResult.clear();
@@ -41,6 +41,12 @@ class DependentesController extends GetxController {
   }
 
   sendDependentes() async {
+    if (nome.value.text == '' ||
+        sobrenome.value.text == '' ||
+        email.value.text == '' ||
+        itemSelecionado.value == 'Selecione o gênero') {
+      return 'vazio';
+    }
     isLoading(true);
 
     var response = await ApiDependentes.sendDependentes();

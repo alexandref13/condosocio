@@ -90,19 +90,18 @@ Widget listaVisualizarAcessos() {
                                   ],
                                 ),
                               ),
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.25,
-                                  child: Text(
-                                    search.pessoa,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
-                                    ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Text(
+                                  search.pessoa,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: false,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                               ),
@@ -252,20 +251,19 @@ Widget listaVisualizarAcessos() {
                                   ],
                                 ),
                               ),
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.25,
-                                  child: Text(
-                                    visualizarAcessosController
-                                        .acessos[index].pessoa,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
-                                    ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Text(
+                                  visualizarAcessosController
+                                      .acessos[index].pessoa,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: false,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
                                   ),
                                 ),
                               ),

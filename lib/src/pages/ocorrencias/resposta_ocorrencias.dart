@@ -78,7 +78,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                     padding: EdgeInsets.only(top: 10),
                                     child: InkWell(
                                       onTap: () {
-                                        Get.toNamed('/fotoOcorrencia  ');
+                                        Get.toNamed('/fotoOcorrencia');
                                       },
                                       child: Ink.image(
                                         image: NetworkImage(

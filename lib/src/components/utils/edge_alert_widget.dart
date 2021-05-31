@@ -6,7 +6,7 @@ edgeAlertWidget(context, String title) {
     context,
     title: title,
     gravity: EdgeAlert.BOTTOM,
-    backgroundColor: Theme.of(context).accentColor,
+    backgroundColor: Colors.green,
     icon: Icons.done,
   );
 }
