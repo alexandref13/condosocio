@@ -39,6 +39,7 @@ import 'package:condosocio/src/pages/ouvidoria/ouvidoria.dart';
 import 'package:condosocio/src/pages/ouvidoria/detalhes_ouvidoria.dart';
 import 'package:condosocio/src/pages/perfil.dart';
 import 'package:condosocio/src/pages/reservas/reserva.dart';
+import 'package:condosocio/src/pages/encomendas/qrcode.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
 import 'package:condosocio/src/themes/themes.dart';
@@ -115,6 +116,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/pesquisarAcheAqui', page: () => PesquisaAcheAqui()),
         GetPage(name: '/encomendas', page: () => Encomendas()),
         GetPage(name: '/detalhesEncomendas', page: () => DetalhesEncomendas()),
+        GetPage(name: '/qrcode', page: () => QrCode()),
       ],
     );
   }

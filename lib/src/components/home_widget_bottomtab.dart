@@ -73,7 +73,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed('/perfil');
+                          Get.toNamed('/comunicados');
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -95,7 +95,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    Icons.person_outline,
+                                    FontAwesome.comment_o,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -103,7 +103,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   ),
                                 ),
                                 Text(
-                                  "Perfil",
+                                  "Avisos",
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -224,7 +224,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.calendar_o,
+                                    Icons.date_range_outlined,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -267,8 +267,8 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.comment_o,
-                                    size: 35,
+                                    Icons.campaign_outlined,
+                                    size: 40,
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
@@ -310,7 +310,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.file_o,
+                                    Icons.file_copy_outlined,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -353,7 +353,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.comments_o,
+                                    Icons.ballot_outlined,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -436,7 +436,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.cart_plus,
+                                    Icons.shopping_cart_outlined,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -530,7 +530,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   ),
                                 ),
                                 Text(
-                                  "Ouvidoria",
+                                  "Perfil",
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme

@@ -253,7 +253,7 @@ class VotarEnquete extends StatelessWidget {
                                       ),
                                       onPressed: () {
                                         confirmedVote(
-                                          'Deseja realmente votar em enquetesController.enquete[0][perguntas][enquetesController.index.value]}',
+                                          'Deseja realmente votar em (${enquetes.perguntas[i]})',
                                           () {
                                             enquetesController.votarEnquete();
                                           },
@@ -300,12 +300,14 @@ class VotarEnquete extends StatelessWidget {
                               : Container(),
                           enquetes.verificavoto != 'Não Votou'
                               ? Container(
+                                  alignment: Alignment.center,
                                   margin: EdgeInsets.symmetric(
                                       vertical: 20, horizontal: 10),
                                   child: Text(
-                                    'Obrigado pela sua participação',
+                                    'Obrigado Pela Sua Participação!',
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 12,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -313,6 +315,18 @@ class VotarEnquete extends StatelessWidget {
                                   ),
                                 )
                               : Container(),
+                          Container(
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: Container(
+                                //color: Color(0xfff5f5f5),
+                                child: Image.asset(
+                                  'images/enquete.png',
+                                  height: 330,
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       );
                     }));
