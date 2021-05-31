@@ -253,7 +253,7 @@ class VotarEnquete extends StatelessWidget {
                                       ),
                                       onPressed: () {
                                         confirmedVote(
-                                          'Deseja realmente votar em enquetesController.enquete[0][perguntas][enquetesController.index.value]}',
+                                          'Deseja realmente votar em (${enquetes.perguntas[i]})',
                                           () {
                                             enquetesController.votarEnquete();
                                           },
@@ -315,6 +315,18 @@ class VotarEnquete extends StatelessWidget {
                                   ),
                                 )
                               : Container(),
+                          Container(
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: Container(
+                                //color: Color(0xfff5f5f5),
+                                child: Image.asset(
+                                  'images/enquete.png',
+                                  height: 330,
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       );
                     }));
