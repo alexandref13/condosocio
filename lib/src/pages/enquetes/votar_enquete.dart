@@ -300,12 +300,14 @@ class VotarEnquete extends StatelessWidget {
                               : Container(),
                           enquetes.verificavoto != 'Não Votou'
                               ? Container(
+                                  alignment: Alignment.center,
                                   margin: EdgeInsets.symmetric(
                                       vertical: 20, horizontal: 10),
                                   child: Text(
-                                    'Obrigado pela sua participação',
+                                    'Obrigado Pela Sua Participação!',
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 12,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
