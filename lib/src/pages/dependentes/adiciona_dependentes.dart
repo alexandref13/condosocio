@@ -1,6 +1,5 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
-import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +13,6 @@ class AdicionaDependentes extends StatelessWidget {
   Widget build(BuildContext context) {
     DependentesController dependentesController =
         Get.put(DependentesController());
-
-    LoginController loginController = Get.put(LoginController());
 
     void dropDownFavoriteSelected(String novoItem) {
       dependentesController.firstId.value = novoItem;

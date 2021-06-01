@@ -132,14 +132,16 @@ class _SenhaState extends State<Senha> {
                                           .then((value) {
                                         if (value == 1) {
                                           confirmedButtonPressed(
-                                              context,
-                                              "Enviamos um e-mail para a redefinição de senha.",
-                                              '/home');
+                                            context,
+                                            "Enviamos um e-mail para a redefinição de senha.",
+                                            null,
+                                          );
                                         } else {
                                           onAlertButtonPressed(
-                                              context,
-                                              "E-mail não existe em nosso banco de dados!Tente novamente.",
-                                              '/home');
+                                            context,
+                                            "E-mail não existe em nosso banco de dados!Tente novamente.",
+                                            null,
+                                          );
                                         }
                                       });
                                     }

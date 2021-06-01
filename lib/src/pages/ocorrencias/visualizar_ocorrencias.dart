@@ -1,6 +1,5 @@
 import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/components/visualizar_ocorrencias/modal_bottom_sheet.dart';
 import 'package:condosocio/src/controllers/ocorrencias/visualizar_ocorrencias_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

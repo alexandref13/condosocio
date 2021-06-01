@@ -377,7 +377,9 @@ class Login extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(10),
                                     )),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.toNamed('/senha');
+                                  },
                                   child: Text(
                                     "Esqueceu a senha?",
                                     style: GoogleFonts.montserrat(

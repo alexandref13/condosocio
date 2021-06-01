@@ -1,5 +1,6 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
+import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
@@ -34,7 +35,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
     }
 
     return Obx(() {
-      return convitesController.isLoading.value
+      return convitesController.isLoading.value ||
+              acessosController.isLoading.value
           ? CircularProgressIndicatorWidget()
           : SingleChildScrollView(
               child: Container(
@@ -938,9 +940,12 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 children: [
                                   Container(
                                     width:
-                                        MediaQuery.of(context).size.width * .55,
+                                        MediaQuery.of(context).size.width * .44,
                                     child: Text(
                                       convitesController.guestList[i]['nome'],
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: false,
                                       style: GoogleFonts.montserrat(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
@@ -982,6 +987,42 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            convitesController.guestList[i]['idfav'] != null
+                                ? IconButton(
+                                    icon: Icon(
+                                      Icons.delete_outline,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    ),
+                                    onPressed: () {
+                                      acessosController.firstId.value =
+                                          convitesController.guestList[i]
+                                              ['idfav'];
+
+                                      acessosController
+                                          .deleteFav()
+                                          .then((value) {
+                                        convitesController.guestList
+                                            .removeAt(i);
+                                        print('value $value');
+                                        if (value == 1) {
+                                          confirmedButtonPressed(
+                                            context,
+                                            'Favorito deletado!',
+                                            '/convites',
+                                          );
+                                        } else {
+                                          onAlertButtonPressed(
+                                            context,
+                                            'Algo deu errado\n Tente novamente',
+                                            '/home',
+                                          );
+                                        }
+                                      });
+                                    },
+                                  )
+                                : Container(),
                             IconButton(
                               icon: Icon(
                                 Icons.close,

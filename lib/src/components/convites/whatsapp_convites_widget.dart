@@ -53,7 +53,6 @@ class WhatsAppConvitesWidget extends StatelessWidget {
               ),
               child: TextField(
                 keyboardType: TextInputType.number,
-                maxLength: 11,
                 controller: visualizarConvitesController.whatsappNumber.value,
                 style: GoogleFonts.montserrat(
                   fontSize: 14,

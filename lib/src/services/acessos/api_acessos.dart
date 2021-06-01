@@ -48,10 +48,13 @@ class ApiAcessos {
 
   static Future getAFavorite() async {
     AcessosController acessosController = Get.put(AcessosController());
-    return await http.get(Uri.https(
+    return await http.get(
+      Uri.https(
         'www.condosocio.com.br',
         '/flutter/favorito_escolhido.php',
-        {"idfav": acessosController.firstId.value}));
+        {"idfav": acessosController.firstId.value},
+      ),
+    );
   }
 
   static Future deleteFav() async {

@@ -79,6 +79,9 @@ class AcessosController extends GetxController {
     isLoading(true);
     final response = await ApiAcessos.deleteFav();
     var dados = json.decode(response.body);
+    itemSelecionado.value = 'Selecione o tipo de visitante';
+    firstId.value = '0';
+    getFavoritos();
     isLoading(false);
     return dados;
   }

@@ -15,13 +15,14 @@ class _QrCodeState extends State<QrCode> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-        'Teste QR Code',
-        style: GoogleFonts.montserrat(
-          fontSize: 16,
-          color: Theme.of(context).textSelectionTheme.selectionColor,
+        title: Text(
+          'Teste QR Code',
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
         ),
-      )),
+      ),
     );
   }
 }
