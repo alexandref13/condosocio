@@ -358,7 +358,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                             ),
                                           ),
                                           onPressed: () {
-                                            Get.toNamed('/qrcode');
+                                            Get.toNamed('/qrCode');
                                             /*Get.back();
                                             encomendasController
                                                 .sendEncomendas()

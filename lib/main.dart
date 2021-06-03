@@ -121,7 +121,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/pesquisarAcheAqui', page: () => PesquisaAcheAqui()),
         GetPage(name: '/encomendas', page: () => Encomendas()),
         GetPage(name: '/detalhesEncomendas', page: () => DetalhesEncomendas()),
-        GetPage(name: '/qrcode', page: () => QrCode()),
+        GetPage(name: '/qrCode', page: () => QrCode()),
       ],
     );
   }
