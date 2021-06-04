@@ -8,6 +8,7 @@ class MapaEncomendas {
   String admCriador;
   String dataCriada;
   String admEntrega;
+  String idcript;
   String dataEntrega;
 
   MapaEncomendas(
@@ -20,6 +21,7 @@ class MapaEncomendas {
       this.admCriador,
       this.dataCriada,
       this.admEntrega,
+      this.idcript,
       this.dataEntrega});
 
   MapaEncomendas.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class MapaEncomendas {
     admCriador = json['adm_criador'];
     dataCriada = json['data_criada'];
     admEntrega = json['adm_entrega'];
+    idcript = json['idcript'];
     dataEntrega = json['data_entrega'];
   }
 
@@ -46,6 +49,7 @@ class MapaEncomendas {
     data['adm_criador'] = this.admCriador;
     data['data_criada'] = this.dataCriada;
     data['adm_entrega'] = this.admEntrega;
+    data['idcript'] = this.idcript;
     data['data_entrega'] = this.dataEntrega;
     return data;
   }

@@ -17,6 +17,7 @@ class EncomendasController extends GetxController {
   var admCriador = ''.obs;
   var dataCriada = ''.obs;
   var admEntrega = ''.obs;
+  var idcript = ''.obs;
   var dataEntrega = ''.obs;
 
   getEncomendas() async {
