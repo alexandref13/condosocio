@@ -8,6 +8,7 @@ class VotarEnqueteController extends GetxController {
   var enquete = <MapaVotarEnquetes>[].obs;
 
   var index = 0.obs;
+  var i = 0.obs;
 
   var isLoading = true.obs;
   var isChecked = false.obs;
