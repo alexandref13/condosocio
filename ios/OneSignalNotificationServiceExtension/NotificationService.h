@@ -2,7 +2,7 @@
 //  NotificationService.h
 //  OneSignalNotificationServiceExtension
 //
-//  Created by Alexandre Rocha on 28/04/21.
+//  Created by Alexandre Rocha on 04/06/21.
 //
 
 #import <UserNotifications/UserNotifications.h>

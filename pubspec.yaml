@@ -49,6 +49,7 @@ dependencies:
   url_launcher: ^6.0.2
   flutter_speed_dial: ^3.0.5
   onesignal_flutter: ^2.6.3
+  qr_flutter: ^4.0.0
  
 dev_dependencies:
   flutter_test:
