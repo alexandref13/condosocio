@@ -7,8 +7,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarAcessosController extends GetxController {
   var acessos = <MapaAcessos>[].obs;
-  var search = TextEditingController().obs;
   var isLoading = true.obs;
+  var search = TextEditingController().obs;
   var searchResult = [].obs;
   var fav = false.obs;
 
