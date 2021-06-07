@@ -25,9 +25,9 @@ class EncomendasController extends GetxController {
 
     var response = await ApiEncomendas.getEncomendas();
 
-    var lista = json.decode(response.body);
+    // var lista = json.decode(response.body);
 
-    print(lista);
+    // print(lista);
 
     Iterable dados = json.decode(response.body);
 

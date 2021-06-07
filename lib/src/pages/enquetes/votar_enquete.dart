@@ -129,7 +129,10 @@ class VotarEnquete extends StatelessWidget {
                               ),
                             ),
                           ),
-                          for (var i = 0; i < enquetes.qdtperguntas; i++)
+                          for (enquetesController.i.value = 0;
+                              enquetesController.i.value <
+                                  enquetes.qdtperguntas;
+                              enquetesController.i.value++)
                             Container(
                               child: GestureDetector(
                                 onTap: () {},
@@ -164,7 +167,8 @@ class VotarEnquete extends StatelessWidget {
                                                     ),
                                                   ),
                                                   Radio(
-                                                    value: i,
+                                                    value: enquetesController
+                                                        .i.value,
                                                     onChanged: (value) {
                                                       enquetesController
                                                           .index.value = value;
