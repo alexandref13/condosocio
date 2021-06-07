@@ -6,6 +6,8 @@ import 'package:condosocio/src/pages/acheAqui/ache_aqui_form.dart';
 import 'package:condosocio/src/pages/acheAqui/empresa_ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/lista_ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/pesquisa_ache_aqui.dart';
+import 'package:condosocio/src/pages/avisos/avisos.dart';
+import 'package:condosocio/src/pages/avisos/detalhes_avisos.dart';
 import 'package:condosocio/src/pages/encomendas/detalhes_encomendas.dart';
 import 'package:condosocio/src/pages/encomendas/encomendas.dart';
 import 'package:condosocio/src/pages/enquetes/enquetes.dart';
@@ -23,7 +25,6 @@ import 'package:condosocio/src/pages/senha.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
 import 'package:condosocio/src/pages/comunicados/comunicados.dart';
 import 'package:condosocio/src/pages/convites.dart';
-import 'package:condosocio/src/pages/comunicados/detalhes_comunicados.dart';
 import 'package:condosocio/src/pages/documento.dart';
 import 'package:condosocio/src/pages/documentos_pages/ata_documentos.dart';
 import 'package:condosocio/src/pages/documentos_pages/contratos_documentos.dart';
@@ -78,7 +79,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/senha', page: () => Senha()),
         GetPage(name: '/perfil', page: () => Perfil()),
         GetPage(name: '/comunicados', page: () => Comunicados()),
-        GetPage(name: '/detalhes', page: () => DetalhesComunicados()),
+
         GetPage(name: '/sobre', page: () => Sobre()),
         GetPage(name: '/ouvidoria', page: () => Ouvidoria()),
         GetPage(name: '/ocorrencias', page: () => Ocorrencias()),
@@ -122,6 +123,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/encomendas', page: () => Encomendas()),
         GetPage(name: '/detalhesEncomendas', page: () => DetalhesEncomendas()),
         GetPage(name: '/qrCode', page: () => QrCode()),
+        GetPage(name: '/avisos', page: () => Avisos()),
+        GetPage(name: '/detalhesaviso', page: () => DetalhesAvisos()),
+
       ],
     );
   }

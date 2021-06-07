@@ -68,6 +68,8 @@ class Encomendas extends StatelessWidget {
                                 onTap: () {
                                   encomendasController.id.value =
                                       encomenda.idenc;
+                                      encomendasController.idcript.value =
+                                      encomenda.idcript;
                                   encomendasController.codigo.value =
                                       encomenda.codigo;
                                   encomendasController.tipo.value =
@@ -93,8 +95,8 @@ class Encomendas extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  color: encomenda.status ==
-                                          'ENTREGA CONFIRMADA PELO APP'
+                                  color:
+                                      encomenda.status != 'PRONTO PRA RETIRADA'
                                       ? Theme.of(context).buttonColor
                                       : Theme.of(context).accentColor,
                                   child: ListTile(

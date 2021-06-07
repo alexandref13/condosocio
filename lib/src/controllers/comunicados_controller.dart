@@ -6,10 +6,9 @@ import 'package:get/get.dart';
 class ComunicadosController extends GetxController {
   List<DadosComunicados> comunicados;
   var titulo = ''.obs;
-  var texto = ''.obs;
+  var arquivo = ''.obs;
   var dia = ''.obs;
   var mes = ''.obs;
-  var hora = ''.obs;
   var isLoading = true.obs;
 
   void getComunicados() {

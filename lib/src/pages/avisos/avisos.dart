@@ -1,40 +1,22 @@
+import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/controllers/comunicados_controller.dart';
+import 'package:condosocio/src/controllers/avisos_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class Comunicados extends StatefulWidget {
+class Avisos extends StatefulWidget {
   @override
-  _ComunicadosState createState() => _ComunicadosState();
+  _AvisosState createState() => _AvisosState();
 }
 
-class _ComunicadosState extends State<Comunicados> {
-
-  ComunicadosController comunicadosController =
-      Get.put(ComunicadosController());
-
-
-  Future<void> launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
+class _AvisosState extends State<Avisos> {
+  AvisosController avisosController = Get.put(AvisosController());
 
   @override
   void initState() {
     super.initState();
-    comunicadosController.getComunicados();
+    avisosController.getAvisos();
   }
 
   @override
@@ -43,7 +25,7 @@ class _ComunicadosState extends State<Comunicados> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Comunicados',
+            'Avisos',
             style: GoogleFonts.montserrat(
               fontSize: 16,
               color: Theme.of(context).textSelectionTheme.selectionColor,
@@ -53,17 +35,25 @@ class _ComunicadosState extends State<Comunicados> {
         ),
         body: Obx(
           () {
-            return comunicadosController.isLoading.value
+            return avisosController.isLoading.value
                 ? CircularProgressIndicatorWidget()
-                : _listaComunicados();
+                : Column(
+                    children: [
+                      boxSearch(context, avisosController.search.value,
+                          avisosController.onSearchTextChanged),
+                      Expanded(
+                        child: _listaavisos(),
+                      )
+                    ],
+                  );
           },
         ),
       ),
     );
   }
 
-  _listaComunicados() {
-    if (comunicadosController.comunicados.length == 0) {
+  _listaavisos() {
+    if (avisosController.avisos.length == 0) {
       return Stack(
         children: <Widget>[
           Container(
@@ -107,20 +97,17 @@ class _ComunicadosState extends State<Comunicados> {
                   ),
                   height: MediaQuery.of(context).size.height,
                   child: ListView.builder(
-                      itemCount: comunicadosController.comunicados.length,
+                      itemCount: avisosController.avisos.length,
                       itemBuilder: (context, index) {
-                        var comunicados =
-                            comunicadosController.comunicados[index];
+                        var avisos = avisosController.avisos[index];
                         return GestureDetector(
                           onTap: () {
-                           /* comunicadosController.titulo.value =
-                                comunicados.titulo;
-                            comunicadosController.arquivo.value =
-                                comunicados.texto;
-                            comunicadosController.dia.value = comunicados.dia;
-                            comunicadosController.mes.value = comunicados.mes;
-                            
-                            Get.toNamed('/detalhes');*/
+                            avisosController.titulo.value = avisos.titulo;
+                            avisosController.texto.value = avisos.texto;
+                            avisosController.dia.value = avisos.dia;
+                            avisosController.mes.value = avisos.mes;
+                            avisosController.hora.value = avisos.hora;
+                            Get.toNamed('/detalhesaviso');
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -134,16 +121,16 @@ class _ComunicadosState extends State<Comunicados> {
                                       fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                            .selectionColor
+                                          .selectionColor,
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                          text: comunicados.dia + "  ",
+                                          text: avisos.dia + "  ",
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold)),
                                       TextSpan(
-                                        text: comunicados.mes,
+                                        text: avisos.mes,
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14,
                                             color: Theme.of(context)
@@ -156,7 +143,7 @@ class _ComunicadosState extends State<Comunicados> {
                                 ),
                                 title: Container(
                                   child: Text(
-                                    comunicados.titulo,
+                                    avisos.titulo,
                                     style: GoogleFonts.montserrat(
                                         fontSize: 12,
                                         color: Theme.of(context)
@@ -165,16 +152,12 @@ class _ComunicadosState extends State<Comunicados> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                                trailing: IconButton(
-                                  icon: Icon(Feather.download),
+                                trailing: Icon(
+                                  Icons.arrow_right,
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
-                                        iconSize: 30,
-                                  onPressed: () {
-                                    launchInBrowser(
-                                        "https://condosocio.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
-                                  },
+                                  size: 30,
                                 )),
                           ),
                         );

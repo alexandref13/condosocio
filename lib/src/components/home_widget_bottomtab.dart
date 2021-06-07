@@ -73,7 +73,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed('/comunicados');
+                          Get.toNamed('/avisos');
                         },
                         child: Container(
                             decoration: BoxDecoration(

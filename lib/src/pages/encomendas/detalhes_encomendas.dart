@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+
 
 class DetalhesEncomendas extends StatelessWidget {
   final EncomendasController encomendasController =
@@ -257,7 +257,7 @@ class DetalhesEncomendas extends StatelessWidget {
                           ? Container(
                               margin: EdgeInsets.all(20),
                               child: Text(
-                                'Entrega na adminstração por',
+                                'Entrega na adm realizada por:',
                                 style: GoogleFonts.montserrat(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -306,7 +306,8 @@ class DetalhesEncomendas extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    Alert(
+                                     Get.toNamed('/qrCode');
+                                    /* Alert(
                                       image: Icon(
                                         Icons.highlight_off,
                                         color: Colors.yellowAccent,
@@ -384,16 +385,16 @@ class DetalhesEncomendas extends StatelessWidget {
                                           color: Theme.of(context).primaryColor,
                                         )
                                       ],
-                                    ).show();
+                                    ).show();*/
                                   },
-                                  child: Text(
-                                    "RECEBER ENCOMENDA",
+                                   child: Text(
+                                     'Receber Encomenda',
                                     style: GoogleFonts.montserrat(
-                                      color: Theme.of(context)
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
-                                      fontSize: 14,
-                                    ),
+                              ),
                                   ),
                                 ),
                               ),

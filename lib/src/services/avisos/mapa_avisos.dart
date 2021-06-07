@@ -1,22 +1,22 @@
-class DadosComunicados {
+class DadosAvisos {
   String titulo;
-  String arquivo;
+  String texto;
   String dia;
   String mes;
   String hora;
 
-  DadosComunicados(
-      String titulo, String arquivo, String dia, String mes, String hora) {
+  DadosAvisos(
+      String titulo, String texto, String dia, String mes, String hora) {
     this.titulo = titulo;
-    this.arquivo = arquivo;
+    this.texto = texto;
     this.dia = dia;
     this.mes = mes;
     this.hora = hora;
   }
 
-  DadosComunicados.fromJson(Map json) {
+  DadosAvisos.fromJson(Map json) {
     titulo = json['titulo'];
-    arquivo = json['arquivo'];
+    texto = json['texto'];
     dia = json['dia'];
     mes = json['mes'];
     hora = json['hora'];

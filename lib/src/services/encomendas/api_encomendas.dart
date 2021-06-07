@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 class ApiEncomendas {
   static Future getEncomendas() async {
     LoginController loginController = Get.put(LoginController());
-
     print(loginController.id.value);
 
     return await http.post(
