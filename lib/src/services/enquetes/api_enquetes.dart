@@ -35,12 +35,10 @@ class ApiEnquetes {
     );
   }
 
-  static Future votarEnquete() async {
+  static Future votarEnquete(String resposta) async {
     LoginController loginController = Get.put(LoginController());
     VisualizarEnquetesController visualizarEnquetesController =
         Get.put(VisualizarEnquetesController());
-    VotarEnqueteController votarEnquetesController =
-        Get.put(VotarEnqueteController());
 
     print({
       'id ${loginController.id.value}',
@@ -53,7 +51,7 @@ class ApiEnquetes {
         'idcond': loginController.idcond.value,
         'idusu': loginController.id.value,
         'idenq': visualizarEnquetesController.idenq.value,
-        'resposta': votarEnquetesController.index.value.toString(),
+        'resposta': resposta,
       },
     );
   }

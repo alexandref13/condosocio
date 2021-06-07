@@ -19,20 +19,22 @@ class VotarEnqueteController extends GetxController {
     var response = await ApiEnquetes.votacaoEnquete();
 
     Iterable dados = json.decode(response.body);
+
     enquete.assignAll(
         dados.map((model) => MapaVotarEnquetes.fromJson(model)).toList());
 
     isLoading(false);
+    print('teste: $dados');
   }
 
-  votarEnquete() async {
+  votarEnquete(String resposta) async {
     isLoading(true);
 
-    var response = await ApiEnquetes.votarEnquete();
+    var response = await ApiEnquetes.votarEnquete(resposta);
 
     votacaoEnquete();
 
-    Get.toNamed('/infoEnquete');
+    Get.toNamed('/enquetes');
 
     isLoading(true);
 

@@ -66,7 +66,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                       padding: EdgeInsets.all(5),
                       child: TableCalendar(
                         locale: 'pt_BR',
-                        firstDay: DateTime.now(),
+                        firstDay: DateTime(2017),
                         lastDay: DateTime(2100),
                         focusedDay:
                             calendarioReservasController.focusedDay.value,
