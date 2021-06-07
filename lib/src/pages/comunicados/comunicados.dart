@@ -1,9 +1,12 @@
+import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/controllers/comunicados_controller.dart';
+import 'package:condosocio/src/controllers/comunicados/comunicados_controller.dart';
+import 'package:condosocio/src/controllers/comunicados/visualizar_comunicados_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Comunicados extends StatefulWidget {
@@ -13,6 +16,8 @@ class Comunicados extends StatefulWidget {
 
 class _ComunicadosState extends State<Comunicados> {
 
+  VisualizarComunicadosController visualizarComunicadosController =
+      Get.put(VisualizarComunicadosController());
   ComunicadosController comunicadosController =
       Get.put(ComunicadosController());
 
@@ -55,7 +60,17 @@ class _ComunicadosState extends State<Comunicados> {
           () {
             return comunicadosController.isLoading.value
                 ? CircularProgressIndicatorWidget()
-                : _listaComunicados();
+                : Column(
+                    children: [
+                      boxSearch(
+                          context,
+                          visualizarComunicadosController.search.value,
+                          visualizarComunicadosController.onSearchTextChanged),
+                      Expanded(
+                        child: _listaComunicados(),
+                      )
+                    ],
+                  );
           },
         ),
       ),
@@ -96,91 +111,188 @@ class _ComunicadosState extends State<Comunicados> {
         ],
       );
     } else {
-      return Container(
-          padding: EdgeInsets.all(8),
-          child: ListView(
-            children: [
-              Container(
-                  padding: EdgeInsets.only(bottom: 30),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  height: MediaQuery.of(context).size.height,
-                  child: ListView.builder(
-                      itemCount: comunicadosController.comunicados.length,
-                      itemBuilder: (context, index) {
-                        var comunicados =
-                            comunicadosController.comunicados[index];
-                        return GestureDetector(
-                          onTap: () {
-                           /* comunicadosController.titulo.value =
-                                comunicados.titulo;
-                            comunicadosController.arquivo.value =
-                                comunicados.texto;
-                            comunicadosController.dia.value = comunicados.dia;
-                            comunicadosController.mes.value = comunicados.mes;
-                            
-                            Get.toNamed('/detalhes');*/
-                          },
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            color: Theme.of(context).accentColor,
-                            child: ListTile(
-                                leading: RichText(
-                                  text: TextSpan(
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                            .selectionColor
-                                    ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: comunicados.dia + "  ",
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                        text: comunicados.mes,
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 14,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor,
-                                            letterSpacing: 2),
-                                      ),
-                                    ],
+      return SmartRefresher(
+        controller: visualizarComunicadosController.refreshController,
+        onRefresh: visualizarComunicadosController.onRefresh,
+        onLoading: visualizarComunicadosController.onLoading,
+        child: visualizarComunicadosController.searchResult.isNotEmpty ||
+                visualizarComunicadosController.search.value.text.isNotEmpty
+            ? Container(
+                padding: EdgeInsets.all(8),
+                child: ListView(
+                  children: [
+                    Container(
+                        padding: EdgeInsets.only(bottom: 30),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        height: MediaQuery.of(context).size.height,
+                        child: ListView.builder(
+                            itemCount: visualizarComunicadosController
+                                .searchResult.length,
+                            itemBuilder: (context, index) {
+                              var search = visualizarComunicadosController
+                                  .searchResult[index];
+                              return GestureDetector(
+                                onTap: () {
+                                  /* comunicadosController.titulo.value =
+                                  comunicados.titulo;
+                              comunicadosController.arquivo.value =
+                                  comunicados.texto;
+                              comunicadosController.dia.value = comunicados.dia;
+                              comunicadosController.mes.value = comunicados.mes;
+                              
+                              Get.toNamed('/detalhes');*/
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                ),
-                                title: Container(
-                                  child: Text(
-                                    comunicados.titulo,
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 12,
+                                  color: Theme.of(context).accentColor,
+                                  child: ListTile(
+                                      leading: RichText(
+                                        text: TextSpan(
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                                text: search.dia + "  ",
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            TextSpan(
+                                              text: search.mes,
+                                              style: GoogleFonts.montserrat(
+                                                  fontSize: 14,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                  letterSpacing: 2),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      title: Container(
+                                        child: Center(
+                                          child: Text(
+                                            search.titulo,
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ),
+                                      trailing: IconButton(
+                                        icon: Icon(Feather.download),
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                trailing: IconButton(
-                                  icon: Icon(Feather.download),
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
                                         iconSize: 30,
-                                  onPressed: () {
-                                    launchInBrowser(
-                                        "https://condosocio.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
-                                  },
-                                )),
-                          ),
-                        );
-                      }))
-            ],
-          ));
+                                        onPressed: () {
+                                          launchInBrowser(
+                                              "https://condosocio.com.br/acond/downloads/comunicados_arq/${search.arquivo}");
+                                        },
+                                      )),
+                                ),
+                              );
+                            }))
+                  ],
+                ))
+            : Container(
+                padding: EdgeInsets.all(8),
+                child: ListView(
+                  children: [
+                    Container(
+                        padding: EdgeInsets.only(bottom: 30),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        height: MediaQuery.of(context).size.height,
+                        child: ListView.builder(
+                            itemCount: comunicadosController.comunicados.length,
+                            itemBuilder: (context, index) {
+                              var comunicados =
+                                  comunicadosController.comunicados[index];
+                              return GestureDetector(
+                                onTap: () {
+                                  /* comunicadosController.titulo.value =
+                                  comunicados.titulo;
+                              comunicadosController.arquivo.value =
+                                  comunicados.texto;
+                              comunicadosController.dia.value = comunicados.dia;
+                              comunicadosController.mes.value = comunicados.mes;
+                              
+                              Get.toNamed('/detalhes');*/
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Theme.of(context).accentColor,
+                                  child: ListTile(
+                                      leading: RichText(
+                                        text: TextSpan(
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                                text: comunicados.dia + "  ",
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            TextSpan(
+                                              text: comunicados.mes,
+                                              style: GoogleFonts.montserrat(
+                                                  fontSize: 14,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                  letterSpacing: 2),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      title: Container(
+                                    child: Center(
+                                      child: Text(
+                                            comunicados.titulo,
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                  ),
+                                  trailing: IconButton(
+                                        icon: Icon(Feather.download),
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                        iconSize: 30,
+                                        onPressed: () {
+                                          launchInBrowser(
+                                              "https://condosocio.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
+                                        },
+                                      )),
+                                ),
+                              );
+                            }))
+                  ],
+            )),
+      );
     }
   }
 }

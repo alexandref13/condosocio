@@ -5,23 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class AvisosController extends GetxController {
-  List<DadosAvisos> avisos;
-  var titulo = ''.obs;
-  var texto = ''.obs;
-  var dia = ''.obs;
-  var mes = ''.obs;
-  var hora = ''.obs;
+class VisualizarAvisosController extends GetxController {
+  var acessos = <DadosAvisos>[].obs;
   var isLoading = true.obs;
-
-  void getAvisos() {
-    ApiAvisos.getAvisos().then((response) {
-      Iterable lista = json.decode(response.body);
-      avisos = lista.map((model) => DadosAvisos.fromJson(model)).toList();
-      isLoading(false);
-    });
-  }
-
   var search = TextEditingController().obs;
   var searchResult = [].obs;
   var fav = false.obs;
@@ -44,9 +30,22 @@ class AvisosController extends GetxController {
     if (text.isEmpty) {
       return;
     }
-    avisos.forEach((details) {
+    acessos.forEach((details) {
       if (details.titulo.toLowerCase().contains(text.toLowerCase()))
         searchResult.add(details);
+    });
+  }
+
+  void getAvisos() {
+    isLoading(true);
+
+    ApiAvisos.getAvisos().then((response) {
+      Iterable lista = json.decode(response.body);
+      print(lista);
+      acessos.assignAll(
+        lista.map((model) => DadosAvisos.fromJson(model)).toList(),
+      );
+      isLoading(false);
     });
   }
 

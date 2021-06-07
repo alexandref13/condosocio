@@ -1,4 +1,4 @@
-import 'package:condosocio/src/controllers/avisos_controller.dart';
+import 'package:condosocio/src/controllers/avisos/avisos_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
