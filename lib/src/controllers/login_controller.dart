@@ -27,6 +27,9 @@ class LoginController extends GetxController {
   var dep = ''.obs;
   var phone = ''.obs;
   var birthdate = ''.obs;
+  var idadm = ''.obs;
+  var websiteAdministradora = ''.obs;
+  var licenca = ''.obs;
   var isLoading = false.obs;
   var isChecked = false.obs;
   var listOfCondo = [];
@@ -108,6 +111,9 @@ class LoginController extends GetxController {
     http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
+
+      print(dados);
+
       id(dados['idusu']);
       idcond(dados['idcond']);
       emailUsu(dados['email']);
@@ -120,6 +126,9 @@ class LoginController extends GetxController {
       dep(dados['dep']);
       birthdate(dados['aniversario']);
       phone(dados['cel']);
+      idadm(dados['idadm']);
+      websiteAdministradora(dados['website_administradora']);
+      licenca(dados['licenca']);
       storageId();
 
       themeController.setTheme(condoTheme.value);

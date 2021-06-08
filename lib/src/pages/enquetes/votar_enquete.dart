@@ -119,21 +119,18 @@ class VotarEnquete extends StatelessWidget {
                               ),
                             ),
                           ),
-                          
-                             for (var i = 0; i < enquetes.qdtperguntas; i++)
+                          for (var i = 0; i < enquetes.qdtperguntas; i++)
                             Container(
                               child: GestureDetector(
                                 onTap: () {},
                                 child: Container(
                                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                    
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.stretch,
                                       children: [
-
                                         enquetes.verificavoto == 'Não Votou' &&
                                                 enquetes.valida ==
                                                     'Votação Aberta'
@@ -142,20 +139,20 @@ class VotarEnquete extends StatelessWidget {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                    i == 0
+                                                  i == 0
                                                       ? Container()
-                                                      :
-                                                  Text(
-                                                    '${enquetes.perguntas[i]} (${enquetes.votacao[i]})',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      fontSize: 10,
-                                                      color: Theme.of(context)
-                                                          .textSelectionTheme
-                                                          .selectionColor,
-                                                    ),
-                                                  ),
-                                                   i == 0
+                                                      : Text(
+                                                          '${enquetes.perguntas[i]} (${enquetes.votacao[i]})',
+                                                          style: GoogleFonts
+                                                              .montserrat(
+                                                            fontSize: 10,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textSelectionTheme
+                                                                .selectionColor,
+                                                          ),
+                                                        ),
+                                                  i == 0
                                                       ? Container()
                                                       : Obx(
                                                           () => Radio(
@@ -165,12 +162,11 @@ class VotarEnquete extends StatelessWidget {
                                                                     .i.value,
                                                             onChanged: (value) {
                                                               enquetesController
-                                                            .i.value =
+                                                                      .i.value =
                                                                   value;
                                                             },
-                                                      
-                                                    ),
-                                                  )
+                                                          ),
+                                                        )
                                                 ],
                                               )
                                             : Row(
@@ -187,7 +183,7 @@ class VotarEnquete extends StatelessWidget {
                                                                   left: 5),
                                                           child: Text(
                                                             '${enquetes.perguntas[i]} (${enquetes.votacao[i]})',
-                                                      style: GoogleFonts
+                                                            style: GoogleFonts
                                                                 .montserrat(
                                                               fontSize: 10,
                                                               color: Theme.of(
@@ -196,29 +192,30 @@ class VotarEnquete extends StatelessWidget {
                                                                   .selectionColor,
                                                             ),
                                                           ),
-                                                  ),
+                                                        ),
                                                   i == 0
                                                       ? Container()
-                                                      : 
-                                                  Text(
-                                                    enquetes.votacao[i] != 0
-                                                        ? '${((enquetes.votacao[i] / enquetes.soma) * 100).toStringAsFixed(0)}%'
-                                                        : '0%',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      fontSize: 10,
-                                                      color: Theme.of(context)
-                                                          .textSelectionTheme
-                                                          .selectionColor,
-                                                    ),
-                                                  )
+                                                      : Text(
+                                                          enquetes.votacao[i] !=
+                                                                  0
+                                                              ? '${((enquetes.votacao[i] / enquetes.soma) * 100).toStringAsFixed(0)}%'
+                                                              : '0%',
+                                                          style: GoogleFonts
+                                                              .montserrat(
+                                                            fontSize: 10,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textSelectionTheme
+                                                                .selectionColor,
+                                                          ),
+                                                        )
                                                 ],
                                               ),
                                         enquetes.verificavoto != 'Não Votou' ||
                                                 enquetes.valida ==
                                                     'Votações Encerradas'
                                             ? Container(
-                                              margin: EdgeInsets.fromLTRB(
+                                                margin: EdgeInsets.fromLTRB(
                                                     5, 8, 5, 8),
                                                 height: 15,
                                                 child: ProgressIndicatorWidget(
@@ -242,19 +239,19 @@ class VotarEnquete extends StatelessWidget {
                                   child: ButtonTheme(
                                     height: 50.0,
                                     child: ElevatedButton(
-                                     style: ButtonStyle(
+                                      style: ButtonStyle(
                                         backgroundColor: MaterialStateProperty
                                             .resolveWith<Color>(
                                           (Set<MaterialState> states) {
-                                  return Theme.of(context)
+                                            return Theme.of(context)
                                                 .accentColor;
                                           },
                                         ),
-                              shape: MaterialStateProperty
+                                        shape: MaterialStateProperty
                                             .resolveWith<OutlinedBorder>(
                                           (Set<MaterialState> states) {
                                             return RoundedRectangleBorder(
-                                    borderRadius:
+                                              borderRadius:
                                                   BorderRadius.circular(10.0),
                                             );
                                           },
@@ -262,16 +259,14 @@ class VotarEnquete extends StatelessWidget {
                                       ),
                                       onPressed: () {
                                         confirmedVote(
-                                          'Deseja realmente votar em (${enquetes.perguntas[enquetesController.i.value]})',
+                                          'Deseja realmente votar em ${enquetes.perguntas[enquetesController.i.value]}',
                                           () {
-                                            enquetesController.votarEnquete(
-                                                enquetesController.i.value
-                                                    .toString());
+                                            enquetesController.votarEnquete();
                                           },
                                         );
                                       },
                                       child: Text(
-                                           'Votar',
+                                        'Votar',
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
@@ -308,7 +303,7 @@ class VotarEnquete extends StatelessWidget {
                                             child: Text(
                                               'Total de votos: ${enquetes.soma}',
                                               style: GoogleFonts.montserrat(
-                                        fontSize: 14,
+                                                fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor,
@@ -316,9 +311,8 @@ class VotarEnquete extends StatelessWidget {
                                             ),
                                           ),
                                           enquetes.verificavoto != "Não Votou"
-                              ? Container(
-                                 
-                                  child: Padding(
+                                              ? Container(
+                                                  child: Padding(
                                                     padding:
                                                         const EdgeInsets.all(
                                                             8.0),
@@ -332,34 +326,34 @@ class VotarEnquete extends StatelessWidget {
                                                             .selectionColor,
                                                       ),
                                                     ),
-                                  ),
-                                )
-                              : Container(),
-                          enquetes.verificavoto != 'Não Votou'
-                              ? Container(
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 10),
-                                  child: Text(
-                                    'Obrigado Pela Sua Participação!',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
-                                    ),
-                                  ),
-                                )
-                              : Container(),
+                                                  ),
+                                                )
+                                              : Container(),
+                                          enquetes.verificavoto != 'Não Votou'
+                                              ? Container(
+                                                  alignment: Alignment.center,
+                                                  margin: EdgeInsets.symmetric(
+                                                      vertical: 20,
+                                                      horizontal: 10),
+                                                  child: Text(
+                                                    'Obrigado Pela Sua Participação!',
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                    ),
+                                                  ),
+                                                )
+                                              : Container(),
                                         ],
                                       ),
                                     ),
                                   ),
                                 ),
-                                
-                         
-                              
                         ],
                       );
                     }));

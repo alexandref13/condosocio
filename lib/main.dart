@@ -8,6 +8,7 @@ import 'package:condosocio/src/pages/acheAqui/lista_ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/pesquisa_ache_aqui.dart';
 import 'package:condosocio/src/pages/avisos/avisos.dart';
 import 'package:condosocio/src/pages/avisos/detalhes_avisos.dart';
+import 'package:condosocio/src/pages/boleto.dart';
 import 'package:condosocio/src/pages/encomendas/detalhes_encomendas.dart';
 import 'package:condosocio/src/pages/encomendas/encomendas.dart';
 import 'package:condosocio/src/pages/enquetes/enquetes.dart';
@@ -59,7 +60,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-     OneSignal.shared.init("d2a1bd8c-4a9a-4355-ac9b-e52691e7de23");
+    OneSignal.shared.init("d2a1bd8c-4a9a-4355-ac9b-e52691e7de23");
     OneSignal.shared
         .setInFocusDisplayType(OSNotificationDisplayType.notification);
 
@@ -79,7 +80,6 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/senha', page: () => Senha()),
         GetPage(name: '/perfil', page: () => Perfil()),
         GetPage(name: '/comunicados', page: () => Comunicados()),
-
         GetPage(name: '/sobre', page: () => Sobre()),
         GetPage(name: '/ouvidoria', page: () => Ouvidoria()),
         GetPage(name: '/ocorrencias', page: () => Ocorrencias()),
@@ -125,7 +125,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/qrCode', page: () => QrCode()),
         GetPage(name: '/avisos', page: () => Avisos()),
         GetPage(name: '/detalhesaviso', page: () => DetalhesAvisos()),
-
+        GetPage(name: '/boleto', page: () => Boleto()),
       ],
     );
   }
