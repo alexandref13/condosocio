@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:condosocio/src/services/enquetes/api_enquetes.dart';
 import 'package:condosocio/src/services/enquetes/mapa_votar_enquetes.dart';
 import 'package:get/get.dart';
