@@ -63,6 +63,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
+                                         fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
@@ -98,7 +99,14 @@ class RespostaOcorrencias extends StatelessWidget {
                                     size: 12,
                                   ),
                                   Text(
-                                      ' ${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}h')
+                                      ' ${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}h',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 12,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    ),
+                                  )
                                 ],
                               ),
                             ),

@@ -55,7 +55,11 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                                 .textSelectionTheme
                                 .selectionColor,
                             dropdownColor: Theme.of(context).primaryColor,
-                            style: GoogleFonts.montserrat(fontSize: 14),
+                            style: GoogleFonts.montserrat(
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontSize: 14),
                             items: ouvidoriaController.assuntos
                                 .map((String dropDownStringItem) {
                               return DropdownMenuItem<String>(
@@ -138,7 +142,7 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                                 );
                               },
                               child: Text(
-                                "ENVIAR",
+                                "Enviar",
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)

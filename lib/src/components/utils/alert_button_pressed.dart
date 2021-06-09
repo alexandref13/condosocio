@@ -5,11 +5,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 onAlertButtonPressed(context, String text, String page) {
   Alert(
-    image: Icon(
-      Icons.highlight_off,
-      color: Colors.yellowAccent,
-      size: 60,
-    ),
+    image: Image.asset("images/logo_home.png"),
     style: AlertStyle(
       backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
       animationType: AnimationType.fromTop,
@@ -19,7 +15,7 @@ onAlertButtonPressed(context, String text, String page) {
       animationDuration: Duration(milliseconds: 300),
       titleStyle: GoogleFonts.poppins(
         color: Theme.of(context).errorColor,
-        fontSize: 18,
+        fontSize: 16,
       ),
     ),
     context: context,
@@ -30,7 +26,7 @@ onAlertButtonPressed(context, String text, String page) {
           "OK",
           style: GoogleFonts.montserrat(
             color: Colors.white,
-            fontSize: 18,
+            fontSize: 14,
           ),
         ),
         onPressed: () {

@@ -37,33 +37,36 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                         Container(
                           child: Text(
                             'DATA',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 16.0,
+                             style: GoogleFonts.montserrat(
+                                  fontSize: 12.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                            ),
+                                  fontWeight: FontWeight.w400,
+                                ),
                           ),
                         ),
                         Container(
                           child: Text(
                             'HORA',
                             style: GoogleFonts.montserrat(
-                              fontSize: 16.0,
+                                  fontSize: 12.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                            ),
+                                  fontWeight: FontWeight.w400,
+                                ),
                           ),
                         ),
                         Text(
                           'TÍTULO',
                           style: GoogleFonts.montserrat(
-                            fontSize: 16.0,
+                                  fontSize: 12.0,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                          ),
+                                  fontWeight: FontWeight.w400,
+                                ),
                         ),
                         Container(),
                         Container(),

@@ -13,6 +13,7 @@ import 'package:condosocio/src/pages/encomendas/encomendas.dart';
 import 'package:condosocio/src/pages/enquetes/enquetes.dart';
 import 'package:condosocio/src/pages/enquetes/info_enquetes.dart';
 import 'package:condosocio/src/pages/enquetes/votar_enquete.dart';
+import 'package:condosocio/src/pages/esqueci_senha.dart';
 import 'package:condosocio/src/pages/ocorrencias/foto_ocorrencia_detalhe.dart';
 import 'package:condosocio/src/pages/ocorrencias/resposta_ocorrencias.dart';
 import 'package:condosocio/src/pages/reservas/calendario_reservas.dart';
@@ -125,6 +126,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/qrCode', page: () => QrCode()),
         GetPage(name: '/avisos', page: () => Avisos()),
         GetPage(name: '/detalhesaviso', page: () => DetalhesAvisos()),
+         GetPage(name: '/esqueci', page: () => Esqueci()),
 
       ],
     );

@@ -65,7 +65,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -108,7 +108,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -151,7 +151,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -194,7 +194,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -237,7 +237,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -280,7 +280,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -323,7 +323,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -366,7 +366,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -406,7 +406,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -449,7 +449,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -492,7 +492,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],
@@ -530,12 +530,12 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   ),
                                 ),
                                 Text(
-                                  "Perfil",
+                                  "Ouvidoria",
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 13,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ],

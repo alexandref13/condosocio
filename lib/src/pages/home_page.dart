@@ -658,7 +658,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Container(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.only(top: 10, bottom: 5),
                           child: Container(
                             //color: Color(0xfff5f5f5),
                             child: Image.asset(
@@ -668,10 +668,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      Divider(
-                        height: 10,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                      
                       Container(
                         child: Column(
                           children: [

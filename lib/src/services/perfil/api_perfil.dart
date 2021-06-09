@@ -16,7 +16,8 @@ class ApiPerfil {
           'nome': perfilController.name.value.text,
           'sobrenome': perfilController.secondName.value.text,
           'aniversario': perfilController.newDate.value,
-          'celular': perfilController.phone.value.text
+          'celular': perfilController.phone.value.text,
+          'genero': perfilController.itemSelecionado.value,
         });
   }
 }

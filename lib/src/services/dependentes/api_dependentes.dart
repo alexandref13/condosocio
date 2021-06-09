@@ -11,8 +11,6 @@ class ApiDependentes {
     DependentesController dependentesController =
         Get.put(DependentesController());
 
-    print('Nome: ${dependentesController.nome.value.text}');
-    print('Celular: ${dependentesController.celular.value.text}');
 
     return await http.post(
       Uri.https("www.condosocio.com.br", "/flutter/dependentes_inc.php"),

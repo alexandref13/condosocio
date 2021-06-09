@@ -9,15 +9,8 @@ class Sobre extends StatelessWidget {
     return SafeArea(
       bottom: true,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Sobre',
-              style: GoogleFonts.montserrat(
-                fontSize: 16,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
-              ),
-            ),
-          ),
+          appBar: AppBar(),
+          
           body: SingleChildScrollView(
             child: Container(
               color: Theme.of(context).primaryColor,
@@ -37,12 +30,12 @@ class Sobre extends StatelessWidget {
                       margin:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                       child: Text(
-                        'O CondoSócio é uma rede de gestão colaborativa completa para os síndicos, administradores, além de formar uma rede social para os condôminos. Você pode fazer reservas dos espaços comuns, dar acesso à convidado(s), votar em enquetes, visualizar comunicados, recomendar serviços, agendar eventos e muito mais.',
+                      'O CondoSócio é a plataforma digital que facilita a vida de quem administra e mora em condomínio. Uma rede de gestão colaborativa completa para os síndicos, administradores e moradores, além de integrar outros sistemas condominiais. Saiba quais os serviços que estão disponíveis pra você.',
                         style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                            fontSize: 15),
+                            fontSize: 12),
                       ),
                     ),
                     Container(
@@ -62,6 +55,13 @@ class Sobre extends StatelessWidget {
                             "visualizarAcessos",
                             Icons.swap_horiz,
                           ),
+                           sobreLista(
+                            context,
+                            "Avisos",
+                            'Você receberá os avisos em tempo real e será alertado ainda por meio de notificação push (alerta) e por e-mail.',
+                            "avisos",
+                            FontAwesome.comment_o,
+                          ),
                           sobreLista(
                             context,
                             "CondoPlay",
@@ -79,7 +79,7 @@ class Sobre extends StatelessWidget {
                           sobreLista(
                             context,
                             "Encomendas",
-                            "Receba notificações das encomendas que chegam na adminstração do condominio",
+                            "Receba notificações das encomendas que chegam na administração do condominio",
                             "Encomendas",
                             Icons.local_shipping_outlined,
                           ),
@@ -93,14 +93,14 @@ class Sobre extends StatelessWidget {
                           sobreLista(
                             context,
                             "Comunicados",
-                            "Aqui você vai ver os comunicados dos eventos dos condomínios.",
+                            "Baixe os comunicados do seu condomínio.",
                             "comunicados",
                             FontAwesome.comment_o,
                           ),
                           sobreLista(
                             context,
                             "Documentos",
-                            "Tenha sempre em mãos os documentos do seu condomínio. Regimento interno. Convenção, Atas, etc.",
+                            "Tenha sempre em mãos os documentos do seu condomínio.",
                             "documentos",
                             FontAwesome.file_o,
                           ),
@@ -121,14 +121,14 @@ class Sobre extends StatelessWidget {
                           sobreLista(
                             context,
                             "Ache Aqui",
-                            "Busque por produtos e serviços e avalie",
+                            "Busque por produtos e serviços e avalie as prestadoras de serviço",
                             "acheAqui",
                             FontAwesome.cart_plus,
                           ),
                           sobreLista(
                             context,
                             "Ouvidoria",
-                            "Fale diretamente com a administração do seu condomínio",
+                            "Fale diretamente com a administração do seu condomínio a qualquer hora",
                             "ouvidoria",
                             Icons.question_answer_outlined,
                           ),
@@ -153,20 +153,20 @@ class Sobre extends StatelessWidget {
         },
         leading: Icon(
           icon,
-          size: 35,
+          size: 32,
           color: Colors.white,
         ),
         title: Text(title,
             style: GoogleFonts.montserrat(
                 color: Theme.of(context).textSelectionTheme.selectionColor,
-                fontSize: 16,
-                fontWeight: FontWeight.bold)),
+                fontSize: 14,
+                fontWeight: FontWeight.w500)),
         subtitle: Text(
           description,
           style: GoogleFonts.montserrat(
               color: Theme.of(context).textSelectionTheme.selectionColor,
               fontWeight: FontWeight.w300,
-              fontSize: 13),
+              fontSize: 12),
         ),
         trailing: Icon(
           Icons.keyboard_arrow_right,

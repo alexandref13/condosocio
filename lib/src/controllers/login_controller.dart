@@ -22,6 +22,7 @@ class LoginController extends GetxController {
   var nomeCondo = ''.obs;
   var imgcondo = ''.obs;
   var nome = ''.obs;
+  var genero = ''.obs;
   var unidade = ''.obs;
   var condoTheme = ''.obs;
   var dep = ''.obs;
@@ -118,6 +119,7 @@ class LoginController extends GetxController {
       nome(dados['nome']);
       condoTheme(dados['cor']);
       dep(dados['dep']);
+      genero(dados['genero']);
       birthdate(dados['aniversario']);
       phone(dados['cel']);
       storageId();

@@ -70,13 +70,16 @@ class Login extends StatelessWidget {
                               padding: EdgeInsets.fromLTRB(20, 310, 20, 20),
                               child: Container(
                                 child: TextFormField(
+                                    autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
                                   ),
-                                  decoration: InputDecoration(
-                                    enabled: !loginController.isLoading.value,
+                                 decoration: InputDecoration(
+                        contentPadding: new EdgeInsets.symmetric(
+                                        vertical: 15, horizontal: 15),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Theme.of(context)
@@ -85,17 +88,13 @@ class Login extends StatelessWidget {
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius:
+                            borderRadius:
                                             BorderRadius.circular(8.0),
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor)),
-                                    labelText: 'Entre com seu e-mail',
-                                    prefixIcon: Icon(Icons.mail_outline,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor),
+                        labelText: 'Entre com o e-mail',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
@@ -103,12 +102,11 @@ class Login extends StatelessWidget {
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color:
+                                color:
                                                 Theme.of(context).accentColor)),
                                     focusedErrorBorder: new OutlineInputBorder(
-                                        borderSide: new BorderSide(
-                                            color:
-                                                Theme.of(context).accentColor)),
+                            borderSide: new BorderSide(
+                                            color: Colors.red[900])),
                                     errorStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context).errorColor),
                                   ),
@@ -127,6 +125,8 @@ class Login extends StatelessWidget {
                               padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
                               child: Container(
                                 child: TextFormField(
+                                    autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
                                   obscureText: true,
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
@@ -134,36 +134,35 @@ class Login extends StatelessWidget {
                                         .selectionColor,
                                   ),
                                   decoration: InputDecoration(
-                                    enabled: !loginController.isLoading.value,
+                        contentPadding: new EdgeInsets.symmetric(
+                                        vertical: 15, horizontal: 15),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          color: Color(0xffF3E9D2), width: 1.0),
+                              color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius:
+                            borderRadius:
                                             BorderRadius.circular(8.0),
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor)),
                                     labelText: 'Entre com a senha',
-                                    prefixIcon: Icon(Icons.lock_outline,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor),
-                                    labelStyle: GoogleFonts.montserrat(
+                        labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color:
+                                color:
                                                 Theme.of(context).accentColor)),
                                     focusedErrorBorder: new OutlineInputBorder(
-                                        borderSide: new BorderSide(
-                                            color:
-                                                Theme.of(context).accentColor)),
+                            borderSide: new BorderSide(
+                                            color: Colors.red[900])),
                                     errorStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context).errorColor),
                                   ),
@@ -192,45 +191,59 @@ class Login extends StatelessWidget {
                                               value;
                                         },
                                       ),
-                                      Container(
-                                        child: Text.rich(TextSpan(
-                                            text: '\nLi e concordo com os ',
-                                            children: [
-                                              TextSpan(
-                                                text: 'TERMOS DE USO ',
-                                                style: GoogleFonts.montserrat(
-                                                  color: Colors.amberAccent,
+                                      Expanded(
+                                        child: Container(
+                                          child: Text.rich(TextSpan(
+                                              text: 'Li e concordo com os ',
+                                              style: GoogleFonts.montserrat(
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor,
+                                                  fontSize: 12),
+                                              children: [
+                                                TextSpan(
+                                                  text: 'TERMOS DE USO ',
+                                                  style: GoogleFonts.montserrat(
+                                          color: Colors.amber,
+                                                      fontSize: 12),
+                                                  recognizer:
+                                                      TapGestureRecognizer()
+                                                        ..onTap = () {
+                                                          loginController
+                                                                  .launched =
+                                                              loginController
+                                                                  .launchInBrowser(
+                                                            'https://condosocio.com.br/termo.html',
+                                                          );
+                                                        },
                                                 ),
-                                                recognizer:
-                                                    TapGestureRecognizer()
-                                                      ..onTap = () {
-                                                        loginController
-                                                                .launched =
-                                                            loginController
-                                                                .launchInBrowser(
-                                                          'https://condosocio.com.br/termo.html',
-                                                        );
-                                                      },
-                                              ),
-                                              TextSpan(text: '\n\ne com a '),
-                                              TextSpan(
-                                                text:
-                                                    'POLÍTICA DE PRIVACIDADE ',
-                                                style: GoogleFonts.montserrat(
-                                                  color: Colors.amberAccent,
+                                                TextSpan(
+                                                  text: 'e com a ',
+                                                  style: GoogleFonts.montserrat(
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor,
+                                                      fontSize: 12),
                                                 ),
-                                                recognizer:
-                                                    TapGestureRecognizer()
-                                                      ..onTap = () {
-                                                        loginController
-                                                                .launched =
-                                                            loginController
-                                                                .launchInBrowser(
-                                                          'https://condosocio.com.br/privacidade.html',
-                                                        );
-                                                      },
-                                              ),
-                                            ])),
+                                                TextSpan(
+                                                  text:
+                                                      'POLÍTICA DE PRIVACIDADE',
+                                                  style: GoogleFonts.montserrat(
+                                                      color: Colors.amber,
+                                                      fontSize: 12),
+                                                  recognizer:
+                                                      TapGestureRecognizer()
+                                                        ..onTap = () {
+                                                          loginController
+                                                                  .launched =
+                                                              loginController
+                                                                  .launchInBrowser(
+                                                            'https://condosocio.com.br/privacidade.html',
+                                                          );
+                                                        },
+                                                ),
+                                              ])),
+                                        ),
                                       )
                                     ],
                                   ),
@@ -351,12 +364,13 @@ class Login extends StatelessWidget {
                                           ),
                                         )
                                       : Text(
-                                          "ENTRAR",
+                                          "Entrar",
                                           style: GoogleFonts.montserrat(
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor,
-                                              fontSize: 14),
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                          ),
                                         ),
                                 ),
                               ),
@@ -378,21 +392,60 @@ class Login extends StatelessWidget {
                                     )),
                                   ),
                                   onPressed: () {
-                                    Get.toNamed('/senha');
+                                    Get.toNamed('/esqueci');
                                   },
                                   child: Text(
                                     "Esqueceu a senha?",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
-                                    ),
+                                     style: GoogleFonts.montserrat(
+                                          color: Colors.amber, fontSize: 12),
                                     textDirection: TextDirection.ltr,
                                   ),
                                 ),
                               ),
                             ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(8, 25, 8, 0),
+                              child: Expanded(
+                                child: Container(
+                                    child: Text(
+                                  'Seu condomínio ainda não tem o CondoSócio? Acesse o nosso site agora e saiba como adquirir:\n',
+                                  style: GoogleFonts.montserrat(
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                      fontSize: 12),
+                                )),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 5),
+                              child: Expanded(
+                                child: Container(
+                                    child: Column(
+                                  children: [
+                                    Center(
+                                      child: Text.rich(
+                                        TextSpan(
+                                          text: 'www.condosocio.com.br',
+                                          style: GoogleFonts.montserrat(
+                                              color: Colors.amber,
+                                              fontSize: 12),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              loginController.launched =
+                                                  loginController
+                                                      .launchInBrowser(
+                                                'https://condosocio.com.br',
+                                              );
+                                            },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                              ),
+                            )
                           ],
                         ),
                       ),

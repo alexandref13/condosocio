@@ -28,6 +28,7 @@ class AcheAqui extends StatelessWidget {
             },
             icon: Icon(
               Icons.search,
+              size: 32,
             ),
           )
         ],

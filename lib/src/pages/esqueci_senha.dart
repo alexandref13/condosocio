@@ -1,27 +1,27 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
-import 'package:condosocio/src/controllers/senha_controller.dart';
+import 'package:condosocio/src/controllers/email_controller.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
-class Senha extends StatefulWidget {
+class Esqueci extends StatefulWidget {
   @override
-  _SenhaState createState() => _SenhaState();
+  _EsqueciState createState() => _EsqueciState();
 }
 
-class _SenhaState extends State<Senha> {
-
-  SenhaController senhaController = Get.put(SenhaController());
+class _EsqueciState extends State<Esqueci> {
+  EmailController emailController = Get.put(EmailController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Alterar Senha',
+          'Redefinir Senha',
           style: GoogleFonts.montserrat(
             fontSize: 16,
             color: Theme.of(context).textSelectionTheme.selectionColor,
@@ -31,13 +31,13 @@ class _SenhaState extends State<Senha> {
       body: SingleChildScrollView(
         child: Obx(
           () {
-            return senhaController.isLoading.value
+            return emailController.isLoading.value
                 ? CircularProgressIndicatorWidget()
                 : Container(
                     color: Theme.of(context).primaryColor,
                     child: Center(
                       child: Form(
-                        key: senhaController.form,
+                        key: emailController.form,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
@@ -52,13 +52,30 @@ class _SenhaState extends State<Senha> {
                               ),
                             ),
                             Padding(
-                            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 30),
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Informe o seu e-mail que iremos lhe enviar instruções para redefinir a senha.',
+                                        style: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                               child: Container(
                                 //color: Color(0xfff5f5f5),
                                 child: TextFormField(
-                                autovalidateMode:
+                                  autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                  obscureText: true,
+                                  //enabled: !dependentesController.isLoading.value,
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -81,7 +98,7 @@ class _SenhaState extends State<Senha> {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor)),
-                                    labelText: 'Entre com a nova senha',
+                                    labelText: 'E-mail',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
@@ -96,75 +113,17 @@ class _SenhaState extends State<Senha> {
                                             color: Colors.red[900])),
                                     errorStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context).errorColor),
-                                    prefixIcon: Icon(Icons.lock_outline,
-                                        color: Colors.white),
                                   ),
-                                  validator: (val) {
-                                    if (val.isEmpty) return 'Campo Vazio!';
-                                    return null;
-                                  },
-                                  controller: senhaController.senha_nova.value,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(20, 0, 20, 50),
-                              child: Container(
-                                //color: Color(0xfff5f5f5),
-                                child: TextFormField(
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  obscureText: true,
-                                  style: GoogleFonts.montserrat(
-                        color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                  decoration: InputDecoration(
-                        contentPadding: new EdgeInsets.symmetric(
-                                        vertical: 15, horizontal: 15),
-                        focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                              width: 1.0),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        borderSide: BorderSide(
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor)),
-                        labelText: 'Confirme a nova senha',
-                                    labelStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor,
-                            fontSize: 14),
-                                    errorBorder: new OutlineInputBorder(
-                                        borderSide: new BorderSide(
-                                color:
-                                                Theme.of(context).errorColor)),
-                                    focusedErrorBorder: new OutlineInputBorder(
-                                        borderSide: new BorderSide(
-                                            color: Colors.red[900])),
-                                    errorStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context).errorColor),
-                                         prefixIcon: Icon(Icons.lock_outline,
-                                        color: Colors.white),
-                                  ),
-                                  
-                                  validator: (val) {
-                                    //if (val.isEmpty) return 'Campo Vazio!';
-                                    if (val !=
-                                        senhaController.senha_nova.value.text)
-                                      return 'Senhas Não Conferem!';
+                                  keyboardType: TextInputType.emailAddress,
+
+                                  validator: (valueEmail) {
+                                    if (!EmailValidator.validate(valueEmail)) {
+                                      return 'Entre com e-mail válido!';
+                                    }
                                     return null;
                                   },
                                   controller:
-                                      senhaController.senha_confirma.value,
+                                      emailController.email_esqueci.value,
                                 ),
                               ),
                             ),
@@ -174,27 +133,27 @@ class _SenhaState extends State<Senha> {
                                 height: 50.0,
                                 child: ElevatedButton(
                                   style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty
+                                    backgroundColor: MaterialStateProperty
                                         .resolveWith<Color>(
                                       (Set<MaterialState> states) {
-                                    return Theme.of(context).accentColor;
+                                        return Theme.of(context).accentColor;
                                       },
                                     ),
                                     shape: MaterialStateProperty.resolveWith<
                                         OutlinedBorder>(
                                       (Set<MaterialState> states) {
                                         return RoundedRectangleBorder(
-                                      borderRadius:
+                                          borderRadius:
                                               BorderRadius.circular(10.0),
                                         );
                                       },
                                     ),
                                   ),
                                   onPressed: () {
-                                    if (senhaController.form.currentState
+                                    if (emailController.form.currentState
                                         .validate()) {
-                                      senhaController
-                                          .senha(context)
+                                      emailController
+                                          .email(context)
                                           .then((value) {
                                         if (value == 1) {
                                           confirmedButtonPressed(

@@ -22,6 +22,10 @@ class _PerfilState extends State<Perfil> {
   LoginController loginController = Get.put(LoginController());
   PerfilController perfilController = Get.put(PerfilController());
 
+    void dropDownFavoriteSelected(String novoItem) {
+    perfilController.firstId.value = novoItem;
+  }
+
   final uri = Uri.parse("https://condosocio.com.br/flutter/upload_imagem.php");
   File _selectedFile;
   final _picker = ImagePicker();
@@ -374,9 +378,56 @@ class _PerfilState extends State<Perfil> {
                               ),
                             ),
                           ),
+                           SizedBox(
+                            height: 15,
+                          ),
+                           Container(
+                            padding: EdgeInsets.symmetric(horizontal: 7),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                width: 1,
+                              ),
+                            ),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              underline: Container(),
+                              icon: Icon(
+                                Icons.keyboard_arrow_down,
+                                size: 27,
+                              ),
+                              iconEnabledColor: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              dropdownColor: Theme.of(context).primaryColor,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                              items: perfilController.tipos
+                                  .map((String dropDownStringItem) {
+                                return DropdownMenuItem<String>(
+                                  value: dropDownStringItem,
+                                  child: Text(dropDownStringItem),
+                                );
+                              }).toList(),
+                              onChanged: (String novoItemSelecionado) {
+                                dropDownFavoriteSelected(novoItemSelecionado);
+                                perfilController.itemSelecionado.value =
+                                    novoItemSelecionado;
+                              },
+                              value: perfilController.itemSelecionado.value,
+                            ),
+                          ),
                           SizedBox(
                             height: 15,
                           ),
+
                           TextField(
                             keyboardType: TextInputType.number,
                             inputFormatters: [
@@ -434,18 +485,13 @@ class _PerfilState extends State<Perfil> {
                             height: 50.0,
                             child: ElevatedButton(
                               style: ButtonStyle(
-                                backgroundColor:
+                              backgroundColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
                                     return Theme.of(context).accentColor;
                                   },
                                 ),
-                                elevation:
-                                    MaterialStateProperty.resolveWith<double>(
-                                        (Set<MaterialState> states) {
-                                  return 3;
-                                }),
-                                shape: MaterialStateProperty.resolveWith<
+                              shape: MaterialStateProperty.resolveWith<
                                     OutlinedBorder>(
                                   (Set<MaterialState> states) {
                                     return RoundedRectangleBorder(
@@ -470,12 +516,13 @@ class _PerfilState extends State<Perfil> {
                                 });
                               },
                               child: Text(
-                                "ENVIAR",
+                                "Enviar",
                                 style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 16),
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                              ),
                               ),
                             ),
                           )

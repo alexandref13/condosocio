@@ -1,24 +1,21 @@
 import 'dart:convert';
-import 'package:condosocio/src/services/senha/api_senha.dart';
+import 'package:condosocio/src/services/esqueci_email/api_email.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SenhaController extends GetxController {
-
-  var senha_nova = TextEditingController().obs;
-  var senha_confirma = TextEditingController().obs;
-
+class EmailController extends GetxController {
+  var email_esqueci = TextEditingController().obs;
   final form = GlobalKey<FormState>();
 
   var isLoading = false.obs;
 
-  senha(context) async {
+  email(context) async {
     isLoading(true);
     FocusScopeNode currentFocus = FocusScope.of(context);
     if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
       currentFocus.focusedChild.unfocus();
     }
-    var response = await ApiSenha.senha();
+    var response = await ApiEmail.email();
 
     var dados = json.decode(response.body);
 
@@ -27,4 +24,3 @@ class SenhaController extends GetxController {
     return dados;
   }
 }
-

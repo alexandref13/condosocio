@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/dependentes/api_dependentes.dart';
 import 'package:condosocio/src/services/dependentes/mapa_dependentes.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -42,21 +43,21 @@ class DependentesController extends GetxController {
         searchResult.add(details);
     });
   }
-var cellMaskFormatter = new MaskTextInputFormatter(
+
+  var cellMaskFormatter = new MaskTextInputFormatter(
     mask: '(##) #####-####',
     filter: {"#": RegExp(r'[0-9]')},
   );
 
-
   Future<dynamic> sendDependentes() async {
-   
-    if (nome.value.text == '' ||
+    if (!EmailValidator.validate(email.value.text)) {
+      return 'invalid';
+    } else if (nome.value.text == '' ||
         sobrenome.value.text == '' ||
         email.value.text == '' ||
         celular.value.text == '' ||
         itemSelecionado.value == 'Selecione o gênero') {
-
-       return "vazio";
+      return "vazio";
     } else {
       isLoading(true);
 

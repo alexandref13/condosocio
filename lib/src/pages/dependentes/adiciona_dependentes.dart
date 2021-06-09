@@ -131,7 +131,12 @@ class AdicionaDependentes extends StatelessWidget {
                         iconEnabledColor:
                             Theme.of(context).textSelectionTheme.selectionColor,
                         dropdownColor: Theme.of(context).primaryColor,
-                        style: GoogleFonts.montserrat(fontSize: 14),
+                        style: GoogleFonts.montserrat(
+                          fontSize: 14,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
                         items: dependentesController.tipos
                             .map((String dropDownStringItem) {
                           return DropdownMenuItem<String>(
@@ -232,6 +237,9 @@ class AdicionaDependentes extends StatelessWidget {
                                   context,
                                   'Dependente foi incluido com sucesso!\n Mandamos um e-mail para a definição de senha',
                                 );
+                              } else if (value == 'invalid') {
+                                onAlertButtonPressed(
+                                    context, 'E-mail inválido!');
                               } else if (value == 'vazio') {
                                 onAlertButtonPressed(context,
                                     'Todos os campos são obrigatórios');

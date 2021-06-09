@@ -66,41 +66,48 @@ class VisualizarOcorrencias extends StatelessWidget {
                               child: Text(
                                 'CRIADO',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 16.0,
+                                  fontSize: 12.0,
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                             ),
                             Text(
                               'TÍTULO',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16.0,
+                               style: GoogleFonts.montserrat(
+                                  fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
-                              ),
+                                  fontWeight: FontWeight.w400,
+                                ),
                             ),
                             Text(
-                              'OCORRÊNCIA',
+                              'DATA',
                               style: GoogleFonts.montserrat(
-                                fontSize: 16.0,
+                                  fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
-                              ),
+                                  fontWeight: FontWeight.w400,
+                                ),
                             ),
                             Container(
                               child: Text(
                                 'STATUS',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 16.0,
+                                  fontSize: 12.0,
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
+                            ),
+                            Container(
+                              child: Text(''),
                             ),
                           ],
                         ),
@@ -156,54 +163,41 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                            width: MediaQuery.of(context)
+                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.17,
+                                                0.30,
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  ocorrencia.data,
+                                                  "${ocorrencia.data} ${ocorrencia.hora}",
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                Text(
-                                                  ocorrencia.hora,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
+                                                
                                               ],
                                             ),
                                           ),
-                                          Flexible(
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(right: 5.0),
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.25,
-                                              child: Text(
-                                                ocorrencia.titulo,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                softWrap: false,
-                                                style: GoogleFonts.montserrat(
-                                                  fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: Text(
+                                              ocorrencia.titulo,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              softWrap: false,
+                                              style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor,
                                               ),
                                             ),
                                           ),
@@ -215,25 +209,16 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  ocorrencia.dataoco,
+                                                  "${ocorrencia.dataoco} ${ocorrencia.horaoco}",
                                                   style: GoogleFonts.montserrat(
-                                                      fontSize: 14,
-                                                      color: Theme.of(context)
-                                                          .textSelectionTheme
-                                                          .selectionColor,
-                                                      fontWeight:
-                                                          FontWeight.bold),
+                                                    fontSize: 12,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                                Text(
-                                                  ocorrencia.horaoco,
-                                                  style: GoogleFonts.montserrat(
-                                                      fontSize: 14,
-                                                      color: Theme.of(context)
-                                                          .textSelectionTheme
-                                                          .selectionColor,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
+                                                
                                               ],
                                             ),
                                           ),
@@ -317,48 +302,34 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  ocorrencia.data,
+                                                  "${ocorrencia.data} ${ocorrencia.hora}",
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                Text(
-                                                  ocorrencia.hora,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
+                                                
                                               ],
                                             ),
                                           ),
-                                          Flexible(
-                                            fit: FlexFit.tight,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(left: 10),
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.25,
-                                              child: Text(
-                                                ocorrencia.titulo,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                softWrap: false,
-                                                style: GoogleFonts.montserrat(
-                                                  fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: Text(
+                                              ocorrencia.titulo,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              softWrap: false,
+                                              style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor,
                                               ),
                                             ),
                                           ),
@@ -370,25 +341,16 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  ocorrencia.dataoco,
+                                                  "${ocorrencia.dataoco} ${ocorrencia.horaoco}",
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                Text(
-                                                  ocorrencia.horaoco,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
+                                               
                                               ],
                                             ),
                                           ),

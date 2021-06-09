@@ -18,6 +18,16 @@ class PerfilController extends GetxController {
   var phone = TextEditingController().obs;
   var fullName = '';
 
+  var firstId = '0'.obs;
+
+  List<String> tipos = [
+    'Selecione o gênero',
+    'Masculino',
+    'Feminino',
+  ];
+
+  var itemSelecionado = 'Selecione o gênero'.obs;
+
   var cellMaskFormatter = new MaskTextInputFormatter(
     mask: '(##) #####-####',
     filter: {"#": RegExp(r'[0-9]')},
@@ -28,18 +38,18 @@ class PerfilController extends GetxController {
     filter: {"#": RegExp(r'[0-9]')},
   );
 
-
   var emailMaskFormatter = new MaskTextInputFormatter(
     mask: '##/##/####',
     filter: {"#": RegExp(r'[0-9]')},
   );
-  
+
   editPerfil() async {
-    if (name.value.text == '' || secondName.value.text == '') {
+    if (name.value.text == '' ||
+        secondName.value.text == '' ||
+        itemSelecionado.value == 'Selecione o gênero') {
       return 'vazio';
     } else {
       isLoading(true);
-
       phone.value.text = cellMaskFormatter.getUnmaskedText();
       loginController.phone.value = phone.value.text;
       loginController.birthdate.value = birthdate.value.text;
@@ -47,6 +57,7 @@ class PerfilController extends GetxController {
           '${name.value.text} ${secondName.value.text}';
       var date = birthdate.value.text.split('/');
       newDate.value = '${date[2]}-${date[1]}-${date[0]}';
+      loginController.genero.value = itemSelecionado.value;
 
       var response = await ApiPerfil.editPerfil();
       var dados = json.decode(response.body);

@@ -69,7 +69,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -115,7 +115,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -161,7 +161,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -207,7 +207,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -253,7 +253,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -299,7 +299,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -345,7 +345,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -391,7 +391,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -433,7 +433,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -479,7 +479,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -524,7 +524,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],
@@ -570,7 +570,7 @@ class AcheAquiPage extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                                            fontSize: 13,
+                                            fontSize: 12,
                                           ),
                                         ),
                                       ],

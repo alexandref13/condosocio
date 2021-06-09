@@ -1,14 +1,19 @@
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/senha_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ApiSenha {
+   
   static Future senha() async {
+    LoginController loginController = Get.put(LoginController());
     SenhaController senhaController = Get.put(SenhaController());
     return await http.post(
-      Uri.https('condosocio.com.br', '/flutter/senha_redefinir.php'),
+      Uri.https('condosocio.com.br', '/flutter/senha_alterar.php'),
       body: {
-        'email': senhaController.email.value.text,
+        'idusu': loginController.id.value,
+        'senha': senhaController.senha_nova.value.text,
+
       },
     );
   }

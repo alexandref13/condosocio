@@ -185,7 +185,11 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                               .textSelectionTheme
                               .selectionColor,
                           dropdownColor: Theme.of(context).primaryColor,
-                          style: GoogleFonts.montserrat(fontSize: 14),
+                          style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontSize: 14),
                           items: ocorrenciasController.tipos
                               .map((String dropDownStringItem) {
                             return DropdownMenuItem<String>(
@@ -368,7 +372,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                 ocorrenciasSaidaModalBottomSheet();
                               },
                               child: Text(
-                                "ANEXAR IMAGEM",
+                                "Anexar Imagem",
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context).accentColor,
@@ -415,13 +419,13 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                   if (value == 'vazio') {
                                     onAlertButtonPressed(
                                       context,
-                                      'Os campos tipo, titulo e descrição são obrigatorios',
+                                      'Os campos tipo, título e descrição são obrigatórios',
                                       null,
                                     );
                                   } else if (value == '1') {
                                     confirmedOcorrenciaAlert(
                                       context,
-                                      'Sua ocorrencia foi autorizada com sucesso!',
+                                      'Sua ocorrência foi enviada com sucesso!',
                                     );
                                   } else {
                                     onAlertButtonPressed(
@@ -433,7 +437,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                 });
                               },
                               child: Text(
-                                "ENVIAR",
+                                "Enviar",
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
@@ -469,7 +473,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
         animationDuration: Duration(milliseconds: 300),
         titleStyle: GoogleFonts.poppins(
           color: Theme.of(context).errorColor,
-          fontSize: 18,
+          fontSize: 16,
         ),
       ),
       context: context,
@@ -480,7 +484,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
             "OK",
             style: GoogleFonts.montserrat(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 16,
             ),
           ),
           onPressed: () {
