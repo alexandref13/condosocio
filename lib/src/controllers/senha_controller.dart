@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 class SenhaController extends GetxController {
 
-  var senha_nova = TextEditingController().obs;
-  var senha_confirma = TextEditingController().obs;
+  var senhanova = TextEditingController().obs;
+  var senhaconfirma = TextEditingController().obs;
 
   final form = GlobalKey<FormState>();
 

@@ -202,7 +202,7 @@ class Login extends StatelessWidget {
                                                   fontSize: 12),
                                               children: [
                                                 TextSpan(
-                                                  text: 'TERMOS DE USO ',
+                                                  text: 'Termos de Uso ',
                                                   style: GoogleFonts.montserrat(
                                           color: Colors.amber,
                                                       fontSize: 12),
@@ -227,7 +227,7 @@ class Login extends StatelessWidget {
                                                 ),
                                                 TextSpan(
                                                   text:
-                                                      'POLÍTICA DE PRIVACIDADE',
+                                                      'Política de Privacidade',
                                                   style: GoogleFonts.montserrat(
                                                       color: Colors.amber,
                                                       fontSize: 12),
@@ -395,7 +395,7 @@ class Login extends StatelessWidget {
                                     Get.toNamed('/esqueci');
                                   },
                                   child: Text(
-                                    "Esqueceu a senha?",
+                                    "Esqueceu a Senha?",
                                      style: GoogleFonts.montserrat(
                                           color: Colors.amber, fontSize: 12),
                                     textDirection: TextDirection.ltr,
@@ -403,49 +403,7 @@ class Login extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 25, 8, 0),
-                              child: Expanded(
-                                child: Container(
-                                    child: Text(
-                                  'Seu condomínio ainda não tem o CondoSócio? Acesse o nosso site agora e saiba como adquirir:\n',
-                                  style: GoogleFonts.montserrat(
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor,
-                                      fontSize: 12),
-                                )),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 5),
-                              child: Expanded(
-                                child: Container(
-                                    child: Column(
-                                  children: [
-                                    Center(
-                                      child: Text.rich(
-                                        TextSpan(
-                                          text: 'www.condosocio.com.br',
-                                          style: GoogleFonts.montserrat(
-                                              color: Colors.amber,
-                                              fontSize: 12),
-                                          recognizer: TapGestureRecognizer()
-                                            ..onTap = () {
-                                              loginController.launched =
-                                                  loginController
-                                                      .launchInBrowser(
-                                                'https://condosocio.com.br',
-                                              );
-                                            },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                              ),
-                            )
+                           
                           ],
                         ),
                       ),

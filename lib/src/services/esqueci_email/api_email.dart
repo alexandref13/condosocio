@@ -8,7 +8,7 @@ class ApiEmail {
     return await http.post(
       Uri.https('condosocio.com.br', '/flutter/email_redefinir.php'),
       body: {
-        'email': emailController.email_esqueci.value.text,
+        'email': emailController.emailesqueci.value.text,
       },
     );
   }

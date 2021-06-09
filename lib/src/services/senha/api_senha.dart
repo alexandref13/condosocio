@@ -12,7 +12,7 @@ class ApiSenha {
       Uri.https('condosocio.com.br', '/flutter/senha_alterar.php'),
       body: {
         'idusu': loginController.id.value,
-        'senha': senhaController.senha_nova.value.text,
+        'senha': senhaController.senhanova.value.text,
 
       },
     );

@@ -123,7 +123,7 @@ class _EsqueciState extends State<Esqueci> {
                                     return null;
                                   },
                                   controller:
-                                      emailController.email_esqueci.value,
+                                      emailController.emailesqueci.value,
                                 ),
                               ),
                             ),

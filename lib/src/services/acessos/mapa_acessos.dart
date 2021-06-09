@@ -6,7 +6,7 @@ class MapaAcessos {
   String tipodoc;
   String documento;
   String datahora;
-  String nome_dep;
+  String nomedep;
   String dataent;
   String datasai;
   String tipopessoa;
@@ -21,7 +21,7 @@ class MapaAcessos {
       this.tipodoc,
       this.documento,
       this.datahora,
-      this.nome_dep,
+      this.nomedep,
       this.dataent,
       this.datasai,
       this.tipopessoa,
@@ -36,7 +36,7 @@ class MapaAcessos {
     tipodoc = json['tipodoc'];
     documento = json['documento'];
     datahora = json['datahora'];
-    nome_dep = json['nome_dep'];
+    nomedep = json['nome_dep'];
     dataent = json['dataent'];
     datasai = json['datasai'];
     tipopessoa = json['tipopessoa'];
@@ -53,7 +53,7 @@ class MapaAcessos {
     data['tipodoc'] = this.tipodoc;
     data['documento'] = this.documento;
     data['datahora'] = this.datahora;
-    data['nome_dep'] = this.nome_dep;
+    data['nome_dep'] = this.nomedep;
     data['dataent'] = this.dataent;
     data['datasai'] = this.datasai;
     data['tipopessoa'] = this.tipopessoa;

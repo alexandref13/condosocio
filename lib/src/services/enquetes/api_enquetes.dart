@@ -35,12 +35,16 @@ class ApiEnquetes {
     );
   }
 
-  static Future votarEnquete() async {
+  static Future<dynamic> votarEnquete() async {
+    
     LoginController loginController = Get.put(LoginController());
     VisualizarEnquetesController visualizarEnquetesController =
         Get.put(VisualizarEnquetesController());
     VotarEnqueteController enquetesController =
         Get.put(VotarEnqueteController());
+
+    print('valor enquete: ${enquetesController.i.value}');
+    print('idenq: ${visualizarEnquetesController.idenq.value}');
 
     return await http.post(
       Uri.https('www.condosocio.com.br', '/flutter/enquete_votar.php'),
@@ -50,6 +54,7 @@ class ApiEnquetes {
         'idenq': visualizarEnquetesController.idenq.value,
         'resposta': enquetesController.i.value,
       },
+
     );
   }
 }

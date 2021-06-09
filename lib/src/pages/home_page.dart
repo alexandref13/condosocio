@@ -352,7 +352,7 @@ class _HomePageState extends State<HomePage> {
                       )),
                   Column(
                     children: <Widget>[
-                      loginController.idadm.value != '0'
+                     /* loginController.idadm.value != '0'
                           ? Container(
                               child: ListTile(
                                 contentPadding:
@@ -386,7 +386,7 @@ class _HomePageState extends State<HomePage> {
                       Divider(
                         height: 5,
                         color: Theme.of(context).primaryColor,
-                      ),
+                      ),*/
                       Container(
                         child: ListTile(
                           contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),

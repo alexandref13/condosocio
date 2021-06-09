@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EmailController extends GetxController {
-  var email_esqueci = TextEditingController().obs;
+  var emailesqueci = TextEditingController().obs;
   final form = GlobalKey<FormState>();
 
   var isLoading = false.obs;

@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:condosocio/src/services/avisos/api_avisos.dart';
 import 'package:condosocio/src/services/avisos/mapa_avisos.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class AvisosController extends GetxController {
   List<DadosAvisos> avisos;

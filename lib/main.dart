@@ -18,7 +18,6 @@ import 'package:condosocio/src/pages/ocorrencias/foto_ocorrencia_detalhe.dart';
 import 'package:condosocio/src/pages/ocorrencias/resposta_ocorrencias.dart';
 import 'package:condosocio/src/pages/reservas/calendario_reservas.dart';
 import 'package:condosocio/src/components/reservas/termos_reservas.dart';
-import 'package:condosocio/src/pages/dependentes/ajuda_dependentes.dart';
 import 'package:condosocio/src/pages/dependentes/dependentes.dart';
 import 'package:condosocio/src/pages/reservas/add_reservas.dart';
 import 'package:condosocio/src/pages/reservas/detalhes_reservas.dart';
@@ -100,7 +99,6 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/detalhesConvite', page: () => DetalheConviteWidget()),
         GetPage(name: '/whatsAppConvite', page: () => WhatsAppConvitesWidget()),
         GetPage(name: '/dependentes', page: () => Dependentes()),
-        GetPage(name: '/ajudaDependentes', page: () => AjudaDependentes()),
         GetPage(
             name: '/visualizarAcessosSaidas',
             page: () => VisualizarAcessosSaidas()),

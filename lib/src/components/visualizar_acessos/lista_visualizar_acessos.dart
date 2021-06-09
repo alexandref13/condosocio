@@ -232,13 +232,13 @@ Widget listaVisualizarAcessos() {
                                       ),
                                     ),
                                     visualizarAcessosController
-                                                .acessos[index].nome_dep !=
+                                                .acessos[index].nomedep !=
                                             null
                                         ? Container(
                                             padding: EdgeInsets.only(top: 7),
                                             child: Text(
                                               visualizarAcessosController
-                                                  .acessos[index].nome_dep,
+                                                  .acessos[index].nomedep,
                                               style: GoogleFonts.montserrat(
                                                 fontSize: 12,
                                                 color: Theme.of(context)

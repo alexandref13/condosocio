@@ -103,7 +103,7 @@ class _SenhaState extends State<Senha> {
                                     if (val.isEmpty) return 'Campo Vazio!';
                                     return null;
                                   },
-                                  controller: senhaController.senha_nova.value,
+                                  controller: senhaController.senhanova.value,
                                 ),
                               ),
                             ),
@@ -159,12 +159,12 @@ class _SenhaState extends State<Senha> {
                                   validator: (val) {
                                     //if (val.isEmpty) return 'Campo Vazio!';
                                     if (val !=
-                                        senhaController.senha_nova.value.text)
+                                        senhaController.senhanova.value.text)
                                       return 'Senhas Não Conferem!';
                                     return null;
                                   },
                                   controller:
-                                      senhaController.senha_confirma.value,
+                                      senhaController.senhaconfirma.value,
                                 ),
                               ),
                             ),
