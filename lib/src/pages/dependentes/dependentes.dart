@@ -5,6 +5,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Dependentes extends StatefulWidget {
   @override
@@ -36,7 +37,10 @@ class _DependentesState extends State<Dependentes> {
                   AntDesign.infocirlce,
                   color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  onAlertButtonPressed(context,
+                      'Você poderá adicionar até 06 (seis) dependentes.\nLembramos que os dependentes são necessariamente moradores.\nSe você descumprir esta norma, estará sujeito às penalidades dispostas no Regulamento Interno e ou Convenção do condomínio.\nPara adicionar dependentes além do permitido, você deverá solicitar à administração condominial.');
+                },
               )
             ],
             bottom: TabBar(
@@ -66,4 +70,44 @@ class _DependentesState extends State<Dependentes> {
       ),
     );
   }
+}
+
+  onAlertButtonPressed(context, String text) {
+  Alert(
+    image: Icon(
+      Icons.close,
+      color: Colors.white,
+      size: 60,
+    ),
+    style: AlertStyle(
+      backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
+      animationType: AnimationType.fromTop,
+      isCloseButton: false,
+      isOverlayTapDismiss: false,
+      //descStyle: GoogleFonts.poppins(color: Colors.red,),
+      animationDuration: Duration(milliseconds: 300),
+      titleStyle: GoogleFonts.poppins(
+        color: Theme.of(context).accentColor,
+        fontSize: 14,
+      ),
+    ),
+    context: context,
+    title: text,
+    buttons: [
+      DialogButton(
+        child: Text(
+          "Fechar",
+          style: GoogleFonts.montserrat(
+            color: Colors.white,
+            fontSize: 12,
+          ),
+        ),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        width: 80,
+        color: Theme.of(context).accentColor,
+      )
+    ],
+  ).show();
 }

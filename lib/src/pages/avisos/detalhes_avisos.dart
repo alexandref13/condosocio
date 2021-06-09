@@ -17,48 +17,53 @@ class DetalhesAvisos extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             avisosController.titulo.value,
-            style: GoogleFonts.montserrat(fontSize: 20),
+            style: GoogleFonts.montserrat(
+                fontSize: 14, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
         ),
         body: Column(
           children: [
             Expanded(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
-                child: Html(
-                  data: text[0],
-                  style: {
-                    "h3": Style(
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor),
-                    "h1": Style(
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor),
-                    "p": Style(
-                      fontFamily: 'montserrat',
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                    ),
-                    "li": Style(
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
+                  child: Html(
+                    data: text[0],
+                    style: {
+                      "h3": Style(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor),
+                      "h1": Style(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor),
+                      "p": Style(
+                        fontFamily: 'montserrat',
                         color:
                             Theme.of(context).textSelectionTheme.selectionColor,
-                        display: Display.BLOCK),
-                    "a": Style(
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                      textDecoration: TextDecoration.none,
-                    ),
-                    "h2": Style(
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor),
-                    "table": Style(
+                      ),
+                      "li": Style(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          display: Display.BLOCK),
+                      "a": Style(
                         color:
-                            Theme.of(context).textSelectionTheme.selectionColor)
-                  },
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        textDecoration: TextDecoration.none,
+                      ),
+                      "h2": Style(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor),
+                      "table": Style(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor)
+                    },
+                  ),
                 ),
               ),
             ),

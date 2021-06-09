@@ -54,9 +54,10 @@ class _AddReservasState extends State<AddReservas> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Reservas',
+          reservasController.nome.value,
           style: GoogleFonts.montserrat(
-            fontSize: 16,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
             color: Theme.of(context).textSelectionTheme.selectionColor,
           ),
         ),
@@ -83,25 +84,13 @@ class _AddReservasState extends State<AddReservas> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      padding: EdgeInsets.only(bottom: 5),
-                                      child: Text(
-                                        'Reserva para o dia ',
-                                        style: GoogleFonts.montserrat(
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
                                     Text(
                                       day,
                                       style: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -190,7 +179,8 @@ class _AddReservasState extends State<AddReservas> {
                                           text: '\nLi e concordo com os ',
                                           children: [
                                             TextSpan(
-                                              text: 'TERMOS DE USO ',
+                                              text:
+                                                  '\nTERMOS DE USO DA ÁREA COMUM',
                                               style: GoogleFonts.montserrat(
                                                 color: Colors.amberAccent,
                                               ),
@@ -240,7 +230,7 @@ class _AddReservasState extends State<AddReservas> {
                                   if (value == 'vazio') {
                                     onAlertButtonPressed(
                                       context,
-                                      'Campo titulo, hora ou termos de uso vazio!',
+                                      'Campo Nome do Evento, Hora Inicial ou Termos de Uso vazio(s)!',
                                       null,
                                     );
                                   } else {

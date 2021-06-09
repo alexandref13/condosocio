@@ -76,13 +76,52 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('CRIADO'),
-                            Text('NOME'),
-                            Text('ENTRADA'),
-                            Container(
-                              margin: EdgeInsets.only(right: 60),
-                              child: Text('SAIDA'),
+                            Center(
+                              child: Text(
+                                'CRIADO',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 12.0,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
                             ),
+                            Center(
+                                child: Text(
+                              'NOME',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 12.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )),
+                            Center(
+                                child: Text(
+                              'ENTRADA',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 12.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )),
+                            Center(
+                                child: Text(
+                              'SAÍDA',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 12.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )),
+                            Center(child: Text('')),
                           ],
                         ),
                       ),

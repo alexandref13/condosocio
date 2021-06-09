@@ -1,16 +1,19 @@
 import 'dart:convert';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/dependentes/api_dependentes.dart';
 import 'package:condosocio/src/services/dependentes/mapa_dependentes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class DependentesController extends GetxController {
+  LoginController loginController = Get.put(LoginController());
   var isLoading = false.obs;
 
   var nome = TextEditingController().obs;
   var sobrenome = TextEditingController().obs;
   var email = TextEditingController().obs;
-
+  var celular = TextEditingController().obs;
   var idep = ''.obs;
   var status = ''.obs;
 
@@ -39,23 +42,32 @@ class DependentesController extends GetxController {
         searchResult.add(details);
     });
   }
+var cellMaskFormatter = new MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
-  sendDependentes() async {
+
+  Future<dynamic> sendDependentes() async {
+   
     if (nome.value.text == '' ||
         sobrenome.value.text == '' ||
         email.value.text == '' ||
+        celular.value.text == '' ||
         itemSelecionado.value == 'Selecione o gênero') {
-      return 'vazio';
+
+       return "vazio";
+    } else {
+      isLoading(true);
+
+      var response = await ApiDependentes.sendDependentes();
+
+      var dados = json.decode(response.body);
+
+      isLoading(false);
+
+      return dados;
     }
-    isLoading(true);
-
-    var response = await ApiDependentes.sendDependentes();
-
-    var dados = json.decode(response.body);
-
-    isLoading(false);
-
-    return dados;
   }
 
   getDependentes() async {

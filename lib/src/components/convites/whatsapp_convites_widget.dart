@@ -40,7 +40,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 vertical: 10,
               ),
               child: Text(
-                'Envie este convite por whatsapp, para isto é necessário inserir o número no formato internacional. \n\ncódigo da área + seu número. \n\nex: 91XXXXXXXXX',
+                'Envie este convite por whatsapp, para isto é necessário inserir o número no formato:\n\ncódigo da área + seu número. \n\nex: 91988881234',
                 style: GoogleFonts.montserrat(
                     fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
@@ -128,8 +128,9 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                         (value) {
                           if (value != 0) {
                             String message =
-                                'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}';
-
+                                'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_vis_flutter?chave=${value['idace']}';
+                            
+                            
                             FlutterOpenWhatsapp.sendSingleMessage(
                               '55${visualizarConvitesController.whatsappNumber.value.text}',
                               Uri.encodeFull(message),
@@ -143,7 +144,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                     } else {
                       onAlertButtonPressed(
                         context,
-                        'O número está no formato errado \n ex: 91XXXXXXXXX',
+                        'Este número está com formato incorreto \n ex: 91988881234',
                         null,
                       );
                     }

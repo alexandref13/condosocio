@@ -17,7 +17,7 @@ class ApiDocumentos {
 
     return await http.get(
       Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
-          {"idUsu": "${loginController.id.value}", "pasta": "2"}),
+          {"idUsu": "${loginController.id.value}", "pasta": "6"}),
     );
   }
 
@@ -26,7 +26,7 @@ class ApiDocumentos {
 
     return await http.get(
       Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
-          {"idUsu": "${loginController.id.value}", "pasta": "3"}),
+          {"idUsu": "${loginController.id.value}", "pasta": "2"}),
     );
   }
 
@@ -54,7 +54,7 @@ class ApiDocumentos {
     return await http.get(Uri.https(
         "www.condosocio.com.br",
         "/flutter/documentos.php",
-        {"idUsu": "${loginController.id.value}", "pasta": "6"}));
+        {"idUsu": "${loginController.id.value}", "pasta": "3"}));
   }
 
   static Future getDocumentosOutros() async {

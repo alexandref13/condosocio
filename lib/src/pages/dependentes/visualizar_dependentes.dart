@@ -67,12 +67,13 @@ class VisualizarDependentes extends StatelessWidget {
                         children: [
                           Text(
                             'NOME',
-                            style: GoogleFonts.montserrat(
+                             style: GoogleFonts.montserrat(
                               fontSize: 12.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                            ),
+                                  fontWeight: FontWeight.w400,
+                                ),
                           ),
                           Text(
                             'DESDE',
@@ -84,7 +85,7 @@ class VisualizarDependentes extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'ULT. ACESSOS',
+                            'ULT. ACESSO',
                             style: GoogleFonts.montserrat(
                               fontSize: 12.0,
                               color: Theme.of(context)
@@ -101,6 +102,7 @@ class VisualizarDependentes extends StatelessWidget {
                                   .selectionColor,
                             ),
                           ),
+                          Text(''),
                         ],
                       ),
                     ),
@@ -151,10 +153,11 @@ class VisualizarDependentes extends StatelessWidget {
                                                 child: Text(
                                                   '${dependentes.nome} ${dependentes.sobrenome}',
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
+                                                        fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ),
@@ -166,7 +169,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                 child: Text(
                                                   dependentes.desde,
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
@@ -181,11 +184,11 @@ class VisualizarDependentes extends StatelessWidget {
                                                 child: Text(
                                                   dependentes.ultacesso,
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
-                                                    fontWeight: FontWeight.bold,
+                                                   
                                                   ),
                                                 ),
                                               ),
@@ -263,10 +266,11 @@ class VisualizarDependentes extends StatelessWidget {
                                                 child: Text(
                                                   '${dependentes.nome} ${dependentes.sobrenome}',
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
+                                                        fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ),
@@ -278,7 +282,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                 child: Text(
                                                   dependentes.desde,
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
@@ -293,11 +297,11 @@ class VisualizarDependentes extends StatelessWidget {
                                                 child: Text(
                                                   dependentes.ultacesso,
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
-                                                    fontWeight: FontWeight.bold,
+                                                    
                                                   ),
                                                 ),
                                               ),

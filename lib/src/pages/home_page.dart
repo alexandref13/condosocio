@@ -304,7 +304,7 @@ class _HomePageState extends State<HomePage> {
                   DrawerHeader(
                       padding: EdgeInsets.all(0),
                       child: Container(
-                        padding: EdgeInsets.only(top: 15),
+                        padding: EdgeInsets.only(top: 20),
                         color: Theme.of(context).primaryColor,
                         child: Column(
                           children: <Widget>[
@@ -319,7 +319,7 @@ class _HomePageState extends State<HomePage> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -331,7 +331,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
-                                  fontSize: 12,
+                                  fontSize: 10,
                                 ),
                               ),
                             ),
@@ -343,7 +343,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
-                                  fontSize: 12,
+                                  fontSize: 10,
                                 ),
                               ),
                             ),
@@ -362,7 +362,7 @@ class _HomePageState extends State<HomePage> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           leading: Icon(
@@ -396,7 +396,7 @@ class _HomePageState extends State<HomePage> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 14,
+                                    fontSize: 12,
                                   ),
                                 ),
                                 leading: Icon(
@@ -426,7 +426,7 @@ class _HomePageState extends State<HomePage> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           leading: Icon(
@@ -455,7 +455,7 @@ class _HomePageState extends State<HomePage> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           leading: Icon(
@@ -484,7 +484,7 @@ class _HomePageState extends State<HomePage> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           leading: Icon(
@@ -513,7 +513,7 @@ class _HomePageState extends State<HomePage> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           leading: Icon(
@@ -544,7 +544,7 @@ class _HomePageState extends State<HomePage> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           leading: Icon(
@@ -575,7 +575,7 @@ class _HomePageState extends State<HomePage> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           leading: Icon(
@@ -605,7 +605,7 @@ class _HomePageState extends State<HomePage> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           leading: Icon(
@@ -637,7 +637,7 @@ class _HomePageState extends State<HomePage> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           leading: Icon(
@@ -681,7 +681,7 @@ class _HomePageState extends State<HomePage> {
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
-                                fontSize: 14,
+                                fontSize: 9,
                               ),
                             ),
                           ],

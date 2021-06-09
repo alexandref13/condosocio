@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/perfil/api_perfil.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +28,12 @@ class PerfilController extends GetxController {
     filter: {"#": RegExp(r'[0-9]')},
   );
 
+
+  var emailMaskFormatter = new MaskTextInputFormatter(
+    mask: '##/##/####',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
+  
   editPerfil() async {
     if (name.value.text == '' || secondName.value.text == '') {
       return 'vazio';
@@ -36,17 +41,14 @@ class PerfilController extends GetxController {
       isLoading(true);
 
       phone.value.text = cellMaskFormatter.getUnmaskedText();
-
       loginController.phone.value = phone.value.text;
       loginController.birthdate.value = birthdate.value.text;
       loginController.nome.value =
           '${name.value.text} ${secondName.value.text}';
-
       var date = birthdate.value.text.split('/');
       newDate.value = '${date[2]}-${date[1]}-${date[0]}';
 
       var response = await ApiPerfil.editPerfil();
-
       var dados = json.decode(response.body);
 
       isLoading(false);

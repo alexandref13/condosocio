@@ -1,5 +1,7 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
+import 'package:condosocio/src/controllers/perfil_controller.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ class AdicionaDependentes extends StatelessWidget {
   Widget build(BuildContext context) {
     DependentesController dependentesController =
         Get.put(DependentesController());
+    PerfilController perfilController = Get.put(PerfilController());
 
     void dropDownFavoriteSelected(String novoItem) {
       dependentesController.firstId.value = novoItem;
@@ -57,14 +60,52 @@ class AdicionaDependentes extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    customTextField(
-                      context,
-                      'Email',
-                      null,
-                      false,
-                      1,
-                      true,
-                      dependentesController.email.value,
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      //enabled: !dependentesController.isLoading.value,
+                      style: GoogleFonts.montserrat(
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                      ),
+                      decoration: InputDecoration(
+                        contentPadding: new EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 15),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              width: 1.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: BorderSide(
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor)),
+                        labelText: 'E-mail',
+                        labelStyle: GoogleFonts.montserrat(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                            fontSize: 14),
+                        errorBorder: new OutlineInputBorder(
+                            borderSide: new BorderSide(
+                                color: Theme.of(context).accentColor)),
+                        focusedErrorBorder: new OutlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.red[900])),
+                        errorStyle: GoogleFonts.montserrat(
+                            color: Theme.of(context).errorColor),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+
+                      validator: (valueEmail) {
+                        if (!EmailValidator.validate(valueEmail)) {
+                          return 'Entre com e-mail válido!';
+                        }
+                        return null;
+                      },
+                      controller: dependentesController.email.value,
                     ),
                     SizedBox(
                       height: 15,
@@ -104,6 +145,56 @@ class AdicionaDependentes extends StatelessWidget {
                               novoItemSelecionado;
                         },
                         value: dependentesController.itemSelecionado.value,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [perfilController.cellMaskFormatter],
+                      controller: dependentesController.celular.value,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 14,
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                      ),
+                      decoration: InputDecoration(
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                            width: 1,
+                          ),
+                        ),
+                        labelText: 'Celular',
+                        labelStyle: GoogleFonts.montserrat(
+                          fontSize: 14,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                        isDense: true,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                            width: 1,
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -161,18 +252,16 @@ class AdicionaDependentes extends StatelessWidget {
                                 );
                               }
                             },
-                            dependentesController.nome.value.text = '',
-                            dependentesController.email.value.text = '',
-                            dependentesController.sobrenome.value.text = '',
                           );
                         },
                         child: Text(
-                          "INCLUIR",
+                          'Incluir',
                           style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                          ),
                         ),
                       ),
                     ),
@@ -202,7 +291,7 @@ class AdicionaDependentes extends StatelessWidget {
         animationDuration: Duration(milliseconds: 300),
         titleStyle: GoogleFonts.poppins(
           color: Theme.of(context).errorColor,
-          fontSize: 18,
+          fontSize: 16,
         ),
       ),
       context: context,
@@ -213,11 +302,11 @@ class AdicionaDependentes extends StatelessWidget {
             "OK",
             style: GoogleFonts.montserrat(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 16,
             ),
           ),
           onPressed: () {
-            Get.offNamed('/home');
+            Navigator.of(context).pop();
           },
           width: 80,
           color: Theme.of(context).errorColor,
@@ -244,7 +333,7 @@ class AdicionaDependentes extends StatelessWidget {
         animationDuration: Duration(milliseconds: 300),
         titleStyle: GoogleFonts.poppins(
           color: Theme.of(context).errorColor,
-          fontSize: 18,
+          fontSize: 16,
         ),
       ),
       context: context,
@@ -255,11 +344,20 @@ class AdicionaDependentes extends StatelessWidget {
             "OK",
             style: GoogleFonts.montserrat(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 16,
             ),
           ),
           onPressed: () {
-            Get.toNamed('/home');
+            DependentesController dependentesController =
+                Get.put(DependentesController());
+
+            dependentesController.nome.value.text = '';
+            dependentesController.sobrenome.value.text = '';
+            dependentesController.email.value.text = '';
+            dependentesController.itemSelecionado.value = 'Selecione o gênero';
+            dependentesController.celular.value.text = '';
+
+            Navigator.of(context).pop();
           },
           width: 80,
           color: Colors.green,
