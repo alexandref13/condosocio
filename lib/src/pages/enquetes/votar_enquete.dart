@@ -33,7 +33,7 @@ class VotarEnquete extends StatelessWidget {
           animationDuration: Duration(milliseconds: 300),
           titleStyle: GoogleFonts.poppins(
             color: Theme.of(context).errorColor,
-            fontSize: 16,
+            fontSize: 18,
           ),
         ),
         context: context,
@@ -44,7 +44,7 @@ class VotarEnquete extends StatelessWidget {
               "Cancelar",
               style: GoogleFonts.montserrat(
                 color: Theme.of(context).textSelectionTheme.selectionColor,
-                fontSize: 16,
+                fontSize: 18,
               ),
             ),
             onPressed: () {
@@ -55,10 +55,10 @@ class VotarEnquete extends StatelessWidget {
           ),
           DialogButton(
             child: Text(
-              "SIM",
+              "OK",
               style: GoogleFonts.montserrat(
                 color: Theme.of(context).textSelectionTheme.selectionColor,
-                fontSize: 16,
+                fontSize: 18,
               ),
             ),
             onPressed: function,
@@ -258,11 +258,8 @@ class VotarEnquete extends StatelessWidget {
                                         ),
                                       ),
                                       onPressed: () {
-                                        enquetesController.i.value == 0
-                                            ? Container()
-                                            :
                                         confirmedVote(
-                                          'Você confirma seu voto na opção\n${enquetes.perguntas[enquetesController.i.value]}?',
+                                          'Deseja realmente votar em ${enquetes.perguntas[enquetesController.i.value]}',
                                           () {
                                             enquetesController.votarEnquete();
                                           },
