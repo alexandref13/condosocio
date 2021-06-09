@@ -352,6 +352,41 @@ class _HomePageState extends State<HomePage> {
                       )),
                   Column(
                     children: <Widget>[
+                      loginController.idadm.value != '0'
+                          ? Container(
+                              child: ListTile(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                dense: true,
+                                title: Text(
+                                  'Boleto 2º Via',
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                leading: Icon(
+                                  Icons.paid_outlined,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  size: 22,
+                                ),
+                                onTap: () {
+                                  loginController.hasMoreEmail(
+                                    loginController.emailUsu.value,
+                                  );
+                                  Get.toNamed('/boleto');
+                                },
+                              ),
+                            )
+                          : Container(),
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
                       Container(
                         child: ListTile(
                           contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),

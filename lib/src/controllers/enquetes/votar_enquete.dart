@@ -27,10 +27,10 @@ class VotarEnqueteController extends GetxController {
     print('teste: $dados');
   }
 
-  votarEnquete(String resposta) async {
+  votarEnquete() async {
     isLoading(true);
 
-    var response = await ApiEnquetes.votarEnquete(resposta);
+    var response = await ApiEnquetes.votarEnquete();
 
     votacaoEnquete();
 
