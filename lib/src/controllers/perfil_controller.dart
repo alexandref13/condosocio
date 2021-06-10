@@ -48,6 +48,7 @@ class PerfilController extends GetxController {
         secondName.value.text == '' ||
         itemSelecionado.value == 'Selecione o gênero') {
       return 'vazio';
+
     } else {
       isLoading(true);
       phone.value.text = cellMaskFormatter.getUnmaskedText();
@@ -55,6 +56,7 @@ class PerfilController extends GetxController {
       loginController.birthdate.value = birthdate.value.text;
       loginController.nome.value =
           '${name.value.text} ${secondName.value.text}';
+      
       var date = birthdate.value.text.split('/');
       newDate.value = '${date[2]}-${date[1]}-${date[0]}';
       loginController.genero.value = itemSelecionado.value;
