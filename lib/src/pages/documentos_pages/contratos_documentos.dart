@@ -45,7 +45,8 @@ class Contratos extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       boxSearch(context, contratosController.controller.value,
-                          contratosController.onSearchTextChanged),
+                          contratosController.onSearchTextChanged,
+                          "Pesquise por Nome..."),
                       Expanded(
                         child: contratosController.searchResult.isNotEmpty ||
                                 contratosController

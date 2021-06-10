@@ -45,7 +45,8 @@ class Regulamento extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       boxSearch(context, regulamentoController.controller.value,
-                          regulamentoController.onSearchTextChanged),
+                          regulamentoController.onSearchTextChanged,
+                          "Pesquise por Nome..."),
                       Expanded(
                         child: regulamentoController.searchResult.isNotEmpty ||
                                 regulamentoController

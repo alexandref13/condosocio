@@ -56,7 +56,8 @@ class VisualizarConviteWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       boxSearch(context, convitesController.search.value,
-                          convitesController.onSearchTextChanged),
+                          convitesController.onSearchTextChanged,
+                          "Pesquise o Convite..."),
                       Expanded(
                           child: SmartRefresher(
                         controller: convitesController.refreshController,

@@ -44,7 +44,8 @@ class Outros extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       boxSearch(context, outrosController.controller.value,
-                          outrosController.onSearchTextChanged),
+                          outrosController.onSearchTextChanged,
+                          "Pesquise por Nome..."),
                       Expanded(
                         child: outrosController.searchResult.isNotEmpty ||
                                 outrosController

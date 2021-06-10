@@ -27,7 +27,9 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                     context,
                     visualizarOuvidoria.search.value,
                     visualizarOuvidoria.onSearchTextChanged,
+                    "Pesquise por Título..."
                   ),
+                  
                   Container(
                     padding: EdgeInsets.all(10),
                     color: Theme.of(context).accentColor,
@@ -50,7 +52,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                           child: Text(
                             'HORA',
                             style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
+                                  fontSize: 10.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,

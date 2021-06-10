@@ -44,7 +44,7 @@ Widget listaVisualizarOuvidoria() {
                             child: Text(
                               ouvidoria.data,
                               style: GoogleFonts.montserrat(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
@@ -72,7 +72,7 @@ Widget listaVisualizarOuvidoria() {
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
                               style: GoogleFonts.montserrat(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
@@ -120,7 +120,7 @@ Widget listaVisualizarOuvidoria() {
                             child: Text(
                               ouvidoria.data,
                               style: GoogleFonts.montserrat(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
@@ -132,7 +132,7 @@ Widget listaVisualizarOuvidoria() {
                             child: Text(
                               ouvidoria.hora,
                               style: GoogleFonts.montserrat(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
@@ -148,7 +148,7 @@ Widget listaVisualizarOuvidoria() {
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
                               style: GoogleFonts.montserrat(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,

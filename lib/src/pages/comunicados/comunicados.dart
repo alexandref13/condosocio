@@ -65,7 +65,8 @@ class _ComunicadosState extends State<Comunicados> {
                       boxSearch(
                           context,
                           visualizarComunicadosController.search.value,
-                          visualizarComunicadosController.onSearchTextChanged),
+                          visualizarComunicadosController.onSearchTextChanged,
+                          "Pesquise os Comunicados..."),
                       Expanded(
                         child: _listaComunicados(),
                       )

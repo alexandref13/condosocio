@@ -58,6 +58,7 @@ class VisualizarDependentes extends StatelessWidget {
                       context,
                       dependentesController.search.value,
                       dependentesController.onSearchTextChanged,
+                      "Pesquise por Nome..."
                     ),
                     Container(
                       padding: EdgeInsets.all(10),

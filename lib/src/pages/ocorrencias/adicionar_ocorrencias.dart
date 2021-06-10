@@ -419,13 +419,13 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                   if (value == 'vazio') {
                                     onAlertButtonPressed(
                                       context,
-                                      'Os campos tipo, título e descrição são obrigatórios',
+                                      'Campo Obrigatório Vazio',
                                       null,
                                     );
                                   } else if (value == '1') {
                                     confirmedOcorrenciaAlert(
                                       context,
-                                      'Sua ocorrência foi enviada com sucesso!',
+                                      'Sua Ocorrência foi Enviada com Sucesso!',
                                     );
                                   } else {
                                     onAlertButtonPressed(

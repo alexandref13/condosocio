@@ -22,7 +22,7 @@ class _PerfilState extends State<Perfil> {
   LoginController loginController = Get.put(LoginController());
   PerfilController perfilController = Get.put(PerfilController());
 
-    void dropDownFavoriteSelected(String novoItem) {
+  void dropDownFavoriteSelected(String novoItem) {
     perfilController.firstId.value = novoItem;
   }
 
@@ -378,10 +378,10 @@ class _PerfilState extends State<Perfil> {
                               ),
                             ),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 15,
                           ),
-                           Container(
+                          Container(
                             padding: EdgeInsets.symmetric(horizontal: 7),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
@@ -399,7 +399,6 @@ class _PerfilState extends State<Perfil> {
                                 Icons.keyboard_arrow_down,
                                 size: 27,
                               ),
-                              
                               iconEnabledColor: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -412,13 +411,11 @@ class _PerfilState extends State<Perfil> {
                               ),
                               items: perfilController.tipos
                                   .map((String dropDownStringItem) {
-                                    
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem),
                                 );
                               }).toList(),
-                              
                               onChanged: (String novoItemSelecionado) {
                                 dropDownFavoriteSelected(novoItemSelecionado);
                                 perfilController.itemSelecionado.value =
@@ -430,7 +427,6 @@ class _PerfilState extends State<Perfil> {
                           SizedBox(
                             height: 15,
                           ),
-
                           TextField(
                             keyboardType: TextInputType.number,
                             inputFormatters: [
@@ -488,13 +484,13 @@ class _PerfilState extends State<Perfil> {
                             height: 50.0,
                             child: ElevatedButton(
                               style: ButtonStyle(
-                              backgroundColor:
+                                backgroundColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
                                     return Theme.of(context).accentColor;
                                   },
                                 ),
-                              shape: MaterialStateProperty.resolveWith<
+                                shape: MaterialStateProperty.resolveWith<
                                     OutlinedBorder>(
                                   (Set<MaterialState> states) {
                                     return RoundedRectangleBorder(
@@ -504,13 +500,14 @@ class _PerfilState extends State<Perfil> {
                                 ),
                               ),
                               onPressed: () {
-                                
                                 perfilController.editPerfil().then((value) {
                                   if (value == 1) {
                                     edgeAlertWidget(
                                       context,
                                       'Seu Perfil foi Atualizado!',
                                     );
+                                   
+                                        
                                   } else if (value == "vazio") {
                                     onAlertButtonPressed(
                                         context, 'Algum Campo Vazio!', null);
@@ -525,11 +522,11 @@ class _PerfilState extends State<Perfil> {
                               child: Text(
                                 "Enviar",
                                 style: GoogleFonts.montserrat(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor,
-                              ),
+                                ),
                               ),
                             ),
                           )

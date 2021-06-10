@@ -44,7 +44,8 @@ class Prestacao extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       boxSearch(context, prestacaoController.controller.value,
-                          prestacaoController.onSearchTextChanged),
+                          prestacaoController.onSearchTextChanged,
+                          "Pesquise por Nome..."),
                       Expanded(
                         child: prestacaoController.searchResult.isNotEmpty ||
                                 prestacaoController

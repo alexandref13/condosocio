@@ -3,6 +3,7 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ListOfCondo extends StatelessWidget {
@@ -27,9 +28,37 @@ class ListOfCondo extends StatelessWidget {
                         var condo = loginController.listOfCondo[i];
                         return GestureDetector(
                           onTap: () {
-                            loginController.unidade.value = condo.tipoun;
+                            loginController.tipoun.value = condo.tipoun;
+                            loginController.logradouro.value = condo.logradouro;
                             loginController.newId.value = condo.idusu;
                             loginController.newLogin(condo.idusu);
+                            loginController.idcond.value = condo.idcond;
+
+                            loginController.tipousu.value = condo.tipousu;
+                            loginController.nomeusu.value = condo.nomeusu;
+                            loginController.sobrenomeusu.value =
+                                condo.sobrenomeusu;
+
+                            var sendTags = {
+                              'idusu': loginController.newId.value,
+                              'nome':
+                                  '${loginController.nome.value} ${loginController.sobrenome.value}',
+                              'idcond': loginController.idcond.value,
+                              'tipousuario': loginController.tipo.value,
+                              'genero': loginController.genero.value,
+                              'tipoun': loginController.tipoun.value,
+                              'logradouro': loginController.logradouro.value,
+                            };
+
+                            OneSignal.shared
+                                .sendTags(sendTags)
+                                .then((response) {
+                              print(
+                                  "Successfully sent tags with response: $response");
+                            }).catchError((error) {
+                              print(
+                                  "Encountered an error sending tags: $error");
+                            });
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(

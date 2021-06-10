@@ -55,6 +55,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                         context,
                         ocorrenciasController.search.value,
                         ocorrenciasController.onSearchTextChanged,
+                         "Pesquise por Título..."
                       ),
                       Container(
                         padding: EdgeInsets.all(10),

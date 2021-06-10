@@ -64,6 +64,7 @@ class MyApp extends StatelessWidget {
     OneSignal.shared
         .setInFocusDisplayType(OSNotificationDisplayType.notification);
 
+     
     return GetMaterialApp(
       localizationsDelegates: [
         RefreshLocalizations.delegate,

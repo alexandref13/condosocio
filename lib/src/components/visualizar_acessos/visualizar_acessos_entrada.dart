@@ -69,7 +69,8 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                 : Column(
                     children: [
                       boxSearch(context, acessosController.search.value,
-                          acessosController.onSearchTextChanged),
+                          acessosController.onSearchTextChanged,
+                          "Pesquise por Nome..."),
                       Container(
                         padding: EdgeInsets.all(10),
                         color: Theme.of(context).accentColor,

@@ -25,6 +25,11 @@ class ApiOcorrencias {
     OcorrenciasController ocorrenciasController =
         Get.put(OcorrenciasController());
 
+    var date = ocorrenciasController.date.value.text.split('/');
+    ocorrenciasController.date.value.text = '${date[2]}-${date[1]}-${date[0]}';
+
+    print(ocorrenciasController.date.value.text);
+    print(ocorrenciasController.hour.value.text);
     var uri =
         Uri.parse("https://www.condosocio.com.br/flutter/ocorrencias_inc.php");
 

@@ -6,6 +6,7 @@ Widget boxSearch(
   BuildContext context,
   TextEditingController searchController,
   onSearchTextChanged,
+  textopesquisa
 ) {
   return Container(
     padding: EdgeInsets.fromLTRB(5, 15, 5, 15),
@@ -13,13 +14,13 @@ Widget boxSearch(
       onChanged: onSearchTextChanged == '' ? null : onSearchTextChanged,
       controller: searchController,
       style: GoogleFonts.montserrat(
-        fontSize: 16,
+        fontSize: 14,
         color: Theme.of(context).textSelectionTheme.selectionColor,
       ),
       decoration: InputDecoration(
-        labelText: "Pesquise pelo nome ...",
+        labelText: textopesquisa,
         labelStyle: GoogleFonts.montserrat(
-          fontSize: 16,
+          fontSize: 12,
           color: Theme.of(context).textSelectionTheme.selectionColor,
         ),
         prefixIcon: Icon(
@@ -38,7 +39,7 @@ Widget boxSearch(
           borderSide: BorderSide(
             color: Theme.of(context).textSelectionTheme.selectionColor,
           ),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
     ),

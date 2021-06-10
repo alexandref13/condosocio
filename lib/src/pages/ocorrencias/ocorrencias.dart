@@ -42,13 +42,13 @@ class _OcorrenciasState extends State<Ocorrencias> {
               Text(
                 'Adicionar',
                 style: GoogleFonts.montserrat(
-                    fontSize: 16,
+                    fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor),
               ),
               Text(
                 'Visualizar',
                 style: GoogleFonts.montserrat(
-                  fontSize: 16,
+                  fontSize: 14,
                   color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
               ),

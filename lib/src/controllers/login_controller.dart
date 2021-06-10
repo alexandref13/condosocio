@@ -34,6 +34,12 @@ class LoginController extends GetxController {
   var licenca = ''.obs;
   var isLoading = false.obs;
   var isChecked = false.obs;
+  var tipoun = ''.obs;
+  var logradouro = ''.obs;
+  var tipousu = ''.obs;
+  var nomeusu = ''.obs;
+  var sobrenomeusu = ''.obs;
+
   var listOfCondo = [];
 
   RefreshController refreshController =

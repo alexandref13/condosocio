@@ -8,8 +8,7 @@ class ApiPerfil {
     LoginController loginController = Get.put(LoginController());
     PerfilController perfilController = Get.put(PerfilController());
 
-   print(perfilController.newDate.value);
-    print(perfilController.phone.value.text);
+
 
 
     return await http.post(

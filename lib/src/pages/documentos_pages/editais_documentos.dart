@@ -44,7 +44,8 @@ class Editais extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       boxSearch(context, editaisController.controller.value,
-                          editaisController.onSearchTextChanged),
+                          editaisController.onSearchTextChanged,
+                          "Pesquise por Nome..."),
                       Expanded(
                         child: editaisController.searchResult.isNotEmpty ||
                                 editaisController

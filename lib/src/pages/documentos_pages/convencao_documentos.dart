@@ -44,7 +44,8 @@ class Convencao extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       boxSearch(context, convencaoController.controller.value,
-                          convencaoController.onSearchTextChanged),
+                          convencaoController.onSearchTextChanged,
+                          "Pesquise por Nome..."),
                       Expanded(
                         child: convencaoController.searchResult.isNotEmpty ||
                                 convencaoController

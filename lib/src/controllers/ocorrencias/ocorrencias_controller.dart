@@ -31,6 +31,8 @@ class OcorrenciasController extends GetxController {
   sendOcorrencia(String path) async {
     if (title.value.text == '' ||
         description.value.text == '' ||
+        date.value.text == '' ||
+        hour.value.text == '' || 
         itemSelecionado.value == 'Selecione o tipo de ocorrência') {
       return 'vazio';
     } else {

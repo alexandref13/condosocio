@@ -47,7 +47,8 @@ class _AvisosState extends State<Avisos> {
                       boxSearch(
                           context,
                           visualizarAvisosController.search.value,
-                          visualizarAvisosController.onSearchTextChanged),
+                          visualizarAvisosController.onSearchTextChanged,
+                          "Pesquise os Avisos..."),
                       Expanded(
                         child: _listaavisos(),
                       )

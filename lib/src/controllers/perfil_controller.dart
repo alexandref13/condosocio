@@ -52,23 +52,25 @@ class PerfilController extends GetxController {
     } else {
       isLoading(true);
 
-      /*phone.value.text = cellMaskFormatter.getUnmaskedText();
       loginController.phone.value = phone.value.text;
       loginController.birthdate.value = birthdate.value.text;
       loginController.nome.value = name.value.text;
       loginController.sobrenome.value = secondName.value.text;
-      var date = birthdate.value.text.split('/');
-      newDate.value = '${date[2]}-${date[1]}-${date[0]}';
-      loginController.genero.value = itemSelecionado.value;*/
+      loginController.genero.value = itemSelecionado.value;
+
+      /*phone.value.text = cellMaskFormatter.getUnmaskedText();
+      var date = birthdate.value.text.split('/');*/
+   
 
       var date = birthdate.value.text.split('/');
       newDate.value = '${date[2]}-${date[1]}-${date[0]}';
-      
+
       var response = await ApiPerfil.editPerfil();
       var dados = json.decode(response.body);
 
       isLoading(false);
-     
+      
+       loginController.birthdate.value = '${date[2]}/${date[1]}/${date[0]}';
       return dados;
     }
   }
@@ -76,11 +78,12 @@ class PerfilController extends GetxController {
   init() {
     name.value.text = loginController.nome.value;
     phone.value.text = loginController.phone.value;
-   
     secondName.value.text = loginController.sobrenome.value;
     var date = loginController.birthdate.value.replaceAll('-', '/').split('/');
     birthdate.value.text = '${date[2]}/${date[1]}/${date[0]}';
     gender.value.text = loginController.genero.value;
+   
+
   }
 
   @override

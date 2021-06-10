@@ -44,7 +44,7 @@ class Ata extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       boxSearch(context, ata.controller.value,
-                          ata.onSearchTextChanged),
+                          ata.onSearchTextChanged, "Pesquise por Nome..."),
                       Expanded(
                         child: ata.searchResult.isNotEmpty ||
                                 ata.controller.value.text.isNotEmpty
