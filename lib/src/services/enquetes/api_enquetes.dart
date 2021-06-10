@@ -36,7 +36,6 @@ class ApiEnquetes {
   }
 
   static Future<dynamic> votarEnquete() async {
-    
     LoginController loginController = Get.put(LoginController());
     VisualizarEnquetesController visualizarEnquetesController =
         Get.put(VisualizarEnquetesController());
@@ -52,9 +51,8 @@ class ApiEnquetes {
         'idcond': loginController.idcond.value,
         'idusu': loginController.id.value,
         'idenq': visualizarEnquetesController.idenq.value,
-        'resposta': enquetesController.i.value,
+        'resposta': enquetesController.i.value.toString(),
       },
-
     );
   }
 }

@@ -23,7 +23,6 @@ class VotarEnqueteController extends GetxController {
         dados.map((model) => MapaVotarEnquetes.fromJson(model)).toList());
 
     isLoading(false);
-    print('teste: $dados');
   }
 
   votarEnquete() async {
@@ -35,13 +34,11 @@ class VotarEnqueteController extends GetxController {
 
     Get.toNamed('/enquetes');
 
-    isLoading(true);
-
     var dados = json.decode(response.body);
 
-    print(dados);
-
     isLoading(false);
+
+    return dados;
   }
 
   @override
