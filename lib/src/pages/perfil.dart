@@ -291,7 +291,7 @@ class _PerfilState extends State<Perfil> {
                                   child: Text(
                                     'Alterar foto de perfil',
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
@@ -399,6 +399,7 @@ class _PerfilState extends State<Perfil> {
                                 Icons.keyboard_arrow_down,
                                 size: 27,
                               ),
+                              
                               iconEnabledColor: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
@@ -411,11 +412,13 @@ class _PerfilState extends State<Perfil> {
                               ),
                               items: perfilController.tipos
                                   .map((String dropDownStringItem) {
+                                    
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem),
                                 );
                               }).toList(),
+                              
                               onChanged: (String novoItemSelecionado) {
                                 dropDownFavoriteSelected(novoItemSelecionado);
                                 perfilController.itemSelecionado.value =
@@ -501,17 +504,21 @@ class _PerfilState extends State<Perfil> {
                                 ),
                               ),
                               onPressed: () {
+                                
                                 perfilController.editPerfil().then((value) {
                                   if (value == 1) {
                                     edgeAlertWidget(
                                       context,
-                                      'Perfil atualizado',
+                                      'Seu Perfil foi Atualizado!',
                                     );
+                                  } else if (value == "vazio") {
+                                    onAlertButtonPressed(
+                                        context, 'Algum Campo Vazio!', null);
                                   } else {
                                     onAlertButtonPressed(
                                         context,
                                         'Algo deu errado\n Tente novamente',
-                                        '/home');
+                                        null);
                                   }
                                 });
                               },

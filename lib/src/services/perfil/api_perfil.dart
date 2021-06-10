@@ -4,10 +4,13 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ApiPerfil {
-  
   static Future editPerfil() async {
     LoginController loginController = Get.put(LoginController());
     PerfilController perfilController = Get.put(PerfilController());
+
+   print(perfilController.newDate.value);
+    print(perfilController.phone.value.text);
+
 
     return await http.post(
         Uri.https("www.condosocio.com.br", "/flutter/perfil_alterar.php"),
@@ -19,5 +22,6 @@ class ApiPerfil {
           'celular': perfilController.phone.value.text,
           'genero': perfilController.itemSelecionado.value,
         });
+    
   }
 }

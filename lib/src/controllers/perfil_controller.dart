@@ -16,6 +16,7 @@ class PerfilController extends GetxController {
   var birthdate = TextEditingController().obs;
   var newDate = ''.obs;
   var phone = TextEditingController().obs;
+  var tipo = TextEditingController().obs;
   var fullName = '';
 
   var firstId = '0'.obs;
@@ -48,43 +49,38 @@ class PerfilController extends GetxController {
         secondName.value.text == '' ||
         itemSelecionado.value == 'Selecione o gênero') {
       return 'vazio';
-
     } else {
       isLoading(true);
-      phone.value.text = cellMaskFormatter.getUnmaskedText();
+
+      /*phone.value.text = cellMaskFormatter.getUnmaskedText();
       loginController.phone.value = phone.value.text;
       loginController.birthdate.value = birthdate.value.text;
-      loginController.nome.value =
-          '${name.value.text} ${secondName.value.text}';
-      
+      loginController.nome.value = name.value.text;
+      loginController.sobrenome.value = secondName.value.text;
       var date = birthdate.value.text.split('/');
       newDate.value = '${date[2]}-${date[1]}-${date[0]}';
-      loginController.genero.value = itemSelecionado.value;
+      loginController.genero.value = itemSelecionado.value;*/
 
+      var date = birthdate.value.text.split('/');
+      newDate.value = '${date[2]}-${date[1]}-${date[0]}';
+      
       var response = await ApiPerfil.editPerfil();
       var dados = json.decode(response.body);
 
       isLoading(false);
-
+     
       return dados;
     }
   }
 
   init() {
-    fullName = loginController.nome.value;
-
-    var nome = fullName.split(' ');
-
-    for (var i = 1; i < nome.length; i++) {
-      secondName.value.text = secondName.value.text + nome[i] + ' ';
-    }
-
-    name.value.text = nome[0];
+    name.value.text = loginController.nome.value;
     phone.value.text = loginController.phone.value;
-
+   
+    secondName.value.text = loginController.sobrenome.value;
     var date = loginController.birthdate.value.replaceAll('-', '/').split('/');
-
     birthdate.value.text = '${date[2]}/${date[1]}/${date[0]}';
+    gender.value.text = loginController.genero.value;
   }
 
   @override
