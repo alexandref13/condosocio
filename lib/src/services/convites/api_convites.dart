@@ -81,6 +81,19 @@ class ApiConvites {
           'www.condosocio.com.br', '/flutter/convites_whatsapp_chave.php', {
         'idconv': visualizarConvitesController.idConv.value,
         'nome': visualizarConvitesController.nameGuest.value,
+        'whatsapp': visualizarConvitesController.whatsappNumber.value.text,
+      }),
+    );
+  }
+
+  static Future verificaWhatsApp() async {
+    VisualizarConvitesController visualizarConvitesController =
+        Get.put(VisualizarConvitesController());
+
+    return await http.get(
+      Uri.https(
+          'www.condosocio.com.br', '/flutter/convites_whatsapp_verificar.php', {
+        'celular': visualizarConvitesController.tel.value,
       }),
     );
   }

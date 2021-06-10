@@ -13,13 +13,17 @@ class Outros extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Outros',
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
         ),
       ),
       body: Obx(
         () {
           return outrosController.isLoading.value
               ? Container(
-                  height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: SizedBox(
@@ -28,7 +32,8 @@ class Outros extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                            Theme.of(context).accentColor),
+                        Theme.of(context).textSelectionTheme.selectionColor,
+                        ),
                       ),
                     ),
                   ),
@@ -76,7 +81,7 @@ class Outros extends StatelessWidget {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        iconSize: 30,
+                                        iconSize: 26,
                                         onPressed: () {
                                           outrosController.launched =
                                               outrosController.launchInBrowser(
@@ -117,7 +122,7 @@ class Outros extends StatelessWidget {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        iconSize: 30,
+                                        iconSize: 26,
                                         onPressed: () {
                                           outrosController.launched =
                                               outrosController.launchInBrowser(

@@ -13,13 +13,17 @@ class Editais extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Editais',
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
         ),
       ),
       body: Obx(
         () {
           return editaisController.isLoading.value
               ? Container(
-                  height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: SizedBox(
@@ -28,7 +32,8 @@ class Editais extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                            Theme.of(context).accentColor),
+                        Theme.of(context).textSelectionTheme.selectionColor,
+                        ),
                       ),
                     ),
                   ),
@@ -77,7 +82,7 @@ class Editais extends StatelessWidget {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        iconSize: 30,
+                                        iconSize: 26,
                                         onPressed: () {
                                           editaisController.launched =
                                               editaisController.launchInBrowser(
@@ -118,7 +123,7 @@ class Editais extends StatelessWidget {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        iconSize: 30,
+                                        iconSize: 26,
                                         onPressed: () {
                                           editaisController.launched =
                                               editaisController.launchInBrowser(

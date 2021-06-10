@@ -13,13 +13,17 @@ class Prestacao extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Prestação',
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
         ),
       ),
       body: Obx(
         () {
           return prestacaoController.isLoading.value
               ? Container(
-                  height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: SizedBox(
@@ -28,7 +32,8 @@ class Prestacao extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                            Theme.of(context).accentColor),
+                        Theme.of(context).textSelectionTheme.selectionColor,
+                        ),
                       ),
                     ),
                   ),
@@ -77,7 +82,7 @@ class Prestacao extends StatelessWidget {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        iconSize: 30,
+                                        iconSize: 26,
                                         onPressed: () {
                                           prestacaoController.launched =
                                               prestacaoController.launchInBrowser(
@@ -120,7 +125,7 @@ class Prestacao extends StatelessWidget {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        iconSize: 30,
+                                        iconSize: 26,
                                         onPressed: () {
                                           prestacaoController.launched =
                                               prestacaoController.launchInBrowser(

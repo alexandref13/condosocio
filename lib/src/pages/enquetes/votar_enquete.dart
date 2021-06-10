@@ -3,7 +3,9 @@ import 'package:condosocio/src/components/utils/progress_indicator_widget.dart';
 import 'package:condosocio/src/controllers/enquetes/visualizar_enquetes_controller.dart';
 import 'package:condosocio/src/controllers/enquetes/votar_enquete.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
+import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -44,7 +46,7 @@ class VotarEnquete extends StatelessWidget {
               "Cancelar",
               style: GoogleFonts.montserrat(
                 color: Theme.of(context).textSelectionTheme.selectionColor,
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
             onPressed: () {
@@ -58,7 +60,7 @@ class VotarEnquete extends StatelessWidget {
               "OK",
               style: GoogleFonts.montserrat(
                 color: Theme.of(context).textSelectionTheme.selectionColor,
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
             onPressed: function,
@@ -258,12 +260,20 @@ class VotarEnquete extends StatelessWidget {
                                         ),
                                       ),
                                       onPressed: () {
-                                        confirmedVote(
-                                          'Deseja realmente votar em ${enquetes.perguntas[enquetesController.i.value]}',
-                                          () {
-                                            enquetesController.votarEnquete();
-                                          },
-                                        );
+                                        enquetesController.i.value == 0
+                                            ? EdgeAlert.show(context,
+                                                title: 'Escolha uma opção!',
+                                                gravity: EdgeAlert.BOTTOM,
+                                                backgroundColor: Colors.red,
+                                                icon: Icons.highlight_off)
+                                            : confirmedVote(
+                                                'Deseja realmente votar em ${enquetes.perguntas[enquetesController.i.value]}',
+                                                () {
+                                                 
+                                                  enquetesController
+                                                      .votarEnquete();
+                                                },
+                                              );
                                       },
                                       child: Text(
                                         'Votar',

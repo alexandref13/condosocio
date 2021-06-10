@@ -33,16 +33,18 @@ class DetalheConviteWidget extends StatelessWidget {
       endDate,
     );
 
-    return WillPopScope(
-      onWillPop: () async {
-        Get.offNamed('/convites');
-        return false;
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(visualizarConvitesController.titulo.value),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          visualizarConvitesController.titulo.value,
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+          ),
         ),
-        body: visualizarConvitesController.isLoading.value
+      ),
+      body: Obx(() {
+        return visualizarConvitesController.isLoading.value
             ? CircularProgressIndicatorWidget()
             : Container(
                 child: ListView.builder(
@@ -345,6 +347,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                               ),
                                               onPressed: () {
                                                 var celular;
+
                                                 visualizarConvitesController
                                                         .tel.value =
                                                     convidados[x]['tel'];
@@ -352,49 +355,69 @@ class DetalheConviteWidget extends StatelessWidget {
                                                         .nameGuest.value =
                                                     convidados[x]['nome'];
 
-                                                convidados[x]['tel'] != null
-                                                    ? celular = convidados[x]
-                                                            ['tel']
-                                                        .replaceAll("+", "")
-                                                        .replaceAll("(", "")
-                                                        .replaceAll(")", "")
-                                                        .replaceAll("-", "")
-                                                        .replaceAll(" ", "")
-                                                    : celular = '';
-
                                                 visualizarConvitesController
-                                                    .whatsappNumber
-                                                    .value
-                                                    .text = celular;
-                                                if (celular.length == 11) {
+                                                    .verificaWhatsApp()
+                                                    .then((value) {
+                                                  value != 0
+                                                      ? celular = value[
+                                                          'celular']
+                                                      : convidados[x]['tel'] !=
+                                                              null
+                                                          ? celular =
+                                                              convidados[x][
+                                                                      'tel']
+                                                                  .replaceAll(
+                                                                      "+",
+                                                                      "")
+                                                                  .replaceAll(
+                                                                      "(",
+                                                                      "")
+                                                                  .replaceAll(
+                                                                      ")",
+                                                                      "")
+                                                                  .replaceAll(
+                                                                      "-", "")
+                                                                  .replaceAll(
+                                                                      " ", "")
+                                                          : celular = '';
                                                   visualizarConvitesController
-                                                      .sendWhatsApp()
-                                                      .then(
-                                                    (value) {
-                                                      if (value != 0) {
-                                                        String message =
-                                                            'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}';
+                                                      .whatsappNumber
+                                                      .value
+                                                      .text = celular;
 
-                                                        FlutterOpenWhatsapp
-                                                            .sendSingleMessage(
-                                                          celular.length == 11
-                                                              ? '55$celular'
-                                                              : celular,
-                                                          Uri.encodeFull(
-                                                              message),
-                                                        );
-                                                      } else {
-                                                        onAlertButtonPressed(
-                                                            context,
-                                                            'Algo deu errado\n Tente novamente',
-                                                            '/home');
-                                                      }
-                                                    },
-                                                  );
-                                                } else {
-                                                  Get.toNamed(
-                                                      '/whatsAppConvite');
-                                                }
+                                                  print(celular.length);
+
+                                                  if (celular.length == 11) {
+                                                    visualizarConvitesController
+                                                        .sendWhatsApp()
+                                                        .then(
+                                                      (value) {
+                                                        if (value != 0) {
+                                                          String message =
+                                                              'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}';
+
+                                                          FlutterOpenWhatsapp
+                                                              .sendSingleMessage(
+                                                            celular.length == 11
+                                                                ? '55$celular'
+                                                                : celular,
+                                                            Uri.encodeFull(
+                                                                message),
+                                                          );
+                                                        } else {
+                                                          onAlertButtonPressed(
+                                                              context,
+                                                              'Algo deu errado\n Tente novamente',
+                                                              '/home');
+                                                        }
+                                                      },
+                                                    );
+                                                  } else {
+                                                    Get.toNamed(
+                                                        '/whatsAppConvite');
+                                                  }
+                                                });
+
                                                 print('ola');
                                               },
                                             )
@@ -474,11 +497,11 @@ class DetalheConviteWidget extends StatelessWidget {
                                             child: Text(
                                               "Deletar",
                                               style: GoogleFonts.montserrat(
+                                                fontWeight: FontWeight.bold,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor,
-                                                fontSize: 14,
-                                              ),
+                                ),
                                             ),
                                           ),
                                         ),
@@ -558,10 +581,11 @@ class DetalheConviteWidget extends StatelessWidget {
                                             child: Text(
                                               "Editar",
                                               style: GoogleFonts.montserrat(
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                  fontSize: 14),
+                                                fontWeight: FontWeight.bold,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor,
+                                ),
                                             ),
                                           ),
                                         ),
@@ -575,8 +599,8 @@ class DetalheConviteWidget extends StatelessWidget {
                     );
                   },
                 ),
-              ),
-      ),
+              );
+      }),
     );
   }
 }

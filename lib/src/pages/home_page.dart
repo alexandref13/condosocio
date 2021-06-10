@@ -311,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                             getImageWidget(),
                             Container(
                               child: Text(
-                                loginController.nome.value,
+                                "${loginController.nome.value} ${loginController.sobrenome.value}",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 softWrap: false,

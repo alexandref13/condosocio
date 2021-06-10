@@ -47,14 +47,14 @@ class VisualizarAcessos extends StatelessWidget {
                 Text(
                   'Entrada',
                   style: GoogleFonts.montserrat(
-                      fontSize: 16,
+                      fontSize: 14,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor),
                 ),
                 Text(
                   'Saída',
                   style: GoogleFonts.montserrat(
-                    fontSize: 16,
+                    fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor,
                   ),
                 ),

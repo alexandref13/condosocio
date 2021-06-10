@@ -35,7 +35,7 @@ class VotarEnqueteController extends GetxController {
     Get.toNamed('/enquetes');
 
     var dados = json.decode(response.body);
-
+      
     isLoading(false);
 
     return dados;

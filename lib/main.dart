@@ -1,5 +1,6 @@
 import 'package:condosocio/src/components/acessos_saidas/detalhes_acessos_saida.dart';
 import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_saidas.dart';
+import 'package:condosocio/src/components/convites/visualizar_convite_widget.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui_form.dart';
@@ -124,6 +125,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/avisos', page: () => Avisos()),
         GetPage(name: '/detalhesaviso', page: () => DetalhesAvisos()),
         GetPage(name: '/esqueci', page: () => Esqueci()),
+         GetPage(
+            name: '/visualizarconvites', page: () => VisualizarConviteWidget()),
+        
       ],
     );
   }

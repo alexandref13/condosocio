@@ -194,7 +194,7 @@ class _ComunicadosState extends State<Comunicados> {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        iconSize: 30,
+                                        iconSize: 36,
                                         onPressed: () {
                                           launchInBrowser(
                                               "https://condosocio.com.br/acond/downloads/comunicados_arq/${search.arquivo}");
@@ -281,7 +281,7 @@ class _ComunicadosState extends State<Comunicados> {
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                                        iconSize: 30,
+                                        iconSize: 26,
                                         onPressed: () {
                                           launchInBrowser(
                                               "https://condosocio.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");

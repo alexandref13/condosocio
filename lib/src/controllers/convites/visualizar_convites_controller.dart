@@ -67,6 +67,15 @@ class VisualizarConvitesController extends GetxController {
     return data;
   }
 
+  verificaWhatsApp() async {
+    isLoading(true);
+    var response = await ApiConvites.verificaWhatsApp();
+    var data = json.decode(response.body);
+    isLoading(false);
+
+    return data;
+  }
+
   Future<void> initPlatformState() async {
     String platformVersion;
     try {
