@@ -151,9 +151,11 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                           }
 
                           if (calendarioReservasController.events[
-                                  calendarioReservasController
-                                      .selectedDay.value] ==
-                              null) {
+                                      calendarioReservasController
+                                          .selectedDay.value] ==
+                                  null &&
+                              calendarioReservasController.selectedDay.value
+                                  .isAfter(calendarioReservasController.day)) {
                             Get.toNamed('/addReservas');
                           } else {
                             if (calendarioReservasController

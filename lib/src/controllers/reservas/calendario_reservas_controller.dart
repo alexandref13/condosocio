@@ -20,6 +20,8 @@ class CalendarioReservasController extends GetxController {
   List<dynamic> selectedEvents;
 
   CalendarFormat calendarFormat = CalendarFormat.month;
+  DateTime now = DateTime.now();
+  DateTime day;
   var focusedDay = DateTime.now().obs;
   var selectedDay = DateTime.now().obs;
 
@@ -91,7 +93,7 @@ class CalendarioReservasController extends GetxController {
 
     selectedDay.value = newSelectedDay;
 
-    print(selectedDay.value);
+    day = DateTime(now.year, now.month, now.day - 1);
   }
 
   @override
