@@ -9,6 +9,7 @@ class ReservasController extends GetxController {
 
   var nome = ''.obs;
   var termo = ''.obs;
+  var idarea = ''.obs;
 
   var isLoading = true.obs;
 

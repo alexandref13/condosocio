@@ -338,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               padding: EdgeInsets.only(top: 2),
                               child: Text(
-                                '${loginController.tipo.value} | ${loginController.unidade.value}',
+                                '${loginController.logradouro.value} | ${loginController.tipoun.value}',
                                 style: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme

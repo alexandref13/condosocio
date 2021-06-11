@@ -35,9 +35,9 @@ class DetalhesReservas extends StatelessWidget {
               width: MediaQuery.of(context).size.width * .9,
               child: Card(
                 color: calendarioReservasController.status.value == 'Aprovado'
-                    ? Colors.green
+                    ? Colors.green[400]
                     : calendarioReservasController.status.value == 'Recusado'
-                        ? Colors.red
+                        ? Colors.red[300]
                         : Colors.amber,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
@@ -181,6 +181,40 @@ class DetalhesReservas extends StatelessWidget {
                               color: Colors.black,
                             ),
                           ),
+                        ],
+                      ),
+                    ),
+                    
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 14,
+                        horizontal: 10,
+                      ),
+                      child: Row(
+                        children: [
+                          Column(children: [
+                            calendarioReservasController.status.value ==
+                                    "Recusado"
+                                ? Text(
+                                    'Motivo da Recusa: ',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 12,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                : calendarioReservasController.status.value ==
+                                        "Recusado"
+                                    ? Text(
+                                        calendarioReservasController
+                                            .respevent.value,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 12,
+                                          color: Colors.black,
+                                        ),
+                                      )
+                                    : Container(),
+                          ]),
                         ],
                       ),
                     ),

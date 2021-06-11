@@ -15,6 +15,8 @@ class CalendarioReservasController extends GetxController {
   var area = ''.obs;
   var status = ''.obs;
   var hora = ''.obs;
+  var respevent = ''.obs;
+  var idarea = ''.obs;
 
   Map<DateTime, List<MapaEvento>> events = {};
   List<dynamic> selectedEvents;
@@ -35,8 +37,6 @@ class CalendarioReservasController extends GetxController {
     var response = await ApiReservas.agendaReservas();
 
     var dados = json.decode(response.body);
-
-    print(dados['dados']);
 
     if (dados['dados'] != null) {
       for (var eventos in dados['dados']) {
@@ -74,6 +74,7 @@ class CalendarioReservasController extends GetxController {
     String newArea,
     String newStatus,
     String newHora,
+    String newResp,
   ) {
     nome(newNome);
     unidade(newUnidade);
@@ -82,6 +83,7 @@ class CalendarioReservasController extends GetxController {
     area(newArea);
     status(newStatus);
     hora(newHora);
+    respevent(newResp);
 
     Get.toNamed('/detalheReservas');
   }

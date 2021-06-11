@@ -20,12 +20,15 @@ class ApiReservas {
     LoginController loginController = Get.put(LoginController());
     ReservasController reservasController = Get.put(ReservasController());
 
+    print("idarea: ${reservasController.idarea.value}");
+    
     return await http.post(
       Uri.https("www.condosocio.com.br", "/flutter/reservas_agenda.php"),
       body: {
         'idcond': loginController.idcond.value,
         'idusu': loginController.id.value,
         'nome_area': reservasController.nome.value,
+        'idarea': reservasController.idarea.value,
       },
     );
   }

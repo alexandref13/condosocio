@@ -18,6 +18,7 @@ class AddReservasController extends GetxController {
 
   var date = ''.obs;
   var hora = ''.obs;
+  var idarea = ''.obs;
 
   var isChecked = false.obs;
 

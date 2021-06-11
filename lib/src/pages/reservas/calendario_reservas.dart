@@ -33,13 +33,17 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
       width: 18.0,
       height: 18.0,
       child: Center(
-        child: Text(
-          '${events.length}',
-          style: TextStyle().copyWith(
-            color: Colors.white,
-            fontSize: 14.0,
-          ),
-        ),
+        child:
+            /*Icon(
+          Icons.do_disturb_alt_outlined,
+          color: Colors.white,
+          size: 18,
+        ),*/
+            Text('${events.length}',
+                style: TextStyle().copyWith(
+                  color: Colors.white,
+                  fontSize: 14.0,
+                )),
       ),
     );
   }
@@ -90,8 +94,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                           markerBuilder: (context, date, events) {
                             if (events.isNotEmpty) {
                               return Positioned(
-                                right: 1,
-                                top: 1,
+                                right: 4,
+                                top: 2,
                                 child: buildEventsMarker(date, events),
                               );
                             }
@@ -191,9 +195,9 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12.0),
                                     color: e.status == 'Aprovado'
-                                        ? Colors.green
+                                        ? Colors.green[400]
                                         : e.status == 'Recusado'
-                                            ? Colors.red
+                                            ? Colors.red[300]
                                             : Colors.amber,
                                   ),
                                   margin: const EdgeInsets.symmetric(
@@ -206,26 +210,21 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                     title: Text(
                                       e.nome,
                                       style: GoogleFonts.montserrat(
-                                        fontSize: 13,
+                                        fontSize: 12,
                                         color: Colors.black,
                                       ),
                                     ),
                                     subtitle: RichText(
                                       text: TextSpan(
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 11,
+                                          fontSize: 12,
                                           color: Colors.black,
                                         ),
                                         children: <TextSpan>[
                                           TextSpan(
-                                              text: unidades[0],
+                                              text: e.unidade,
                                               style: GoogleFonts.montserrat(
                                                   fontWeight: FontWeight.bold)),
-                                          TextSpan(
-                                            text:
-                                                ' ${unidades[1]} ${unidades[2]}',
-                                            style: GoogleFonts.montserrat(),
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -238,6 +237,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                         e.areacom,
                                         e.status,
                                         e.horaAgenda,
+                                        e.respevent,
                                       );
                                     },
                                   ),
@@ -246,9 +246,9 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.0),
                                 color: e.status == 'Aprovado'
-                                    ? Colors.green
+                                    ? Colors.green[400]
                                     : e.status == 'Recusado'
-                                        ? Colors.red
+                                        ? Colors.red[300]
                                         : Colors.amber,
                               ),
                               margin: const EdgeInsets.symmetric(
@@ -261,25 +261,21 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                 title: Text(
                                   e.nome,
                                   style: GoogleFonts.montserrat(
-                                    fontSize: 13,
+                                    fontSize: 12,
                                     color: Colors.black,
                                   ),
                                 ),
                                 subtitle: RichText(
                                   text: TextSpan(
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 11,
+                                      fontSize: 12,
                                       color: Colors.black,
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                          text: unidades[0],
+                                          text: e.unidade,
                                           style: GoogleFonts.montserrat(
                                               fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                        text: ' ${unidades[1]} ${unidades[2]}',
-                                        style: GoogleFonts.montserrat(),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -292,6 +288,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                     e.areacom,
                                     e.status,
                                     e.horaAgenda,
+                                    e.respevent,
                                   );
                                 },
                               ),

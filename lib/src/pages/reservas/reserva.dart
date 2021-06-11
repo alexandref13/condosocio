@@ -40,6 +40,8 @@ class Reserva extends StatelessWidget {
                                 onTap: () {
                                   reservasController.termo.value = areas.termo;
                                   reservasController.nome.value = areas.nome;
+                                  reservasController.idarea.value =
+                                      areas.idarea;
                                   Get.toNamed('/calendario');
                                 },
                                 child: Card(
