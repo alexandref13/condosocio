@@ -18,6 +18,8 @@ class CalendarioReservasController extends GetxController {
   var respevent = ''.obs;
   var idarea = ''.obs;
 
+  var onSelected = false.obs;
+
   Map<DateTime, List<MapaEvento>> events = {};
   List<dynamic> selectedEvents;
 

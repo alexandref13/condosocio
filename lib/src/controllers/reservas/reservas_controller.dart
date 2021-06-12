@@ -10,6 +10,9 @@ class ReservasController extends GetxController {
   var nome = ''.obs;
   var termo = ''.obs;
   var idarea = ''.obs;
+  var aprova = ''.obs;
+  var multi = ''.obs;
+  var tipo = ''.obs;
 
   var isLoading = true.obs;
 
@@ -30,6 +33,10 @@ class ReservasController extends GetxController {
     isLoading(true);
 
     var response = await ApiReservas.getAreas();
+
+    var lista = json.decode(response.body);
+
+    print(lista);
 
     Iterable dados = json.decode(response.body);
 

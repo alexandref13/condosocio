@@ -33,17 +33,11 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
       width: 18.0,
       height: 18.0,
       child: Center(
-        child:
-            /*Icon(
-          Icons.do_disturb_alt_outlined,
-          color: Colors.white,
-          size: 18,
-        ),*/
-            Text('${events.length}',
-                style: TextStyle().copyWith(
-                  color: Colors.white,
-                  fontSize: 14.0,
-                )),
+        child: Text('${events.length}',
+            style: TextStyle().copyWith(
+              color: Colors.white,
+              fontSize: 14.0,
+            )),
       ),
     );
   }
@@ -60,6 +54,17 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
           ),
         ),
       ),
+      floatingActionButton: Obx(() {
+        return calendarioReservasController.onSelected.value == true &&
+                reservasController.multi.value == 'S'
+            ? FloatingActionButton(
+                onPressed: () {
+                  Get.toNamed('/addReservas');
+                },
+                child: Icon(Icons.add),
+              )
+            : Container();
+      }),
       body: Obx(
         () {
           return calendarioReservasController.isLoading.value
@@ -146,6 +151,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                         calendarFormat:
                             calendarioReservasController.calendarFormat,
                         onDaySelected: (selectedDay, focusedDay) {
+                          calendarioReservasController.onSelected.value = true;
+
                           if (!isSameDay(selectedDay,
                               calendarioReservasController.selectedDay.value)) {
                             calendarioReservasController.selectedDay.value =
@@ -185,9 +192,9 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                     ),
                     ...calendarioReservasController
                         .getEventsfromDay(
-                            calendarioReservasController.selectedDay.value)
+                      calendarioReservasController.selectedDay.value,
+                    )
                         .map((MapaEvento e) {
-                      var unidades = e.unidade.split(' ');
                       return e.status == 'Recusado'
                           ? e.validausu == null
                               ? Container()

@@ -42,6 +42,9 @@ class Reserva extends StatelessWidget {
                                   reservasController.nome.value = areas.nome;
                                   reservasController.idarea.value =
                                       areas.idarea;
+                                  reservasController.aprova.value =
+                                      areas.aprova;
+                                  reservasController.multi.value = areas.multi;
                                   Get.toNamed('/calendario');
                                 },
                                 child: Card(

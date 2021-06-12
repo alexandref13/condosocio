@@ -234,6 +234,13 @@ class _AddReservasState extends State<AddReservas> {
                                       null,
                                     );
                                   } else {
+                                    if (value == 2) {
+                                      onAlertButtonPressed(
+                                        context,
+                                        'Horário indisponível\n Tente outro horário',
+                                        '/home',
+                                      );
+                                    }
                                     if (value == 1) {
                                       confirmedButtonPressed(
                                         context,

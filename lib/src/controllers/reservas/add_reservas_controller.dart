@@ -38,6 +38,8 @@ class AddReservasController extends GetxController {
 
       var dados = json.decode(response.body);
 
+      print(dados);
+
       isLoading(false);
 
       return dados;
