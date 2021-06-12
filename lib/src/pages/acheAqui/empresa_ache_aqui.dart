@@ -84,9 +84,15 @@ class EmpresaAcheAqui extends StatelessWidget {
                 color: Theme.of(context).textSelectionTheme.selectionColor,
               ),
               onTap: () {
+                var celular = acheAquiController.cel
+                    .replaceAll("+", "")
+                    .replaceAll("(", "")
+                    .replaceAll(")", "")
+                    .replaceAll("-", "")
+                    .replaceAll(" ", "");
                 detalhesAcheAquiController.launched =
                     detalhesAcheAquiController.launchInBrowser(
-                        "whatsapp://send?phone=+55${acheAquiController.cel}&text=Encontrei a sua empresa pelo aplicativo *CondoSócio*");
+                        "whatsapp://send?phone=55$celular&text=Encontrei a sua empresa pelo aplicativo *CondoSócio*");
               },
             ),
             SpeedDialChild(

@@ -39,7 +39,11 @@ class ApiReservas {
     AddReservasController addReservasController =
         Get.put(AddReservasController());
 
-    print(' aprova: ${reservasController.aprova.value}');
+    print({
+      ' aprova: ${reservasController.aprova.value}',
+      'hora: ${addReservasController.hora.value}',
+      'data: ${addReservasController.date.value}'
+    });
 
     return await http.post(
       Uri.https("www.condosocio.com.br", "/flutter/reservas_inc.php"),

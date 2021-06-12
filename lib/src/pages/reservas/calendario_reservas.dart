@@ -69,239 +69,249 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
         () {
           return calendarioReservasController.isLoading.value
               ? CircularProgressIndicatorWidget()
-              : Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      child: TableCalendar(
-                        locale: 'pt_BR',
-                        firstDay: DateTime(2017),
-                        lastDay: DateTime(2100),
-                        focusedDay:
-                            calendarioReservasController.focusedDay.value,
-                        availableGestures: AvailableGestures.all,
-                        startingDayOfWeek: StartingDayOfWeek.sunday,
-                        eventLoader:
-                            calendarioReservasController.getEventsfromDay,
-                        headerStyle: HeaderStyle(
-                          formatButtonVisible: false,
-                          titleCentered: true,
-                          formatButtonShowsNext: false,
-                          formatButtonDecoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5.0),
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        child: TableCalendar(
+                          locale: 'pt_BR',
+                          firstDay: DateTime(2017),
+                          lastDay: DateTime(2100),
+                          focusedDay:
+                              calendarioReservasController.focusedDay.value,
+                          availableGestures: AvailableGestures.all,
+                          startingDayOfWeek: StartingDayOfWeek.sunday,
+                          eventLoader:
+                              calendarioReservasController.getEventsfromDay,
+                          headerStyle: HeaderStyle(
+                            formatButtonVisible: false,
+                            titleCentered: true,
+                            formatButtonShowsNext: false,
+                            formatButtonDecoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            formatButtonTextStyle: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
-                          formatButtonTextStyle: TextStyle(
-                            color: Colors.white,
+                          calendarBuilders: CalendarBuilders(
+                            markerBuilder: (context, date, events) {
+                              if (events.isNotEmpty) {
+                                return Positioned(
+                                  right: 4,
+                                  top: 2,
+                                  child: buildEventsMarker(date, events),
+                                );
+                              }
+                              return Container();
+                            },
                           ),
-                        ),
-                        calendarBuilders: CalendarBuilders(
-                          markerBuilder: (context, date, events) {
-                            if (events.isNotEmpty) {
-                              return Positioned(
-                                right: 4,
-                                top: 2,
-                                child: buildEventsMarker(date, events),
-                              );
+                          daysOfWeekStyle: DaysOfWeekStyle(
+                            weekdayStyle: TextStyle(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            weekendStyle: TextStyle(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                          ),
+                          calendarStyle: CalendarStyle(
+                            outsideDaysVisible: false,
+                            todayDecoration: BoxDecoration(
+                              color: Theme.of(context).buttonColor,
+                              shape: BoxShape.circle,
+                            ),
+                            defaultTextStyle: TextStyle(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            weekendTextStyle: TextStyle(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            holidayTextStyle: TextStyle(
+                              color: Colors.green,
+                            ),
+                            selectedTextStyle: TextStyle(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
+                            selectedDecoration: BoxDecoration(
+                              color: Theme.of(context).accentColor,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          calendarFormat:
+                              calendarioReservasController.calendarFormat,
+                          onDaySelected: (selectedDay, focusedDay) {
+                            calendarioReservasController.onSelected.value =
+                                true;
+
+                            if (!isSameDay(
+                                selectedDay,
+                                calendarioReservasController
+                                    .selectedDay.value)) {
+                              calendarioReservasController.selectedDay.value =
+                                  selectedDay;
+                              calendarioReservasController.focusedDay.value =
+                                  focusedDay;
                             }
-                            return Container();
+
+                            if (calendarioReservasController.events[
+                                        calendarioReservasController
+                                            .selectedDay.value] ==
+                                    null &&
+                                calendarioReservasController.selectedDay.value
+                                    .isAfter(
+                                        calendarioReservasController.day)) {
+                              Get.toNamed('/addReservas');
+                            } else {
+                              if (calendarioReservasController
+                                          .events[calendarioReservasController
+                                              .selectedDay.value][0]
+                                          .status ==
+                                      'Recusado' &&
+                                  calendarioReservasController
+                                          .events[calendarioReservasController
+                                              .selectedDay.value][0]
+                                          .validausu ==
+                                      null) {
+                                Get.toNamed('/addReservas');
+                              }
+                            }
+                          },
+                          selectedDayPredicate: (DateTime date) {
+                            return isSameDay(
+                                calendarioReservasController.selectedDay.value,
+                                date);
                           },
                         ),
-                        daysOfWeekStyle: DaysOfWeekStyle(
-                          weekdayStyle: TextStyle(
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                          weekendStyle: TextStyle(
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                        ),
-                        calendarStyle: CalendarStyle(
-                          outsideDaysVisible: false,
-                          todayDecoration: BoxDecoration(
-                            color: Theme.of(context).buttonColor,
-                            shape: BoxShape.circle,
-                          ),
-                          defaultTextStyle: TextStyle(
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                          weekendTextStyle: TextStyle(
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                          holidayTextStyle: TextStyle(
-                            color: Colors.green,
-                          ),
-                          selectedTextStyle: TextStyle(
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                          selectedDecoration: BoxDecoration(
-                            color: Theme.of(context).accentColor,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        calendarFormat:
-                            calendarioReservasController.calendarFormat,
-                        onDaySelected: (selectedDay, focusedDay) {
-                          calendarioReservasController.onSelected.value = true;
-
-                          if (!isSameDay(selectedDay,
-                              calendarioReservasController.selectedDay.value)) {
-                            calendarioReservasController.selectedDay.value =
-                                selectedDay;
-                            calendarioReservasController.focusedDay.value =
-                                focusedDay;
-                          }
-
-                          if (calendarioReservasController.events[
-                                      calendarioReservasController
-                                          .selectedDay.value] ==
-                                  null &&
-                              calendarioReservasController.selectedDay.value
-                                  .isAfter(calendarioReservasController.day)) {
-                            Get.toNamed('/addReservas');
-                          } else {
-                            if (calendarioReservasController
-                                        .events[calendarioReservasController
-                                            .selectedDay.value][0]
-                                        .status ==
-                                    'Recusado' &&
-                                calendarioReservasController
-                                        .events[calendarioReservasController
-                                            .selectedDay.value][0]
-                                        .validausu ==
-                                    null) {
-                              Get.toNamed('/addReservas');
-                            }
-                          }
-                        },
-                        selectedDayPredicate: (DateTime date) {
-                          return isSameDay(
-                              calendarioReservasController.selectedDay.value,
-                              date);
-                        },
                       ),
-                    ),
-                    ...calendarioReservasController
-                        .getEventsfromDay(
-                      calendarioReservasController.selectedDay.value,
-                    )
-                        .map((MapaEvento e) {
-                      return e.status == 'Recusado'
-                          ? e.validausu == null
-                              ? Container()
-                              : Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    color: e.status == 'Aprovado'
-                                        ? Colors.green[400]
-                                        : e.status == 'Recusado'
-                                            ? Colors.red[300]
-                                            : Colors.amber,
-                                  ),
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 8.0, vertical: 4.0),
-                                  child: ListTile(
-                                    trailing: Icon(
-                                      Icons.arrow_right_outlined,
-                                      color: Colors.black,
+                      ...calendarioReservasController
+                          .getEventsfromDay(
+                        calendarioReservasController.selectedDay.value,
+                      )
+                          .map((MapaEvento e) {
+                        return e.status == 'Recusado'
+                            ? e.validausu == null
+                                ? Container()
+                                : Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      color: e.status == 'Aprovado'
+                                          ? Colors.green[400]
+                                          : e.status == 'Recusado'
+                                              ? Colors.red[300]
+                                              : Colors.amber,
                                     ),
-                                    title: Text(
-                                      e.nome,
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 8.0, vertical: 4.0),
+                                    child: ListTile(
+                                      trailing: Icon(
+                                        Icons.arrow_right_outlined,
                                         color: Colors.black,
                                       ),
-                                    ),
-                                    subtitle: RichText(
-                                      text: TextSpan(
+                                      title: Text(
+                                        e.nome,
                                         style: GoogleFonts.montserrat(
                                           fontSize: 12,
                                           color: Colors.black,
                                         ),
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                              text: e.unidade,
-                                              style: GoogleFonts.montserrat(
-                                                  fontWeight: FontWeight.bold)),
-                                        ],
                                       ),
+                                      subtitle: RichText(
+                                        text: TextSpan(
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 12,
+                                            color: Colors.black,
+                                          ),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                                text:
+                                                    '${e.unidade} - hora: ${e.horaAgenda}',
+                                                style: GoogleFonts.montserrat(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ],
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        calendarioReservasController
+                                            .goToDetails(
+                                          e.nome,
+                                          e.unidade,
+                                          e.titulo,
+                                          e.dataAgenda,
+                                          e.areacom,
+                                          e.status,
+                                          e.horaAgenda,
+                                          e.respevent,
+                                        );
+                                      },
                                     ),
-                                    onTap: () {
-                                      calendarioReservasController.goToDetails(
-                                        e.nome,
-                                        e.unidade,
-                                        e.titulo,
-                                        e.dataAgenda,
-                                        e.areacom,
-                                        e.status,
-                                        e.horaAgenda,
-                                        e.respevent,
-                                      );
-                                    },
-                                  ),
-                                )
-                          : Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                color: e.status == 'Aprovado'
-                                    ? Colors.green[400]
-                                    : e.status == 'Recusado'
-                                        ? Colors.red[300]
-                                        : Colors.amber,
-                              ),
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 4.0),
-                              child: ListTile(
-                                trailing: Icon(
-                                  Icons.arrow_right_outlined,
-                                  color: Colors.black,
+                                  )
+                            : Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  color: e.status == 'Aprovado'
+                                      ? Colors.green[400]
+                                      : e.status == 'Recusado'
+                                          ? Colors.red[300]
+                                          : Colors.amber,
                                 ),
-                                title: Text(
-                                  e.nome,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 12,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 8.0, vertical: 4.0),
+                                child: ListTile(
+                                  trailing: Icon(
+                                    Icons.arrow_right_outlined,
                                     color: Colors.black,
                                   ),
-                                ),
-                                subtitle: RichText(
-                                  text: TextSpan(
+                                  title: Text(
+                                    e.nome,
                                     style: GoogleFonts.montserrat(
                                       fontSize: 12,
                                       color: Colors.black,
                                     ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: e.unidade,
-                                          style: GoogleFonts.montserrat(
-                                              fontWeight: FontWeight.bold)),
-                                    ],
                                   ),
+                                  subtitle: RichText(
+                                    text: TextSpan(
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text:
+                                                '${e.unidade} - ${e.horaAgenda}h',
+                                            style: GoogleFonts.montserrat(
+                                                fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    calendarioReservasController.goToDetails(
+                                      e.nome,
+                                      e.unidade,
+                                      e.titulo,
+                                      e.dataAgenda,
+                                      e.areacom,
+                                      e.status,
+                                      e.horaAgenda,
+                                      e.respevent,
+                                    );
+                                  },
                                 ),
-                                onTap: () {
-                                  calendarioReservasController.goToDetails(
-                                    e.nome,
-                                    e.unidade,
-                                    e.titulo,
-                                    e.dataAgenda,
-                                    e.areacom,
-                                    e.status,
-                                    e.horaAgenda,
-                                    e.respevent,
-                                  );
-                                },
-                              ),
-                            );
-                    }),
-                  ],
+                              );
+                      }),
+                    ],
+                  ),
                 );
         },
       ),

@@ -43,7 +43,7 @@ class _AddReservasState extends State<AddReservas> {
         builder: (BuildContext context, Widget child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(
-              alwaysUse24HourFormat: true,
+              alwaysUse24HourFormat: false,
             ),
             child: child,
           );
@@ -234,11 +234,11 @@ class _AddReservasState extends State<AddReservas> {
                                       null,
                                     );
                                   } else {
-                                    if (value == 2) {
+                                    if (value == 3) {
                                       onAlertButtonPressed(
                                         context,
                                         'Horário indisponível\n Tente outro horário',
-                                        '/home',
+                                        null,
                                       );
                                     }
                                     if (value == 1) {
