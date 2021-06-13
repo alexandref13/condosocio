@@ -402,7 +402,8 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                 ? '55$celular'
                                                                 : celular,
                                                             Uri.encodeFull(
-                                                                message),
+                                                              message,
+                                                            ),
                                                           );
                                                         } else {
                                                           onAlertButtonPressed(
@@ -501,7 +502,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor,
-                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -585,7 +586,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor,
-                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
