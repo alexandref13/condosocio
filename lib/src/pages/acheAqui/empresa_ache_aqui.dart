@@ -67,7 +67,7 @@ class EmpresaAcheAqui extends StatelessWidget {
             SpeedDialChild(
               child: Icon(Icons.phone_iphone_outlined),
               backgroundColor: Colors.red,
-              label: 'Ligar para a empresa',
+              label: 'Ligar para a Empresa',
               labelStyle: GoogleFonts.montserrat(
                 fontSize: 14,
                 color: Theme.of(context).textSelectionTheme.selectionColor,
@@ -88,7 +88,7 @@ class EmpresaAcheAqui extends StatelessWidget {
                         icon: Icons.highlight_off)
                     : detalhesAcheAquiController.launched =
                         detalhesAcheAquiController
-                            .launchInBrowser('tel: $celular');
+                            .launchInBrowser('tel:$celular');
               },
             ),
             SpeedDialChild(
