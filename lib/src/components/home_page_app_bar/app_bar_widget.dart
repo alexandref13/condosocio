@@ -12,7 +12,7 @@ class AppBarWidget extends PreferredSize {
   }) : super(
           preferredSize: Size.fromHeight(250),
           child: Container(
-            height: 80,
+            height: 100,
             child: Stack(
               children: [
                 Container(

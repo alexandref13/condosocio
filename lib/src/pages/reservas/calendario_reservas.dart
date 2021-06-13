@@ -1,4 +1,6 @@
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
+import 'package:condosocio/src/components/utils/edge_alert_error_widget.dart';
 import 'package:condosocio/src/controllers/reservas/calendario_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
 import 'package:condosocio/src/services/reservas/mapa_eventos.dart';
@@ -56,7 +58,9 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
       ),
       floatingActionButton: Obx(() {
         return calendarioReservasController.onSelected.value == true &&
-                reservasController.multi.value == 'S'
+                reservasController.multi.value == 'S' &&
+                calendarioReservasController.selectedDay.value
+                    .isAfter(calendarioReservasController.day)
             ? FloatingActionButton(
                 onPressed: () {
                   Get.toNamed('/addReservas');
@@ -174,7 +178,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                         calendarioReservasController.day)) {
                               Get.toNamed('/addReservas');
                             } else {
-                              if (calendarioReservasController
+                              //edgeAlertErrorWidget(context, 'Data inválida para agendamento!');
+                              /*if (calendarioReservasController
                                           .events[calendarioReservasController
                                               .selectedDay.value][0]
                                           .status ==
@@ -185,7 +190,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                           .validausu ==
                                       null) {
                                 Get.toNamed('/addReservas');
-                              }
+                              }*/
+                                    
                             }
                           },
                           selectedDayPredicate: (DateTime date) {

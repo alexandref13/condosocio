@@ -5,7 +5,7 @@ import 'package:condosocio/src/controllers/home_page_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:condosocio/src/components/home_widget_bottomtab.dart';
+import 'package:condosocio/src/pages/home/home_widget_bottomtab.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -352,7 +352,7 @@ class _HomePageState extends State<HomePage> {
                       )),
                   Column(
                     children: <Widget>[
-                     /* loginController.idadm.value != '0'
+                      /* loginController.idadm.value != '0'
                           ? Container(
                               child: ListTile(
                                 contentPadding:
@@ -703,7 +703,6 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      
                       Container(
                         child: Column(
                           children: [

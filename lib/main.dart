@@ -34,7 +34,7 @@ import 'package:condosocio/src/pages/documentos_pages/editais_documentos.dart';
 import 'package:condosocio/src/pages/documentos_pages/outros_documentos.dart';
 import 'package:condosocio/src/pages/documentos_pages/prestacao_documentos.dart';
 import 'package:condosocio/src/pages/documentos_pages/regulamento_documentos.dart';
-import 'package:condosocio/src/pages/home_page.dart';
+import 'package:condosocio/src/pages/home/home_page.dart';
 import 'package:condosocio/src/pages/login.dart';
 import 'package:condosocio/src/pages/ocorrencias/ocorrencias.dart';
 import 'package:condosocio/src/pages/ouvidoria/ouvidoria.dart';

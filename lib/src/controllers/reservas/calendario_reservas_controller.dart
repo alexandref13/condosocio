@@ -40,7 +40,9 @@ class CalendarioReservasController extends GetxController {
 
     var dados = json.decode(response.body);
 
-    if (dados['dados'] != null) {
+    print('Dados Reservas agenda: $dados');
+
+    if (dados != 0) {
       for (var eventos in dados['dados']) {
         events
             .putIfAbsent(
