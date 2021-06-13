@@ -73,6 +73,13 @@ class EmpresaAcheAqui extends StatelessWidget {
                 color: Theme.of(context).textSelectionTheme.selectionColor,
               ),
               onTap: () {
+                var celular = acheAquiController.cel.value
+                    .replaceAll("+", "")
+                    .replaceAll("(", "")
+                    .replaceAll(")", "")
+                    .replaceAll("-", "")
+                    .replaceAll(" ", "");
+
                 acheAquiController.cel.value == ''
                     ? EdgeAlert.show(context,
                         title: 'Telefone Vazio!',
@@ -81,7 +88,7 @@ class EmpresaAcheAqui extends StatelessWidget {
                         icon: Icons.highlight_off)
                     : detalhesAcheAquiController.launched =
                         detalhesAcheAquiController
-                            .launchInBrowser('tel: ${acheAquiController.cel}');
+                            .launchInBrowser('tel: $celular');
               },
             ),
             SpeedDialChild(
