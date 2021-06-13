@@ -184,7 +184,6 @@ class DetalhesReservas extends StatelessWidget {
                         ],
                       ),
                     ),
-                    
                     Container(
                       padding: EdgeInsets.symmetric(
                         vertical: 14,
@@ -192,29 +191,24 @@ class DetalhesReservas extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          Column(children: [
-                            calendarioReservasController.status.value ==
-                                    "Recusado"
-                                ? Text(
-                                    'Motivo da Recusa: ',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )
-                                : calendarioReservasController.status.value ==
-                                        "Recusado"
-                                    ? Text(
-                                        calendarioReservasController
-                                            .respevent.value,
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      )
-                                    : Container(),
-                          ]),
+                          calendarioReservasController.status.value ==
+                                  "Recusado"
+                              ? Text(
+                                  'Motivo da Recusa: ',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              : Container(),
+                          Text(
+                            calendarioReservasController.respevent.value,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              color: Colors.black,
+                            ),
+                          ),
                         ],
                       ),
                     ),

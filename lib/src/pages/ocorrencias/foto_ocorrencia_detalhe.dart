@@ -11,9 +11,7 @@ class FotoOcorrencia extends StatelessWidget {
         Get.put(VisualizarOcorrenciasController());
 
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
         leading: IconButton(
           onPressed: () {
             Get.back();
@@ -28,9 +26,13 @@ class FotoOcorrencia extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width * .9,
           height: MediaQuery.of(context).size.height * .9,
-          child: Image(
-            image: NetworkImage(
-              'https://condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+          child: Hero(
+            transitionOnUserGestures: true,
+            tag: 'FotoOcorrencia',
+            child: Image(
+              image: NetworkImage(
+                'https://condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+              ),
             ),
           ),
         ),

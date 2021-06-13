@@ -247,6 +247,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                         ),
                                       ),
                                       onTap: () {
+                                        print(e.respevent);
+
                                         calendarioReservasController
                                             .goToDetails(
                                           e.nome,
@@ -300,6 +302,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                     ),
                                   ),
                                   onTap: () {
+                                    print(e);
                                     calendarioReservasController.goToDetails(
                                       e.nome,
                                       e.unidade,

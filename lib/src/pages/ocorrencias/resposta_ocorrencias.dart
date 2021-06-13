@@ -63,7 +63,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                         fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
@@ -99,7 +99,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                     size: 12,
                                   ),
                                   Text(
-                                      ' ${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}h',
+                                    ' ${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}h',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 12,
                                       color: Theme.of(context)
@@ -111,21 +111,40 @@ class RespostaOcorrencias extends StatelessWidget {
                               ),
                             ),
                             ocorrenciasController.imagem.value != ''
-                                ? Container(
-                                    padding: EdgeInsets.only(top: 10),
-                                    child: InkWell(
-                                      onTap: () {
-                                        Get.toNamed('/fotoOcorrencia');
-                                      },
-                                      child: Ink.image(
-                                        image: NetworkImage(
-                                          'https://condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+                                ? GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed('/fotoOcorrencia');
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Hero(
+                                        transitionOnUserGestures: true,
+                                        tag: 'FotoOcorrencia',
+                                        child: Image(
+                                          image: NetworkImage(
+                                            'https://condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+                                          ),
+                                          width: 45,
+                                          height: 45,
                                         ),
-                                        width: 45,
-                                        height: 45,
                                       ),
                                     ),
                                   )
+                                // Container(
+                                //     padding: EdgeInsets.only(top: 10),
+                                //     child: InkWell(
+                                //       onTap: () {
+                                //         Get.toNamed('/fotoOcorrencia');
+                                //       },
+                                //       child: Ink.image(
+                                //         image: NetworkImage(
+                                //           'https://condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+                                //         ),
+                                //         width: 45,
+                                //         height: 45,
+                                //       ),
+                                //     ),
+                                //   )
                                 : Container(),
                           ],
                         )),
