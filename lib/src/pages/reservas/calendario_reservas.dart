@@ -1,6 +1,4 @@
-import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/components/utils/edge_alert_error_widget.dart';
 import 'package:condosocio/src/controllers/reservas/calendario_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
 import 'package:condosocio/src/services/reservas/mapa_eventos.dart';
@@ -191,7 +189,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                       null) {
                                 Get.toNamed('/addReservas');
                               }*/
-                                    
+
                             }
                           },
                           selectedDayPredicate: (DateTime date) {
