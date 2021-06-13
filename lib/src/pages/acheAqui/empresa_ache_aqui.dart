@@ -2,6 +2,7 @@ import 'package:condosocio/src/controllers/acheAqui/ache_aqui_controller.dart';
 import 'package:condosocio/src/controllers/acheAqui/detalhes_ache_aqui_controller.dart';
 import 'package:condosocio/src/pages/acheAqui/avaliacao_ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/detalhes_ache_aqui.dart';
+import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
@@ -72,8 +73,15 @@ class EmpresaAcheAqui extends StatelessWidget {
                 color: Theme.of(context).textSelectionTheme.selectionColor,
               ),
               onTap: () {
-                detalhesAcheAquiController.launched = detalhesAcheAquiController
-                    .launchInBrowser('tel: ${acheAquiController.cel}');
+                acheAquiController.cel.value == ''
+                    ? EdgeAlert.show(context,
+                        title: 'Telefone Vazio!',
+                        gravity: EdgeAlert.BOTTOM,
+                        backgroundColor: Colors.red,
+                        icon: Icons.highlight_off)
+                    : detalhesAcheAquiController.launched =
+                        detalhesAcheAquiController
+                            .launchInBrowser('tel: ${acheAquiController.cel}');
               },
             ),
             SpeedDialChild(
