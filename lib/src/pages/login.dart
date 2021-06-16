@@ -70,15 +70,15 @@ class Login extends StatelessWidget {
                               padding: EdgeInsets.fromLTRB(20, 310, 20, 20),
                               child: Container(
                                 child: TextFormField(
-                                    autovalidateMode:
+                                  autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
                                   ),
-                                 decoration: InputDecoration(
-                        contentPadding: new EdgeInsets.symmetric(
+                                  decoration: InputDecoration(
+                                    contentPadding: new EdgeInsets.symmetric(
                                         vertical: 15, horizontal: 15),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -88,13 +88,13 @@ class Login extends StatelessWidget {
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
-                            borderRadius:
+                                        borderRadius:
                                             BorderRadius.circular(8.0),
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor)),
-                        labelText: 'Entre com o e-mail',
+                                    labelText: 'Entre com o e-mail',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
@@ -102,10 +102,10 @@ class Login extends StatelessWidget {
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                color:
+                                            color:
                                                 Theme.of(context).accentColor)),
                                     focusedErrorBorder: new OutlineInputBorder(
-                            borderSide: new BorderSide(
+                                        borderSide: new BorderSide(
                                             color: Colors.red[900])),
                                     errorStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context).errorColor),
@@ -125,7 +125,7 @@ class Login extends StatelessWidget {
                               padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
                               child: Container(
                                 child: TextFormField(
-                                    autovalidateMode:
+                                  autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   obscureText: true,
                                   style: GoogleFonts.montserrat(
@@ -134,34 +134,34 @@ class Login extends StatelessWidget {
                                         .selectionColor,
                                   ),
                                   decoration: InputDecoration(
-                        contentPadding: new EdgeInsets.symmetric(
+                                    contentPadding: new EdgeInsets.symmetric(
                                         vertical: 15, horizontal: 15),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                              color: Theme.of(context)
+                                          color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor,
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
-                            borderRadius:
+                                        borderRadius:
                                             BorderRadius.circular(8.0),
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor)),
                                     labelText: 'Entre com a senha',
-                        labelStyle: GoogleFonts.montserrat(
+                                    labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                color:
+                                            color:
                                                 Theme.of(context).accentColor)),
                                     focusedErrorBorder: new OutlineInputBorder(
-                            borderSide: new BorderSide(
+                                        borderSide: new BorderSide(
                                             color: Colors.red[900])),
                                     errorStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context).errorColor),
@@ -204,7 +204,7 @@ class Login extends StatelessWidget {
                                                 TextSpan(
                                                   text: 'Termos de Uso ',
                                                   style: GoogleFonts.montserrat(
-                                          color: Colors.amber,
+                                                      color: Colors.amber,
                                                       fontSize: 12),
                                                   recognizer:
                                                       TapGestureRecognizer()
@@ -366,11 +366,11 @@ class Login extends StatelessWidget {
                                       : Text(
                                           "Entrar",
                                           style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context)
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor,
-                          ),
+                                          ),
                                         ),
                                 ),
                               ),
@@ -396,14 +396,13 @@ class Login extends StatelessWidget {
                                   },
                                   child: Text(
                                     "Esqueceu a Senha?",
-                                     style: GoogleFonts.montserrat(
-                                          color: Colors.amber, fontSize: 12),
+                                    style: GoogleFonts.montserrat(
+                                        color: Colors.amber, fontSize: 12),
                                     textDirection: TextDirection.ltr,
                                   ),
                                 ),
                               ),
                             ),
-                           
                           ],
                         ),
                       ),

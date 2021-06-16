@@ -66,7 +66,8 @@ class AuthController extends GetxController {
               loginController.imgcondo(dados['imgcondo']);
               loginController.nome(dados['nome']);
               loginController.condoTheme(dados['cor']);
-              loginController.condoTheme(dados['genero']);
+              loginController.genero(dados['genero']);
+
               themeController.setTheme(loginController.condoTheme.value);
 
               Get.toNamed('/home');
