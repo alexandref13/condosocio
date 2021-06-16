@@ -55,8 +55,10 @@ class AuthController extends GetxController {
             if (value.length > 1) {
               Get.toNamed('/listOfCondo');
               loginController.isLoading.value = false;
+              loginController.haveListOfCondo.value = true;
             } else {
               var dados = json.decode(response.body);
+              loginController.haveListOfCondo.value = false;
               loginController.id(dados['idusu']);
               loginController.idcond(dados['idcond']);
               loginController.emailUsu(dados['email']);

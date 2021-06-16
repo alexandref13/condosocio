@@ -387,34 +387,37 @@ class _HomePageState extends State<HomePage> {
                         height: 5,
                         color: Theme.of(context).primaryColor,
                       ),*/
-                      Container(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                          dense: true,
-                          title: Text(
-                            'Unidades',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                              fontSize: 12,
-                            ),
-                          ),
-                          leading: Icon(
-                            Feather.home,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                            size: 22,
-                          ),
-                          onTap: () {
-                            loginController.hasMoreEmail(
-                              loginController.emailUsu.value,
-                            );
-                            Get.toNamed('/listOfCondo');
-                          },
-                        ),
-                      ),
+                      loginController.haveListOfCondo.value
+                          ? Container(
+                              child: ListTile(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                dense: true,
+                                title: Text(
+                                  'Unidades',
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                leading: Icon(
+                                  Feather.home,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  size: 22,
+                                ),
+                                onTap: () {
+                                  loginController.hasMoreEmail(
+                                    loginController.emailUsu.value,
+                                  );
+                                  Get.toNamed('/listOfCondo');
+                                },
+                              ),
+                            )
+                          : Container(),
                       Divider(
                         height: 5,
                         color: Theme.of(context).primaryColor,

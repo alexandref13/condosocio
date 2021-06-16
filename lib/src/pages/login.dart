@@ -304,8 +304,14 @@ class Login extends StatelessWidget {
                                                   .then(
                                                 (response) {
                                                   if (response.length > 1) {
+                                                    loginController
+                                                        .haveListOfCondo
+                                                        .value = true;
                                                     Get.toNamed('/listOfCondo');
                                                   } else {
+                                                    loginController
+                                                        .haveListOfCondo
+                                                        .value = false;
                                                     loginController.id.value =
                                                         value['idusu'];
                                                     loginController

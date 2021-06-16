@@ -32,13 +32,14 @@ class LoginController extends GetxController {
   var idadm = ''.obs;
   var websiteAdministradora = ''.obs;
   var licenca = ''.obs;
-  var isLoading = false.obs;
-  var isChecked = false.obs;
   var tipoun = ''.obs;
   var logradouro = ''.obs;
   var tipousu = ''.obs;
   var nomeusu = ''.obs;
   var sobrenomeusu = ''.obs;
+  var isLoading = false.obs;
+  var isChecked = false.obs;
+  var haveListOfCondo = false.obs;
 
   var listOfCondo = [];
 
