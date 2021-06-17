@@ -16,6 +16,17 @@ class ApiReservas {
     );
   }
 
+  static Future getReservas() async {
+    LoginController loginController = Get.put(LoginController());
+
+    return await http.post(
+      Uri.https("www.condosocio.com.br", "/flutter/reservas_morador.php"),
+      body: {
+        'idusu': loginController.id.value,
+      },
+    );
+  }
+
   static Future agendaReservas() async {
     LoginController loginController = Get.put(LoginController());
     ReservasController reservasController = Get.put(ReservasController());
