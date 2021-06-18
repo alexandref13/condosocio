@@ -52,11 +52,10 @@ class VisualizarOcorrencias extends StatelessWidget {
                 : Column(
                     children: [
                       boxSearch(
-                        context,
-                        ocorrenciasController.search.value,
-                        ocorrenciasController.onSearchTextChanged,
-                         "Pesquise por Título..."
-                      ),
+                          context,
+                          ocorrenciasController.search.value,
+                          ocorrenciasController.onSearchTextChanged,
+                          "Pesquise por Título..."),
                       Container(
                         padding: EdgeInsets.all(10),
                         color: Theme.of(context).accentColor,
@@ -77,23 +76,23 @@ class VisualizarOcorrencias extends StatelessWidget {
                             ),
                             Text(
                               'TÍTULO',
-                               style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                             Text(
                               'DATA',
                               style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
+                                fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                             Container(
                               child: Text(
@@ -164,10 +163,10 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                             width: MediaQuery.of(context)
+                                            width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.30,
+                                                0.2,
                                             child: Column(
                                               children: [
                                                 Text(
@@ -180,7 +179,6 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                
                                               ],
                                             ),
                                           ),
@@ -195,7 +193,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               overflow: TextOverflow.ellipsis,
                                               softWrap: false,
                                               style: GoogleFonts.montserrat(
-                                    fontSize: 12,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor,
@@ -219,7 +217,6 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                
                                               ],
                                             ),
                                           ),
@@ -227,7 +224,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.10,
+                                                0.1,
                                             child: Icon(
                                               ocorrencia.status == '1'
                                                   ? Icons.done
@@ -312,7 +309,6 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                
                                               ],
                                             ),
                                           ),
@@ -327,7 +323,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               overflow: TextOverflow.ellipsis,
                                               softWrap: false,
                                               style: GoogleFonts.montserrat(
-                                    fontSize: 12,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor,
@@ -351,7 +347,6 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                               
                                               ],
                                             ),
                                           ),
