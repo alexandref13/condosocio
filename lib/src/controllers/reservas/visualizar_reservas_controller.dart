@@ -7,6 +7,8 @@ class VisualizarReservasController extends GetxController {
   var reservas = <MapaVisualizarReservas>[].obs;
   var isLoading = false.obs;
 
+  var data = DateTime.now();
+
   getReservas() async {
     isLoading(true);
 
