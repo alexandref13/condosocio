@@ -55,20 +55,46 @@ class VisualizarReservas extends StatelessWidget {
                             Icons.arrow_right_outlined,
                             color: Colors.black,
                           ),
-                          title: Text(
-                            '${reservas.titulo} - ${reservas.status}',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 12,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                          title: Container(
+                            padding: EdgeInsets.only(
+                              top: 5,
+                            ),
+                            child: Text(
+                              reservas.titulo,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                          subtitle: Text(
-                            '${newData[2]}/${newData[1]}/${newData[0]} - ${reservas.horaAgenda}h',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 12,
-                              color: Colors.black,
-                            ),
+                          subtitle: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 5),
+                                child: Text(
+                                  reservas.areacom,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(
+                                  bottom: 5,
+                                ),
+                                child: Text(
+                                  '${newData[2]}/${newData[1]}/${newData[0]} ${reservas.horaAgenda}h',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
