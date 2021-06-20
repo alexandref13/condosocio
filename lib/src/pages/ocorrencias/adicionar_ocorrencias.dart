@@ -93,7 +93,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                   ListTile(
                       title: Center(
                           child: Text(
-                    "Alterar Imagem",
+                    "Inserir Imagem",
                     style: GoogleFonts.montserrat(
                         fontWeight: FontWeight.w600, fontSize: 18),
                   ))),
