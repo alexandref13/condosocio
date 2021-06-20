@@ -17,162 +17,199 @@ class VisualizarReservas extends StatelessWidget {
     return Obx(() {
       return visualizarReservasController.isLoading.value
           ? CircularProgressIndicatorWidget()
-          : Container(
-              padding: EdgeInsets.only(top: 10),
-              child: ListView.builder(
-                  itemCount: visualizarReservasController.reservas.length,
-                  itemBuilder: (_, i) {
-                    var reservas = visualizarReservasController.reservas[i];
+          : visualizarReservasController.reservaslength.value == 0
+              ? Stack(
+                  children: <Widget>[
+                    Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset(
+                        'images/semregistro.png',
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top: 100),
+                            //child: Icon(Icons.block, size: 34, color: Colors.red[900]),
+                          ),
+                          Text(
+                            'Sem registros',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 14.0,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                )
+              : Container(
+                  padding: EdgeInsets.only(top: 10),
+                  child: ListView.builder(
+                      itemCount: visualizarReservasController.reservas.length,
+                      itemBuilder: (_, i) {
+                        var reservas = visualizarReservasController.reservas[i];
 
-                    var data = reservas.dataAgenda;
-                    var newData = data.split('-');
+                        var data = reservas.dataAgenda;
+                        var newData = data.split('-');
 
-                    var before = visualizarReservasController.data
-                        .isBefore(DateTime.parse(reservas.dataAgenda));
+                        var before = visualizarReservasController.data.isBefore(
+                            DateTime.parse(
+                                '${reservas.dataAgenda} ${reservas.horaAgenda}'));
 
-                    return GestureDetector(
-                      onTap: () {
-                        calendarioReservasController.goToDetails(
-                          '${loginController.nomeusu.value} ${loginController.sobrenome.value}',
-                          loginController.unidade.value,
-                          reservas.titulo,
-                          reservas.dataAgenda,
-                          reservas.areacom,
-                          reservas.status,
-                          reservas.horaAgenda,
-                          reservas.resposta,
-                        );
-                      },
-                      child: before
-                          ? Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                color: reservas.status == 'Aprovado'
-                                    ? Colors.green[400]
-                                    : reservas.status == 'Recusado'
-                                        ? Colors.red[300]
-                                        : Colors.amber,
-                              ),
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 4.0),
-                              child: ListTile(
-                                trailing: Icon(
-                                  Icons.arrow_right_outlined,
-                                  color: Colors.black,
-                                ),
-                                title: Container(
-                                  padding: EdgeInsets.only(
-                                    top: 5,
+                        return GestureDetector(
+                          onTap: () {
+                            calendarioReservasController.goToDetails(
+                              '${loginController.nomeusu.value} ${loginController.sobrenome.value}',
+                              loginController.unidade.value,
+                              reservas.titulo,
+                              reservas.dataAgenda,
+                              reservas.areacom,
+                              reservas.status,
+                              reservas.horaAgenda,
+                              reservas.resposta,
+                            );
+                          },
+                          child: before
+                              ? Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    color: reservas.status == 'Aprovado'
+                                        ? Colors.green[400]
+                                        : reservas.status == 'Recusado'
+                                            ? Colors.red[300]
+                                            : Colors.amber,
                                   ),
-                                  child: Text(
-                                    reservas.titulo,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 14,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 8.0, vertical: 4.0),
+                                  child: ListTile(
+                                    trailing: Icon(
+                                      Icons.arrow_right_outlined,
                                       color: Colors.black,
-                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ),
-                                ),
-                                subtitle: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 5),
-                                      child: Text(
-                                        reservas.areacom,
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
+                                    title: Container(
                                       padding: EdgeInsets.only(
-                                        bottom: 5,
+                                        top: 5,
                                       ),
                                       child: Text(
-                                        '${newData[2]}/${newData[1]}/${newData[0]} ${reservas.horaAgenda}h',
+                                        reservas.titulo,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 12,
+                                          fontSize: 14,
                                           color: Colors.black,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          : Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                color: Theme.of(context).buttonColor,
-                              ),
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 4.0),
-                              child: ListTile(
-                                trailing: Icon(
-                                  Icons.arrow_right_outlined,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                ),
-                                title: Container(
-                                  padding: EdgeInsets.only(
-                                    top: 5,
+                                    subtitle: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        Container(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: Text(
+                                            reservas.areacom,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 12,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                            bottom: 5,
+                                          ),
+                                          child: Text(
+                                            '${newData[2]}/${newData[1]}/${newData[0]} ${reservas.horaAgenda}h',
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 12,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  child: Text(
-                                    reservas.titulo,
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 14,
+                                )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    color: Theme.of(context).buttonColor,
+                                  ),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 8.0, vertical: 4.0),
+                                  child: ListTile(
+                                    trailing: Icon(
+                                      Icons.arrow_right_outlined,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
-                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    title: Container(
+                                      padding: EdgeInsets.only(
+                                        top: 5,
+                                      ),
+                                      child: Text(
+                                        reservas.titulo,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    subtitle: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        Container(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: Text(
+                                            reservas.areacom,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 12,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                            bottom: 5,
+                                          ),
+                                          child: Text(
+                                            '${newData[2]}/${newData[1]}/${newData[0]} ${reservas.horaAgenda}h',
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 12,
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                                subtitle: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 5),
-                                      child: Text(
-                                        reservas.areacom,
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 12,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                        bottom: 5,
-                                      ),
-                                      child: Text(
-                                        '${newData[2]}/${newData[1]}/${newData[0]} ${reservas.horaAgenda}h',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 12,
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                    );
-                  }),
-            );
+                        );
+                      }),
+                );
     });
   }
 }
