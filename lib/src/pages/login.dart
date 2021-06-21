@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
+import 'package:onesignal_flutter/onesignal_flutter.dart';
+
 class Login extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
   final AuthController authController = Get.put(AuthController());
@@ -334,13 +336,45 @@ class Login extends StatelessWidget {
                                                         value['nome'];
                                                     loginController.condoTheme
                                                         .value = value['cor'];
-
+                                                    
                                                     loginController.storageId();
 
                                                     themeController.setTheme(
                                                       loginController
                                                           .condoTheme.value,
                                                     );
+
+                                                    var sendTags = {
+                                                      'idusu': loginController
+                                                          .id.value,
+                                                      'nome': loginController
+                                                          .nome.value,
+                                                      'sobrenome':
+                                                          loginController
+                                                              .sobrenome.value,
+                                                      'idcond': loginController
+                                                          .idcond.value,
+                                                      'tipousuario':
+                                                          loginController
+                                                              .tipo.value,
+                                                      'genero': loginController
+                                                          .genero.value,
+                                                      'tipoun': loginController
+                                                          .tipoun.value,
+                                                      'logradouro':
+                                                          loginController
+                                                              .logradouro.value,
+                                                    };
+
+                                                    OneSignal.shared
+                                                        .sendTags(sendTags)
+                                                        .then((response) {
+                                                      print(
+                                                          "Successfully sent tags with response: $response");
+                                                    }).catchError((error) {
+                                                      print(
+                                                          "Encountered an error sending tags: $error");
+                                                    });
                                                     Get.offNamed('/home');
                                                   }
                                                 },

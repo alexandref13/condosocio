@@ -42,8 +42,8 @@ class ListOfCondo extends StatelessWidget {
                   
                             var sendTags = {
                               'idusu': loginController.newId.value,
-                              'nome':
-                                  '${loginController.nomeusu.value} ${loginController.sobrenomeusu.value}',
+                              'nome': loginController.nomeusu.value,
+                              'sobrenome': loginController.sobrenomeusu.value,
                               'idcond': loginController.idcond.value,
                               'tipousuario': loginController.tipo.value,
                               'genero': loginController.genero.value,
