@@ -1,5 +1,6 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/reservas/calendario_reservas_controller.dart';
+import 'package:condosocio/src/controllers/reservas/detalhes_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
 import 'package:condosocio/src/services/reservas/mapa_eventos.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
   CalendarioReservasController calendarioReservasController =
       Get.put(CalendarioReservasController());
   ReservasController reservasController = Get.put(ReservasController());
+  DetalhesReservasController detalhesReservasController =
+      Get.put(DetalhesReservasController());
 
   bool oi = true;
 
@@ -249,8 +252,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                       onTap: () {
                                         print(e.respevent);
 
-                                        calendarioReservasController
-                                            .goToDetails(
+                                        detalhesReservasController.goToDetails(
                                           e.nome,
                                           e.unidade,
                                           e.titulo,
@@ -303,7 +305,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                   ),
                                   onTap: () {
                                     print(e);
-                                    calendarioReservasController.goToDetails(
+                                    detalhesReservasController.goToDetails(
                                       e.nome,
                                       e.unidade,
                                       e.titulo,

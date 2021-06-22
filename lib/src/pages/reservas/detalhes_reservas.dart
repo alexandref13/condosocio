@@ -1,4 +1,4 @@
-import 'package:condosocio/src/controllers/reservas/calendario_reservas_controller.dart';
+import 'package:condosocio/src/controllers/reservas/detalhes_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/visualizar_reservas_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,14 +7,14 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class DetalhesReservas extends StatelessWidget {
-  final CalendarioReservasController calendarioReservasController =
-      Get.put(CalendarioReservasController());
   final VisualizarReservasController visualizarReservasController =
       Get.put(VisualizarReservasController());
+  final DetalhesReservasController detalhesReservasController =
+      Get.put(DetalhesReservasController());
 
   @override
   Widget build(BuildContext context) {
-    var day = DateTime.parse(calendarioReservasController.data.value);
+    var day = DateTime.parse(detalhesReservasController.data.value);
     var newDate = DateFormat.yMMMMd('pt').format(day);
 
     var same = isSameDay(visualizarReservasController.dataDetalhes, day);
@@ -43,9 +43,9 @@ class DetalhesReservas extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * .35,
                 width: MediaQuery.of(context).size.width * .9,
                 child: Card(
-                  color: calendarioReservasController.status.value == 'Aprovado'
+                  color: detalhesReservasController.status.value == 'Aprovado'
                       ? Colors.green[400]
-                      : calendarioReservasController.status.value == 'Recusado'
+                      : detalhesReservasController.status.value == 'Recusado'
                           ? Colors.red[300]
                           : Colors.amber,
                   shape: RoundedRectangleBorder(
@@ -62,7 +62,7 @@ class DetalhesReservas extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.only(top: 10),
                               child: Text(
-                                calendarioReservasController.nome.value,
+                                detalhesReservasController.nome.value,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 12,
                                   color: Colors.black,
@@ -73,7 +73,7 @@ class DetalhesReservas extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.only(top: 3),
                               child: Text(
-                                calendarioReservasController.unidade.value,
+                                detalhesReservasController.unidade.value,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 12,
                                   color: Colors.black,
@@ -100,7 +100,7 @@ class DetalhesReservas extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              calendarioReservasController.titulo.value,
+                              detalhesReservasController.titulo.value,
                               style: GoogleFonts.montserrat(
                                 fontSize: 12,
                                 color: Colors.black,
@@ -133,7 +133,7 @@ class DetalhesReservas extends StatelessWidget {
                             ),
                             Container(
                               child: Text(
-                                ' às ${calendarioReservasController.hora.value}',
+                                ' às ${detalhesReservasController.hora.value}',
                                 style: GoogleFonts.montserrat(
                                   fontSize: 12,
                                   color: Colors.black,
@@ -159,7 +159,7 @@ class DetalhesReservas extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              calendarioReservasController.area.value,
+                              detalhesReservasController.area.value,
                               style: GoogleFonts.montserrat(
                                 fontSize: 12,
                                 color: Colors.black,
@@ -184,7 +184,7 @@ class DetalhesReservas extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              calendarioReservasController.status.value,
+                              detalhesReservasController.status.value,
                               style: GoogleFonts.montserrat(
                                 fontSize: 12,
                                 color: Colors.black,
@@ -200,7 +200,7 @@ class DetalhesReservas extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            calendarioReservasController.status.value ==
+                            detalhesReservasController.status.value ==
                                     "Recusado"
                                 ? Text(
                                     'Motivo da Recusa: ',
@@ -212,7 +212,7 @@ class DetalhesReservas extends StatelessWidget {
                                   )
                                 : Container(),
                             Text(
-                              calendarioReservasController.respevent.value,
+                              detalhesReservasController.respevent.value,
                               style: GoogleFonts.montserrat(
                                 fontSize: 12,
                                 color: Colors.black,
@@ -226,7 +226,7 @@ class DetalhesReservas extends StatelessWidget {
                 ),
               ),
             ),
-            !same || isBefore
+            !same && isBefore
                 ? Container(
                     margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                     child: ButtonTheme(
@@ -248,7 +248,9 @@ class DetalhesReservas extends StatelessWidget {
                             },
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          print({same, isBefore});
+                        },
                         child: Text(
                           "Deletar",
                           style: GoogleFonts.montserrat(

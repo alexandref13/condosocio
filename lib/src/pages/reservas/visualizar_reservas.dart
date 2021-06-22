@@ -1,6 +1,6 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
-import 'package:condosocio/src/controllers/reservas/calendario_reservas_controller.dart';
+import 'package:condosocio/src/controllers/reservas/detalhes_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/visualizar_reservas_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,9 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 class VisualizarReservas extends StatelessWidget {
   final VisualizarReservasController visualizarReservasController =
       Get.put(VisualizarReservasController());
-  final CalendarioReservasController calendarioReservasController =
-      Get.put(CalendarioReservasController());
   final LoginController loginController = Get.put(LoginController());
+  final DetalhesReservasController detalhesReservasController =
+      Get.put(DetalhesReservasController());
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -67,7 +67,7 @@ class VisualizarReservas extends StatelessWidget {
 
                         return GestureDetector(
                           onTap: () {
-                            calendarioReservasController.goToDetails(
+                            detalhesReservasController.goToDetails(
                               '${loginController.nomeusu.value} ${loginController.sobrenome.value}',
                               loginController.unidade.value,
                               reservas.titulo,

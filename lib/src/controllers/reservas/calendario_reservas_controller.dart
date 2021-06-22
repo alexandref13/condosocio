@@ -8,16 +8,6 @@ import 'package:intl/intl.dart';
 class CalendarioReservasController extends GetxController {
   var isLoading = true.obs;
 
-  var nome = ''.obs;
-  var unidade = ''.obs;
-  var data = ''.obs;
-  var titulo = ''.obs;
-  var area = ''.obs;
-  var status = ''.obs;
-  var hora = ''.obs;
-  var respevent = ''.obs;
-  var idarea = ''.obs;
-
   var onSelected = false.obs;
 
   Map<DateTime, List<MapaEvento>> events = {};
@@ -66,28 +56,6 @@ class CalendarioReservasController extends GetxController {
     }
 
     isLoading(false);
-  }
-
-  goToDetails(
-    String newNome,
-    String newUnidade,
-    String newTitulo,
-    String newData,
-    String newArea,
-    String newStatus,
-    String newHora,
-    String newResp,
-  ) {
-    nome(newNome);
-    unidade(newUnidade);
-    data(newData);
-    titulo(newTitulo);
-    area(newArea);
-    status(newStatus);
-    hora(newHora);
-    respevent(newResp);
-
-    Get.toNamed('/detalheReservas');
   }
 
   init() {

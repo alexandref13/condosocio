@@ -19,8 +19,6 @@ class VisualizarReservasController extends GetxController {
 
     var dados = json.decode(response.body);
 
-    print('dados $dados');
-
     if (dados == 0) {
       reservaslength(0);
     }

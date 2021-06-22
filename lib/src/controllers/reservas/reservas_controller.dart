@@ -34,6 +34,10 @@ class ReservasController extends GetxController {
 
     var response = await ApiReservas.getAreas();
 
+    var lista = json.decode(response.body);
+
+    print('areas $lista');
+
     Iterable dados = json.decode(response.body);
 
     areas.value = dados.map((model) => MapaReservas.fromJson(model)).toList();
