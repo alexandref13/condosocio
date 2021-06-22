@@ -81,8 +81,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                         padding: EdgeInsets.all(5),
                         child: TableCalendar(
                           locale: 'pt_BR',
-                          firstDay: DateTime(2017),
-                          lastDay: DateTime(2100),
+                          firstDay: DateTime(2019),
+                          lastDay: DateTime(2030),
                           focusedDay:
                               calendarioReservasController.focusedDay.value,
                           availableGestures: AvailableGestures.all,
@@ -120,13 +120,15 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                   .selectionColor,
                             ),
                             weekendStyle: TextStyle(
-                              color: Theme.of(context)
+                              color: Colors.amber,
+                              
+                              /*Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor,*/
                             ),
                           ),
                           calendarStyle: CalendarStyle(
-                            outsideDaysVisible: false,
+                            outsideDaysVisible: true,
                             todayDecoration: BoxDecoration(
                               color: Theme.of(context).buttonColor,
                               shape: BoxShape.circle,
@@ -137,20 +139,16 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                   .selectionColor,
                             ),
                             weekendTextStyle: TextStyle(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
+                              color: Colors.amber,
                             ),
                             holidayTextStyle: TextStyle(
                               color: Colors.green,
                             ),
                             selectedTextStyle: TextStyle(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
+                              color:  Colors.black,
                             ),
                             selectedDecoration: BoxDecoration(
-                              color: Theme.of(context).accentColor,
+                              color: Colors.amber,
                               shape: BoxShape.circle,
                             ),
                           ),

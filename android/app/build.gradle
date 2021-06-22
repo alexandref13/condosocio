@@ -34,7 +34,7 @@ if (flutterVersionCode == null) {
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '7.0'
+    flutterVersionName = '7.1'
 }
 
 apply plugin: 'com.android.application'
@@ -60,8 +60,8 @@ android {
        // versionCode flutterVersionCode.toInteger()
         //versionName flutterVersionName
         multiDexEnabled = true
-         versionCode 7
-        versionName "7.0"
+         versionCode 7.1
+        versionName "7.1"
     }
 
     buildTypes {
