@@ -226,7 +226,7 @@ class DetalhesReservas extends StatelessWidget {
                 ),
               ),
             ),
-            !same && isBefore
+            /*!same && isBefore
                 ? Container(
                     margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                     child: ButtonTheme(
@@ -263,7 +263,7 @@ class DetalhesReservas extends StatelessWidget {
                       ),
                     ),
                   )
-                : Container(),
+                : Container(),*/
           ],
         ),
       ),
