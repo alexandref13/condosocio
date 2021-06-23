@@ -1,6 +1,12 @@
+import 'dart:convert';
+
+import 'package:condosocio/src/services/reservas/api_reservas.dart';
 import 'package:get/get.dart';
 
 class DetalhesReservasController extends GetxController {
+  var idEve = ''.obs;
+  var validaUsu = 0.obs;
+
   var nome = ''.obs;
   var unidade = ''.obs;
   var data = ''.obs;
@@ -10,6 +16,8 @@ class DetalhesReservasController extends GetxController {
   var hora = ''.obs;
   var respevent = ''.obs;
   var idarea = ''.obs;
+
+  var isLoading = false.obs;
 
   goToDetails(
     String newNome,
@@ -31,5 +39,17 @@ class DetalhesReservasController extends GetxController {
     respevent(newResp);
 
     Get.toNamed('/detalheReservas');
+  }
+
+  deleteReserva() async {
+    isLoading(true);
+
+    var response = await ApiReservas.deleteReserva();
+
+    var dados = json.decode(response.body);
+
+    isLoading(false);
+
+    return dados;
   }
 }

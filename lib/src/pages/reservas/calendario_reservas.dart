@@ -121,7 +121,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                             ),
                             weekendStyle: TextStyle(
                               color: Colors.amber,
-                              
+
                               /*Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,*/
@@ -145,7 +145,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                               color: Colors.green,
                             ),
                             selectedTextStyle: TextStyle(
-                              color:  Colors.black,
+                              color: Colors.black,
                             ),
                             selectedDecoration: BoxDecoration(
                               color: Colors.amber,
@@ -176,21 +176,6 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                     .isAfter(
                                         calendarioReservasController.day)) {
                               Get.toNamed('/addReservas');
-                            } else {
-                              //edgeAlertErrorWidget(context, 'Data inválida para agendamento!');
-                              /*if (calendarioReservasController
-                                          .events[calendarioReservasController
-                                              .selectedDay.value][0]
-                                          .status ==
-                                      'Recusado' &&
-                                  calendarioReservasController
-                                          .events[calendarioReservasController
-                                              .selectedDay.value][0]
-                                          .validausu ==
-                                      null) {
-                                Get.toNamed('/addReservas');
-                              }*/
-
                             }
                           },
                           selectedDayPredicate: (DateTime date) {
@@ -248,7 +233,10 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                         ),
                                       ),
                                       onTap: () {
-                                        print(e.respevent);
+                                        detalhesReservasController.idEve.value =
+                                            e.idevento;
+                                        detalhesReservasController
+                                            .validaUsu.value = e.validausu;
 
                                         detalhesReservasController.goToDetails(
                                           e.nome,
@@ -302,7 +290,13 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                     ),
                                   ),
                                   onTap: () {
-                                    print(e);
+                                    detalhesReservasController.idEve.value =
+                                        e.idevento;
+                                    detalhesReservasController.validaUsu.value =
+                                        e.validausu;
+
+                                    print(e.areacom);
+
                                     detalhesReservasController.goToDetails(
                                       e.nome,
                                       e.unidade,
