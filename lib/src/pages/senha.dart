@@ -13,7 +13,6 @@ class Senha extends StatefulWidget {
 }
 
 class _SenhaState extends State<Senha> {
-
   SenhaController senhaController = Get.put(SenhaController());
 
   @override
@@ -52,11 +51,11 @@ class _SenhaState extends State<Senha> {
                               ),
                             ),
                             Padding(
-                            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                               child: Container(
                                 //color: Color(0xfff5f5f5),
                                 child: TextFormField(
-                                autovalidateMode:
+                                  autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   obscureText: true,
                                   style: GoogleFonts.montserrat(
@@ -116,46 +115,45 @@ class _SenhaState extends State<Senha> {
                                       AutovalidateMode.onUserInteraction,
                                   obscureText: true,
                                   style: GoogleFonts.montserrat(
-                        color: Theme.of(context)
+                                    color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
                                   ),
                                   decoration: InputDecoration(
-                        contentPadding: new EdgeInsets.symmetric(
+                                    contentPadding: new EdgeInsets.symmetric(
                                         vertical: 15, horizontal: 15),
-                        focusedBorder: OutlineInputBorder(
+                                    focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor,
-                              width: 1.0),
+                                          width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
-                            borderRadius:
+                                        borderRadius:
                                             BorderRadius.circular(8.0),
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor)),
-                        labelText: 'Confirme a nova senha',
+                                    labelText: 'Confirme a nova senha',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor,
-                            fontSize: 14),
+                                        fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                color:
+                                            color:
                                                 Theme.of(context).errorColor)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
                                             color: Colors.red[900])),
                                     errorStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context).errorColor),
-                                         prefixIcon: Icon(Icons.lock_outline,
+                                    prefixIcon: Icon(Icons.lock_outline,
                                         color: Colors.white),
                                   ),
-                                  
                                   validator: (val) {
                                     //if (val.isEmpty) return 'Campo Vazio!';
                                     if (val !=
@@ -174,17 +172,17 @@ class _SenhaState extends State<Senha> {
                                 height: 50.0,
                                 child: ElevatedButton(
                                   style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty
+                                    backgroundColor: MaterialStateProperty
                                         .resolveWith<Color>(
                                       (Set<MaterialState> states) {
-                                    return Theme.of(context).accentColor;
+                                        return Theme.of(context).accentColor;
                                       },
                                     ),
                                     shape: MaterialStateProperty.resolveWith<
                                         OutlinedBorder>(
                                       (Set<MaterialState> states) {
                                         return RoundedRectangleBorder(
-                                      borderRadius:
+                                          borderRadius:
                                               BorderRadius.circular(10.0),
                                         );
                                       },
@@ -196,17 +194,19 @@ class _SenhaState extends State<Senha> {
                                       senhaController
                                           .senha(context)
                                           .then((value) {
+                                        print('valor: $value');
+
                                         if (value == 1) {
                                           confirmedButtonPressed(
                                             context,
-                                            "Enviamos um e-mail para a redefinição de senha.",
+                                            "Senha alterada com sucesso!",
                                             null,
                                           );
                                         } else {
                                           onAlertButtonPressed(
                                             context,
-                                            "E-mail não existe em nosso banco de dados!Tente novamente.",
-                                            null,
+                                            "Algo deu errado.\n Tente novamente mais tarde.",
+                                            '/home',
                                           );
                                         }
                                       });
