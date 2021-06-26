@@ -67,6 +67,9 @@ class VisualizarReservas extends StatelessWidget {
 
                         return GestureDetector(
                           onTap: () {
+                            detalhesReservasController.idEve.value =
+                                reservas.idevento;
+                            detalhesReservasController.validaUsu.value = 1;
                             detalhesReservasController.goToDetails(
                               '${loginController.nomeusu.value} ${loginController.sobrenome.value}',
                               loginController.unidade.value,
