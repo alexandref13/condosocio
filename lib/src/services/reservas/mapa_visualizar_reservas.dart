@@ -7,16 +7,19 @@ class MapaVisualizarReservas {
   String horaAgenda;
   String status;
   String resposta;
+  String termo;
 
-  MapaVisualizarReservas(
-      {this.idevento,
-      this.titulo,
-      this.descricao,
-      this.areacom,
-      this.dataAgenda,
-      this.horaAgenda,
-      this.status,
-      this.resposta});
+  MapaVisualizarReservas({
+    this.idevento,
+    this.titulo,
+    this.descricao,
+    this.areacom,
+    this.dataAgenda,
+    this.horaAgenda,
+    this.status,
+    this.resposta,
+    this.termo,
+  });
 
   MapaVisualizarReservas.fromJson(Map<String, dynamic> json) {
     idevento = json['idevento'];
@@ -27,6 +30,7 @@ class MapaVisualizarReservas {
     horaAgenda = json['hora_agenda'];
     status = json['status'];
     resposta = json['resposta'];
+    termo = json['termo'];
   }
 
   Map<String, dynamic> toJson() {
@@ -39,6 +43,7 @@ class MapaVisualizarReservas {
     data['hora_agenda'] = this.horaAgenda;
     data['status'] = this.status;
     data['resposta'] = this.resposta;
+    data['termo'] = this.termo;
     return data;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/reservas/detalhes_reservas_controller.dart';
+import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/visualizar_reservas_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class VisualizarReservas extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
   final DetalhesReservasController detalhesReservasController =
       Get.put(DetalhesReservasController());
+  final ReservasController reservasController = Get.put(ReservasController());
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -70,6 +72,8 @@ class VisualizarReservas extends StatelessWidget {
                             detalhesReservasController.idEve.value =
                                 reservas.idevento;
                             detalhesReservasController.validaUsu.value = 1;
+                            reservasController.nome.value = reservas.areacom;
+                            reservasController.termo.value = reservas.termo;
                             detalhesReservasController.goToDetails(
                               '${loginController.nomeusu.value} ${loginController.sobrenome.value}',
                               loginController.unidade.value,

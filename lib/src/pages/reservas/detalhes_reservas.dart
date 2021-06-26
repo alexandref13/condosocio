@@ -299,38 +299,16 @@ class DetalhesReservas extends StatelessWidget {
                             !same &&
                             isBefore &&
                             detalhesReservasController.validaUsu.value != null
-                        ? Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 7, horizontal: 15),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Checkbox(
-                                  value: addReservasController.isChecked.value,
-                                  onChanged: (bool value) {
-                                    addReservasController.isChecked.value =
-                                        value;
-                                  },
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(bottom: 10),
-                                  child: Text.rich(TextSpan(
-                                      text: '\nLi e concordo com os ',
-                                      children: [
-                                        TextSpan(
-                                          text: '\nTERMOS DE USO DA ÁREA COMUM',
-                                          style: GoogleFonts.montserrat(
-                                            color: Colors.amberAccent,
-                                          ),
-                                          recognizer: TapGestureRecognizer()
-                                            ..onTap = () {
-                                              Get.toNamed('/termos');
-                                            },
-                                        ),
-                                      ])),
-                                )
-                              ],
+                        ? GestureDetector(
+                            onTap: () {
+                              Get.toNamed('/termos');
+                            },
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(30, 30, 30, 20),
+                              child: Container(
+                                child: Text(
+                                    'Termo de uso ${reservasController.nome.value}'),
+                              ),
                             ),
                           )
                         : Container(),
@@ -363,33 +341,30 @@ class DetalhesReservas extends StatelessWidget {
                                 onPressed: () {
                                   if (addReservasController.isChecked.value ==
                                       true) {
-
-                             confirmDelete(
+                                    confirmDelete(
                                       'Deseja realmente deletar o evento ${detalhesReservasController.titulo.value}',
                                       () {
-                                                 
-                                                            detalhesReservasController
-                                        .deleteReserva()
-                                        .then(
-                                      (value) {
-                                        if (value == 1) {
-                                          confirmedButtonPressed(
-                                            context,
-                                            'Sua reserva foi deletada com sucesso',
-                                            '/home',
-                                          );
-                                        } else {
-                                          onAlertButtonPressed(
-                                            context,
-                                            'Algo deu errado \n Tente novamente mais tarde',
-                                            '/home',
-                                          );
-                                        }
+                                        detalhesReservasController
+                                            .deleteReserva()
+                                            .then(
+                                          (value) {
+                                            if (value == 1) {
+                                              confirmedButtonPressed(
+                                                context,
+                                                'Sua reserva foi deletada com sucesso',
+                                                '/home',
+                                              );
+                                            } else {
+                                              onAlertButtonPressed(
+                                                context,
+                                                'Algo deu errado \n Tente novamente mais tarde',
+                                                '/home',
+                                              );
+                                            }
+                                          },
+                                        );
                                       },
                                     );
-                                                },
-                                    );
-
                                   }
                                 },
                                 child: Text(
