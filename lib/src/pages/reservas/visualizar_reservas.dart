@@ -19,7 +19,7 @@ class VisualizarReservas extends StatelessWidget {
     return Obx(() {
       return visualizarReservasController.isLoading.value
           ? CircularProgressIndicatorWidget()
-          : visualizarReservasController.reservaslength.value == 0
+          : visualizarReservasController.reservasLength.value == 0
               ? Stack(
                   children: <Widget>[
                     Container(

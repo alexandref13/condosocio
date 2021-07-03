@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class VisualizarReservasController extends GetxController {
   var reservas = <MapaVisualizarReservas>[].obs;
-  var reservaslength = 1.obs;
+  var reservasLength = 0.obs;
   var isLoading = false.obs;
 
   var now = DateTime.now();
@@ -19,11 +19,13 @@ class VisualizarReservasController extends GetxController {
 
     var dados = json.decode(response.body);
 
-    if (dados == 0) {
-      reservaslength(0);
-    }
+    print('Visualizar Reservas $dados');
 
-    if (dados != 0) {
+    if (dados == 0) {
+      reservasLength(0);
+    } else if (dados != '0') {
+      reservasLength(1);
+
       Iterable lista = json.decode(response.body);
 
       reservas.assignAll(lista

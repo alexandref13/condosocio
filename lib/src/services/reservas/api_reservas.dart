@@ -32,8 +32,6 @@ class ApiReservas {
     LoginController loginController = Get.put(LoginController());
     ReservasController reservasController = Get.put(ReservasController());
 
-    print("idarea: ${reservasController.idarea.value}");
-
     return await http.post(
       Uri.https("www.condosocio.com.br", "/flutter/reservas_agenda.php"),
       body: {
@@ -69,8 +67,6 @@ class ApiReservas {
     DetalhesReservasController detalhesReservasController =
         Get.put(DetalhesReservasController());
     LoginController loginController = Get.put(LoginController());
-
-    print('id do evento: ${detalhesReservasController.idEve.value}');
 
     return await http.post(
       Uri.https("www.condosocio.com.br", "/flutter/reserva_excluir.php"),
