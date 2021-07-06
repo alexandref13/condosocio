@@ -34,7 +34,14 @@ class BoletoPage extends StatelessWidget {
                           padding: EdgeInsets.only(bottom: 10),
                           child: Center(
                             child: Text(
-                                'Entre com e-mail e senha do sistema financeiro do condomínio'),
+                              'Entre com e-mail e senha do sistema financeiro do condomínio',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
                           ),
                         ),
                         Padding(
