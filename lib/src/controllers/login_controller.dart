@@ -107,12 +107,15 @@ class LoginController extends GetxController {
     await GetStorage.init();
     final box = GetStorage();
     box.write('id', id.value);
+    box.write('emailController', email.value.text);
   }
 
   searchEmail() async {
     await GetStorage.init();
     final box = GetStorage();
-    email.value.text = box.read('email');
+    if (box.hasData('email')) {
+      email.value.text = box.read('email');
+    }
   }
 
   newLogin(String newId) {
@@ -152,5 +155,11 @@ class LoginController extends GetxController {
 
   checkbox() {
     isChecked(!isChecked.value);
+  }
+
+  @override
+  void onInit() {
+    searchEmail();
+    super.onInit();
   }
 }

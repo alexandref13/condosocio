@@ -1,16 +1,20 @@
+import 'dart:convert';
+
 import 'package:condosocio/src/controllers/login_controller.dart';
-import 'package:flutter/material.dart';
+import 'package:condosocio/src/services/boleto/api_boleto.dart';
 import 'package:get/get.dart';
 
 class BoletoController extends GetxController {
   LoginController loginController = Get.put(LoginController());
 
-  var email = TextEditingController().obs;
-  var password = TextEditingController().obs;
+  var isLoading = false.obs;
 
-  @override
-  void onInit() {
-    email.value.text = loginController.emailUsu.value;
-    super.onInit();
+  sendBoleto() async {
+    isLoading(true);
+    var response = await ApiBoleto.sendBoleto();
+
+    print(response);
+
+    isLoading(false);
   }
 }

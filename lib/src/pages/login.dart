@@ -299,6 +299,10 @@ class Login extends StatelessWidget {
                                               );
                                             } else {
                                               loginController
+                                                  .password.value.text = '';
+                                              loginController.isLoading.value =
+                                                  false;
+                                              loginController
                                                   .hasMoreEmail(
                                                 loginController
                                                     .email.value.text,
@@ -336,7 +340,7 @@ class Login extends StatelessWidget {
                                                         value['nome'];
                                                     loginController.condoTheme
                                                         .value = value['cor'];
-                                                    
+
                                                     loginController.storageId();
 
                                                     themeController.setTheme(

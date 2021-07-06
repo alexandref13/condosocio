@@ -352,7 +352,8 @@ class _HomePageState extends State<HomePage> {
                       )),
                   Column(
                     children: <Widget>[
-                      /* loginController.idadm.value != '0'
+                      //mudar para != '0'
+                      loginController.idadm.value == '0'
                           ? Container(
                               child: ListTile(
                                 contentPadding:
@@ -386,7 +387,7 @@ class _HomePageState extends State<HomePage> {
                       Divider(
                         height: 5,
                         color: Theme.of(context).primaryColor,
-                      ),*/
+                      ),
                       loginController.haveListOfCondo.value
                           ? Container(
                               child: ListTile(

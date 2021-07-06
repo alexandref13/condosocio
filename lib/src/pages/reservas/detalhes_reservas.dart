@@ -5,7 +5,6 @@ import 'package:condosocio/src/controllers/reservas/add_reservas_controller.dart
 import 'package:condosocio/src/controllers/reservas/detalhes_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/visualizar_reservas_controller.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

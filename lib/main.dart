@@ -9,6 +9,7 @@ import 'package:condosocio/src/pages/acheAqui/lista_ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/pesquisa_ache_aqui.dart';
 import 'package:condosocio/src/pages/avisos/avisos.dart';
 import 'package:condosocio/src/pages/avisos/detalhes_avisos.dart';
+import 'package:condosocio/src/pages/boleto/boleto.dart';
 import 'package:condosocio/src/pages/encomendas/detalhes_encomendas.dart';
 import 'package:condosocio/src/pages/encomendas/encomendas.dart';
 import 'package:condosocio/src/pages/enquetes/enquetes.dart';
@@ -64,7 +65,6 @@ class MyApp extends StatelessWidget {
     OneSignal.shared
         .setInFocusDisplayType(OSNotificationDisplayType.notification);
 
-     
     return GetMaterialApp(
       localizationsDelegates: [
         RefreshLocalizations.delegate,
@@ -126,9 +126,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/avisos', page: () => Avisos()),
         GetPage(name: '/detalhesaviso', page: () => DetalhesAvisos()),
         GetPage(name: '/esqueci', page: () => Esqueci()),
-         GetPage(
+        GetPage(
             name: '/visualizarconvites', page: () => VisualizarConviteWidget()),
-        
+        GetPage(name: '/boleto', page: () => BoletoPage()),
       ],
     );
   }
