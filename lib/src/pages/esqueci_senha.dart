@@ -158,9 +158,10 @@ class _EsqueciState extends State<Esqueci> {
                                         if (value == 1) {
                                           confirmedButtonPressed(
                                             context,
-                                            "Enviamos um e-mail para a redefinição de senha.",
-                                            null,
+                                            "Enviamos um e-mail para a redefinição de senha. Aguarde!",
+                                            "/login",
                                           );
+                                          
                                         } else {
                                           onAlertButtonPressed(
                                             context,

@@ -61,7 +61,7 @@ android {
         //versionName flutterVersionName
         multiDexEnabled = true
         versionCode 9
-        versionName "7.1"
+        versionName "7.2"
     }
 
     buildTypes {
