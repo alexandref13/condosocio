@@ -340,6 +340,12 @@ class Login extends StatelessWidget {
                                                         value['nome'];
                                                     loginController.condoTheme
                                                         .value = value['cor'];
+                                                    loginController
+                                                            .logradouro.value =
+                                                        value['logradouro'];
+                                                    loginController
+                                                            .tipoun.value =
+                                                        value['tipoun'];
 
                                                     loginController.storageId();
 
@@ -363,7 +369,6 @@ class Login extends StatelessWidget {
                                                               .tipo.value,
                                                       'genero': loginController
                                                           .genero.value,
-                                                     
                                                     };
 
                                                     OneSignal.shared

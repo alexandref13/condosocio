@@ -58,6 +58,7 @@ class AuthController extends GetxController {
               loginController.haveListOfCondo.value = true;
             } else {
               var dados = json.decode(response.body);
+              print('auth: $dados');
               loginController.haveListOfCondo.value = false;
               loginController.id(dados['idusu']);
               loginController.idcond(dados['idcond']);
@@ -69,6 +70,14 @@ class AuthController extends GetxController {
               loginController.nome(dados['nome']);
               loginController.condoTheme(dados['cor']);
               loginController.genero(dados['genero']);
+              loginController.birthdate(dados['aniversario']);
+              loginController.phone(dados['cel']);
+              loginController.logradouro(dados['logradouro']);
+              loginController.tipoun(dados['tipoun']);
+              loginController.idadm(dados['idadm']);
+              loginController
+                  .websiteAdministradora(dados['website_administradora']);
+              loginController.licenca(dados['licenca']);
 
               themeController.setTheme(loginController.condoTheme.value);
 

@@ -96,6 +96,7 @@ class LoginController extends GetxController {
     isLoading(false);
 
     var dadosUsuario = json.decode(response.body);
+    print(dadosUsuario);
     if (dadosUsuario['valida'] == 1) {
       return dadosUsuario;
     } else {
@@ -124,7 +125,7 @@ class LoginController extends GetxController {
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
 
-      print(dados);
+      print('dados: $dados');
 
       id(dados['idusu']);
       idcond(dados['idcond']);
@@ -140,6 +141,8 @@ class LoginController extends GetxController {
       genero(dados['genero']);
       birthdate(dados['aniversario']);
       phone(dados['cel']);
+      logradouro(dados['logradouro']);
+      tipoun(dados['tipoun']);
       idadm(dados['idadm']);
       websiteAdministradora(dados['website_administradora']);
       licenca(dados['licenca']);

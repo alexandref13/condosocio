@@ -28,7 +28,6 @@ class ListOfCondo extends StatelessWidget {
                         var condo = loginController.listOfCondo[i];
                         return GestureDetector(
                           onTap: () {
-                            
                             loginController.tipoun.value = condo.tipoun;
                             loginController.logradouro.value = condo.logradouro;
                             loginController.newId.value = condo.idusu;
@@ -39,7 +38,7 @@ class ListOfCondo extends StatelessWidget {
                             loginController.nomeusu.value = condo.nomeusu;
                             loginController.sobrenomeusu.value =
                                 condo.sobrenomeusu;
-                  
+
                             var sendTags = {
                               'idusu': loginController.newId.value,
                               'nome': loginController.nomeusu.value,
