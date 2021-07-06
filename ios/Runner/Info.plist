@@ -37,7 +37,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>O calendário é necessário para definir datas dos eventos.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Este aplicativo requer acesso à câmera para uso específico do aplicativo</string>
+	<string>Este aplicativo requer acesso à sua câmera de fotos para alterar a imagem no perfil ou inserir imagem nas ocorrências.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Este aplicativo requer acesso aos contatos para uso dos convites exclusivos do app.</string>
 	<key>NSFaceIDUsageDescription</key>
@@ -49,7 +49,7 @@
 	<key>NSMotionUsageDescription</key>
 	<string>This app needs to be able to access your motion use</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Este aplicativo requer acesso à biblioteca de fotos para uso específico do aplicativo.</string>
+	<string>Este aplicativo requer acesso à sua biblioteca de fotos para alterar a imagem no perfil ou inserir imagem nas ocorrências.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>reconhece a sua fala</string>
 	<key>UILaunchStoryboardName</key>

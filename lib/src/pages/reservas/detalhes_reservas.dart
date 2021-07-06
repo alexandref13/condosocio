@@ -294,19 +294,40 @@ class DetalhesReservas extends StatelessWidget {
                         ),
                       ),
                     ),
-                    reservasController.termo.value != '' &&
-                            !same &&
-                            isBefore &&
-                            detalhesReservasController.validaUsu.value != null
-                        ? GestureDetector(
-                            onTap: () {
-                              Get.toNamed('/termos');
-                            },
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(30, 30, 30, 20),
-                              child: Container(
+                    reservasController.termo.value != ''
+                        ? Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 25),
+                            child: ButtonTheme(
+                              height: 50.0,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.resolveWith<Color>(
+                                    (Set<MaterialState> states) {
+                                      return Colors.white;
+                                    },
+                                  ),
+                                  shape: MaterialStateProperty.resolveWith<
+                                      OutlinedBorder>(
+                                    (Set<MaterialState> states) {
+                                      return RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Get.toNamed('/termos');
+                                },
                                 child: Text(
-                                    'Termo de uso ${reservasController.nome.value}'),
+                                  "Leia o Termo de Uso ${reservasController.nome.value}",
+                                  style: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
                             ),
                           )
@@ -338,36 +359,34 @@ class DetalhesReservas extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
-                                  if (addReservasController.isChecked.value ==
-                                      true) {
                                     confirmDelete(
-                                      'Deseja realmente deletar o evento ${detalhesReservasController.titulo.value}',
+                                        'Deseja cancelar a reserva ${detalhesReservasController.titulo.value}?',
                                       () {
-                                        detalhesReservasController
-                                            .deleteReserva()
-                                            .then(
-                                          (value) {
-                                            if (value == 1) {
-                                              confirmedButtonPressed(
-                                                context,
-                                                'Sua reserva foi deletada com sucesso',
-                                                '/home',
-                                              );
-                                            } else {
-                                              onAlertButtonPressed(
-                                                context,
-                                                'Algo deu errado \n Tente novamente mais tarde',
-                                                '/home',
-                                              );
-                                            }
-                                          },
-                                        );
+                                      detalhesReservasController
+                                          .deleteReserva()
+                                          .then(
+                                        (value) {
+                                          if (value == 1) {
+                                            confirmedButtonPressed(
+                                              context,
+                                        'Sua reserva foi cancelada com sucesso',
+                                              '/home',
+                                            );
+                                          } else {
+                                            onAlertButtonPressed(
+                                              context,
+                                              'Algo deu errado \n Tente novamente mais tarde',
+                                              '/home',
+                                            );
+                                          }
+                                        },
+                                      );
                                       },
-                                    );
-                                  }
+                                        );
+                                   
                                 },
                                 child: Text(
-                                  "Deletar",
+                                  "Cancelar Evento",
                                   style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context)

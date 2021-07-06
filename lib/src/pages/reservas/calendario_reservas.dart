@@ -23,8 +23,11 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
       Get.put(DetalhesReservasController());
 
   bool oi = true;
+  
+
 
   Widget buildEventsMarker(DateTime date, List events) {
+  
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
@@ -47,6 +50,10 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
+
+  var today = DateTime.now();
+    var lastday = today.add(const Duration(days: 90));
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -82,7 +89,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                         child: TableCalendar(
                           locale: 'pt_BR',
                           firstDay: DateTime(2019),
-                          lastDay: DateTime(2030),
+                          lastDay: lastday, //DateTime(2030),
                           focusedDay:
                               calendarioReservasController.focusedDay.value,
                           availableGestures: AvailableGestures.all,
