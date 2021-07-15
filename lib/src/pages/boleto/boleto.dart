@@ -1,4 +1,5 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
+import 'package:condosocio/src/components/utils/edge_alert_error_widget.dart';
 import 'package:condosocio/src/controllers/boleto_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:email_validator/email_validator.dart';
@@ -29,14 +30,18 @@ class BoletoPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Image.asset('images/2ViaBoleto.png'),
+                        Image.asset(
+                          'images/2ViaBoleto.png',
+                          height: 280,
+                        ),
                         Padding(
-                          padding: EdgeInsets.only(bottom: 10),
+                          padding: EdgeInsets.all(20),
                           child: Center(
                             child: Text(
-                              'Entre com e-mail e senha do sistema financeiro do condomínio',
+                              'Entre com e-mail e senha do sistema financeiro do condomínio.',
+                              textAlign: TextAlign.center,
                               style: GoogleFonts.montserrat(
-                                fontSize: 12,
+                                fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
@@ -172,7 +177,12 @@ class BoletoPage extends StatelessWidget {
                                 ),
                               ),
                               onPressed: () {
-                                boletoController.sendBoleto();
+                                boletoController.sendBoleto().then((value) {
+                                  if (value == "vazio") {
+                                    edgeAlertErrorWidget(
+                                        context, 'E-mail ou senha inválidos!');
+                                  }
+                                });
                               },
                               child: Text(
                                 "Entrar",

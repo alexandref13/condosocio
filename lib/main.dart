@@ -10,6 +10,7 @@ import 'package:condosocio/src/pages/acheAqui/pesquisa_ache_aqui.dart';
 import 'package:condosocio/src/pages/avisos/avisos.dart';
 import 'package:condosocio/src/pages/avisos/detalhes_avisos.dart';
 import 'package:condosocio/src/pages/boleto/boleto.dart';
+import 'package:condosocio/src/pages/boleto/visualizar_boletos.dart';
 import 'package:condosocio/src/pages/encomendas/detalhes_encomendas.dart';
 import 'package:condosocio/src/pages/encomendas/encomendas.dart';
 import 'package:condosocio/src/pages/enquetes/enquetes.dart';
@@ -129,6 +130,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/visualizarconvites', page: () => VisualizarConviteWidget()),
         GetPage(name: '/boleto', page: () => BoletoPage()),
+        GetPage(name: '/visualizarBoletos', page: () => VisualizarBoletos()),
       ],
     );
   }

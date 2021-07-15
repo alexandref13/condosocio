@@ -48,7 +48,20 @@ class _HomePageState extends State<HomePage> {
     box.erase();
 
     loginController.email.value.text = '';
-    loginController.password.value.text = '';
+    loginController.password.value.text = '';                    
+    loginController.id.value = '';
+    loginController.idcond.value = '';
+    loginController.tipo.value = '';
+    loginController.imgperfil.value = '';
+    loginController.emailUsu.value = '';
+    loginController.nomeCondo.value = '';
+    loginController.imgcondo.value = '';
+    loginController.nome.value = '';
+    loginController.condoTheme.value = '';
+    loginController.logradouro.value = '';
+    loginController.tipoun.value = '';
+    loginController.dep.value = ''; 
+
     themeController.setTheme('admin');
     Get.offAllNamed('/login');
   }
@@ -352,39 +365,39 @@ class _HomePageState extends State<HomePage> {
                       )),
                   Column(
                     children: <Widget>[
-                      //mudar para != '0'
-                      // loginController.idadm.value == '0'
-                      //     ? Container(
-                      //         child: ListTile(
-                      //           contentPadding:
-                      //               EdgeInsets.fromLTRB(15, 0, 10, 0),
-                      //           dense: true,
-                      //           title: Text(
-                      //             'Boleto 2º Via',
-                      //             style: GoogleFonts.montserrat(
-                      //               color: Theme.of(context)
-                      //                   .textSelectionTheme
-                      //                   .selectionColor,
-                      //               fontSize: 14,
-                      //             ),
-                      //           ),
-                      //           leading: Icon(
-                      //             Icons.paid_outlined,
-                      //             color: Theme.of(context)
-                      //                 .textSelectionTheme
-                      //                 .selectionColor,
-                      //             size: 22,
-                      //           ),
-                      //           onTap: () {
-                      //             Get.toNamed('/boleto');
-                      //           },
-                      //         ),
-                      //       )
-                      //     : Container(),
-                      // Divider(
-                      //   height: 5,
-                      //   color: Theme.of(context).primaryColor,
-                      // ),
+                     
+                      loginController.idadm.value != '0'
+                          ? Container(
+                              child: ListTile(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                dense: true,
+                                title: Text(
+                                  'Boleto 2ª Via',
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                leading: Icon(
+                                  Icons.paid_outlined,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  size: 22,
+                                ),
+                                onTap: () {
+                                  Get.toNamed('/boleto');
+                                },
+                              ),
+                            )
+                          : Container(),
+                      Divider(
+                        height: 5,
+                        color: Theme.of(context).primaryColor,
+                      ),
                       loginController.haveListOfCondo.value
                           ? Container(
                               child: ListTile(
@@ -710,7 +723,7 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           children: [
                             Text(
-                              'Versão 7.0.1',
+                              'Versão 7.5.0',
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme

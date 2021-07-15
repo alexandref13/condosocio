@@ -338,6 +338,9 @@ class Login extends StatelessWidget {
                                                         value['imgcondo'];
                                                     loginController.nome.value =
                                                         value['nome'];
+                                                    loginController
+                                                            .sobrenome.value =
+                                                        value['sobrenome'];
                                                     loginController.condoTheme
                                                         .value = value['cor'];
                                                     loginController
@@ -346,6 +349,8 @@ class Login extends StatelessWidget {
                                                     loginController
                                                             .tipoun.value =
                                                         value['tipoun'];
+                                                    loginController.dep.value =
+                                                        value['dep'];
 
                                                     loginController.storageId();
 
@@ -353,7 +358,7 @@ class Login extends StatelessWidget {
                                                       loginController
                                                           .condoTheme.value,
                                                     );
-
+                                                   
                                                     var sendTags = {
                                                       'idusu': loginController
                                                           .id.value,
