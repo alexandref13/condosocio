@@ -59,7 +59,7 @@ class PerfilController extends GetxController {
       loginController.genero.value = itemSelecionado.value;
 
       /*phone.value.text = cellMaskFormatter.getUnmaskedText();
-      var date = birthdate.value.text.split('/');*/
+                var date = birthdate.value.text.split('/');*/
 
       var date = birthdate.value.text.split('/');
       newDate.value = '${date[2]}-${date[1]}-${date[0]}';
@@ -75,6 +75,7 @@ class PerfilController extends GetxController {
   }
 
   init() {
+   
     name.value.text = loginController.nome.value;
     phone.value.text = loginController.phone.value;
     secondName.value.text = loginController.sobrenome.value;

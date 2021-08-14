@@ -105,7 +105,7 @@ class LoginController extends GetxController {
   }
 
   storageId() async {
-    await GetStorage.init();
+    await GetStorage.init(); 
     final box = GetStorage();
     box.write('id', id.value);
     box.write('emailController', email.value.text);
@@ -125,7 +125,7 @@ class LoginController extends GetxController {
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
 
-      print('dados: $dados');
+      print('dados newlogin: $dados');
 
       id(dados['idusu']);
       idcond(dados['idcond']);
