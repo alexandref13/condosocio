@@ -62,7 +62,7 @@ class PerfilController extends GetxController {
                 var date = birthdate.value.text.split('/');*/
 
       var date = birthdate.value.text.split('/');
-      newDate.value = '${date[2]}-${date[1]}-${date[0]}';
+      newDate.value = '${date[0]}-${date[1]}-${date[2]}';
 
       var response = await ApiPerfil.editPerfil();
       var dados = json.decode(response.body);
