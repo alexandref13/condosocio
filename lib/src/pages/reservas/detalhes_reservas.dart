@@ -104,7 +104,7 @@ class DetalhesReservas extends StatelessWidget {
                   children: [
                     Center(
                       child: Container(
-                        height: MediaQuery.of(context).size.height * .35,
+                        height: MediaQuery.of(context).size.height * .45,
                         width: MediaQuery.of(context).size.width * .9,
                         child: Card(
                           color: detalhesReservasController.status.value ==
@@ -270,7 +270,7 @@ class DetalhesReservas extends StatelessWidget {
                                     detalhesReservasController.status.value ==
                                             "Recusado"
                                         ? Text(
-                                            'Motivo da Recusa: ',
+                                            'Motivo: ',
                                             style: GoogleFonts.montserrat(
                                               fontSize: 12,
                                               color: Colors.black,
@@ -278,17 +278,37 @@ class DetalhesReservas extends StatelessWidget {
                                             ),
                                           )
                                         : Container(),
-                                    Text(
-                                      detalhesReservasController
-                                          .respevent.value,
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Colors.black,
+                                        
+                                   
+                                    
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(left: 10),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                         Text(
+                                            detalhesReservasController
+                                                .respevent.value,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 12,
+                                              color: Colors.black,
+                                            ),
+                                        
+                                      ),
+                                         
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
+                              )
                             ],
                           ),
                         ),
