@@ -294,7 +294,7 @@ class Login extends StatelessWidget {
                                                   .password.value.text = '';
                                               onAlertButtonPressed(
                                                 context,
-                                                'Email ou senha inválidos! \n Tente novamente',
+                                                'E-mail ou Senha Inválidos! \n Tente Novamente',
                                                 null,
                                               );
                                             } else {
@@ -358,7 +358,7 @@ class Login extends StatelessWidget {
                                                       loginController
                                                           .condoTheme.value,
                                                     );
-                                                   
+
                                                     var sendTags = {
                                                       'idusu': loginController
                                                           .id.value,

@@ -7,7 +7,7 @@ import 'package:condosocio/src/controllers/convites/visualizar_convites_controll
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
+//import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
 
 void configurandoModalBottomSheet(
@@ -97,13 +97,13 @@ void configurandoModalBottomSheet(
                                 .sendWhatsApp()
                                 .then((value) {
                               if (value != 0) {
-                                String message =
+                                /*String message =
                                     'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}';
 
                                 FlutterOpenWhatsapp.sendSingleMessage(
                                   celular,
                                   Uri.encodeFull(message),
-                                );
+                                );*/
                               } else {
                                 onAlertButtonPressed(
                                     context,

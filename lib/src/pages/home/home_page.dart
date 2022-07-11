@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
     box.erase();
 
     loginController.email.value.text = '';
-    loginController.password.value.text = '';                    
+    loginController.password.value.text = '';
     loginController.id.value = '';
     loginController.idcond.value = '';
     loginController.tipo.value = '';
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
     loginController.condoTheme.value = '';
     loginController.logradouro.value = '';
     loginController.tipoun.value = '';
-    loginController.dep.value = ''; 
+    loginController.dep.value = '';
 
     themeController.setTheme('admin');
     Get.offAllNamed('/login');
@@ -202,7 +202,7 @@ class _HomePageState extends State<HomePage> {
     this.setState(() {});
     PickedFile image = await _picker.getImage(source: source);
     if (image != null) {
-      File cropped = await ImageCropper.cropImage(
+      File cropped = await ImageCropper().cropImage(
           sourcePath: image.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 80,
@@ -365,7 +365,6 @@ class _HomePageState extends State<HomePage> {
                       )),
                   Column(
                     children: <Widget>[
-                     
                       loginController.idadm.value != '0'
                           ? Container(
                               child: ListTile(

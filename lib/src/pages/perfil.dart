@@ -138,7 +138,7 @@ class _PerfilState extends State<Perfil> {
     this.setState(() {});
     PickedFile image = await _picker.getImage(source: source);
     if (image != null) {
-      File cropped = await ImageCropper.cropImage(
+      File cropped = await ImageCropper().cropImage(
           sourcePath: image.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 80,
@@ -506,8 +506,6 @@ class _PerfilState extends State<Perfil> {
                                       context,
                                       'Seu Perfil foi Atualizado!',
                                     );
-                                   
-                                        
                                   } else if (value == "vazio") {
                                     onAlertButtonPressed(
                                         context, 'Algum Campo Vazio!', null);

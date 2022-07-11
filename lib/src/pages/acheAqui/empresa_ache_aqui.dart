@@ -5,7 +5,7 @@ import 'package:condosocio/src/pages/acheAqui/detalhes_ache_aqui.dart';
 import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
+//import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -110,12 +110,12 @@ class EmpresaAcheAqui extends StatelessWidget {
                 var message =
                     'Encontrei a sua empresa pelo aplicativo *CondoSócio*';
 
-                FlutterOpenWhatsapp.sendSingleMessage(
+                /* FlutterOpenWhatsapp.sendSingleMessage(
                   celular.length == 11 ? '55$celular' : celular,
                   Uri.encodeFull(
                     message,
                   ),
-                );
+                );*/
               },
             ),
             SpeedDialChild(

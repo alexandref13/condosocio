@@ -51,7 +51,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
     this.setState(() {});
     PickedFile image = await picker.getImage(source: source);
     if (image != null) {
-      File cropped = await ImageCropper.cropImage(
+      File cropped = await ImageCropper().cropImage(
           sourcePath: image.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 80,

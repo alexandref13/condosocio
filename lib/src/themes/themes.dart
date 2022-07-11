@@ -14,6 +14,7 @@ ThemeData admin = ThemeData(
     iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
     elevation: 0,
     centerTitle: true,
+    backgroundColor: Color(0xff1A936F),
   ),
   errorColor: Color(0xffa3000b),
 );
@@ -35,6 +36,7 @@ ThemeData magenta = ThemeData(
     ),
     elevation: 0,
     centerTitle: true,
+    backgroundColor: Color(0xff833545),
   ),
   errorColor: Color(0xffa3000b),
 );
@@ -56,6 +58,7 @@ ThemeData turquoise = ThemeData(
     iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
     elevation: 0,
     centerTitle: true,
+    backgroundColor: Color(0xff054437),
   ),
   errorColor: Color(0xffa3000b),
 );
@@ -77,6 +80,7 @@ ThemeData blue = ThemeData(
     ),
     elevation: 0,
     centerTitle: true,
+    backgroundColor: Color(0xff375a70),
   ),
   errorColor: Color(0xffa3000b),
 );
@@ -98,6 +102,7 @@ ThemeData grayscale = ThemeData(
     ),
     elevation: 0,
     centerTitle: true,
+    backgroundColor: Color(0xff150811),
   ),
   errorColor: Color(0xffa3000b),
 );
@@ -119,6 +124,7 @@ ThemeData red = ThemeData(
     ),
     elevation: 0,
     centerTitle: true,
+    backgroundColor: Color(0xff811308),
   ),
   errorColor: Color(0xffa3000b),
 );
@@ -140,6 +146,7 @@ ThemeData orange = ThemeData(
     ),
     elevation: 0,
     centerTitle: true,
+    backgroundColor: Color(0xff792404),
   ),
   errorColor: Color(0xffa3000b),
 );
