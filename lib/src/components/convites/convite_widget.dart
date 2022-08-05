@@ -24,7 +24,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
   var startTime = TextEditingController();
   var endDate = TextEditingController();
   var endTime = TextEditingController();
-  var acesso = Bool();
+  Bool acesso;
 
   AcessosController acessosController = Get.put(AcessosController());
   ConvitesController convitesController = Get.put(ConvitesController());
@@ -296,6 +296,8 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                   onChanged: (newValue) => updateFn(newValue),
                                   activeColor: Theme.of(context).errorColor,
                                 ),
+                                onUpdate: (svalue) =>
+                                    print("Value updated: $svalue"),
                               ),
                             ],
                           ),
@@ -325,10 +327,12 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               ),
                             ),
                             onPressed: () {
+                              //print("Value updated: $svalue");
                               convitesController.startDate.value =
                                   startSelectedDate.toString();
                               convitesController.endDate.value =
                                   endSelectedDate.toString();
+
                               convitesController.acesso.value =
                                   convitesController.handleAddPage();
                             },
