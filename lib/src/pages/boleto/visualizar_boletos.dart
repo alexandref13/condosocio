@@ -81,6 +81,7 @@ class VisualizarBoletos extends StatelessWidget {
                                     .textSelectionTheme
                                     .selectionColor,
                                 iconSize: 36,
+                                onPressed: () {},
                               ),
                               title: Text(
                                   'Valor Corrigido: R\$ ${boleto[i]['encargos']['valorcorrigido']}'),

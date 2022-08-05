@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:condosocio/src/services/convites/api_convites.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
+//import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -79,7 +79,7 @@ class VisualizarConvitesController extends GetxController {
   Future<void> initPlatformState() async {
     String platformVersion;
     try {
-      platformVersion = await FlutterOpenWhatsapp.platformVersion;
+      // platformVersion = await FlutterOpenWhatsapp.platformVersion;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }

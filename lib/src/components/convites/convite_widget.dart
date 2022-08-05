@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
@@ -22,6 +24,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
   var startTime = TextEditingController();
   var endDate = TextEditingController();
   var endTime = TextEditingController();
+  var acesso = Bool();
 
   AcessosController acessosController = Get.put(AcessosController());
   ConvitesController convitesController = Get.put(ConvitesController());
@@ -63,7 +66,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
         context: context,
         initialDate: startSelectedDate,
         firstDate: startSelectedDate,
-        lastDate: DateTime(2100),
+        lastDate: DateTime(2030),
       );
 
   @override
@@ -103,6 +106,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
             startSelectedTime.hour,
             startSelectedTime.minute,
           );
+
     super.initState();
   }
 
@@ -266,6 +270,38 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                           ),
                         ],
                       ),
+                      Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Spacer(),
+                          Column(
+                            children: [
+                              Text(
+                                'Acesso Livre (N/S)',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 14,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              ValueBuilder<bool>(
+                                initialValue: false,
+                                builder: (isChecked, updateFn) => Switch(
+                                  value: isChecked,
+                                  onChanged: (newValue) => updateFn(newValue),
+                                  activeColor: Theme.of(context).errorColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                        ],
+                      ),
                       Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -293,7 +329,8 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                   startSelectedDate.toString();
                               convitesController.endDate.value =
                                   endSelectedDate.toString();
-                              convitesController.handleAddPage();
+                              convitesController.acesso.value =
+                                  convitesController.handleAddPage();
                             },
                             child: Text(
                               'Continuar',

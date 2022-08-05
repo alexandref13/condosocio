@@ -35,6 +35,8 @@ class ConvitesController extends GetxController {
   var isEdited = false.obs;
   var isLoading = false.obs;
 
+  var acesso = ''.obs;
+
   RefreshController refreshController =
       RefreshController(initialRefresh: false);
 
@@ -122,6 +124,7 @@ class ConvitesController extends GetxController {
 
   sendConvites(String startDate, String endDate) async {
     isLoading(true);
+
     var response = await ApiConvites.sendAcesso(startDate, endDate);
 
     var data = json.decode(response.body);
