@@ -60,7 +60,6 @@ class ConvitesController extends GetxController {
   );
 
   handleAddCount() {
-    countApp(false);
     count.value = !count.value;
   }
 
