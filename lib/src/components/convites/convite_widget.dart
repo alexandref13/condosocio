@@ -290,15 +290,17 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                           Column(
                             children: [
                               ValueBuilder<bool>(
-                                initialValue: false,
-                                builder: (isChecked, updateFn) => Switch(
-                                  value: isChecked,
-                                  onChanged: (newValue) => updateFn(newValue),
-                                  activeColor: Theme.of(context).errorColor,
-                                ),
-                                onUpdate: (svalue) =>
-                                    print("Value updated: $svalue"),
-                              ),
+                                  initialValue:
+                                      convitesController.isChecked.value,
+                                  builder: (isChecked, updateFn) => Switch(
+                                        value: isChecked,
+                                        onChanged: (newValue) =>
+                                            updateFn(newValue),
+                                        activeColor:
+                                            Theme.of(context).errorColor,
+                                      ),
+                                  onUpdate: (svalue) => convitesController
+                                      .isChecked.value = svalue),
                             ],
                           ),
                           Spacer(),
@@ -314,7 +316,9 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               backgroundColor:
                                   MaterialStateProperty.resolveWith<Color>(
                                 (Set<MaterialState> states) {
-                                  return Theme.of(context).accentColor;
+                                  return Theme.of(context)
+                                      .colorScheme
+                                      .secondary;
                                 },
                               ),
                               shape: MaterialStateProperty.resolveWith<
@@ -327,7 +331,8 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               ),
                             ),
                             onPressed: () {
-                              //print("Value updated: $svalue");
+                              print(convitesController.isChecked.value);
+
                               convitesController.startDate.value =
                                   startSelectedDate.toString();
                               convitesController.endDate.value =

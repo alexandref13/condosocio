@@ -37,6 +37,8 @@ class ConvitesController extends GetxController {
 
   var acesso = ''.obs;
 
+  var isChecked = false.obs;
+
   RefreshController refreshController =
       RefreshController(initialRefresh: false);
 
