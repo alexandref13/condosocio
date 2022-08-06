@@ -296,8 +296,8 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                   onChanged: (newValue) => updateFn(newValue),
                                   activeColor: Theme.of(context).errorColor,
                                 ),
-                                onUpdate: (svalue) =>
-                                    print("Value updated: $svalue"),
+                                onUpdate: (svalue) => acesso,
+                                //print("Value updated: $svalue"),
                               ),
                             ],
                           ),
@@ -327,7 +327,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               ),
                             ),
                             onPressed: () {
-                              //print("Value updated: $svalue");
+                              print(convitesController.acesso.value);
                               convitesController.startDate.value =
                                   startSelectedDate.toString();
                               convitesController.endDate.value =
