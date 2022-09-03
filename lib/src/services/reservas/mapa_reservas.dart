@@ -6,6 +6,7 @@ class MapaReservas {
   String aprova;
   String multi;
   String tipo;
+  int lastTime;
 
   MapaReservas({
     this.idarea,
@@ -15,6 +16,7 @@ class MapaReservas {
     this.aprova,
     this.multi,
     this.tipo,
+    this.lastTime,
   });
 
   MapaReservas.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class MapaReservas {
     aprova = json['aprova'];
     multi = json['multi'];
     tipo = json['tipo'];
+    lastTime = json['lastTime'];
   }
 
   Map<String, dynamic> toJson() {
@@ -36,6 +39,7 @@ class MapaReservas {
     data['aprova'] = this.aprova;
     data['multi'] = this.multi;
     data['tipo'] = this.tipo;
+    data['lastTime'] = this.lastTime;
     return data;
   }
 }

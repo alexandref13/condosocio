@@ -34,6 +34,8 @@ class AreasComuns extends StatelessWidget {
                                 reservasController.idarea.value = areas.idarea;
                                 reservasController.aprova.value = areas.aprova;
                                 reservasController.multi.value = areas.multi;
+                                reservasController.lastTime.value =
+                                    areas.lastTime;
                                 Get.toNamed('/calendario');
                               },
                               child: Card(

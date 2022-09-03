@@ -13,6 +13,7 @@ class ReservasController extends GetxController {
   var aprova = ''.obs;
   var multi = ''.obs;
   var tipo = ''.obs;
+  var lastTime = 0.obs;
 
   var isLoading = true.obs;
 

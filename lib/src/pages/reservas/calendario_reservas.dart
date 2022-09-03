@@ -23,11 +23,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
       Get.put(DetalhesReservasController());
 
   bool oi = true;
-  
-
 
   Widget buildEventsMarker(DateTime date, List events) {
-  
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
@@ -50,9 +47,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-  var today = DateTime.now();
-    var lastday = today.add(const Duration(days: 90));
+    var today = DateTime.now();
+    var lastday = today.add(Duration(days: reservasController.lastTime.value));
 
     return Scaffold(
       appBar: AppBar(

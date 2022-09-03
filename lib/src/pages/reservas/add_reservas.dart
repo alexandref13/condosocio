@@ -131,7 +131,8 @@ class _AddReservasState extends State<AddReservas> {
                                       selectedDay.month,
                                       selectedDay.day,
                                       startSelectedTime.hour,
-                                      startSelectedTime.minute,
+                                      00,
+                                      //startSelectedTime.minute,
                                     );
 
                                     addReservasController.data.value.text =
