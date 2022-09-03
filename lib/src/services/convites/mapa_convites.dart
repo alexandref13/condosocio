@@ -3,14 +3,17 @@ class ConvitesMapa {
   String titulo;
   int qtdconv;
   String datafinal;
+  String acesso;
 
-  ConvitesMapa({this.idconv, this.titulo, this.qtdconv, this.datafinal});
+  ConvitesMapa(
+      {this.idconv, this.titulo, this.qtdconv, this.datafinal, this.acesso});
 
   ConvitesMapa.fromJson(Map<String, dynamic> json) {
     idconv = json['idconv'];
     titulo = json['titulo'];
     qtdconv = json['qtdconv'];
     datafinal = json['datafinal'];
+    acesso = json['acesso'];
   }
 
   Map<String, dynamic> toJson() {
@@ -19,6 +22,7 @@ class ConvitesMapa {
     data['titulo'] = this.titulo;
     data['qtdconv'] = this.qtdconv;
     data['datafinal'] = this.datafinal;
+    data['acesso'] = this.acesso;
     return data;
   }
 }

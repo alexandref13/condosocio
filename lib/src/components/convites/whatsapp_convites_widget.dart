@@ -55,7 +55,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 controller: visualizarConvitesController.whatsappNumber.value,
                 style: GoogleFonts.montserrat(
-                  fontSize: 14,
+                  fontSize: 16,
                   color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
                 decoration: InputDecoration(
@@ -72,7 +72,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                     fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor,
                   ),
-                  isDense: true,
+                  //isDense: true,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(
@@ -84,8 +84,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                      color: Theme.of(context).errorColor,
                       width: 1,
                     ),
                   ),

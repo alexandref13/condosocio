@@ -55,7 +55,9 @@ class VisualizarConviteWidget extends StatelessWidget {
               : Container(
                   child: Column(
                     children: [
-                      boxSearch(context, convitesController.search.value,
+                      boxSearch(
+                          context,
+                          convitesController.search.value,
                           convitesController.onSearchTextChanged,
                           "Pesquise o Convite..."),
                       Expanded(
@@ -90,9 +92,6 @@ class VisualizarConviteWidget extends StatelessWidget {
                                               .value = convites.datafinal;
                                           visualizarConviteController
                                               .idConv.value = convites.idconv;
-
-                                          print(
-                                              'data final ${convites.datafinal}');
 
                                           visualizarConviteController
                                               .getAConvite(convites.idconv);
@@ -178,6 +177,8 @@ class VisualizarConviteWidget extends StatelessWidget {
                                               .value = convites.datafinal;
                                           visualizarConviteController
                                               .idConv.value = convites.idconv;
+                                          visualizarConviteController
+                                              .acesso.value = convites.acesso;
 
                                           print(
                                               'data final ${convites.datafinal}');

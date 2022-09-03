@@ -17,6 +17,7 @@ class VisualizarConvitesController extends GetxController {
   var tel = ''.obs;
   var whatsappNumber = TextEditingController().obs;
   var qtdconv = 0.obs;
+  var acesso = ''.obs;
 
   var isEdited = false.obs;
   var isLoading = false.obs;

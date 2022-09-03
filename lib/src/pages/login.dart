@@ -5,11 +5,8 @@ import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:ui';
-
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class Login extends StatelessWidget {

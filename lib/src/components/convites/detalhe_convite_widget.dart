@@ -35,9 +35,8 @@ class DetalheConviteWidget extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        Get.offNamed('/convites');
         convitesController.page.value = 1;
-        return false;
+        Navigator.pop(context);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -208,7 +207,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 ),
                                               )
                                             ],
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -239,6 +238,40 @@ class DetalheConviteWidget extends StatelessWidget {
                                           ),
                                         ),
                                       ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(20, 0, 20, 50),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    visualizarConvitesController.acesso.value ==
+                                            "1"
+                                        ? Icons.swap_horiz
+                                        : Icons.arrow_right_alt,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    size: 26,
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(left: 5),
+                                    child: Text(
+                                      visualizarConvitesController
+                                                  .acesso.value ==
+                                              "1"
+                                          ? "Acesso Livre"
+                                          : "Único Acesso",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
+                                      ),
                                     ),
                                   )
                                 ],

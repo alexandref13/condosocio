@@ -1119,6 +1119,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         .sendConvites(
                                       convitesController.startDate.value,
                                       convitesController.endDate.value,
+                                      convitesController.isChecked.value,
                                     )
                                         .then(
                                       (value) {

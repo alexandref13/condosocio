@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
@@ -54,10 +55,10 @@ class ApiConvites {
     );
   }
 
-  static Future sendAcesso(String startDate, String endDate) async {
+  static Future sendAcesso(
+      String startDate, String endDate, bool acesso) async {
     LoginController loginController = Get.put(LoginController());
     ConvitesController convitesController = Get.put(ConvitesController());
-
     return await http.post(
       Uri.https('www.condosocio.com.br', '/flutter/convites_inc.php'),
       body: {
@@ -69,6 +70,7 @@ class ApiConvites {
         'datainicial': startDate,
         'datafinal': endDate,
         'convidados': json.encode(convitesController.guestList),
+        'acesso': acesso.toString(),
       },
     );
   }

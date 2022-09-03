@@ -330,8 +330,6 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               ),
                             ),
                             onPressed: () {
-                              print(convitesController.isChecked.value);
-
                               convitesController.startDate.value =
                                   startSelectedDate.toString();
                               convitesController.endDate.value =
