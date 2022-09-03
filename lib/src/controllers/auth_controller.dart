@@ -68,7 +68,7 @@ class AuthController extends GetxController {
               loginController.nomeCondo(dados['nome_condo']);
               loginController.imgcondo(dados['imgcondo']);
               loginController.nome(dados['nome']);
-               loginController.sobrenome(dados['sobrenome']);
+              loginController.sobrenome(dados['sobrenome']);
               loginController.condoTheme(dados['cor']);
               loginController.genero(dados['genero']);
               loginController.birthdate(dados['aniversario']);
@@ -76,7 +76,7 @@ class AuthController extends GetxController {
               loginController.logradouro(dados['logradouro']);
               loginController.tipoun(dados['tipoun']);
               loginController.idadm(dados['idadm']);
-               loginController.dep(dados['dep']);
+              loginController.dep(dados['dep']);
               loginController
                   .websiteAdministradora(dados['website_administradora']);
               loginController.licenca(dados['licenca']);

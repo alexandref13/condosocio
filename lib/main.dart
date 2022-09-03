@@ -2,6 +2,7 @@ import 'package:condosocio/src/components/acessos_saidas/detalhes_acessos_saida.
 import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_saidas.dart';
 import 'package:condosocio/src/components/convites/visualizar_convite_widget.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
+import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui_form.dart';
 import 'package:condosocio/src/pages/acheAqui/empresa_ache_aqui.dart';
@@ -46,7 +47,6 @@ import 'package:condosocio/src/pages/reservas/reserva.dart';
 import 'package:condosocio/src/pages/encomendas/qrcode.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
-import 'package:condosocio/src/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -60,6 +60,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final ThemeController themeController = Get.put(ThemeController());
+
   @override
   Widget build(BuildContext context) {
     OneSignal.shared.setAppId('d2a1bd8c-4a9a-4355-ac9b-e52691e7de23');
@@ -75,7 +77,8 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: [Locale('pt')],
-      theme: admin,
+      theme: themeController.theme,
+      darkTheme: themeController.theme,
       debugShowCheckedModeBanner: false,
       initialRoute: '/login',
       getPages: [

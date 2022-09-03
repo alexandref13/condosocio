@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -64,7 +66,7 @@ ThemeData turquoise = ThemeData(
 );
 
 ThemeData blue = ThemeData(
-  brightness: Brightness.dark,
+  brightness: Brightness.light,
   primaryColor: Color(0xff375a70),
   accentColor: Color(0xff2a5571),
   buttonColor: Color(0xff394A59),

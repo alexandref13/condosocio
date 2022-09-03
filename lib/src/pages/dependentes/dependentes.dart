@@ -72,7 +72,7 @@ class _DependentesState extends State<Dependentes> {
   }
 }
 
-  onAlertButtonPressed(context, String text) {
+onAlertButtonPressed(context, String text) {
   Alert(
     image: Icon(
       Icons.close,
@@ -87,7 +87,7 @@ class _DependentesState extends State<Dependentes> {
       //descStyle: GoogleFonts.poppins(color: Colors.red,),
       animationDuration: Duration(milliseconds: 300),
       titleStyle: GoogleFonts.poppins(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         fontSize: 14,
       ),
     ),
@@ -106,7 +106,7 @@ class _DependentesState extends State<Dependentes> {
           Navigator.of(context).pop();
         },
         width: 80,
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
       )
     ],
   ).show();
