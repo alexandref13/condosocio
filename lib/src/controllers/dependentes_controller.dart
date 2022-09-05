@@ -10,18 +10,22 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 class DependentesController extends GetxController {
   LoginController loginController = Get.put(LoginController());
   var isLoading = false.obs;
-
   var nome = TextEditingController().obs;
   var sobrenome = TextEditingController().obs;
   var email = TextEditingController().obs;
   var celular = TextEditingController().obs;
   var idep = ''.obs;
   var status = ''.obs;
-
   var dependentes = [].obs;
-
   var search = TextEditingController().obs;
   var searchResult = [].obs;
+
+  var hourEnt = TextEditingController().obs;
+  var hourSai = TextEditingController().obs;
+  var horaMaskFormatter = new MaskTextInputFormatter(
+    mask: '##:##',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
   var firstId = '0'.obs;
   var tipos = [
@@ -30,6 +34,13 @@ class DependentesController extends GetxController {
     'Feminino',
   ];
   var itemSelecionado = 'Selecione o gênero'.obs;
+
+  var tiposUsuarios = [
+    'Selecione o tipo',
+    'Morador',
+    'Prestador de serviço',
+  ];
+  var tipoUsuario = 'Selecione o tipo'.obs;
 
   onSearchTextChanged(String text) {
     searchResult.clear();
@@ -56,7 +67,8 @@ class DependentesController extends GetxController {
         sobrenome.value.text == '' ||
         email.value.text == '' ||
         celular.value.text == '' ||
-        itemSelecionado.value == 'Selecione o gênero') {
+        itemSelecionado.value == 'Selecione o gênero' ||
+        tipoUsuario.value == 'Selecione o tipo') {
       return "vazio";
     } else {
       isLoading(true);

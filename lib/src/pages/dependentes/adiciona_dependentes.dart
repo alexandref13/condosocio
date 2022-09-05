@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class AdicionaDependentes extends StatelessWidget {
@@ -16,6 +17,54 @@ class AdicionaDependentes extends StatelessWidget {
     DependentesController dependentesController =
         Get.put(DependentesController());
     PerfilController perfilController = Get.put(PerfilController());
+    bool _isVisible = true;
+    bool _isCkeckAcesso = false;
+    var startSelectedTime = TimeOfDay.now();
+    var endSelectedTime = TimeOfDay.now();
+    var startSelectedDate = DateTime.now();
+    var endtSelectedDate = DateTime.now();
+    var startTime = TextEditingController();
+    var endTime = TextEditingController();
+
+    Future<TimeOfDay> selectTime(BuildContext context) {
+      final now = DateTime.now();
+      return showTimePicker(
+        context: context,
+        initialTime: TimeOfDay(hour: 08, minute: 00),
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+              child: child);
+        },
+      );
+    }
+
+    Future<TimeOfDay> selectEndTime(BuildContext context) {
+      return showTimePicker(
+        context: context,
+        initialTime: TimeOfDay(hour: 18, minute: 00),
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+              child: child);
+        },
+      );
+    }
+
+    @override
+    void initState() {
+      startSelectedTime = TimeOfDay.now();
+      endSelectedTime = TimeOfDay.now();
+
+      dependentesController.hourEnt.value.text =
+          "${startSelectedTime.hour.toString()}:${startSelectedTime.minute.toString()}";
+
+      //dependentesController.hourSai.value.text =
+      // "${startSelectedTime.hour.toString()}:${startSelectedTime.minute.toString()}";
+      // print(infoCheckController.hour.value.text);
+    }
 
     void dropDownFavoriteSelected(String novoItem) {
       dependentesController.firstId.value = novoItem;
@@ -36,14 +85,62 @@ class AdicionaDependentes extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    customTextField(
-                      context,
-                      'Nome',
-                      null,
-                      false,
-                      1,
-                      true,
-                      dependentesController.nome.value,
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 7),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          width: 1,
+                        ),
+                      ),
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        underline: Container(),
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          size: 27,
+                        ),
+                        iconEnabledColor:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        dropdownColor: Theme.of(context).primaryColor,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 14,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                        items: dependentesController.tiposUsuarios
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (String novoItemSelecionado) {
+                          dropDownFavoriteSelected(novoItemSelecionado);
+                          dependentesController.tipoUsuario.value =
+                              novoItemSelecionado;
+                        },
+                        value: dependentesController.tipoUsuario.value,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Visibility(
+                      visible: _isVisible,
+                      child: customTextField(
+                        context,
+                        'Nome',
+                        null,
+                        false,
+                        1,
+                        true,
+                        dependentesController.nome.value,
+                      ),
                     ),
                     SizedBox(
                       height: 15,
@@ -56,6 +153,51 @@ class AdicionaDependentes extends StatelessWidget {
                       1,
                       true,
                       dependentesController.sobrenome.value,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 7),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                          width: 1,
+                        ),
+                      ),
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        underline: Container(),
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          size: 27,
+                        ),
+                        iconEnabledColor:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        dropdownColor: Theme.of(context).primaryColor,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 14,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
+                        ),
+                        items: dependentesController.tipos
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (String novoItemSelecionado) {
+                          dropDownFavoriteSelected(novoItemSelecionado);
+                          dependentesController.itemSelecionado.value =
+                              novoItemSelecionado;
+                        },
+                        value: dependentesController.itemSelecionado.value,
+                      ),
                     ),
                     SizedBox(
                       height: 15,
@@ -110,51 +252,6 @@ class AdicionaDependentes extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 7),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                          width: 1,
-                        ),
-                      ),
-                      child: DropdownButton<String>(
-                        isExpanded: true,
-                        underline: Container(),
-                        icon: Icon(
-                          Icons.keyboard_arrow_down,
-                          size: 27,
-                        ),
-                        iconEnabledColor:
-                            Theme.of(context).textSelectionTheme.selectionColor,
-                        dropdownColor: Theme.of(context).primaryColor,
-                        style: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                        items: dependentesController.tipos
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (String novoItemSelecionado) {
-                          dropDownFavoriteSelected(novoItemSelecionado);
-                          dependentesController.itemSelecionado.value =
-                              novoItemSelecionado;
-                        },
-                        value: dependentesController.itemSelecionado.value,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
                     TextField(
                       keyboardType: TextInputType.number,
                       inputFormatters: [perfilController.cellMaskFormatter],
@@ -204,6 +301,81 @@ class AdicionaDependentes extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 20,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Spacer(),
+                        Column(
+                          children: [
+                            Text(
+                              'Acesso Livre (N/S)',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            ValueBuilder<bool>(
+                                initialValue: _isCkeckAcesso,
+                                builder: (isChecked, updateFn) => Switch(
+                                      value: isChecked,
+                                      onChanged: (newValue) =>
+                                          updateFn(newValue),
+                                      activeColor:
+                                          Theme.of(context).shadowColor,
+                                    ),
+                                onUpdate: (svalue) => _isCkeckAcesso = svalue),
+                          ],
+                        ),
+                        Spacer(),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () async {
+                                startSelectedTime = await selectTime(context);
+                                if (startSelectedTime == null) return;
+
+                                startSelectedDate = DateTime(
+                                  startSelectedDate.year,
+                                  startSelectedDate.month,
+                                  startSelectedDate.day,
+                                  startSelectedTime.hour,
+                                  startSelectedTime.minute,
+                                );
+                              },
+                              child: customTextField(
+                                context,
+                                DateFormat("HH:mm").format(
+                                  startSelectedDate,
+                                ),
+                                DateFormat("HH:mm").format(
+                                  startSelectedDate,
+                                ),
+                                false,
+                                1,
+                                false,
+                                startTime,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [Text('data')],
+                        )
+                      ],
                     ),
                     ButtonTheme(
                       height: 50.0,
@@ -358,7 +530,7 @@ class AdicionaDependentes extends StatelessWidget {
           onPressed: () {
             DependentesController dependentesController =
                 Get.put(DependentesController());
-
+            dependentesController.itemSelecionado.value = 'Selecione o tipo';
             dependentesController.nome.value.text = '';
             dependentesController.sobrenome.value.text = '';
             dependentesController.email.value.text = '';

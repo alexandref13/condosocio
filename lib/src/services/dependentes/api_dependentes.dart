@@ -4,13 +4,10 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ApiDependentes {
-
   static Future<dynamic> sendDependentes() async {
-
     LoginController loginController = Get.put(LoginController());
     DependentesController dependentesController =
         Get.put(DependentesController());
-
 
     return await http.post(
       Uri.https("www.condosocio.com.br", "/flutter/dependentes_inc.php"),
@@ -22,6 +19,7 @@ class ApiDependentes {
         'email': dependentesController.email.value.text,
         'genero': dependentesController.itemSelecionado.value,
         'celular': dependentesController.celular.value.text,
+        'tipo': dependentesController.tipoUsuario.value,
       },
     );
   }

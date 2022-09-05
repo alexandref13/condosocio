@@ -3,6 +3,7 @@ import 'package:condosocio/src/components/utils/circular_progress_indicator.dart
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
+import 'package:condosocio/src/components/utils/whatsapp_send.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
@@ -391,7 +392,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 ),
                                                 onPressed: () {
                                                   var celular;
-
                                                   visualizarConvitesController
                                                           .tel.value =
                                                       convidados[x]['tel'];
@@ -438,10 +438,10 @@ class DetalheConviteWidget extends StatelessWidget {
                                                           .then(
                                                         (value) {
                                                           if (value != 0) {
-                                                            /* String message =
+                                                            String message =
                                                                 'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/a?chave=${value['idace']}';
 
-                                                            FlutterOpenWhatsapp
+                                                            /*FlutterOpenWhatsapp
                                                                 .sendSingleMessage(
                                                               celular.length ==
                                                                       11
@@ -451,6 +451,13 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                 message,
                                                               ),
                                                             );*/
+                                                            whatsAppSend(
+                                                              context,
+                                                              "55${visualizarConvitesController.whatsappNumber.value.text}",
+                                                              Uri.encodeFull(
+                                                                message,
+                                                              ),
+                                                            );
                                                           } else {
                                                             onAlertButtonPressed(
                                                                 context,

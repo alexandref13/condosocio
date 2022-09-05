@@ -66,7 +66,7 @@ ThemeData turquoise = ThemeData(
 );
 
 ThemeData blue = ThemeData(
-  brightness: Brightness.light,
+  brightness: Brightness.dark,
   primaryColor: Color(0xff375a70),
   accentColor: Color(0xff2a5571),
   buttonColor: Color(0xff394A59),

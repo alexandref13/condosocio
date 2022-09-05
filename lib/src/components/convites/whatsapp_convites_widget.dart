@@ -1,4 +1,5 @@
-//import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/utils/whatsapp_send.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
@@ -120,7 +121,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    /*if (visualizarConvitesController
+                    if (visualizarConvitesController
                             .whatsappNumber.value.text.length ==
                         11) {
                       visualizarConvitesController.sendWhatsApp().then(
@@ -128,11 +129,17 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                           if (value != 0) {
                             String message =
                                 'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/a?chave=${value['idace']}';
-                            
-                            
-                            FlutterOpenWhatsapp.sendSingleMessage(
+
+                            /* FlutterOpenWhatsapp.sendSingleMessage(
                               '55${visualizarConvitesController.whatsappNumber.value.text}',
                               Uri.encodeFull(message),
+                            );*/
+                            whatsAppSend(
+                              context,
+                              "55${visualizarConvitesController.whatsappNumber.value.text}",
+                              Uri.encodeFull(
+                                message,
+                              ),
                             );
                           } else {
                             onAlertButtonPressed(context,
@@ -146,7 +153,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                         'Este número está com formato incorreto \n ex: 91988881234',
                         null,
                       );
-                    }*/
+                    }
                   },
                   child: Text(
                     'ENVIAR',

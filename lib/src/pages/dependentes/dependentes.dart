@@ -24,7 +24,7 @@ class _DependentesState extends State<Dependentes> {
         child: Scaffold(
           appBar: AppBar(
             title: Text(
-              'Dependentes',
+              'Usuários',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
                 color: Theme.of(context).textSelectionTheme.selectionColor,
@@ -106,7 +106,7 @@ onAlertButtonPressed(context, String text) {
           Navigator.of(context).pop();
         },
         width: 80,
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).accentColor,
       )
     ],
   ).show();

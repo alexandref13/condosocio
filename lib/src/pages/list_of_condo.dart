@@ -92,7 +92,12 @@ class ListOfCondo extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                                 child: Text(
                                     '${condo.logradouro} | ${condo.tipoun}',
-                                    style: TextStyle(fontSize: 12)),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor,
+                                    )),
                               ),
                               trailing: Icon(
                                 Icons.arrow_right,

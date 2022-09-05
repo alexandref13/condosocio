@@ -84,7 +84,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                         padding: EdgeInsets.all(5),
                         child: TableCalendar(
                           locale: 'pt_BR',
-                          firstDay: DateTime(2019),
+                          firstDay: DateTime(2020),
                           lastDay: lastday, //DateTime(2030),
                           focusedDay:
                               calendarioReservasController.focusedDay.value,
@@ -95,6 +95,12 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                           headerStyle: HeaderStyle(
                             formatButtonVisible: false,
                             titleCentered: true,
+                            titleTextStyle: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                            ),
                             formatButtonShowsNext: false,
                             formatButtonDecoration: BoxDecoration(
                               color: Colors.blue,

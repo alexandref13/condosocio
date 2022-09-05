@@ -296,7 +296,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                         onChanged: (newValue) =>
                                             updateFn(newValue),
                                         activeColor:
-                                            Theme.of(context).errorColor,
+                                            Theme.of(context).shadowColor,
                                       ),
                                   onUpdate: (svalue) => convitesController
                                       .isChecked.value = svalue),

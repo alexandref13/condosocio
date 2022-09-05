@@ -10,7 +10,7 @@ Widget customTextField(BuildContext context, String labelText, String hintText,
         currentFocus.focusedChild.unfocus();
       }
     },
-    maxLength: linesBool ? 300 : null,
+    maxLength: linesBool ? 1500 : null,
     controller: controller,
     maxLines: linesBool ? lines : 1,
     style: GoogleFonts.montserrat(
