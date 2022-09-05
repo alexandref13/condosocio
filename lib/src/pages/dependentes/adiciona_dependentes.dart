@@ -9,67 +9,114 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class AdicionaDependentes extends StatelessWidget {
-  const AdicionaDependentes({Key key}) : super(key: key);
+class AdicionaDependentes extends StatefulWidget {
+  @override
+  _AdicionaDependentesState createState() => _AdicionaDependentesState();
+}
+
+class _AdicionaDependentesState extends State<AdicionaDependentes> {
+  DependentesController dependentesController =
+      Get.put(DependentesController());
+
+  PerfilController perfilController = Get.put(PerfilController());
+  bool _isVisible = true;
+  bool _isCkeckAcesso = false;
+
+  var startSelectedDate = DateTime.now();
+  var startSelectedTime = TimeOfDay.now();
+  var endSelectedDate = DateTime.now();
+  var endSelectedTime = TimeOfDay.now();
+  var startDate = TextEditingController();
+  var startTime = TextEditingController();
+  var endDate = TextEditingController();
+  var endTime = TextEditingController();
+
+  Future<TimeOfDay> selectTime(BuildContext context) {
+    final now = DateTime.now();
+    return showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
+      builder: (BuildContext context, Widget child) {
+        return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            child: child);
+      },
+    );
+  }
+
+  Future<TimeOfDay> selectEndTime(BuildContext context) {
+    return showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: 23, minute: 59),
+      builder: (BuildContext context, Widget child) {
+        return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            child: child);
+      },
+    );
+  }
+
+  Future<DateTime> selectDateTime(BuildContext context) => showDatePicker(
+        context: context,
+        initialDate: DateTime.now().add(Duration(seconds: 1)),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2100),
+      );
+
+  Future<DateTime> selectDateOnEndTime(BuildContext context) => showDatePicker(
+        context: context,
+        initialDate: startSelectedDate,
+        firstDate: startSelectedDate,
+        lastDate: DateTime(2030),
+      );
+
+  void dropDownFavoriteSelected(String novoItem) {
+    dependentesController.firstId.value = novoItem;
+  }
+
+  @override
+  void initState() {
+    var formatDate = dependentesController.endDate.value != ''
+        ? DateTime.parse(dependentesController.endDate.value)
+        : null;
+
+    dependentesController.endDate.value != ''
+        ? endSelectedDate = DateTime(
+            formatDate.year,
+            formatDate.month,
+            formatDate.day,
+            formatDate.hour,
+            formatDate.minute,
+          )
+        : endSelectedDate = DateTime(
+            startSelectedDate.year,
+            startSelectedDate.month,
+            startSelectedDate.day,
+            23,
+            59,
+          );
+
+    dependentesController.endDate.value != ''
+        ? startSelectedDate = DateTime(
+            formatDate.year,
+            formatDate.month,
+            formatDate.day,
+            formatDate.hour,
+            formatDate.minute,
+          )
+        : startSelectedDate = DateTime(
+            startSelectedDate.year,
+            startSelectedDate.month,
+            startSelectedDate.day,
+            startSelectedTime.hour,
+            startSelectedTime.minute,
+          );
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    DependentesController dependentesController =
-        Get.put(DependentesController());
-    PerfilController perfilController = Get.put(PerfilController());
-    bool _isVisible = true;
-    bool _isCkeckAcesso = false;
-    var startSelectedTime = TimeOfDay.now();
-    var endSelectedTime = TimeOfDay.now();
-    var startSelectedDate = DateTime.now();
-    var endtSelectedDate = DateTime.now();
-    var startTime = TextEditingController();
-    var endTime = TextEditingController();
-
-    Future<TimeOfDay> selectTime(BuildContext context) {
-      final now = DateTime.now();
-      return showTimePicker(
-        context: context,
-        initialTime: TimeOfDay(hour: 08, minute: 00),
-        builder: (BuildContext context, Widget child) {
-          return MediaQuery(
-              data:
-                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-              child: child);
-        },
-      );
-    }
-
-    Future<TimeOfDay> selectEndTime(BuildContext context) {
-      return showTimePicker(
-        context: context,
-        initialTime: TimeOfDay(hour: 18, minute: 00),
-        builder: (BuildContext context, Widget child) {
-          return MediaQuery(
-              data:
-                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-              child: child);
-        },
-      );
-    }
-
-    @override
-    void initState() {
-      startSelectedTime = TimeOfDay.now();
-      endSelectedTime = TimeOfDay.now();
-
-      dependentesController.hourEnt.value.text =
-          "${startSelectedTime.hour.toString()}:${startSelectedTime.minute.toString()}";
-
-      //dependentesController.hourSai.value.text =
-      // "${startSelectedTime.hour.toString()}:${startSelectedTime.minute.toString()}";
-      // print(infoCheckController.hour.value.text);
-    }
-
-    void dropDownFavoriteSelected(String novoItem) {
-      dependentesController.firstId.value = novoItem;
-    }
-
     return Obx(() {
       return dependentesController.isLoading.value
           ? CircularProgressIndicatorWidget()
@@ -130,18 +177,19 @@ class AdicionaDependentes extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    Visibility(
-                      visible: _isVisible,
-                      child: customTextField(
-                        context,
-                        'Nome',
-                        null,
-                        false,
-                        1,
-                        true,
-                        dependentesController.nome.value,
+                    if (dependentesController.tipoUsuario.value == "Morador")
+                      Visibility(
+                        visible: _isVisible,
+                        child: customTextField(
+                          context,
+                          'Nome',
+                          null,
+                          false,
+                          1,
+                          true,
+                          dependentesController.nome.value,
+                        ),
                       ),
-                    ),
                     SizedBox(
                       height: 15,
                     ),
@@ -341,6 +389,7 @@ class AdicionaDependentes extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        /*
                         Column(
                           children: [
                             GestureDetector(
@@ -348,13 +397,15 @@ class AdicionaDependentes extends StatelessWidget {
                                 startSelectedTime = await selectTime(context);
                                 if (startSelectedTime == null) return;
 
-                                startSelectedDate = DateTime(
-                                  startSelectedDate.year,
-                                  startSelectedDate.month,
-                                  startSelectedDate.day,
-                                  startSelectedTime.hour,
-                                  startSelectedTime.minute,
-                                );
+                                setState(() {
+                                  startSelectedDate = DateTime(
+                                    startSelectedDate.year,
+                                    startSelectedDate.month,
+                                    startSelectedDate.day,
+                                    startSelectedTime.hour,
+                                    startSelectedTime.minute,
+                                  );
+                                });
                               },
                               child: customTextField(
                                 context,
@@ -371,7 +422,7 @@ class AdicionaDependentes extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ),
+                        ),*/
                         Column(
                           children: [Text('data')],
                         )

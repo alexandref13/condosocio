@@ -9,6 +9,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class DependentesController extends GetxController {
   LoginController loginController = Get.put(LoginController());
+
   var isLoading = false.obs;
   var nome = TextEditingController().obs;
   var sobrenome = TextEditingController().obs;
@@ -19,6 +20,9 @@ class DependentesController extends GetxController {
   var dependentes = [].obs;
   var search = TextEditingController().obs;
   var searchResult = [].obs;
+
+  var startDate = ''.obs;
+  var endDate = ''.obs;
 
   var hourEnt = TextEditingController().obs;
   var hourSai = TextEditingController().obs;
