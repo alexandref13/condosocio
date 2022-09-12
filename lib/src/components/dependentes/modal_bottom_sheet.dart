@@ -45,53 +45,70 @@ void dependentesModalBottomSheet(
                     height: 20,
                     color: Colors.blueGrey,
                   ),
-                  status == 'Suspenso'
-                      ? ListTile(
-                          leading: new Icon(
-                            Icons.done,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                          title: Text('Normalizar Dependente'),
-                          trailing: Icon(
-                            Icons.arrow_right,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                          onTap: () {
-                            dependentesController
-                                .changeStatus('1')
-                                .then((value) {
-                              dependentesController.getDependentes();
-                              Get.back();
-                            });
-                          },
+                  status == 'Normal'
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 50,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                    shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                                    elevation: MaterialStateProperty.all(0),
+                                    backgroundColor: MaterialStateProperty.all(
+                                      Theme.of(context).splashColor,
+                                    )),
+                                onPressed: () {
+                                  dependentesController
+                                      .changeStatus('2')
+                                      .then((value) {
+                                    dependentesController.getDependentes();
+                                    Get.back();
+                                  });
+                                },
+                                child: Text(
+                                  "Suspender",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                              )),
                         )
-                      : ListTile(
-                          leading: new Icon(
-                            Icons.block_outlined,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                          title: Text('Suspender Dependente'),
-                          trailing: Icon(
-                            Icons.arrow_right,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
-                          onTap: () {
-                            dependentesController
-                                .changeStatus('2')
-                                .then((value) {
-                              dependentesController.getDependentes();
-                              Get.back();
-                            });
-                          },
+                      : Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 50,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                    shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                                    elevation: MaterialStateProperty.all(0),
+                                    backgroundColor: MaterialStateProperty.all(
+                                      Theme.of(context).splashColor,
+                                    )),
+                                onPressed: () {
+                                  dependentesController
+                                      .changeStatus('1')
+                                      .then((value) {
+                                    dependentesController.getDependentes();
+                                    Get.back();
+                                  });
+                                },
+                                child: Text(
+                                  "Normalizar",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                              )),
                         ),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
@@ -135,7 +152,7 @@ void dependentesModalBottomSheet(
                             );
                           },
                           child: Text(
-                            "Deletar",
+                            "Excluir",
                             style: TextStyle(color: Colors.white, fontSize: 18),
                           ),
                         )),

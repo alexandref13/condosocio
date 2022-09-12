@@ -36,7 +36,7 @@ Widget customTextField(BuildContext context, String labelText, String hintText,
         fontSize: 14,
         color: Theme.of(context).textSelectionTheme.selectionColor,
       ),
-      isDense: true,
+      isDense: false,
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(

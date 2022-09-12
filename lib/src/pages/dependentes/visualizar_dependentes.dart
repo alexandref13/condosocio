@@ -55,53 +55,58 @@ class VisualizarDependentes extends StatelessWidget {
               : Column(
                   children: [
                     boxSearch(
-                      context,
-                      dependentesController.search.value,
-                      dependentesController.onSearchTextChanged,
-                      "Pesquise por Nome..."
-                    ),
+                        context,
+                        dependentesController.search.value,
+                        dependentesController.onSearchTextChanged,
+                        "Pesquise por Nome..."),
                     Container(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.all(20),
                       color: Theme.of(context).accentColor,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'NOME',
-                             style: GoogleFonts.montserrat(
-                              fontSize: 12.0,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                            style: GoogleFonts.montserrat(
+                                fontSize: 12.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 2),
                           ),
+                          Spacer(),
+                          Text(
+                            'TIPO',
+                            style: GoogleFonts.montserrat(
+                                fontSize: 12.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 2),
+                          ),
+                          Spacer(),
                           Text(
                             'DESDE',
                             style: GoogleFonts.montserrat(
-                              fontSize: 12.0,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
+                                fontSize: 12.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 2),
                           ),
-                          Text(
-                            'ULT. ACESSO',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 12.0,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
-                          ),
+                          Spacer(),
                           Text(
                             'STATUS',
                             style: GoogleFonts.montserrat(
-                              fontSize: 12.0,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor,
-                            ),
+                                fontSize: 12.0,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 2),
                           ),
                           Text(''),
                         ],
@@ -141,7 +146,7 @@ class VisualizarDependentes extends StatelessWidget {
                                             bottom: BorderSide(
                                                 width: 1, color: Colors.grey),
                                           )),
-                                          padding: EdgeInsets.all(10),
+                                          padding: EdgeInsets.all(20),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -158,7 +163,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
-                                                        fontWeight: FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ),
@@ -168,7 +173,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                         .width *
                                                     0.2,
                                                 child: Text(
-                                                  dependentes.desde,
+                                                  dependentes.tipousuario,
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 12,
                                                     color: Theme.of(context)
@@ -183,13 +188,12 @@ class VisualizarDependentes extends StatelessWidget {
                                                         .width *
                                                     0.26,
                                                 child: Text(
-                                                  dependentes.ultacesso,
+                                                  dependentes.desde,
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
-                                                   
                                                   ),
                                                 ),
                                               ),
@@ -204,7 +208,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                             .selectionColor,
                                                       )
                                                     : Icon(
-                                                        FontAwesome.check,
+                                                        Icons.done,
                                                         size: 24,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
@@ -254,7 +258,7 @@ class VisualizarDependentes extends StatelessWidget {
                                             bottom: BorderSide(
                                                 width: 1, color: Colors.grey),
                                           )),
-                                          padding: EdgeInsets.all(10),
+                                          padding: EdgeInsets.all(20),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -271,7 +275,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
-                                                        fontWeight: FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ),
@@ -281,7 +285,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                         .width *
                                                     0.2,
                                                 child: Text(
-                                                  dependentes.desde,
+                                                  dependentes.tipousuario,
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 12,
                                                     color: Theme.of(context)
@@ -296,13 +300,12 @@ class VisualizarDependentes extends StatelessWidget {
                                                         .width *
                                                     0.26,
                                                 child: Text(
-                                                  dependentes.ultacesso,
+                                                  dependentes.desde,
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
                                                         .selectionColor,
-                                                    
                                                   ),
                                                 ),
                                               ),

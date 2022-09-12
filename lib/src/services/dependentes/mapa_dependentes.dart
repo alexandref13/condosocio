@@ -7,6 +7,7 @@ class DependentesMapa {
   String desde;
   String ultacesso;
   String email;
+  String tipousuario;
 
   DependentesMapa({
     this.idep,
@@ -17,6 +18,7 @@ class DependentesMapa {
     this.desde,
     this.ultacesso,
     this.email,
+    this.tipousuario,
   });
 
   DependentesMapa.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class DependentesMapa {
     desde = json['desde'];
     ultacesso = json['ultacesso'];
     email = json['email'];
+    tipousuario = json['tipousuario'];
   }
 
   Map<String, dynamic> toJson() {
@@ -40,6 +43,7 @@ class DependentesMapa {
     data['desde'] = this.desde;
     data['ultacesso'] = this.ultacesso;
     data['email'] = this.email;
+    data['tipousuario'] = this.tipousuario;
     return data;
   }
 }

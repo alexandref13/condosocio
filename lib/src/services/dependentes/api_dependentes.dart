@@ -8,9 +8,9 @@ class ApiDependentes {
     LoginController loginController = Get.put(LoginController());
     DependentesController dependentesController =
         Get.put(DependentesController());
-
+    print(dependentesController.isChecked.value);
     return await http.post(
-      Uri.https("www.condosocio.com.br", "/flutter/dependentes_inc.php"),
+      Uri.https("www.condosocio.com.br", "/flutter/dependentes_incluir.php"),
       body: {
         'idusu': loginController.id.value,
         'idcond': loginController.idcond.value,
@@ -20,6 +20,9 @@ class ApiDependentes {
         'genero': dependentesController.itemSelecionado.value,
         'celular': dependentesController.celular.value.text,
         'tipo': dependentesController.tipoUsuario.value,
+        'horaEnt': dependentesController.startDate.value,
+        'horaSai': dependentesController.endDate.value,
+        'acesso': dependentesController.isChecked.value.toString(),
       },
     );
   }

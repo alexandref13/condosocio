@@ -39,7 +39,7 @@ class _DependentesState extends State<Dependentes> {
                 ),
                 onPressed: () {
                   onAlertButtonPressed(context,
-                      'Você poderá adicionar até 06 (seis) dependentes.\nLembramos que os dependentes são necessariamente moradores.\nSe você descumprir esta norma, estará sujeito às penalidades dispostas no Regulamento Interno e ou Convenção do condomínio.\nPara adicionar dependentes além do permitido, você deverá solicitar à administração condominial.');
+                      'Moradores receberão automaticamente um e-mail para definicão de senha e terão assim acesso ao CondoSócio e poderão cadastrar a face (para condomínios com essa tecnologia), além de utilizar todos os serviços da plataforma. Lembramos que você deverá cadastrar apenas pessoas que residem com você no condomínio, se houver descumprimento desta norma, estará sujeito às penalidades dispostas no regulamento interno e ou Convenção.\n\n Prestadores de serviço após o cadastro deste, você deverá clicar no ícone do whatsapp para o envio do link de cadastramento dos documentos e face (para condomínios com essa tecnologia).');
                 },
               )
             ],
@@ -75,8 +75,8 @@ class _DependentesState extends State<Dependentes> {
 onAlertButtonPressed(context, String text) {
   Alert(
     image: Icon(
-      Icons.close,
-      color: Colors.white,
+      Icons.warning,
+      color: Colors.orange,
       size: 60,
     ),
     style: AlertStyle(

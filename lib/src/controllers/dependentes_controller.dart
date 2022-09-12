@@ -20,7 +20,7 @@ class DependentesController extends GetxController {
   var dependentes = [].obs;
   var search = TextEditingController().obs;
   var searchResult = [].obs;
-
+  var isChecked = true.obs;
   var startDate = ''.obs;
   var endDate = ''.obs;
 
@@ -40,11 +40,10 @@ class DependentesController extends GetxController {
   var itemSelecionado = 'Selecione o gênero'.obs;
 
   var tiposUsuarios = [
-    'Selecione o tipo',
     'Morador',
-    'Prestador de serviço',
+    'Prestador',
   ];
-  var tipoUsuario = 'Selecione o tipo'.obs;
+  var tipoUsuario = 'Morador'.obs;
 
   onSearchTextChanged(String text) {
     searchResult.clear();
@@ -65,15 +64,15 @@ class DependentesController extends GetxController {
   );
 
   Future<dynamic> sendDependentes() async {
-    if (!EmailValidator.validate(email.value.text)) {
-      return 'invalid';
-    } else if (nome.value.text == '' ||
+    if (nome.value.text == '' ||
         sobrenome.value.text == '' ||
-        email.value.text == '' ||
+        (email.value.text == '' && tipoUsuario == "Morador") ||
         celular.value.text == '' ||
-        itemSelecionado.value == 'Selecione o gênero' ||
-        tipoUsuario.value == 'Selecione o tipo') {
+        itemSelecionado.value == 'Selecione o gênero') {
       return "vazio";
+    } else if (!EmailValidator.validate(email.value.text) &&
+        tipoUsuario == "Morador") {
+      return 'invalido';
     } else {
       isLoading(true);
 
