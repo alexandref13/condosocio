@@ -136,6 +136,11 @@ class VisualizarDependentes extends StatelessWidget {
                                         dependentes.sobrenome,
                                         dependentes.status,
                                         dependentes.email,
+                                        dependentes.img,
+                                        dependentes.celular,
+                                        dependentes.facial,
+                                        dependentes.tipousuario,
+                                        dependentes.idep,
                                       );
                                     },
                                     child: Column(
@@ -202,14 +207,14 @@ class VisualizarDependentes extends StatelessWidget {
                                                         'Suspenso'
                                                     ? Icon(
                                                         Icons.block_outlined,
-                                                        size: 24,
+                                                        size: 20,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
                                                             .selectionColor,
                                                       )
                                                     : Icon(
                                                         Icons.done,
-                                                        size: 24,
+                                                        size: 20,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
                                                             .selectionColor,
@@ -248,6 +253,11 @@ class VisualizarDependentes extends StatelessWidget {
                                         dependentes.sobrenome,
                                         dependentes.status,
                                         dependentes.email,
+                                        dependentes.img,
+                                        dependentes.celular,
+                                        dependentes.facial,
+                                        dependentes.tipousuario,
+                                        dependentes.idep,
                                       );
                                     },
                                     child: Column(
@@ -314,14 +324,14 @@ class VisualizarDependentes extends StatelessWidget {
                                                         'Suspenso'
                                                     ? Icon(
                                                         Icons.block_outlined,
-                                                        size: 24,
+                                                        size: 20,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
                                                             .selectionColor,
                                                       )
                                                     : Icon(
                                                         Icons.done,
-                                                        size: 24,
+                                                        size: 20,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
                                                             .selectionColor,

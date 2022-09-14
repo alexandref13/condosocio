@@ -1,6 +1,7 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/perfil_controller.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ class AdicionaDependentes extends StatefulWidget {
 class _AdicionaDependentesState extends State<AdicionaDependentes> {
   DependentesController dependentesController =
       Get.put(DependentesController());
-
+  final LoginController loginController = Get.put(LoginController());
   PerfilController perfilController = Get.put(PerfilController());
   bool _isVisible = true;
 
@@ -160,13 +161,21 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                     .textSelectionTheme
                                     .selectionColor,
                               ),
-                              items: dependentesController.tiposUsuarios
-                                  .map((String dropDownStringItem) {
-                                return DropdownMenuItem<String>(
-                                  value: dropDownStringItem,
-                                  child: Text(dropDownStringItem),
-                                );
-                              }).toList(),
+                              items: loginController.condofacial.value == 'SIM'
+                                  ? dependentesController.tiposUsuarios
+                                      .map((String dropDownStringItem) {
+                                      return DropdownMenuItem<String>(
+                                        value: dropDownStringItem,
+                                        child: Text(dropDownStringItem),
+                                      );
+                                    }).toList()
+                                  : dependentesController.tiposUsuarios2
+                                      .map((String dropDownStringItem) {
+                                      return DropdownMenuItem<String>(
+                                        value: dropDownStringItem,
+                                        child: Text(dropDownStringItem),
+                                      );
+                                    }).toList(),
                               onChanged: (String novoItemSelecionado) {
                                 dropDownFavoriteSelected(novoItemSelecionado);
                                 dependentesController.tipoUsuario.value =
@@ -540,10 +549,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 .sendDependentes()
                                 .then((value) {
                               if (value == 1) {
-                                edgeAlertWidget(
-                                  context,
-                                  'Usuário foi cadastrado com sucesso!',
-                                );
+                                edgeAlertWidget(context, 'Parabéns!',
+                                    'Usuário cadastrado com sucesso.');
                                 // } else if (value == 4) {
                                 // onAlertButtonPressed(
                                 // context,

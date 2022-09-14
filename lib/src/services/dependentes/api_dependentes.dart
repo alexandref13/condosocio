@@ -51,6 +51,19 @@ class ApiDependentes {
     );
   }
 
+  static Future reenviarEmail(String email) async {
+    DependentesController dependentesController =
+        Get.put(DependentesController());
+
+    return await http.post(
+      Uri.https('www.condosocio.com.br', '/acond/enviarEmail.php'),
+      body: {
+        'idusu': dependentesController.idep.value,
+        'email': email,
+      },
+    );
+  }
+
   static Future deleteDependente() async {
     DependentesController dependentesController =
         Get.put(DependentesController());
@@ -58,6 +71,26 @@ class ApiDependentes {
     return await http.get(
       Uri.https('www.condosocio.com.br', '/flutter/dependente_excluir.php',
           {'idep': dependentesController.idep.value}),
+    );
+  }
+
+  static Future delFace() async {
+    DependentesController dependentesController =
+        Get.put(DependentesController());
+
+    return await http.get(
+      Uri.https('www.condosocio.com.br', '/flutter/face_excluir.php',
+          {'idep': dependentesController.idep.value}),
+    );
+  }
+
+  static Future sendWhatsApp(String celular, String idep) async {
+    return await http.get(
+      Uri.https(
+          'www.condosocio.com.br', '/flutter/prestador_whatsapp_chave.php', {
+        'celular': celular,
+        'idep': idep,
+      }),
     );
   }
 }

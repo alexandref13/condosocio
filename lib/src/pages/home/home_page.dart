@@ -60,6 +60,9 @@ class _HomePageState extends State<HomePage> {
     loginController.logradouro.value = '';
     loginController.tipoun.value = '';
     loginController.dep.value = '';
+    loginController.condofacial.value = '';
+    loginController.websiteAdministradora.value = '';
+    loginController.idadm.value = '';
 
     themeController.setTheme('admin');
     Get.offAllNamed('/login');
@@ -76,7 +79,8 @@ class _HomePageState extends State<HomePage> {
 
     if (response.statusCode == 200) {
       Navigator.of(context).pop();
-      edgeAlertWidget(context, 'Imagem do perfil alterada');
+      edgeAlertWidget(
+          context, 'Parabéns!', 'Imagem do perfil alterada com sucesso.');
     } else if (response.statusCode == 404) {
       loginController.imgperfil.value = '';
     } else {

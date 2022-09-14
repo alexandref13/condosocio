@@ -31,6 +31,7 @@ class LoginController extends GetxController {
   var birthdate = ''.obs;
   var idadm = ''.obs;
   var websiteAdministradora = ''.obs;
+  var condofacial = ''.obs;
   var licenca = ''.obs;
   var tipoun = ''.obs;
   var logradouro = ''.obs;
@@ -105,7 +106,7 @@ class LoginController extends GetxController {
   }
 
   storageId() async {
-    await GetStorage.init(); 
+    await GetStorage.init();
     final box = GetStorage();
     box.write('id', id.value);
     box.write('emailController', email.value.text);
@@ -146,6 +147,7 @@ class LoginController extends GetxController {
       idadm(dados['idadm']);
       websiteAdministradora(dados['website_administradora']);
       licenca(dados['licenca']);
+      condofacial(dados['condofacial']);
       storageId();
 
       themeController.setTheme(condoTheme.value);

@@ -175,7 +175,8 @@ void configurandoModalBottomSheet(
                                       visualizarAcessosController.getAcessos();
                                       edgeAlertWidget(
                                         context,
-                                        'Acesso Excluido',
+                                        'Parabéns!',
+                                        'Acesso excluído com sucesso.',
                                       );
                                       Get.back();
                                       Get.back();

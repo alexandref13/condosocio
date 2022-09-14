@@ -53,7 +53,7 @@ Widget listaVisualizarAcessos() {
                               border: Border(
                             bottom: BorderSide(width: 2, color: Colors.grey),
                           )),
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -208,7 +208,8 @@ Widget listaVisualizarAcessos() {
                               border: Border(
                             bottom: BorderSide(width: 2, color: Colors.grey),
                           )),
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

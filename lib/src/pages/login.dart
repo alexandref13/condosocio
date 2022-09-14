@@ -348,6 +348,9 @@ class Login extends StatelessWidget {
                                                         value['tipoun'];
                                                     loginController.dep.value =
                                                         value['dep'];
+                                                    loginController
+                                                            .condofacial.value =
+                                                        value['condofacial'];
 
                                                     loginController.storageId();
 

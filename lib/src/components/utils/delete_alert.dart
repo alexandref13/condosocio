@@ -6,8 +6,8 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 deleteAlert(context, String text, VoidCallback function) {
   Alert(
     image: Icon(
-      Icons.highlight_off,
-      color: Colors.yellowAccent,
+      Icons.warning,
+      color: Colors.orange,
       size: 60,
     ),
     style: AlertStyle(
@@ -18,13 +18,25 @@ deleteAlert(context, String text, VoidCallback function) {
       //descStyle: GoogleFonts.poppins(color: Colors.red,),
       animationDuration: Duration(milliseconds: 300),
       titleStyle: GoogleFonts.poppins(
-        color: Theme.of(context).errorColor,
+        color: Theme.of(context).accentColor,
         fontSize: 18,
       ),
     ),
     context: context,
     title: text,
     buttons: [
+      DialogButton(
+        child: Text(
+          "OK",
+          style: GoogleFonts.montserrat(
+            color: Theme.of(context).textSelectionTheme.selectionColor,
+            fontSize: 18,
+          ),
+        ),
+        onPressed: function,
+        width: 80,
+        color: Theme.of(context).primaryColor,
+      ),
       DialogButton(
         child: Text(
           "Cancelar",
@@ -38,18 +50,6 @@ deleteAlert(context, String text, VoidCallback function) {
         },
         width: 80,
         color: Theme.of(context).errorColor,
-      ),
-      DialogButton(
-        child: Text(
-          "OK",
-          style: GoogleFonts.montserrat(
-            color: Theme.of(context).textSelectionTheme.selectionColor,
-            fontSize: 18,
-          ),
-        ),
-        onPressed: function,
-        width: 80,
-        color: Theme.of(context).primaryColor,
       )
     ],
   ).show();

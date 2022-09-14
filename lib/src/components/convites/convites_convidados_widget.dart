@@ -1158,6 +1158,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                               visualizarConvitesController
                                                   .getAConvite(
                                                       value.toString());
+                                              Get.back();
                                             },
                                           );
                                         } else {

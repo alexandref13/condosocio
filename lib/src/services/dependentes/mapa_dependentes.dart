@@ -8,6 +8,9 @@ class DependentesMapa {
   String ultacesso;
   String email;
   String tipousuario;
+  String celular;
+  String facial;
+  String condominio_facial;
 
   DependentesMapa({
     this.idep,
@@ -19,6 +22,9 @@ class DependentesMapa {
     this.ultacesso,
     this.email,
     this.tipousuario,
+    this.celular,
+    this.facial,
+    this.condominio_facial,
   });
 
   DependentesMapa.fromJson(Map<String, dynamic> json) {
@@ -31,6 +37,9 @@ class DependentesMapa {
     ultacesso = json['ultacesso'];
     email = json['email'];
     tipousuario = json['tipousuario'];
+    celular = json['celular'];
+    facial = json['facial'];
+    condominio_facial = json['condominio_facial'];
   }
 
   Map<String, dynamic> toJson() {
@@ -44,6 +53,9 @@ class DependentesMapa {
     data['ultacesso'] = this.ultacesso;
     data['email'] = this.email;
     data['tipousuario'] = this.tipousuario;
+    data['celular'] = this.celular;
+    data['facial'] = this.facial;
+    data['condominio_facial'] = this.condominio_facial;
     return data;
   }
 }

@@ -100,7 +100,8 @@ void ocorrenciasModalBottomSheet(
                             context,
                             'Deseja deletar a ocorrência?',
                             () {
-                              edgeAlertWidget(context, 'Ocorrência Deletada');
+                              edgeAlertWidget(context, 'Parabéns!',
+                                  'Ocorrência excluída com sucesso.');
                             },
                           );
                         },

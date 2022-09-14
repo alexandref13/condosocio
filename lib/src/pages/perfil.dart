@@ -504,7 +504,8 @@ class _PerfilState extends State<Perfil> {
                                   if (value == 1) {
                                     edgeAlertWidget(
                                       context,
-                                      'Seu Perfil foi Atualizado!',
+                                      'Parabéns!',
+                                      'Seu perfil foi atualizado com sucesso.',
                                     );
                                   } else if (value == "vazio") {
                                     onAlertButtonPressed(

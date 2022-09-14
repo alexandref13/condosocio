@@ -8,8 +8,6 @@ import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class DependentesController extends GetxController {
-  LoginController loginController = Get.put(LoginController());
-
   var isLoading = false.obs;
   var nome = TextEditingController().obs;
   var sobrenome = TextEditingController().obs;
@@ -23,6 +21,7 @@ class DependentesController extends GetxController {
   var isChecked = true.obs;
   var startDate = ''.obs;
   var endDate = ''.obs;
+  var facial = ''.obs;
 
   var hourEnt = TextEditingController().obs;
   var hourSai = TextEditingController().obs;
@@ -43,7 +42,12 @@ class DependentesController extends GetxController {
     'Morador',
     'Prestador',
   ];
+
+  var tiposUsuarios2 = [
+    'Morador',
+  ];
   var tipoUsuario = 'Morador'.obs;
+  var tipoUsuario2 = 'Morador'.obs;
 
   onSearchTextChanged(String text) {
     searchResult.clear();
@@ -88,18 +92,13 @@ class DependentesController extends GetxController {
 
   getDependentes() async {
     isLoading(true);
-
     var response = await ApiDependentes.getDependentes();
-
     var dados = json.decode(response.body);
-
     print(dados);
 
     dependentes.value =
         dados.map((model) => DependentesMapa.fromJson(model)).toList();
-
     isLoading(false);
-
     return dados;
   }
 
@@ -111,12 +110,31 @@ class DependentesController extends GetxController {
     return dados;
   }
 
+  reenviarEmail(String email) async {
+    var response = await ApiDependentes.reenviarEmail(email);
+    var dados = response.body;
+    return dados;
+  }
+
   deleteDependente() async {
     var response = await ApiDependentes.deleteDependente();
 
     var dados = json.decode(response.body);
 
     return dados;
+  }
+
+  delFace() async {
+    var response = await ApiDependentes.delFace();
+    var dados = json.decode(response.body);
+    return dados;
+  }
+
+  sendWhatsApp(String celular, String idep) async {
+    var response = await ApiDependentes.sendWhatsApp(celular, idep);
+    var data = json.decode(response.body);
+    isLoading(false);
+    return data;
   }
 
   @override
