@@ -40,7 +40,7 @@ class DependentesController extends GetxController {
 
   var tiposUsuarios = [
     'Morador',
-    'Prestador',
+    'Prestador de Serviço',
   ];
 
   var tiposUsuarios2 = [
@@ -130,8 +130,8 @@ class DependentesController extends GetxController {
     return dados;
   }
 
-  sendWhatsApp(String celular, String idep) async {
-    var response = await ApiDependentes.sendWhatsApp(celular, idep);
+  sendWhatsApp(String celular) async {
+    var response = await ApiDependentes.sendWhatsApp(celular);
     var data = json.decode(response.body);
     isLoading(false);
     return data;

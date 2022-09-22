@@ -16,7 +16,6 @@ dependencies:
   email_validator: ^2.0.1
   flutter_html: ^3.0.0-alpha.2
   flutter_icons: ^1.1.0
-  #flutter_open_whatsapp: ^0.1.2
   flutter_svg: ^1.0.3
   get: null
   get_storage: null

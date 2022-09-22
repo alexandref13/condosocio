@@ -178,7 +178,10 @@ class VisualizarDependentes extends StatelessWidget {
                                                         .width *
                                                     0.2,
                                                 child: Text(
-                                                  dependentes.tipousuario,
+                                                  dependentes.tipousuario ==
+                                                          'Morador'
+                                                      ? 'Morador'
+                                                      : 'Prestador',
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 12,
                                                     color: Theme.of(context)
@@ -295,7 +298,10 @@ class VisualizarDependentes extends StatelessWidget {
                                                         .width *
                                                     0.2,
                                                 child: Text(
-                                                  dependentes.tipousuario,
+                                                  dependentes.tipousuario ==
+                                                          'Morador'
+                                                      ? 'Morador'
+                                                      : 'Prestador',
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 12,
                                                     color: Theme.of(context)

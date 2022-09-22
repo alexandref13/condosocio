@@ -48,24 +48,24 @@ class _DependentesState extends State<Dependentes> {
                   Theme.of(context).textSelectionTheme.selectionColor,
               tabs: <Widget>[
                 Text(
-                  'Adicionar',
-                  style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
-                ),
-                Text(
                   'Visualizar',
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     color: Theme.of(context).textSelectionTheme.selectionColor,
                   ),
                 ),
+                Text(
+                  'Adicionar',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor),
+                ),
               ],
             ),
           ),
           body: TabBarView(
-              children: [AdicionaDependentes(), VisualizarDependentes()]),
+              children: [VisualizarDependentes(), AdicionaDependentes()]),
         ),
       ),
     );

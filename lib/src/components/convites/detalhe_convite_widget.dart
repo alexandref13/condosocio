@@ -27,7 +27,7 @@ class DetalheConviteWidget extends StatelessWidget {
     var date = DateTime.now();
     var endDate = DateTime.parse(visualizarConvitesController.endDate.value);
 
-    var formatEndDateDay = DateFormat("dd/MM/yyyy").format(
+    var formatEndDateDay = DateFormat("dd/MM/yy").format(
       endDate,
     );
     var formatEndDateHour = DateFormat("HH:mm").format(
@@ -36,8 +36,9 @@ class DetalheConviteWidget extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        convitesController.page.value = 1;
-        Navigator.pop(context);
+        convitesController.page.value == 1;
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/home', ModalRoute.withName('/home'));
       },
       child: Scaffold(
         appBar: AppBar(
@@ -250,7 +251,10 @@ class DetalheConviteWidget extends StatelessWidget {
                                 children: [
                                   Icon(
                                     visualizarConvitesController.acesso.value ==
-                                            "1"
+                                                "1" ||
+                                            convitesController
+                                                    .isChecked.value ==
+                                                true
                                         ? Icons.swap_horiz
                                         : Icons.arrow_right_alt,
                                     color: Theme.of(context)
@@ -262,8 +266,11 @@ class DetalheConviteWidget extends StatelessWidget {
                                     padding: EdgeInsets.only(left: 5),
                                     child: Text(
                                       visualizarConvitesController
-                                                  .acesso.value ==
-                                              "1"
+                                                      .acesso.value ==
+                                                  "1" ||
+                                              convitesController
+                                                      .isChecked.value ==
+                                                  true
                                           ? "Acesso Livre"
                                           : "Único Acesso",
                                       style: GoogleFonts.montserrat(
@@ -382,7 +389,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                         child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        isBefore
+                                        convidados[x]['tel'] != null
                                             ? IconButton(
                                                 icon: Icon(
                                                   FontAwesome.whatsapp,
@@ -430,8 +437,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                                         .value
                                                         .text = celular;
 
-                                                    print(celular.length);
-
                                                     if (celular.length == 11) {
                                                       visualizarConvitesController
                                                           .sendWhatsApp()
@@ -441,16 +446,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                                             String message =
                                                                 'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/a?chave=${value['idace']}';
 
-                                                            /*FlutterOpenWhatsapp
-                                                                .sendSingleMessage(
-                                                              celular.length ==
-                                                                      11
-                                                                  ? '55$celular'
-                                                                  : celular,
-                                                              Uri.encodeFull(
-                                                                message,
-                                                              ),
-                                                            );*/
                                                             whatsAppSend(
                                                               context,
                                                               "55${visualizarConvitesController.whatsappNumber.value.text}",
@@ -471,8 +466,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                                           '/whatsAppConvite');
                                                     }
                                                   });
-
-                                                  print('ola');
                                                 },
                                               )
                                             : Container(),

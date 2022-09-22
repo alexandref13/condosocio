@@ -18,7 +18,7 @@ class VisualizarConvitesController extends GetxController {
   var whatsappNumber = TextEditingController().obs;
   var qtdconv = 0.obs;
   var acesso = ''.obs;
-
+  var fav = false.obs;
   var isEdited = false.obs;
   var isLoading = false.obs;
   var isBefore = false.obs;
@@ -44,7 +44,6 @@ class VisualizarConvitesController extends GetxController {
     isLoading(true);
     var response = await ApiConvites.getAConvites(id);
     var data = json.decode(response.body);
-    print(data);
     invite = data;
 
     Get.toNamed('/detalhesConvite');

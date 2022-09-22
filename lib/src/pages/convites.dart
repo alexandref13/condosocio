@@ -25,6 +25,8 @@ class Convite extends StatelessWidget {
               onPressed: () {
                 if (convitesController.page.value == 2) {
                   convitesController.handleMinusPage();
+                  //convitesController.page.value == 1;
+                  //Get.offNamed('/home');
                 } else if (convitesController.page.value == 1) {
                   Get.offNamed('/home');
                 }
@@ -43,18 +45,18 @@ class Convite extends StatelessWidget {
                   Theme.of(context).textSelectionTheme.selectionColor,
               tabs: <Widget>[
                 Text(
-                  'Adicionar',
-                  style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
-                ),
-                Text(
                   'Visualizar',
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor,
                   ),
+                ),
+                Text(
+                  'Adicionar',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 14,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor),
                 ),
               ],
             ),
@@ -62,10 +64,10 @@ class Convite extends StatelessWidget {
           body: Obx(() {
             return TabBarView(
               children: [
+                VisualizarConviteWidget(),
                 convitesController.page.value == 1
                     ? ConviteWidget()
-                    : ConvitesConvidadosWidget(),
-                VisualizarConviteWidget()
+                    : ConvitesConvidadosWidget()
               ],
             );
           }),

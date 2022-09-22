@@ -84,12 +84,13 @@ class ApiDependentes {
     );
   }
 
-  static Future sendWhatsApp(String celular, String idep) async {
+  static Future sendWhatsApp(String celular) async {
+    LoginController loginController = Get.put(LoginController());
     return await http.get(
       Uri.https(
           'www.condosocio.com.br', '/flutter/prestador_whatsapp_chave.php', {
         'celular': celular,
-        'idep': idep,
+        'idusu': loginController.id.value,
       }),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
+import 'package:condosocio/src/components/utils/whatsapp_send.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
@@ -68,7 +69,7 @@ void configurandoModalBottomSheet(
                   height: 20,
                   color: Colors.blueGrey,
                 ),
-                dataEntrada == ''
+                /*dataEntrada == ''
                     ? ListTile(
                         leading: new Icon(
                           FontAwesome.whatsapp,
@@ -86,37 +87,46 @@ void configurandoModalBottomSheet(
                         onTap: () {
                           visualizarConvitesController.nameGuest.value = pessoa;
                           visualizarConvitesController.idConv.value = idConv;
-                          var celular = cel
+                          var celular;
+
+                          celular = cel
                               .replaceAll("+", "")
                               .replaceAll("(", "")
                               .replaceAll(")", "")
                               .replaceAll("-", "")
                               .replaceAll(" ", "");
-                          if (celular.length == 13) {
-                            visualizarConvitesController
-                                .sendWhatsApp()
-                                .then((value) {
-                              if (value != 0) {
-                                /*String message =
-                                    'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/acesso_visitante?chave=${value['idace']}';
 
-                                FlutterOpenWhatsapp.sendSingleMessage(
-                                  celular,
-                                  Uri.encodeFull(message),
-                                );*/
-                              } else {
-                                onAlertButtonPressed(
+                          visualizarConvitesController
+                              .whatsappNumber.value.text = celular;
+
+                          if (celular.length == 11) {
+                            visualizarConvitesController.sendWhatsApp().then(
+                              (value) {
+                                if (value != 0) {
+                                  String message =
+                                      'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/a?chave=${value['idace']}';
+
+                                  whatsAppSend(
                                     context,
-                                    'Algo deu errado\n Tente novamente',
-                                    '/home');
-                              }
-                            });
+                                    "55${visualizarConvitesController.whatsappNumber.value.text}",
+                                    Uri.encodeFull(
+                                      message,
+                                    ),
+                                  );
+                                } else {
+                                  onAlertButtonPressed(
+                                      context,
+                                      'Algo deu errado\n Tente novamente',
+                                      '/home');
+                                }
+                              },
+                            );
                           } else {
                             Get.toNamed('/whatsAppConvite');
                           }
                         },
                       )
-                    : Container(),
+                    : Container(),*/
                 dataEntrada != ''
                     ? ListTile(
                         leading: Obx(

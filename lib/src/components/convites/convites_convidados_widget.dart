@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/utils/alertInvite.dart';
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
@@ -987,7 +988,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            convitesController.guestList[i]['idfav'] != null
+                            /* convitesController.guestList[i]['idfav'] != null
                                 ? IconButton(
                                     icon: Icon(
                                       Icons.delete_outline,
@@ -1022,13 +1023,14 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       });
                                     },
                                   )
-                                : Container(),
+                                : Container(),*/
                             IconButton(
                               icon: Icon(
-                                Icons.close,
+                                Icons.delete_forever_outlined,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor,
+                                size: 28,
                               ),
                               onPressed: () =>
                                   convitesController.guestList.removeAt(i),
@@ -1071,8 +1073,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     convitesController
                                         .editAInvite()
                                         .then((value) {
-                                      print('editado $value');
-
                                       if (value != 0) {
                                         acessosController.getAcessos();
                                         convitesController.guestList.clear();
@@ -1097,13 +1097,13 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         }
                                         confirmedInviteAlert(
                                           context,
-                                          'Seu convite foi editado com sucesso! \nVocê pode enviar para o WhatsApp dele(s)',
+                                          'Seu convite foi incluído com sucesso!Para agilizar o acesso envie via Whatsapp o link do convite para cada um dos seus convidados',
+                                          'images/bannerwhat.png',
+                                          'Fechar',
                                           () {
                                             visualizarConvitesController
-                                                .getAConvite(
-                                              visualizarConvitesController
-                                                  .idConv.value,
-                                            );
+                                                .getAConvite(value.toString());
+                                            Get.back();
                                           },
                                         );
                                       } else {
@@ -1124,9 +1124,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         .then(
                                       (value) {
                                         if (value != 0) {
-                                          print({
-                                            'Guest: ${convitesController.guestList}'
-                                          });
                                           convitesController.guestList.clear();
                                           convitesController.getConvites();
                                           visualizarConvitesController
@@ -1153,7 +1150,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
 
                                           confirmedInviteAlert(
                                             context,
-                                            'Seu convite foi incluído com sucesso! Seu(s) acesso(s) também já foram enviados a portaria. Não esqueça de mandar os convites para seus convidados',
+                                            'Seu convite foi incluído com sucesso!Para agilizar o acesso envie via Whatsapp o link do convite para cada um dos seus convidados',
+                                            'images/bannerwhat.png',
+                                            'Fechar',
                                             () {
                                               visualizarConvitesController
                                                   .getAConvite(
@@ -1194,12 +1193,11 @@ class ConvitesConvidadosWidget extends StatelessWidget {
     });
   }
 
-  confirmedInviteAlert(context, String text, VoidCallback onTap) {
+  /* confirmedInviteAlert(context, String text, VoidCallback onTap) {
     Alert(
-      image: Icon(
-        Icons.check,
-        color: Colors.green,
-        size: 60,
+      image: Image.asset(
+        'images/bannerwhat.png',
+        height: 300,
       ),
       style: AlertStyle(
         backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
@@ -1208,8 +1206,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
         isOverlayTapDismiss: false,
         animationDuration: Duration(milliseconds: 300),
         titleStyle: GoogleFonts.poppins(
-          color: Theme.of(context).errorColor,
-          fontSize: 18,
+          color: Theme.of(context).colorScheme.secondary,
+          fontSize: 16,
         ),
       ),
       context: context,
@@ -1229,5 +1227,5 @@ class ConvitesConvidadosWidget extends StatelessWidget {
         )
       ],
     ).show();
-  }
+  }*/
 }

@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/utils/alertInvite.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../../components/utils/alert_button_pressed.dart';
+import '../../components/utils/whatsapp_send.dart';
 
 class AdicionaDependentes extends StatefulWidget {
   @override
@@ -93,8 +95,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
             startSelectedDate.year,
             startSelectedDate.month,
             startSelectedDate.day,
-            08,
-            00,
+            startSelectedTime.hour,
+            startSelectedTime.minute,
           );
     dependentesController.endDate.value != ''
         ? endSelectedDate = DateTime(
@@ -105,11 +107,11 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
             formatDate.minute,
           )
         : endSelectedDate = DateTime(
-            startSelectedDate.year,
-            startSelectedDate.month,
-            startSelectedDate.day,
-            18,
-            00,
+            endSelectedDate.year,
+            endSelectedDate.month,
+            endSelectedDate.day,
+            endSelectedTime.hour,
+            endSelectedTime.minute,
           );
 
     super.initState();
@@ -549,8 +551,65 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 .sendDependentes()
                                 .then((value) {
                               if (value == 1) {
-                                edgeAlertWidget(context, 'Parabéns!',
-                                    'Usuário cadastrado com sucesso.');
+                                confirmedInviteAlert(
+                                    context,
+                                    dependentesController.tipoUsuario.value ==
+                                            "Morador"
+                                        ? 'O morador foi incluído com sucesso! Enviamos agora um e-mail para que ele possa definir a sua senha e ter acesso ao CondoSócio'
+                                        : 'O prestador de serviço foi incluído com sucesso! Envie agora via whatsapp o link para o cadastro e efetivação do acesso junto a portaria do seu condomínio.',
+                                    dependentesController.tipoUsuario.value ==
+                                            "Morador"
+                                        ? 'images/banneremail.png'
+                                        : 'images/bannerwhatprestador.png',
+                                    dependentesController.tipoUsuario.value ==
+                                            "Morador"
+                                        ? 'Fechar'
+                                        : 'Enviar',
+                                    dependentesController.tipoUsuario.value ==
+                                            "Morador"
+                                        ? () {
+                                            Get.back();
+                                          }
+                                        : () {
+                                            dependentesController
+                                                .sendWhatsApp(
+                                                    dependentesController
+                                                        .celular.value.text)
+                                                .then(
+                                              (value) {
+                                                if (value != 0) {
+                                                  String message =
+                                                      'Olá! o Sr(a) ${loginController.nome.value} enviou este link para a liberação de acesso na portaria do condomínio ${loginController.nomeCondo.value}, preencha os campos os campos abertos e insira uma foto de perfil sem utilizacão de óculos ou máscaras . Grato! https://condosocio.com.br/paginas/acesso_prestador?chave=${value['idace']}';
+
+                                                  var celular =
+                                                      dependentesController
+                                                          .celular.value.text
+                                                          .replaceAll("(", "")
+                                                          .replaceAll(")", "")
+                                                          .replaceAll("-", "")
+                                                          .replaceAll(" ", "");
+
+                                                  print(celular);
+
+                                                  whatsAppSend(
+                                                    context,
+                                                    "55$celular",
+                                                    Uri.encodeFull(
+                                                      message,
+                                                    ),
+                                                  );
+                                                  Get.back();
+                                                } else {
+                                                  onAlertButtonPressed(
+                                                      context,
+                                                      'Algo deu errado\n Tente novamente',
+                                                      '/home');
+                                                }
+                                              },
+                                            );
+                                          });
+                                /*edgeAlertWidget(context, 'Parabéns!',
+                                    'Usuário cadastrado com sucesso.');*/
                                 // } else if (value == 4) {
                                 // onAlertButtonPressed(
                                 // context,

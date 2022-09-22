@@ -24,7 +24,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
               color: Theme.of(context).textSelectionTheme.selectionColor,
             ),
           ),
-            actions: [
+          actions: [
             IconButton(
               icon: Icon(
                 AntDesign.infocirlce,
@@ -40,30 +40,30 @@ class _OcorrenciasState extends State<Ocorrencias> {
             indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
             tabs: <Widget>[
               Text(
-                'Adicionar',
-                style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
-              ),
-              Text(
                 'Visualizar',
                 style: GoogleFonts.montserrat(
                   fontSize: 14,
                   color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
               ),
+              Text(
+                'Adicionar',
+                style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                    color: Theme.of(context).textSelectionTheme.selectionColor),
+              ),
             ],
           ),
         ),
         body: TabBarView(
-          children: [AdicionarOcorrencias(), VisualizarOcorrencias()],
+          children: [VisualizarOcorrencias(), AdicionarOcorrencias()],
         ),
       ),
     );
   }
 }
 
-  onAlertButtonPressed(context, String text) {
+onAlertButtonPressed(context, String text) {
   Alert(
     image: Icon(
       Icons.close,

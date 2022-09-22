@@ -1,3 +1,4 @@
+import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class HomeBottomTab extends StatefulWidget {
 }
 
 class _HomeBottomTabState extends State<HomeBottomTab> {
+  ConvitesController convitesController = Get.put(ConvitesController());
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -159,6 +161,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          convitesController.page.value = 1;
                           Get.toNamed('/convites');
                         },
                         child: Container(

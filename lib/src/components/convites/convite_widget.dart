@@ -74,6 +74,10 @@ class _ConviteWidgetState extends State<ConviteWidget> {
         ? DateTime.parse(convitesController.endDate.value)
         : null;
 
+    var formatDateStart = convitesController.startDate.value != ''
+        ? DateTime.parse(convitesController.startDate.value)
+        : null;
+
     convitesController.endDate.value != ''
         ? endSelectedDate = DateTime(
             formatDate.year,
@@ -90,13 +94,13 @@ class _ConviteWidgetState extends State<ConviteWidget> {
             59,
           );
 
-    convitesController.endDate.value != ''
+    convitesController.startDate.value != ''
         ? startSelectedDate = DateTime(
-            formatDate.year,
-            formatDate.month,
-            formatDate.day,
-            formatDate.hour,
-            formatDate.minute,
+            formatDateStart.year,
+            formatDateStart.month,
+            formatDateStart.day,
+            formatDateStart.hour,
+            formatDateStart.minute,
           )
         : startSelectedDate = DateTime(
             startSelectedDate.year,
@@ -191,13 +195,6 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                     startSelectedDate.day,
                                     startSelectedTime.hour,
                                     startSelectedTime.minute,
-                                  );
-                                  endSelectedDate = DateTime(
-                                    startSelectedDate.year,
-                                    startSelectedDate.month,
-                                    startSelectedDate.day,
-                                    23,
-                                    59,
                                   );
                                 });
                               },
