@@ -569,6 +569,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                             "Morador"
                                         ? () {
                                             Get.back();
+                                            Get.back();
                                           }
                                         : () {
                                             dependentesController
@@ -589,8 +590,6 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                                           .replaceAll("-", "")
                                                           .replaceAll(" ", "");
 
-                                                  print(celular);
-
                                                   whatsAppSend(
                                                     context,
                                                     "55$celular",
@@ -598,6 +597,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                                       message,
                                                     ),
                                                   );
+                                                  Get.back();
                                                   Get.back();
                                                 } else {
                                                   onAlertButtonPressed(

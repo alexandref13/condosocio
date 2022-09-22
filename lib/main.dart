@@ -64,11 +64,39 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
     OneSignal.shared.setAppId('d2a1bd8c-4a9a-4355-ac9b-e52691e7de23');
 
-    /*OneSignal.shared.init("d2a1bd8c-4a9a-4355-ac9b-e52691e7de23");
+    OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
+      print("Accepted permission: $accepted");
+    });
+
     OneSignal.shared
-    .setInFocusDisplayType(OSNotificationDisplayType.notification);*/
+        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+      var titulo = result.notification.title;
+
+      print('NOTIFICACAO ABERTA: $titulo');
+
+      if (titulo == 'CONTROLE DE ACESSO') {
+        Get.toNamed('/visualizarAcessos');
+      } else if (titulo == 'AVISO!') {
+        Get.toNamed('/avisos');
+      } else if (titulo == 'COMUNICADO') {
+        Get.toNamed('/comunicados');
+      } else if (titulo == 'DOCUMENTO') {
+        Get.toNamed('/documentos');
+      } else if (titulo == 'COMUNICADO') {
+        Get.toNamed('/comunicados');
+      } else if (titulo == 'OCORRÊNCIA RESOLVIDA') {
+        Get.toNamed('/ocorrencias');
+      } else if (titulo == 'RESERVA') {
+        Get.toNamed('/reserva');
+      } else if (titulo == 'OUVIDORIA') {
+        Get.toNamed('/ouvidoria');
+      } else if (titulo == 'OCORRÊNCIA') {
+        Get.toNamed('/ocorrencias');
+      } else {}
+    });
 
     return GetMaterialApp(
       localizationsDelegates: [

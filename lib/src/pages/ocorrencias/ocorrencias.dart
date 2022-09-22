@@ -66,9 +66,9 @@ class _OcorrenciasState extends State<Ocorrencias> {
 onAlertButtonPressed(context, String text) {
   Alert(
     image: Icon(
-      Icons.close,
-      color: Colors.white,
-      size: 60,
+      Icons.warning_sharp,
+      color: Colors.orange,
+      size: 50,
     ),
     style: AlertStyle(
       backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,

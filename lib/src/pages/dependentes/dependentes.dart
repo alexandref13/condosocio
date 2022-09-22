@@ -75,9 +75,9 @@ class _DependentesState extends State<Dependentes> {
 onAlertButtonPressed(context, String text) {
   Alert(
     image: Icon(
-      Icons.warning,
+      Icons.warning_sharp,
       color: Colors.orange,
-      size: 60,
+      size: 50,
     ),
     style: AlertStyle(
       backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
