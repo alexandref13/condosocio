@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class ApiAcessos {
   static Future getAcessos() async {
     LoginController loginController = Get.put(LoginController());
-
+    print("idUsu Acessovis: ${loginController.id.value}");
     return await http.get(
       Uri.https("www.condosocio.com.br", "/flutter/acessovis.php", {
         "idUsu": loginController.id.value,

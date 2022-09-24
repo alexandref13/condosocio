@@ -65,7 +65,8 @@ class _HomePageState extends State<HomePage> {
     loginController.idadm.value = '';
 
     themeController.setTheme('admin');
-    Get.offAllNamed('/login');
+    //Get.offAllNamed('/login');
+    Get.offNamedUntil('login', (route) => false);
   }
 
   Future uploadImage() async {

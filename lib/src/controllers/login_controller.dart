@@ -75,6 +75,7 @@ class LoginController extends GetxController {
   }
 
   Future hasMoreEmail(String emailS) async {
+    print('Email login: $emailS');
     isLoading(true);
     await GetStorage.init();
     final box = GetStorage();

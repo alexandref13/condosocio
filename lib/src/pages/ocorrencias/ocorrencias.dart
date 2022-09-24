@@ -40,23 +40,23 @@ class _OcorrenciasState extends State<Ocorrencias> {
             indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
             tabs: <Widget>[
               Text(
+                'Adicionar',
+                style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                    color: Theme.of(context).textSelectionTheme.selectionColor),
+              ),
+              Text(
                 'Visualizar',
                 style: GoogleFonts.montserrat(
                   fontSize: 14,
                   color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
               ),
-              Text(
-                'Adicionar',
-                style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
-              ),
             ],
           ),
         ),
         body: TabBarView(
-          children: [VisualizarOcorrencias(), AdicionarOcorrencias()],
+          children: [AdicionarOcorrencias(), VisualizarOcorrencias()],
         ),
       ),
     );

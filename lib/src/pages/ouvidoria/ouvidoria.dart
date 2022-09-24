@@ -32,24 +32,24 @@ class _OuvidoriaState extends State<Ouvidoria> {
                   Theme.of(context).textSelectionTheme.selectionColor,
               tabs: <Widget>[
                 Text(
-                  'Visualizar',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
-                  ),
-                ),
-                Text(
                   'Adicionar',
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor),
                 ),
+                Text(
+                  'Visualizar',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                  ),
+                ),
               ],
             ),
           ),
           body: TabBarView(
-            children: [VisualizarOuvidoria(), AdicionaOuvidoria()],
+            children: [AdicionaOuvidoria(), VisualizarOuvidoria()],
           ),
         ),
       ),

@@ -306,6 +306,8 @@ class Login extends StatelessWidget {
                                               )
                                                   .then(
                                                 (response) {
+                                                  print(
+                                                      'Emails numeros ${response.length}');
                                                   if (response.length > 1) {
                                                     loginController
                                                         .haveListOfCondo
@@ -385,7 +387,7 @@ class Login extends StatelessWidget {
                                                       print(
                                                           "Encountered an error sending tags: $error");
                                                     });
-                                                    Get.offNamed('/home');
+                                                    Get.toNamed('/home');
                                                   }
                                                 },
                                               );

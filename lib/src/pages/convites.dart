@@ -45,18 +45,18 @@ class Convite extends StatelessWidget {
                   Theme.of(context).textSelectionTheme.selectionColor,
               tabs: <Widget>[
                 Text(
-                  'Visualizar',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
-                  ),
-                ),
-                Text(
                   'Adicionar',
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor),
+                ),
+                Text(
+                  'Visualizar',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                  ),
                 ),
               ],
             ),
@@ -64,10 +64,10 @@ class Convite extends StatelessWidget {
           body: Obx(() {
             return TabBarView(
               children: [
-                VisualizarConviteWidget(),
                 convitesController.page.value == 1
                     ? ConviteWidget()
-                    : ConvitesConvidadosWidget()
+                    : ConvitesConvidadosWidget(),
+                VisualizarConviteWidget()
               ],
             );
           }),

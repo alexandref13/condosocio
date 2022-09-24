@@ -79,7 +79,8 @@ Widget listaVisualizarAcessos() {
                                               style: GoogleFonts.montserrat(
                                                 fontSize: 12,
                                                 color: Theme.of(context)
-                                                    .accentColor,
+                                                    .textSelectionTheme
+                                                    .selectionColor,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -236,7 +237,8 @@ Widget listaVisualizarAcessos() {
                                               style: GoogleFonts.montserrat(
                                                 fontSize: 12,
                                                 color: Theme.of(context)
-                                                    .accentColor,
+                                                    .textSelectionTheme
+                                                    .selectionColor,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
