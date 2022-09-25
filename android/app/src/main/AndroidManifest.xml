@@ -5,7 +5,9 @@ package="com.condosocionovo">
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />  
     <uses-permission android:name="android.permission.INTERNET" />
 
-   <application android:name="${applicationName}">
+   <application android:name="${applicationName}"
+    android:label="CondoSócio"
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"
