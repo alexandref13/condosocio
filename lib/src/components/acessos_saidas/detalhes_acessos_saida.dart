@@ -26,6 +26,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
 
   getImage(ImageSource source) async {
     this.setState(() {});
+    // ignore: deprecated_member_use
     PickedFile image = await picker.getImage(source: source);
     if (image != null) {
       File cropped = await ImageCropper().cropImage(
@@ -57,7 +58,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
         context: context,
         builder: (BuildContext bc) {
           return Container(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor,
             margin: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[

@@ -353,6 +353,17 @@ class Login extends StatelessWidget {
                                                     loginController
                                                             .condofacial.value =
                                                         value['condofacial'];
+                                                    loginController.idadm
+                                                        .value = value['idadm'];
+
+                                                    loginController
+                                                            .websiteAdministradora
+                                                            .value =
+                                                        value[
+                                                            'website_administradora'];
+                                                    loginController
+                                                            .licenca.value =
+                                                        value['licenca'];
 
                                                     loginController.storageId();
 

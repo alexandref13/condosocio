@@ -2,10 +2,10 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
 
 class AuthController extends GetxController {
   ThemeController themeController = Get.put(ThemeController());
@@ -35,18 +35,20 @@ class AuthController extends GetxController {
     if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
-        biometricOnly: true,
+        /*biometricOnly: true,
         stickyAuth: true,
         useErrorDialogs: true,
         iOSAuthStrings: IOSAuthMessages(
           cancelButton: "Cancelar",
         ),
+
         androidAuthStrings: AndroidAuthMessages(
           biometricHint: "Para acesso rapido entre com sua biometria",
           signInTitle: "Entre com a biometria",
           cancelButton: "Cancelar",
-        ),
+        ),*/
       );
+
       if (isAuthenticated) {
         loginController.isLoading.value = true;
         http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
