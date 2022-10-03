@@ -24,15 +24,24 @@ Widget listaVisualizarAcessos() {
                 itemCount: visualizarAcessosController.searchResult.length,
                 itemBuilder: (context, index) {
                   var acessos = visualizarAcessosController.searchResult[index];
-
-                  var data = acessos.datahora.split('h');
+                  var data = acessos.datahora.split(' ');
                   var newData = data[0];
+                  var newHora = data[1];
+
+                  var dataEnt = acessos.dataent.split(' ');
+                  var newDataEnt = dataEnt[0];
+                  var newHoraEnt = dataEnt[1];
+
+                  var dataSai = acessos.datasai.split(' ');
+                  var newDataSai = dataSai[0];
+                  var newHoraSai = dataSai[1];
 
                   return GestureDetector(
                     onTap: () {
                       acessosController.idAce.value = acessos.idace;
                       acessosController.idfav.value = acessos.idfav;
                       acessosController.tel.value = acessos.datasai;
+                      acessosController.idvis.value = acessos.idvis;
                       configurandoModalBottomSheet(
                         context,
                         acessos.pessoa,
@@ -44,6 +53,8 @@ Widget listaVisualizarAcessos() {
                         acessos.cel,
                         acessos.tipopessoa,
                         acessos.idconv,
+                        acessos.imgfacial,
+                        acessos.idvis,
                       );
                     },
                     child: Column(
@@ -62,7 +73,7 @@ Widget listaVisualizarAcessos() {
                                 child: Column(
                                   children: [
                                     Text(
-                                      newData,
+                                      '$newData\n$newHora',
                                       style: GoogleFonts.montserrat(
                                         fontSize: 12,
                                         color: Theme.of(context)
@@ -90,7 +101,7 @@ Widget listaVisualizarAcessos() {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
+                                width: MediaQuery.of(context).size.width * 0.20,
                                 child: Text(
                                   acessos.pessoa,
                                   maxLines: 1,
@@ -104,7 +115,7 @@ Widget listaVisualizarAcessos() {
                                   ),
                                 ),
                               ),
-                              acessos.dataent == ''
+                              acessos.dataent == ' '
                                   ? Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.2,
@@ -123,7 +134,7 @@ Widget listaVisualizarAcessos() {
                                       child: Column(
                                         children: [
                                           Text(
-                                            acessos.dataent,
+                                            '$newDataEnt\n$newHoraEnt',
                                             style: GoogleFonts.montserrat(
                                               fontSize: 12,
                                               color: Theme.of(context)
@@ -135,7 +146,7 @@ Widget listaVisualizarAcessos() {
                                         ],
                                       ),
                                     ),
-                              acessos.datasai == ''
+                              acessos.datasai == ' '
                                   ? Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.2,
@@ -154,7 +165,7 @@ Widget listaVisualizarAcessos() {
                                       child: Column(
                                         children: [
                                           Text(
-                                            acessos.datasai,
+                                            '$newDataSai\n$newHoraSai',
                                             style: GoogleFonts.montserrat(
                                               fontSize: 12,
                                               color: Theme.of(context)
@@ -181,26 +192,44 @@ Widget listaVisualizarAcessos() {
                 itemCount: visualizarAcessosController.acessos.length,
                 itemBuilder: (context, index) {
                   var acessos = visualizarAcessosController.acessos[index];
-                  var data = acessos.datahora.split('h');
+                  var data = acessos.datahora.split(' ');
                   var newData = data[0];
+                  var newHora = data[1];
+
+                  if (acessos.dataent == '') {
+                    acessos.dataent = ' ';
+                  }
+                  var dataEnt = acessos.dataent.split(' ');
+                  var newDataEnt = dataEnt[0];
+                  var newHoraEnt = dataEnt[1];
+
+                  if (acessos.datasai == '') {
+                    acessos.datasai = ' ';
+                  }
+                  var dataSai = acessos.datasai.split(' ');
+                  var newDataSai = dataSai[0];
+                  var newHoraSai = dataSai[1];
 
                   return GestureDetector(
                     onTap: () {
                       acessosController.idAce.value = acessos.idace;
                       acessosController.idfav.value = acessos.idfav;
                       acessosController.tel.value = acessos.datasai;
+                      acessosController.idvis.value = acessos.idvis;
+
                       configurandoModalBottomSheet(
-                        context,
-                        acessos.pessoa,
-                        acessos.placa,
-                        acessos.tipodoc,
-                        acessos.documento,
-                        acessos.idfav,
-                        acessos.dataent,
-                        acessos.cel,
-                        acessos.tipopessoa,
-                        acessos.idconv,
-                      );
+                          context,
+                          acessos.pessoa,
+                          acessos.placa,
+                          acessos.tipodoc,
+                          acessos.documento,
+                          acessos.idfav,
+                          acessos.dataent,
+                          acessos.cel,
+                          acessos.tipopessoa,
+                          acessos.idconv,
+                          acessos.imgfacial,
+                          acessos.idvis);
                     },
                     child: Column(
                       children: [
@@ -219,7 +248,7 @@ Widget listaVisualizarAcessos() {
                                 child: Column(
                                   children: [
                                     Text(
-                                      newData,
+                                      '$newData\n$newHora',
                                       style: GoogleFonts.montserrat(
                                         fontSize: 12,
                                         color: Theme.of(context)
@@ -248,7 +277,7 @@ Widget listaVisualizarAcessos() {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
+                                width: MediaQuery.of(context).size.width * 0.20,
                                 child: Text(
                                   visualizarAcessosController
                                       .acessos[index].pessoa,
@@ -265,7 +294,7 @@ Widget listaVisualizarAcessos() {
                               ),
                               visualizarAcessosController
                                           .acessos[index].dataent ==
-                                      ''
+                                      ' '
                                   ? Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.2,
@@ -284,7 +313,7 @@ Widget listaVisualizarAcessos() {
                                       child: Column(
                                         children: [
                                           Text(
-                                            acessos.dataent,
+                                            '$newDataEnt\n$newHoraEnt',
                                             style: GoogleFonts.montserrat(
                                               fontSize: 12,
                                               color: Theme.of(context)
@@ -296,7 +325,7 @@ Widget listaVisualizarAcessos() {
                                         ],
                                       ),
                                     ),
-                              acessos.datasai == ''
+                              acessos.datasai == ' '
                                   ? Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.2,
@@ -315,7 +344,7 @@ Widget listaVisualizarAcessos() {
                                       child: Column(
                                         children: [
                                           Text(
-                                            acessos.datasai,
+                                            '$newDataSai\n$newHoraSai',
                                             style: GoogleFonts.montserrat(
                                               fontSize: 12,
                                               color: Theme.of(context)

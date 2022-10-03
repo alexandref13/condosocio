@@ -1,4 +1,5 @@
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
+import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -32,9 +33,14 @@ class ApiAcessos {
 
   static Future deleteAcesso() async {
     AcessosController acessosController = Get.put(AcessosController());
+    LoginController loginController = Get.put(LoginController());
+    print('idace: ${acessosController.idAce.value}');
     return await http.get(
-      Uri.https('www.condosocio.com.br', '/flutter/acesso_excluir.php',
-          {'idace': acessosController.idAce.value}),
+      Uri.https('www.condosocio.com.br', '/flutter/acesso_excluir.php', {
+        'idace': acessosController.idAce.value,
+        'idcond': loginController.idcond.value,
+        'idvis': acessosController.idvis.value,
+      }),
     );
   }
 
@@ -78,6 +84,34 @@ class ApiAcessos {
           "idusu": loginController.id.value,
           "idfav": acessosController.idfav.value,
           "idace": acessosController.idAce.value,
+          "nome": acessosController.name.value.text,
+          "tel": acessosController.tel.value,
+        },
+      ),
+    );
+  }
+
+  static Future addFavConvite() async {
+    AcessosController acessosController = Get.put(AcessosController());
+    LoginController loginController = Get.put(LoginController());
+    VisualizarConvitesController visualizarConviteController =
+        Get.put(VisualizarConvitesController());
+
+    print('idusu: ${loginController.id.value}');
+    print('tel: ${acessosController.tel.value}');
+    print('nome: ${acessosController.name.value.text}');
+    print('idconv: ${visualizarConviteController.idConv.value}');
+
+    return await http.get(
+      Uri.https(
+        "www.condosocio.com.br",
+        "/flutter/favoritos_alternar_convite.php",
+        {
+          "idusu": loginController.id.value,
+          "nome": acessosController.name.value.text,
+          "tel": acessosController.tel.value,
+          "idconv": visualizarConviteController.idConv.value,
+          "status": acessosController.status.value,
         },
       ),
     );

@@ -41,7 +41,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 vertical: 10,
               ),
               child: Text(
-                'Envie este convite por whatsapp, para isto é necessário inserir o número no formato:\n\ncódigo da área + seu número. \n\nex: 91988881234',
+                'Envie este convite por whatsapp, para isto é necessário inserir o número no formato:\n\ncódigo da área + seu número. \n\nex: 91988888888',
                 style: GoogleFonts.montserrat(
                     fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor),

@@ -278,9 +278,6 @@ class DetalhesReservas extends StatelessWidget {
                                             ),
                                           )
                                         : Container(),
-                                        
-                                   
-                                    
                                   ],
                                 ),
                               ),
@@ -293,16 +290,14 @@ class DetalhesReservas extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
-                                         Text(
+                                          Text(
                                             detalhesReservasController
                                                 .respevent.value,
                                             style: GoogleFonts.montserrat(
                                               fontSize: 12,
                                               color: Colors.black,
                                             ),
-                                        
-                                      ),
-                                         
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -379,9 +374,9 @@ class DetalhesReservas extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
-                                    confirmDelete(
-                                        'Deseja cancelar a reserva ${detalhesReservasController.titulo.value}?',
-                                      () {
+                                  confirmDelete(
+                                    'Deseja cancelar a reserva ${detalhesReservasController.titulo.value}?',
+                                    () {
                                       detalhesReservasController
                                           .deleteReserva()
                                           .then(
@@ -389,7 +384,7 @@ class DetalhesReservas extends StatelessWidget {
                                           if (value == 1) {
                                             confirmedButtonPressed(
                                               context,
-                                        'Sua reserva foi cancelada com sucesso',
+                                              'Sua reserva foi cancelada com sucesso',
                                               '/home',
                                             );
                                           } else {
@@ -401,9 +396,8 @@ class DetalhesReservas extends StatelessWidget {
                                           }
                                         },
                                       );
-                                      },
-                                        );
-                                   
+                                    },
+                                  );
                                 },
                                 child: Text(
                                   "Cancelar Evento",

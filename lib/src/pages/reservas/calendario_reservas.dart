@@ -320,6 +320,45 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                 ),
                               );
                       }),
+                      Divider(height: 50),
+                      reservasController.termo.value != ''
+                          ? Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 25),
+                              child: ButtonTheme(
+                                height: 50.0,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty
+                                        .resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                        return Colors.white;
+                                      },
+                                    ),
+                                    shape: MaterialStateProperty.resolveWith<
+                                        OutlinedBorder>(
+                                      (Set<MaterialState> states) {
+                                        return RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Get.toNamed('/termos');
+                                  },
+                                  child: Text(
+                                    "Leia o termo de uso",
+                                    style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(),
                     ],
                   ),
                 );

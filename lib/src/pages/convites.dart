@@ -67,7 +67,7 @@ class Convite extends StatelessWidget {
                 convitesController.page.value == 1
                     ? ConviteWidget()
                     : ConvitesConvidadosWidget(),
-                VisualizarConviteWidget()
+                VisualizarConvite()
               ],
             );
           }),

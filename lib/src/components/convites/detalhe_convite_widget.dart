@@ -4,6 +4,8 @@ import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/components/utils/whatsapp_send.dart';
+import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
+import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
@@ -23,6 +25,11 @@ class DetalheConviteWidget extends StatelessWidget {
         Get.put(VisualizarConvitesController());
     ConvitesController convitesController = Get.put(ConvitesController());
     LoginController loginController = Get.put(LoginController());
+    VisualizarAcessosController visualizarAcessosController =
+        Get.put(VisualizarAcessosController());
+    AcessosController acessosController = Get.put(AcessosController());
+    VisualizarConvitesController visualizarConviteController =
+        Get.put(VisualizarConvitesController());
 
     var date = DateTime.now();
     var endDate = DateTime.parse(visualizarConvitesController.endDate.value);
@@ -146,7 +153,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                         Container(
                                           padding: EdgeInsets.only(left: 5),
                                           child: Text(
-                                            formatStartDateHour,
+                                            '${formatStartDateHour}h',
                                             style: GoogleFonts.montserrat(
                                               color: Theme.of(context)
                                                   .textSelectionTheme
@@ -230,7 +237,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                         Container(
                                           padding: EdgeInsets.only(left: 5),
                                           child: Text(
-                                            formatEndDateHour,
+                                            '${formatEndDateHour}h',
                                             style: GoogleFonts.montserrat(
                                               color: Theme.of(context)
                                                   .textSelectionTheme
@@ -288,7 +295,7 @@ class DetalheConviteWidget extends StatelessWidget {
                             for (var x = 0; x < convidados.length; x++)
                               Container(
                                 margin: EdgeInsets.symmetric(
-                                  vertical: 12,
+                                  vertical: 10,
                                   horizontal: 10,
                                 ),
                                 decoration: BoxDecoration(
@@ -299,7 +306,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                           .textSelectionTheme
                                           .selectionColor,
                                     )),
-                                padding: EdgeInsets.all(10),
+                                padding: EdgeInsets.all(8),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -309,7 +316,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                       child: Row(
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(right: 20),
+                                            padding: EdgeInsets.only(right: 10),
                                             child: Icon(Feather.user_check),
                                           ),
                                           Column(
@@ -385,92 +392,163 @@ class DetalheConviteWidget extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    Container(
-                                        child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        convidados[x]['tel'] != null
-                                            ? IconButton(
-                                                icon: Icon(
-                                                  FontAwesome.whatsapp,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor,
-                                                ),
-                                                onPressed: () {
-                                                  var celular;
-                                                  visualizarConvitesController
-                                                          .tel.value =
-                                                      convidados[x]['tel'];
-                                                  visualizarConvitesController
-                                                          .nameGuest.value =
-                                                      convidados[x]['nome'];
+                                    isBefore
+                                        ? Container(
+                                            child: Row(
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  convidados[x]['tel'] != null
+                                                      ? IconButton(
+                                                          icon: Obx(
+                                                            () => Icon(
+                                                              visualizarAcessosController
+                                                                          .fav
+                                                                          .value ==
+                                                                      true
+                                                                  ? FontAwesome
+                                                                      .heart
+                                                                  : FontAwesome
+                                                                      .heart_o,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .textSelectionTheme
+                                                                  .selectionColor,
+                                                            ),
+                                                          ),
+                                                          onPressed: () {
+                                                            visualizarAcessosController
+                                                                    .fav.value =
+                                                                !visualizarAcessosController
+                                                                    .fav.value;
+                                                            acessosController
+                                                                    .tel.value =
+                                                                convidados[x]
+                                                                    ['tel'];
+                                                            acessosController
+                                                                    .name
+                                                                    .value
+                                                                    .text =
+                                                                convidados[x]
+                                                                    ['nome'];
 
-                                                  visualizarConvitesController
-                                                      .verificaWhatsApp()
-                                                      .then((value) {
-                                                    value != 0
-                                                        ? celular = value[
-                                                            'celular']
-                                                        : convidados[x][
-                                                                    'tel'] !=
-                                                                null
-                                                            ? celular =
-                                                                convidados[
-                                                                            x][
-                                                                        'tel']
-                                                                    .replaceAll(
-                                                                        "+",
-                                                                        "")
-                                                                    .replaceAll(
-                                                                        "(",
-                                                                        "")
-                                                                    .replaceAll(
-                                                                        ")", "")
-                                                                    .replaceAll(
-                                                                        "-", "")
-                                                                    .replaceAll(
-                                                                        " ", "")
-                                                            : celular = '';
-                                                    visualizarConvitesController
-                                                        .whatsappNumber
-                                                        .value
-                                                        .text = celular;
+                                                            print(
+                                                                acessosController
+                                                                    .name
+                                                                    .value
+                                                                    .text);
 
-                                                    if (celular.length == 11) {
-                                                      visualizarConvitesController
-                                                          .sendWhatsApp()
-                                                          .then(
-                                                        (value) {
-                                                          if (value != 0) {
-                                                            String message =
-                                                                'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/a?chave=${value['idace']}';
+                                                            /* acessosController
+                                                                .sendFavoriteConvite()
+                                                                .then((value) {
+                                                              print(
+                                                                  'Retorno idfav $value');
 
-                                                            whatsAppSend(
-                                                              context,
-                                                              "55${visualizarConvitesController.whatsappNumber.value.text}",
-                                                              Uri.encodeFull(
-                                                                message,
-                                                              ),
-                                                            );
-                                                          } else {
-                                                            onAlertButtonPressed(
-                                                                context,
-                                                                'Algo deu errado\n Tente novamente',
-                                                                '/home');
-                                                          }
-                                                        },
-                                                      );
-                                                    } else {
-                                                      Get.toNamed(
-                                                          '/whatsAppConvite');
-                                                    }
-                                                  });
-                                                },
-                                              )
-                                            : Container(),
-                                      ],
-                                    ))
+                                                              //visualizarAcessosController.getAcessos();
+                                                              //Get.back();
+                                                            });*/
+                                                          },
+                                                        )
+                                                      : Container(),
+                                                ],
+                                              ),
+                                              Column(
+                                                children: [
+                                                  convidados[x]['tel'] != null
+                                                      ? IconButton(
+                                                          icon: Icon(
+                                                            FontAwesome
+                                                                .whatsapp,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textSelectionTheme
+                                                                .selectionColor,
+                                                          ),
+                                                          onPressed: () {
+                                                            var celular;
+                                                            visualizarConvitesController
+                                                                    .tel.value =
+                                                                convidados[x]
+                                                                    ['tel'];
+                                                            visualizarConvitesController
+                                                                    .nameGuest
+                                                                    .value =
+                                                                convidados[x]
+                                                                    ['nome'];
+
+                                                            visualizarConvitesController
+                                                                .verificaWhatsApp()
+                                                                .then((value) {
+                                                              value != 0
+                                                                  ? celular = value[
+                                                                      'celular']
+                                                                  : convidados[x]['tel'] !=
+                                                                          null
+                                                                      ? celular = convidados[x][
+                                                                              'tel']
+                                                                          .replaceAll(
+                                                                              "+",
+                                                                              "")
+                                                                          .replaceAll(
+                                                                              "(",
+                                                                              "")
+                                                                          .replaceAll(
+                                                                              ")",
+                                                                              "")
+                                                                          .replaceAll(
+                                                                              "-",
+                                                                              "")
+                                                                          .replaceAll(
+                                                                              " ",
+                                                                              "")
+                                                                      : celular =
+                                                                          '';
+                                                              visualizarConvitesController
+                                                                  .whatsappNumber
+                                                                  .value
+                                                                  .text = celular;
+
+                                                              if (celular
+                                                                      .length ==
+                                                                  11) {
+                                                                visualizarConvitesController
+                                                                    .sendWhatsApp()
+                                                                    .then(
+                                                                  (value) {
+                                                                    if (value !=
+                                                                        0) {
+                                                                      String
+                                                                          message =
+                                                                          'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/a?chave=${value['idace']}';
+
+                                                                      whatsAppSend(
+                                                                        context,
+                                                                        "55${visualizarConvitesController.whatsappNumber.value.text}",
+                                                                        Uri.encodeFull(
+                                                                          message,
+                                                                        ),
+                                                                      );
+                                                                    } else {
+                                                                      onAlertButtonPressed(
+                                                                          context,
+                                                                          'Algo deu errado\n Tente novamente',
+                                                                          '/home');
+                                                                    }
+                                                                  },
+                                                                );
+                                                              } else {
+                                                                Get.toNamed(
+                                                                    '/whatsAppConvite');
+                                                              }
+                                                            });
+                                                          },
+                                                        )
+                                                      : Container(),
+                                                ],
+                                              ),
+                                            ],
+                                          ))
+                                        : Container(),
                                   ],
                                 ),
                               ),

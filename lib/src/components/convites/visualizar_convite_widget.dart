@@ -7,8 +7,20 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class VisualizarConviteWidget extends StatelessWidget {
-  const VisualizarConviteWidget({Key key}) : super(key: key);
+class VisualizarConvite extends StatefulWidget {
+  @override
+  _VisualizarConviteState createState() => _VisualizarConviteState();
+}
+
+class _VisualizarConviteState extends State<VisualizarConvite> {
+  ConvitesController convitesController = Get.put(ConvitesController());
+
+  @override
+  void initState() {
+    convitesController.getConvites();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     ConvitesController convitesController = Get.put(ConvitesController());

@@ -11,6 +11,7 @@ class VisualizarAcessosController extends GetxController {
   var search = TextEditingController().obs;
   var searchResult = [].obs;
   var fav = false.obs;
+  var favoritos = [];
 
   RefreshController refreshController =
       RefreshController(initialRefresh: false);

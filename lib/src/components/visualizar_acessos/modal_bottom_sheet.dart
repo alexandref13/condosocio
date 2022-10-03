@@ -22,6 +22,8 @@ void configurandoModalBottomSheet(
   String cel,
   String tipo,
   String idConv,
+  String imgfacial,
+  String idvis,
 ) {
   showModalBottomSheet(
       context: context,
@@ -46,24 +48,43 @@ void configurandoModalBottomSheet(
             child: Wrap(
               children: <Widget>[
                 ListTile(
-                  leading: new Icon(
-                    Feather.user,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
-                    size: 40,
-                  ),
+                  leading: imgfacial == ''
+                      ? tipo == "App Mobilidade"
+                          ? new Icon(
+                              FontAwesome.car,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              size: 30,
+                            )
+                          : new Icon(
+                              Feather.user,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor,
+                              size: 30,
+                            )
+                      : Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                'https://www.condosocio.com.br/acond/downloads/fotosvisitantes/$imgfacial',
+                              ),
+                              // image: AssetImage('images/user.png'),
+                            ),
+                          ),
+                        ),
                   title: Text(
                     pessoa,
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
                   ),
-                  subtitle: cel != ''
-                      ? Text(
-                          '$tipo | $cel',
-                          style: TextStyle(fontSize: 14),
-                        )
-                      : Text(
-                          '$tipo',
-                          style: TextStyle(fontSize: 14),
-                        ),
+                  subtitle: Text(
+                    '$tipo',
+                    style: TextStyle(fontSize: 14),
+                  ),
                 ),
                 Divider(
                   height: 20,
@@ -159,9 +180,9 @@ void configurandoModalBottomSheet(
                           });
                         })
                     : Container(),
-                dataEntrada == ''
+                dataEntrada == ' '
                     ? Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(20),
                         child: Container(
                             width: MediaQuery.of(context).size.width,
                             height: 50,
@@ -200,7 +221,7 @@ void configurandoModalBottomSheet(
                                 });
                               },
                               child: Text(
-                                "Deletar",
+                                "Excluir Acesso",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18),
                               ),

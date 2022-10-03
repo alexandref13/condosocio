@@ -19,6 +19,8 @@ class AcessosController extends GetxController {
   var fav = [].obs;
   var favorito;
   var firstId = '0'.obs;
+  var idvis = ''.obs;
+  var status = [].obs;
 
   var tipos = [
     'Selecione o tipo de visitante',
@@ -53,16 +55,22 @@ class AcessosController extends GetxController {
   }
 
   deleteAcesso() async {
+    isLoading(true);
     final response = await ApiAcessos.deleteAcesso();
     var dados = json.decode(response.body);
+    isLoading(false);
     return dados;
   }
 
   sendFavorite() async {
     final response = await ApiAcessos.addFav();
-
     var dados = json.decode(response.body);
+    return dados;
+  }
 
+  sendFavoriteConvite() async {
+    final response = await ApiAcessos.addFavConvite();
+    var dados = json.decode(response.body);
     return dados;
   }
 
