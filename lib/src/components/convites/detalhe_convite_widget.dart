@@ -396,31 +396,33 @@ class DetalheConviteWidget extends StatelessWidget {
                                         ? Container(
                                             child: Row(
                                             children: [
-                                              /*Column(
+                                              Column(
                                                 children: [
                                                   convidados[x]['tel'] != null
-                                                      ? IconButton(
-                                                          icon: Obx(
-                                                            () => Icon(
-                                                              visualizarAcessosController
-                                                                          .fav
-                                                                          .value ==
-                                                                      true
-                                                                  ? FontAwesome
-                                                                      .heart
-                                                                  : FontAwesome
-                                                                      .heart_o,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .textSelectionTheme
-                                                                  .selectionColor,
-                                                            ),
+                                                      ? InkWell(
+                                                          child: Icon(
+                                                            convidados[x][
+                                                                        'idfav'] ==
+                                                                    null
+                                                                ? FontAwesome
+                                                                    .heart_o
+                                                                : FontAwesome
+                                                                    .heart,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textSelectionTheme
+                                                                .selectionColor,
                                                           ),
-                                                          onPressed: () {
-                                                            visualizarAcessosController
-                                                                    .fav.value =
-                                                                !visualizarAcessosController
-                                                                    .fav.value;
+                                                          onTap: () {
+                                                            visualizarConvitesController
+                                                                .isLoading
+                                                                .value = true;
+
+                                                            acessosController
+                                                                    .idfav
+                                                                    .value =
+                                                                convidados[x]
+                                                                    ['idfav'];
                                                             acessosController
                                                                     .tel.value =
                                                                 convidados[x]
@@ -432,26 +434,21 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                 convidados[x]
                                                                     ['nome'];
 
-                                                            print(
-                                                                acessosController
-                                                                    .name
-                                                                    .value
-                                                                    .text);
-
-                                                             acessosController
+                                                            acessosController
                                                                 .sendFavoriteConvite()
                                                                 .then((value) {
                                                               print(
                                                                   'Retorno idfav $value');
-
-                                                              //visualizarAcessosController.getAcessos();
-                                                              //Get.back();
                                                             });
+
+                                                            visualizarAcessosController
+                                                                .isLoading
+                                                                .value = false;
                                                           },
                                                         )
                                                       : Container(),
                                                 ],
-                                              ),*/
+                                              ),
                                               Column(
                                                 children: [
                                                   convidados[x]['tel'] != null
@@ -647,7 +644,8 @@ class DetalheConviteWidget extends StatelessWidget {
                                                         .resolveWith<Color>(
                                                   (Set<MaterialState> states) {
                                                     return Theme.of(context)
-                                                        .accentColor;
+                                                        .colorScheme
+                                                        .secondary;
                                                   },
                                                 ),
                                                 shape: MaterialStateProperty

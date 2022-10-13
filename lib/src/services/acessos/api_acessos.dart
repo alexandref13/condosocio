@@ -97,10 +97,13 @@ class ApiAcessos {
     VisualizarConvitesController visualizarConviteController =
         Get.put(VisualizarConvitesController());
 
-    print('idusu: ${loginController.id.value}');
-    print('tel: ${acessosController.tel.value}');
-    print('nome: ${acessosController.name.value.text}');
-    print('idconv: ${visualizarConviteController.idConv.value}');
+    print({
+      "idfav": acessosController.idfav.value,
+      "idusu": loginController.id.value,
+      "nome": acessosController.name.value.text,
+      "tel": acessosController.tel.value,
+      "idconv": visualizarConviteController.idConv.value,
+    });
 
     return await http.get(
       Uri.https(
@@ -111,7 +114,7 @@ class ApiAcessos {
           "nome": acessosController.name.value.text,
           "tel": acessosController.tel.value,
           "idconv": visualizarConviteController.idConv.value,
-          "status": acessosController.status.value,
+          "idfav": acessosController.idfav.value ?? 0
         },
       ),
     );
