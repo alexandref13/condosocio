@@ -197,7 +197,7 @@ void configurandoModalBottomSheet(
                                     Theme.of(context).errorColor,
                                   )),
                               onPressed: () {
-                                deleteAlert(context, 'Deseja deletar o acesso?',
+                                deleteAlert(context, 'Deseja excluir o acesso?',
                                     () {
                                   acessosController
                                       .deleteAcesso()

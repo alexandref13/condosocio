@@ -396,7 +396,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                         ? Container(
                                             child: Row(
                                             children: [
-                                              Column(
+                                              /*Column(
                                                 children: [
                                                   convidados[x]['tel'] != null
                                                       ? IconButton(
@@ -438,7 +438,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                     .value
                                                                     .text);
 
-                                                            /* acessosController
+                                                             acessosController
                                                                 .sendFavoriteConvite()
                                                                 .then((value) {
                                                               print(
@@ -446,12 +446,12 @@ class DetalheConviteWidget extends StatelessWidget {
 
                                                               //visualizarAcessosController.getAcessos();
                                                               //Get.back();
-                                                            });*/
+                                                            });
                                                           },
                                                         )
                                                       : Container(),
                                                 ],
-                                              ),
+                                              ),*/
                                               Column(
                                                 children: [
                                                   convidados[x]['tel'] != null
