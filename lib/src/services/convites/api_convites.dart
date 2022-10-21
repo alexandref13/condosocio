@@ -20,7 +20,7 @@ class ApiConvites {
 
   static Future getAConvites(String id) async {
     return await http.post(
-      Uri.https('www.condosocio.com.br', '/flutter/convites_info.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/convites_info2.php'),
       body: {
         'idconv': id,
       },
