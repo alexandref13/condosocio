@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
@@ -46,6 +47,7 @@ class DetalheConviteWidget extends StatelessWidget {
         convitesController.page.value == 1;
         Navigator.of(context)
             .pushNamedAndRemoveUntil('/home', ModalRoute.withName('/home'));
+        return false;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -66,10 +68,11 @@ class DetalheConviteWidget extends StatelessWidget {
                     itemBuilder: (_, i) {
                       var invite = visualizarConvitesController.invite[i];
 
-                      var convidados = json.decode(invite['convidados']);
+                      List convidados = json.decode(invite['convidados']);
 
-                      visualizarConvitesController.convidados
-                          .assignAll(convidados);
+                      for (var convidado in convidados) {
+                        visualizarConviteController.convidados.add(convidado);
+                      }
 
                       var startDate = invite['datainicial'];
                       visualizarConvitesController.startDate.value = startDate;
