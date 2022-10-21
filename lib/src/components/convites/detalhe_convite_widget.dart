@@ -60,7 +60,8 @@ class DetalheConviteWidget extends StatelessWidget {
           ),
         ),
         body: Obx(() {
-          return visualizarConvitesController.isLoading.value
+          return visualizarConvitesController.isLoading.value ||
+                  acessosController.isLoading.value
               ? CircularProgressIndicatorWidget()
               : Container(
                   child: ListView.builder(
@@ -417,10 +418,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                 .selectionColor,
                                                           ),
                                                           onTap: () {
-                                                            visualizarConvitesController
-                                                                .isLoading
-                                                                .value = true;
-
                                                             acessosController
                                                                     .idfav
                                                                     .value =
@@ -443,10 +440,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                                               print(
                                                                   'Retorno idfav $value');
                                                             });
-
-                                                            visualizarAcessosController
-                                                                .isLoading
-                                                                .value = false;
                                                           },
                                                         )
                                                       : Container(),

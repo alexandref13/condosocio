@@ -192,8 +192,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                           visualizarConviteController
                                               .acesso.value = convites.acesso;
 
-                                          print(
-                                              'data final ${convites.datafinal}');
+                                          print('idconv ${convites.idconv}');
 
                                           visualizarConviteController
                                               .getAConvite(convites.idconv);

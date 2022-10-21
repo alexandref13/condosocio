@@ -114,7 +114,7 @@ class ApiAcessos {
           "nome": acessosController.name.value.text,
           "tel": acessosController.tel.value,
           "idconv": visualizarConviteController.idConv.value,
-          "idfav": acessosController.idfav.value ?? 0
+          "idfav": acessosController.idfav.value,
         },
       ),
     );
