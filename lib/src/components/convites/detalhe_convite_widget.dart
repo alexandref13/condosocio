@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
@@ -69,7 +67,9 @@ class DetalheConviteWidget extends StatelessWidget {
                     itemBuilder: (_, i) {
                       var invite = visualizarConvitesController.invite[i];
 
-                      List convidados = json.decode(invite['convidados']);
+                      List convidados = invite['convidados'];
+
+                      print(convidados);
 
                       for (var convidado in convidados) {
                         visualizarConviteController.convidados.add(convidado);
