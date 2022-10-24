@@ -405,9 +405,12 @@ class DetalheConviteWidget extends StatelessWidget {
                                                   convidados[x]['tel'] != null
                                                       ? InkWell(
                                                           child: Icon(
-                                                            convidados[x][
-                                                                        'idfav'] ==
-                                                                    null
+                                                            convidados[x]['idfav'] ==
+                                                                        null ||
+                                                                    convidados[x]
+                                                                            [
+                                                                            'idfav'] ==
+                                                                        '0'
                                                                 ? FontAwesome
                                                                     .heart_o
                                                                 : FontAwesome
@@ -439,6 +442,13 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                 .then((value) {
                                                               print(
                                                                   'Retorno idfav $value');
+                                                              visualizarConviteController
+                                                                  .getAConvite(
+                                                                      visualizarConviteController
+                                                                          .idConv
+                                                                          .value);
+                                                              acessosController
+                                                                  .getFavoritos();
                                                             });
                                                           },
                                                         )

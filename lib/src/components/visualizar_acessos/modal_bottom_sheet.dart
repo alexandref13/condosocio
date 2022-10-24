@@ -176,6 +176,8 @@ void configurandoModalBottomSheet(
                               !visualizarAcessosController.fav.value;
                           acessosController.sendFavorite().then((value) {
                             visualizarAcessosController.getAcessos();
+
+                            acessosController.getFavoritos();
                             Get.back();
                           });
                         })
