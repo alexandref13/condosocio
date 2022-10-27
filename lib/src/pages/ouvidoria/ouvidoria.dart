@@ -19,6 +19,12 @@ class _OuvidoriaState extends State<Ouvidoria> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Get.offNamed('/home');
+              },
+              icon: Icon(Icons.arrow_back_ios),
+            ),
             title: Text(
               'Ouvidoria',
               style: GoogleFonts.montserrat(

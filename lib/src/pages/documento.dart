@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Documentos extends StatefulWidget {
@@ -11,6 +12,12 @@ class _DocumentosState extends State<Documentos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.offNamed('/home');
+          },
+          icon: Icon(Icons.arrow_back_ios),
+        ),
         title: Text(
           'Documentos',
           style: GoogleFonts.montserrat(
@@ -325,7 +332,6 @@ class _DocumentosState extends State<Documentos> {
                               )),
                         ),
                         Container(),
-                        
                       ],
                     ),
                   ),

@@ -424,6 +424,7 @@ class _HomePageState extends State<HomePage> {
                                   size: 22,
                                 ),
                                 onTap: () {
+                                  loginController.idcond.value = '';
                                   loginController.hasMoreEmail(
                                     loginController.emailUsu.value,
                                   );
@@ -726,7 +727,7 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           children: [
                             Text(
-                              'Versão 8.4.0',
+                              'Versão 8.5.0',
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme

@@ -2,6 +2,7 @@ import 'package:condosocio/src/pages/ocorrencias/adicionar_ocorrencias.dart';
 import 'package:condosocio/src/pages/ocorrencias/visualizar_ocorrencias.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -17,6 +18,12 @@ class _OcorrenciasState extends State<Ocorrencias> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Get.offNamed('/home');
+            },
+            icon: Icon(Icons.arrow_back_ios),
+          ),
           title: Text(
             'Ocorrências',
             style: GoogleFonts.montserrat(

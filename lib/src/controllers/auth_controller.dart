@@ -1,11 +1,14 @@
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class AuthController extends GetxController {
   ThemeController themeController = Get.put(ThemeController());
@@ -15,6 +18,7 @@ class AuthController extends GetxController {
   bool canCheckBiometrics;
   List<BiometricType> availableBiometrics;
   bool isAuthenticating = false;
+  var rota = TextEditingController().obs;
 
   authenticate() async {
     if (await _isBiometricAvailable()) {
@@ -32,6 +36,7 @@ class AuthController extends GetxController {
     final box = GetStorage();
     var id = box.read('id');
     var email = box.read('email');
+    var idcond = box.read('idcondController');
     if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
@@ -54,14 +59,20 @@ class AuthController extends GetxController {
         http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
           loginController.hasMoreEmail(email).then((value) {
-            if (value.length > 1) {
+            print('idcond autentic: $idcond');
+            if (value.length > 1 && idcond == '') {
               Get.toNamed('/listOfCondo');
               loginController.isLoading.value = false;
               loginController.haveListOfCondo.value = true;
             } else {
+              if (value.length > 1) {
+                loginController.haveListOfCondo.value = true;
+              } else {
+                loginController.haveListOfCondo.value = false;
+              }
               var dados = json.decode(response.body);
               print('auth: $dados');
-              loginController.haveListOfCondo.value = false;
+
               loginController.id(dados['idusu']);
               loginController.idcond(dados['idcond']);
               loginController.emailUsu(dados['email']);
@@ -85,7 +96,20 @@ class AuthController extends GetxController {
 
               themeController.setTheme(loginController.condoTheme.value);
 
-              Get.toNamed('/home');
+              var sendTags = {
+                'idusu': loginController.id.value,
+                'nome': loginController.nome.value,
+                'sobrenome': loginController.sobrenome.value,
+                'idcond': loginController.idcond.value,
+                'tipousuario': loginController.tipo.value,
+                'genero': loginController.genero.value,
+              };
+
+              if (rota.value.text == "") {
+                Get.toNamed('/home');
+              } else {
+                Get.toNamed(rota.value.text);
+              }
               loginController.isLoading.value = false;
             }
           });

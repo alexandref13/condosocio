@@ -2,6 +2,8 @@ import 'package:condosocio/src/components/acessos_saidas/detalhes_acessos_saida.
 import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_saidas.dart';
 import 'package:condosocio/src/components/convites/visualizar_convite_widget.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
+import 'package:condosocio/src/controllers/auth_controller.dart';
+import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui_form.dart';
@@ -20,11 +22,14 @@ import 'package:condosocio/src/pages/enquetes/votar_enquete.dart';
 import 'package:condosocio/src/pages/esqueci_senha.dart';
 import 'package:condosocio/src/pages/ocorrencias/foto_ocorrencia_detalhe.dart';
 import 'package:condosocio/src/pages/ocorrencias/resposta_ocorrencias.dart';
+import 'package:condosocio/src/pages/ocorrencias/visualizar_ocorrencias.dart';
+import 'package:condosocio/src/pages/ouvidoria/visualizar_ouvidoria.dart';
 import 'package:condosocio/src/pages/reservas/calendario_reservas.dart';
 import 'package:condosocio/src/components/reservas/termos_reservas.dart';
 import 'package:condosocio/src/pages/dependentes/dependentes.dart';
 import 'package:condosocio/src/pages/reservas/add_reservas.dart';
 import 'package:condosocio/src/pages/reservas/detalhes_reservas.dart';
+import 'package:condosocio/src/pages/reservas/visualizar_reservas.dart';
 import 'package:condosocio/src/pages/senha.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
 import 'package:condosocio/src/pages/comunicados/comunicados.dart';
@@ -61,11 +66,14 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final ThemeController themeController = Get.put(ThemeController());
+  final LoginController loginController = Get.put(LoginController());
+  final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
     OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
     OneSignal.shared.setAppId('d2a1bd8c-4a9a-4355-ac9b-e52691e7de23');
+    // final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
     OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
       print("Accepted permission: $accepted");
@@ -76,25 +84,23 @@ class MyApp extends StatelessWidget {
       var titulo = result.notification.title;
 
       print('NOTIFICACAO ABERTA: $titulo');
-
+      authController.rota.value.text = '/login';
       if (titulo == 'CONTROLE DE ACESSO') {
-        Get.toNamed('/visualizarAcessos');
+        authController.rota.value.text = '/visualizarAcessos';
       } else if (titulo == 'AVISO!') {
-        Get.toNamed('/avisos');
+        authController.rota.value.text = '/avisos';
       } else if (titulo == 'COMUNICADO') {
-        Get.toNamed('/comunicados');
+        authController.rota.value.text = '/comunicados';
       } else if (titulo == 'DOCUMENTO') {
-        Get.toNamed('/documentos');
-      } else if (titulo == 'COMUNICADO') {
-        Get.toNamed('/comunicados');
+        authController.rota.value.text = '/documentos';
       } else if (titulo == 'OCORRÊNCIA RESOLVIDA') {
-        Get.toNamed('/ocorrencias');
+        authController.rota.value.text = '/ocorrencias';
       } else if (titulo == 'RESERVA') {
-        Get.toNamed('/reserva');
+        authController.rota.value.text = '/visualizarReservas';
       } else if (titulo == 'OUVIDORIA') {
-        Get.toNamed('/ouvidoria');
+        authController.rota.value.text = '/visualizarOuvidoria';
       } else if (titulo == 'OCORRÊNCIA') {
-        Get.toNamed('/ocorrencias');
+        authController.rota.value.text = '/visualizarOcorrencias';
       } else {}
     });
 
@@ -110,6 +116,8 @@ class MyApp extends StatelessWidget {
       darkTheme: themeController.theme,
       debugShowCheckedModeBanner: false,
       initialRoute: '/login',
+
+      // navigatorKey: navigatorKey,
       getPages: [
         GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/home', page: () => HomePage()),
@@ -164,6 +172,12 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/visualizarconvites', page: () => VisualizarConvite()),
         GetPage(name: '/boleto', page: () => BoletoPage()),
         GetPage(name: '/visualizarBoletos', page: () => VisualizarBoletos()),
+        GetPage(name: '/visualizarReservas', page: () => VisualizarReservas()),
+        GetPage(
+            name: '/visualizarOcorrencias',
+            page: () => VisualizarOcorrencias()),
+        GetPage(
+            name: '/visualizarOuvidoria', page: () => VisualizarOuvidoria()),
       ],
     );
   }

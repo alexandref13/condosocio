@@ -16,6 +16,12 @@ class Enquetes extends StatelessWidget {
       },
       child: Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Get.offNamed('/home');
+              },
+              icon: Icon(Icons.arrow_back_ios),
+            ),
             title: Text(
               'Enquetes',
               style: GoogleFonts.montserrat(

@@ -308,10 +308,17 @@ class Login extends StatelessWidget {
                                                 (response) {
                                                   print(
                                                       'Emails numeros ${response.length}');
-                                                  if (response.length > 1) {
+                                                  if (response.length > 1 ||
+                                                      loginController
+                                                              .idcond.value ==
+                                                          null ||
+                                                      loginController
+                                                              .idcond.value ==
+                                                          '') {
                                                     loginController
                                                         .haveListOfCondo
                                                         .value = true;
+
                                                     Get.toNamed('/listOfCondo');
                                                   } else {
                                                     loginController
@@ -398,6 +405,7 @@ class Login extends StatelessWidget {
                                                       print(
                                                           "Encountered an error sending tags: $error");
                                                     });
+
                                                     Get.toNamed('/home');
                                                   }
                                                 },
@@ -439,7 +447,7 @@ class Login extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                               child: ButtonTheme(
                                 height: 50,
                                 child: TextButton(
@@ -458,7 +466,39 @@ class Login extends StatelessWidget {
                                     Get.toNamed('/esqueci');
                                   },
                                   child: Text(
-                                    "Esqueceu a Senha?",
+                                    "Esqueceu a senha?",
+                                    style: GoogleFonts.montserrat(
+                                        color: Colors.amber, fontSize: 12),
+                                    textDirection: TextDirection.ltr,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                              child: ButtonTheme(
+                                height: 50,
+                                child: TextButton(
+                                  style: ButtonStyle(
+                                    overlayColor: MaterialStateProperty.all(
+                                      Theme.of(context)
+                                          .accentColor
+                                          .withOpacity(.5),
+                                    ),
+                                    shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                                  ),
+                                  onPressed: () {
+                                    // Get.toNamed('/esqueci');
+                                    loginController.launched =
+                                        loginController.launchInBrowser(
+                                      'https://condosocio.com.br',
+                                    );
+                                  },
+                                  child: Text(
+                                    "Acesse o nosso site",
                                     style: GoogleFonts.montserrat(
                                         color: Colors.amber, fontSize: 12),
                                     textDirection: TextDirection.ltr,

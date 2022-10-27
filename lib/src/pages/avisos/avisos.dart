@@ -13,7 +13,7 @@ class Avisos extends StatefulWidget {
 }
 
 class _AvisosState extends State<Avisos> {
-   VisualizarAvisosController visualizarAvisosController =
+  VisualizarAvisosController visualizarAvisosController =
       Get.put(VisualizarAvisosController());
 
   AvisosController avisosController = Get.put(AvisosController());
@@ -29,6 +29,12 @@ class _AvisosState extends State<Avisos> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Get.offNamed('/home');
+            },
+            icon: Icon(Icons.arrow_back_ios),
+          ),
           title: Text(
             'Avisos',
             style: GoogleFonts.montserrat(
@@ -228,7 +234,7 @@ class _AvisosState extends State<Avisos> {
                                                   text: avisos.dia + "  ",
                                                   style: GoogleFonts.montserrat(
                                                       fontSize: 14,
-                                                    fontWeight:
+                                                      fontWeight:
                                                           FontWeight.bold)),
                                               TextSpan(
                                                 text: avisos.mes,
@@ -243,8 +249,8 @@ class _AvisosState extends State<Avisos> {
                                           ),
                                         ),
                                         title: Container(
-                                    child: Center(
-                                      child: Text(
+                                          child: Center(
+                                            child: Text(
                                               avisos.titulo,
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 12,
@@ -254,8 +260,8 @@ class _AvisosState extends State<Avisos> {
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ),
-                                  ),
-                                  trailing: Icon(
+                                        ),
+                                        trailing: Icon(
                                           Icons.arrow_right,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -266,7 +272,7 @@ class _AvisosState extends State<Avisos> {
                                 );
                               }))
                     ],
-            )));
+                  )));
     }
   }
 }

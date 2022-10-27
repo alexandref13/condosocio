@@ -111,6 +111,7 @@ class LoginController extends GetxController {
     final box = GetStorage();
     box.write('id', id.value);
     box.write('emailController', email.value.text);
+    box.write('idcondController', idcond.value);
   }
 
   searchEmail() async {
@@ -126,8 +127,6 @@ class LoginController extends GetxController {
     http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
-
-      print('dados newlogin: $dados');
 
       id(dados['idusu']);
       idcond(dados['idcond']);
@@ -149,6 +148,7 @@ class LoginController extends GetxController {
       websiteAdministradora(dados['website_administradora']);
       licenca(dados['licenca']);
       condofacial(dados['condofacial']);
+
       storageId();
 
       themeController.setTheme(condoTheme.value);

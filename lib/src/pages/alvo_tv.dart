@@ -11,6 +11,12 @@ class AlvoTv extends StatelessWidget {
     AlvoTvController alvoTv = Get.put(AlvoTvController());
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.offNamed('/home');
+          },
+          icon: Icon(Icons.arrow_back_ios),
+        ),
         title: Text(
           'CondoPlay',
           style: GoogleFonts.montserrat(

@@ -15,12 +15,10 @@ class Comunicados extends StatefulWidget {
 }
 
 class _ComunicadosState extends State<Comunicados> {
-
   VisualizarComunicadosController visualizarComunicadosController =
       Get.put(VisualizarComunicadosController());
   ComunicadosController comunicadosController =
       Get.put(ComunicadosController());
-
 
   Future<void> launchInBrowser(String url) async {
     if (await canLaunch(url)) {
@@ -35,7 +33,6 @@ class _ComunicadosState extends State<Comunicados> {
     }
   }
 
-
   @override
   void initState() {
     super.initState();
@@ -47,6 +44,12 @@ class _ComunicadosState extends State<Comunicados> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Get.offNamed('/home');
+            },
+            icon: Icon(Icons.arrow_back_ios),
+          ),
           title: Text(
             'Comunicados',
             style: GoogleFonts.montserrat(
@@ -265,8 +268,8 @@ class _ComunicadosState extends State<Comunicados> {
                                         ),
                                       ),
                                       title: Container(
-                                    child: Center(
-                                      child: Text(
+                                        child: Center(
+                                          child: Text(
                                             comunicados.titulo,
                                             style: GoogleFonts.montserrat(
                                                 fontSize: 12,
@@ -276,8 +279,8 @@ class _ComunicadosState extends State<Comunicados> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
-                                  ),
-                                  trailing: IconButton(
+                                      ),
+                                      trailing: IconButton(
                                         icon: Icon(Feather.download),
                                         color: Theme.of(context)
                                             .textSelectionTheme
@@ -292,7 +295,7 @@ class _ComunicadosState extends State<Comunicados> {
                               );
                             }))
                   ],
-            )),
+                )),
       );
     }
   }

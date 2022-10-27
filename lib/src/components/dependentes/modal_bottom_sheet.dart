@@ -141,7 +141,7 @@ void dependentesModalBottomSheet(
                                 ),
                               )),
                         )
-                      : tipousuario == "Prestador"
+                      : tipousuario == "Prestador de Serviço"
                           ? Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(

@@ -12,13 +12,19 @@ class Encomendas extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Get.offNamed('/home');
+            },
+            icon: Icon(Icons.arrow_back_ios),
+          ),
           title: Text(
-        'Encomendas',
-        style: GoogleFonts.montserrat(
-          fontSize: 16,
-          color: Theme.of(context).textSelectionTheme.selectionColor,
-        ),
-      )),
+            'Encomendas',
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              color: Theme.of(context).textSelectionTheme.selectionColor,
+            ),
+          )),
       body: Obx(
         () {
           return encomendasController.isLoading.value
@@ -68,7 +74,7 @@ class Encomendas extends StatelessWidget {
                                 onTap: () {
                                   encomendasController.id.value =
                                       encomenda.idenc;
-                                      encomendasController.idcript.value =
+                                  encomendasController.idcript.value =
                                       encomenda.idcript;
                                   encomendasController.codigo.value =
                                       encomenda.codigo;
@@ -97,8 +103,8 @@ class Encomendas extends StatelessWidget {
                                   ),
                                   color:
                                       encomenda.status != 'PRONTO PRA RETIRADA'
-                                      ? Theme.of(context).buttonColor
-                                      : Theme.of(context).accentColor,
+                                          ? Theme.of(context).buttonColor
+                                          : Theme.of(context).accentColor,
                                   child: ListTile(
                                     title: Row(
                                       mainAxisAlignment:
