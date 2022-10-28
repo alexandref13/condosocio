@@ -90,6 +90,8 @@ class AuthController extends GetxController {
               loginController.tipoun(dados['tipoun']);
               loginController.idadm(dados['idadm']);
               loginController.dep(dados['dep']);
+              loginController.condofacial(dados['condofacial']);
+
               loginController
                   .websiteAdministradora(dados['website_administradora']);
               loginController.licenca(dados['licenca']);

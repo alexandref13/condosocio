@@ -168,12 +168,12 @@ void dependentesModalBottomSheet(
                                           .replaceAll(" ", "");
                                       print(celular);
                                       dependentesController
-                                          .sendWhatsApp(celular)
+                                          .sendWhatsApp(cel)
                                           .then(
                                         (value) {
                                           if (value != 0) {
                                             String message =
-                                                'Olá! o Sr(a) ${loginController.nome.value} enviou este link para a liberação de acesso na portaria do condomínio ${loginController.nomeCondo.value}, preencha os campos os campos abertos e insira uma foto de perfil sem utilizacão de óculos ou máscaras . Grato! https://condosocio.com.br/paginas/acesso_prestador?chave=${value['idace']}';
+                                                'Olá! o Sr(a) ${loginController.nome.value} enviou este link para a liberação de acesso na portaria do condomínio ${loginController.nomeCondo.value}, preencha os campos os campos abertos e insira uma foto de perfil sem utilizacão de óculos ou máscaras . Grato! https://condosocio.com.br/paginas/acesso_prestador?chave=${value['idusu']}';
 
                                             whatsAppSend(
                                               context,
