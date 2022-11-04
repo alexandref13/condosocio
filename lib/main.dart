@@ -5,6 +5,7 @@ import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart
 import 'package:condosocio/src/controllers/auth_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
+import 'package:condosocio/src/pages/acessos/verificarVisitante.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui_form.dart';
 import 'package:condosocio/src/pages/acheAqui/empresa_ache_aqui.dart';
@@ -178,6 +179,8 @@ class MyApp extends StatelessWidget {
             page: () => VisualizarOcorrencias()),
         GetPage(
             name: '/visualizarOuvidoria', page: () => VisualizarOuvidoria()),
+        GetPage(
+            name: '/verificarVisitantes', page: () => VerificarVisitantes()),
       ],
     );
   }

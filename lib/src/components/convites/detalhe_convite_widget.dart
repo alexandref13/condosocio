@@ -442,13 +442,15 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                 .then((value) {
                                                               print(
                                                                   'Retorno idfav $value');
+
+                                                              acessosController
+                                                                  .getFavoritos();
                                                               visualizarConviteController
                                                                   .getAConvite(
                                                                       visualizarConviteController
                                                                           .idConv
                                                                           .value);
-                                                              acessosController
-                                                                  .getFavoritos();
+                                                              // Get.toNamed('/detalhesConvite');
                                                             });
                                                           },
                                                         )

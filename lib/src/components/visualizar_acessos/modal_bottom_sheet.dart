@@ -77,6 +77,16 @@ void configurandoModalBottomSheet(
                             ),
                           ),
                         ),
+                  trailing: imgfacial != ''
+                      ? GestureDetector(
+                          child: Icon(
+                            Icons.arrow_right,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor,
+                          ),
+                        )
+                      : Text(''),
                   title: Text(
                     pessoa,
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),

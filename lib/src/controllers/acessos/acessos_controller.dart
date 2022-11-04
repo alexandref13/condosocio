@@ -69,10 +69,9 @@ class AcessosController extends GetxController {
   }
 
   sendFavoriteConvite() async {
-    isLoading(true);
     final response = await ApiAcessos.addFavConvite();
     var dados = json.decode(response.body);
-    isLoading(false);
+
     return dados;
   }
 
