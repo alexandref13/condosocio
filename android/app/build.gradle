@@ -46,8 +46,8 @@ android {
         applicationId "com.condosocionovo"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 20
-        versionName '8.5.1'
+        versionCode 21
+        versionName '8.5.2'
         multiDexEnabled true
     }
 

@@ -47,9 +47,7 @@ package="com.condosocionovo">
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-
-    <!-- Resolvo aqui o erro dos links em documentos e comunicados browser -->
-        <meta-data
+    
    <queries>
     <intent>
         <action android:name="android.intent.action.VIEW" />

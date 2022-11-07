@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:in_app_review/in_app_review.dart';
-import 'dart:io';
 
 class HomeBottomTab extends StatefulWidget {
   @override
@@ -18,41 +16,6 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
   ConvitesController convitesController = Get.put(ConvitesController());
   VisualizarAcessosController visualizarAcessosController =
       Get.put(VisualizarAcessosController());
-
-  String _appStoreId = '1262911877';
-
-  Availability _availability = Availability.loading;
-  final InAppReview _inAppReview = InAppReview.instance;
-
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      try {
-        final isAvailable = await _inAppReview.isAvailable();
-
-        setState(() {
-          // This plugin cannot be tested on Android by installing your app
-          // locally. See https://github.com/britannio/in_app_review#testing for
-          // more information.
-          _availability = isAvailable && !Platform.isAndroid
-              ? Availability.available
-              : Availability.unavailable;
-        });
-      } catch (e) {
-        setState(() => _availability = Availability.unavailable);
-      }
-    });
-  }
-
-  void _setAppStoreId(String id) => _appStoreId = id;
-
-  Future<void> _requestReview() => _inAppReview.requestReview();
-
-  Future<void> _openStoreListing() => _inAppReview.openStoreListing(
-        appStoreId: _appStoreId,
-      );
 
   @override
   Widget build(BuildContext context) {
