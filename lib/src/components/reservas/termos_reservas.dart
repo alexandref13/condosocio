@@ -5,7 +5,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class TermosReservas extends StatelessWidget {
   final ReservasController reservasController = Get.put(ReservasController());
   @override
@@ -28,8 +27,8 @@ class TermosReservas extends StatelessWidget {
                 child: Html(
                   data: reservasController.termo.value,
                   style: {
-                      "h3": Style(
-                          color: Theme.of(context)
+                    "h3": Style(
+                        color: Theme.of(context)
                             .textSelectionTheme
                             .selectionColor),
                     "h1": Style(
@@ -38,25 +37,25 @@ class TermosReservas extends StatelessWidget {
                             .selectionColor),
                     "p": Style(
                       fontFamily: 'montserrat',
-                        color:
+                      color:
                           Theme.of(context).textSelectionTheme.selectionColor,
                     ),
                     "span": Style(
                       fontFamily: 'montserrat',
-                        color:
+                      color:
                           Theme.of(context).textSelectionTheme.selectionColor,
                     ),
                     "li": Style(
-                          color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
-                        display: Display.BLOCK),
-                    "a": Style(
                         color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                        display: Display.block),
+                    "a": Style(
+                      color:
                           Theme.of(context).textSelectionTheme.selectionColor,
                       textDecoration: TextDecoration.none,
                     ),
                     "h2": Style(
-                          color: Theme.of(context)
+                        color: Theme.of(context)
                             .textSelectionTheme
                             .selectionColor),
                     "table": Style(

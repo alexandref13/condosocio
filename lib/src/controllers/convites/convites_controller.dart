@@ -149,6 +149,14 @@ class ConvitesController extends GetxController {
     visualizarConvitesController.isLoading(false);
   }
 
+  getBannerTelaInicial() async {
+    isLoading(true);
+    var response = await ApiConvites.getBannerTelaInicial();
+    var data = json.decode(response.body);
+    isLoading(false);
+    return data;
+  }
+
   onSearchTextChanged(String text) {
     searchResult.clear();
     if (text.isEmpty) {

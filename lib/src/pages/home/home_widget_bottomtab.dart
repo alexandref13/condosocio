@@ -1,9 +1,12 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../controllers/login_controller.dart';
 
 class HomeBottomTab extends StatefulWidget {
   @override
@@ -16,13 +19,43 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
   ConvitesController convitesController = Get.put(ConvitesController());
   VisualizarAcessosController visualizarAcessosController =
       Get.put(VisualizarAcessosController());
+  final LoginController loginController = Get.put(LoginController());
+
+  final List<String> imageList = [
+    "https://www.condosocio.com.br/flutter/img/bannersHome/banner1.jpg",
+    "https://www.condosocio.com.br/flutter/img/bannersHome/banner2.jpg",
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 40,
+        Center(
+          child: CarouselSlider(
+            options: CarouselOptions(
+              enlargeCenterPage: true,
+              enableInfiniteScroll: true,
+              autoPlay: true,
+              reverse: false,
+              autoPlayAnimationDuration: Duration(milliseconds: 500),
+              autoPlayInterval: Duration(seconds: 5),
+            ),
+            items: imageList
+                .map((e) => ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: <Widget>[
+                          Image.network(
+                            e,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          )
+                        ],
+                      ),
+                    ))
+                .toList(),
+          ),
         ),
         Expanded(
           child: Container(
@@ -32,10 +65,54 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                 SliverPadding(
                   padding: const EdgeInsets.all(20),
                   sliver: SliverGrid.count(
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                    crossAxisCount: 3,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 25,
+                    crossAxisCount: 4,
                     children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          convitesController.page.value = 1;
+                          Get.toNamed('/convites');
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).accentColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).buttonColor,
+                                  spreadRadius: 3,
+                                  blurRadius: 1,
+                                  offset: Offset(
+                                      0, 2), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    Icons.contact_mail_outlined,
+                                    size: 35,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                                Text(
+                                  "Convites",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
                       GestureDetector(
                         onTap: () {
                           visualizarAcessosController.getAcessos();
@@ -80,9 +157,104 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               ],
                             )),
                       ),
+                      loginController.condofacial.value == "SIM"
+                          ? GestureDetector(
+                              onTap: () {
+                                convitesController.page.value = 1;
+                                Get.toNamed('/convites');
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Theme.of(context).accentColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Theme.of(context).buttonColor,
+                                        spreadRadius: 3,
+                                        blurRadius: 1,
+                                        offset: Offset(
+                                            0, 2), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: Icon(
+                                          Icons.face_unlock_sharp,
+                                          size: 35,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Facial",
+                                        style: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                //convitesController.page.value = 1;
+                                //Get.toNamed('/convites');
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Theme.of(context)
+                                        .accentColor
+                                        .withOpacity(0.5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Theme.of(context).buttonColor,
+                                        spreadRadius: 3,
+                                        blurRadius: 1,
+                                        offset: Offset(
+                                            0, 2), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: Icon(
+                                          Icons.face_unlock_sharp,
+                                          size: 35,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor
+                                              .withOpacity(0.5),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Facial",
+                                        style: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor
+                                              .withOpacity(0.5),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                            ),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed('/avisos');
+                          Get.toNamed('/comunicados');
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -104,102 +276,15 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.comment_o,
-                                    size: 35,
+                                    Icons.directions_car,
+                                    size: 40,
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
                                   ),
                                 ),
                                 Text(
-                                  "Avisos",
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/alvoTv');
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).buttonColor,
-                                  spreadRadius: 3,
-                                  blurRadius: 1,
-                                  offset: Offset(
-                                      0, 2), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Icon(
-                                    Icons.live_tv_outlined,
-                                    size: 35,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
-                                Text(
-                                  "CondoPlay",
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          convitesController.page.value = 1;
-                          Get.toNamed('/convites');
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).buttonColor,
-                                  spreadRadius: 3,
-                                  blurRadius: 1,
-                                  offset: Offset(
-                                      0, 2), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Icon(
-                                    Icons.receipt_outlined,
-                                    size: 35,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
-                                Text(
-                                  "Convites",
+                                  "Veículos",
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -255,7 +340,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed('/comunicados');
+                          Get.toNamed('/ocorrencias');
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -277,15 +362,15 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    Icons.campaign_outlined,
-                                    size: 40,
+                                    Icons.report_problem_outlined,
+                                    size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
                                   ),
                                 ),
                                 Text(
-                                  "Comunicados",
+                                  "Ocorrências",
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -341,6 +426,234 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          Get.toNamed('/comunicados');
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).accentColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).buttonColor,
+                                  spreadRadius: 3,
+                                  blurRadius: 1,
+                                  offset: Offset(
+                                      0, 2), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    Feather.users,
+                                    size: 35,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                                Text(
+                                  "Usuários",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed('/avisos');
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).accentColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).buttonColor,
+                                  spreadRadius: 3,
+                                  blurRadius: 1,
+                                  offset: Offset(
+                                      0, 2), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    FontAwesome.comment_o,
+                                    size: 35,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                                Text(
+                                  "Avisos",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed('/comunicados');
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).accentColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).buttonColor,
+                                  spreadRadius: 3,
+                                  blurRadius: 1,
+                                  offset: Offset(
+                                      0, 2), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    Icons.campaign_outlined,
+                                    size: 40,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                                Text(
+                                  "Comunicados",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed('/alvoTv');
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).accentColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).buttonColor,
+                                  spreadRadius: 3,
+                                  blurRadius: 1,
+                                  offset: Offset(
+                                      0, 2), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    Icons.live_tv_outlined,
+                                    size: 35,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                                Text(
+                                  "CondoPlay",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          // Get.toNamed('/reserva');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).accentColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Theme.of(context).buttonColor,
+                                spreadRadius: 3,
+                                blurRadius: 1,
+                                offset:
+                                    Offset(0, 2), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment
+                                .center, // Define o alinhamento transversal como center
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                child: Badge(
+                                  label: Text('Breve'),
+                                  textColor: Colors.black87,
+                                  backgroundColor: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                  child: Icon(
+                                    Icons.search,
+                                    size: 35,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  "Achados & \nPerdidos",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 12,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
                           Get.toNamed('/enquetes');
                         },
                         child: Container(
@@ -372,46 +685,6 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 ),
                                 Text(
                                   "Enquetes",
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/ocorrencias');
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).buttonColor,
-                                  spreadRadius: 3,
-                                  blurRadius: 1,
-                                  offset: Offset(
-                                      0, 2), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.event_note_outlined,
-                                  size: 35,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                ),
-                                Text(
-                                  "Ocorrências",
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme

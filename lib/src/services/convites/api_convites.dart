@@ -27,6 +27,16 @@ class ApiConvites {
     );
   }
 
+  static Future getBannerTelaInicial() async {
+    LoginController loginController = Get.put(LoginController());
+    return await http.post(
+      Uri.https('www.condosocio.com.br', '/flutter/bannerTelaInicial.php'),
+      body: {
+        'idusu': loginController.id.value,
+      },
+    );
+  }
+
   static Future deleleAConvite(String id) async {
     return await http.post(
       Uri.https('www.condosocio.com.br', '/flutter/convites_excluir.php'),

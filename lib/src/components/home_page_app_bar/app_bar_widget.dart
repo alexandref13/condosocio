@@ -35,8 +35,8 @@ class AppBarWidget extends PreferredSize {
                         onPressed: onTap,
                       ),
                       Container(
-                        width: 100,
-                        height: 100,
+                        width: 140,
+                        height: 140,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
