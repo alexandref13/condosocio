@@ -41,7 +41,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
           ? CircularProgressIndicatorWidget()
           : SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(top: 50),
+                padding: EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
                     Container(

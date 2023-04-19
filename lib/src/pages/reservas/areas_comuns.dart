@@ -15,7 +15,7 @@ class AreasComuns extends StatelessWidget {
         return reservasController.isLoading.value
             ? CircularProgressIndicatorWidget()
             : Container(
-                padding: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
                     Expanded(

@@ -27,7 +27,7 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
             ? CircularProgressIndicatorWidget()
             : SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.only(top: 50),
+                  padding: EdgeInsets.only(top: 20),
                   child: Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,

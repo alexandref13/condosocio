@@ -23,28 +23,28 @@ class QrCode extends StatelessWidget {
       body: Obx(
         () {
           return Container(
-            
-            child: Padding(
-              padding: const EdgeInsets.only(top: 150),
-              
-              child: Center(
-                child: Column(
-                  children: [
-                    
-                    QrImage(
-                      data: encomendasController.idcript.value,
-                      version: QrVersions.auto,
-                      foregroundColor: Colors.black,
-                      backgroundColor: Colors.white,
-                      size: 220.0,
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(height: 100),
+                  Flexible(
+                    child: Container(
+                      //color: Color(0xfff5f5f5),
+                      child: Image.asset(
+                        'images/qrcodeBanner2.png',
+                        width: 400,
+                      ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 30, 10, 0),
-                      child: Text(
-                          'Para receber sua encomenda abra este QR Code na presença da pessoa responsável pelas entregas na administração do condomínio.'),
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 40),
+                  QrImage(
+                    data: encomendasController.idcript.value,
+                    version: QrVersions.auto,
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.white,
+                    size: 240,
+                  ),
+                ],
               ),
             ),
           );

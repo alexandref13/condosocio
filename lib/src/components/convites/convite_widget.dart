@@ -122,7 +122,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
             : SingleChildScrollView(
                 child: Container(
                   height: MediaQuery.of(context).size.height,
-                  padding: EdgeInsets.only(bottom: 10, top: 50),
+                  padding: EdgeInsets.only(bottom: 10, top: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,

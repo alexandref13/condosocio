@@ -67,6 +67,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
               : Container(
                   child: Column(
                     children: [
+                      Padding(padding: EdgeInsets.only(top: 20)),
                       boxSearch(
                           context,
                           convitesController.search.value,

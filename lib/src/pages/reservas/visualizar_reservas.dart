@@ -54,7 +54,7 @@ class VisualizarReservas extends StatelessWidget {
                   ],
                 )
               : Container(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: EdgeInsets.only(top: 20),
                   child: ListView.builder(
                       itemCount: visualizarReservasController.reservas.length,
                       itemBuilder: (_, i) {

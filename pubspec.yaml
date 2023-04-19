@@ -36,6 +36,7 @@ dependencies:
   intl: ^0.17.0
   table_calendar: ^3.0.0
   carousel_slider: ^4.2.1
+  flutter_masked_text: ^0.8.0
   
 
 dev_dependencies:

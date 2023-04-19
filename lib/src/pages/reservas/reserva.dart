@@ -23,6 +23,7 @@ class Reserva extends StatelessWidget {
           ),
           bottom: TabBar(
             indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
+            indicatorPadding: EdgeInsets.all(-8),
             tabs: <Widget>[
               Text(
                 'Adicionar',

@@ -39,12 +39,13 @@ class _OcorrenciasState extends State<Ocorrencias> {
               ),
               onPressed: () {
                 onAlertButtonPressed(context,
-                    'Faça ocorrências à administração do seu condomínio. Você pode inclusive incluir uma imagem e fazer uma breve relato sobre o ocorrido.\nLembramos que isto será privado, apenas a administração (síndico e administradores) terão acesso as informações prestadas.\nAcompanhe o andamento das suas ocorrências pelo app.');
+                    'Comunique qualquer ocorrência à administração do condomínio. Adicione uma imagem e um breve relato para ajudar na compreensão. Suas informações serão mantidas em sigilo e apenas a administração terá acesso. Use o app para acompanhar o andamento da sua ocorrência em tempo real. Fique tranquilo sabendo que sua demanda será atendida da melhor maneira possível.');
               },
             )
           ],
           bottom: TabBar(
             indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
+            indicatorPadding: EdgeInsets.all(-8),
             tabs: <Widget>[
               Text(
                 'Adicionar',
@@ -70,7 +71,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
   }
 }
 
-onAlertButtonPressed(context, String text) {
+onAlertButtonPressed(context, String texto) {
   Alert(
     image: Icon(
       Icons.warning_sharp,
@@ -90,7 +91,7 @@ onAlertButtonPressed(context, String text) {
       ),
     ),
     context: context,
-    title: text,
+    title: texto,
     buttons: [
       DialogButton(
         child: Text(

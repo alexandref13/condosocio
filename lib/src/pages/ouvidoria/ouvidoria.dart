@@ -34,6 +34,7 @@ class _OuvidoriaState extends State<Ouvidoria> {
             ),
             centerTitle: true,
             bottom: TabBar(
+              indicatorPadding: EdgeInsets.all(-8),
               indicatorColor:
                   Theme.of(context).textSelectionTheme.selectionColor,
               tabs: <Widget>[

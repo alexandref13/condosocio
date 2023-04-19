@@ -23,13 +23,12 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
             ? CircularProgressIndicatorWidget()
             : Column(
                 children: [
+                  Padding(padding: EdgeInsets.only(top: 20)),
                   boxSearch(
-                    context,
-                    visualizarOuvidoria.search.value,
-                    visualizarOuvidoria.onSearchTextChanged,
-                    "Pesquise por Título..."
-                  ),
-                  
+                      context,
+                      visualizarOuvidoria.search.value,
+                      visualizarOuvidoria.onSearchTextChanged,
+                      "Pesquise por Título..."),
                   Container(
                     padding: EdgeInsets.all(10),
                     color: Theme.of(context).accentColor,
@@ -39,36 +38,36 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                         Container(
                           child: Text(
                             'DATA',
-                             style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         ),
                         Container(
                           child: Text(
                             'HORA',
                             style: GoogleFonts.montserrat(
-                                  fontSize: 10.0,
+                              fontSize: 10.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         ),
                         Text(
                           'TÍTULO',
                           style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
+                            fontSize: 12.0,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                         Container(),
                         Container(),

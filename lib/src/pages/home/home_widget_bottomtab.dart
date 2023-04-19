@@ -6,6 +6,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../controllers/home_page_controller.dart';
 import '../../controllers/login_controller.dart';
 
 class HomeBottomTab extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
   VisualizarAcessosController visualizarAcessosController =
       Get.put(VisualizarAcessosController());
   final LoginController loginController = Get.put(LoginController());
+  final HomePageController homePageController = Get.put(HomePageController());
 
   final List<String> imageList = [
     "https://www.condosocio.com.br/flutter/img/bannersHome/banner1.jpg",
@@ -65,8 +67,8 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                 SliverPadding(
                   padding: const EdgeInsets.all(20),
                   sliver: SliverGrid.count(
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 25,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
                     crossAxisCount: 4,
                     children: <Widget>[
                       GestureDetector(
@@ -107,7 +109,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
@@ -151,7 +153,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
@@ -197,7 +199,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor,
-                                          fontSize: 12,
+                                          fontSize: 11,
                                         ),
                                       ),
                                     ],
@@ -246,7 +248,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                               .textSelectionTheme
                                               .selectionColor
                                               .withOpacity(0.5),
-                                          fontSize: 12,
+                                          fontSize: 11,
                                         ),
                                       ),
                                     ],
@@ -254,7 +256,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                             ),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed('/comunicados');
+                          Get.toNamed('/veiculos');
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -289,7 +291,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
@@ -332,7 +334,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
@@ -375,7 +377,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
@@ -418,55 +420,105 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
                             )),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/comunicados');
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).buttonColor,
-                                  spreadRadius: 3,
-                                  blurRadius: 1,
-                                  offset: Offset(
-                                      0, 2), // changes position of shadow
-                                ),
-                              ],
+                      loginController.dep.value == '0'
+                          ? GestureDetector(
+                              onTap: () {
+                                Get.toNamed('/dependentes');
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Theme.of(context).accentColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Theme.of(context).buttonColor,
+                                        spreadRadius: 3,
+                                        blurRadius: 1,
+                                        offset: Offset(
+                                            0, 2), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: Icon(
+                                          Feather.users,
+                                          size: 35,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Usuários",
+                                        style: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          fontSize: 11,
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                //Get.toNamed('/dependentes');
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Theme.of(context)
+                                        .accentColor
+                                        .withOpacity(0.5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Theme.of(context).buttonColor,
+                                        spreadRadius: 3,
+                                        blurRadius: 1,
+                                        offset: Offset(
+                                            0, 2), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: Icon(
+                                          Feather.users,
+                                          size: 35,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor
+                                              .withOpacity(0.5),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Usuários",
+                                        style: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor
+                                              .withOpacity(0.5),
+                                          fontSize: 11,
+                                        ),
+                                      ),
+                                    ],
+                                  )),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Icon(
-                                    Feather.users,
-                                    size: 35,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
-                                Text(
-                                  "Usuários",
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
                       GestureDetector(
                         onTap: () {
                           Get.toNamed('/avisos');
@@ -504,7 +556,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
@@ -547,7 +599,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
@@ -590,192 +642,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          // Get.toNamed('/reserva');
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Theme.of(context).accentColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Theme.of(context).buttonColor,
-                                spreadRadius: 3,
-                                blurRadius: 1,
-                                offset:
-                                    Offset(0, 2), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment
-                                .center, // Define o alinhamento transversal como center
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 5),
-                                child: Badge(
-                                  label: Text('Breve'),
-                                  textColor: Colors.black87,
-                                  backgroundColor: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                  child: Icon(
-                                    Icons.search,
-                                    size: 35,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
-                              ),
-                              Center(
-                                child: Text(
-                                  "Achados & \nPerdidos",
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 12,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/enquetes');
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).buttonColor,
-                                  spreadRadius: 3,
-                                  blurRadius: 1,
-                                  offset: Offset(
-                                      0, 2), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Icon(
-                                    Icons.ballot_outlined,
-                                    size: 35,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
-                                Text(
-                                  "Enquetes",
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/acheAqui');
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).buttonColor,
-                                  spreadRadius: 3,
-                                  blurRadius: 1,
-                                  offset: Offset(
-                                      0, 2), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Icon(
-                                    Icons.shopping_cart_outlined,
-                                    size: 35,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
-                                Text(
-                                  "Ache Aqui",
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/encomendas');
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).buttonColor,
-                                  spreadRadius: 3,
-                                  blurRadius: 1,
-                                  offset: Offset(
-                                      0, 2), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.only(bottom: 10),
-                                  child: Icon(
-                                    Icons.local_shipping_outlined,
-                                    size: 35,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                  ),
-                                ),
-                                Text(
-                                  "Encomendas",
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
@@ -818,11 +685,199 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ],
                             )),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed('/enquetes');
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).accentColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).buttonColor,
+                                  spreadRadius: 3,
+                                  blurRadius: 1,
+                                  offset: Offset(
+                                      0, 2), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    Icons.ballot_outlined,
+                                    size: 35,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                                Text(
+                                  "Enquetes",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed('/acheAqui');
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).accentColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).buttonColor,
+                                  spreadRadius: 3,
+                                  blurRadius: 1,
+                                  offset: Offset(
+                                      0, 2), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    Icons.shopping_cart_outlined,
+                                    size: 35,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                                Text(
+                                  "Ache Aqui",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed('/encomendas');
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).accentColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).buttonColor,
+                                  spreadRadius: 3,
+                                  blurRadius: 1,
+                                  offset: Offset(
+                                      0, 2), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    Icons.local_shipping_outlined,
+                                    size: 35,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
+                                Text(
+                                  "Encomendas",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          homePageController.launched =
+                              homePageController.launchInBrowser(
+                            'https://api.whatsapp.com/send?phone=5591981220670',
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).accentColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Theme.of(context).buttonColor,
+                                spreadRadius: 3,
+                                blurRadius: 1,
+                                offset:
+                                    Offset(0, 2), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment
+                                .center, // Define o alinhamento transversal como center
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                /*child: Badge(
+                                  label: Text('Breve'),
+                                  textColor: Colors.black87,
+                                  backgroundColor: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,*/
+                                child: Icon(
+                                  Icons.help_outline_rounded,
+                                  size: 35,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
+                              ),
+                              //),
+                              Center(
+                                child: Text(
+                                  "Central de Ajuda",
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                    fontSize: 11,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),

@@ -68,6 +68,7 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                   )
                 : Column(
                     children: [
+                      Padding(padding: EdgeInsets.only(top: 20)),
                       boxSearch(
                           context,
                           acessosController.search.value,

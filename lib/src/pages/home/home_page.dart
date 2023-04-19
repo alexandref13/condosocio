@@ -433,13 +433,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             )
                           : Container(),
-                      loginController.dep.value == '0'
-                          ? Divider(
-                              height: 5,
-                              color: Theme.of(context).primaryColor,
-                            )
-                          : Container(),
-                      loginController.dep.value == '0'
+                      /*loginController.dep.value == '0'
                           ? Container(
                               child: ListTile(
                                 contentPadding:
@@ -466,7 +460,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                             )
-                          : Container(),
+                          : Container(),*/
                       Divider(
                         height: 5,
                         color: Theme.of(context).primaryColor,
@@ -514,7 +508,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           leading: Icon(
-                            FontAwesome.info_circle,
+                            FontAwesome.lock,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
@@ -543,7 +537,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           leading: Icon(
-                            Icons.help,
+                            FontAwesome.info_circle,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
@@ -634,7 +628,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           leading: Icon(
-                            Feather.star,
+                            FontAwesome.star,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor,
@@ -650,7 +644,7 @@ class _HomePageState extends State<HomePage> {
                         height: 5,
                         color: Theme.of(context).primaryColor,
                       ),
-                      Container(
+                      /*Container(
                         child: ListTile(
                           contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
                           dense: true,
@@ -681,7 +675,7 @@ class _HomePageState extends State<HomePage> {
                       Divider(
                         height: 5,
                         color: Theme.of(context).primaryColor,
-                      ),
+                      ),*/
                       Container(
                         child: ListTile(
                           contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
