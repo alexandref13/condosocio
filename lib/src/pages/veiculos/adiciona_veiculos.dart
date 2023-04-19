@@ -485,8 +485,9 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                     ),
                     Flexible(
                       child: Container(
+                        padding: EdgeInsets.only(bottom: 120),
                         height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width * .90,
+                        width: MediaQuery.of(context).size.width * .70,
                         child: Image.asset(
                           'images/vagas.png',
                           fit: BoxFit.fitWidth,

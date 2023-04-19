@@ -94,8 +94,6 @@ class DependentesController extends GetxController {
     isLoading(true);
     var response = await ApiDependentes.getDependentes();
     var dados = json.decode(response.body);
-    print(dados);
-
     dependentes.value =
         dados.map((model) => DependentesMapa.fromJson(model)).toList();
     isLoading(false);
@@ -104,9 +102,7 @@ class DependentesController extends GetxController {
 
   changeStatus(String status) async {
     var response = await ApiDependentes.changeStatus(status);
-
     var dados = response.body;
-
     return dados;
   }
 
@@ -118,9 +114,7 @@ class DependentesController extends GetxController {
 
   deleteDependente() async {
     var response = await ApiDependentes.deleteDependente();
-
     var dados = json.decode(response.body);
-
     return dados;
   }
 

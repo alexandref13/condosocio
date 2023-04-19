@@ -21,7 +21,6 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
   @override
   void initState() {
     veiculosController.getVeiculos();
-
     super.initState();
   }
 

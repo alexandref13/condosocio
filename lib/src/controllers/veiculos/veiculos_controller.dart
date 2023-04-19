@@ -100,14 +100,11 @@ class VeiculosController extends GetxController {
   }
 
   getVeiculos() async {
-    isLoading(true);
-
     var response = await ApiVeiculos.getVeiculos();
     var dados = json.decode(response.body);
 
     veiculos.value =
         dados.map((model) => VeiculosMapa.fromJson(model)).toList();
-    isLoading(false);
     isLoading(false);
     return dados;
   }
@@ -129,10 +126,8 @@ class VeiculosController extends GetxController {
     isLoading(true);
     final response = await ApiVeiculos.getMod();
     var dados = json.decode(response.body);
-    print('MODELOS: $dados');
-    modelos.assignAll(dados);
     isLoading(false);
-
+    modelos.assignAll(dados);
     return dados;
   }
 
@@ -146,7 +141,7 @@ class VeiculosController extends GetxController {
   @override
   void onInit() {
     getMarcas();
-
+    getVeiculos();
     super.onInit();
   }
 }
