@@ -1,4 +1,5 @@
 import 'package:condosocio/src/pages/veiculos/adiciona_veiculos.dart';
+import 'package:condosocio/src/pages/veiculos/pagVagasLimit.dart';
 import 'package:condosocio/src/pages/veiculos/visualizar_veiculos.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,17 @@ class Veiculos extends StatefulWidget {
 
 class _VeiculosState extends State<Veiculos> {
   VeiculosController veiculosController = Get.put(VeiculosController());
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Coloque aqui o código que precisa ser executado ao sair do widget
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,44 +83,4 @@ class _VeiculosState extends State<Veiculos> {
       ),
     );
   }
-}
-
-onAlertButtonPressed(context, String text) {
-  Alert(
-    image: Icon(
-      Icons.warning_sharp,
-      color: Colors.orange,
-      size: 50,
-    ),
-    style: AlertStyle(
-      backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
-      animationType: AnimationType.fromTop,
-      isCloseButton: false,
-      isOverlayTapDismiss: false,
-      //descStyle: GoogleFonts.poppins(color: Colors.red,),
-      animationDuration: Duration(milliseconds: 300),
-      titleStyle: GoogleFonts.poppins(
-        color: Theme.of(context).colorScheme.secondary,
-        fontSize: 14,
-      ),
-    ),
-    context: context,
-    title: text,
-    buttons: [
-      DialogButton(
-        child: Text(
-          "Fechar",
-          style: GoogleFonts.montserrat(
-            color: Colors.white,
-            fontSize: 12,
-          ),
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        width: 80,
-        color: Theme.of(context).accentColor,
-      )
-    ],
-  ).show();
 }

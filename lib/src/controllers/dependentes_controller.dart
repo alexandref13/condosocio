@@ -25,12 +25,14 @@ class DependentesController extends GetxController {
 
   var hourEnt = TextEditingController().obs;
   var hourSai = TextEditingController().obs;
+
   var horaMaskFormatter = new MaskTextInputFormatter(
     mask: '##:##',
     filter: {"#": RegExp(r'[0-9]')},
   );
 
   var firstId = '0'.obs;
+
   var tipos = [
     'Selecione o gênero',
     'Masculino',

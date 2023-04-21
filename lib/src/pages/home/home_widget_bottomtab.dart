@@ -23,40 +23,48 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
   final LoginController loginController = Get.put(LoginController());
   final HomePageController homePageController = Get.put(HomePageController());
 
-  final List<String> imageList = [
-    "https://www.condosocio.com.br/flutter/img/bannersHome/banner1.jpg",
-    "https://www.condosocio.com.br/flutter/img/bannersHome/banner2.jpg",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Center(
-          child: CarouselSlider(
-            options: CarouselOptions(
-              enlargeCenterPage: true,
-              enableInfiniteScroll: true,
-              autoPlay: true,
-              reverse: false,
-              autoPlayAnimationDuration: Duration(milliseconds: 500),
-              autoPlayInterval: Duration(seconds: 5),
-            ),
-            items: imageList
-                .map((e) => ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: <Widget>[
-                          Image.network(
-                            e,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )
-                        ],
-                      ),
-                    ))
-                .toList(),
+          child: FutureBuilder<List<String>>(
+            future: HomePageController.getBannersHome(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return CarouselSlider(
+                  options: CarouselOptions(
+                    enlargeCenterPage: true,
+                    enableInfiniteScroll: true,
+                    autoPlay: true,
+                    reverse: false,
+                    autoPlayAnimationDuration: Duration(milliseconds: 500),
+                    autoPlayInterval: Duration(seconds: 5),
+                  ),
+                  items: snapshot.data
+                      .map(
+                        (e) => ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: <Widget>[
+                              Image.network(
+                                e,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                      .toList(),
+                );
+              }
+            },
           ),
         ),
         Expanded(

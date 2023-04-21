@@ -12,12 +12,11 @@ class ApiVeiculos {
       Uri.https("www.condosocio.com.br", "/flutter/veiculos_incluir.php"),
       body: {
         'idusu': loginController.id.value,
-        'idcond': loginController.idcond.value,
-        'marca': veiculosController.marca.value.text,
-        'modelo': veiculosController.modelo.value.text,
-        'cor': veiculosController.cor.value.text,
+        'idmarca': veiculosController.idmarca.value,
+        'idmodelo': veiculosController.idmodelo.value,
+        'cor': veiculosController.corSelecionada.value,
         'ano': veiculosController.ano.value.text,
-        'placa': veiculosController.placa.value,
+        'placa': veiculosController.placa.value.text,
       },
     );
   }

@@ -80,13 +80,16 @@ class VeiculosController extends GetxController {
   }
 
   Future<dynamic> sendVeiculos() async {
-    if (marca.value.text == '' ||
-        modelo.value.text == '' ||
+    if (idmarca.value == '0' ||
+        idmodelo.value == '0' ||
         ano.value.text == '' ||
-        cor.value.text == '' ||
-        placa.value == '') {
+        corSelecionada.value == '' ||
+        placa.value.text == '') {
       return "vazio";
     } else {
+      print(
+          'DADOS DO VEICULO SEND: ${idmarca.value} | ${idmodelo.value} | ${corSelecionada.value} | ${ano.value.text} |  ${placa.value.text}');
+
       isLoading(true);
 
       var response = await ApiVeiculos.sendVeiculos();
@@ -102,7 +105,6 @@ class VeiculosController extends GetxController {
   getVeiculos() async {
     var response = await ApiVeiculos.getVeiculos();
     var dados = json.decode(response.body);
-
     veiculos.value =
         dados.map((model) => VeiculosMapa.fromJson(model)).toList();
     isLoading(false);
@@ -140,8 +142,8 @@ class VeiculosController extends GetxController {
 
   @override
   void onInit() {
-    getMarcas();
     getVeiculos();
+    getMarcas();
     super.onInit();
   }
 }

@@ -53,6 +53,7 @@ import 'package:condosocio/src/pages/reservas/reserva.dart';
 import 'package:condosocio/src/pages/encomendas/qrcode.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
+import 'package:condosocio/src/pages/veiculos/pagVagasLimit.dart';
 import 'package:condosocio/src/pages/veiculos/veiculos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -183,6 +184,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/verificarVisitantes', page: () => VerificarVisitantes()),
         GetPage(name: '/veiculos', page: () => Veiculos()),
+        GetPage(name: '/vagasexcedidas', page: () => VagasLimit()),
       ],
     );
   }

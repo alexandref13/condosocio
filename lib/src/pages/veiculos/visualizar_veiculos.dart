@@ -1,10 +1,6 @@
-import 'package:condosocio/src/components/dependentes/modal_bottom_sheet.dart';
-import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/pages/veiculos/modal_veiculos.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,19 +17,12 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
   @override
   void initState() {
     veiculosController.getVeiculos();
+
     super.initState();
   }
 
   @override
-  void dispose() {
-    // Coloque aqui o código que precisa ser executado ao sair do widget
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    VeiculosController veiculosController = Get.put(VeiculosController());
-
     return Obx(() {
       return veiculosController.isLoading.value
           ? CircularProgressIndicatorWidget()
@@ -150,6 +139,8 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                 int.parse(veiculos.qtdVagas);
                             veiculosController.cont.value =
                                 int.parse(veiculos.contagem);
+                            print('QtdVagas: ${veiculosController.qtdVag}');
+                            print('Contagem: ${veiculosController.cont}');
 
                             return GestureDetector(
                               onTap: () {
