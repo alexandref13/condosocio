@@ -25,11 +25,11 @@ class DetalhesReservas extends StatelessWidget {
   Widget build(BuildContext context) {
     confirmDelete(String text, VoidCallback function) {
       Alert(
-        image: Icon(
+        /*image: Icon(
           Icons.highlight_off,
           color: Colors.yellowAccent,
           size: 60,
-        ),
+        ),*/
         style: AlertStyle(
           backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
           animationType: AnimationType.fromTop,
@@ -159,7 +159,7 @@ class DetalhesReservas extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      'Evento: ',
+                                      'EVENTO: ',
                                       style: GoogleFonts.montserrat(
                                         fontSize: 12,
                                         color: Colors.black,
@@ -184,7 +184,7 @@ class DetalhesReservas extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      'Data: ',
+                                      'DATA: ',
                                       style: GoogleFonts.montserrat(
                                         fontSize: 12,
                                         color: Colors.black,
@@ -218,7 +218,7 @@ class DetalhesReservas extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      'Área Comum: ',
+                                      'ÁREA COMUM: ',
                                       style: GoogleFonts.montserrat(
                                         fontSize: 12,
                                         color: Colors.black,
@@ -243,7 +243,7 @@ class DetalhesReservas extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      'Status: ',
+                                      'STATUS: ',
                                       style: GoogleFonts.montserrat(
                                         fontSize: 12,
                                         color: Colors.black,
@@ -375,7 +375,7 @@ class DetalhesReservas extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   confirmDelete(
-                                    'Deseja cancelar a reserva ${detalhesReservasController.titulo.value}?',
+                                    'Deseja cancelar a reserva\n ${detalhesReservasController.titulo.value}?',
                                     () {
                                       detalhesReservasController
                                           .deleteReserva()

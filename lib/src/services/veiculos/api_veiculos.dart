@@ -9,7 +9,7 @@ class ApiVeiculos {
     VeiculosController veiculosController = Get.put(VeiculosController());
 
     return await http.post(
-      Uri.https("www.condosocio.com.br", "/flutter/veiculos_incluir.php"),
+      Uri.https("www.alvocomtec.com.br", "/flutter/veiculos_incluir.php"),
       body: {
         'idusu': loginController.id.value,
         'idmarca': veiculosController.idmarca.value,
@@ -25,7 +25,7 @@ class ApiVeiculos {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-      Uri.https('www.condosocio.com.br', '/flutter/veiculos_buscar.php'),
+      Uri.https('www.alvocomtec.com.br', '/flutter/veiculos_buscar.php'),
       body: {
         'idusu': loginController.id.value,
       },
@@ -37,7 +37,7 @@ class ApiVeiculos {
 
     return await http.get(
       Uri.https(
-        'www.condosocio.com.br',
+        'www.alvocomtec.com.br',
         '/flutter/marcas_buscar.php',
       ),
     );
@@ -47,7 +47,7 @@ class ApiVeiculos {
     VeiculosController veiculosController = Get.put(VeiculosController());
     print('IDMARCA = ${veiculosController.idmarca.value}');
     return await http.get(
-      Uri.https('www.condosocio.com.br', '/flutter/modelos_buscar.php',
+      Uri.https('www.alvocomtec.com.br', '/flutter/modelos_buscar.php',
           {'idmarca': veiculosController.idmarca.value}),
     );
   }
@@ -58,7 +58,7 @@ class ApiVeiculos {
 
     print('${veiculosController.idvei.value}');
     return await http.get(
-      Uri.https('www.condosocio.com.br', '/flutter/veiculo_excluir.php', {
+      Uri.https('www.alvocomtec.com.br', '/flutter/veiculo_excluir.php', {
         'idvei': veiculosController.idvei.value,
         'idusu': loginController.id.value,
       }),

@@ -23,7 +23,7 @@ class Outros extends StatelessWidget {
         () {
           return outrosController.isLoading.value
               ? Container(
-                height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: SizedBox(
@@ -32,7 +32,7 @@ class Outros extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                        Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor,
                         ),
                       ),
                     ),
@@ -43,7 +43,9 @@ class Outros extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      boxSearch(context, outrosController.controller.value,
+                      boxSearch(
+                          context,
+                          outrosController.controller.value,
                           outrosController.onSearchTextChanged,
                           "Pesquise por Nome..."),
                       Expanded(
@@ -86,7 +88,7 @@ class Outros extends StatelessWidget {
                                         onPressed: () {
                                           outrosController.launched =
                                               outrosController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${outrosController.searchResult[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${outrosController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -127,7 +129,7 @@ class Outros extends StatelessWidget {
                                         onPressed: () {
                                           outrosController.launched =
                                               outrosController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${outrosController.outros[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${outrosController.outros[index].imgdoc}");
                                         },
                                       ),
                                     ),

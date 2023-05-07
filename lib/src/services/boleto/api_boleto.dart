@@ -8,7 +8,7 @@ class ApiBoleto {
     LoginController loginController = Get.put(LoginController());
 
     var response = await http.post(
-      Uri.https('www.condosocio.com.br', 'flutter/boletos_auth_super.php'),
+      Uri.https('www.alvocomtec.com.br', 'flutter/boletos_auth_super.php'),
       body: {
         'email': loginController.email.value.text,
         'senha': loginController.password.value.text,
@@ -23,14 +23,13 @@ class ApiBoleto {
     LoginController loginController = Get.put(LoginController());
 
     var response = await http.post(
-      Uri.https('www.condosocio.com.br', 'flutter/boletos_request.php'),
+      Uri.https('www.alvocomtec.com.br', 'flutter/boletos_request.php'),
       body: {
         'licenca': loginController.licenca.value,
         'session': session,
       },
     );
- 
+
     return response;
-    
   }
 }

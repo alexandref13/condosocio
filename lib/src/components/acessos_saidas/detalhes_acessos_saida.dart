@@ -311,7 +311,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                       image: selectedFile != null
                                           ? FileImage(selectedFile)
                                           : NetworkImage(
-                                              'https://www.condosocio.com.br/acond/downloads/autsaida/${saidaController.image.value}',
+                                              'https://www.alvocomtec.com.br/acond/downloads/autsaida/${saidaController.image.value}',
                                             ),
                                       fit: BoxFit.contain,
                                     ),

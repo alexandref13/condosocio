@@ -71,7 +71,7 @@ void configurandoModalBottomSheet(
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: NetworkImage(
-                                'https://www.condosocio.com.br/acond/downloads/fotosvisitantes/$imgfacial',
+                                'https://www.alvocomtec.com.br/acond/downloads/fotosvisitantes/$imgfacial',
                               ),
                               // image: AssetImage('images/user.png'),
                             ),
@@ -135,7 +135,7 @@ void configurandoModalBottomSheet(
                               (value) {
                                 if (value != 0) {
                                   String message =
-                                      'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://condosocio.com.br/paginas/a?chave=${value['idace']}';
+                                      'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://alvocomtec.com.br/paginas/a?chave=${value['idace']}';
 
                                   whatsAppSend(
                                     context,

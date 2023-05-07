@@ -23,7 +23,7 @@ class Editais extends StatelessWidget {
         () {
           return editaisController.isLoading.value
               ? Container(
-                height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: SizedBox(
@@ -32,7 +32,7 @@ class Editais extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                        Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor,
                         ),
                       ),
                     ),
@@ -43,7 +43,9 @@ class Editais extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      boxSearch(context, editaisController.controller.value,
+                      boxSearch(
+                          context,
+                          editaisController.controller.value,
                           editaisController.onSearchTextChanged,
                           "Pesquise por Nome..."),
                       Expanded(
@@ -87,7 +89,7 @@ class Editais extends StatelessWidget {
                                         onPressed: () {
                                           editaisController.launched =
                                               editaisController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${editaisController.searchResult[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${editaisController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -128,7 +130,7 @@ class Editais extends StatelessWidget {
                                         onPressed: () {
                                           editaisController.launched =
                                               editaisController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${editaisController.editais[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${editaisController.editais[index].imgdoc}");
                                         },
                                       ),
                                     ),

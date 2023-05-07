@@ -8,7 +8,7 @@ class ApiAcessosSaida {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-        Uri.https("www.condosocio.com.br", "/flutter/acesso_saida_vis.php"),
+        Uri.https("www.alvocomtec.com.br", "/flutter/acesso_saida_vis.php"),
         body: {
           'idusu': loginController.id.value,
         });
@@ -20,7 +20,7 @@ class ApiAcessosSaida {
         Get.put(VisualizarAcessosSaidaController());
 
     var uri =
-        Uri.parse("https://www.condosocio.com.br/flutter/acesso_saida_inc.php");
+        Uri.parse("https://www.alvocomtec.com.br/flutter/acesso_saida_inc.php");
 
     var request = http.MultipartRequest('POST', uri);
 
@@ -55,7 +55,7 @@ class ApiAcessosSaida {
         Get.put(VisualizarAcessosSaidaController());
 
     var uri = Uri.parse(
-        "https://www.condosocio.com.br/flutter/imagem_autsai_alt.php");
+        "https://www.alvocomtec.com.br/flutter/imagem_autsai_alt.php");
 
     var request = http.MultipartRequest('POST', uri);
 
@@ -76,7 +76,7 @@ class ApiAcessosSaida {
 
     return await http.post(
         Uri.https(
-            "www.condosocio.com.br", "/flutter/acesso_autsai_excluir.php"),
+            "www.alvocomtec.com.br", "/flutter/acesso_autsai_excluir.php"),
         body: {
           'idaut': saidaController.id.value,
         });

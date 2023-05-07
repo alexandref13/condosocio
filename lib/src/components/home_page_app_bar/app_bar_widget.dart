@@ -41,7 +41,7 @@ class AppBarWidget extends PreferredSize {
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
                             image: NetworkImage(
-                              'https://www.condosocio.com.br/acond/downloads/logocondo/$image',
+                              'https://www.alvocomtec.com.br/acond/downloads/logocondo/$image',
                             ),
                           ),
                         ),

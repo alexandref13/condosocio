@@ -31,7 +31,7 @@ class FotoOcorrencia extends StatelessWidget {
             tag: 'FotoOcorrencia',
             child: Image(
               image: NetworkImage(
-                'https://condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+                'https://alvocomtec.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
               ),
             ),
           ),

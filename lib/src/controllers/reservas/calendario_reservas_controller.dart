@@ -38,7 +38,6 @@ class CalendarioReservasController extends GetxController {
                 () => [])
             .add(
               MapaEvento(
-                areacom: eventos['areacom'],
                 dataAgenda: eventos['data_agenda'],
                 descricao: eventos['descricao'],
                 idevento: eventos['idevento'],

@@ -45,7 +45,7 @@ class DetalhesAcheAqui extends StatelessWidget {
                                 image: DecorationImage(
                                   fit: BoxFit.contain,
                                   image: NetworkImage(
-                                      'https://condosocio.com.br/acond/downloads/logofornecedores/${detalhes.imgforn}'),
+                                      'https://alvocomtec.com.br/acond/downloads/logofornecedores/${detalhes.imgforn}'),
                                 ),
                               ),
                             ),

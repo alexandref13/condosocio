@@ -72,7 +72,7 @@ class ListOfCondo extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://www.condosocio.com.br/acond/downloads/logocondo/${condo.imglogo}'),
+                                        'https://www.alvocomtec.com.br/acond/downloads/logocondo/${condo.imglogo}'),
                                   ),
                                 ),
                               ),

@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   final _picker = ImagePicker();
   File _selectedFile;
 
-  final uri = Uri.parse("https://condosocio.com.br/flutter/upload_imagem.php");
+  final uri = Uri.parse("https://alvocomtec.com.br/flutter/upload_imagem.php");
 
   Future<void> logoutUser() async {
     await GetStorage.init();
@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
+                        'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
                   ),
                 ),
               ),
@@ -575,7 +575,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             homePageController.launched =
                                 homePageController.launchInBrowser(
-                                    'https://condosocio.com.br/termo.html');
+                                    'https://alvocomtec.com.br/termo.html');
                           },
                         ),
                       ),
@@ -606,7 +606,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             homePageController.launched =
                                 homePageController.launchInBrowser(
-                                    'https://condosocio.com.br/privacidade.html');
+                                    'https://alvocomtec.com.br/privacidade.html');
                           },
                         ),
                       ),

@@ -234,6 +234,12 @@ class _AddReservasState extends State<AddReservas> {
                                       'Campo Nome do Evento, Hora Inicial ou Termos de Uso vazio(s)!',
                                       null,
                                     );
+                                  } else if (value == 'hora invalida') {
+                                    onAlertButtonPressed(
+                                      context,
+                                      'Hora Inicial Inválida!',
+                                      null,
+                                    );
                                   } else {
                                     if (value == 3) {
                                       onAlertButtonPressed(

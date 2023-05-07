@@ -24,7 +24,7 @@ class Regulamento extends StatelessWidget {
         () {
           return regulamentoController.isLoading.value
               ? Container(
-                height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: SizedBox(
@@ -33,7 +33,7 @@ class Regulamento extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                        Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor,
                         ),
                       ),
                     ),
@@ -44,7 +44,9 @@ class Regulamento extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      boxSearch(context, regulamentoController.controller.value,
+                      boxSearch(
+                          context,
+                          regulamentoController.controller.value,
                           regulamentoController.onSearchTextChanged,
                           "Pesquise por Nome..."),
                       Expanded(
@@ -88,7 +90,7 @@ class Regulamento extends StatelessWidget {
                                         onPressed: () {
                                           regulamentoController.launched =
                                               regulamentoController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${regulamentoController.searchResult[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${regulamentoController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -132,7 +134,7 @@ class Regulamento extends StatelessWidget {
                                         onPressed: () {
                                           regulamentoController.launched =
                                               regulamentoController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${regulamentoController.regulamento[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${regulamentoController.regulamento[index].imgdoc}");
                                         },
                                       ),
                                     ),

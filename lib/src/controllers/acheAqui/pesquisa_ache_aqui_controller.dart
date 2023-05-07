@@ -30,7 +30,7 @@ class PesquisaAcheAquiController extends GetxController {
 
       var lista = json.decode(response.body);
 
-      print(lista);
+      print('Pesquisa: $lista');
 
       Iterable dados = json.decode(response.body);
 

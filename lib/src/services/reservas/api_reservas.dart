@@ -10,7 +10,7 @@ class ApiReservas {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-      Uri.https("www.condosocio.com.br", "/flutter/areas_buscar.php"),
+      Uri.https("www.alvocomtec.com.br", "/flutter/areas_buscar.php"),
       body: {
         'idcond': loginController.idcond.value,
       },
@@ -21,7 +21,7 @@ class ApiReservas {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-      Uri.https("www.condosocio.com.br", "/flutter/reservas_morador.php"),
+      Uri.https("www.alvocomtec.com.br", "/flutter/reservas_morador.php"),
       body: {
         'idusu': loginController.id.value,
       },
@@ -33,7 +33,7 @@ class ApiReservas {
     ReservasController reservasController = Get.put(ReservasController());
 
     return await http.post(
-      Uri.https("www.condosocio.com.br", "/flutter/reservas_agenda.php"),
+      Uri.https("www.alvocomtec.com.br", "/flutter/reservas_agenda.php"),
       body: {
         'idcond': loginController.idcond.value,
         'idusu': loginController.id.value,
@@ -50,7 +50,7 @@ class ApiReservas {
         Get.put(AddReservasController());
 
     return await http.post(
-      Uri.https("www.condosocio.com.br", "/flutter/reservas_inc.php"),
+      Uri.https("www.alvocomtec.com.br", "/flutter/reservas_inc.php"),
       body: {
         'idcond': loginController.idcond.value,
         'idusu': loginController.id.value,
@@ -69,7 +69,7 @@ class ApiReservas {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-      Uri.https("www.condosocio.com.br", "/flutter/reserva_excluir.php"),
+      Uri.https("www.alvocomtec.com.br", "/flutter/reserva_excluir.php"),
       body: {
         'ideve': detalhesReservasController.idEve.value,
         'idusu': loginController.id.value,

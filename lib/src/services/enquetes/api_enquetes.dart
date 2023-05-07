@@ -9,7 +9,7 @@ class ApiEnquetes {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-      Uri.https('www.condosocio.com.br', '/flutter/enquetes_vis.php'),
+      Uri.https('www.alvocomtec.com.br', '/flutter/enquetes_vis.php'),
       body: {
         'idcond': loginController.idcond.value,
       },
@@ -27,7 +27,7 @@ class ApiEnquetes {
     });
 
     return await http.post(
-      Uri.https('www.condosocio.com.br', '/flutter/enquetes_votacao.php'),
+      Uri.https('www.alvocomtec.com.br', '/flutter/enquetes_votacao.php'),
       body: {
         'idusu': loginController.id.value,
         'idenq': visualizarEnquetesController.idenq.value,
@@ -43,7 +43,7 @@ class ApiEnquetes {
         Get.put(VotarEnqueteController());
 
     return await http.post(
-      Uri.https("www.condosocio.com.br", "/flutter/enquete_votar.php"),
+      Uri.https("www.alvocomtec.com.br", "/flutter/enquete_votar.php"),
       body: {
         'idcond': loginController.idcond.value,
         'idusu': loginController.id.value,

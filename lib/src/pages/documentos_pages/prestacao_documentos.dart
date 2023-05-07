@@ -23,7 +23,7 @@ class Prestacao extends StatelessWidget {
         () {
           return prestacaoController.isLoading.value
               ? Container(
-                height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: SizedBox(
@@ -32,7 +32,7 @@ class Prestacao extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                        Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor,
                         ),
                       ),
                     ),
@@ -43,7 +43,9 @@ class Prestacao extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      boxSearch(context, prestacaoController.controller.value,
+                      boxSearch(
+                          context,
+                          prestacaoController.controller.value,
                           prestacaoController.onSearchTextChanged,
                           "Pesquise por Nome..."),
                       Expanded(
@@ -87,7 +89,7 @@ class Prestacao extends StatelessWidget {
                                         onPressed: () {
                                           prestacaoController.launched =
                                               prestacaoController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${prestacaoController.searchResult[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${prestacaoController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -130,7 +132,7 @@ class Prestacao extends StatelessWidget {
                                         onPressed: () {
                                           prestacaoController.launched =
                                               prestacaoController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${prestacaoController.prestacao[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${prestacaoController.prestacao[index].imgdoc}");
                                         },
                                       ),
                                     ),

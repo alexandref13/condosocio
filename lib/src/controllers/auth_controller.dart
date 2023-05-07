@@ -56,7 +56,7 @@ class AuthController extends GetxController {
 
       if (isAuthenticated) {
         loginController.isLoading.value = true;
-        http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
+        http.post(Uri.https('www.alvocomtec.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
           loginController.hasMoreEmail(email).then((value) {
             print('idcond autentic: $idcond');

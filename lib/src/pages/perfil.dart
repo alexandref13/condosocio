@@ -26,7 +26,7 @@ class _PerfilState extends State<Perfil> {
     perfilController.firstId.value = novoItem;
   }
 
-  final uri = Uri.parse("https://condosocio.com.br/flutter/upload_imagem.php");
+  final uri = Uri.parse("https://alvocomtec.com.br/flutter/upload_imagem.php");
   File _selectedFile;
   final _picker = ImagePicker();
 
@@ -126,7 +126,7 @@ class _PerfilState extends State<Perfil> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
+                        'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
                   ),
                 ),
               ),
@@ -501,6 +501,7 @@ class _PerfilState extends State<Perfil> {
                               ),
                               onPressed: () {
                                 perfilController.editPerfil().then((value) {
+                                  print('VALUE:$value');
                                   if (value == 1) {
                                     edgeAlertWidget(
                                       context,

@@ -38,7 +38,7 @@ class EmpresaAcheAqui extends StatelessWidget {
                     color: Theme.of(context).textSelectionTheme.selectionColor),
               ),
               Text(
-                'Avaliação',
+                'Avaliações',
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
                   color: Theme.of(context).textSelectionTheme.selectionColor,

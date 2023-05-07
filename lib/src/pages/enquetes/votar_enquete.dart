@@ -10,6 +10,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import '../../components/utils/alert_button_pressed.dart';
+import '../../components/utils/edge_alert_widget.dart';
+
 class VotarEnquete extends StatelessWidget {
   final VotarEnqueteController enquetesController =
       Get.put(VotarEnqueteController());
@@ -21,11 +24,11 @@ class VotarEnquete extends StatelessWidget {
   Widget build(BuildContext context) {
     confirmedVote(String text, VoidCallback function) {
       Alert(
-        image: Icon(
+        /*image: Icon(
           Icons.highlight_off,
-          color: Colors.yellowAccent,
+          color: Colors.red,
           size: 60,
-        ),
+        ),*/
         style: AlertStyle(
           backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
           animationType: AnimationType.fromTop,
@@ -101,13 +104,13 @@ class VotarEnquete extends StatelessWidget {
                                 //color: Color(0xfff5f5f5),
                                 child: Image.asset(
                                   'images/enquete.png',
-                                  height: 360,
+                                  height: 340,
                                 ),
                               ),
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
+                            margin: EdgeInsets.fromLTRB(10, 5, 10, 20),
                             child: Center(
                               child: Text(
                                 visualizarEnquetesController.titulo.value,
@@ -147,7 +150,7 @@ class VotarEnquete extends StatelessWidget {
                                                           '${enquetes.perguntas[i]} (${enquetes.votacao[i]})',
                                                           style: GoogleFonts
                                                               .montserrat(
-                                                            fontSize: 10,
+                                                            fontSize: 12,
                                                             color: Theme.of(
                                                                     context)
                                                                 .textSelectionTheme
@@ -167,6 +170,8 @@ class VotarEnquete extends StatelessWidget {
                                                                       .i.value =
                                                                   value;
                                                             },
+                                                            activeColor:
+                                                                Colors.white,
                                                           ),
                                                         )
                                                 ],
@@ -269,9 +274,19 @@ class VotarEnquete extends StatelessWidget {
                                             : confirmedVote(
                                                 'Deseja realmente votar em ${enquetes.perguntas[enquetesController.i.value]}',
                                                 () {
-                                                 
                                                   enquetesController
-                                                      .votarEnquete();
+                                                      .votarEnquete()
+                                                      .then((value) {
+                                                    value == 1
+                                                        ? edgeAlertWidget(
+                                                            context,
+                                                            'Parabéns!',
+                                                            'Voto computado com sucesso')
+                                                        : onAlertButtonPressed(
+                                                            context,
+                                                            'Houve algum problema!Tente novamente',
+                                                            null);
+                                                  });
                                                 },
                                               );
                                       },

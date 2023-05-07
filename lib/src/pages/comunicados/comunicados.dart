@@ -201,7 +201,7 @@ class _ComunicadosState extends State<Comunicados> {
                                         iconSize: 36,
                                         onPressed: () {
                                           launchInBrowser(
-                                              "https://condosocio.com.br/acond/downloads/comunicados_arq/${search.arquivo}");
+                                              "https://alvocomtec.com.br/acond/downloads/comunicados_arq/${search.arquivo}");
                                         },
                                       )),
                                 ),
@@ -288,7 +288,7 @@ class _ComunicadosState extends State<Comunicados> {
                                         iconSize: 26,
                                         onPressed: () {
                                           launchInBrowser(
-                                              "https://condosocio.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
+                                              "https://alvocomtec.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
                                         },
                                       )),
                                 ),

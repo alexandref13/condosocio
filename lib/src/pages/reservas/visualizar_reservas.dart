@@ -75,7 +75,7 @@ class VisualizarReservas extends StatelessWidget {
                             reservasController.nome.value = reservas.areacom;
                             reservasController.termo.value = reservas.termo;
                             detalhesReservasController.goToDetails(
-                              '${loginController.nomeusu.value} ${loginController.sobrenome.value}',
+                              '${loginController.nome.value} ${loginController.sobrenome.value}',
                               loginController.unidade.value,
                               reservas.titulo,
                               reservas.dataAgenda,

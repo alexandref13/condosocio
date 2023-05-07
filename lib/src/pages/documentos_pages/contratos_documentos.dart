@@ -24,7 +24,7 @@ class Contratos extends StatelessWidget {
         () {
           return contratosController.isLoading.value
               ? Container(
-                height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: SizedBox(
@@ -33,7 +33,7 @@ class Contratos extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                        Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor,
                         ),
                       ),
                     ),
@@ -44,7 +44,9 @@ class Contratos extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      boxSearch(context, contratosController.controller.value,
+                      boxSearch(
+                          context,
+                          contratosController.controller.value,
                           contratosController.onSearchTextChanged,
                           "Pesquise por Nome..."),
                       Expanded(
@@ -88,7 +90,7 @@ class Contratos extends StatelessWidget {
                                         onPressed: () {
                                           contratosController.launched =
                                               contratosController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${contratosController.searchResult[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${contratosController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -131,7 +133,7 @@ class Contratos extends StatelessWidget {
                                         onPressed: () {
                                           contratosController.launched =
                                               contratosController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${contratosController.contratos[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${contratosController.contratos[index].imgdoc}");
                                         },
                                       ),
                                     ),

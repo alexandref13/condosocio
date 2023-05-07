@@ -72,7 +72,7 @@ void dependentesModalBottomSheet(
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
                                   image: NetworkImage(
-                                      'https://condosocio.com.br/acond/downloads/fotosperfil/$img'),
+                                      'https://alvocomtec.com.br/acond/downloads/fotosperfil/$img'),
                                 ),
                               ),
                             ),
@@ -173,7 +173,7 @@ void dependentesModalBottomSheet(
                                         (value) {
                                           if (value != 0) {
                                             String message =
-                                                'Olá! o Sr(a) ${loginController.nome.value} enviou este link para a liberação de acesso na portaria do condomínio ${loginController.nomeCondo.value}, preencha os campos os campos abertos e insira uma foto de perfil sem utilizacão de óculos ou máscaras . Grato! https://condosocio.com.br/paginas/acesso_prestador?chave=${value['idusu']}';
+                                                'Olá! o Sr(a) ${loginController.nome.value} enviou este link para a liberação de acesso na portaria do condomínio ${loginController.nomeCondo.value}, preencha os campos os campos abertos e insira uma foto de perfil sem utilizacão de óculos ou máscaras . Grato! https://alvocomtec.com.br/paginas/acesso_prestador?chave=${value['idusu']}';
 
                                             whatsAppSend(
                                               context,

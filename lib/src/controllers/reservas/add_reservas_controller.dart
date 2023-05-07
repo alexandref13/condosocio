@@ -19,16 +19,21 @@ class AddReservasController extends GetxController {
   var date = ''.obs;
   var hora = ''.obs;
   var idarea = ''.obs;
-
   var isChecked = false.obs;
-
   var isLoading = false.obs;
 
   incluirReserva() async {
+// Obtém a hora atual
+    DateTime agora = DateTime.now();
+// Obtém a data e hora inseridas convertendo as strings para um objeto DateTime
+    DateTime dataHoraInseridas = DateTime.parse('${date.value} ${hora.value}');
+
     if (titulo.value.text == '' ||
         data.value.text == '' ||
         isChecked.value == false) {
       return 'vazio';
+    } else if (dataHoraInseridas.isBefore(agora)) {
+      return 'hora invalida';
     } else {
       isLoading(true);
 

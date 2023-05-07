@@ -119,7 +119,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                             image:
                                                                 DecorationImage(
                                                               image: NetworkImage(
-                                                                  'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
+                                                                  'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
                                                             ),
                                                           ),
                                                         ),
@@ -320,7 +320,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                 image:
                                                                     DecorationImage(
                                                                   image: NetworkImage(
-                                                                      'https://condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
+                                                                      'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
                                                                 ),
                                                               ),
                                                             ),
@@ -573,7 +573,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                           image:
                                                               DecorationImage(
                                                             image: NetworkImage(
-                                                                'https://www.condosocio.com.br/acond/downloads/logocondo/${loginController.imgcondo.value}'),
+                                                                'https://www.alvocomtec.com.br/acond/downloads/logocondo/${loginController.imgcondo.value}'),
                                                           ),
                                                         ),
                                                       ),

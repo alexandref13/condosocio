@@ -80,7 +80,7 @@ class LoginController extends GetxController {
     await GetStorage.init();
     final box = GetStorage();
     box.write('email', emailS);
-    final response = await http.get(Uri.https('www.condosocio.com.br',
+    final response = await http.get(Uri.https('www.alvocomtec.com.br',
         '/flutter/unidadesLista.php', {"email": emailS}));
     var dados = json.decode(response.body);
     listOfCondo = dados.map((model) => ListOfCondo.fromJson(model)).toList();
@@ -91,7 +91,7 @@ class LoginController extends GetxController {
   login() async {
     isLoading(true);
     final response = await http
-        .post(Uri.https("condosocio.com.br", '/flutter/login.php'), body: {
+        .post(Uri.https("alvocomtec.com.br", '/flutter/login.php'), body: {
       "login": email.value.text,
       "senha": password.value.text,
     });
@@ -124,7 +124,7 @@ class LoginController extends GetxController {
 
   newLogin(String newId) {
     isLoading(true);
-    http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
+    http.post(Uri.https('www.alvocomtec.com.br', '/flutter/dados_usu.php'),
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
 

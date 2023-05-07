@@ -212,7 +212,7 @@ class Login extends StatelessWidget {
                                                                   .launched =
                                                               loginController
                                                                   .launchInBrowser(
-                                                            'https://condosocio.com.br/termo.html',
+                                                            'https://alvocomtec.com.br/termo.html',
                                                           );
                                                         },
                                                 ),
@@ -237,7 +237,7 @@ class Login extends StatelessWidget {
                                                                   .launched =
                                                               loginController
                                                                   .launchInBrowser(
-                                                            'https://condosocio.com.br/privacidade.html',
+                                                            'https://alvocomtec.com.br/privacidade.html',
                                                           );
                                                         },
                                                 ),
@@ -494,7 +494,7 @@ class Login extends StatelessWidget {
                                     // Get.toNamed('/esqueci');
                                     loginController.launched =
                                         loginController.launchInBrowser(
-                                      'https://condosocio.com.br',
+                                      'https://alvocomtec.com.br',
                                     );
                                   },
                                   child: Text(

@@ -23,7 +23,7 @@ class Convencao extends StatelessWidget {
         () {
           return convencaoController.isLoading.value
               ? Container(
-                height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: SizedBox(
@@ -32,7 +32,7 @@ class Convencao extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                        Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor,
                         ),
                       ),
                     ),
@@ -43,7 +43,9 @@ class Convencao extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      boxSearch(context, convencaoController.controller.value,
+                      boxSearch(
+                          context,
+                          convencaoController.controller.value,
                           convencaoController.onSearchTextChanged,
                           "Pesquise por Nome..."),
                       Expanded(
@@ -87,7 +89,7 @@ class Convencao extends StatelessWidget {
                                         onPressed: () {
                                           convencaoController.launched =
                                               convencaoController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${convencaoController.searchResult[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${convencaoController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -130,7 +132,7 @@ class Convencao extends StatelessWidget {
                                         onPressed: () {
                                           convencaoController.launched =
                                               convencaoController.launchInBrowser(
-                                                  "https://condosocio.com.br/acond/downloads/documentos/${convencaoController.convencao[index].imgdoc}");
+                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${convencaoController.convencao[index].imgdoc}");
                                         },
                                       ),
                                     ),

@@ -7,7 +7,7 @@ class ApiDocumentos {
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(
-      Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
+      Uri.https("www.alvocomtec.com.br", "/flutter/documentos.php",
           {"idUsu": "${loginController.id.value}", "pasta": "1"}),
     );
   }
@@ -16,7 +16,7 @@ class ApiDocumentos {
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(
-      Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
+      Uri.https("www.alvocomtec.com.br", "/flutter/documentos.php",
           {"idUsu": "${loginController.id.value}", "pasta": "6"}),
     );
   }
@@ -25,7 +25,7 @@ class ApiDocumentos {
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(
-      Uri.https("www.condosocio.com.br", "/flutter/documentos.php",
+      Uri.https("www.alvocomtec.com.br", "/flutter/documentos.php",
           {"idUsu": "${loginController.id.value}", "pasta": "2"}),
     );
   }
@@ -34,7 +34,7 @@ class ApiDocumentos {
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(Uri.https(
-        "www.condosocio.com.br",
+        "www.alvocomtec.com.br",
         "/flutter/documentos.php",
         {"idUsu": "${loginController.id.value}", "pasta": "4"}));
   }
@@ -43,7 +43,7 @@ class ApiDocumentos {
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(Uri.https(
-        "www.condosocio.com.br",
+        "www.alvocomtec.com.br",
         "/flutter/documentos.php",
         {"idUsu": "${loginController.id.value}", "pasta": "5"}));
   }
@@ -52,7 +52,7 @@ class ApiDocumentos {
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(Uri.https(
-        "www.condosocio.com.br",
+        "www.alvocomtec.com.br",
         "/flutter/documentos.php",
         {"idUsu": "${loginController.id.value}", "pasta": "3"}));
   }
@@ -61,7 +61,7 @@ class ApiDocumentos {
     LoginController loginController = Get.put(LoginController());
 
     return await http.get(Uri.https(
-        "www.condosocio.com.br",
+        "www.alvocomtec.com.br",
         "/flutter/documentos.php",
         {"idUsu": "${loginController.id.value}", "pasta": "7"}));
   }
