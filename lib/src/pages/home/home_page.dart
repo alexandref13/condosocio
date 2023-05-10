@@ -17,6 +17,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:edge_alert/edge_alert.dart';
 
+import '../../controllers/perfil_controller.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -79,7 +81,8 @@ class _HomePageState extends State<HomePage> {
     print(response.request);
 
     if (response.statusCode == 200) {
-      Navigator.of(context).pop();
+      loginController.newLogin(loginController.id.value);
+
       edgeAlertWidget(
           context, 'Parabéns!', 'Imagem do perfil alterada com sucesso.');
     } else if (response.statusCode == 404) {

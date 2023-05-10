@@ -331,7 +331,6 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                   startSelectedDate.toString();
                               convitesController.endDate.value =
                                   endSelectedDate.toString();
-
                               convitesController.handleAddPage();
                             },
                             child: Text(

@@ -440,9 +440,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                                             acessosController
                                                                 .sendFavoriteConvite()
                                                                 .then((value) {
-                                                              print(
-                                                                  'Retorno idfav $value');
-
                                                               acessosController
                                                                   .getFavoritos();
                                                               visualizarConviteController
@@ -618,7 +615,8 @@ class DetalheConviteWidget extends StatelessWidget {
                                                           context,
                                                           'Parabéns!',
                                                           'Convite deletado com sucesso.');
-                                                      Get.offNamed('/convites');
+                                                      Get.offNamedUntil('home',
+                                                          (route) => false);
                                                     } else {
                                                       onAlertButtonPressed(
                                                         context,

@@ -69,6 +69,7 @@ class ApiConvites {
       String startDate, String endDate, bool acesso) async {
     LoginController loginController = Get.put(LoginController());
     ConvitesController convitesController = Get.put(ConvitesController());
+    print(acesso.toString());
     return await http.post(
       Uri.https('www.alvocomtec.com.br', '/flutter/convites_inc.php'),
       body: {

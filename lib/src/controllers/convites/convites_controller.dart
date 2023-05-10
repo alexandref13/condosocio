@@ -81,7 +81,6 @@ class ConvitesController extends GetxController {
     guestList.addAll({
       {
         'nome': acessosController.name.value.text,
-        'tel': acessosController.phone.value.text,
         'tipo': acessosController.itemSelecionado.value,
       }
     });

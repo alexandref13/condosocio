@@ -33,7 +33,6 @@ class ListOfCondo extends StatelessWidget {
                             loginController.newId.value = condo.idusu;
                             loginController.newLogin(condo.idusu);
                             loginController.idcond.value = condo.idcond;
-
                             loginController.tipousu.value = condo.tipousu;
                             loginController.nomeusu.value = condo.nomeusu;
                             loginController.sobrenomeusu.value =

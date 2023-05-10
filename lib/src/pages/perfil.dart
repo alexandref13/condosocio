@@ -26,9 +26,11 @@ class _PerfilState extends State<Perfil> {
     perfilController.firstId.value = novoItem;
   }
 
-  final uri = Uri.parse("https://alvocomtec.com.br/flutter/upload_imagem.php");
   File _selectedFile;
   final _picker = ImagePicker();
+
+  final uri =
+      Uri.parse("https://www.alvocomtec.com.br/flutter/upload_imagem.php");
 
   Widget getImageWidget() {
     if (_selectedFile != null) {
@@ -41,7 +43,7 @@ class _PerfilState extends State<Perfil> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.only(left: 40),
+                  margin: EdgeInsets.only(left: 40, bottom: 5),
                   child: Center(
                     child: Icon(
                       Icons.edit,
@@ -50,8 +52,9 @@ class _PerfilState extends State<Perfil> {
                     ),
                   ),
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).accentColor)),
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).accentColor,
+                  )),
             ],
           ),
           width: 70,
@@ -69,20 +72,13 @@ class _PerfilState extends State<Perfil> {
       return GestureDetector(
         onTap: () {
           _configurandoModalBottomSheet(context);
-          //Navigator.pushNamed(context, '/Home');
         },
         child: loginController.imgperfil.value == ''
             ? Container(
-                width: 70,
-                height: 70,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left: 40),
+                      margin: EdgeInsets.only(left: 40, bottom: 5),
                       child: Center(
                         child: Icon(
                           Icons.edit,
@@ -99,25 +95,34 @@ class _PerfilState extends State<Perfil> {
                     ),
                   ],
                 ),
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('images/user.png'),
+                  ),
+                ),
               )
             : Container(
                 child: Column(
                   children: [
                     Container(
-                        margin: EdgeInsets.only(left: 40),
-                        child: Center(
-                          child: Icon(
-                            Icons.edit,
-                            size: 20,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
+                      margin: EdgeInsets.only(left: 40, bottom: 5),
+                      child: Center(
+                        child: Icon(
+                          Icons.edit,
+                          size: 20,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
                         ),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).accentColor,
-                        )),
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
                   ],
                 ),
                 width: 70,
@@ -170,7 +175,8 @@ class _PerfilState extends State<Perfil> {
     request.files.add(pic);
     var response = await request.send();
     if (response.statusCode == 200) {
-      Navigator.of(context).pop();
+      loginController.newLogin(loginController.id.value);
+
       EdgeAlert.show(context,
           title: 'Imagem do perfil alterada',
           gravity: EdgeAlert.BOTTOM,

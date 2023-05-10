@@ -6,6 +6,7 @@ import 'dart:convert';
 
 class HomePageController extends GetxController {
   Future<void> launched;
+  LoginController loginController = Get.put(LoginController());
 
   Future<void> launchInBrowser(String url) async {
     if (await canLaunch(url)) {

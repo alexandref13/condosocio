@@ -23,13 +23,13 @@ class Convite extends StatelessWidget {
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
-                if (convitesController.page.value == 2) {
-                  convitesController.handleMinusPage();
-                  //convitesController.page.value == 1;
-                  //Get.offNamed('/home');
-                } else if (convitesController.page.value == 1) {
-                  Get.offNamed('/home');
-                }
+                //if (convitesController.page.value == 2) {
+                // convitesController.handleMinusPage();
+                //convitesController.page.value == 1;
+                //Get.offNamed('/home');
+                // } else if (convitesController.page.value == 1) {
+                Get.offNamedUntil('home', (route) => false);
+                //}
               },
               icon: Icon(Icons.arrow_back_ios),
             ),

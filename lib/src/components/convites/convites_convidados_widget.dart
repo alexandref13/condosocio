@@ -710,7 +710,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     acessosController.name.value,
                                   ),
                                 ),
-                                Container(
+                                /* Container(
                                   margin: EdgeInsets.only(bottom: 5),
                                   padding: EdgeInsets.all(7),
                                   child: TextField(
@@ -762,7 +762,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                ),
+                                ),*/
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -1123,6 +1123,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     )
                                         .then(
                                       (value) {
+                                        print(
+                                            'Retorno Dados do convites_inc.php $value');
                                         if (value != 0) {
                                           convitesController.guestList.clear();
                                           convitesController.getConvites();

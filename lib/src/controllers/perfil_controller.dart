@@ -18,6 +18,7 @@ class PerfilController extends GetxController {
   var phone = TextEditingController().obs;
   var tipo = TextEditingController().obs;
   var fullName = '';
+  var imgperfil = ''.obs;
 
   var firstId = '0'.obs;
 
@@ -75,6 +76,7 @@ class PerfilController extends GetxController {
   }
 
   init() {
+    imgperfil.value = loginController.imgperfil.value;
     name.value.text = loginController.nome.value;
     phone.value.text = loginController.phone.value;
     secondName.value.text = loginController.sobrenome.value;
