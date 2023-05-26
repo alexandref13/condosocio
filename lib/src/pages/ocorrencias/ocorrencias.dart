@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import '../../components/utils/alert_button_pressed.dart';
+
 class Ocorrencias extends StatefulWidget {
   @override
   _OcorrenciasState createState() => _OcorrenciasState();
@@ -38,8 +40,11 @@ class _OcorrenciasState extends State<Ocorrencias> {
                 color: Theme.of(context).textSelectionTheme.selectionColor,
               ),
               onPressed: () {
-                onAlertButtonPressed(context,
-                    'Comunique qualquer ocorrência à administração do condomínio. Adicione uma imagem e um breve relato para ajudar na compreensão. Suas informações serão mantidas em sigilo e apenas a administração terá acesso. Use o app para acompanhar o andamento da sua ocorrência em tempo real. Fique tranquilo sabendo que sua demanda será atendida da melhor maneira possível.');
+                onAlertButtonPressed(
+                    context,
+                    'Comunique qualquer ocorrência à administração do condomínio. Adicione uma imagem e um breve relato para ajudar na compreensão. Suas informações serão mantidas em sigilo e apenas a administração terá acesso. Use o app para acompanhar o andamento da sua ocorrência em tempo real. Fique tranquilo sabendo que sua demanda será atendida da melhor maneira possível.',
+                    null,
+                    null);
               },
             )
           ],
@@ -71,7 +76,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
   }
 }
 
-onAlertButtonPressed(context, String texto) {
+/*onAlertButtonPressed(context, String texto) {
   Alert(
     image: Icon(
       Icons.warning_sharp,
@@ -86,7 +91,7 @@ onAlertButtonPressed(context, String texto) {
       //descStyle: GoogleFonts.poppins(color: Colors.red,),
       animationDuration: Duration(milliseconds: 300),
       titleStyle: GoogleFonts.poppins(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         fontSize: 14,
       ),
     ),
@@ -105,8 +110,8 @@ onAlertButtonPressed(context, String texto) {
           Navigator.of(context).pop();
         },
         width: 80,
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
       )
     ],
   ).show();
-}
+}*/

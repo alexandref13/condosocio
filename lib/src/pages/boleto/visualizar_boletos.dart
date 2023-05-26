@@ -73,7 +73,7 @@ class VisualizarBoletos extends StatelessWidget {
                             launchInBrowser(boleto[i]['link2viaboleto']);
                           },
                           child: Card(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             child: ListTile(
                               leading: IconButton(
                                 icon: Icon(Icons.qr_code),

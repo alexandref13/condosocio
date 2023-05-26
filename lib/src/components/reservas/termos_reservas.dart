@@ -2,7 +2,7 @@ import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+//import 'package:flutter_html/style.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TermosReservas extends StatelessWidget {

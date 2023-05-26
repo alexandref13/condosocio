@@ -57,7 +57,8 @@ class Prestacao extends StatelessWidget {
                                     prestacaoController.searchResult.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         prestacaoController
@@ -100,7 +101,8 @@ class Prestacao extends StatelessWidget {
                                 itemCount: prestacaoController.prestacao.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         prestacaoController

@@ -37,10 +37,9 @@ class QrCode extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 40),
-                  QrImage(
+                  QrImageView(
                     data: encomendasController.idcript.value,
                     version: QrVersions.auto,
-                    foregroundColor: Colors.black,
                     backgroundColor: Colors.white,
                     size: 240,
                   ),

@@ -67,7 +67,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                         veiculosController.onSearchTextChanged, "Pesquise ..."),*/
                     Container(
                       padding: EdgeInsets.all(15),
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

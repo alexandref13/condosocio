@@ -1,15 +1,15 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
-import 'package:condosocio/src/components/utils/whatsapp_send.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
-import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
-import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 //import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
+
+import '../../controllers/acessos/acessos_controller_espera.dart';
+import '../../controllers/esperaacessos/visualizar_acessos_espera_controller.dart';
 
 void configurandoModalBottomSheet(
   context,
@@ -24,14 +24,18 @@ void configurandoModalBottomSheet(
   String idConv,
   String imgfacial,
   String idvis,
+  String espera,
 ) {
   showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
-        VisualizarConvitesController visualizarConvitesController =
-            Get.put(VisualizarConvitesController());
-        LoginController loginController = Get.put(LoginController());
         AcessosController acessosController = Get.put(AcessosController());
+        AcessosEsperaController acessosEsperaController =
+            Get.put(AcessosEsperaController());
+
+        VisualizarAcessosEsperaController visualizarAcessosEsperaController =
+            Get.put(VisualizarAcessosEsperaController());
+
         VisualizarAcessosController visualizarAcessosController =
             Get.put(VisualizarAcessosController());
 
@@ -43,19 +47,19 @@ void configurandoModalBottomSheet(
 
         return Container(
           padding: EdgeInsets.only(bottom: 8),
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           child: Container(
             child: Wrap(
               children: <Widget>[
                 ListTile(
-                  leading: imgfacial == ''
+                  leading: imgfacial == null
                       ? tipo == "App Mobilidade"
                           ? new Icon(
                               FontAwesome.car,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor,
-                              size: 30,
+                              size: 24,
                             )
                           : new Icon(
                               Feather.user,
@@ -65,26 +69,25 @@ void configurandoModalBottomSheet(
                               size: 30,
                             )
                       : Container(
-                          width: 50,
-                          height: 50,
+                          width: 60,
+                          height: 60,
                           decoration: BoxDecoration(
-                            shape: BoxShape.circle,
                             image: DecorationImage(
                               image: NetworkImage(
-                                'https://www.alvocomtec.com.br/acond/downloads/fotosvisitantes/$imgfacial',
+                                tipo == 'Morador'
+                                    ? 'https://www.alvocomtec.com.br/acond/downloads/fotosperfil/$imgfacial'
+                                    : 'https://www.alvocomtec.com.br/acond/downloads/fotosvisitantes/$imgfacial',
                               ),
                               // image: AssetImage('images/user.png'),
                             ),
                           ),
                         ),
-                  trailing: imgfacial != ''
-                      ? GestureDetector(
-                          child: Icon(
-                            Icons.arrow_right,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor,
-                          ),
+                  trailing: imgfacial != null
+                      ? Icon(
+                          Icons.arrow_right,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor,
                         )
                       : Text(''),
                   title: Text(
@@ -92,72 +95,26 @@ void configurandoModalBottomSheet(
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
                   ),
                   subtitle: Text(
-                    '$tipo',
+                    tipo,
                     style: TextStyle(fontSize: 14),
                   ),
+                  onTap: () {
+                    acessosController.imgfacial.value = imgfacial;
+                    tipo == 'Morador'
+                        ? acessosController.tipoimgfacial.value = "fotosperfil"
+                        : acessosController.tipoimgfacial.value =
+                            "fotosvisitantes";
+
+                    if (imgfacial != null) {
+                      Navigator.of(context).pop();
+                      Get.toNamed('/facialacesso');
+                    }
+                  },
                 ),
                 Divider(
                   height: 20,
                   color: Colors.blueGrey,
                 ),
-                /*dataEntrada == ''
-                    ? ListTile(
-                        leading: new Icon(
-                          FontAwesome.whatsapp,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                        title: Text('Enviar por WhatsApp'),
-                        trailing: Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor,
-                        ),
-                        onTap: () {
-                          visualizarConvitesController.nameGuest.value = pessoa;
-                          visualizarConvitesController.idConv.value = idConv;
-                          var celular;
-
-                          celular = cel
-                              .replaceAll("+", "")
-                              .replaceAll("(", "")
-                              .replaceAll(")", "")
-                              .replaceAll("-", "")
-                              .replaceAll(" ", "");
-
-                          visualizarConvitesController
-                              .whatsappNumber.value.text = celular;
-
-                          if (celular.length == 11) {
-                            visualizarConvitesController.sendWhatsApp().then(
-                              (value) {
-                                if (value != 0) {
-                                  String message =
-                                      'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://alvocomtec.com.br/paginas/a?chave=${value['idace']}';
-
-                                  whatsAppSend(
-                                    context,
-                                    "55${visualizarConvitesController.whatsappNumber.value.text}",
-                                    Uri.encodeFull(
-                                      message,
-                                    ),
-                                  );
-                                } else {
-                                  onAlertButtonPressed(
-                                      context,
-                                      'Algo deu errado\n Tente novamente',
-                                      '/home');
-                                }
-                              },
-                            );
-                          } else {
-                            Get.toNamed('/whatsAppConvite');
-                          }
-                        },
-                      )
-                    : Container(),*/
                 dataEntrada != ''
                     ? ListTile(
                         leading: Obx(
@@ -182,14 +139,28 @@ void configurandoModalBottomSheet(
                               .selectionColor,
                         ),
                         onTap: () {
-                          visualizarAcessosController.fav.value =
-                              !visualizarAcessosController.fav.value;
-                          acessosController.sendFavorite().then((value) {
-                            visualizarAcessosController.getAcessos();
-
-                            acessosController.getFavoritos();
-                            Get.back();
-                          });
+                          print("Espera: $espera");
+                          if (espera == "1") {
+                            visualizarAcessosController.fav.value =
+                                !visualizarAcessosController.fav.value;
+                            acessosController
+                                .sendFavorite(espera)
+                                .then((value) {
+                              visualizarAcessosController.getAcessos();
+                              acessosController.getFavoritos();
+                            });
+                          } else {
+                            visualizarAcessosEsperaController.fav.value =
+                                !visualizarAcessosEsperaController.fav.value;
+                            acessosEsperaController
+                                .sendFavorite(espera)
+                                .then((value) {
+                              visualizarAcessosEsperaController
+                                  .getAcessosEspera();
+                              acessosEsperaController.getFavoritos();
+                            });
+                          }
+                          Get.back();
                         })
                     : Container(),
                 dataEntrada == ' '
@@ -206,30 +177,56 @@ void configurandoModalBottomSheet(
                                   )),
                                   elevation: MaterialStateProperty.all(0),
                                   backgroundColor: MaterialStateProperty.all(
-                                    Theme.of(context).errorColor,
+                                    Theme.of(context).colorScheme.error,
                                   )),
                               onPressed: () {
                                 deleteAlert(context, 'Deseja excluir o acesso?',
                                     () {
-                                  acessosController
-                                      .deleteAcesso()
-                                      .then((value) {
-                                    if (value == 1) {
-                                      visualizarAcessosController.getAcessos();
-                                      edgeAlertWidget(
-                                        context,
-                                        'Parabéns!',
-                                        'Acesso excluído com sucesso.',
-                                      );
-                                      Get.back();
-                                      Get.back();
-                                    } else {
-                                      onAlertButtonPressed(
+                                  if (espera == '1') {
+                                    acessosController
+                                        .deleteAcesso(espera)
+                                        .then((value) {
+                                      if (value == 1) {
+                                        visualizarAcessosController
+                                            .getAcessos();
+                                        edgeAlertWidget(
                                           context,
-                                          'Algo deu errado\n Tente novamente',
-                                          '/home');
-                                    }
-                                  });
+                                          'Parabéns!',
+                                          'Acesso excluído com sucesso.',
+                                        );
+                                        Get.back();
+                                        Get.back();
+                                      } else {
+                                        onAlertButtonPressed(
+                                            context,
+                                            'Algo deu errado\n Tente novamente',
+                                            '/home',
+                                            'sim');
+                                      }
+                                    });
+                                  } else {
+                                    acessosEsperaController
+                                        .deleteAcesso(espera)
+                                        .then((value) {
+                                      if (value == 1) {
+                                        visualizarAcessosEsperaController
+                                            .getAcessosEspera();
+                                        edgeAlertWidget(
+                                          context,
+                                          'Parabéns!',
+                                          'Acesso excluído com sucesso.',
+                                        );
+                                        Get.back();
+                                        Get.back();
+                                      } else {
+                                        onAlertButtonPressed(
+                                            context,
+                                            'Algo deu errado\n Tente novamente',
+                                            '/home',
+                                            'sim');
+                                      }
+                                    });
+                                  }
                                 });
                               },
                               child: Text(

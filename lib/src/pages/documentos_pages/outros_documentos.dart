@@ -56,7 +56,8 @@ class Outros extends StatelessWidget {
                                 itemCount: outrosController.searchResult.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         outrosController
@@ -99,7 +100,8 @@ class Outros extends StatelessWidget {
                                 itemCount: outrosController.outros.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         outrosController.outros[index].nome,

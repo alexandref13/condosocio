@@ -5,7 +5,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class DetalhesEncomendas extends StatelessWidget {
   final EncomendasController encomendasController =
       Get.put(EncomendasController());
@@ -292,7 +291,9 @@ class DetalhesEncomendas extends StatelessWidget {
                                     backgroundColor: MaterialStateProperty
                                         .resolveWith<Color>(
                                       (Set<MaterialState> states) {
-                                        return Theme.of(context).accentColor;
+                                        return Theme.of(context)
+                                            .colorScheme
+                                            .secondary;
                                       },
                                     ),
                                     shape: MaterialStateProperty.resolveWith<
@@ -306,7 +307,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                     Get.toNamed('/qrCode');
+                                    Get.toNamed('/qrCode');
                                     /* Alert(
                                       image: Icon(
                                         Icons.highlight_off,
@@ -387,14 +388,14 @@ class DetalhesEncomendas extends StatelessWidget {
                                       ],
                                     ).show();*/
                                   },
-                                   child: Text(
-                                     'Receber Encomenda',
+                                  child: Text(
+                                    'Receber Encomenda',
                                     style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context)
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor,
-                              ),
+                                    ),
                                   ),
                                 ),
                               ),

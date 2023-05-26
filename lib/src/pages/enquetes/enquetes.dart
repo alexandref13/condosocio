@@ -87,8 +87,8 @@ class Enquetes extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                             color: enquetes.datavalida == 'Votação Encerrada'
-                                ? Theme.of(context).buttonColor
-                                : Theme.of(context).accentColor,
+                                ? Theme.of(context).colorScheme.secondary
+                                : Theme.of(context).colorScheme.secondary,
                             child: ListTile(
                                 leading: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,

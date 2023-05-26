@@ -84,7 +84,9 @@ class BoletoPage extends StatelessWidget {
                                     fontSize: 14),
                                 errorBorder: new OutlineInputBorder(
                                     borderSide: new BorderSide(
-                                        color: Theme.of(context).accentColor)),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary)),
                                 focusedErrorBorder: new OutlineInputBorder(
                                     borderSide:
                                         new BorderSide(color: Colors.red[900])),
@@ -138,7 +140,9 @@ class BoletoPage extends StatelessWidget {
                                     fontSize: 14),
                                 errorBorder: new OutlineInputBorder(
                                     borderSide: new BorderSide(
-                                        color: Theme.of(context).accentColor)),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary)),
                                 focusedErrorBorder: new OutlineInputBorder(
                                     borderSide:
                                         new BorderSide(color: Colors.red[900])),
@@ -164,7 +168,9 @@ class BoletoPage extends StatelessWidget {
                                 backgroundColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
-                                    return Theme.of(context).accentColor;
+                                    return Theme.of(context)
+                                        .colorScheme
+                                        .secondary;
                                   },
                                 ),
                                 shape: MaterialStateProperty.resolveWith<

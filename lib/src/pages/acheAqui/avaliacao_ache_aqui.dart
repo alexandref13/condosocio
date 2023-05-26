@@ -34,7 +34,7 @@ class AvaliacaoAcheAqui extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 child: Column(
                                   children: [
                                     Container(

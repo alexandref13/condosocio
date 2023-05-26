@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   )),
             ],
           ),
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ],
@@ -186,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ],
@@ -239,7 +239,7 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext bc) {
           return Container(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             padding: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[
@@ -318,7 +318,7 @@ class _HomePageState extends State<HomePage> {
           ),
           drawer: Drawer(
             child: Container(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               child: ListView(
                 children: <Widget>[
                   DrawerHeader(

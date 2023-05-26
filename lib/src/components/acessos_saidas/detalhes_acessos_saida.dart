@@ -382,7 +382,8 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                                       onAlertButtonPressed(
                                                           context,
                                                           'Algo deu errado\n Tente novamente',
-                                                          '/home');
+                                                          '/home',
+                                                          'sim');
                                                     }
                                                   },
                                                 );

@@ -355,7 +355,9 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                   fontSize: 14),
                               errorBorder: new OutlineInputBorder(
                                   borderSide: new BorderSide(
-                                      color: Theme.of(context).accentColor)),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary)),
                               focusedErrorBorder: new OutlineInputBorder(
                                   borderSide:
                                       new BorderSide(color: Colors.red[900])),
@@ -603,7 +605,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                                   onAlertButtonPressed(
                                                       context,
                                                       'Algo deu errado\n Tente novamente',
-                                                      '/home');
+                                                      '/home',
+                                                      'sim');
                                                 }
                                               },
                                             );
@@ -616,18 +619,19 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 //'Número máximo de usuários excedido!\nFale com a adminstração do condomínio',
                                 // null);
                               } else if (value == 3) {
-                                onAlertButtonPressed(
-                                    context, 'Usuário já cadastrado!', null);
+                                onAlertButtonPressed(context,
+                                    'Usuário já cadastrado!', null, 'sim');
                               } else if (value == "vazio") {
                                 onAlertButtonPressed(
-                                    context, 'Algum campo vazio!', null);
+                                    context, 'Algum campo vazio!', null, 'sim');
                               } else if (value == 'invalido') {
                                 onAlertButtonPressed(
-                                    context, 'E-mail inválido!', null);
+                                    context, 'E-mail inválido!', null, 'sim');
                               } else {
                                 onAlertButtonPressed(
                                     context,
                                     'Houve algum problema!Tente novamente',
+                                    null,
                                     null);
                               }
                             });

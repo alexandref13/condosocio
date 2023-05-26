@@ -71,7 +71,8 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                       .circle,
                                                                   color: Theme.of(
                                                                           context)
-                                                                      .accentColor,
+                                                                      .colorScheme
+                                                                      .secondary,
                                                                 ),
                                                               ),
                                                             ],
@@ -105,7 +106,8 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                       .circle,
                                                                   color: Theme.of(
                                                                           context)
-                                                                      .accentColor,
+                                                                      .colorScheme
+                                                                      .secondary,
                                                                 ),
                                                               ),
                                                             ],
@@ -272,7 +274,8 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                           .circle,
                                                                       color: Theme.of(
                                                                               context)
-                                                                          .accentColor,
+                                                                          .colorScheme
+                                                                          .secondary,
                                                                     ),
                                                                   ),
                                                                 ],
@@ -306,7 +309,8 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                           .circle,
                                                                       color: Theme.of(
                                                                               context)
-                                                                          .accentColor,
+                                                                          .colorScheme
+                                                                          .secondary,
                                                                     ),
                                                                   ),
                                                                 ],
@@ -460,7 +464,8 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                             ),
                                                             color: Theme.of(
                                                                     context)
-                                                                .accentColor,
+                                                                .colorScheme
+                                                                .secondary,
                                                             child: Column(
                                                               children: [
                                                                 Container(
@@ -559,7 +564,8 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                     .circle,
                                                                 color: Theme.of(
                                                                         context)
-                                                                    .accentColor,
+                                                                    .colorScheme
+                                                                    .secondary,
                                                               ),
                                                             ),
                                                           ],
@@ -610,14 +616,14 @@ class DetalhesOuvidoria extends StatelessWidget {
                   textCapitalization: TextCapitalization.sentences,
                   style: GoogleFonts.montserrat(
                     fontSize: 12,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                   decoration: InputDecoration(
-                    fillColor: Theme.of(context).accentColor,
+                    fillColor: Theme.of(context).colorScheme.secondary,
                     hintText: 'Envie uma resposta',
                     hintStyle: GoogleFonts.montserrat(
                       fontSize: 12,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ),
@@ -625,13 +631,13 @@ class DetalhesOuvidoria extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.send),
                 iconSize: 25.0,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 onPressed: () {
                   respondaController.sendRespondaOuvidoria().then((value) {
                     print('valor $value');
                     if (value == 0) {
                       onAlertButtonPressed(context,
-                          'Algo deu errado\n Tente novamente', '/home');
+                          'Algo deu errado\n Tente novamente', '/home', 'sim');
                     }
                   });
                 },

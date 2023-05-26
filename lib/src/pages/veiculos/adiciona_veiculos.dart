@@ -416,7 +416,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                     'Veículo cadastrado com sucesso.');
                               } else if (value == "vazio") {
                                 onAlertButtonPressed(
-                                    context, 'Algum Campo Vazio!', null);
+                                    context, 'Algum Campo Vazio!', null, 'sim');
                               } else if (value == 2) {
                                 onAlertButtonPressedVagas(
                                     context,
@@ -426,7 +426,8 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 onAlertButtonPressed(
                                     context,
                                     'Houve algum problema!Tente novamente',
-                                    null);
+                                    null,
+                                    'sim');
                               }
                             });
                           },

@@ -136,7 +136,9 @@ class _EsqueciState extends State<Esqueci> {
                                     backgroundColor: MaterialStateProperty
                                         .resolveWith<Color>(
                                       (Set<MaterialState> states) {
-                                        return Theme.of(context).accentColor;
+                                        return Theme.of(context)
+                                            .colorScheme
+                                            .secondary;
                                       },
                                     ),
                                     shape: MaterialStateProperty.resolveWith<
@@ -161,13 +163,12 @@ class _EsqueciState extends State<Esqueci> {
                                             "Enviamos um e-mail para a redefinição de senha. Aguarde!",
                                             "/login",
                                           );
-                                          
                                         } else {
                                           onAlertButtonPressed(
-                                            context,
-                                            "E-mail não existe em nosso banco de dados!Tente novamente.",
-                                            null,
-                                          );
+                                              context,
+                                              "E-mail não existe em nosso banco de dados!Tente novamente.",
+                                              null,
+                                              'sim');
                                         }
                                       });
                                     }

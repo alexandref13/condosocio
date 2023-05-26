@@ -30,8 +30,8 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: isSameDay(calendarioReservasController.selectedDay.value, date)
-            ? Theme.of(context).buttonColor
-            : Theme.of(context).accentColor,
+            ? Theme.of(context).colorScheme.secondary
+            : Theme.of(context).colorScheme.secondary,
       ),
       width: 18.0,
       height: 18.0,
@@ -139,7 +139,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                           calendarStyle: CalendarStyle(
                             outsideDaysVisible: true,
                             todayDecoration: BoxDecoration(
-                              color: Theme.of(context).buttonColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               shape: BoxShape.circle,
                             ),
                             defaultTextStyle: TextStyle(

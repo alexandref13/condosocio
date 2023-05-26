@@ -20,7 +20,7 @@ onWhatsappButtonPressed(context, String page) {
       size: 60,
     ),
     style: AlertStyle(
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       animationType: AnimationType.fromTop,
       isCloseButton: false,
       isOverlayTapDismiss: false,

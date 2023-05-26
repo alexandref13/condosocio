@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import '../../components/utils/alert_button_pressed.dart';
+
 class Dependentes extends StatefulWidget {
   @override
   _DependentesState createState() => _DependentesState();
@@ -38,8 +40,12 @@ class _DependentesState extends State<Dependentes> {
                   color: Theme.of(context).textSelectionTheme.selectionColor,
                 ),
                 onPressed: () {
-                  onAlertButtonPressed(context,
-                      'Moradores receberão automaticamente um e-mail para definicão de senha e terão assim acesso ao CondoSócio e poderão cadastrar a face (para condomínios com essa tecnologia), além de utilizar todos os serviços da plataforma. Lembramos que você deverá cadastrar apenas pessoas que residem com você no condomínio, se houver descumprimento desta norma, estará sujeito às penalidades dispostas no regulamento interno e ou Convenção.\n\n Prestadores de serviço após o cadastro deste, você deverá clicar no ícone do whatsapp para o envio do link de cadastramento dos documentos e face (para condomínios com essa tecnologia).');
+                  onAlertButtonPressed(
+                    context,
+                    'Os moradores receberão automaticamente um e-mail para definir sua senha e obter acesso ao CondoSócio. Assim, poderão aproveitar todos os serviços oferecidos pela plataforma, incluindo a possibilidade de cadastrar sua face (para condomínios que possuem essa tecnologia). É importante lembrar que você só deve cadastrar pessoas que residem com você no condomínio. O descumprimento dessa norma sujeitará você a penalidades conforme o regulamento interno e/ou a Convenção.\n\nNo caso de prestadores de serviço, após o cadastro, você precisará clicar no ícone do WhatsApp para enviar o link de cadastramento de documentos e da face (para condomínios com essa tecnologia).',
+                    null,
+                    null,
+                  );
                 },
               )
             ],
@@ -71,44 +77,4 @@ class _DependentesState extends State<Dependentes> {
       ),
     );
   }
-}
-
-onAlertButtonPressed(context, String text) {
-  Alert(
-    image: Icon(
-      Icons.warning_sharp,
-      color: Colors.orange,
-      size: 50,
-    ),
-    style: AlertStyle(
-      backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
-      animationType: AnimationType.fromTop,
-      isCloseButton: false,
-      isOverlayTapDismiss: false,
-      //descStyle: GoogleFonts.poppins(color: Colors.red,),
-      animationDuration: Duration(milliseconds: 300),
-      titleStyle: GoogleFonts.poppins(
-        color: Theme.of(context).colorScheme.secondary,
-        fontSize: 14,
-      ),
-    ),
-    context: context,
-    title: text,
-    buttons: [
-      DialogButton(
-        child: Text(
-          "Fechar",
-          style: GoogleFonts.montserrat(
-            color: Colors.white,
-            fontSize: 12,
-          ),
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        width: 80,
-        color: Theme.of(context).accentColor,
-      )
-    ],
-  ).show();
 }

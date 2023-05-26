@@ -150,8 +150,9 @@ class PesquisaAcheAqui extends StatelessWidget {
                                               borderRadius:
                                                   BorderRadius.circular(15.0),
                                             ),
-                                            color:
-                                                Theme.of(context).accentColor,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
                                             child: ListTile(
                                               title: Padding(
                                                 padding: EdgeInsets.symmetric(

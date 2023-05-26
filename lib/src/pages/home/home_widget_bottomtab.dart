@@ -6,6 +6,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../controllers/esperaacessos/visualizar_acessos_espera_controller.dart';
 import '../../controllers/home_page_controller.dart';
 import '../../controllers/login_controller.dart';
 
@@ -20,6 +21,8 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
   ConvitesController convitesController = Get.put(ConvitesController());
   VisualizarAcessosController visualizarAcessosController =
       Get.put(VisualizarAcessosController());
+  VisualizarAcessosEsperaController visualizarAcessosEsperaController =
+      Get.put(VisualizarAcessosEsperaController());
   final LoginController loginController = Get.put(LoginController());
   final HomePageController homePageController = Get.put(HomePageController());
 
@@ -87,10 +90,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -125,16 +129,18 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          visualizarAcessosEsperaController.getAcessosEspera();
                           visualizarAcessosController.getAcessos();
                           Get.toNamed('/visualizarAcessos');
                         },
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -170,16 +176,18 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                       loginController.condofacial.value == "SIM"
                           ? GestureDetector(
                               onTap: () {
-                                convitesController.page.value = 1;
-                                Get.toNamed('/convites');
+                                Get.toNamed('/facial');
                               },
                               child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Theme.of(context).buttonColor,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                         spreadRadius: 3,
                                         blurRadius: 1,
                                         offset: Offset(
@@ -194,7 +202,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                         padding:
                                             const EdgeInsets.only(bottom: 10),
                                         child: Icon(
-                                          Icons.face_unlock_sharp,
+                                          Icons.face_5_sharp,
                                           size: 35,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -215,18 +223,20 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                             )
                           : GestureDetector(
                               onTap: () {
-                                //convitesController.page.value = 1;
-                                //Get.toNamed('/convites');
+                                //Get.toNamed('/perfil');
                               },
                               child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: Theme.of(context)
-                                        .accentColor
+                                        .colorScheme
+                                        .secondary
                                         .withOpacity(0.5),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Theme.of(context).buttonColor,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                         spreadRadius: 3,
                                         blurRadius: 1,
                                         offset: Offset(
@@ -241,7 +251,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                         padding:
                                             const EdgeInsets.only(bottom: 10),
                                         child: Icon(
-                                          Icons.face_unlock_sharp,
+                                          Icons.face_5_sharp,
                                           size: 35,
                                           color: Theme.of(context)
                                               .textSelectionTheme
@@ -269,10 +279,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -312,10 +323,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -355,10 +367,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -398,10 +411,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -442,10 +456,13 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                               child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Theme.of(context).buttonColor,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                         spreadRadius: 3,
                                         blurRadius: 1,
                                         offset: Offset(
@@ -487,11 +504,14 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: Theme.of(context)
-                                        .accentColor
+                                        .colorScheme
+                                        .secondary
                                         .withOpacity(0.5),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Theme.of(context).buttonColor,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                         spreadRadius: 3,
                                         blurRadius: 1,
                                         offset: Offset(
@@ -534,10 +554,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -577,10 +598,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -620,10 +642,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -663,10 +686,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -706,10 +730,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -749,10 +774,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -792,10 +818,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -838,10 +865,10 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             boxShadow: [
                               BoxShadow(
-                                color: Theme.of(context).buttonColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 spreadRadius: 3,
                                 blurRadius: 1,
                                 offset:

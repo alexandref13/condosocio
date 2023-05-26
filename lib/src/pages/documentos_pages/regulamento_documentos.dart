@@ -58,7 +58,8 @@ class Regulamento extends StatelessWidget {
                                     regulamentoController.searchResult.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         regulamentoController
@@ -102,7 +103,8 @@ class Regulamento extends StatelessWidget {
                                     regulamentoController.regulamento.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         regulamentoController

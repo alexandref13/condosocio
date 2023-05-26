@@ -16,7 +16,7 @@ void ocorrenciasModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
         return Container(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           child: Container(
             child: Wrap(
               children: <Widget>[
@@ -29,7 +29,7 @@ void ocorrenciasModalBottomSheet(
                           )
                         : Icon(
                             Icons.done,
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             size: 40,
                           ),
                     title: Text(

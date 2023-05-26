@@ -99,7 +99,9 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                                 backgroundColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
-                                    return Theme.of(context).accentColor;
+                                    return Theme.of(context)
+                                        .colorScheme
+                                        .secondary;
                                   },
                                 ),
                                 elevation:
@@ -127,16 +129,16 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                                       );
                                     } else if (response == 'vazio') {
                                       onAlertButtonPressed(
-                                        context,
-                                        'Assunto e Mensagem são campos obrigátorios',
-                                        null,
-                                      );
+                                          context,
+                                          'Assunto e Mensagem são campos obrigátorios',
+                                          null,
+                                          'sim');
                                     } else {
                                       onAlertButtonPressed(
-                                        context,
-                                        'Algo deu errado\n Tente novamente',
-                                        '/home',
-                                      );
+                                          context,
+                                          'Algo deu errado\n Tente novamente',
+                                          '/home',
+                                          'sim');
                                     }
                                   },
                                 );

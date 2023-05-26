@@ -29,7 +29,7 @@ void dependentesModalBottomSheet(
             Get.put(VisualizarConvitesController());
         LoginController loginController = Get.put(LoginController());
         return Container(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           child: Container(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 40),
@@ -62,7 +62,9 @@ void dependentesModalBottomSheet(
                                       margin: EdgeInsets.only(left: 10),
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Theme.of(context).accentColor,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                       )),
                                 ],
                               ),
@@ -124,10 +126,10 @@ void dependentesModalBottomSheet(
                                             Get.back();
                                           } else {
                                             onAlertButtonPressed(
-                                              context,
-                                              'Algo deu errado\n Tente novamente',
-                                              '/home',
-                                            );
+                                                context,
+                                                'Algo deu errado\n Tente novamente',
+                                                '/home',
+                                                'sim');
                                           }
                                         },
                                       );
@@ -186,7 +188,8 @@ void dependentesModalBottomSheet(
                                             onAlertButtonPressed(
                                                 context,
                                                 'Algo deu errado\n Tente novamente',
-                                                '/home');
+                                                '/home',
+                                                'sim');
                                           }
                                         },
                                       );
@@ -336,10 +339,10 @@ void dependentesModalBottomSheet(
                                       Get.back();
                                     } else {
                                       onAlertButtonPressed(
-                                        context,
-                                        'Algo deu errado\n Tente novamente',
-                                        '/home',
-                                      );
+                                          context,
+                                          'Algo deu errado\n Tente novamente',
+                                          '/home',
+                                          'sim');
                                     }
                                   },
                                 );

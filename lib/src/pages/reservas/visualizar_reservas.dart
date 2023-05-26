@@ -151,7 +151,8 @@ class VisualizarReservas extends StatelessWidget {
                               : Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12.0),
-                                    color: Theme.of(context).buttonColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                   ),
                                   margin: const EdgeInsets.symmetric(
                                       horizontal: 8.0, vertical: 4.0),

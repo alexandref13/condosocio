@@ -206,7 +206,9 @@ class _AddReservasState extends State<AddReservas> {
                                 backgroundColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
-                                    return Theme.of(context).accentColor;
+                                    return Theme.of(context)
+                                        .colorScheme
+                                        .secondary;
                                   },
                                 ),
                                 shape: MaterialStateProperty.resolveWith<
@@ -230,23 +232,20 @@ class _AddReservasState extends State<AddReservas> {
                                     .then((value) {
                                   if (value == 'vazio') {
                                     onAlertButtonPressed(
-                                      context,
-                                      'Campo Nome do Evento, Hora Inicial ou Termos de Uso vazio(s)!',
-                                      null,
-                                    );
+                                        context,
+                                        'Campo Nome do Evento, Hora Inicial ou Termos de Uso vazio(s)!',
+                                        null,
+                                        'sim');
                                   } else if (value == 'hora invalida') {
-                                    onAlertButtonPressed(
-                                      context,
-                                      'Hora Inicial Inválida!',
-                                      null,
-                                    );
+                                    onAlertButtonPressed(context,
+                                        'Hora Inicial Inválida!', null, 'sim');
                                   } else {
                                     if (value == 3) {
                                       onAlertButtonPressed(
-                                        context,
-                                        'Horário indisponível\n Tente outro horário',
-                                        '/home',
-                                      );
+                                          context,
+                                          'Horário indisponível\n Tente outro horário',
+                                          '/home',
+                                          'sim');
                                     }
                                     if (value == 1) {
                                       confirmedButtonPressed(
@@ -257,10 +256,10 @@ class _AddReservasState extends State<AddReservas> {
                                     }
                                     if (value == 0) {
                                       onAlertButtonPressed(
-                                        context,
-                                        'Algo deu errado \n Tente novamente',
-                                        '/home',
-                                      );
+                                          context,
+                                          'Algo deu errado \n Tente novamente',
+                                          '/home',
+                                          'sim');
                                     }
                                   }
                                 });

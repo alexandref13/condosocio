@@ -52,7 +52,8 @@ class Ata extends StatelessWidget {
                                 itemCount: ata.searchResult.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         ata.searchResult[index].nome,
@@ -92,7 +93,8 @@ class Ata extends StatelessWidget {
                                 itemCount: ata.atas.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         ata.atas[index].nome,

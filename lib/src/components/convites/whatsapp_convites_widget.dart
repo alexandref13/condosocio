@@ -104,7 +104,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color>(
                       (Set<MaterialState> states) {
-                        return Theme.of(context).accentColor;
+                        return Theme.of(context).colorScheme.secondary;
                       },
                     ),
                     elevation: MaterialStateProperty.resolveWith<double>(
@@ -128,7 +128,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                         (value) {
                           if (value != 0) {
                             String message =
-                                'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://alvocomtec.com.br/paginas/a?chave=${value['idace']}';
+                                'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://alvocomtec.com.br/paginas/a.php?chave=${value['idace']}';
 
                             /* FlutterOpenWhatsapp.sendSingleMessage(
                               '55${visualizarConvitesController.whatsappNumber.value.text}',
@@ -142,17 +142,20 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                               ),
                             );
                           } else {
-                            onAlertButtonPressed(context,
-                                'Algo deu errado\n Tente novamente', '/home');
+                            onAlertButtonPressed(
+                                context,
+                                'Algo deu errado\n Tente novamente',
+                                '/home',
+                                'sim');
                           }
                         },
                       );
                     } else {
                       onAlertButtonPressed(
-                        context,
-                        'Este número está com formato incorreto \n ex: 91988881234',
-                        null,
-                      );
+                          context,
+                          'Este número está com formato incorreto \n ex: 91988881234',
+                          null,
+                          'sim');
                     }
                   },
                   child: Text(

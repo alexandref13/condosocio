@@ -23,7 +23,7 @@ void veiculosModalBottomSheet(
         LoginController loginController = Get.put(LoginController());
 
         return Container(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           child: Container(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 40),
@@ -97,10 +97,10 @@ void veiculosModalBottomSheet(
                                       Get.back();
                                     } else {
                                       onAlertButtonPressed(
-                                        context,
-                                        'Algo deu errado\n Tente novamente',
-                                        '/home',
-                                      );
+                                          context,
+                                          'Algo deu errado\n Tente novamente',
+                                          '/home',
+                                          'sim');
                                     }
                                   },
                                 );

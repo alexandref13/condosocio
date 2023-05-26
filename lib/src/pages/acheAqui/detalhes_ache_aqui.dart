@@ -287,7 +287,9 @@ class DetalhesAcheAqui extends StatelessWidget {
                                   backgroundColor:
                                       MaterialStateProperty.resolveWith<Color>(
                                     (Set<MaterialState> states) {
-                                      return Theme.of(context).accentColor;
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .secondary;
                                     },
                                   ),
                                   elevation:
@@ -323,7 +325,8 @@ class DetalhesAcheAqui extends StatelessWidget {
                                       onAlertButtonPressed(
                                           context,
                                           'Algo deu errado\n Tente novamente',
-                                          '/acheAqui');
+                                          '/acheAqui',
+                                          null);
                                     }
                                   });
                                 },

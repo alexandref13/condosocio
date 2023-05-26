@@ -5,6 +5,7 @@ import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart
 import 'package:condosocio/src/controllers/auth_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
+import 'package:condosocio/src/pages/acessos/facial_acesso_detalhe.dart';
 import 'package:condosocio/src/pages/acessos/verificarVisitante.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/ache_aqui_form.dart';
@@ -20,7 +21,10 @@ import 'package:condosocio/src/pages/encomendas/encomendas.dart';
 import 'package:condosocio/src/pages/enquetes/enquetes.dart';
 import 'package:condosocio/src/pages/enquetes/info_enquetes.dart';
 import 'package:condosocio/src/pages/enquetes/votar_enquete.dart';
+import 'package:condosocio/src/pages/esperaacessos/acessos_espera.dart';
 import 'package:condosocio/src/pages/esqueci_senha.dart';
+import 'package:condosocio/src/pages/facial/facial.dart';
+import 'package:condosocio/src/pages/facial/foto_facial_detalhe.dart';
 import 'package:condosocio/src/pages/ocorrencias/foto_ocorrencia_detalhe.dart';
 import 'package:condosocio/src/pages/ocorrencias/resposta_ocorrencias.dart';
 import 'package:condosocio/src/pages/ocorrencias/visualizar_ocorrencias.dart';
@@ -85,6 +89,8 @@ class MyApp extends StatelessWidget {
     OneSignal.shared
         .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
       var titulo = result.notification.title;
+      var subtitulo = result.notification.subtitle;
+      print('SUBTITULO $subtitulo');
 
       print('NOTIFICACAO ABERTA: $titulo');
       authController.rota.value.text = '/login';
@@ -104,6 +110,8 @@ class MyApp extends StatelessWidget {
         authController.rota.value.text = '/visualizarOuvidoria';
       } else if (titulo == 'OCORRÊNCIA') {
         authController.rota.value.text = '/visualizarOcorrencias';
+      } else if (titulo == 'RECONHECIMENTO FACIAL') {
+        authController.rota.value.text = '/visualizarAcessos';
       } else {}
     });
 
@@ -185,6 +193,10 @@ class MyApp extends StatelessWidget {
             name: '/verificarVisitantes', page: () => VerificarVisitantes()),
         GetPage(name: '/veiculos', page: () => Veiculos()),
         GetPage(name: '/vagasexcedidas', page: () => VagasLimit()),
+        GetPage(name: '/facial', page: () => Facial()),
+        GetPage(name: '/fotoFacial', page: () => FotoFacial()),
+        GetPage(name: '/facialacesso', page: () => FacialAcesso()),
+        GetPage(name: '/acessosespera', page: () => AcessosEspera()),
       ],
     );
   }

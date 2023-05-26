@@ -28,7 +28,7 @@ class Login extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                     child: Column(children: <Widget>[
                       Center(
@@ -101,8 +101,9 @@ class Login extends StatelessWidget {
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color:
-                                                Theme.of(context).accentColor)),
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
                                             color: Colors.red[900])),
@@ -157,8 +158,9 @@ class Login extends StatelessWidget {
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color:
-                                                Theme.of(context).accentColor)),
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
                                             color: Colors.red[900])),
@@ -258,7 +260,9 @@ class Login extends StatelessWidget {
                                     backgroundColor: MaterialStateProperty
                                         .resolveWith<Color>(
                                       (Set<MaterialState> states) {
-                                        return Theme.of(context).accentColor;
+                                        return Theme.of(context)
+                                            .colorScheme
+                                            .secondary;
                                       },
                                     ),
                                     shape: MaterialStateProperty.resolveWith<
@@ -278,10 +282,10 @@ class Login extends StatelessWidget {
                                           loginController.password.value.text ==
                                               '') {
                                         onAlertButtonPressed(
-                                          context,
-                                          'Campo e-mail ou senha vazio!',
-                                          null,
-                                        );
+                                            context,
+                                            'Campo e-mail ou senha vazio!',
+                                            null,
+                                            'sim');
                                       }
                                       if (_formKey.currentState.validate()) {
                                         loginController.login().then(
@@ -290,10 +294,10 @@ class Login extends StatelessWidget {
                                               loginController
                                                   .password.value.text = '';
                                               onAlertButtonPressed(
-                                                context,
-                                                'E-mail ou Senha Inválidos! \n Tente Novamente',
-                                                null,
-                                              );
+                                                  context,
+                                                  'E-mail ou Senha Inválidos! \n Tente Novamente',
+                                                  null,
+                                                  'sim');
                                             } else {
                                               loginController
                                                   .password.value.text = '';
@@ -360,6 +364,9 @@ class Login extends StatelessWidget {
                                                     loginController
                                                             .condofacial.value =
                                                         value['condofacial'];
+                                                    loginController
+                                                            .imgfacial.value =
+                                                        value['imgfacial'];
                                                     loginController.idadm
                                                         .value = value['idadm'];
 
@@ -418,7 +425,8 @@ class Login extends StatelessWidget {
                                       onAlertButtonPressed(
                                           context,
                                           'Você precisa aceitar os termos de uso e a política de privacidade para entrar!',
-                                          null);
+                                          null,
+                                          'sim');
                                     }
                                   },
                                   child: loginController.isLoading.value
@@ -454,7 +462,8 @@ class Login extends StatelessWidget {
                                   style: ButtonStyle(
                                     overlayColor: MaterialStateProperty.all(
                                       Theme.of(context)
-                                          .accentColor
+                                          .colorScheme
+                                          .secondary
                                           .withOpacity(.5),
                                     ),
                                     shape: MaterialStateProperty.all(
@@ -482,7 +491,8 @@ class Login extends StatelessWidget {
                                   style: ButtonStyle(
                                     overlayColor: MaterialStateProperty.all(
                                       Theme.of(context)
-                                          .accentColor
+                                          .colorScheme
+                                          .secondary
                                           .withOpacity(.5),
                                     ),
                                     shape: MaterialStateProperty.all(

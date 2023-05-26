@@ -209,7 +209,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                 "ANEXAR IMAGEM",
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).accentColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                 ),
                               ),
                             ),
@@ -226,7 +227,9 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                 backgroundColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
-                                    return Theme.of(context).accentColor;
+                                    return Theme.of(context)
+                                        .colorScheme
+                                        .secondary;
                                   },
                                 ),
                                 elevation:
@@ -263,6 +266,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                         context,
                                         'Os campos de tipo de visitante, nome e observação são obrigátorios',
                                         null,
+                                        'sim',
                                       );
                                     } else {
                                       saidaController.itemSelecionado.value =
@@ -274,7 +278,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                       onAlertButtonPressed(
                                           context,
                                           'Houve algum problema!\n Tente novamente',
-                                          '/home');
+                                          '/home',
+                                          'sim');
                                     }
                                   },
                                 );
@@ -328,7 +333,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                 "VISUALIZE SAÍDAS",
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).accentColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                 ),
                               ),
                             ),
@@ -389,7 +395,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
         context: context,
         builder: (BuildContext bc) {
           return Container(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             padding: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[

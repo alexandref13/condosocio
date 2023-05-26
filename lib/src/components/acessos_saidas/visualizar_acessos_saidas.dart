@@ -72,12 +72,14 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                     : Container(
                         child: Column(
                           children: [
-                            boxSearch(context, saidaController.search.value,
+                            boxSearch(
+                                context,
+                                saidaController.search.value,
                                 saidaController.onSearchTextChanged,
                                 "Pesquise por Nome..."),
                             Container(
                               padding: EdgeInsets.all(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,

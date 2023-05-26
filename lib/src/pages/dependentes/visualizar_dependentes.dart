@@ -62,7 +62,7 @@ class VisualizarDependentes extends StatelessWidget {
                         "Pesquise por Nome..."),
                     Container(
                       padding: EdgeInsets.all(20),
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

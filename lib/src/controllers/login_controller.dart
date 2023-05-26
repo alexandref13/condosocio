@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,6 +19,7 @@ class LoginController extends GetxController {
   var newId = ''.obs;
   var tipo = ''.obs;
   var imgperfil = ''.obs;
+  var imgfacial = ''.obs;
   var emailUsu = ''.obs;
   var nomeCondo = ''.obs;
   var imgcondo = ''.obs;
@@ -32,6 +34,7 @@ class LoginController extends GetxController {
   var idadm = ''.obs;
   var websiteAdministradora = ''.obs;
   var condofacial = ''.obs;
+  var ctlfacial = ''.obs;
   var licenca = ''.obs;
   var tipoun = ''.obs;
   var logradouro = ''.obs;
@@ -148,6 +151,25 @@ class LoginController extends GetxController {
       websiteAdministradora(dados['website_administradora']);
       licenca(dados['licenca']);
       condofacial(dados['condofacial']);
+      ctlfacial(dados['ctlfacial']);
+      imgfacial(dados['imgfacial']);
+
+      var sendTags = {
+        'idusu': id.value,
+        'nome': nome.value,
+        'sobrenome': sobrenome.value,
+        'idcond': idcond.value,
+        'tipousuario': tipo.value,
+        'genero': genero.value,
+        'tipoun': tipoun.value,
+        'logradouro': logradouro.value,
+      };
+
+      OneSignal.shared.sendTags(sendTags).then((response) {
+        print("Successfully sent tags with response: $response");
+      }).catchError((error) {
+        print("Encountered an error sending tags: $error");
+      });
 
       storageId();
 

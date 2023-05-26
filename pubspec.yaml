@@ -3,7 +3,7 @@ description: A new Flutter project.
 publish_to: "none"
 version: 7.0.1+1
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -22,22 +22,23 @@ dependencies:
   google_fonts: ^2.0.0
   http: ^0.13.0
   image_cropper: ^1.5.0
-  image_picker: ^0.8.6 
+  image_picker: ^0.8.6
   local_auth: ^2.1.2
   mask_text_input_formatter: ^2.1.0
   permission_handler: ^9.2.0
   pull_to_refresh: ^2.0.0
-  rflutter_alert: ^2.0.2
+  rflutter_alert: ^2.0.6
   shared_preferences: ^2.0.3
   url_launcher: ^6.1.6
   flutter_speed_dial: ^5.0.0+1
   onesignal_flutter: ^3.4.1
-  qr_flutter: ^4.0.0
+  qr_flutter: ^4.1.0
   intl: ^0.17.0
   table_calendar: ^3.0.0
   carousel_slider: ^4.2.1
   flutter_masked_text: ^0.8.0
-  
+  flutter_animated_dialog: ^2.0.1
+  lottie: ^2.3.2
 
 dev_dependencies:
   flutter_test:

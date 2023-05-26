@@ -74,61 +74,6 @@ class VisualizarAcessosEntrada extends StatelessWidget {
                           acessosController.search.value,
                           acessosController.onSearchTextChanged,
                           "Pesquise por Nome..."),
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        color: Theme.of(context).accentColor,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Center(
-                              child: Text(
-                                'CRIADO',
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 12.0,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor,
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: 2),
-                              ),
-                            ),
-                            Center(
-                                child: Text(
-                              'NOME',
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 2),
-                            )),
-                            Center(
-                                child: Text(
-                              'ENTRADA',
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 2),
-                            )),
-                            Center(
-                                child: Text(
-                              'SAÍDA',
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 2),
-                            )),
-                            Center(child: Text('')),
-                          ],
-                        ),
-                      ),
                       Expanded(
                         child: listaVisualizarAcessos(),
                       )

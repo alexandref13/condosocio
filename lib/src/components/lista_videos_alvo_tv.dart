@@ -34,7 +34,7 @@ Widget listaVideos(context) {
                         : Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             margin: EdgeInsets.only(bottom: 10),
                             child: Html(

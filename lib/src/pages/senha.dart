@@ -175,7 +175,9 @@ class _SenhaState extends State<Senha> {
                                     backgroundColor: MaterialStateProperty
                                         .resolveWith<Color>(
                                       (Set<MaterialState> states) {
-                                        return Theme.of(context).accentColor;
+                                        return Theme.of(context)
+                                            .colorScheme
+                                            .secondary;
                                       },
                                     ),
                                     shape: MaterialStateProperty.resolveWith<
@@ -204,10 +206,10 @@ class _SenhaState extends State<Senha> {
                                           );
                                         } else {
                                           onAlertButtonPressed(
-                                            context,
-                                            "Algo deu errado.\n Tente novamente mais tarde.",
-                                            '/home',
-                                          );
+                                              context,
+                                              "Algo deu errado.\n Tente novamente mais tarde.",
+                                              '/home',
+                                              'sim');
                                         }
                                       });
                                     }

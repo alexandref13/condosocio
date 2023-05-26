@@ -389,10 +389,10 @@ class DetalhesReservas extends StatelessWidget {
                                             );
                                           } else {
                                             onAlertButtonPressed(
-                                              context,
-                                              'Algo deu errado \n Tente novamente mais tarde',
-                                              '/home',
-                                            );
+                                                context,
+                                                'Algo deu errado \n Tente novamente mais tarde',
+                                                '/home',
+                                                'sim');
                                           }
                                         },
                                       );

@@ -36,8 +36,9 @@ class _PerfilState extends State<Perfil> {
     if (_selectedFile != null) {
       return GestureDetector(
         onTap: () {
-          _configurandoModalBottomSheet(context);
-          //Navigator.pushNamed(context, '/Home');
+          loginController.condofacial.value == "NAO"
+              ? _configurandoModalBottomSheet(context)
+              : getImage(ImageSource.camera);
         },
         child: Container(
           child: Column(
@@ -53,7 +54,7 @@ class _PerfilState extends State<Perfil> {
                   ),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   )),
             ],
           ),
@@ -90,7 +91,7 @@ class _PerfilState extends State<Perfil> {
                       ),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ],
@@ -120,7 +121,7 @@ class _PerfilState extends State<Perfil> {
                       ),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ],
@@ -185,7 +186,7 @@ class _PerfilState extends State<Perfil> {
     } else {
       Navigator.of(context).pop();
       EdgeAlert.show(context,
-          title: 'Imagem não enviada',
+          title: 'Houve Algum Erro! Tente Novamente.',
           gravity: EdgeAlert.BOTTOM,
           backgroundColor: Colors.red,
           icon: Icons.highlight_off);
@@ -198,7 +199,7 @@ class _PerfilState extends State<Perfil> {
         context: context,
         builder: (BuildContext bc) {
           return Container(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             padding: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[
@@ -493,7 +494,9 @@ class _PerfilState extends State<Perfil> {
                                 backgroundColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
-                                    return Theme.of(context).accentColor;
+                                    return Theme.of(context)
+                                        .colorScheme
+                                        .secondary;
                                   },
                                 ),
                                 shape: MaterialStateProperty.resolveWith<
@@ -515,13 +518,14 @@ class _PerfilState extends State<Perfil> {
                                       'Seu perfil foi atualizado com sucesso.',
                                     );
                                   } else if (value == "vazio") {
-                                    onAlertButtonPressed(
-                                        context, 'Algum Campo Vazio!', null);
+                                    onAlertButtonPressed(context,
+                                        'Algum Campo Vazio!', null, 'sim');
                                   } else {
                                     onAlertButtonPressed(
                                         context,
                                         'Algo deu errado\n Tente novamente',
-                                        null);
+                                        null,
+                                        'sim');
                                   }
                                 });
                               },

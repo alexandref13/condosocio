@@ -251,7 +251,8 @@ class VotarEnquete extends StatelessWidget {
                                             .resolveWith<Color>(
                                           (Set<MaterialState> states) {
                                             return Theme.of(context)
-                                                .accentColor;
+                                                .colorScheme
+                                                .secondary;
                                           },
                                         ),
                                         shape: MaterialStateProperty
@@ -285,7 +286,8 @@ class VotarEnquete extends StatelessWidget {
                                                         : onAlertButtonPressed(
                                                             context,
                                                             'Houve algum problema!Tente novamente',
-                                                            null);
+                                                            null,
+                                                            'sim');
                                                   });
                                                 },
                                               );
@@ -306,7 +308,9 @@ class VotarEnquete extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Card(
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
                                       shadowColor: Colors.black,
                                       child: Column(
                                         children: [

@@ -31,7 +31,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                       "Pesquise por Título..."),
                   Container(
                     padding: EdgeInsets.all(10),
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

@@ -7,7 +7,6 @@ import 'package:local_auth/local_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class AuthController extends GetxController {
@@ -91,6 +90,8 @@ class AuthController extends GetxController {
               loginController.idadm(dados['idadm']);
               loginController.dep(dados['dep']);
               loginController.condofacial(dados['condofacial']);
+              loginController.ctlfacial(dados['ctlfacial']);
+              loginController.imgfacial(dados['imgfacial']);
 
               loginController
                   .websiteAdministradora(dados['website_administradora']);
@@ -105,7 +106,15 @@ class AuthController extends GetxController {
                 'idcond': loginController.idcond.value,
                 'tipousuario': loginController.tipo.value,
                 'genero': loginController.genero.value,
+                'tipoun': loginController.tipoun.value,
+                'logradouro': loginController.logradouro.value,
               };
+
+              OneSignal.shared.sendTags(sendTags).then((response) {
+                print("Successfully sent tags with response: $response");
+              }).catchError((error) {
+                print("Encountered an error sending tags: $error");
+              });
 
               if (rota.value.text == "") {
                 Get.toNamed('/home');

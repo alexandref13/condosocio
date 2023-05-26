@@ -147,7 +147,7 @@ class EmpresaAcheAqui extends StatelessWidget {
             ),
             SpeedDialChild(
               child: Icon(Icons.language_outlined),
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               label: 'Site',
               labelStyle: GoogleFonts.montserrat(
                 fontSize: 14,

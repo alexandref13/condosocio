@@ -152,7 +152,8 @@ class _ComunicadosState extends State<Comunicados> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  color: Theme.of(context).accentColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   child: ListTile(
                                       leading: RichText(
                                         text: TextSpan(
@@ -239,7 +240,8 @@ class _ComunicadosState extends State<Comunicados> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  color: Theme.of(context).accentColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   child: ListTile(
                                       leading: RichText(
                                         text: TextSpan(

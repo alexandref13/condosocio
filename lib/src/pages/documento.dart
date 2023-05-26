@@ -55,10 +55,11 @@ class _DocumentosState extends State<Documentos> {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).buttonColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   spreadRadius: 3,
                                   blurRadius: 1,
                                   offset: Offset(
@@ -96,10 +97,11 @@ class _DocumentosState extends State<Documentos> {
                           child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Theme.of(context).buttonColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     spreadRadius: 3,
                                     blurRadius: 1,
                                     offset: Offset(
@@ -135,10 +137,11 @@ class _DocumentosState extends State<Documentos> {
                           child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Theme.of(context).buttonColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     spreadRadius: 3,
                                     blurRadius: 1,
                                     offset: Offset(
@@ -175,10 +178,11 @@ class _DocumentosState extends State<Documentos> {
                           child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Theme.of(context).buttonColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     spreadRadius: 3,
                                     blurRadius: 1,
                                     offset: Offset(
@@ -219,10 +223,11 @@ class _DocumentosState extends State<Documentos> {
                           child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Theme.of(context).buttonColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     spreadRadius: 3,
                                     blurRadius: 1,
                                     offset: Offset(
@@ -259,10 +264,11 @@ class _DocumentosState extends State<Documentos> {
                           child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Theme.of(context).buttonColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     spreadRadius: 3,
                                     blurRadius: 1,
                                     offset: Offset(
@@ -299,10 +305,11 @@ class _DocumentosState extends State<Documentos> {
                           child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Theme.of(context).buttonColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     spreadRadius: 3,
                                     blurRadius: 1,
                                     offset: Offset(

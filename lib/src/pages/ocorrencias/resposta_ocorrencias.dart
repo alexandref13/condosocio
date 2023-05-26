@@ -57,7 +57,7 @@ class RespostaOcorrencias extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  'Tipo: ',
+                                  'TIPO: ',
                                   style: GoogleFonts.montserrat(
                                     fontSize: 12,
                                     color: Theme.of(context)
@@ -82,7 +82,7 @@ class RespostaOcorrencias extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    'Ocorrido em: ',
+                                    'OCORRIDO EM: ',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 12,
                                       color: Theme.of(context)
@@ -130,21 +130,6 @@ class RespostaOcorrencias extends StatelessWidget {
                                       ),
                                     ),
                                   )
-                                // Container(
-                                //     padding: EdgeInsets.only(top: 10),
-                                //     child: InkWell(
-                                //       onTap: () {
-                                //         Get.toNamed('/fotoOcorrencia');
-                                //       },
-                                //       child: Ink.image(
-                                //         image: NetworkImage(
-                                //           'https://alvocomtec.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
-                                //         ),
-                                //         width: 45,
-                                //         height: 45,
-                                //       ),
-                                //     ),
-                                //   )
                                 : Container(),
                           ],
                         )),
@@ -189,7 +174,8 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                     .circle,
                                                                 color: Theme.of(
                                                                         context)
-                                                                    .accentColor,
+                                                                    .colorScheme
+                                                                    .secondary,
                                                               ),
                                                             ),
                                                           ],
@@ -222,7 +208,8 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                     .circle,
                                                                 color: Theme.of(
                                                                         context)
-                                                                    .accentColor,
+                                                                    .colorScheme
+                                                                    .secondary,
                                                               ),
                                                             ),
                                                           ],
@@ -389,7 +376,8 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                         .circle,
                                                                     color: Theme.of(
                                                                             context)
-                                                                        .accentColor,
+                                                                        .colorScheme
+                                                                        .secondary,
                                                                   ),
                                                                 ),
                                                               ],
@@ -423,7 +411,8 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                         .circle,
                                                                     color: Theme.of(
                                                                             context)
-                                                                        .accentColor,
+                                                                        .colorScheme
+                                                                        .secondary,
                                                                   ),
                                                                 ),
                                                               ],
@@ -582,7 +571,8 @@ class RespostaOcorrencias extends StatelessWidget {
                                                           ),
                                                           color:
                                                               Theme.of(context)
-                                                                  .accentColor,
+                                                                  .colorScheme
+                                                                  .secondary,
                                                           child: Column(
                                                             children: [
                                                               Container(
@@ -686,7 +676,8 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                   .circle,
                                                               color: Theme.of(
                                                                       context)
-                                                                  .accentColor,
+                                                                  .colorScheme
+                                                                  .secondary,
                                                             ),
                                                           ),
                                                         ],
@@ -733,14 +724,14 @@ class RespostaOcorrencias extends StatelessWidget {
                   textCapitalization: TextCapitalization.sentences,
                   style: GoogleFonts.montserrat(
                     fontSize: 12,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                   decoration: InputDecoration(
-                    fillColor: Theme.of(context).accentColor,
+                    fillColor: Theme.of(context).colorScheme.secondary,
                     hintText: 'Envie uma resposta',
                     hintStyle: GoogleFonts.montserrat(
                       fontSize: 12,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ),
@@ -748,14 +739,14 @@ class RespostaOcorrencias extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.send),
                 iconSize: 25.0,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 onPressed: () {
                   respostaOcorrenciasController
                       .sendOcorrenciaResp()
                       .then((value) {
                     if (value == 0) {
                       onAlertButtonPressed(context,
-                          'Algo deu errado\n Tente novamente', '/home');
+                          'Algo deu errado\n Tente novamente', '/home', 'sim');
                     }
                   });
                 },

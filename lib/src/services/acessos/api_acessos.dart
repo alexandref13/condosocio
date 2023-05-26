@@ -4,6 +4,8 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../../controllers/acessos/acessos_controller_espera.dart';
+
 class ApiAcessos {
   static Future getAcessos() async {
     LoginController loginController = Get.put(LoginController());
@@ -31,17 +33,29 @@ class ApiAcessos {
     );
   }
 
-  static Future deleteAcesso() async {
-    AcessosController acessosController = Get.put(AcessosController());
+  static Future deleteAcesso(String espera) async {
     LoginController loginController = Get.put(LoginController());
-    print('idace: ${acessosController.idAce.value}');
-    return await http.get(
-      Uri.https('www.alvocomtec.com.br', '/flutter/acesso_excluir.php', {
-        'idace': acessosController.idAce.value,
-        'idcond': loginController.idcond.value,
-        'idvis': acessosController.idvis.value,
-      }),
-    );
+
+    if (espera == "1") {
+      AcessosController acessosController = Get.put(AcessosController());
+      return await http.get(
+        Uri.https('www.alvocomtec.com.br', '/flutter/acesso_excluir.php', {
+          'idace': acessosController.idAce.value,
+          'idcond': loginController.idcond.value,
+          'idvis': acessosController.idvis.value,
+        }),
+      );
+    } else {
+      AcessosEsperaController acessosEsperaController =
+          Get.put(AcessosEsperaController());
+      return await http.get(
+        Uri.https('www.alvocomtec.com.br', '/flutter/acesso_excluir.php', {
+          'idace': acessosEsperaController.idAce.value,
+          'idcond': loginController.idcond.value,
+          'idvis': acessosEsperaController.idvis.value,
+        }),
+      );
+    }
   }
 
   static Future getFav() async {
@@ -72,23 +86,42 @@ class ApiAcessos {
         {"idfav": acessosController.firstId.value}));
   }
 
-  static Future addFav() async {
-    AcessosController acessosController = Get.put(AcessosController());
+  static Future addFav(String espera) async {
     LoginController loginController = Get.put(LoginController());
+    if (espera == "1") {
+      AcessosController acessosController = Get.put(AcessosController());
 
-    return await http.get(
-      Uri.https(
-        "www.alvocomtec.com.br",
-        "/flutter/favoritos_alternar.php",
-        {
-          "idusu": loginController.id.value,
-          "idfav": acessosController.idfav.value,
-          "idace": acessosController.idAce.value,
-          "nome": acessosController.name.value.text,
-          "tel": acessosController.tel.value,
-        },
-      ),
-    );
+      return await http.get(
+        Uri.https(
+          "www.alvocomtec.com.br",
+          "/flutter/favoritos_alternar.php",
+          {
+            "idusu": loginController.id.value,
+            "idfav": acessosController.idfav.value,
+            "idace": acessosController.idAce.value,
+            "nome": acessosController.name.value.text,
+            "tel": acessosController.tel.value,
+          },
+        ),
+      );
+    } else {
+      AcessosEsperaController acessosEsperaController =
+          Get.put(AcessosEsperaController());
+
+      return await http.get(
+        Uri.https(
+          "www.alvocomtec.com.br",
+          "/flutter/favoritos_alternar.php",
+          {
+            "idusu": loginController.id.value,
+            "idfav": acessosEsperaController.idfav.value,
+            "idace": acessosEsperaController.idAce.value,
+            "nome": acessosEsperaController.name.value.text,
+            "tel": acessosEsperaController.tel.value,
+          },
+        ),
+      );
+    }
   }
 
   static Future addFavConvite() async {

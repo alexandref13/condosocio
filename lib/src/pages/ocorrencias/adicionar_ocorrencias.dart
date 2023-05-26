@@ -11,6 +11,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:intl/intl.dart';
 
+import '../../components/utils/confirmed_button_pressed.dart';
+
 class AdicionarOcorrencias extends StatefulWidget {
   const AdicionarOcorrencias({Key key}) : super(key: key);
 
@@ -86,7 +88,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
           context: context,
           builder: (BuildContext bc) {
             return Container(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               padding: EdgeInsets.only(bottom: 30),
               child: Wrap(
                 children: <Widget>[
@@ -375,7 +377,8 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                 "Anexar Imagem",
                                 style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).accentColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                 ),
                               ),
                             ),
@@ -392,7 +395,9 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                 backgroundColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
-                                    return Theme.of(context).accentColor;
+                                    return Theme.of(context)
+                                        .colorScheme
+                                        .secondary;
                                   },
                                 ),
                                 elevation:
@@ -417,22 +422,20 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                     .then((value) {
                                   print('valor $value');
                                   if (value == 'vazio') {
-                                    onAlertButtonPressed(
-                                      context,
-                                      'Campo Obrigatório Vazio',
-                                      null,
-                                    );
+                                    onAlertButtonPressed(context,
+                                        'Campo Obrigatório Vazio', null, 'sim');
                                   } else if (value == '1') {
-                                    confirmedOcorrenciaAlert(
+                                    confirmedButtonPressed(
                                       context,
                                       'Sua Ocorrência foi Enviada com Sucesso!',
+                                      null,
                                     );
                                   } else {
                                     onAlertButtonPressed(
-                                      context,
-                                      'Houve algum problema!\n Tente novamente',
-                                      '/home',
-                                    );
+                                        context,
+                                        'Houve algum problema!\n Tente novamente',
+                                        '/home',
+                                        'sim');
                                   }
                                 });
                               },
@@ -456,44 +459,5 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
               );
       }),
     );
-  }
-
-  confirmedOcorrenciaAlert(context, String text) {
-    Alert(
-      image: Icon(
-        Icons.check,
-        color: Colors.green,
-        size: 60,
-      ),
-      style: AlertStyle(
-        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
-        animationType: AnimationType.fromTop,
-        isCloseButton: false,
-        isOverlayTapDismiss: false,
-        animationDuration: Duration(milliseconds: 300),
-        titleStyle: GoogleFonts.poppins(
-          color: Theme.of(context).errorColor,
-          fontSize: 16,
-        ),
-      ),
-      context: context,
-      title: text,
-      buttons: [
-        DialogButton(
-          child: Text(
-            "OK",
-            style: GoogleFonts.montserrat(
-              color: Colors.white,
-              fontSize: 16,
-            ),
-          ),
-          onPressed: () {
-            Get.back();
-          },
-          width: 80,
-          color: Colors.green,
-        )
-      ],
-    ).show();
   }
 }

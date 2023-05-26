@@ -570,7 +570,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                     .resolveWith<Color>(
                                               (Set<MaterialState> states) {
                                                 return Theme.of(context)
-                                                    .accentColor;
+                                                    .colorScheme
+                                                    .secondary;
                                               },
                                             ),
                                             elevation: MaterialStateProperty
@@ -598,10 +599,10 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                         .carBoard.value.text ==
                                                     '') {
                                               onAlertButtonPressed(
-                                                context,
-                                                'Campo nome ou placa vazio!',
-                                                null,
-                                              );
+                                                  context,
+                                                  'Campo nome ou placa vazio!',
+                                                  null,
+                                                  'sim');
                                             } else {
                                               convitesController
                                                   .handleAddAppList();
@@ -837,7 +838,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                       .resolveWith<Color>(
                                                 (Set<MaterialState> states) {
                                                   return Theme.of(context)
-                                                      .accentColor;
+                                                      .colorScheme
+                                                      .secondary;
                                                 },
                                               ),
                                               elevation: MaterialStateProperty
@@ -866,10 +868,10 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                           .value ==
                                                       'Selecione o tipo de visitante') {
                                                 onAlertButtonPressed(
-                                                  context,
-                                                  'Campo nome ou tipo de visitante vazio!',
-                                                  null,
-                                                );
+                                                    context,
+                                                    'Campo nome ou tipo de visitante vazio!',
+                                                    null,
+                                                    'sim');
                                               } else {
                                                 convitesController
                                                     .handleAddGuestList();
@@ -1049,7 +1051,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   backgroundColor:
                                       MaterialStateProperty.resolveWith<Color>(
                                     (Set<MaterialState> states) {
-                                      return Theme.of(context).accentColor;
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .secondary;
                                     },
                                   ),
                                   elevation:
@@ -1108,10 +1112,10 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         );
                                       } else {
                                         onAlertButtonPressed(
-                                          context,
-                                          'Algo deu errado \n Tente novamente',
-                                          '/home',
-                                        );
+                                            context,
+                                            'Algo deu errado \n Tente novamente',
+                                            '/home',
+                                            'sim');
                                       }
                                     });
                                   } else {
@@ -1164,10 +1168,10 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                           );
                                         } else {
                                           onAlertButtonPressed(
-                                            context,
-                                            'Algo deu errado \n Tente novamente',
-                                            '/home',
-                                          );
+                                              context,
+                                              'Algo deu errado \n Tente novamente',
+                                              '/home',
+                                              'sim');
                                         }
                                       },
                                     );

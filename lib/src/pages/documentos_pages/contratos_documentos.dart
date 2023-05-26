@@ -58,7 +58,8 @@ class Contratos extends StatelessWidget {
                                     contratosController.searchResult.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         contratosController
@@ -101,7 +102,8 @@ class Contratos extends StatelessWidget {
                                 itemCount: contratosController.contratos.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         contratosController

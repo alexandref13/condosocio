@@ -57,7 +57,8 @@ class Editais extends StatelessWidget {
                                     editaisController.searchResult.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         editaisController
@@ -100,7 +101,8 @@ class Editais extends StatelessWidget {
                                 itemCount: editaisController.editais.length,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: ListTile(
                                       title: Text(
                                         editaisController.editais[index].nome,

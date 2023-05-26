@@ -111,8 +111,12 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                         },
                                         child: Card(
                                           color: before
-                                              ? Theme.of(context).buttonColor
-                                              : Theme.of(context).accentColor,
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -200,8 +204,12 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                         },
                                         child: Card(
                                           color: before
-                                              ? Theme.of(context).buttonColor
-                                              : Theme.of(context).accentColor,
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(10),
