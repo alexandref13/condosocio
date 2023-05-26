@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../controllers/acessos/acessos_controller.dart';
 
 class FacialAcesso extends StatelessWidget {
-  const FacialAcesso({Key key}) : super(key: key);
+  const FacialAcesso({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class FacialAcesso extends StatelessWidget {
           },
           icon: Icon(
             Icons.close,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),

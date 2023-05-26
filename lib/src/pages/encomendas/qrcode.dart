@@ -16,7 +16,7 @@ class QrCode extends StatelessWidget {
           "Receber com QR Code",
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),

@@ -1,10 +1,14 @@
 class MapaEnquetes {
-  String idenq;
-  String titulo;
-  String datacreate;
-  String datavalida;
+  late String idenq;
+  late String titulo;
+  late String datacreate;
+  late String datavalida;
 
-  MapaEnquetes({this.idenq, this.titulo, this.datacreate, this.datavalida});
+  MapaEnquetes(
+      {required this.idenq,
+      required this.titulo,
+      required this.datacreate,
+      required this.datavalida});
 
   MapaEnquetes.fromJson(Map<String, dynamic> json) {
     idenq = json['idenq'];

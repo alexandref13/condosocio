@@ -1,12 +1,16 @@
 class MapaDocumentos {
-  String nome;
-  String descricao;
-  String tipodoc;
-  String imgdoc;
-  String data;
+  late String nome;
+  late String descricao;
+  late String tipodoc;
+  late String imgdoc;
+  late String data;
 
   MapaDocumentos(
-      {this.nome, this.descricao, this.tipodoc, this.imgdoc, this.data});
+      {required this.nome,
+      required this.descricao,
+      required this.tipodoc,
+      required this.imgdoc,
+      required this.data});
 
   MapaDocumentos.fromJson(Map<String, dynamic> json) {
     nome = json['nome'];

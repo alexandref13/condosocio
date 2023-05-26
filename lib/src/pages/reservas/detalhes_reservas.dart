@@ -31,14 +31,14 @@ class DetalhesReservas extends StatelessWidget {
           size: 60,
         ),*/
         style: AlertStyle(
-          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
+          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
           animationType: AnimationType.fromTop,
           isCloseButton: false,
           isOverlayTapDismiss: false,
           //descStyle: GoogleFonts.poppins(color: Colors.red,),
           animationDuration: Duration(milliseconds: 300),
           titleStyle: GoogleFonts.poppins(
-            color: Theme.of(context).errorColor,
+            color: Theme.of(context).colorScheme.error,
             fontSize: 18,
           ),
         ),
@@ -49,7 +49,7 @@ class DetalhesReservas extends StatelessWidget {
             child: Text(
               "Cancelar",
               style: GoogleFonts.montserrat(
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
                 fontSize: 16,
               ),
             ),
@@ -57,13 +57,13 @@ class DetalhesReservas extends StatelessWidget {
               Get.back();
             },
             width: 80,
-            color: Theme.of(context).errorColor,
+            color: Theme.of(context).colorScheme.error,
           ),
           DialogButton(
             child: Text(
               "OK",
               style: GoogleFonts.montserrat(
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
                 fontSize: 16,
               ),
             ),
@@ -89,7 +89,7 @@ class DetalhesReservas extends StatelessWidget {
           'Reservas',
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -360,7 +360,9 @@ class DetalhesReservas extends StatelessWidget {
                                   backgroundColor:
                                       MaterialStateProperty.resolveWith<Color>(
                                     (Set<MaterialState> states) {
-                                      return Theme.of(context).errorColor;
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .error;
                                     },
                                   ),
                                   shape: MaterialStateProperty.resolveWith<
@@ -405,7 +407,7 @@ class DetalhesReservas extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                               ),

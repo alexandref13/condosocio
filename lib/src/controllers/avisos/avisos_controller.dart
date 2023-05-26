@@ -4,7 +4,7 @@ import 'package:condosocio/src/services/avisos/mapa_avisos.dart';
 import 'package:get/get.dart';
 
 class AvisosController extends GetxController {
-  List<DadosAvisos> avisos;
+  List<DadosAvisos>? avisos;
   var titulo = ''.obs;
   var texto = ''.obs;
   var dia = ''.obs;

@@ -55,7 +55,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                               fontSize: 14.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -131,7 +131,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             subtitle: Text(
@@ -140,7 +140,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             leading: Column(
@@ -152,7 +152,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                   size: 30,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               ],
                                             ),
@@ -165,7 +165,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                   size: 25,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               ],
                                             ),
@@ -224,7 +224,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             subtitle: Text(
@@ -233,7 +233,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             leading: Column(
@@ -245,7 +245,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                   size: 30,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               ],
                                             ),
@@ -258,7 +258,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                   size: 30,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               ],
                                             ),

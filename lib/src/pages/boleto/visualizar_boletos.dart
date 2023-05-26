@@ -54,7 +54,7 @@ class VisualizarBoletos extends StatelessWidget {
                             fontSize: 20.0,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -79,7 +79,7 @@ class VisualizarBoletos extends StatelessWidget {
                                 icon: Icon(Icons.qr_code),
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 iconSize: 36,
                                 onPressed: () {},
                               ),

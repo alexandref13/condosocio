@@ -11,11 +11,11 @@ class CalendarioReservasController extends GetxController {
   var onSelected = false.obs;
 
   Map<DateTime, List<MapaEvento>> events = {};
-  List<dynamic> selectedEvents;
+  late List<dynamic> selectedEvents;
 
   CalendarFormat calendarFormat = CalendarFormat.month;
   DateTime now = DateTime.now();
-  DateTime day;
+  DateTime? day;
   var focusedDay = DateTime.now().obs;
   var selectedDay = DateTime.now().obs;
 
@@ -49,6 +49,8 @@ class CalendarioReservasController extends GetxController {
                 unidade: eventos['unidade'],
                 horaAgenda: eventos['hora_agenda'],
                 validausu: eventos['validausu'],
+                areacom: '',
+                ctl: '',
               ),
             );
       }

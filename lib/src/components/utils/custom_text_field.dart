@@ -7,7 +7,7 @@ Widget customTextField(BuildContext context, String labelText, String hintText,
     onTap: () {
       FocusScopeNode currentFocus = FocusScope.of(context);
       if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
-        currentFocus.focusedChild.unfocus();
+        currentFocus.focusedChild!.unfocus();
       }
     },
     maxLength: linesBool ? 1500 : null,
@@ -15,13 +15,13 @@ Widget customTextField(BuildContext context, String labelText, String hintText,
     maxLines: linesBool ? lines : 1,
     style: GoogleFonts.montserrat(
       fontSize: 14,
-      color: Theme.of(context).textSelectionTheme.selectionColor,
+      color: Theme.of(context).textSelectionTheme.selectionColor!,
     ),
     decoration: InputDecoration(
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(
-          color: Theme.of(context).textSelectionTheme.selectionColor,
+          color: Theme.of(context).textSelectionTheme.selectionColor!,
           width: 1,
         ),
       ),
@@ -29,25 +29,25 @@ Widget customTextField(BuildContext context, String labelText, String hintText,
       hintText: hintText,
       hintStyle: GoogleFonts.montserrat(
         fontSize: 14,
-        color: Theme.of(context).textSelectionTheme.selectionColor,
+        color: Theme.of(context).textSelectionTheme.selectionColor!,
       ),
       labelText: labelText,
       labelStyle: GoogleFonts.montserrat(
         fontSize: 14,
-        color: Theme.of(context).textSelectionTheme.selectionColor,
+        color: Theme.of(context).textSelectionTheme.selectionColor!,
       ),
       isDense: false,
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(
-          color: Theme.of(context).textSelectionTheme.selectionColor,
+          color: Theme.of(context).textSelectionTheme.selectionColor!,
           width: 2,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(
-          color: Theme.of(context).textSelectionTheme.selectionColor,
+          color: Theme.of(context).textSelectionTheme.selectionColor!,
           width: 1,
         ),
       ),

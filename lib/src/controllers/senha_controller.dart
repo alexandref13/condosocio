@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SenhaController extends GetxController {
-
   var senhanova = TextEditingController().obs;
   var senhaconfirma = TextEditingController().obs;
 
@@ -14,9 +13,9 @@ class SenhaController extends GetxController {
 
   senha(context) async {
     isLoading(true);
-    FocusScopeNode currentFocus = FocusScope.of(context);
+    FocusScopeNode? currentFocus = FocusScope.of(context);
     if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
-      currentFocus.focusedChild.unfocus();
+      currentFocus.focusedChild?.unfocus();
     }
     var response = await ApiSenha.senha();
 
@@ -27,4 +26,3 @@ class SenhaController extends GetxController {
     return dados;
   }
 }
-

@@ -2,13 +2,12 @@ import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/acessos/saida/visualizar_acessos_saida_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarAcessosSaidas extends StatelessWidget {
-  const VisualizarAcessosSaidas({Key key}) : super(key: key);
+  const VisualizarAcessosSaidas({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
             'Saída',
             style: GoogleFonts.montserrat(
               fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
             ),
           ),
         ),
@@ -61,7 +60,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                     fontSize: 14.0,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 )
                               ],
@@ -157,7 +156,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                             color: Theme.of(
                                                                     context)
                                                                 .textSelectionTheme
-                                                                .selectionColor,
+                                                                .selectionColor!,
                                                           ),
                                                         ),
                                                       ),
@@ -173,13 +172,12 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                       right:
                                                                           10),
                                                               child: Icon(
-                                                                FontAwesome
-                                                                    .clock_o,
+                                                                Icons.schedule,
                                                                 size: 24,
                                                                 color: Theme.of(
                                                                         context)
                                                                     .textSelectionTheme
-                                                                    .selectionColor,
+                                                                    .selectionColor!,
                                                               ),
                                                             )
                                                           : Container(
@@ -200,7 +198,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                       color: Theme.of(
                                                                               context)
                                                                           .textSelectionTheme
-                                                                          .selectionColor,
+                                                                          .selectionColor!,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
@@ -221,13 +219,12 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                       right:
                                                                           10),
                                                               child: Icon(
-                                                                FontAwesome
-                                                                    .clock_o,
+                                                                Icons.schedule,
                                                                 size: 24,
                                                                 color: Theme.of(
                                                                         context)
                                                                     .textSelectionTheme
-                                                                    .selectionColor,
+                                                                    .selectionColor!,
                                                               ),
                                                             )
                                                           : Container(
@@ -248,7 +245,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                       color: Theme.of(
                                                                               context)
                                                                           .textSelectionTheme
-                                                                          .selectionColor,
+                                                                          .selectionColor!,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
@@ -325,7 +322,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                             color: Theme.of(
                                                                     context)
                                                                 .textSelectionTheme
-                                                                .selectionColor,
+                                                                .selectionColor!,
                                                           ),
                                                         ),
                                                       ),
@@ -341,13 +338,12 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                       right:
                                                                           10),
                                                               child: Icon(
-                                                                FontAwesome
-                                                                    .clock_o,
+                                                                Icons.schedule,
                                                                 size: 24,
                                                                 color: Theme.of(
                                                                         context)
                                                                     .textSelectionTheme
-                                                                    .selectionColor,
+                                                                    .selectionColor!,
                                                               ),
                                                             )
                                                           : Container(
@@ -368,7 +364,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                       color: Theme.of(
                                                                               context)
                                                                           .textSelectionTheme
-                                                                          .selectionColor,
+                                                                          .selectionColor!,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
@@ -389,13 +385,12 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                       right:
                                                                           10),
                                                               child: Icon(
-                                                                FontAwesome
-                                                                    .clock_o,
+                                                                Icons.schedule,
                                                                 size: 24,
                                                                 color: Theme.of(
                                                                         context)
                                                                     .textSelectionTheme
-                                                                    .selectionColor,
+                                                                    .selectionColor!,
                                                               ),
                                                             )
                                                           : Container(
@@ -416,7 +411,7 @@ class VisualizarAcessosSaidas extends StatelessWidget {
                                                                       color: Theme.of(
                                                                               context)
                                                                           .textSelectionTheme
-                                                                          .selectionColor,
+                                                                          .selectionColor!,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,

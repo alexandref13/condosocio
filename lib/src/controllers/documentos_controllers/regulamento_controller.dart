@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RegulamentoController extends GetxController {
-  List<MapaDocumentos> regulamento;
+  late List<MapaDocumentos> regulamento;
   var searchResult = [].obs;
   var isLoading = true.obs;
   var controller = TextEditingController().obs;
@@ -27,7 +27,7 @@ class RegulamentoController extends GetxController {
     super.onInit();
   }
 
-  Future<void> launched;
+  late Future<void> launched;
 
   Future<void> launchInBrowser(String url) async {
     if (await canLaunch(url)) {

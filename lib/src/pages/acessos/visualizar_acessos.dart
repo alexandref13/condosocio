@@ -26,7 +26,7 @@ class VisualizarAcessos extends StatelessWidget {
                       Icons.add,
                       size: 30,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
                     onPressed: () {
                       Get.toNamed('/convites');
@@ -39,12 +39,12 @@ class VisualizarAcessos extends StatelessWidget {
               'Acessos',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
             ),
             bottom: TabBar(
               indicatorColor:
-                  Theme.of(context).textSelectionTheme.selectionColor,
+                  Theme.of(context).textSelectionTheme.selectionColor!,
               indicatorPadding: EdgeInsets.all(-8),
               tabs: <Widget>[
                 Text(
@@ -52,13 +52,13 @@ class VisualizarAcessos extends StatelessWidget {
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+                          Theme.of(context).textSelectionTheme.selectionColor!),
                 ),
                 Text(
                   'Acessos',
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                 ),
               ],

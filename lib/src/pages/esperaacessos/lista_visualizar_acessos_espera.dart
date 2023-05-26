@@ -1,7 +1,7 @@
 import 'package:condosocio/src/components/visualizar_acessos/modal_bottom_sheet.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller_espera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -82,7 +82,7 @@ Widget listaVisualizarAcessosEspera() {
                                         fontSize: 12,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -95,7 +95,7 @@ Widget listaVisualizarAcessosEspera() {
                                                 fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -115,7 +115,7 @@ Widget listaVisualizarAcessosEspera() {
                                     fontSize: 12,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                               ),
@@ -125,11 +125,11 @@ Widget listaVisualizarAcessosEspera() {
                                           0.1,
                                       padding: EdgeInsets.only(right: 10),
                                       child: Icon(
-                                        FontAwesome.clock_o,
+                                        Icons.schedule_outlined,
                                         size: 24,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                     )
                                   : Container(
@@ -143,7 +143,7 @@ Widget listaVisualizarAcessosEspera() {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -156,11 +156,11 @@ Widget listaVisualizarAcessosEspera() {
                                           0.2,
                                       padding: EdgeInsets.only(right: 10),
                                       child: Icon(
-                                        FontAwesome.clock_o,
+                                        Icons.schedule_outlined,
                                         size: 24,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                     )
                                   : Container(
@@ -174,7 +174,7 @@ Widget listaVisualizarAcessosEspera() {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -265,7 +265,7 @@ Widget listaVisualizarAcessosEspera() {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -276,7 +276,7 @@ Widget listaVisualizarAcessosEspera() {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               //fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -300,7 +300,7 @@ Widget listaVisualizarAcessosEspera() {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -311,7 +311,7 @@ Widget listaVisualizarAcessosEspera() {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     // fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -325,7 +325,7 @@ Widget listaVisualizarAcessosEspera() {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -336,7 +336,7 @@ Widget listaVisualizarAcessosEspera() {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     // fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -357,7 +357,7 @@ Widget listaVisualizarAcessosEspera() {
                                         fontWeight: FontWeight.bold,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                     ),
                                     SizedBox(height: 5),
@@ -372,7 +372,7 @@ Widget listaVisualizarAcessosEspera() {
                                         //fontWeight: FontWeight.bold,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                     ),
                                   ],
@@ -398,7 +398,7 @@ Widget listaVisualizarAcessosEspera() {
                                                 size: 24,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               )
                                             : visualizarAcessosEsperaController
                                                         .acessos[index]
@@ -409,7 +409,7 @@ Widget listaVisualizarAcessosEspera() {
                                                     size: 24,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   )
                                                 : Container(),
                                         SizedBox(width: 5),
@@ -427,7 +427,7 @@ Widget listaVisualizarAcessosEspera() {
                                                 size: 24,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               )
                                             : visualizarAcessosEsperaController
                                                             .acessos[index]
@@ -443,7 +443,7 @@ Widget listaVisualizarAcessosEspera() {
                                                     size: 24,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   )
                                                 : Container(),
                                         SizedBox(width: 5),
@@ -457,11 +457,11 @@ Widget listaVisualizarAcessosEspera() {
                                                         "1") &&
                                                 newDataEnt == ""
                                             ? Icon(
-                                                FontAwesome.hourglass_1,
+                                                Icons.hourglass_top_outlined,
                                                 size: 18,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               )
                                             : visualizarAcessosEsperaController
                                                             .acessos[index]
@@ -472,18 +472,18 @@ Widget listaVisualizarAcessosEspera() {
                                                             .ctlreg ==
                                                         "3"
                                                 ? Icon(
-                                                    FontAwesome.sign_out,
+                                                    Icons.logout_outlined,
                                                     size: 24,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   )
                                                 : Icon(
-                                                    FontAwesome.sign_in,
+                                                    Icons.login_outlined,
                                                     size: 24,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   )
                                       ],
                                     ),
@@ -507,7 +507,7 @@ Widget listaVisualizarAcessosEspera() {
                                                 fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                                 // fontWeight: FontWeight.bold,
                                               ),
                                             )
@@ -530,7 +530,7 @@ Widget listaVisualizarAcessosEspera() {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     // fontWeight: FontWeight.bold,
                                                   ),
                                                 )

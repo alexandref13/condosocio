@@ -47,7 +47,7 @@ Widget listaVisualizarOuvidoria() {
                                 fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -59,7 +59,7 @@ Widget listaVisualizarOuvidoria() {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -75,7 +75,7 @@ Widget listaVisualizarOuvidoria() {
                                 fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                             ),
                           ),
@@ -123,7 +123,7 @@ Widget listaVisualizarOuvidoria() {
                                 fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -135,7 +135,7 @@ Widget listaVisualizarOuvidoria() {
                                 fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -151,7 +151,7 @@ Widget listaVisualizarOuvidoria() {
                                 fontSize: 12,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                             ),
                           ),

@@ -36,7 +36,7 @@ class PesquisaAcheAqui extends StatelessWidget {
                                 fontSize: 16,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               decoration: InputDecoration(
                                 labelText: "Pesquise pela empresa ou atividade",
@@ -44,14 +44,14 @@ class PesquisaAcheAqui extends StatelessWidget {
                                   fontSize: 16,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                                 isDense: true,
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     width: 1,
                                   ),
                                 ),
@@ -64,7 +64,7 @@ class PesquisaAcheAqui extends StatelessWidget {
                                     Icons.close,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     size: 12,
                                   ),
                                 ),
@@ -72,7 +72,7 @@ class PesquisaAcheAqui extends StatelessWidget {
                                   borderSide: BorderSide(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -112,7 +112,7 @@ class PesquisaAcheAqui extends StatelessWidget {
                                             fontSize: 14.0,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -163,7 +163,7 @@ class PesquisaAcheAqui extends StatelessWidget {
                                                       fontSize: 14,
                                                       color: Theme.of(context)
                                                           .textSelectionTheme
-                                                          .selectionColor,
+                                                          .selectionColor!,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
@@ -182,7 +182,7 @@ class PesquisaAcheAqui extends StatelessWidget {
                                                 Icons.arrow_right,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                                 size: 30,
                                               ),
                                             ),

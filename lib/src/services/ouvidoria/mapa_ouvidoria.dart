@@ -1,20 +1,20 @@
 class MapaOuvidoria {
-  Null idraiz;
-  int status;
-  String msg;
-  String assunto;
-  String idouv;
-  String data;
-  String hora;
+  late Null idraiz;
+  late int status;
+  late String msg;
+  late String assunto;
+  late String idouv;
+  late String data;
+  late String hora;
 
   MapaOuvidoria(
-      {this.idraiz,
-      this.status,
-      this.msg,
-      this.assunto,
-      this.idouv,
-      this.data,
-      this.hora});
+      {required this.idraiz,
+      required this.status,
+      required this.msg,
+      required this.assunto,
+      required this.idouv,
+      required this.data,
+      required this.hora});
 
   MapaOuvidoria.fromJson(Map<String, dynamic> json) {
     idraiz = json['idraiz'];

@@ -11,9 +11,9 @@ class EmailController extends GetxController {
 
   email(context) async {
     isLoading(true);
-    FocusScopeNode currentFocus = FocusScope.of(context);
+    FocusScopeNode? currentFocus = FocusScope.of(context);
     if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
-      currentFocus.focusedChild.unfocus();
+      currentFocus.focusedChild?.unfocus();
     }
     var response = await ApiEmail.email();
 

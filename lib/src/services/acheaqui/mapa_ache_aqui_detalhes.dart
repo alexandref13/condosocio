@@ -1,26 +1,26 @@
 class MapaAcheAquiDetalhes {
-  String fantasia;
-  String imgforn;
-  String tel;
-  String cel;
-  String email;
-  String site;
-  int qtdAvaliacoes;
-  String mediaAvaliacoes;
-  String endereco;
-  String atividades;
+  late String fantasia;
+  late String imgforn;
+  late String tel;
+  late String cel;
+  late String email;
+  late String site;
+  late int qtdAvaliacoes;
+  late String mediaAvaliacoes;
+  late String endereco;
+  late String atividades;
 
   MapaAcheAquiDetalhes(
-      {this.fantasia,
-      this.imgforn,
-      this.tel,
-      this.cel,
-      this.email,
-      this.site,
-      this.qtdAvaliacoes,
-      this.mediaAvaliacoes,
-      this.endereco,
-      this.atividades});
+      {required this.fantasia,
+      required this.imgforn,
+      required this.tel,
+      required this.cel,
+      required this.email,
+      required this.site,
+      required this.qtdAvaliacoes,
+      required this.mediaAvaliacoes,
+      required this.endereco,
+      required this.atividades});
 
   MapaAcheAquiDetalhes.fromJson(Map<String, dynamic> json) {
     fantasia = json['fantasia'];

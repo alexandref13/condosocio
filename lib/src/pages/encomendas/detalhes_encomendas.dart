@@ -1,7 +1,7 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/encomendas_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +17,7 @@ class DetalhesEncomendas extends StatelessWidget {
           encomendasController.codigo.value,
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -49,17 +49,17 @@ class DetalhesEncomendas extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                     ),
                                     Row(
                                       children: [
                                         Icon(
-                                          Feather.calendar,
+                                          Icons.calendar_month,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           size: 20,
                                         ),
                                         Container(
@@ -71,7 +71,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                               fontSize: 14,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                             ),
                                           ),
                                         )
@@ -91,7 +91,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                     Icons.watch_later_outlined,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     size: 20,
                                   ),
                                   Container(
@@ -102,7 +102,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                       style: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontSize: 14,
                                       ),
                                     ),
@@ -135,17 +135,17 @@ class DetalhesEncomendas extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           ),
                                           Row(
                                             children: [
                                               Icon(
-                                                Feather.calendar,
+                                                Icons.calendar_month,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                                 size: 20,
                                               ),
                                               Container(
@@ -159,7 +159,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                                     fontSize: 14,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   ),
                                                 ),
                                               )
@@ -179,7 +179,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                           Icons.watch_later_outlined,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           size: 20,
                                         ),
                                         Container(
@@ -190,7 +190,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                             style: GoogleFonts.montserrat(
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontSize: 14,
                                             ),
                                           ),
@@ -211,7 +211,7 @@ class DetalhesEncomendas extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                           ),
                         ),
                       ),
@@ -222,7 +222,7 @@ class DetalhesEncomendas extends StatelessWidget {
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             fontSize: 14,
                           ),
                         ),
@@ -236,7 +236,7 @@ class DetalhesEncomendas extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                           ),
                         ),
                       ),
@@ -248,7 +248,7 @@ class DetalhesEncomendas extends StatelessWidget {
                             fontSize: 14,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                           ),
                         ),
                       ),
@@ -262,7 +262,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             )
@@ -276,7 +276,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                   fontSize: 14,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             )
@@ -317,7 +317,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                       style: AlertStyle(
                                         backgroundColor: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         animationType: AnimationType.fromTop,
                                         isCloseButton: false,
                                         isOverlayTapDismiss: false,
@@ -325,7 +325,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                         animationDuration:
                                             Duration(milliseconds: 300),
                                         titleStyle: GoogleFonts.poppins(
-                                          color: Theme.of(context).errorColor,
+                                          color: Theme.of(context).colorScheme.error,
                                           fontSize: 18,
                                         ),
                                       ),
@@ -339,7 +339,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                             style: GoogleFonts.montserrat(
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontSize: 18,
                                             ),
                                           ),
@@ -347,7 +347,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                             Get.back();
                                           },
                                           width: 80,
-                                          color: Theme.of(context).errorColor,
+                                          color: Theme.of(context).colorScheme.error,
                                         ),
                                         DialogButton(
                                           child: Text(
@@ -355,7 +355,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                             style: GoogleFonts.montserrat(
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontSize: 18,
                                             ),
                                           ),
@@ -394,7 +394,7 @@ class DetalhesEncomendas extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                   ),
                                 ),

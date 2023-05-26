@@ -44,7 +44,7 @@ class VisualizarReservas extends StatelessWidget {
                               fontSize: 14.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -161,7 +161,7 @@ class VisualizarReservas extends StatelessWidget {
                                       Icons.arrow_right_outlined,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                     title: Container(
                                       padding: EdgeInsets.only(
@@ -173,7 +173,7 @@ class VisualizarReservas extends StatelessWidget {
                                           fontSize: 14,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -193,7 +193,7 @@ class VisualizarReservas extends StatelessWidget {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                             ),
                                           ),
                                         ),
@@ -207,7 +207,7 @@ class VisualizarReservas extends StatelessWidget {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                             ),
                                           ),
                                         ),

@@ -33,7 +33,7 @@ onAlertButtonPressed(context, String text, String page, String img) {
               Text(
                 text,
                 style: GoogleFonts.poppins(
-                  color: Theme.of(context).errorColor,
+                  color: Theme.of(context).colorScheme.error,
                   fontSize: 14,
                 ),
                 textAlign: TextAlign.center,
@@ -55,7 +55,7 @@ onAlertButtonPressed(context, String text, String page, String img) {
                   }
                 },
                 width: 80,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
               ),
             ],
           ),

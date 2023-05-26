@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FotoOcorrencia extends StatelessWidget {
-  const FotoOcorrencia({Key key}) : super(key: key);
+  const FotoOcorrencia({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class FotoOcorrencia extends StatelessWidget {
           },
           icon: Icon(
             Icons.close,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),

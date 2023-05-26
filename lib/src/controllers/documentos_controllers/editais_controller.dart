@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EditaisController extends GetxController {
-  List<MapaDocumentos> editais;
+  late List<MapaDocumentos> editais;
   var searchResult = [].obs;
   var isLoading = true.obs;
   var controller = TextEditingController().obs;
@@ -26,7 +26,7 @@ class EditaisController extends GetxController {
     super.onInit();
   }
 
-  Future<void> launched;
+  late Future<void> launched;
 
   Future<void> launchInBrowser(String url) async {
     if (await canLaunch(url)) {

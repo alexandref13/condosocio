@@ -1,9 +1,8 @@
 class DadosComunicados {
-  String titulo;
-  String arquivo;
-  String dia;
-  String mes;
-  String hora;
+  late String titulo;
+  late String arquivo;
+  late String dia;
+  late String mes;
 
   DadosComunicados(
       String titulo, String arquivo, String dia, String mes, String hora) {
@@ -11,7 +10,6 @@ class DadosComunicados {
     this.arquivo = arquivo;
     this.dia = dia;
     this.mes = mes;
-    this.hora = hora;
   }
 
   DadosComunicados.fromJson(Map json) {
@@ -19,6 +17,5 @@ class DadosComunicados {
     arquivo = json['arquivo'];
     dia = json['dia'];
     mes = json['mes'];
-    hora = json['hora'];
   }
 }

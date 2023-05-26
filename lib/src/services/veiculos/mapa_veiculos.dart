@@ -1,24 +1,24 @@
 class VeiculosMapa {
-  String idvei;
-  String marca;
-  String modelo;
-  String cor;
-  String ano;
-  String placa;
-  String desde;
-  String contagem;
-  String qtdVagas;
+  late String idvei;
+  late String marca;
+  late String modelo;
+  late String cor;
+  late String ano;
+  late String placa;
+  late String desde;
+  late String contagem;
+  late String qtdVagas;
 
   VeiculosMapa({
-    this.idvei,
-    this.marca,
-    this.modelo,
-    this.cor,
-    this.ano,
-    this.placa,
-    this.desde,
-    this.contagem,
-    this.qtdVagas,
+    required this.idvei,
+    required this.marca,
+    required this.modelo,
+    required this.cor,
+    required this.ano,
+    required this.placa,
+    required this.desde,
+    required this.contagem,
+    required this.qtdVagas,
   });
 
   VeiculosMapa.fromJson(Map<String, dynamic> json) {

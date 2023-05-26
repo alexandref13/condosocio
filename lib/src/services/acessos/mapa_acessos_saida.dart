@@ -1,20 +1,20 @@
 class MapaAcessosSaida {
-  String nome;
-  String imgaut;
-  String idaut;
-  String doc;
-  String datacreate;
-  String datasaida;
-  String tipo;
+  late String nome;
+  late String imgaut;
+  late String idaut;
+  late String doc;
+  late String datacreate;
+  late String datasaida;
+  late String tipo;
 
   MapaAcessosSaida(
-      {this.nome,
-      this.imgaut,
-      this.idaut,
-      this.doc,
-      this.datacreate,
-      this.datasaida,
-      this.tipo});
+      {required this.nome,
+      required this.imgaut,
+      required this.idaut,
+      required this.doc,
+      required this.datacreate,
+      required this.datasaida,
+      required this.tipo});
 
   MapaAcessosSaida.fromJson(Map<String, dynamic> json) {
     nome = json['nome'];

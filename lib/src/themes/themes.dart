@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData admin = ThemeData(
-  brightness: Brightness.dark,
   primaryColor: Color(0xff1A936F),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffF3E9D2),
@@ -21,7 +20,6 @@ ThemeData admin = ThemeData(
 );
 
 ThemeData magenta = ThemeData(
-  brightness: Brightness.light,
   primaryColor: Color(0xff833545),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
@@ -43,7 +41,6 @@ ThemeData magenta = ThemeData(
 );
 
 ThemeData turquoise = ThemeData(
-  brightness: Brightness.dark,
   primaryColor: Color(0xff054437),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
@@ -65,7 +62,6 @@ ThemeData turquoise = ThemeData(
 );
 
 ThemeData blue = ThemeData(
-  brightness: Brightness.dark,
   primaryColor: Color(0xff375a70),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
@@ -87,7 +83,6 @@ ThemeData blue = ThemeData(
 );
 
 ThemeData grayscale = ThemeData(
-  brightness: Brightness.dark,
   primaryColor: Color(0xff150811),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
@@ -109,7 +104,6 @@ ThemeData grayscale = ThemeData(
 );
 
 ThemeData red = ThemeData(
-  brightness: Brightness.dark,
   primaryColor: Color(0xff811308),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
@@ -131,7 +125,6 @@ ThemeData red = ThemeData(
 );
 
 ThemeData orange = ThemeData(
-  brightness: Brightness.dark,
   primaryColor: Color(0xff792404),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),

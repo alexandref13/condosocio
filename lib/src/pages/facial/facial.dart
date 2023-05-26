@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
-import 'package:edge_alert/edge_alert.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:http/http.dart' as http;
 
+import '../../components/utils/edge_alert_error_widget.dart';
 import '../../controllers/facial_controller.dart';
 
 class Facial extends StatefulWidget {
@@ -21,7 +21,7 @@ class _FacialState extends State<Facial> {
   LoginController loginController = Get.put(LoginController());
   FacialController facialController = Get.put(FacialController());
 
-  File _selectedFile;
+  File? _selectedFile;
   final _picker = ImagePicker();
 
   final uri =
@@ -54,14 +54,14 @@ class _FacialState extends State<Facial> {
                             size: 20,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                           )
                         : Icon(
                             Icons.search,
                             size: 20,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                           ),
                   ),
                   decoration: BoxDecoration(
@@ -75,7 +75,7 @@ class _FacialState extends State<Facial> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: new DecorationImage(
-              image: new FileImage(_selectedFile),
+              image: new FileImage(_selectedFile!),
               fit: BoxFit.cover,
             ),
           ),
@@ -102,14 +102,14 @@ class _FacialState extends State<Facial> {
                                 size: 20,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               )
                             : Icon(
                                 Icons.search,
                                 size: 20,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                       ),
                       decoration: BoxDecoration(
@@ -141,14 +141,14 @@ class _FacialState extends State<Facial> {
                                 size: 20,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               )
                             : Icon(
                                 Icons.search,
                                 size: 20,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                       ),
                       decoration: BoxDecoration(
@@ -174,9 +174,9 @@ class _FacialState extends State<Facial> {
 
   getImage(ImageSource source) async {
     this.setState(() {});
-    PickedFile image = await _picker.getImage(source: source);
+    PickedFile? image = await _picker.getImage(source: source);
     if (image != null) {
-      File cropped = await ImageCropper().cropImage(
+      File? cropped = await ImageCropper().cropImage(
           sourcePath: image.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 80,
@@ -205,23 +205,15 @@ class _FacialState extends State<Facial> {
     facialController.isLoading.value = true;
     var request = http.MultipartRequest('POST', uri);
     request.fields['idusu'] = loginController.id.value;
-    var pic = await http.MultipartFile.fromPath("image", _selectedFile.path);
+    var pic = await http.MultipartFile.fromPath("image", _selectedFile!.path);
     request.files.add(pic);
     var response = await request.send();
     if (response.statusCode == 200) {
       loginController.newLogin(loginController.id.value);
-      EdgeAlert.show(context,
-          title: 'Imagem Facial Inserida com Sucesso!',
-          gravity: EdgeAlert.BOTTOM,
-          backgroundColor: Colors.green,
-          icon: Icons.check);
+      showToastError(context, 'Imagem Facial Inserida com Sucesso!');
     } else {
       Navigator.of(context).pop();
-      EdgeAlert.show(context,
-          title: 'Houve Algum Problema! Tente Novamente.',
-          gravity: EdgeAlert.BOTTOM,
-          backgroundColor: Colors.red,
-          icon: Icons.highlight_off);
+      showToastError(context, 'Houve Algum Problema! Tente Novamente!');
     }
     _selectedFile = null;
   }
@@ -237,7 +229,7 @@ class _FacialState extends State<Facial> {
               'Biometria Facial',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
             ),
             centerTitle: true,
@@ -272,7 +264,7 @@ class _FacialState extends State<Facial> {
                                                   fontSize: 14,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               )
                                             : Text(
@@ -281,7 +273,7 @@ class _FacialState extends State<Facial> {
                                                   fontSize: 14,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               )),
                               ),
@@ -309,7 +301,7 @@ class _FacialState extends State<Facial> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             SizedBox(height: 16.0),
@@ -319,7 +311,7 @@ class _FacialState extends State<Facial> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             SizedBox(height: 8.0),
@@ -329,7 +321,7 @@ class _FacialState extends State<Facial> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             SizedBox(height: 8.0),
@@ -339,7 +331,7 @@ class _FacialState extends State<Facial> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             SizedBox(height: 8.0),
@@ -349,7 +341,7 @@ class _FacialState extends State<Facial> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             SizedBox(height: 8.0),
@@ -359,7 +351,7 @@ class _FacialState extends State<Facial> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             SizedBox(height: 8.0),
@@ -369,7 +361,7 @@ class _FacialState extends State<Facial> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                             SizedBox(height: 8.0),
@@ -379,7 +371,7 @@ class _FacialState extends State<Facial> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           ],

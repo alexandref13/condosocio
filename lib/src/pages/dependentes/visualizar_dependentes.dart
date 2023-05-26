@@ -3,12 +3,12 @@ import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VisualizarDependentes extends StatelessWidget {
-  const VisualizarDependentes({Key key}) : super(key: key);
+  const VisualizarDependentes({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class VisualizarDependentes extends StatelessWidget {
                               fontSize: 14.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -72,7 +72,7 @@ class VisualizarDependentes extends StatelessWidget {
                                 fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.w400,
                                 letterSpacing: 2),
                           ),
@@ -83,7 +83,7 @@ class VisualizarDependentes extends StatelessWidget {
                                 fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.w400,
                                 letterSpacing: 2),
                           ),
@@ -94,7 +94,7 @@ class VisualizarDependentes extends StatelessWidget {
                                 fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.w400,
                                 letterSpacing: 2),
                           ),
@@ -105,7 +105,7 @@ class VisualizarDependentes extends StatelessWidget {
                                 fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.w400,
                                 letterSpacing: 2),
                           ),
@@ -168,7 +168,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -187,7 +187,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   ),
                                                 ),
                                               ),
@@ -202,7 +202,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   ),
                                                 ),
                                               ),
@@ -214,14 +214,14 @@ class VisualizarDependentes extends StatelessWidget {
                                                         size: 20,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
-                                                            .selectionColor,
+                                                            .selectionColor!,
                                                       )
                                                     : Icon(
                                                         Icons.done,
                                                         size: 20,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
-                                                            .selectionColor,
+                                                            .selectionColor!,
                                                       ),
                                               ),
                                               Container(
@@ -288,7 +288,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -307,7 +307,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   ),
                                                 ),
                                               ),
@@ -322,7 +322,7 @@ class VisualizarDependentes extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   ),
                                                 ),
                                               ),
@@ -334,14 +334,14 @@ class VisualizarDependentes extends StatelessWidget {
                                                         size: 20,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
-                                                            .selectionColor,
+                                                            .selectionColor!,
                                                       )
                                                     : Icon(
                                                         Icons.done,
                                                         size: 20,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
-                                                            .selectionColor,
+                                                            .selectionColor!,
                                                       ),
                                               ),
                                               Container(

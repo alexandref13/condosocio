@@ -55,10 +55,10 @@ class DetalhesAcheAqui extends StatelessWidget {
                             child: Text(
                               detalhes.fantasia,
                               style: GoogleFonts.montserrat(
-                                fontSize: 14,
+                                fontSize: 16,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -72,7 +72,7 @@ class DetalhesAcheAqui extends StatelessWidget {
                                   fontSize: 14,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),
@@ -86,7 +86,7 @@ class DetalhesAcheAqui extends StatelessWidget {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                             ),
                           ),
@@ -95,11 +95,21 @@ class DetalhesAcheAqui extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(detalhes.mediaAvaliacoes),
+                                Text(
+                                  detalhes.mediaAvaliacoes,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 16,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor!,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                                 Container(
                                   padding: EdgeInsets.only(left: 4, bottom: 3),
                                   child: Icon(
                                     Icons.star,
+                                    color: Theme.of(context).primaryColorLight,
                                   ),
                                 ),
                                 Container(
@@ -107,10 +117,11 @@ class DetalhesAcheAqui extends StatelessWidget {
                                   child: Text(
                                     ' | ',
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
@@ -119,10 +130,11 @@ class DetalhesAcheAqui extends StatelessWidget {
                                   child: Text(
                                     '${detalhes.qtdAvaliacoes} Avaliações',
                                     style: GoogleFonts.montserrat(
-                                      fontSize: 14,
+                                      fontSize: 16,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
@@ -137,7 +149,7 @@ class DetalhesAcheAqui extends StatelessWidget {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -149,6 +161,8 @@ class DetalhesAcheAqui extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     IconButton(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
                                       onPressed: () {
                                         detalhesAcheAquiController.star1.value =
                                             true;
@@ -169,6 +183,8 @@ class DetalhesAcheAqui extends StatelessWidget {
                                               : Icons.star_border_outlined),
                                     ),
                                     IconButton(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
                                       onPressed: () {
                                         detalhesAcheAquiController.star1.value =
                                             true;
@@ -189,6 +205,8 @@ class DetalhesAcheAqui extends StatelessWidget {
                                               : Icons.star_border_outlined),
                                     ),
                                     IconButton(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
                                       onPressed: () {
                                         detalhesAcheAquiController.star1.value =
                                             true;
@@ -210,6 +228,8 @@ class DetalhesAcheAqui extends StatelessWidget {
                                       ),
                                     ),
                                     IconButton(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
                                       onPressed: () {
                                         detalhesAcheAquiController.star1.value =
                                             true;
@@ -231,6 +251,8 @@ class DetalhesAcheAqui extends StatelessWidget {
                                       ),
                                     ),
                                     IconButton(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
                                       onPressed: () {
                                         detalhesAcheAquiController.star1.value =
                                             true;
@@ -265,7 +287,7 @@ class DetalhesAcheAqui extends StatelessWidget {
                                 return customTextField(
                                   context,
                                   'Comente',
-                                  null,
+                                  '',
                                   true,
                                   3,
                                   true,
@@ -315,18 +337,18 @@ class DetalhesAcheAqui extends StatelessWidget {
                                       confirmedButtonPressed(
                                           context,
                                           'Sua avaliação foi enviada com sucesso! Grato pela sua colaboração.',
-                                          null);
+                                          '');
                                     } else if (value == 2) {
                                       confirmedButtonPressed(
                                           context,
                                           "Sua avaliação para essa empresa foi atualizada com sucesso!",
-                                          null);
+                                          '');
                                     } else {
                                       onAlertButtonPressed(
                                           context,
                                           'Algo deu errado\n Tente novamente',
                                           '/acheAqui',
-                                          null);
+                                          '');
                                     }
                                   });
                                 },
@@ -336,7 +358,7 @@ class DetalhesAcheAqui extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                               ),

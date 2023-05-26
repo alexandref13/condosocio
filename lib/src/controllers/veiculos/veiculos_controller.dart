@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../services/veiculos/api_veiculos.dart';
 import '../../services/veiculos/mapa_veiculos.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class VeiculosController extends GetxController {
   var isLoading = false.obs;

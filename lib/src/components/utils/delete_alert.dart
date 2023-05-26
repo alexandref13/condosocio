@@ -17,7 +17,7 @@ void deleteAlert(BuildContext context, String text, VoidCallback function) {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
+          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
           titleTextStyle: GoogleFonts.poppins(
             color: Theme.of(context).colorScheme.secondary,
             fontSize: 18,
@@ -52,8 +52,9 @@ void deleteAlert(BuildContext context, String text, VoidCallback function) {
                     child: Text(
                       "OK",
                       style: GoogleFonts.montserrat(
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
                         fontSize: 14,
                       ),
                     ),
@@ -66,8 +67,9 @@ void deleteAlert(BuildContext context, String text, VoidCallback function) {
                     child: Text(
                       "CANCELAR",
                       style: GoogleFonts.montserrat(
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
                         fontSize: 12,
                       ),
                     ),
@@ -75,7 +77,7 @@ void deleteAlert(BuildContext context, String text, VoidCallback function) {
                       Get.back();
                     },
                     width: 80,
-                    color: Theme.of(context).errorColor,
+                    color: Theme.of(context).colorScheme.error,
                   ),
                 ],
               ),

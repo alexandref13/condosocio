@@ -42,7 +42,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                               fontSize: 12.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -54,7 +54,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                               fontSize: 10.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -65,7 +65,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                             fontSize: 12.0,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             fontWeight: FontWeight.w400,
                           ),
                         ),

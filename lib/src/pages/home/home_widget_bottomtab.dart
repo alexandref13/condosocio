@@ -2,10 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../controllers/esperaacessos/visualizar_acessos_espera_controller.dart';
 import '../../controllers/home_page_controller.dart';
 import '../../controllers/login_controller.dart';
@@ -48,7 +46,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                     autoPlayAnimationDuration: Duration(milliseconds: 500),
                     autoPlayInterval: Duration(seconds: 5),
                   ),
-                  items: snapshot.data
+                  items: snapshot.data!
                       .map(
                         (e) => ClipRRect(
                           borderRadius: BorderRadius.circular(8),
@@ -112,7 +110,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -120,7 +118,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -158,7 +156,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 40,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -166,7 +164,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -206,7 +204,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                           size: 35,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                       Text(
@@ -214,7 +212,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                         style: GoogleFonts.montserrat(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           fontSize: 11,
                                         ),
                                       ),
@@ -255,7 +253,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                           size: 35,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor
+                                              .selectionColor!
                                               .withOpacity(0.5),
                                         ),
                                       ),
@@ -264,7 +262,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                         style: GoogleFonts.montserrat(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor
+                                              .selectionColor!
                                               .withOpacity(0.5),
                                           fontSize: 11,
                                         ),
@@ -301,7 +299,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 40,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -309,7 +307,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -345,7 +343,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -353,7 +351,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -389,7 +387,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -397,7 +395,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -433,7 +431,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -441,7 +439,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -477,11 +475,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                         padding:
                                             const EdgeInsets.only(bottom: 10),
                                         child: Icon(
-                                          Feather.users,
+                                          Icons.group_outlined,
                                           size: 35,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                       Text(
@@ -489,7 +487,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                         style: GoogleFonts.montserrat(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           fontSize: 11,
                                         ),
                                       ),
@@ -526,11 +524,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                         padding:
                                             const EdgeInsets.only(bottom: 10),
                                         child: Icon(
-                                          Feather.users,
+                                          Icons.group_outlined,
                                           size: 35,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor
+                                              .selectionColor!
                                               .withOpacity(0.5),
                                         ),
                                       ),
@@ -539,7 +537,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                         style: GoogleFonts.montserrat(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor
+                                              .selectionColor!
                                               .withOpacity(0.5),
                                           fontSize: 11,
                                         ),
@@ -572,11 +570,11 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    FontAwesome.comment_o,
+                                    Icons.comment,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -584,7 +582,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -620,7 +618,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 40,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -628,7 +626,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -664,7 +662,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -672,7 +670,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -708,7 +706,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -716,7 +714,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -752,7 +750,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -760,7 +758,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -796,7 +794,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -804,7 +802,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -840,7 +838,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 Text(
@@ -848,7 +846,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                 ),
@@ -888,13 +886,13 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   textColor: Colors.black87,
                                   backgroundColor: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,*/
+                                      .selectionColor!,*/
                                 child: Icon(
                                   Icons.help_outline_rounded,
                                   size: 35,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                               //),
@@ -904,7 +902,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 11,
                                   ),
                                   textAlign: TextAlign.center,

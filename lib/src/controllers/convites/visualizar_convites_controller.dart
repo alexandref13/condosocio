@@ -25,7 +25,7 @@ class VisualizarConvitesController extends GetxController {
 
   var platformStringVersion = 'Unknown'.obs;
 
-  Future<void> launched;
+  late Future<void> launched;
 
   Future<void> launchInBrowser(String url) async {
     if (await canLaunch(url)) {
@@ -77,14 +77,14 @@ class VisualizarConvitesController extends GetxController {
   }
 
   Future<void> initPlatformState() async {
-    String platformVersion;
+    String? platformVersion;
     try {
       // platformVersion = await FlutterOpenWhatsapp.platformVersion;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
 
-    platformStringVersion.value = platformVersion;
+    platformStringVersion.value = platformVersion!;
   }
 
   @override

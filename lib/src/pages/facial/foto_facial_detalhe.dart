@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FotoFacial extends StatelessWidget {
-  const FotoFacial({Key key}) : super(key: key);
+  const FotoFacial({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class FotoFacial extends StatelessWidget {
           },
           icon: Icon(
             Icons.close,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),

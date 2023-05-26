@@ -1,22 +1,22 @@
 class MapaReservas {
-  String idarea;
-  String nome;
-  String qtdMaxConvidados;
-  String termo;
-  String aprova;
-  String multi;
-  String tipo;
-  int lastTime;
+  late String idarea;
+  late String nome;
+  late String qtdMaxConvidados;
+  late String termo;
+  late String aprova;
+  late String multi;
+  late String tipo;
+  late int lastTime;
 
   MapaReservas({
-    this.idarea,
-    this.nome,
-    this.qtdMaxConvidados,
-    this.termo,
-    this.aprova,
-    this.multi,
-    this.tipo,
-    this.lastTime,
+    required this.idarea,
+    required this.nome,
+    required this.qtdMaxConvidados,
+    required this.termo,
+    required this.aprova,
+    required this.multi,
+    required this.tipo,
+    required this.lastTime,
   });
 
   MapaReservas.fromJson(Map<String, dynamic> json) {

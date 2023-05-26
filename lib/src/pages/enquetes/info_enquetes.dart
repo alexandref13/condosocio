@@ -100,7 +100,7 @@ class InfoEnquetes extends StatelessWidget {
                                                   fontSize: 12,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               ),
                                               Text(
@@ -111,7 +111,7 @@ class InfoEnquetes extends StatelessWidget {
                                                   fontSize: 12,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               )
                                             ],
@@ -139,7 +139,7 @@ class InfoEnquetes extends StatelessWidget {
                                   fontSize: 12,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),
@@ -152,7 +152,7 @@ class InfoEnquetes extends StatelessWidget {
                                   fontSize: 12,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),

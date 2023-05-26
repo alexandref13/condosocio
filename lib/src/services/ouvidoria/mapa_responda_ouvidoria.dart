@@ -1,30 +1,30 @@
 class MapaRespondaOuvidoria {
-  String idusuraiz;
-  String msgraiz;
-  String tipoouv;
-  String dataraiz;
-  String horaraiz;
-  String idusu;
-  String nomeusu;
-  String imgperfil;
-  String tipousu;
-  String texto;
-  String data;
-  String hora;
+  late String idusuraiz;
+  late String msgraiz;
+  late String tipoouv;
+  late String dataraiz;
+  late String horaraiz;
+  late String idusu;
+  late String nomeusu;
+  late String imgperfil;
+  late String tipousu;
+  late String texto;
+  late String data;
+  late String hora;
 
   MapaRespondaOuvidoria(
-      {this.idusuraiz,
-      this.msgraiz,
-      this.tipoouv,
-      this.dataraiz,
-      this.horaraiz,
-      this.idusu,
-      this.nomeusu,
-      this.imgperfil,
-      this.tipousu,
-      this.texto,
-      this.data,
-      this.hora});
+      {required this.idusuraiz,
+      required this.msgraiz,
+      required this.tipoouv,
+      required this.dataraiz,
+      required this.horaraiz,
+      required this.idusu,
+      required this.nomeusu,
+      required this.imgperfil,
+      required this.tipousu,
+      required this.texto,
+      required this.data,
+      required this.hora});
 
   MapaRespondaOuvidoria.fromJson(Map<String, dynamic> json) {
     idusuraiz = json['idusuraiz'];

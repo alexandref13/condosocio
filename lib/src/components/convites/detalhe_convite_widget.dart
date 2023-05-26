@@ -9,14 +9,14 @@ import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 //import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class DetalheConviteWidget extends StatelessWidget {
-  const DetalheConviteWidget({Key key}) : super(key: key);
+  const DetalheConviteWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class DetalheConviteWidget extends StatelessWidget {
             visualizarConvitesController.titulo.value,
             style: GoogleFonts.montserrat(
               fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
             ),
           ),
         ),
@@ -109,17 +109,17 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           ),
                                           Row(
                                             children: [
                                               Icon(
-                                                Feather.calendar,
+                                                Icons.calendar_month,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                                 size: 20,
                                               ),
                                               Container(
@@ -131,7 +131,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                     fontSize: 14,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   ),
                                                 ),
                                               )
@@ -151,7 +151,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                           Icons.watch_later_outlined,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           size: 20,
                                         ),
                                         Container(
@@ -161,7 +161,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                             style: GoogleFonts.montserrat(
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontSize: 14,
                                             ),
                                           ),
@@ -193,17 +193,17 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           ),
                                           Row(
                                             children: [
                                               Icon(
-                                                Feather.calendar,
+                                                Icons.calendar_month,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                                 size: 20,
                                               ),
                                               Container(
@@ -215,7 +215,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                     fontSize: 14,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   ),
                                                 ),
                                               )
@@ -235,7 +235,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                           Icons.watch_later_outlined,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           size: 20,
                                         ),
                                         Container(
@@ -245,7 +245,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                             style: GoogleFonts.montserrat(
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontSize: 14,
                                             ),
                                           ),
@@ -270,7 +270,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                         : Icons.arrow_right_alt,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     size: 26,
                                   ),
                                   Container(
@@ -289,7 +289,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                     ),
                                   )
@@ -308,7 +308,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                       width: 1,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     )),
                                 padding: EdgeInsets.all(8),
                                 child: Row(
@@ -321,7 +321,8 @@ class DetalheConviteWidget extends StatelessWidget {
                                         children: [
                                           Padding(
                                             padding: EdgeInsets.only(right: 10),
-                                            child: Icon(Feather.user_check),
+                                            child: Icon(
+                                                Icons.account_circle_outlined),
                                           ),
                                           Column(
                                             crossAxisAlignment:
@@ -341,7 +342,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   ),
                                                 ),
                                               ),
@@ -360,7 +361,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                           color: Theme.of(
                                                                   context)
                                                               .textSelectionTheme
-                                                              .selectionColor,
+                                                              .selectionColor!,
                                                         ),
                                                       ),
                                                     )
@@ -385,7 +386,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                   color: Theme.of(
                                                                           context)
                                                                       .textSelectionTheme
-                                                                      .selectionColor,
+                                                                      .selectionColor!,
                                                                 ),
                                                               ),
                                                             )
@@ -411,14 +412,14 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                             [
                                                                             'idfav'] ==
                                                                         '0'
-                                                                ? FontAwesome
-                                                                    .heart_o
-                                                                : FontAwesome
-                                                                    .heart,
+                                                                ? Icons
+                                                                    .favorite_border // Ícone vazio
+                                                                : Icons
+                                                                    .favorite, // Ícone preenchido
                                                             color: Theme.of(
                                                                     context)
                                                                 .textSelectionTheme
-                                                                .selectionColor,
+                                                                .selectionColor!,
                                                           ),
                                                           onTap: () {
                                                             acessosController
@@ -458,13 +459,10 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 children: [
                                                   convidados[x]['tel'] != null
                                                       ? IconButton(
-                                                          icon: Icon(
-                                                            FontAwesome
-                                                                .whatsapp,
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .textSelectionTheme
-                                                                .selectionColor,
+                                                          icon: Image.asset(
+                                                            'images/whatsapp.png',
+                                                            width: 24,
+                                                            height: 24,
                                                           ),
                                                           onPressed: () {
                                                             var celular;
@@ -565,7 +563,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                           width: .5,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                     ),
@@ -612,7 +610,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                     if (value == 1) {
                                                       convitesController
                                                           .getConvites();
-                                                      edgeAlertWidget(
+                                                      showToast(
                                                           context,
                                                           'Parabéns!',
                                                           'Convite deletado com sucesso.');
@@ -623,7 +621,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                           context,
                                                           'Algo deu errado!\n Tente novamente',
                                                           '/home',
-                                                          null);
+                                                          '');
                                                     }
                                                   });
                                                 });
@@ -634,7 +632,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                   fontWeight: FontWeight.bold,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               ),
                                             ),
@@ -722,7 +720,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                   fontWeight: FontWeight.bold,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               ),
                                             ),

@@ -1,10 +1,14 @@
 class MapaAcheAquiPesquisa {
-  String id;
-  String nome;
-  String imgforn;
-  String tipo;
+  late String id;
+  late String nome;
+  late String imgforn;
+  late String tipo;
 
-  MapaAcheAquiPesquisa({this.id, this.nome, this.imgforn, this.tipo});
+  MapaAcheAquiPesquisa(
+      {required this.id,
+      required this.nome,
+      required this.imgforn,
+      required this.tipo});
 
   MapaAcheAquiPesquisa.fromJson(Map<String, dynamic> json) {
     id = json['id'];

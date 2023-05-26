@@ -1,16 +1,16 @@
 class MapaAcheAquiAvaliacao {
-  String comentario;
-  String usuario;
-  String condominio;
-  String data;
-  String estrelas;
+  late String comentario;
+  late String usuario;
+  late String condominio;
+  late String data;
+  late String estrelas;
 
   MapaAcheAquiAvaliacao(
-      {this.comentario,
-      this.usuario,
-      this.condominio,
-      this.data,
-      this.estrelas});
+      {required this.comentario,
+      required this.usuario,
+      required this.condominio,
+      required this.data,
+      required this.estrelas});
 
   MapaAcheAquiAvaliacao.fromJson(Map<String, dynamic> json) {
     comentario = json['comentario'];

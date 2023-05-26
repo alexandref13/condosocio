@@ -18,7 +18,7 @@ class BoletoPage extends StatelessWidget {
             'Boleto 2º Via',
             style: GoogleFonts.montserrat(
               fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
             ),
           ),
         ),
@@ -44,7 +44,7 @@ class BoletoPage extends StatelessWidget {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                             ),
                           ),
@@ -58,7 +58,7 @@ class BoletoPage extends StatelessWidget {
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               decoration: InputDecoration(
                                 contentPadding: new EdgeInsets.symmetric(
@@ -67,7 +67,7 @@ class BoletoPage extends StatelessWidget {
                                   borderSide: BorderSide(
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       width: 1.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
@@ -75,12 +75,12 @@ class BoletoPage extends StatelessWidget {
                                     borderSide: BorderSide(
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor)),
+                                            .selectionColor!)),
                                 labelText: 'Entre com o e-mail',
                                 labelStyle: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 14),
                                 errorBorder: new OutlineInputBorder(
                                     borderSide: new BorderSide(
@@ -88,14 +88,14 @@ class BoletoPage extends StatelessWidget {
                                             .colorScheme
                                             .secondary)),
                                 focusedErrorBorder: new OutlineInputBorder(
-                                    borderSide:
-                                        new BorderSide(color: Colors.red[900])),
+                                    borderSide: new BorderSide(
+                                        color: Colors.red[900]!)),
                                 errorStyle: GoogleFonts.montserrat(
-                                    color: Theme.of(context).errorColor),
+                                    color: Theme.of(context).colorScheme.error),
                               ),
                               keyboardType: TextInputType.emailAddress,
                               validator: (valueEmail) {
-                                if (!EmailValidator.validate(valueEmail)) {
+                                if (!EmailValidator.validate(valueEmail!)) {
                                   return 'Entre com e-mail válido!';
                                 }
                                 return null;
@@ -114,7 +114,7 @@ class BoletoPage extends StatelessWidget {
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               decoration: InputDecoration(
                                 contentPadding: new EdgeInsets.symmetric(
@@ -123,7 +123,7 @@ class BoletoPage extends StatelessWidget {
                                   borderSide: BorderSide(
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       width: 1.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
@@ -131,12 +131,12 @@ class BoletoPage extends StatelessWidget {
                                     borderSide: BorderSide(
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor)),
+                                            .selectionColor!)),
                                 labelText: 'Entre com a senha',
                                 labelStyle: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 14),
                                 errorBorder: new OutlineInputBorder(
                                     borderSide: new BorderSide(
@@ -144,13 +144,13 @@ class BoletoPage extends StatelessWidget {
                                             .colorScheme
                                             .secondary)),
                                 focusedErrorBorder: new OutlineInputBorder(
-                                    borderSide:
-                                        new BorderSide(color: Colors.red[900])),
+                                    borderSide: new BorderSide(
+                                        color: Colors.red[900]!)),
                                 errorStyle: GoogleFonts.montserrat(
-                                    color: Theme.of(context).errorColor),
+                                    color: Theme.of(context).colorScheme.error),
                               ),
                               validator: (valueSenha) {
-                                if (valueSenha.isEmpty) {
+                                if (valueSenha!.isEmpty) {
                                   return 'Campo senha vazio!';
                                 }
                                 return null;
@@ -185,7 +185,7 @@ class BoletoPage extends StatelessWidget {
                               onPressed: () {
                                 boletoController.sendBoleto().then((value) {
                                   if (value == "vazio") {
-                                    edgeAlertErrorWidget(
+                                    showToastError(
                                         context, 'E-mail ou senha inválidos!');
                                   }
                                 });
@@ -196,7 +196,7 @@ class BoletoPage extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),

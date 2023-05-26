@@ -4,7 +4,7 @@ import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 //import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
 
@@ -55,17 +55,17 @@ void configurandoModalBottomSheet(
                   leading: imgfacial == null
                       ? tipo == "App Mobilidade"
                           ? new Icon(
-                              FontAwesome.car,
+                              Icons.car_crash_outlined,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               size: 24,
                             )
                           : new Icon(
-                              Feather.user,
+                              Icons.person,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               size: 30,
                             )
                       : Container(
@@ -87,7 +87,7 @@ void configurandoModalBottomSheet(
                           Icons.arrow_right,
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor,
+                              .selectionColor!,
                         )
                       : Text(''),
                   title: Text(
@@ -120,11 +120,12 @@ void configurandoModalBottomSheet(
                         leading: Obx(
                           () => Icon(
                             visualizarAcessosController.fav.value == true
-                                ? FontAwesome.heart
-                                : FontAwesome.heart_o,
+                                ? Icons.favorite // Ícone vazio
+                                : Icons.favorite_border, // Ícone preenchido
+
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                           ),
                         ),
                         title: Obx(
@@ -136,7 +137,7 @@ void configurandoModalBottomSheet(
                           Icons.arrow_right,
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor,
+                              .selectionColor!,
                         ),
                         onTap: () {
                           print("Espera: $espera");
@@ -189,7 +190,7 @@ void configurandoModalBottomSheet(
                                       if (value == 1) {
                                         visualizarAcessosController
                                             .getAcessos();
-                                        edgeAlertWidget(
+                                        showToast(
                                           context,
                                           'Parabéns!',
                                           'Acesso excluído com sucesso.',
@@ -211,7 +212,7 @@ void configurandoModalBottomSheet(
                                       if (value == 1) {
                                         visualizarAcessosEsperaController
                                             .getAcessosEspera();
-                                        edgeAlertWidget(
+                                        showToast(
                                           context,
                                           'Parabéns!',
                                           'Acesso excluído com sucesso.',

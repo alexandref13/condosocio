@@ -21,7 +21,7 @@ class Menu extends StatelessWidget {
           ),
           Card(
             child: InkWell(
-              splashColor: Colors.red[900].withAlpha(30),
+              splashColor: Colors.red[900]!.withAlpha(30),
               onTap: () {
                 print('ola teste.');
               },

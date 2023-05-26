@@ -52,7 +52,7 @@ class AreasComuns extends StatelessWidget {
                                           Icons.store_mall_directory,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           size: 30,
                                         ),
                                       ],
@@ -65,7 +65,7 @@ class AreasComuns extends StatelessWidget {
                                           fontSize: 12,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -79,7 +79,7 @@ class AreasComuns extends StatelessWidget {
                                                 fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           )
@@ -88,7 +88,7 @@ class AreasComuns extends StatelessWidget {
                                       Icons.arrow_right,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       size: 30,
                                     )),
                               ),

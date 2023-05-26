@@ -1,8 +1,8 @@
 class MapaAcheAqui {
-  String atividade;
-  String id;
+  late String atividade;
+  late String id;
 
-  MapaAcheAqui({this.atividade, this.id});
+  MapaAcheAqui({required this.atividade, required this.id});
 
   MapaAcheAqui.fromJson(Map<String, dynamic> json) {
     atividade = json['atividade'];

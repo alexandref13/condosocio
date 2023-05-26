@@ -12,14 +12,12 @@ dependencies:
     sdk: flutter
   contacts_service: ^0.6.3
   cupertino_icons: ^1.0.2
-  edge_alert: ^0.0.1
   email_validator: ^2.0.1
   flutter_html: ^3.0.0-alpha.2
-  flutter_icons: ^1.1.0
   flutter_svg: ^1.0.3
   get: null
   get_storage: null
-  google_fonts: ^2.0.0
+  google_fonts: ^4.0.4
   http: ^0.13.0
   image_cropper: ^1.5.0
   image_picker: ^0.8.6
@@ -33,12 +31,12 @@ dependencies:
   flutter_speed_dial: ^5.0.0+1
   onesignal_flutter: ^3.4.1
   qr_flutter: ^4.1.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   table_calendar: ^3.0.0
   carousel_slider: ^4.2.1
-  flutter_masked_text: ^0.8.0
   flutter_animated_dialog: ^2.0.1
   lottie: ^2.3.2
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:

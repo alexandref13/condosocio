@@ -35,17 +35,17 @@ class _AddReservasState extends State<AddReservas> {
 
     var selectedDay = calendarioReservasController.selectedDay.value;
 
-    Future<TimeOfDay> selectTime(BuildContext context) {
+    Future<TimeOfDay?> selectTime(BuildContext context) {
       final now = DateTime.now();
       return showTimePicker(
         context: context,
         initialTime: TimeOfDay(hour: now.hour, minute: 00),
-        builder: (BuildContext context, Widget child) {
+        builder: (BuildContext context, Widget? child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(
               alwaysUse24HourFormat: false,
             ),
-            child: child,
+            child: child!,
           );
         },
       );
@@ -58,7 +58,7 @@ class _AddReservasState extends State<AddReservas> {
           style: GoogleFonts.montserrat(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -89,7 +89,7 @@ class _AddReservasState extends State<AddReservas> {
                                       style: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -122,7 +122,8 @@ class _AddReservasState extends State<AddReservas> {
                                   bottom: 20, left: 10, right: 10),
                               child: GestureDetector(
                                 onTap: () async {
-                                  startSelectedTime = await selectTime(context);
+                                  startSelectedTime =
+                                      (await selectTime(context))!;
                                   if (startSelectedTime == null) return;
 
                                   setState(() {
@@ -169,9 +170,9 @@ class _AddReservasState extends State<AddReservas> {
                                     Checkbox(
                                       value:
                                           addReservasController.isChecked.value,
-                                      onChanged: (bool value) {
+                                      onChanged: (bool? value) {
                                         addReservasController.isChecked.value =
-                                            value;
+                                            value!;
                                       },
                                     ),
                                     Container(
@@ -234,11 +235,11 @@ class _AddReservasState extends State<AddReservas> {
                                     onAlertButtonPressed(
                                         context,
                                         'Campo Nome do Evento, Hora Inicial ou Termos de Uso vazio(s)!',
-                                        null,
+                                        '',
                                         'sim');
                                   } else if (value == 'hora invalida') {
                                     onAlertButtonPressed(context,
-                                        'Hora Inicial Inválida!', null, 'sim');
+                                        'Hora Inicial Inválida!', '', 'sim');
                                   } else {
                                     if (value == 3) {
                                       onAlertButtonPressed(
@@ -270,7 +271,7 @@ class _AddReservasState extends State<AddReservas> {
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),

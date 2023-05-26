@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WhatsAppConvitesWidget extends StatelessWidget {
-  const WhatsAppConvitesWidget({Key key}) : super(key: key);
+  const WhatsAppConvitesWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
           'WhatsApp',
           style: GoogleFonts.montserrat(
               fontSize: 14,
-              color: Theme.of(context).textSelectionTheme.selectionColor),
+              color: Theme.of(context).textSelectionTheme.selectionColor!),
         ),
       ),
       body: SingleChildScrollView(
@@ -44,7 +44,8 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 'Envie este convite por whatsapp, para isto é necessário inserir o número no formato:\n\ncódigo da área + seu número. \n\nex: 91988888888',
                 style: GoogleFonts.montserrat(
                     fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
+                    color:
+                        Theme.of(context).textSelectionTheme.selectionColor!),
               ),
             ),
             Container(
@@ -57,35 +58,35 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                 controller: visualizarConvitesController.whatsappNumber.value,
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 decoration: InputDecoration(
                   disabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                       width: 1,
                     ),
                   ),
                   labelText: 'Telefone',
                   labelStyle: GoogleFonts.montserrat(
                     fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                   //isDense: true,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                       width: 2,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(
-                      color: Theme.of(context).errorColor,
+                      color: Theme.of(context).colorScheme.error,
                       width: 1,
                     ),
                   ),
@@ -154,7 +155,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                       onAlertButtonPressed(
                           context,
                           'Este número está com formato incorreto \n ex: 91988881234',
-                          null,
+                          '',
                           'sim');
                     }
                   },
@@ -164,7 +165,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
                   ),
                 ),

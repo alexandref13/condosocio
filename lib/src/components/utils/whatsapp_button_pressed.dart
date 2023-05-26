@@ -27,7 +27,7 @@ onWhatsappButtonPressed(context, String page) {
       //descStyle: GoogleFonts.poppins(color: Colors.red,),
       animationDuration: Duration(milliseconds: 300),
       titleStyle: GoogleFonts.poppins(
-        color: Theme.of(context).textSelectionTheme.selectionColor,
+        color: Theme.of(context).textSelectionTheme.selectionColor!,
         fontSize: 18,
       ),
     ),

@@ -6,7 +6,7 @@ import 'package:condosocio/src/controllers/convites/visualizar_convites_controll
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 
 void dependentesModalBottomSheet(
@@ -43,10 +43,10 @@ void dependentesModalBottomSheet(
                                   Container(
                                     margin: EdgeInsets.only(left: 10, top: 10),
                                     child: Icon(
-                                      Feather.user,
+                                      Icons.person,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       size: 40,
                                     ),
                                   ),
@@ -117,7 +117,7 @@ void dependentesModalBottomSheet(
                                           if (value == 1) {
                                             dependentesController
                                                 .getDependentes();
-                                            edgeAlertWidget(
+                                            showToast(
                                               context,
                                               'Parabéns!',
                                               'Face resetada com sucesso.',
@@ -223,7 +223,7 @@ void dependentesModalBottomSheet(
                                           .reenviarEmail(email)
                                           .then((value) {
                                         dependentesController.getDependentes();
-                                        edgeAlertWidget(
+                                        showToast(
                                           context,
                                           'Parabéns!',
                                           value,
@@ -319,7 +319,7 @@ void dependentesModalBottomSheet(
                               )),
                               elevation: MaterialStateProperty.all(0),
                               backgroundColor: MaterialStateProperty.all(
-                                Theme.of(context).errorColor,
+                                Theme.of(context).colorScheme.error,
                               )),
                           onPressed: () {
                             deleteAlert(
@@ -330,7 +330,7 @@ void dependentesModalBottomSheet(
                                   (value) {
                                     if (value == 1) {
                                       dependentesController.getDependentes();
-                                      edgeAlertWidget(
+                                      showToast(
                                         context,
                                         'Parabéns!',
                                         'Usuário excluído com sucesso.',

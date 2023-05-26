@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +17,7 @@ class VagasLimit extends StatelessWidget {
               style: GoogleFonts.montserrat(
                 fontSize: 24,
                 fontWeight: FontWeight.w500,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
               textAlign: TextAlign.center,
             ),
@@ -27,7 +27,7 @@ class VagasLimit extends StatelessWidget {
               ' Exclua algum veículo ou procure a administração do seu condomínio.',
               style: GoogleFonts.montserrat(
                 fontSize: 18,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
               textAlign: TextAlign.center,
             ),

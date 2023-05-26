@@ -1,32 +1,32 @@
 class MapaEvento {
-  int validausu;
-  String idevento;
-  String img;
-  String nome;
-  String unidade;
-  String titulo;
-  String descricao;
-  String respevent;
-  String areacom;
-  String dataAgenda;
-  String horaAgenda;
-  String ctl;
-  String status;
+  late int validausu;
+  late String idevento;
+  late String img;
+  late String nome;
+  late String unidade;
+  late String titulo;
+  late String descricao;
+  late String respevent;
+  late String areacom;
+  late String dataAgenda;
+  late String horaAgenda;
+  late String ctl;
+  late String status;
 
   MapaEvento(
-      {this.validausu,
-      this.idevento,
-      this.img,
-      this.nome,
-      this.unidade,
-      this.titulo,
-      this.descricao,
-      this.respevent,
-      this.areacom,
-      this.dataAgenda,
-      this.horaAgenda,
-      this.ctl,
-      this.status});
+      {required this.validausu,
+      required this.idevento,
+      required this.img,
+      required this.nome,
+      required this.unidade,
+      required this.titulo,
+      required this.descricao,
+      required this.respevent,
+      required this.areacom,
+      required this.dataAgenda,
+      required this.horaAgenda,
+      required this.ctl,
+      required this.status});
 
   MapaEvento.fromJson(Map<String, dynamic> json) {
     validausu = json['validausu'];

@@ -22,7 +22,7 @@ class Encomendas extends StatelessWidget {
             'Encomendas',
             style: GoogleFonts.montserrat(
               fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
             ),
           )),
       body: Obx(
@@ -54,7 +54,7 @@ class Encomendas extends StatelessWidget {
                                   fontSize: 14.0,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -104,7 +104,7 @@ class Encomendas extends StatelessWidget {
                                   color: encomenda.status !=
                                           'PRONTO PRA RETIRADA'
                                       ? Theme.of(context).colorScheme.secondary
-                                      : Theme.of(context).colorScheme.secondary,
+                                      : Theme.of(context).primaryColorDark,
                                   child: ListTile(
                                     title: Row(
                                       mainAxisAlignment:
@@ -116,7 +116,7 @@ class Encomendas extends StatelessWidget {
                                               fontSize: 14,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
@@ -125,7 +125,7 @@ class Encomendas extends StatelessWidget {
                                             fontSize: 14,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                       ],
@@ -134,13 +134,16 @@ class Encomendas extends StatelessWidget {
                                       encomenda.tipo,
                                       style: GoogleFonts.montserrat(
                                           fontSize: 14,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor),
                                     ),
                                     trailing: Icon(
                                       Icons.arrow_right,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       size: 30,
                                     ),
                                   ),

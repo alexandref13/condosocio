@@ -46,7 +46,7 @@ Widget listaVideos(context) {
                                   letterSpacing: 6,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               },
                             ),
@@ -60,7 +60,7 @@ Widget listaVideos(context) {
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor),
+                                  .selectionColor!),
                         )
                         // child: Text(
                         //   videos[index].titulo,
@@ -74,7 +74,7 @@ Widget listaVideos(context) {
                             fontSize: 12,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor),
+                                .selectionColor!),
                       ),
                     ),
                     Container(

@@ -1,24 +1,24 @@
 class ListOfCondo {
-  String nomeCond;
-  String idusu;
-  String tipoun;
-  String logradouro;
-  String imglogo;
-  String idcond;
-  String tipousu;
-  String nomeusu;
-  String sobrenomeusu;
+  late String nomeCond;
+  late String idusu;
+  late String tipoun;
+  late String logradouro;
+  late String imglogo;
+  late String idcond;
+  late String tipousu;
+  late String nomeusu;
+  late String sobrenomeusu;
 
   ListOfCondo({
-    this.nomeCond,
-    this.idusu,
-    this.tipoun,
-    this.logradouro,
-    this.imglogo,
-    this.idcond,
-    this.tipousu,
-    this.nomeusu,
-    this.sobrenomeusu,
+    required this.nomeCond,
+    required this.idusu,
+    required this.tipoun,
+    required this.logradouro,
+    required this.imglogo,
+    required this.idcond,
+    required this.tipousu,
+    required this.nomeusu,
+    required this.sobrenomeusu,
   });
 
   ListOfCondo.fromJson(Map<String, dynamic> json) {
@@ -30,7 +30,7 @@ class ListOfCondo {
     idcond = json['idcond'];
     tipousu = json['tipousu'];
     nomeusu = json['nomeusu'];
-    sobrenomeusu = json['sobrenome'];
+    sobrenomeusu = json['sobrenomeusu'];
   }
 
   Map<String, dynamic> toJson() {

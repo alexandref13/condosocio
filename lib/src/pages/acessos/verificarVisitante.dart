@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class VerificarVisitantes extends StatefulWidget {
-  const VerificarVisitantes({Key key}) : super(key: key);
+  const VerificarVisitantes({Key? key}) : super(key: key);
 
   @override
   State<VerificarVisitantes> createState() => _VerificarVisitantesState();

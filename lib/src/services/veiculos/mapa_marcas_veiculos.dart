@@ -1,10 +1,10 @@
 class MarcasMapa {
-  String idmarca;
-  String nome;
+  late String idmarca;
+  late String nome;
 
   MarcasMapa({
-    this.idmarca,
-    this.nome,
+    required this.idmarca,
+    required this.nome,
   });
 
   MarcasMapa.fromJson(Map<String, dynamic> json) {

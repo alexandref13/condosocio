@@ -1,26 +1,26 @@
 class MapaOcorrencias {
-  String id;
-  String titulo;
-  String desc;
-  String imgoco;
-  String data;
-  String hora;
-  String dataoco;
-  String horaoco;
-  String status;
-  String tipoco;
+  late String id;
+  late String titulo;
+  late String desc;
+  late String imgoco;
+  late String data;
+  late String hora;
+  late String dataoco;
+  late String horaoco;
+  late String status;
+  late String tipoco;
 
   MapaOcorrencias({
-    this.id,
-    this.titulo,
-    this.desc,
-    this.imgoco,
-    this.data,
-    this.hora,
-    this.dataoco,
-    this.horaoco,
-    this.status,
-    this.tipoco,
+    required this.id,
+    required this.titulo,
+    required this.desc,
+    required this.imgoco,
+    required this.data,
+    required this.hora,
+    required this.dataoco,
+    required this.horaoco,
+    required this.status,
+    required this.tipoco,
   });
 
   MapaOcorrencias.fromJson(Map<String, dynamic> json) {

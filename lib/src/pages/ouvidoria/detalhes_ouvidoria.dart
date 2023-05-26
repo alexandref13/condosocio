@@ -19,7 +19,7 @@ class DetalhesOuvidoria extends StatelessWidget {
           'Ouvidoria',
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -172,7 +172,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                             fontSize:
                                                                                 12,
                                                                             color:
-                                                                                Theme.of(context).textSelectionTheme.selectionColor,
+                                                                                Theme.of(context).textSelectionTheme.selectionColor!,
                                                                             fontWeight:
                                                                                 FontWeight.bold,
                                                                           ),
@@ -186,7 +186,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                               10,
                                                                           color: Theme.of(context)
                                                                               .textSelectionTheme
-                                                                              .selectionColor,
+                                                                              .selectionColor!,
                                                                         ),
                                                                       )
                                                                     ],
@@ -202,7 +202,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                             10,
                                                                         color: Theme.of(context)
                                                                             .textSelectionTheme
-                                                                            .selectionColor,
+                                                                            .selectionColor!,
                                                                       ),
                                                                     ),
                                                                   )
@@ -227,7 +227,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                   color: Theme.of(
                                                                           context)
                                                                       .textSelectionTheme
-                                                                      .selectionColor,
+                                                                      .selectionColor!,
                                                                 ),
                                                               ),
                                                             ),
@@ -369,7 +369,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                               resposta.nomeusu,
                                                                               style: GoogleFonts.montserrat(
                                                                                 fontSize: 12,
-                                                                                color: Theme.of(context).textSelectionTheme.selectionColor,
+                                                                                color: Theme.of(context).textSelectionTheme.selectionColor!,
                                                                                 fontWeight: FontWeight.bold,
                                                                               ),
                                                                             ),
@@ -379,7 +379,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                             style:
                                                                                 GoogleFonts.montserrat(
                                                                               fontSize: 10,
-                                                                              color: Theme.of(context).textSelectionTheme.selectionColor,
+                                                                              color: Theme.of(context).textSelectionTheme.selectionColor!,
                                                                             ),
                                                                           )
                                                                         ],
@@ -394,7 +394,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                             fontSize:
                                                                                 10,
                                                                             color:
-                                                                                Theme.of(context).textSelectionTheme.selectionColor,
+                                                                                Theme.of(context).textSelectionTheme.selectionColor!,
                                                                           ),
                                                                         ),
                                                                       )
@@ -421,7 +421,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                       color: Theme.of(
                                                                               context)
                                                                           .textSelectionTheme
-                                                                          .selectionColor,
+                                                                          .selectionColor!,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -487,7 +487,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                             style:
                                                                                 GoogleFonts.montserrat(
                                                                               fontSize: 10,
-                                                                              color: Theme.of(context).textSelectionTheme.selectionColor,
+                                                                              color: Theme.of(context).textSelectionTheme.selectionColor!,
                                                                             ),
                                                                           ),
                                                                           Container(
@@ -496,7 +496,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                               resposta.nomeusu,
                                                                               style: GoogleFonts.montserrat(
                                                                                 fontSize: 12,
-                                                                                color: Theme.of(context).textSelectionTheme.selectionColor,
+                                                                                color: Theme.of(context).textSelectionTheme.selectionColor!,
                                                                                 fontWeight: FontWeight.bold,
                                                                               ),
                                                                             ),
@@ -513,7 +513,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                             fontSize:
                                                                                 10,
                                                                             color:
-                                                                                Theme.of(context).textSelectionTheme.selectionColor,
+                                                                                Theme.of(context).textSelectionTheme.selectionColor!,
                                                                           ),
                                                                         ),
                                                                       ),
@@ -540,7 +540,7 @@ class DetalhesOuvidoria extends StatelessWidget {
                                                                       color: Theme.of(
                                                                               context)
                                                                           .textSelectionTheme
-                                                                          .selectionColor,
+                                                                          .selectionColor!,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -605,7 +605,7 @@ class DetalhesOuvidoria extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(

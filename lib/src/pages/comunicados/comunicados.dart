@@ -3,7 +3,7 @@ import 'package:condosocio/src/components/utils/circular_progress_indicator.dart
 import 'package:condosocio/src/controllers/comunicados/comunicados_controller.dart';
 import 'package:condosocio/src/controllers/comunicados/visualizar_comunicados_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -54,7 +54,7 @@ class _ComunicadosState extends State<Comunicados> {
             'Comunicados',
             style: GoogleFonts.montserrat(
               fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
             ),
           ),
           centerTitle: true,
@@ -105,7 +105,7 @@ class _ComunicadosState extends State<Comunicados> {
                   'Sem registros',
                   style: GoogleFonts.montserrat(
                     fontSize: 14.0,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -139,14 +139,8 @@ class _ComunicadosState extends State<Comunicados> {
                                   .searchResult[index];
                               return GestureDetector(
                                 onTap: () {
-                                  /* comunicadosController.titulo.value =
-                                  comunicados.titulo;
-                              comunicadosController.arquivo.value =
-                                  comunicados.texto;
-                              comunicadosController.dia.value = comunicados.dia;
-                              comunicadosController.mes.value = comunicados.mes;
-                              
-                              Get.toNamed('/detalhes');*/
+                                  launchInBrowser(
+                                      "https://alvocomtec.com.br/acond/downloads/comunicados_arq/${search.arquivo}");
                                 },
                                 child: Card(
                                   shape: RoundedRectangleBorder(
@@ -161,7 +155,7 @@ class _ComunicadosState extends State<Comunicados> {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor),
+                                                  .selectionColor!),
                                           children: <TextSpan>[
                                             TextSpan(
                                                 text: search.dia + "  ",
@@ -175,7 +169,7 @@ class _ComunicadosState extends State<Comunicados> {
                                                   fontSize: 14,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                   letterSpacing: 2),
                                             ),
                                           ],
@@ -189,21 +183,18 @@ class _ComunicadosState extends State<Comunicados> {
                                                 fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ),
                                       trailing: IconButton(
-                                        icon: Icon(Feather.download),
+                                        icon: Icon(Icons.download),
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         iconSize: 36,
-                                        onPressed: () {
-                                          launchInBrowser(
-                                              "https://alvocomtec.com.br/acond/downloads/comunicados_arq/${search.arquivo}");
-                                        },
+                                        onPressed: () {},
                                       )),
                                 ),
                               );
@@ -227,14 +218,8 @@ class _ComunicadosState extends State<Comunicados> {
                                   comunicadosController.comunicados[index];
                               return GestureDetector(
                                 onTap: () {
-                                  /* comunicadosController.titulo.value =
-                                  comunicados.titulo;
-                              comunicadosController.arquivo.value =
-                                  comunicados.texto;
-                              comunicadosController.dia.value = comunicados.dia;
-                              comunicadosController.mes.value = comunicados.mes;
-                              
-                              Get.toNamed('/detalhes');*/
+                                  launchInBrowser(
+                                      "https://alvocomtec.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
                                 },
                                 child: Card(
                                   shape: RoundedRectangleBorder(
@@ -249,7 +234,7 @@ class _ComunicadosState extends State<Comunicados> {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor),
+                                                  .selectionColor!),
                                           children: <TextSpan>[
                                             TextSpan(
                                                 text: comunicados.dia + "  ",
@@ -263,7 +248,7 @@ class _ComunicadosState extends State<Comunicados> {
                                                   fontSize: 14,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                   letterSpacing: 2),
                                             ),
                                           ],
@@ -277,21 +262,18 @@ class _ComunicadosState extends State<Comunicados> {
                                                 fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ),
                                       trailing: IconButton(
-                                        icon: Icon(Feather.download),
+                                        icon: Icon(Icons.download),
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         iconSize: 26,
-                                        onPressed: () {
-                                          launchInBrowser(
-                                              "https://alvocomtec.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
-                                        },
+                                        onPressed: () {},
                                       )),
                                 ),
                               );

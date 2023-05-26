@@ -8,14 +8,14 @@ import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../controllers/acessos/agenda_contatos_controller.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ConvitesConvidadosWidget extends StatelessWidget {
-  const ConvitesConvidadosWidget({Key key}) : super(key: key);
+  const ConvitesConvidadosWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               border: Border.all(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor),
+                                      .selectionColor!),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: ButtonTheme(
@@ -100,16 +100,16 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       fontSize: 14,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor),
+                                          .selectionColor!),
                                   items: acessosController.fav.map((item) {
                                     return DropdownMenuItem(
                                       value: item['id'].toString(),
                                       child: Text(item['pessoa']),
                                     );
                                   }).toList(),
-                                  onChanged: (String novoItemSelecionado) {
+                                  onChanged: (String? novoItemSelecionado) {
                                     dropDownFavoriteSelected(
-                                        novoItemSelecionado);
+                                        novoItemSelecionado!);
                                     acessosController.firstId.value =
                                         novoItemSelecionado;
                                     acessosController.firstId.value != '0'
@@ -131,7 +131,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   fontSize: 13,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor),
+                                      .selectionColor!),
                             ),
                           ),
                           SizedBox(
@@ -146,7 +146,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 border: Border.all(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor),
+                                        .selectionColor!),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Row(
@@ -189,7 +189,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                             fontSize: 14,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor),
+                                                .selectionColor!),
                                       ),
                                     ),
                                   ),
@@ -199,7 +199,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       size: 27,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                     onPressed: () {
                                       agendaContatosController.pickContact();
@@ -219,7 +219,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   fontSize: 13,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor),
+                                      .selectionColor!),
                             ),
                           ),
                           SizedBox(
@@ -234,7 +234,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 border: Border.all(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor),
+                                        .selectionColor!),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Row(
@@ -277,7 +277,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                             fontSize: 14,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor),
+                                                .selectionColor!),
                                       ),
                                     ),
                                   ),
@@ -289,7 +289,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       size: 27,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                     onPressed: () {
                                       convitesController.handleAddCount();
@@ -309,7 +309,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   fontSize: 13,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor),
+                                      .selectionColor!),
                             ),
                           ),
                           SizedBox(
@@ -324,7 +324,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   border: Border.all(
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor),
+                                          .selectionColor!),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Row(
@@ -368,7 +368,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                               fontSize: 14,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor),
+                                                  .selectionColor!),
                                         ),
                                       ),
                                     ),
@@ -380,7 +380,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         size: 27,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                       onPressed: () {
                                         convitesController.handleAddCountApp();
@@ -420,7 +420,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   child: customTextField(
                                     context,
                                     'Nome do motorista',
-                                    null,
+                                    '',
                                     false,
                                     1,
                                     true,
@@ -436,7 +436,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                           FocusScope.of(context);
                                       if (!currentFocus.hasPrimaryFocus &&
                                           currentFocus.focusedChild != null) {
-                                        currentFocus.focusedChild.unfocus();
+                                        currentFocus.focusedChild!.unfocus();
                                       }
                                     },
                                     enableSuggestions: false,
@@ -449,7 +449,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       fontSize: 14,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                     decoration: InputDecoration(
                                       disabledBorder: OutlineInputBorder(
@@ -457,7 +457,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           width: 1,
                                         ),
                                       ),
@@ -467,7 +467,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         fontSize: 14,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                       isDense: true,
                                       focusedBorder: OutlineInputBorder(
@@ -475,7 +475,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           width: 2,
                                         ),
                                       ),
@@ -484,7 +484,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           width: 1,
                                         ),
                                       ),
@@ -551,7 +551,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                   style: GoogleFonts.montserrat(
                                                       color: Theme.of(context)
                                                           .textSelectionTheme
-                                                          .selectionColor,
+                                                          .selectionColor!,
                                                       fontSize: 14),
                                                 ),
                                         ),
@@ -601,7 +601,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                               onAlertButtonPressed(
                                                   context,
                                                   'Campo nome ou placa vazio!',
-                                                  null,
+                                                  '',
                                                   'sim');
                                             } else {
                                               convitesController
@@ -625,7 +625,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                   style: GoogleFonts.montserrat(
                                                       color: Theme.of(context)
                                                           .textSelectionTheme
-                                                          .selectionColor,
+                                                          .selectionColor!,
                                                       fontSize: 14),
                                                 ),
                                         ),
@@ -665,7 +665,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     border: Border.all(
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       width: 1,
                                     ),
                                   ),
@@ -678,7 +678,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     ),
                                     iconEnabledColor: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     dropdownColor:
                                         Theme.of(context).primaryColor,
                                     style: GoogleFonts.montserrat(fontSize: 14),
@@ -689,8 +689,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         child: Text(dropDownStringItem),
                                       );
                                     }).toList(),
-                                    onChanged: (String novoItemSelecionado) {
-                                      dropDownItemSelected(novoItemSelecionado);
+                                    onChanged: (String? novoItemSelecionado) {
+                                      dropDownItemSelected(
+                                          novoItemSelecionado!);
                                       acessosController.itemSelecionado.value =
                                           novoItemSelecionado;
                                     },
@@ -704,7 +705,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   child: customTextField(
                                     context,
                                     'Nome ou empresa',
-                                    null,
+                                    '',
                                     false,
                                     1,
                                     true,
@@ -723,7 +724,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       fontSize: 14,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                     decoration: InputDecoration(
                                       disabledBorder: OutlineInputBorder(
@@ -731,7 +732,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           width: 1,
                                         ),
                                       ),
@@ -740,7 +741,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         fontSize: 14,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                       isDense: true,
                                       focusedBorder: OutlineInputBorder(
@@ -748,7 +749,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           width: 2,
                                         ),
                                       ),
@@ -757,7 +758,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           width: 1,
                                         ),
                                       ),
@@ -819,7 +820,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                     style: GoogleFonts.montserrat(
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
-                                                            .selectionColor,
+                                                            .selectionColor!,
                                                         fontSize: 14),
                                                   ),
                                           ),
@@ -870,7 +871,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                 onAlertButtonPressed(
                                                     context,
                                                     'Campo nome ou tipo de visitante vazio!',
-                                                    null,
+                                                    '',
                                                     'sim');
                                               } else {
                                                 convitesController
@@ -894,7 +895,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                     style: GoogleFonts.montserrat(
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
-                                                            .selectionColor,
+                                                            .selectionColor!,
                                                         fontSize: 14),
                                                   ),
                                           ),
@@ -919,7 +920,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                               width: 1,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             )),
                         padding: EdgeInsets.all(10),
                         child: Row(
@@ -929,10 +930,10 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(right: 20),
                               child: Icon(
-                                Feather.user_check,
+                                Icons.account_circle_outlined,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                             ),
                             Flexible(
@@ -954,7 +955,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                     ),
                                   ),
@@ -966,7 +967,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                             fontSize: 15,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         )
                                       : Container(
@@ -982,7 +983,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                     fontSize: 15,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                   ),
                                                 )
                                               : Container(),
@@ -996,7 +997,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       Icons.delete_outline,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                     onPressed: () {
                                       acessosController.firstId.value =
@@ -1031,7 +1032,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 Icons.delete_forever_outlined,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 size: 28,
                               ),
                               onPressed: () =>
@@ -1185,7 +1186,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     fontSize: 14,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                               ),
@@ -1206,7 +1207,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
         height: 300,
       ),
       style: AlertStyle(
-        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
+        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
         animationType: AnimationType.fromTop,
         isCloseButton: false,
         isOverlayTapDismiss: false,

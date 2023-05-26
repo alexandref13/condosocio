@@ -41,7 +41,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                 fontSize: 16.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                             ),
                           ],
@@ -70,7 +70,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                   fontSize: 12.0,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -81,7 +81,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                 fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -91,7 +91,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                 fontSize: 12.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -102,7 +102,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                   fontSize: 12.0,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -176,7 +176,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -197,7 +197,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           ),
@@ -214,7 +214,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -234,7 +234,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               color: ocorrencia.status == '1'
                                                   ? Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor
+                                                      .selectionColor!
                                                   : Colors.yellow,
                                             ),
                                           ),
@@ -306,7 +306,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -327,7 +327,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                 fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           ),
@@ -344,7 +344,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                                     fontSize: 12,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -364,7 +364,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                               color: ocorrencia.status == '1'
                                                   ? Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor
+                                                      .selectionColor!
                                                   : Colors.yellow,
                                             ),
                                           ),

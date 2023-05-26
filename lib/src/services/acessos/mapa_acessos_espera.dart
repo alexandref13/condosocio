@@ -1,44 +1,44 @@
 class MapaAcessosEspera {
-  String idfav;
-  String pessoa;
-  String idace;
-  String placa;
-  String tipodoc;
-  String documento;
-  String datahora;
-  String nomedep;
-  String dataent;
-  String datasai;
-  String tipopessoa;
-  String cel;
-  String idconv;
-  String imgfacial;
-  String idvis;
-  String ctlfacial;
-  String ctlreg;
-  String portao;
-  String acessotipo;
+  late String idfav;
+  late String pessoa;
+  late String idace;
+  late String placa;
+  late String tipodoc;
+  late String documento;
+  late String datahora;
+  late String nomedep;
+  late String dataent;
+  late String datasai;
+  late String tipopessoa;
+  late String cel;
+  late String idconv;
+  late String imgfacial;
+  late String idvis;
+  late String ctlfacial;
+  late String ctlreg;
+  late String portao;
+  late String acessotipo;
 
   MapaAcessosEspera({
-    this.idfav,
-    this.pessoa,
-    this.idace,
-    this.placa,
-    this.tipodoc,
-    this.documento,
-    this.datahora,
-    this.nomedep,
-    this.dataent,
-    this.datasai,
-    this.tipopessoa,
-    this.cel,
-    this.idconv,
-    this.imgfacial,
-    this.idvis,
-    this.ctlfacial,
-    this.ctlreg,
-    this.portao,
-    this.acessotipo,
+    required this.idfav,
+    required this.pessoa,
+    required this.idace,
+    required this.placa,
+    required this.tipodoc,
+    required this.documento,
+    required this.datahora,
+    required this.nomedep,
+    required this.dataent,
+    required this.datasai,
+    required this.tipopessoa,
+    required this.cel,
+    required this.idconv,
+    required this.imgfacial,
+    required this.idvis,
+    required this.ctlfacial,
+    required this.ctlreg,
+    required this.portao,
+    required this.acessotipo,
   });
 
   MapaAcessosEspera.fromJson(Map<String, dynamic> json) {

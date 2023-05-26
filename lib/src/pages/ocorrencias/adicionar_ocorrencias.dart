@@ -14,7 +14,7 @@ import 'package:intl/intl.dart';
 import '../../components/utils/confirmed_button_pressed.dart';
 
 class AdicionarOcorrencias extends StatefulWidget {
-  const AdicionarOcorrencias({Key key}) : super(key: key);
+  const AdicionarOcorrencias({Key? key}) : super(key: key);
 
   @override
   _AdicionarOcorrenciasState createState() => _AdicionarOcorrenciasState();
@@ -26,20 +26,20 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
   var startSelectedDate = DateTime.now();
   var startSelectedTime = TimeOfDay.now();
 
-  Future<TimeOfDay> selectTime(BuildContext context) {
+  Future<TimeOfDay?> selectTime(BuildContext context) {
     final now = DateTime.now();
     return showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-            child: child);
+            child: child!);
       },
     );
   }
 
-  Future<DateTime> selectDateTime(BuildContext context) => showDatePicker(
+  Future<DateTime?> selectDateTime(BuildContext context) => showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
@@ -47,13 +47,13 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
       );
 
   final picker = ImagePicker();
-  File selectedFile;
+  File? selectedFile;
 
   getImage(ImageSource source) async {
     this.setState(() {});
-    PickedFile image = await picker.getImage(source: source);
+    PickedFile? image = await picker.getImage(source: source);
     if (image != null) {
-      File cropped = await ImageCropper().cropImage(
+      File? cropped = await ImageCropper().cropImage(
           sourcePath: image.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 80,
@@ -101,19 +101,19 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                   ))),
                   Divider(
                     height: 20,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                   ListTile(
                     leading: new Icon(
                       Icons.camera_alt,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
                     title: new Text('Câmera'),
                     trailing: new Icon(
                       Icons.arrow_right,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
                     onTap: () => {
                       getImage(ImageSource.camera),
@@ -121,18 +121,18 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                   ),
                   Divider(
                     height: 20,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                   ListTile(
                     leading: new Icon(Icons.collections,
                         color: Theme.of(context)
                             .textSelectionTheme
-                            .selectionColor),
+                            .selectionColor!),
                     title: new Text('Galeria de Fotos'),
                     trailing: new Icon(Icons.arrow_right,
                         color: Theme.of(context)
                             .textSelectionTheme
-                            .selectionColor),
+                            .selectionColor!),
                     onTap: () => {
                       getImage(
                         ImageSource.gallery,
@@ -141,7 +141,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                   ),
                   Divider(
                     height: 20,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                   SizedBox(
                     height: 15,
@@ -172,7 +172,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                           border: Border.all(
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             width: 1,
                           ),
                         ),
@@ -185,12 +185,12 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                           ),
                           iconEnabledColor: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor,
+                              .selectionColor!,
                           dropdownColor: Theme.of(context).primaryColor,
                           style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontSize: 14),
                           items: ocorrenciasController.tipos
                               .map((String dropDownStringItem) {
@@ -199,8 +199,8 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                               child: Text(dropDownStringItem),
                             );
                           }).toList(),
-                          onChanged: (String novoItemSelecionado) {
-                            _dropDownItemSelected(novoItemSelecionado);
+                          onChanged: (String? novoItemSelecionado) {
+                            _dropDownItemSelected(novoItemSelecionado!);
                             ocorrenciasController.itemSelecionado.value =
                                 novoItemSelecionado;
                           },
@@ -215,7 +215,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                         child: customTextField(
                           context,
                           'Titulo',
-                          null,
+                          '',
                           false,
                           1,
                           true,
@@ -227,7 +227,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          startSelectedDate = await selectDateTime(context);
+                          startSelectedDate = (await selectDateTime(context))!;
                           if (startSelectedDate == null) return;
 
                           setState(() {
@@ -246,7 +246,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                           child: customTextField(
                             context,
                             'Data do Ocorrido',
-                            null,
+                            '',
                             false,
                             1,
                             false,
@@ -259,7 +259,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          startSelectedTime = await selectTime(context);
+                          startSelectedTime = (await selectTime(context))!;
                           if (startSelectedTime == null) return;
 
                           setState(() {
@@ -278,7 +278,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                           child: customTextField(
                             context,
                             'Hora',
-                            null,
+                            '',
                             false,
                             1,
                             false,
@@ -294,7 +294,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                         child: customTextField(
                           context,
                           'Descrição',
-                          null,
+                          '',
                           true,
                           5,
                           true,
@@ -320,7 +320,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                         size: 20,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                     ),
                                     decoration: BoxDecoration(
@@ -333,7 +333,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                               height: 150,
                               decoration: BoxDecoration(
                                 image: new DecorationImage(
-                                  image: new FileImage(selectedFile),
+                                  image: new FileImage(selectedFile!),
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -353,7 +353,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                   (Set<MaterialState> states) {
                                     return Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor;
+                                        .selectionColor!;
                                   },
                                 ),
                                 elevation:
@@ -417,18 +417,20 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                               onPressed: () {
                                 ocorrenciasController
                                     .sendOcorrencia(
-                                  selectedFile == null ? '' : selectedFile.path,
+                                  selectedFile == null
+                                      ? ''
+                                      : selectedFile!.path,
                                 )
                                     .then((value) {
                                   print('valor $value');
                                   if (value == 'vazio') {
                                     onAlertButtonPressed(context,
-                                        'Campo Obrigatório Vazio', null, 'sim');
+                                        'Campo Obrigatório Vazio', '', 'sim');
                                   } else if (value == '1') {
                                     confirmedButtonPressed(
                                       context,
                                       'Sua Ocorrência foi Enviada com Sucesso!',
-                                      null,
+                                      '',
                                     );
                                   } else {
                                     onAlertButtonPressed(
@@ -445,7 +447,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),

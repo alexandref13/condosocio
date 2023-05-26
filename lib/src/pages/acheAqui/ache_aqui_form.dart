@@ -38,7 +38,7 @@ class AcheAquiForm extends StatelessWidget {
                                   fontSize: 14.0,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -76,7 +76,7 @@ class AcheAquiForm extends StatelessWidget {
                                         fontSize: 14,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -92,8 +92,9 @@ class AcheAquiForm extends StatelessWidget {
                                                 child: Text(
                                                   acheAqui.end,
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                  ),
+                                                      fontSize: 14,
+                                                      color: Theme.of(context)
+                                                          .secondaryHeaderColor),
                                                 ),
                                               )
                                             : Container(),
@@ -102,8 +103,9 @@ class AcheAquiForm extends StatelessWidget {
                                           child: Text(
                                             '${acheAqui.bairro} | ${acheAqui.cidade} - ${acheAqui.uf}',
                                             style: GoogleFonts.montserrat(
-                                              fontSize: 14,
-                                            ),
+                                                fontSize: 14,
+                                                color: Theme.of(context)
+                                                    .secondaryHeaderColor),
                                           ),
                                         ),
                                       ],
@@ -120,7 +122,7 @@ class AcheAquiForm extends StatelessWidget {
                                     Icons.arrow_right,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     size: 30,
                                   ),
                                 ),

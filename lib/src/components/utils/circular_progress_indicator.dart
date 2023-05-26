@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CircularProgressIndicatorWidget extends StatelessWidget {
-  const CircularProgressIndicatorWidget({Key key}) : super(key: key);
+  const CircularProgressIndicatorWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class CircularProgressIndicatorWidget extends StatelessWidget {
           child: CircularProgressIndicator(
             strokeWidth: 4,
             valueColor: AlwaysStoppedAnimation(
-              Theme.of(context).textSelectionTheme.selectionColor,
+              Theme.of(context).textSelectionTheme.selectionColor!,
             ),
           ),
         ),

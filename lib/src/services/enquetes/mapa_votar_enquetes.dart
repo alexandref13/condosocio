@@ -1,18 +1,18 @@
 class MapaVotarEnquetes {
-  String valida;
-  int qdtperguntas;
-  List<String> perguntas;
-  List<int> votacao;
-  int soma;
-  String verificavoto;
+  late String valida;
+  late int qdtperguntas;
+  late List<String> perguntas;
+  late List<int> votacao;
+  late int soma;
+  late String verificavoto;
 
   MapaVotarEnquetes(
-      {this.valida,
-      this.qdtperguntas,
-      this.perguntas,
-      this.votacao,
-      this.soma,
-      this.verificavoto});
+      {required this.valida,
+      required this.qdtperguntas,
+      required this.perguntas,
+      required this.votacao,
+      required this.soma,
+      required this.verificavoto});
 
   MapaVotarEnquetes.fromJson(Map<String, dynamic> json) {
     valida = json['valida'];

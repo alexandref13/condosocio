@@ -62,7 +62,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                               border: Border.all(
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 width: 1,
                               ),
                             ),
@@ -106,16 +106,16 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                       fontSize: 14,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor),
+                                          .selectionColor!),
                                   items: veiculosController.marcas.map((item) {
                                     return DropdownMenuItem(
                                       value: item['idmarca'].toString(),
                                       child: Text(item['nome']),
                                     );
                                   }).toList(),
-                                  onChanged: (String novoItemSelecionado) {
+                                  onChanged: (String? novoItemSelecionado) {
                                     veiculosController.idmarca.value =
-                                        novoItemSelecionado;
+                                        novoItemSelecionado!;
 
                                     veiculosController.getMarcas();
                                     veiculosController.getModelos();
@@ -136,7 +136,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                     border: Border.all(
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       width: 1,
                                     ),
                                   ),
@@ -182,7 +182,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                             fontSize: 14,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor),
+                                                .selectionColor!),
                                         items: veiculosController.modelos
                                             .map((item) {
                                           return DropdownMenuItem(
@@ -191,9 +191,9 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                           );
                                         }).toList(),
                                         onChanged:
-                                            (String novoItemSelecionado) {
+                                            (String? novoItemSelecionado) {
                                           veiculosController.idmodelo.value =
-                                              novoItemSelecionado;
+                                              novoItemSelecionado!;
                                           veiculosController.getModelos();
                                         },
                                         value:
@@ -213,7 +213,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                               border: Border.all(
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 width: 1,
                               ),
                             ),
@@ -257,7 +257,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                       fontSize: 14,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor),
+                                          .selectionColor!),
                                   items: veiculosController.cores
                                       .map((String dropDownStringItem) {
                                     return DropdownMenuItem<String>(
@@ -266,9 +266,9 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                           dropDownStringItem.toUpperCase()),
                                     );
                                   }).toList(),
-                                  onChanged: (String novoItemSelecionado) {
+                                  onChanged: (String? novoItemSelecionado) {
                                     veiculosController.corSelecionada.value =
-                                        novoItemSelecionado;
+                                        novoItemSelecionado!;
                                   },
                                   value:
                                       veiculosController.corSelecionada.value,
@@ -289,7 +289,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                               fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                             decoration: InputDecoration(
                               disabledBorder: OutlineInputBorder(
@@ -297,7 +297,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -306,7 +306,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               isDense: true,
                               focusedBorder: OutlineInputBorder(
@@ -314,7 +314,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 2,
                                 ),
                               ),
@@ -323,7 +323,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -341,7 +341,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                               fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                             decoration: InputDecoration(
                               disabledBorder: OutlineInputBorder(
@@ -349,7 +349,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -358,7 +358,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               isDense: true,
                               focusedBorder: OutlineInputBorder(
@@ -366,7 +366,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 2,
                                 ),
                               ),
@@ -375,7 +375,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -412,11 +412,11 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                           onPressed: () {
                             veiculosController.sendVeiculos().then((value) {
                               if (value == 1) {
-                                edgeAlertWidget(context, 'Parabéns!',
+                                showToast(context, 'Parabéns!',
                                     'Veículo cadastrado com sucesso.');
                               } else if (value == "vazio") {
                                 onAlertButtonPressed(
-                                    context, 'Algum Campo Vazio!', null, 'sim');
+                                    context, 'Algum Campo Vazio!', '', 'sim');
                               } else if (value == 2) {
                                 onAlertButtonPressedVagas(
                                     context,
@@ -426,7 +426,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                 onAlertButtonPressed(
                                     context,
                                     'Houve algum problema!Tente novamente',
-                                    null,
+                                    '',
                                     'sim');
                               }
                             });
@@ -437,7 +437,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                           ),
                         ),
@@ -454,14 +454,14 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
     Alert(
       image: Image.asset("images/vagas.png"),
       style: AlertStyle(
-        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
+        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
         animationType: AnimationType.fromTop,
         isCloseButton: false,
         isOverlayTapDismiss: false,
         //descStyle: GoogleFonts.poppins(color: Colors.red,),
         animationDuration: Duration(milliseconds: 300),
         titleStyle: GoogleFonts.poppins(
-          color: Theme.of(context).errorColor,
+          color: Theme.of(context).colorScheme.error,
           fontSize: 16,
         ),
       ),
@@ -482,7 +482,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                 : Get.back();
           },
           width: 80,
-          color: Theme.of(context).errorColor,
+          color: Theme.of(context).colorScheme.error,
         )
       ],
     ).show();

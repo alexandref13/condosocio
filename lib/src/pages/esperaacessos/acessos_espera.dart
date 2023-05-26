@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../controllers/esperaacessos/visualizar_acessos_espera_controller.dart';
 
 class AcessosEspera extends StatelessWidget {
-  const AcessosEspera({Key key}) : super(key: key);
+  const AcessosEspera({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class AcessosEspera extends StatelessWidget {
                     child: CircularProgressIndicator(
                       strokeWidth: 4,
                       valueColor: AlwaysStoppedAnimation(
-                        Theme.of(context).textSelectionTheme.selectionColor,
+                        Theme.of(context).textSelectionTheme.selectionColor!,
                       ),
                     ),
                   ),
@@ -57,7 +57,7 @@ class AcessosEspera extends StatelessWidget {
                                 fontSize: 14.0,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

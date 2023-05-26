@@ -22,7 +22,7 @@ class _DocumentosState extends State<Documentos> {
           'Documentos',
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),

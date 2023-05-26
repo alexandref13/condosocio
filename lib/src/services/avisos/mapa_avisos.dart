@@ -1,9 +1,9 @@
 class DadosAvisos {
-  String titulo;
-  String texto;
-  String dia;
-  String mes;
-  String hora;
+  late String titulo;
+  late String texto;
+  late String dia;
+  late String mes;
+  late String hora;
 
   DadosAvisos(
       String titulo, String texto, String dia, String mes, String hora) {

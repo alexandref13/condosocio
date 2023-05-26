@@ -23,7 +23,7 @@ class _SenhaState extends State<Senha> {
           'Alterar Senha',
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -61,7 +61,7 @@ class _SenhaState extends State<Senha> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                   decoration: InputDecoration(
                                     contentPadding: new EdgeInsets.symmetric(
@@ -70,7 +70,7 @@ class _SenhaState extends State<Senha> {
                                       borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
@@ -79,27 +79,30 @@ class _SenhaState extends State<Senha> {
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor)),
+                                                .selectionColor!)),
                                     labelText: 'Entre com a nova senha',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color:
-                                                Theme.of(context).errorColor)),
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .error)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color: Colors.red[900])),
+                                            color: Colors.red[900]!)),
                                     errorStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context).errorColor),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .error),
                                     prefixIcon: Icon(Icons.lock_outline,
                                         color: Colors.white),
                                   ),
                                   validator: (val) {
-                                    if (val.isEmpty) return 'Campo Vazio!';
+                                    if (val!.isEmpty) return 'Campo Vazio!';
                                     return null;
                                   },
                                   controller: senhaController.senhanova.value,
@@ -117,7 +120,7 @@ class _SenhaState extends State<Senha> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                   decoration: InputDecoration(
                                     contentPadding: new EdgeInsets.symmetric(
@@ -126,7 +129,7 @@ class _SenhaState extends State<Senha> {
                                       borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
@@ -135,22 +138,25 @@ class _SenhaState extends State<Senha> {
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor)),
+                                                .selectionColor!)),
                                     labelText: 'Confirme a nova senha',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color:
-                                                Theme.of(context).errorColor)),
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .error)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color: Colors.red[900])),
+                                            color: Colors.red[900]!)),
                                     errorStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context).errorColor),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .error),
                                     prefixIcon: Icon(Icons.lock_outline,
                                         color: Colors.white),
                                   ),
@@ -191,7 +197,7 @@ class _SenhaState extends State<Senha> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    if (senhaController.form.currentState
+                                    if (senhaController.form.currentState!
                                         .validate()) {
                                       senhaController
                                           .senha(context)
@@ -202,7 +208,7 @@ class _SenhaState extends State<Senha> {
                                           confirmedButtonPressed(
                                             context,
                                             "Senha alterada com sucesso!",
-                                            null,
+                                            '',
                                           );
                                         } else {
                                           onAlertButtonPressed(
@@ -220,7 +226,7 @@ class _SenhaState extends State<Senha> {
                                       fontWeight: FontWeight.bold,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                   ),
                                 ),

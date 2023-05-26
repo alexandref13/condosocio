@@ -1,26 +1,26 @@
 class MapaRespostasOcorrencia {
-  String idusu;
-  String nomeusu;
-  String imgperfil;
-  String tipousu;
-  String texto;
-  String data;
-  String hora;
-  String idraiz;
-  String dataraiz;
-  String horaraiz;
+  late String idusu;
+  late String nomeusu;
+  late String imgperfil;
+  late String tipousu;
+  late String texto;
+  late String data;
+  late String hora;
+  late String idraiz;
+  late String dataraiz;
+  late String horaraiz;
 
   MapaRespostasOcorrencia(
-      {this.idusu,
-      this.nomeusu,
-      this.imgperfil,
-      this.tipousu,
-      this.texto,
-      this.data,
-      this.hora,
-      this.idraiz,
-      this.dataraiz,
-      this.horaraiz});
+      {required this.idusu,
+      required this.nomeusu,
+      required this.imgperfil,
+      required this.tipousu,
+      required this.texto,
+      required this.data,
+      required this.hora,
+      required this.idraiz,
+      required this.dataraiz,
+      required this.horaraiz});
 
   MapaRespostasOcorrencia.fromJson(Map<String, dynamic> json) {
     idusu = json['idusu'];

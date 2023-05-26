@@ -51,7 +51,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                               fontSize: 14.0,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -78,7 +78,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                   fontSize: 10,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.w500,
                                   letterSpacing: 2),
                               textAlign: TextAlign.center,
@@ -92,7 +92,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                   fontSize: 10,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.w500,
                                   letterSpacing: 2),
                             ),
@@ -105,7 +105,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                   fontSize: 10,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.w500,
                                   letterSpacing: 2),
                             ),
@@ -118,7 +118,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                   fontSize: 10,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.w500,
                                   letterSpacing: 2),
                               textAlign: TextAlign.center,
@@ -175,7 +175,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -191,7 +191,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                             ),
                                           ),
                                         ),
@@ -206,7 +206,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                             ),
                                           ),
                                         ),
@@ -217,7 +217,7 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                             ),
                                             textDirection: TextDirection.rtl,
                                           ),

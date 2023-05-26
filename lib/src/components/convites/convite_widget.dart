@@ -23,45 +23,46 @@ class _ConviteWidgetState extends State<ConviteWidget> {
   var startTime = TextEditingController();
   var endDate = TextEditingController();
   var endTime = TextEditingController();
-  Bool acesso;
+
+  //Bool acesso;
 
   AcessosController acessosController = Get.put(AcessosController());
   ConvitesController convitesController = Get.put(ConvitesController());
   LoginController loginController = Get.put(LoginController());
 
-  Future<TimeOfDay> selectTime(BuildContext context) {
+  Future<TimeOfDay?> selectTime(BuildContext context) {
     final now = DateTime.now();
     return showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-            child: child);
+            child: child!!);
       },
     );
   }
 
-  Future<TimeOfDay> selectEndTime(BuildContext context) {
+  Future<TimeOfDay?> selectEndTime(BuildContext context) {
     return showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: 23, minute: 59),
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-            child: child);
+            child: child!!);
       },
     );
   }
 
-  Future<DateTime> selectDateTime(BuildContext context) => showDatePicker(
+  Future<DateTime?> selectDateTime(BuildContext context) => showDatePicker(
         context: context,
         initialDate: DateTime.now().add(Duration(seconds: 1)),
         firstDate: DateTime.now(),
         lastDate: DateTime(2100),
       );
 
-  Future<DateTime> selectDateOnEndTime(BuildContext context) => showDatePicker(
+  Future<DateTime?> selectDateOnEndTime(BuildContext context) => showDatePicker(
         context: context,
         initialDate: startSelectedDate,
         firstDate: startSelectedDate,
@@ -80,7 +81,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
 
     convitesController.endDate.value != ''
         ? endSelectedDate = DateTime(
-            formatDate.year,
+            formatDate!.year,
             formatDate.month,
             formatDate.day,
             formatDate.hour,
@@ -96,7 +97,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
 
     convitesController.startDate.value != ''
         ? startSelectedDate = DateTime(
-            formatDateStart.year,
+            formatDateStart!.year,
             formatDateStart.month,
             formatDateStart.day,
             formatDateStart.hour,
@@ -140,7 +141,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                   fontSize: 14,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),
@@ -149,7 +150,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               margin: EdgeInsets.symmetric(horizontal: 10),
                               child: customTextField(
                                 context,
-                                null,
+                                '',
                                 'Convite de ${loginController.nome.value}',
                                 false,
                                 1,
@@ -171,7 +172,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                             ),
                           ),
@@ -182,10 +183,11 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                             child: GestureDetector(
                               onTap: () async {
                                 startSelectedDate =
-                                    await selectDateTime(context);
+                                    (await selectDateTime(context))!;
                                 if (startSelectedDate == null) return;
 
-                                startSelectedTime = await selectTime(context);
+                                startSelectedTime =
+                                    (await selectTime(context))!;
                                 if (startSelectedTime == null) return;
 
                                 setState(() {
@@ -200,7 +202,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               },
                               child: customTextField(
                                 context,
-                                null,
+                                '',
                                 DateFormat("dd/MM/yyyy HH:mm").format(
                                   startSelectedDate,
                                 ),
@@ -224,7 +226,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                             ),
                           ),
@@ -235,10 +237,11 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                             child: GestureDetector(
                               onTap: () async {
                                 endSelectedDate =
-                                    await selectDateOnEndTime(context);
+                                    (await selectDateOnEndTime(context))!;
                                 if (endSelectedDate == null) return;
 
-                                endSelectedTime = await selectEndTime(context);
+                                endSelectedTime =
+                                    (await selectEndTime(context))!;
                                 if (endSelectedTime == null) return;
 
                                 setState(() {
@@ -253,7 +256,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               },
                               child: customTextField(
                                 context,
-                                null,
+                                '',
                                 (DateFormat("dd/MM/yyyy HH:mm").format(
                                   endSelectedDate,
                                 )),
@@ -278,7 +281,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                   fontSize: 14,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ],
@@ -339,7 +342,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                             ),
                           ),

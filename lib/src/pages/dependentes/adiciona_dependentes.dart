@@ -34,39 +34,39 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
   var endDate = TextEditingController();
   var endTime = TextEditingController();
 
-  Future<TimeOfDay> selectTime(BuildContext context) {
+  Future<TimeOfDay?> selectTime(BuildContext context) {
     //final now = DateTime.now();
     return showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: 08, minute: 00),
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-            child: child);
+            child: child!);
       },
     );
   }
 
-  Future<TimeOfDay> selectEndTime(BuildContext context) {
+  Future<TimeOfDay?> selectEndTime(BuildContext context) {
     return showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: 18, minute: 00),
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-            child: child);
+            child: child!);
       },
     );
   }
 
-  Future<DateTime> selectDateTime(BuildContext context) => showDatePicker(
+  Future<DateTime?> selectDateTime(BuildContext context) => showDatePicker(
         context: context,
         initialDate: DateTime.now().add(Duration(seconds: 1)),
         firstDate: DateTime.now(),
         lastDate: DateTime(2100),
       );
 
-  Future<DateTime> selectDateOnEndTime(BuildContext context) => showDatePicker(
+  Future<DateTime?> selectDateOnEndTime(BuildContext context) => showDatePicker(
         context: context,
         initialDate: startSelectedDate,
         firstDate: startSelectedDate,
@@ -85,7 +85,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
 
     dependentesController.endDate.value != ''
         ? startSelectedDate = DateTime(
-            formatDate.year,
+            formatDate!.year,
             formatDate.month,
             formatDate.day,
             formatDate.hour,
@@ -100,7 +100,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
           );
     dependentesController.endDate.value != ''
         ? endSelectedDate = DateTime(
-            formatDate.year,
+            formatDate!.year,
             formatDate.month,
             formatDate.day,
             formatDate.hour,
@@ -142,7 +142,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                               border: Border.all(
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 width: 1,
                               ),
                             ),
@@ -155,13 +155,13 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                               ),
                               iconEnabledColor: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               dropdownColor: Theme.of(context).primaryColor,
                               style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               items: loginController.condofacial.value == 'SIM'
                                   ? dependentesController.tiposUsuarios
@@ -178,8 +178,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                         child: Text(dropDownStringItem),
                                       );
                                     }).toList(),
-                              onChanged: (String novoItemSelecionado) {
-                                dropDownFavoriteSelected(novoItemSelecionado);
+                              onChanged: (String? novoItemSelecionado) {
+                                dropDownFavoriteSelected(novoItemSelecionado!);
                                 dependentesController.tipoUsuario.value =
                                     novoItemSelecionado;
                               },
@@ -194,7 +194,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                             child: customTextField(
                               context,
                               'Nome',
-                              null,
+                              '',
                               false,
                               1,
                               true,
@@ -207,7 +207,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                           customTextField(
                             context,
                             'Sobrenome',
-                            null,
+                            '',
                             false,
                             1,
                             true,
@@ -223,7 +223,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                               border: Border.all(
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 width: 1,
                               ),
                             ),
@@ -236,13 +236,13 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                               ),
                               iconEnabledColor: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               dropdownColor: Theme.of(context).primaryColor,
                               style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               items: dependentesController.tipos
                                   .map((String dropDownStringItem) {
@@ -251,8 +251,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                   child: Text(dropDownStringItem),
                                 );
                               }).toList(),
-                              onChanged: (String novoItemSelecionado) {
-                                dropDownFavoriteSelected(novoItemSelecionado);
+                              onChanged: (String? novoItemSelecionado) {
+                                dropDownFavoriteSelected(novoItemSelecionado!);
                                 dependentesController.itemSelecionado.value =
                                     novoItemSelecionado;
                               },
@@ -273,7 +273,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                               fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                             decoration: InputDecoration(
                               disabledBorder: OutlineInputBorder(
@@ -281,7 +281,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -290,7 +290,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               isDense: true,
                               focusedBorder: OutlineInputBorder(
@@ -298,7 +298,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 2,
                                 ),
                               ),
@@ -307,7 +307,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -329,7 +329,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                             decoration: InputDecoration(
                               contentPadding: new EdgeInsets.symmetric(
@@ -338,7 +338,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 borderSide: BorderSide(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     width: 1.0),
                               ),
                               enabledBorder: OutlineInputBorder(
@@ -346,12 +346,12 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                   borderSide: BorderSide(
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor)),
+                                          .selectionColor!)),
                               labelText: 'E-mail',
                               labelStyle: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontSize: 14),
                               errorBorder: new OutlineInputBorder(
                                   borderSide: new BorderSide(
@@ -360,14 +360,14 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                           .secondary)),
                               focusedErrorBorder: new OutlineInputBorder(
                                   borderSide:
-                                      new BorderSide(color: Colors.red[900])),
+                                      new BorderSide(color: Colors.red[900]!)),
                               errorStyle: GoogleFonts.montserrat(
-                                  color: Theme.of(context).errorColor),
+                                  color: Theme.of(context).colorScheme.error),
                             ),
                             keyboardType: TextInputType.emailAddress,
 
                             validator: (valueEmail) {
-                              if (!EmailValidator.validate(valueEmail)) {
+                              if (!EmailValidator.validate(valueEmail!)) {
                                 return 'Entre com e-mail válido!';
                               }
                               return null;
@@ -391,7 +391,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                     fontSize: 14,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                               ],
@@ -430,7 +430,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                   fontSize: 14,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),
@@ -439,7 +439,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                   bottom: 20, left: 10, right: 10),
                               child: GestureDetector(
                                 onTap: () async {
-                                  startSelectedTime = await selectTime(context);
+                                  startSelectedTime =
+                                      (await selectTime(context))!;
                                   if (startSelectedTime == null) return;
 
                                   setState(() {
@@ -454,7 +455,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 },
                                 child: customTextField(
                                   context,
-                                  null,
+                                  '',
                                   DateFormat("HH:mm").format(
                                     startSelectedDate,
                                   ),
@@ -482,7 +483,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                   fontSize: 14,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),
@@ -492,7 +493,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                               child: GestureDetector(
                                 onTap: () async {
                                   endSelectedTime =
-                                      await selectEndTime(context);
+                                      (await selectEndTime(context))!;
                                   if (endSelectedTime == null) return;
 
                                   setState(() {
@@ -507,7 +508,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 },
                                 child: customTextField(
                                   context,
-                                  null,
+                                  '',
                                   (DateFormat("HH:mm").format(
                                     endSelectedDate,
                                   )),
@@ -611,7 +612,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                               },
                                             );
                                           });
-                                /*edgeAlertWidget(context, 'Parabéns!',
+                                /*showToast(context, 'Parabéns!',
                                     'Usuário cadastrado com sucesso.');*/
                                 // } else if (value == 4) {
                                 // onAlertButtonPressed(
@@ -620,19 +621,19 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 // null);
                               } else if (value == 3) {
                                 onAlertButtonPressed(context,
-                                    'Usuário já cadastrado!', null, 'sim');
+                                    'Usuário já cadastrado!', '', 'sim');
                               } else if (value == "vazio") {
                                 onAlertButtonPressed(
-                                    context, 'Algum campo vazio!', null, 'sim');
+                                    context, 'Algum campo vazio!', '', 'sim');
                               } else if (value == 'invalido') {
                                 onAlertButtonPressed(
-                                    context, 'E-mail inválido!', null, 'sim');
+                                    context, 'E-mail inválido!', '', 'sim');
                               } else {
                                 onAlertButtonPressed(
                                     context,
                                     'Houve algum problema!Tente novamente',
-                                    null,
-                                    null);
+                                    '',
+                                    '');
                               }
                             });
                           },
@@ -642,7 +643,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                           ),
                         ),
@@ -666,13 +667,13 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
         size: 60,
       ),
       style: AlertStyle(
-        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
+        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
         animationType: AnimationType.fromTop,
         isCloseButton: false,
         isOverlayTapDismiss: false,
         animationDuration: Duration(milliseconds: 300),
         titleStyle: GoogleFonts.poppins(
-          color: Theme.of(context).errorColor,
+          color: Theme.of(context).colorScheme.error,
           fontSize: 16,
         ),
       ),

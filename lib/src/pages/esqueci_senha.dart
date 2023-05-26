@@ -24,7 +24,7 @@ class _EsqueciState extends State<Esqueci> {
           'Redefinir Senha',
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -62,7 +62,7 @@ class _EsqueciState extends State<Esqueci> {
                                         style: GoogleFonts.montserrat(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                     ],
@@ -79,7 +79,7 @@ class _EsqueciState extends State<Esqueci> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                   decoration: InputDecoration(
                                     contentPadding: new EdgeInsets.symmetric(
@@ -88,7 +88,7 @@ class _EsqueciState extends State<Esqueci> {
                                       borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
@@ -97,27 +97,30 @@ class _EsqueciState extends State<Esqueci> {
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor)),
+                                                .selectionColor!)),
                                     labelText: 'E-mail',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color:
-                                                Theme.of(context).errorColor)),
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .error)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color: Colors.red[900])),
+                                            color: Colors.red[900]!)),
                                     errorStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context).errorColor),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .error),
                                   ),
                                   keyboardType: TextInputType.emailAddress,
 
                                   validator: (valueEmail) {
-                                    if (!EmailValidator.validate(valueEmail)) {
+                                    if (!EmailValidator.validate(valueEmail!)) {
                                       return 'Entre com e-mail válido!';
                                     }
                                     return null;
@@ -152,7 +155,7 @@ class _EsqueciState extends State<Esqueci> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    if (emailController.form.currentState
+                                    if (emailController.form.currentState!
                                         .validate()) {
                                       emailController
                                           .email(context)
@@ -167,7 +170,7 @@ class _EsqueciState extends State<Esqueci> {
                                           onAlertButtonPressed(
                                               context,
                                               "E-mail não existe em nosso banco de dados!Tente novamente.",
-                                              null,
+                                              '',
                                               'sim');
                                         }
                                       });
@@ -179,7 +182,7 @@ class _EsqueciState extends State<Esqueci> {
                                       fontWeight: FontWeight.bold,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                   ),
                                 ),

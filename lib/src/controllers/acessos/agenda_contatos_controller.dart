@@ -8,17 +8,17 @@ import 'acessos_controller.dart';
 class AgendaContatosController extends GetxController {
   AcessosController acessosController = Get.put(AcessosController());
   ConvitesController convitesController = Get.put(ConvitesController());
-  Contact contacts;
+  Contact? contacts;
   var phone;
 
   Future<void> pickContact() async {
     try {
-      final Contact contact = await ContactsService.openDeviceContactPicker();
+      final Contact? contact = await ContactsService.openDeviceContactPicker();
       contacts = contact;
-      var phones = (contacts.phones).map((e) => e.value);
+      var phones = (contacts?.phones)!.map((e) => e.value);
       convitesController.guestList.addAll({
         {
-          'nome': contacts.displayName,
+          'nome': contacts?.displayName,
           'tel': phones.first,
           'tipo': 'Convidado',
         }

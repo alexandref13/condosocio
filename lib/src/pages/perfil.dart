@@ -4,7 +4,6 @@ import 'package:condosocio/src/components/utils/circular_progress_indicator.dart
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/perfil_controller.dart';
-import 'package:edge_alert/edge_alert.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
@@ -12,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+
+import '../components/utils/edge_alert_error_widget.dart';
 
 class Perfil extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _PerfilState extends State<Perfil> {
     perfilController.firstId.value = novoItem;
   }
 
-  File _selectedFile;
+  File? _selectedFile;
   final _picker = ImagePicker();
 
   final uri =
@@ -63,7 +64,7 @@ class _PerfilState extends State<Perfil> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: new DecorationImage(
-              image: new FileImage(_selectedFile),
+              image: new FileImage(_selectedFile!),
               fit: BoxFit.cover,
             ),
           ),
@@ -86,7 +87,7 @@ class _PerfilState extends State<Perfil> {
                           size: 20,
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor,
+                              .selectionColor!,
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -116,7 +117,7 @@ class _PerfilState extends State<Perfil> {
                           size: 20,
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor,
+                              .selectionColor!,
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -142,9 +143,9 @@ class _PerfilState extends State<Perfil> {
 
   getImage(ImageSource source) async {
     this.setState(() {});
-    PickedFile image = await _picker.getImage(source: source);
+    PickedFile? image = await _picker.getImage(source: source);
     if (image != null) {
-      File cropped = await ImageCropper().cropImage(
+      File? cropped = await ImageCropper().cropImage(
           sourcePath: image.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 80,
@@ -160,7 +161,7 @@ class _PerfilState extends State<Perfil> {
 
       this.setState(() {
         _selectedFile = File(image.path);
-        _selectedFile = cropped;
+        _selectedFile = cropped!;
         if (cropped != null) {
           uploadImage();
           Get.back();
@@ -172,24 +173,21 @@ class _PerfilState extends State<Perfil> {
   Future uploadImage() async {
     var request = http.MultipartRequest('POST', uri);
     request.fields['idusu'] = loginController.id.value;
-    var pic = await http.MultipartFile.fromPath("image", _selectedFile.path);
+    var pic = await http.MultipartFile.fromPath("image", _selectedFile!.path);
     request.files.add(pic);
     var response = await request.send();
     if (response.statusCode == 200) {
       loginController.newLogin(loginController.id.value);
-
-      EdgeAlert.show(context,
-          title: 'Imagem do perfil alterada',
-          gravity: EdgeAlert.BOTTOM,
-          backgroundColor: Colors.green,
-          icon: Icons.check);
+      showToastError(
+        context,
+        'Imagem do perfil alterada!',
+      );
     } else {
       Navigator.of(context).pop();
-      EdgeAlert.show(context,
-          title: 'Houve Algum Erro! Tente Novamente.',
-          gravity: EdgeAlert.BOTTOM,
-          backgroundColor: Colors.red,
-          icon: Icons.highlight_off);
+      showToastError(
+        context,
+        'Houve Algum Erro! Tente Novamente',
+      );
     }
     _selectedFile = null;
   }
@@ -212,39 +210,39 @@ class _PerfilState extends State<Perfil> {
                 ))),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 ListTile(
                     leading: new Icon(
                       Icons.camera_alt,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
                     title: new Text('Câmera'),
                     trailing: new Icon(
                       Icons.arrow_right,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
                     onTap: () => {getImage(ImageSource.camera)}),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 ListTile(
                     leading: new Icon(Icons.collections,
                         color: Theme.of(context)
                             .textSelectionTheme
-                            .selectionColor),
+                            .selectionColor!),
                     title: new Text('Galeria de Fotos'),
                     trailing: new Icon(Icons.arrow_right,
                         color: Theme.of(context)
                             .textSelectionTheme
-                            .selectionColor),
+                            .selectionColor!),
                     onTap: () => {getImage(ImageSource.gallery)}),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 SizedBox(
                   height: 15,
@@ -266,7 +264,7 @@ class _PerfilState extends State<Perfil> {
               'Perfil',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
             ),
             centerTitle: true,
@@ -301,7 +299,7 @@ class _PerfilState extends State<Perfil> {
                                       fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                   ),
                                 ),
@@ -314,7 +312,7 @@ class _PerfilState extends State<Perfil> {
                           customTextField(
                             context,
                             'Nome',
-                            null,
+                            '',
                             false,
                             1,
                             true,
@@ -326,7 +324,7 @@ class _PerfilState extends State<Perfil> {
                           customTextField(
                             context,
                             'Sobrenome',
-                            null,
+                            '',
                             false,
                             1,
                             true,
@@ -345,7 +343,7 @@ class _PerfilState extends State<Perfil> {
                               fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                             decoration: InputDecoration(
                               disabledBorder: OutlineInputBorder(
@@ -353,7 +351,7 @@ class _PerfilState extends State<Perfil> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -362,7 +360,7 @@ class _PerfilState extends State<Perfil> {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               isDense: true,
                               focusedBorder: OutlineInputBorder(
@@ -370,7 +368,7 @@ class _PerfilState extends State<Perfil> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 2,
                                 ),
                               ),
@@ -379,7 +377,7 @@ class _PerfilState extends State<Perfil> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -395,7 +393,7 @@ class _PerfilState extends State<Perfil> {
                               border: Border.all(
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 width: 1,
                               ),
                             ),
@@ -408,13 +406,13 @@ class _PerfilState extends State<Perfil> {
                               ),
                               iconEnabledColor: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               dropdownColor: Theme.of(context).primaryColor,
                               style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               items: perfilController.tipos
                                   .map((String dropDownStringItem) {
@@ -423,8 +421,8 @@ class _PerfilState extends State<Perfil> {
                                   child: Text(dropDownStringItem),
                                 );
                               }).toList(),
-                              onChanged: (String novoItemSelecionado) {
-                                dropDownFavoriteSelected(novoItemSelecionado);
+                              onChanged: (String? novoItemSelecionado) {
+                                dropDownFavoriteSelected(novoItemSelecionado!);
                                 perfilController.itemSelecionado.value =
                                     novoItemSelecionado;
                               },
@@ -444,7 +442,7 @@ class _PerfilState extends State<Perfil> {
                               fontSize: 14,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                             decoration: InputDecoration(
                               disabledBorder: OutlineInputBorder(
@@ -452,7 +450,7 @@ class _PerfilState extends State<Perfil> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -461,7 +459,7 @@ class _PerfilState extends State<Perfil> {
                                 fontSize: 14,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               ),
                               isDense: true,
                               focusedBorder: OutlineInputBorder(
@@ -469,7 +467,7 @@ class _PerfilState extends State<Perfil> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 2,
                                 ),
                               ),
@@ -478,7 +476,7 @@ class _PerfilState extends State<Perfil> {
                                 borderSide: BorderSide(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   width: 1,
                                 ),
                               ),
@@ -512,19 +510,19 @@ class _PerfilState extends State<Perfil> {
                                 perfilController.editPerfil().then((value) {
                                   print('VALUE:$value');
                                   if (value == 1) {
-                                    edgeAlertWidget(
+                                    showToast(
                                       context,
                                       'Parabéns!',
                                       'Seu perfil foi atualizado com sucesso.',
                                     );
                                   } else if (value == "vazio") {
                                     onAlertButtonPressed(context,
-                                        'Algum Campo Vazio!', null, 'sim');
+                                        'Algum Campo Vazio!', '', 'sim');
                                   } else {
                                     onAlertButtonPressed(
                                         context,
                                         'Algo deu errado\n Tente novamente',
-                                        null,
+                                        '',
                                         'sim');
                                   }
                                 });
@@ -535,7 +533,7 @@ class _PerfilState extends State<Perfil> {
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),

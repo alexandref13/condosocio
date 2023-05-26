@@ -1,28 +1,28 @@
 class MapaEncomendas {
-  String idenc;
-  String codigo;
-  String tipo;
-  String info;
-  String status;
-  String morador;
-  String admCriador;
-  String dataCriada;
-  String admEntrega;
-  String idcript;
-  String dataEntrega;
+  late String idenc;
+  late String codigo;
+  late String tipo;
+  late String info;
+  late String status;
+  late String morador;
+  late String admCriador;
+  late String dataCriada;
+  late String admEntrega;
+  late String idcript;
+  late String dataEntrega;
 
   MapaEncomendas(
-      {this.idenc,
-      this.codigo,
-      this.tipo,
-      this.info,
-      this.status,
-      this.morador,
-      this.admCriador,
-      this.dataCriada,
-      this.admEntrega,
-      this.idcript,
-      this.dataEntrega});
+      {required this.idenc,
+      required this.codigo,
+      required this.tipo,
+      required this.info,
+      required this.status,
+      required this.morador,
+      required this.admCriador,
+      required this.dataCriada,
+      required this.admEntrega,
+      required this.idcript,
+      required this.dataEntrega});
 
   MapaEncomendas.fromJson(Map<String, dynamic> json) {
     idenc = json['idenc'];

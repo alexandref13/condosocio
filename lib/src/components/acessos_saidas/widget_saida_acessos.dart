@@ -23,13 +23,13 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
       Get.put(VisualizarAcessosSaidaController());
 
   final picker = ImagePicker();
-  File selectedFile;
+  File? selectedFile;
 
   getImage(ImageSource source) async {
     this.setState(() {});
-    PickedFile image = await picker.getImage(source: source);
+    PickedFile? image = await picker.getImage(source: source);
     if (image != null) {
-      File cropped = await ImageCropper().cropImage(
+      File? cropped = await ImageCropper().cropImage(
           sourcePath: image.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 80,
@@ -79,7 +79,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                           border: Border.all(
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             width: 1,
                           ),
                         ),
@@ -92,7 +92,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                           ),
                           iconEnabledColor: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor,
+                              .selectionColor!,
                           dropdownColor: Theme.of(context).primaryColor,
                           style: GoogleFonts.montserrat(fontSize: 14),
                           items: saidaController.tipos
@@ -102,8 +102,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                               child: Text(dropDownStringItem),
                             );
                           }).toList(),
-                          onChanged: (String novoItemSelecionado) {
-                            dropDownItemSelected(novoItemSelecionado);
+                          onChanged: (String? novoItemSelecionado) {
+                            dropDownItemSelected(novoItemSelecionado!);
                             saidaController.itemSelecionado.value =
                                 novoItemSelecionado;
                           },
@@ -118,7 +118,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                         child: customTextField(
                             context,
                             'Nome Completo',
-                            null,
+                            '',
                             false,
                             1,
                             true,
@@ -129,8 +129,8 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 10),
-                        child: customTextField(context, 'Observações', null,
-                            true, 5, true, saidaController.obs.value),
+                        child: customTextField(context, 'Observações', '', true,
+                            5, true, saidaController.obs.value),
                       ),
                       SizedBox(
                         height: 10,
@@ -152,7 +152,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                         size: 20,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                       ),
                                     ),
                                     decoration: BoxDecoration(
@@ -165,7 +165,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                               height: 150,
                               decoration: BoxDecoration(
                                 image: new DecorationImage(
-                                  image: new FileImage(selectedFile),
+                                  image: new FileImage(selectedFile!),
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -185,7 +185,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                   (Set<MaterialState> states) {
                                     return Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor;
+                                        .selectionColor!;
                                   },
                                 ),
                                 elevation:
@@ -250,7 +250,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                 saidaController
                                     .sendAcessosSaida(selectedFile == null
                                         ? ''
-                                        : selectedFile.path)
+                                        : selectedFile!.path)
                                     .then(
                                   (value) {
                                     if (value == '1') {
@@ -265,7 +265,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                       onAlertButtonPressed(
                                         context,
                                         'Os campos de tipo de visitante, nome e observação são obrigátorios',
-                                        null,
+                                        '',
                                         'sim',
                                       );
                                     } else {
@@ -290,7 +290,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),
@@ -309,7 +309,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                   (Set<MaterialState> states) {
                                     return Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor;
+                                        .selectionColor!;
                                   },
                                 ),
                                 elevation:
@@ -358,13 +358,13 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
         size: 60,
       ),
       style: AlertStyle(
-        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
+        backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
         animationType: AnimationType.fromTop,
         isCloseButton: false,
         isOverlayTapDismiss: false,
         animationDuration: Duration(milliseconds: 300),
         titleStyle: GoogleFonts.poppins(
-          color: Theme.of(context).errorColor,
+          color: Theme.of(context).colorScheme.error,
           fontSize: 18,
         ),
       ),
@@ -408,17 +408,17 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                 ))),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 ListTile(
                   leading: new Icon(
                     Icons.camera_alt,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                   title: new Text('Câmera'),
                   trailing: new Icon(
                     Icons.arrow_right,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                   onTap: () => {
                     getImage(ImageSource.camera),
@@ -426,16 +426,16 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                 ),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 ListTile(
                   leading: new Icon(Icons.collections,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+                          Theme.of(context).textSelectionTheme.selectionColor!),
                   title: new Text('Galeria de Fotos'),
                   trailing: new Icon(Icons.arrow_right,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+                          Theme.of(context).textSelectionTheme.selectionColor!),
                   onTap: () => {
                     getImage(
                       ImageSource.gallery,
@@ -444,7 +444,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                 ),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 SizedBox(
                   height: 15,

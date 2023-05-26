@@ -23,7 +23,7 @@ class DetalhesAcheAquiController extends GetxController {
 
   var avaliacao = <MapaAcheAquiAvaliacao>[].obs;
 
-  Future<void> launched;
+  late Future<void> launched;
 
   Future<void> sendEmail(String email) async {
     final Uri params = Uri(

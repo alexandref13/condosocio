@@ -26,7 +26,7 @@ class ContratosController extends GetxController {
     super.onInit();
   }
 
-  Future<void> launched;
+  late Future<void> launched;
 
   Future<void> launchInBrowser(String url) async {
     if (await canLaunch(url)) {

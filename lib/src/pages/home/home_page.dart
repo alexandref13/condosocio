@@ -7,7 +7,7 @@ import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:condosocio/src/pages/home/home_widget_bottomtab.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,8 +15,8 @@ import 'dart:io';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
-import 'package:edge_alert/edge_alert.dart';
 
+import '../../components/utils/edge_alert_error_widget.dart';
 import '../../controllers/perfil_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   final _picker = ImagePicker();
-  File _selectedFile;
+  File? _selectedFile;
 
   final uri = Uri.parse("https://alvocomtec.com.br/flutter/upload_imagem.php");
 
@@ -74,8 +74,8 @@ class _HomePageState extends State<HomePage> {
   Future uploadImage() async {
     var request = http.MultipartRequest('POST', uri);
     request.fields['idusu'] = loginController.id.value;
-    var pic = await http.MultipartFile.fromPath("image", _selectedFile.path);
-    print(" meu arquivo => ${_selectedFile.path}");
+    var pic = await http.MultipartFile.fromPath("image", _selectedFile!.path);
+    print(" meu arquivo => ${_selectedFile!.path}");
     request.files.add(pic);
     var response = await request.send();
     print(response.request);
@@ -83,17 +83,12 @@ class _HomePageState extends State<HomePage> {
     if (response.statusCode == 200) {
       loginController.newLogin(loginController.id.value);
 
-      edgeAlertWidget(
-          context, 'Parabéns!', 'Imagem do perfil alterada com sucesso.');
+      showToast(context, 'Parabéns!', 'Imagem do perfil alterada com sucesso.');
     } else if (response.statusCode == 404) {
       loginController.imgperfil.value = '';
     } else {
       Navigator.of(context).pop();
-      EdgeAlert.show(context,
-          title: 'Imagem não enviada',
-          gravity: EdgeAlert.BOTTOM,
-          backgroundColor: Colors.red,
-          icon: Icons.highlight_off);
+      showToastError(context, 'Imagem não enviada');
     }
     _selectedFile = null;
   }
@@ -128,7 +123,7 @@ class _HomePageState extends State<HomePage> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: new DecorationImage(
-              image: new FileImage(_selectedFile),
+              image: new FileImage(_selectedFile!),
               fit: BoxFit.cover,
             ),
           ),
@@ -151,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                           size: 20,
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor,
+                              .selectionColor!,
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -181,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                           size: 20,
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor,
+                              .selectionColor!,
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -207,9 +202,9 @@ class _HomePageState extends State<HomePage> {
 
   getImage(ImageSource source) async {
     this.setState(() {});
-    PickedFile image = await _picker.getImage(source: source);
+    PickedFile? image = await _picker.getImage(source: source);
     if (image != null) {
-      File cropped = await ImageCropper().cropImage(
+      File? cropped = await ImageCropper().cropImage(
           sourcePath: image.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 80,
@@ -252,39 +247,39 @@ class _HomePageState extends State<HomePage> {
                 ))),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 ListTile(
                     leading: new Icon(
                       Icons.camera_alt,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
                     title: new Text('Câmera'),
                     trailing: new Icon(
                       Icons.arrow_right,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
                     onTap: () => {getImage(ImageSource.camera)}),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 ListTile(
                     leading: new Icon(Icons.collections,
                         color: Theme.of(context)
                             .textSelectionTheme
-                            .selectionColor),
+                            .selectionColor!),
                     title: new Text('Galeria de Fotos'),
                     trailing: new Icon(Icons.arrow_right,
                         color: Theme.of(context)
                             .textSelectionTheme
-                            .selectionColor),
+                            .selectionColor!),
                     onTap: () => {getImage(ImageSource.gallery)}),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 SizedBox(
                   height: 15,
@@ -312,7 +307,7 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBarWidget(
             context: context,
             onTap: () {
-              scaffoldKey.currentState.openDrawer();
+              scaffoldKey.currentState!.openDrawer();
             },
             image: loginController.imgcondo.value,
           ),
@@ -338,7 +333,7 @@ class _HomePageState extends State<HomePage> {
                                 style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -350,7 +345,7 @@ class _HomePageState extends State<HomePage> {
                                 style: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontSize: 10,
                                 ),
                               ),
@@ -362,7 +357,7 @@ class _HomePageState extends State<HomePage> {
                                 style: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontSize: 10,
                                 ),
                               ),
@@ -383,7 +378,7 @@ class _HomePageState extends State<HomePage> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 12,
                                   ),
                                 ),
@@ -391,7 +386,7 @@ class _HomePageState extends State<HomePage> {
                                   Icons.paid_outlined,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   size: 22,
                                 ),
                                 onTap: () {
@@ -415,15 +410,15 @@ class _HomePageState extends State<HomePage> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 12,
                                   ),
                                 ),
                                 leading: Icon(
-                                  Feather.home,
+                                  Icons.home,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   size: 22,
                                 ),
                                 onTap: () {
@@ -447,15 +442,15 @@ class _HomePageState extends State<HomePage> {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontSize: 12,
                                   ),
                                 ),
                                 leading: Icon(
-                                  Feather.users,
+                                   Icons.persons,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   size: 22,
                                 ),
                                 onTap: () {
@@ -477,15 +472,15 @@ class _HomePageState extends State<HomePage> {
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontSize: 12,
                             ),
                           ),
                           leading: Icon(
-                            FontAwesome.user_circle,
+                            Icons.account_circle_outlined,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             size: 22,
                           ),
                           onTap: () {
@@ -506,15 +501,15 @@ class _HomePageState extends State<HomePage> {
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontSize: 12,
                             ),
                           ),
                           leading: Icon(
-                            FontAwesome.lock,
+                            Icons.lock_outline,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             size: 22,
                           ),
                           onTap: () {
@@ -535,15 +530,15 @@ class _HomePageState extends State<HomePage> {
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontSize: 12,
                             ),
                           ),
                           leading: Icon(
-                            FontAwesome.info_circle,
+                            Icons.info_outline_rounded,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             size: 22,
                           ),
                           onTap: () {
@@ -564,15 +559,15 @@ class _HomePageState extends State<HomePage> {
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontSize: 12,
                             ),
                           ),
                           leading: Icon(
-                            FontAwesome.check_square_o,
+                            Icons.gavel_outlined,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             size: 22,
                           ),
                           onTap: () {
@@ -595,15 +590,15 @@ class _HomePageState extends State<HomePage> {
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontSize: 12,
                             ),
                           ),
                           leading: Icon(
-                            FontAwesome.shield,
+                            Icons.verified_user_outlined,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             size: 22,
                           ),
                           onTap: () {
@@ -626,15 +621,15 @@ class _HomePageState extends State<HomePage> {
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontSize: 12,
                             ),
                           ),
                           leading: Icon(
-                            FontAwesome.star,
+                            Icons.star_border_outlined,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             size: 22,
                           ),
                           onTap: () {
@@ -656,7 +651,7 @@ class _HomePageState extends State<HomePage> {
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontSize: 12,
                             ),
                           ),
@@ -664,7 +659,7 @@ class _HomePageState extends State<HomePage> {
                             FontAwesome.question_circle,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             size: 22,
                           ),
                           onTap: () {
@@ -688,7 +683,7 @@ class _HomePageState extends State<HomePage> {
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               fontSize: 12,
                             ),
                           ),
@@ -696,7 +691,7 @@ class _HomePageState extends State<HomePage> {
                             Icons.exit_to_app,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             size: 22,
                           ),
                           onTap: () {
@@ -728,7 +723,7 @@ class _HomePageState extends State<HomePage> {
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontSize: 9,
                               ),
                             ),

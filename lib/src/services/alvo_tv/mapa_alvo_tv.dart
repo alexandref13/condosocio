@@ -1,10 +1,14 @@
 class MapaAlvoTv {
-  String publi;
-  String titulo;
-  String descricao;
-  String html;
+  late String publi;
+  late String titulo;
+  late String descricao;
+  late String html;
 
-  MapaAlvoTv({this.publi, this.titulo, this.descricao, this.html});
+  MapaAlvoTv(
+      {required this.publi,
+      required this.titulo,
+      required this.descricao,
+      required this.html});
 
   MapaAlvoTv.fromJson(Map<String, dynamic> json) {
     publi = json['publi'];

@@ -1,12 +1,16 @@
 class ConvitesMapa {
-  String idconv;
-  String titulo;
-  int qtdconv;
-  String datafinal;
-  String acesso;
+  late String idconv;
+  late String titulo;
+  late int qtdconv;
+  late String datafinal;
+  late String acesso;
 
   ConvitesMapa(
-      {this.idconv, this.titulo, this.qtdconv, this.datafinal, this.acesso});
+      {required this.idconv,
+      required this.titulo,
+      required this.qtdconv,
+      required this.datafinal,
+      required this.acesso});
 
   ConvitesMapa.fromJson(Map<String, dynamic> json) {
     idconv = json['idconv'];

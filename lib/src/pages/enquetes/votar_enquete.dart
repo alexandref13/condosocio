@@ -3,14 +3,13 @@ import 'package:condosocio/src/components/utils/progress_indicator_widget.dart';
 import 'package:condosocio/src/controllers/enquetes/visualizar_enquetes_controller.dart';
 import 'package:condosocio/src/controllers/enquetes/votar_enquete.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
-import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import '../../components/utils/alert_button_pressed.dart';
+import '../../components/utils/edge_alert_error_widget.dart';
 import '../../components/utils/edge_alert_widget.dart';
 
 class VotarEnquete extends StatelessWidget {
@@ -23,55 +22,69 @@ class VotarEnquete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     confirmedVote(String text, VoidCallback function) {
-      Alert(
-        /*image: Icon(
-          Icons.highlight_off,
-          color: Colors.red,
-          size: 60,
-        ),*/
-        style: AlertStyle(
-          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
-          animationType: AnimationType.fromTop,
-          isCloseButton: false,
-          isOverlayTapDismiss: false,
-          //descStyle: GoogleFonts.poppins(color: Colors.red,),
-          animationDuration: Duration(milliseconds: 300),
-          titleStyle: GoogleFonts.poppins(
-            color: Theme.of(context).errorColor,
-            fontSize: 18,
-          ),
-        ),
+      showAnimatedDialog(
         context: context,
-        title: text,
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Cancelar",
-              style: GoogleFonts.montserrat(
-                color: Theme.of(context).textSelectionTheme.selectionColor,
-                fontSize: 16,
+        barrierDismissible: false,
+        animationType: DialogTransitionType.fadeScale,
+        curve: Curves.fastOutSlowIn,
+        duration: Duration(milliseconds: 300),
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            backgroundColor:
+                Theme.of(context).textSelectionTheme.selectionColor,
+            content: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.warning,
+                    color: Colors.orange,
+                    size: 54,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    text,
+                    style: GoogleFonts.poppins(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
-            onPressed: () {
-              Get.back();
-            },
-            width: 80,
-            color: Theme.of(context).errorColor,
-          ),
-          DialogButton(
-            child: Text(
-              "OK",
-              style: GoogleFonts.montserrat(
-                color: Theme.of(context).textSelectionTheme.selectionColor,
-                fontSize: 16,
+            actions: [
+              TextButton(
+                child: Text(
+                  "Cancelar",
+                  style: GoogleFonts.montserrat(
+                      color: Theme.of(context).colorScheme.error,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
-            ),
-            onPressed: function,
-            width: 80,
-            color: Theme.of(context).primaryColor,
-          )
-        ],
-      ).show();
+              TextButton(
+                child: Text(
+                  "OK",
+                  style: GoogleFonts.montserrat(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+                onPressed: function,
+              ),
+            ],
+          );
+        },
+      );
     }
 
     return Scaffold(
@@ -80,7 +93,7 @@ class VotarEnquete extends StatelessWidget {
           'Enquete',
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -118,7 +131,7 @@ class VotarEnquete extends StatelessWidget {
                                   fontSize: 14,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -154,7 +167,7 @@ class VotarEnquete extends StatelessWidget {
                                                             color: Theme.of(
                                                                     context)
                                                                 .textSelectionTheme
-                                                                .selectionColor,
+                                                                .selectionColor!,
                                                           ),
                                                         ),
                                                   i == 0
@@ -168,7 +181,7 @@ class VotarEnquete extends StatelessWidget {
                                                             onChanged: (value) {
                                                               enquetesController
                                                                       .i.value =
-                                                                  value;
+                                                                  value as int;
                                                             },
                                                             activeColor:
                                                                 Colors.white,
@@ -196,7 +209,7 @@ class VotarEnquete extends StatelessWidget {
                                                               color: Theme.of(
                                                                       context)
                                                                   .textSelectionTheme
-                                                                  .selectionColor,
+                                                                  .selectionColor!,
                                                             ),
                                                           ),
                                                         ),
@@ -213,7 +226,7 @@ class VotarEnquete extends StatelessWidget {
                                                             color: Theme.of(
                                                                     context)
                                                                 .textSelectionTheme
-                                                                .selectionColor,
+                                                                .selectionColor!,
                                                           ),
                                                         )
                                                 ],
@@ -267,11 +280,8 @@ class VotarEnquete extends StatelessWidget {
                                       ),
                                       onPressed: () {
                                         enquetesController.i.value == 0
-                                            ? EdgeAlert.show(context,
-                                                title: 'Escolha uma opção!',
-                                                gravity: EdgeAlert.BOTTOM,
-                                                backgroundColor: Colors.red,
-                                                icon: Icons.highlight_off)
+                                            ? showToastError(
+                                                context, 'Escolha uma opção!')
                                             : confirmedVote(
                                                 'Deseja realmente votar em ${enquetes.perguntas[enquetesController.i.value]}',
                                                 () {
@@ -279,14 +289,14 @@ class VotarEnquete extends StatelessWidget {
                                                       .votarEnquete()
                                                       .then((value) {
                                                     value == 1
-                                                        ? edgeAlertWidget(
+                                                        ? showToast(
                                                             context,
                                                             'Parabéns!',
                                                             'Voto computado com sucesso')
                                                         : onAlertButtonPressed(
                                                             context,
                                                             'Houve algum problema!Tente novamente',
-                                                            null,
+                                                            '',
                                                             'sim');
                                                   });
                                                 },
@@ -298,7 +308,7 @@ class VotarEnquete extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                     ),
@@ -323,7 +333,7 @@ class VotarEnquete extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           ),
@@ -335,7 +345,7 @@ class VotarEnquete extends StatelessWidget {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           ),
@@ -352,7 +362,7 @@ class VotarEnquete extends StatelessWidget {
                                                         fontSize: 14,
                                                         color: Theme.of(context)
                                                             .textSelectionTheme
-                                                            .selectionColor,
+                                                            .selectionColor!,
                                                       ),
                                                     ),
                                                   ),
@@ -373,7 +383,7 @@ class VotarEnquete extends StatelessWidget {
                                                           FontWeight.bold,
                                                       color: Theme.of(context)
                                                           .textSelectionTheme
-                                                          .selectionColor,
+                                                          .selectionColor!,
                                                     ),
                                                   ),
                                                 )

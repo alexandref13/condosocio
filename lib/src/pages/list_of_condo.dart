@@ -7,7 +7,7 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ListOfCondo extends StatelessWidget {
-  const ListOfCondo({Key key}) : super(key: key);
+  const ListOfCondo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class ListOfCondo extends StatelessWidget {
                                       fontSize: 14,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -95,14 +95,14 @@ class ListOfCondo extends StatelessWidget {
                                       fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     )),
                               ),
                               trailing: Icon(
                                 Icons.arrow_right,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 size: 30,
                               ),
                             ),

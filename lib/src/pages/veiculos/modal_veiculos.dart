@@ -5,7 +5,7 @@ import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 
 import '../../controllers/veiculos/veiculos_controller.dart';
@@ -36,10 +36,10 @@ void veiculosModalBottomSheet(
                           Container(
                             margin: EdgeInsets.only(left: 10, top: 10),
                             child: Icon(
-                              FontAwesome.car,
+                              Icons.directions_car_outlined,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               size: 30,
                             ),
                           ),
@@ -76,7 +76,7 @@ void veiculosModalBottomSheet(
                               )),
                               elevation: MaterialStateProperty.all(0),
                               backgroundColor: MaterialStateProperty.all(
-                                Theme.of(context).errorColor,
+                                Theme.of(context).colorScheme.error,
                               )),
                           onPressed: () {
                             veiculosController.idvei.value = idvei;
@@ -88,7 +88,7 @@ void veiculosModalBottomSheet(
                                   (value) {
                                     if (value == 1) {
                                       veiculosController.getVeiculos();
-                                      edgeAlertWidget(
+                                      showToast(
                                         context,
                                         'Parabéns!',
                                         ' excluído com sucesso.',

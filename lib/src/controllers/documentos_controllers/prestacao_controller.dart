@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class PrestacaoController extends GetxController {
   var searchResult = [].obs;
-  List<MapaDocumentos> prestacao;
+  late List<MapaDocumentos> prestacao;
   var isLoading = true.obs;
   var controller = TextEditingController().obs;
 
@@ -26,7 +26,7 @@ class PrestacaoController extends GetxController {
     super.onInit();
   }
 
-  Future<void> launched;
+  late Future<void> launched;
 
   Future<void> launchInBrowser(String url) async {
     if (await canLaunch(url)) {

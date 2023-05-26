@@ -26,7 +26,7 @@ class Enquetes extends StatelessWidget {
               'Enquetes',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
             ),
           ),
@@ -88,7 +88,7 @@ class Enquetes extends StatelessWidget {
                             ),
                             color: enquetes.datavalida == 'Votação Encerrada'
                                 ? Theme.of(context).colorScheme.secondary
-                                : Theme.of(context).colorScheme.secondary,
+                                : Theme.of(context).primaryColorDark,
                             child: ListTile(
                                 leading: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -99,7 +99,7 @@ class Enquetes extends StatelessWidget {
                                         fontSize: 14,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         letterSpacing: 2,
                                       ),
                                     ),
@@ -112,7 +112,7 @@ class Enquetes extends StatelessWidget {
                                         fontSize: 12,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -122,14 +122,14 @@ class Enquetes extends StatelessWidget {
                                     fontSize: 11,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                                 trailing: Icon(
                                   Icons.arrow_right,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   size: 30,
                                 )),
                           ),

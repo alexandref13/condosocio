@@ -14,8 +14,8 @@ class AuthController extends GetxController {
   LoginController loginController = Get.put(LoginController());
   LocalAuthentication localAuthentication = LocalAuthentication();
 
-  bool canCheckBiometrics;
-  List<BiometricType> availableBiometrics;
+  late bool canCheckBiometrics;
+  late List<BiometricType> availableBiometrics;
   bool isAuthenticating = false;
   var rota = TextEditingController().obs;
 

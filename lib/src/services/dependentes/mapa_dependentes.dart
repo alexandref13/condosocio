@@ -1,30 +1,30 @@
 class DependentesMapa {
-  String idep;
-  String nome;
-  String sobrenome;
-  String img;
-  String status;
-  String desde;
-  String ultacesso;
-  String email;
-  String tipousuario;
-  String celular;
-  String facial;
-  String condominio_facial;
+  late String idep;
+  late String nome;
+  late String sobrenome;
+  late String img;
+  late String status;
+  late String desde;
+  late String ultacesso;
+  late String email;
+  late String tipousuario;
+  late String celular;
+  late String facial;
+  late String condominio_facial;
 
   DependentesMapa({
-    this.idep,
-    this.nome,
-    this.sobrenome,
-    this.img,
-    this.status,
-    this.desde,
-    this.ultacesso,
-    this.email,
-    this.tipousuario,
-    this.celular,
-    this.facial,
-    this.condominio_facial,
+    required this.idep,
+    required this.nome,
+    required this.sobrenome,
+    required this.img,
+    required this.status,
+    required this.desde,
+    required this.ultacesso,
+    required this.email,
+    required this.tipousuario,
+    required this.celular,
+    required this.facial,
+    required this.condominio_facial,
   });
 
   DependentesMapa.fromJson(Map<String, dynamic> json) {

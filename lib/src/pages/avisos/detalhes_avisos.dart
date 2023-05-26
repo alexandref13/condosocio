@@ -33,34 +33,36 @@ class DetalhesAvisos extends StatelessWidget {
                       "h3": Style(
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor),
+                              .selectionColor!),
                       "h1": Style(
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor),
+                              .selectionColor!),
                       "p": Style(
                         fontFamily: 'montserrat',
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
                       ),
                       "li": Style(
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor,
+                              .selectionColor!,
                           display: Display.block),
                       "a": Style(
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
                         textDecoration: TextDecoration.none,
                       ),
                       "h2": Style(
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor),
+                              .selectionColor!),
                       "table": Style(
                           color: Theme.of(context)
                               .textSelectionTheme
-                              .selectionColor)
+                              .selectionColor!)
                     },
                   ),
                 ),

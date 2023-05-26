@@ -4,7 +4,7 @@ import 'package:condosocio/src/services/comunicados/mapa_comunicados.dart';
 import 'package:get/get.dart';
 
 class ComunicadosController extends GetxController {
-  List<DadosComunicados> comunicados;
+  late List<DadosComunicados> comunicados;
   var titulo = ''.obs;
   var arquivo = ''.obs;
   var dia = ''.obs;

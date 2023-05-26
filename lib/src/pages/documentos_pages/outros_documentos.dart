@@ -1,7 +1,7 @@
 import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/controllers/documentos_controllers/outros_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +15,7 @@ class Outros extends StatelessWidget {
           'Outros',
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -32,7 +32,7 @@ class Outros extends StatelessWidget {
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
                         valueColor: AlwaysStoppedAnimation(
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                          Theme.of(context).textSelectionTheme.selectionColor!,
                         ),
                       ),
                     ),
@@ -67,7 +67,7 @@ class Outros extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                       subtitle: Text(
@@ -77,14 +77,14 @@ class Outros extends StatelessWidget {
                                           fontSize: 12,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                       trailing: IconButton(
-                                        icon: Icon(Feather.download),
+                                        icon: Icon(Icons.download),
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         iconSize: 26,
                                         onPressed: () {
                                           outrosController.launched =
@@ -110,7 +110,7 @@ class Outros extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                       subtitle: Text(
@@ -119,14 +119,14 @@ class Outros extends StatelessWidget {
                                           fontSize: 12,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                       trailing: IconButton(
-                                        icon: Icon(Feather.download),
+                                        icon: Icon(Icons.download),
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         iconSize: 26,
                                         onPressed: () {
                                           outrosController.launched =

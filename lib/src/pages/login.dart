@@ -74,7 +74,7 @@ class Login extends StatelessWidget {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                   decoration: InputDecoration(
                                     contentPadding: new EdgeInsets.symmetric(
@@ -83,7 +83,7 @@ class Login extends StatelessWidget {
                                       borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!!,
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
@@ -92,12 +92,12 @@ class Login extends StatelessWidget {
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor)),
+                                                .selectionColor!!)),
                                     labelText: 'Entre com o e-mail',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
@@ -106,13 +106,15 @@ class Login extends StatelessWidget {
                                                 .secondary)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color: Colors.red[900])),
+                                            color: Colors.red[900]!)),
                                     errorStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context).errorColor),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .error),
                                   ),
                                   keyboardType: TextInputType.emailAddress,
                                   validator: (valueEmail) {
-                                    if (!EmailValidator.validate(valueEmail)) {
+                                    if (!EmailValidator.validate(valueEmail!)) {
                                       return 'Entre com e-mail válido!';
                                     }
                                     return null;
@@ -131,7 +133,7 @@ class Login extends StatelessWidget {
                                   style: GoogleFonts.montserrat(
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                   decoration: InputDecoration(
                                     contentPadding: new EdgeInsets.symmetric(
@@ -140,7 +142,7 @@ class Login extends StatelessWidget {
                                       borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!!,
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
@@ -149,12 +151,12 @@ class Login extends StatelessWidget {
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor)),
+                                                .selectionColor!!)),
                                     labelText: 'Entre com a senha',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
@@ -163,12 +165,14 @@ class Login extends StatelessWidget {
                                                 .secondary)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color: Colors.red[900])),
+                                            color: Colors.red[900]!)),
                                     errorStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context).errorColor),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .error),
                                   ),
                                   validator: (valueSenha) {
-                                    if (valueSenha.isEmpty) {
+                                    if (valueSenha!.isEmpty) {
                                       return 'Campo senha vazio!';
                                     }
                                     return null;
@@ -187,9 +191,9 @@ class Login extends StatelessWidget {
                                     children: [
                                       Checkbox(
                                         value: loginController.isChecked.value,
-                                        onChanged: (bool value) {
+                                        onChanged: (bool? value) {
                                           loginController.isChecked.value =
-                                              value;
+                                              value!;
                                         },
                                       ),
                                       Expanded(
@@ -199,7 +203,7 @@ class Login extends StatelessWidget {
                                               style: GoogleFonts.montserrat(
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                   fontSize: 12),
                                               children: [
                                                 TextSpan(
@@ -223,7 +227,7 @@ class Login extends StatelessWidget {
                                                   style: GoogleFonts.montserrat(
                                                       color: Theme.of(context)
                                                           .textSelectionTheme
-                                                          .selectionColor,
+                                                          .selectionColor!,
                                                       fontSize: 12),
                                                 ),
                                                 TextSpan(
@@ -284,10 +288,10 @@ class Login extends StatelessWidget {
                                         onAlertButtonPressed(
                                             context,
                                             'Campo e-mail ou senha vazio!',
-                                            null,
+                                            '',
                                             'sim');
                                       }
-                                      if (_formKey.currentState.validate()) {
+                                      if (_formKey.currentState!.validate()) {
                                         loginController.login().then(
                                           (value) {
                                             if (value == null) {
@@ -296,7 +300,7 @@ class Login extends StatelessWidget {
                                               onAlertButtonPressed(
                                                   context,
                                                   'E-mail ou Senha Inválidos! \n Tente Novamente',
-                                                  null,
+                                                  '',
                                                   'sim');
                                             } else {
                                               loginController
@@ -315,14 +319,10 @@ class Login extends StatelessWidget {
                                                   if (response.length > 1 ||
                                                       loginController
                                                               .idcond.value ==
-                                                          null ||
-                                                      loginController
-                                                              .idcond.value ==
                                                           '') {
                                                     loginController
                                                         .haveListOfCondo
                                                         .value = true;
-
                                                     Get.toNamed('/listOfCondo');
                                                   } else {
                                                     loginController
@@ -425,7 +425,7 @@ class Login extends StatelessWidget {
                                       onAlertButtonPressed(
                                           context,
                                           'Você precisa aceitar os termos de uso e a política de privacidade para entrar!',
-                                          null,
+                                          '',
                                           'sim');
                                     }
                                   },
@@ -438,7 +438,7 @@ class Login extends StatelessWidget {
                                             valueColor: AlwaysStoppedAnimation(
                                               Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                             ),
                                           ),
                                         )
@@ -448,7 +448,7 @@ class Login extends StatelessWidget {
                                             fontWeight: FontWeight.bold,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                 ),

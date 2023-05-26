@@ -39,7 +39,7 @@ class _AvisosState extends State<Avisos> {
             'Avisos',
             style: GoogleFonts.montserrat(
               fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
             ),
           ),
           centerTitle: true,
@@ -67,7 +67,7 @@ class _AvisosState extends State<Avisos> {
   }
 
   _listaavisos() {
-    if (avisosController.avisos.length == 0) {
+    if (avisosController.avisos!.length == 0) {
       return Stack(
         children: <Widget>[
           Container(
@@ -90,7 +90,7 @@ class _AvisosState extends State<Avisos> {
                   'Sem registros',
                   style: GoogleFonts.montserrat(
                     fontSize: 14.0,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -146,7 +146,7 @@ class _AvisosState extends State<Avisos> {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                             ),
                                             children: <TextSpan>[
                                               TextSpan(
@@ -161,7 +161,7 @@ class _AvisosState extends State<Avisos> {
                                                     fontSize: 14,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     letterSpacing: 2),
                                               ),
                                             ],
@@ -175,7 +175,7 @@ class _AvisosState extends State<Avisos> {
                                                   fontSize: 12,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ),
@@ -184,7 +184,7 @@ class _AvisosState extends State<Avisos> {
                                           Icons.arrow_right,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           size: 30,
                                         )),
                                   ),
@@ -203,9 +203,9 @@ class _AvisosState extends State<Avisos> {
                           ),
                           height: MediaQuery.of(context).size.height,
                           child: ListView.builder(
-                              itemCount: avisosController.avisos.length,
+                              itemCount: avisosController.avisos!.length,
                               itemBuilder: (context, index) {
-                                var avisos = avisosController.avisos[index];
+                                var avisos = avisosController.avisos![index];
                                 return GestureDetector(
                                   onTap: () {
                                     avisosController.titulo.value =
@@ -229,7 +229,7 @@ class _AvisosState extends State<Avisos> {
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                             ),
                                             children: <TextSpan>[
                                               TextSpan(
@@ -244,7 +244,7 @@ class _AvisosState extends State<Avisos> {
                                                     fontSize: 14,
                                                     color: Theme.of(context)
                                                         .textSelectionTheme
-                                                        .selectionColor,
+                                                        .selectionColor!,
                                                     letterSpacing: 2),
                                               ),
                                             ],
@@ -258,7 +258,7 @@ class _AvisosState extends State<Avisos> {
                                                   fontSize: 12,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ),
@@ -267,7 +267,7 @@ class _AvisosState extends State<Avisos> {
                                           Icons.arrow_right,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           size: 30,
                                         )),
                                   ),

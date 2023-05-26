@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class TableCalendarWidget extends StatefulWidget {
-  const TableCalendarWidget({Key key}) : super(key: key);
+  const TableCalendarWidget({Key? key}) : super(key: key);
 
   @override
   _TableCalendarWidgetState createState() => _TableCalendarWidgetState();
@@ -56,7 +56,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
           reservasController.nome.value,
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -64,7 +64,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
         return calendarioReservasController.onSelected.value == true &&
                 reservasController.multi.value == 'S' &&
                 calendarioReservasController.selectedDay.value
-                    .isAfter(calendarioReservasController.day)
+                    .isAfter(calendarioReservasController.day!)
             ? FloatingActionButton(
                 onPressed: () {
                   Get.toNamed('/addReservas');
@@ -99,7 +99,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                               fontSize: 16,
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                             formatButtonShowsNext: false,
                             formatButtonDecoration: BoxDecoration(
@@ -126,14 +126,14 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                             weekdayStyle: TextStyle(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                             weekendStyle: TextStyle(
                               color: Colors.amber,
 
                               /*Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,*/
+                                  .selectionColor!,*/
                             ),
                           ),
                           calendarStyle: CalendarStyle(
@@ -145,7 +145,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                             defaultTextStyle: TextStyle(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                             ),
                             weekendTextStyle: TextStyle(
                               color: Colors.amber,
@@ -183,7 +183,7 @@ class _TableCalendarWidgetState extends State<TableCalendarWidget> {
                                     null &&
                                 calendarioReservasController.selectedDay.value
                                     .isAfter(
-                                        calendarioReservasController.day)) {
+                                        calendarioReservasController.day!)) {
                               Get.toNamed('/addReservas');
                             }
                           },

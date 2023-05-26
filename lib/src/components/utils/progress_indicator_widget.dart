@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ProgressIndicatorWidget extends StatelessWidget {
-  final double value;
+  final double? value;
   const ProgressIndicatorWidget({
-    Key key,
+    Key? key,
     this.value,
   }) : super(key: key);
 

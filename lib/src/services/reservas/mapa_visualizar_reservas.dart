@@ -1,24 +1,24 @@
 class MapaVisualizarReservas {
-  String idevento;
-  String titulo;
-  String descricao;
-  String areacom;
-  String dataAgenda;
-  String horaAgenda;
-  String status;
-  String resposta;
-  String termo;
+  late String idevento;
+  late String titulo;
+  late String descricao;
+  late String areacom;
+  late String dataAgenda;
+  late String horaAgenda;
+  late String status;
+  late String resposta;
+  late String termo;
 
   MapaVisualizarReservas({
-    this.idevento,
-    this.titulo,
-    this.descricao,
-    this.areacom,
-    this.dataAgenda,
-    this.horaAgenda,
-    this.status,
-    this.resposta,
-    this.termo,
+    required this.idevento,
+    required this.titulo,
+    required this.descricao,
+    required this.areacom,
+    required this.dataAgenda,
+    required this.horaAgenda,
+    required this.status,
+    required this.resposta,
+    required this.termo,
   });
 
   MapaVisualizarReservas.fromJson(Map<String, dynamic> json) {

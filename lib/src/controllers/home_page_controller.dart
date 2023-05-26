@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
 
 class HomePageController extends GetxController {
-  Future<void> launched;
+  late Future<void> launched;
   LoginController loginController = Get.put(LoginController());
 
   Future<void> launchInBrowser(String url) async {

@@ -4,7 +4,7 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/ocorrencias/resposta_ocorrencias_controller.dart';
 import 'package:condosocio/src/controllers/ocorrencias/visualizar_ocorrencias_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,7 +23,7 @@ class RespostaOcorrencias extends StatelessWidget {
           ocorrenciasController.titulo.value,
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -40,7 +40,7 @@ class RespostaOcorrencias extends StatelessWidget {
                             width: 1,
                             color: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                           ),
                         ),
                         padding: EdgeInsets.symmetric(
@@ -62,7 +62,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                     fontSize: 12,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -72,7 +72,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                     fontSize: 12,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                   ),
                                 ),
                               ],
@@ -87,15 +87,15 @@ class RespostaOcorrencias extends StatelessWidget {
                                       fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   Icon(
-                                    Feather.calendar,
+                                    Icons.calendar_month,
                                     color: Theme.of(context)
                                         .textSelectionTheme
-                                        .selectionColor,
+                                        .selectionColor!,
                                     size: 12,
                                   ),
                                   Text(
@@ -104,7 +104,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                       fontSize: 12,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                   )
                                 ],
@@ -271,7 +271,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                               12,
                                                                           color: Theme.of(context)
                                                                               .textSelectionTheme
-                                                                              .selectionColor,
+                                                                              .selectionColor!,
                                                                           fontWeight:
                                                                               FontWeight.bold,
                                                                         ),
@@ -285,7 +285,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                             10,
                                                                         color: Theme.of(context)
                                                                             .textSelectionTheme
-                                                                            .selectionColor,
+                                                                            .selectionColor!,
                                                                       ),
                                                                     )
                                                                   ],
@@ -302,7 +302,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                       color: Theme.of(
                                                                               context)
                                                                           .textSelectionTheme
-                                                                          .selectionColor,
+                                                                          .selectionColor!,
                                                                     ),
                                                                   ),
                                                                 )
@@ -328,7 +328,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                 color: Theme.of(
                                                                         context)
                                                                     .textSelectionTheme
-                                                                    .selectionColor,
+                                                                    .selectionColor!,
                                                               ),
                                                             ),
                                                           ),
@@ -474,7 +474,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                             style:
                                                                                 GoogleFonts.montserrat(
                                                                               fontSize: 12,
-                                                                              color: Theme.of(context).textSelectionTheme.selectionColor,
+                                                                              color: Theme.of(context).textSelectionTheme.selectionColor!,
                                                                               fontWeight: FontWeight.bold,
                                                                             ),
                                                                           ),
@@ -486,7 +486,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                             fontSize:
                                                                                 10,
                                                                             color:
-                                                                                Theme.of(context).textSelectionTheme.selectionColor,
+                                                                                Theme.of(context).textSelectionTheme.selectionColor!,
                                                                           ),
                                                                         )
                                                                       ],
@@ -502,7 +502,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                               10,
                                                                           color: Theme.of(context)
                                                                               .textSelectionTheme
-                                                                              .selectionColor,
+                                                                              .selectionColor!,
                                                                         ),
                                                                       ),
                                                                     )
@@ -529,7 +529,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                     color: Theme.of(
                                                                             context)
                                                                         .textSelectionTheme
-                                                                        .selectionColor,
+                                                                        .selectionColor!,
                                                                   ),
                                                                 ),
                                                               ),
@@ -597,7 +597,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                             fontSize:
                                                                                 10,
                                                                             color:
-                                                                                Theme.of(context).textSelectionTheme.selectionColor,
+                                                                                Theme.of(context).textSelectionTheme.selectionColor!,
                                                                           ),
                                                                         ),
                                                                         Container(
@@ -607,7 +607,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                             style:
                                                                                 GoogleFonts.montserrat(
                                                                               fontSize: 12,
-                                                                              color: Theme.of(context).textSelectionTheme.selectionColor,
+                                                                              color: Theme.of(context).textSelectionTheme.selectionColor!,
                                                                               fontWeight: FontWeight.bold,
                                                                             ),
                                                                           ),
@@ -625,7 +625,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                               10,
                                                                           color: Theme.of(context)
                                                                               .textSelectionTheme
-                                                                              .selectionColor,
+                                                                              .selectionColor!,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -652,7 +652,7 @@ class RespostaOcorrencias extends StatelessWidget {
                                                                     color: Theme.of(
                                                                             context)
                                                                         .textSelectionTheme
-                                                                        .selectionColor,
+                                                                        .selectionColor!,
                                                                   ),
                                                                 ),
                                                               ),
@@ -713,7 +713,7 @@ class RespostaOcorrencias extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(

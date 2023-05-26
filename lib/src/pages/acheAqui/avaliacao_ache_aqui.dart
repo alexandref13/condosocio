@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AvaliacaoAcheAqui extends StatelessWidget {
-  const AvaliacaoAcheAqui({Key key}) : super(key: key);
+  const AvaliacaoAcheAqui({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class AvaliacaoAcheAqui extends StatelessWidget {
                                                           color: Theme.of(
                                                                   context)
                                                               .textSelectionTheme
-                                                              .selectionColor,
+                                                              .selectionColor!,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -76,7 +76,7 @@ class AvaliacaoAcheAqui extends StatelessWidget {
                                                   fontSize: 10,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
-                                                      .selectionColor,
+                                                      .selectionColor!,
                                                 ),
                                               )
                                             ],
@@ -88,7 +88,7 @@ class AvaliacaoAcheAqui extends StatelessWidget {
                                                 fontSize: 10,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           )
@@ -106,7 +106,7 @@ class AvaliacaoAcheAqui extends StatelessWidget {
                                           fontSize: 12,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                       ),
                                     ),

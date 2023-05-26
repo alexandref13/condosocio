@@ -42,8 +42,8 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          //color: Theme.of(context).colorScheme.secondary,
-                                          spreadRadius: 3,
+                                          color: Theme.of(context).focusColor,
+                                          spreadRadius: 2,
                                           blurRadius: 1,
                                           offset: Offset(0,
                                               2), // changes position of shadow
@@ -62,7 +62,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 40,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -70,7 +70,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -90,9 +90,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -112,7 +110,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -120,7 +118,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -140,9 +138,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -162,7 +158,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -170,7 +166,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -190,9 +186,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -212,7 +206,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -220,7 +214,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -240,9 +234,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -262,7 +254,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -270,7 +262,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -290,9 +282,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -312,7 +302,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -320,7 +310,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -340,9 +330,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -362,7 +350,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -370,7 +358,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -390,9 +378,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -412,7 +398,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -420,7 +406,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -440,9 +426,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -459,14 +443,14 @@ class AcheAquiPage extends StatelessWidget {
                                           size: 35,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                         Text(
                                           "Viagem",
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -486,9 +470,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -508,7 +490,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -516,7 +498,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -536,9 +518,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -557,7 +537,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -565,7 +545,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),
@@ -585,9 +565,7 @@ class AcheAquiPage extends StatelessWidget {
                                           .secondary,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Theme.of(context).focusColor,
                                           spreadRadius: 3,
                                           blurRadius: 1,
                                           offset: Offset(0,
@@ -607,7 +585,7 @@ class AcheAquiPage extends StatelessWidget {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -615,7 +593,7 @@ class AcheAquiPage extends StatelessWidget {
                                           style: GoogleFonts.montserrat(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             fontSize: 12,
                                           ),
                                         ),

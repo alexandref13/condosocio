@@ -1,28 +1,28 @@
 class MapaAcheAquiForm {
-  String imgforn;
-  String id;
-  String fantasia;
-  String end;
-  String cidade;
-  String bairro;
-  String uf;
-  String tel;
-  String cel;
-  String site;
-  String atividades;
+  late String imgforn;
+  late String id;
+  late String fantasia;
+  late String end;
+  late String cidade;
+  late String bairro;
+  late String uf;
+  late String tel;
+  late String cel;
+  late String site;
+  late String atividades;
 
   MapaAcheAquiForm(
-      {this.imgforn,
-      this.id,
-      this.fantasia,
-      this.end,
-      this.cidade,
-      this.bairro,
-      this.uf,
-      this.tel,
-      this.cel,
-      this.site,
-      this.atividades});
+      {required this.imgforn,
+      required this.id,
+      required this.fantasia,
+      required this.end,
+      required this.cidade,
+      required this.bairro,
+      required this.uf,
+      required this.tel,
+      required this.cel,
+      required this.site,
+      required this.atividades});
 
   MapaAcheAquiForm.fromJson(Map<String, dynamic> json) {
     imgforn = json['imgforn'];

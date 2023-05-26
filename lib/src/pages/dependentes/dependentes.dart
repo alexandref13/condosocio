@@ -1,7 +1,7 @@
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
 import 'package:condosocio/src/pages/dependentes/adiciona_dependentes.dart';
 import 'package:condosocio/src/pages/dependentes/visualizar_dependentes.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,29 +29,29 @@ class _DependentesState extends State<Dependentes> {
               'Usuários',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
             ),
             centerTitle: true,
             actions: [
               IconButton(
                 icon: Icon(
-                  AntDesign.infocirlce,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  Icons.info_outline,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 onPressed: () {
                   onAlertButtonPressed(
                     context,
                     'Os moradores receberão automaticamente um e-mail para definir sua senha e obter acesso ao CondoSócio. Assim, poderão aproveitar todos os serviços oferecidos pela plataforma, incluindo a possibilidade de cadastrar sua face (para condomínios que possuem essa tecnologia). É importante lembrar que você só deve cadastrar pessoas que residem com você no condomínio. O descumprimento dessa norma sujeitará você a penalidades conforme o regulamento interno e/ou a Convenção.\n\nNo caso de prestadores de serviço, após o cadastro, você precisará clicar no ícone do WhatsApp para enviar o link de cadastramento de documentos e da face (para condomínios com essa tecnologia).',
-                    null,
-                    null,
+                    '',
+                    '',
                   );
                 },
               )
             ],
             bottom: TabBar(
               indicatorColor:
-                  Theme.of(context).textSelectionTheme.selectionColor,
+                  Theme.of(context).textSelectionTheme.selectionColor!,
               indicatorPadding: EdgeInsets.all(-8),
               tabs: <Widget>[
                 Text(
@@ -59,13 +59,13 @@ class _DependentesState extends State<Dependentes> {
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+                          Theme.of(context).textSelectionTheme.selectionColor!),
                 ),
                 Text(
                   'Adicionar',
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                 ),
               ],

@@ -2,13 +2,14 @@ import 'package:condosocio/src/controllers/acheAqui/ache_aqui_controller.dart';
 import 'package:condosocio/src/controllers/acheAqui/detalhes_ache_aqui_controller.dart';
 import 'package:condosocio/src/pages/acheAqui/avaliacao_ache_aqui.dart';
 import 'package:condosocio/src/pages/acheAqui/detalhes_ache_aqui.dart';
-import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 //import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
+import '../../components/utils/edge_alert_error_widget.dart';
 
 class EmpresaAcheAqui extends StatelessWidget {
   @override
@@ -25,23 +26,25 @@ class EmpresaAcheAqui extends StatelessWidget {
             'Empresa',
             style: GoogleFonts.montserrat(
               fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
             ),
           ),
           bottom: TabBar(
-            indicatorColor: Theme.of(context).textSelectionTheme.selectionColor,
+            indicatorColor:
+                Theme.of(context).textSelectionTheme.selectionColor!,
             tabs: <Widget>[
               Text(
                 'Descrição',
                 style: GoogleFonts.montserrat(
                     fontSize: 16,
-                    color: Theme.of(context).textSelectionTheme.selectionColor),
+                    color:
+                        Theme.of(context).textSelectionTheme.selectionColor!),
               ),
               Text(
                 'Avaliações',
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
               ),
             ],
@@ -57,7 +60,7 @@ class EmpresaAcheAqui extends StatelessWidget {
           visible: true,
           closeManually: false,
           renderOverlay: false,
-          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor,
+          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
           curve: Curves.elasticInOut,
           overlayColor: Colors.black,
           overlayOpacity: 0.5,
@@ -65,12 +68,13 @@ class EmpresaAcheAqui extends StatelessWidget {
           elevation: 5,
           children: [
             SpeedDialChild(
-              child: Icon(Icons.phone_iphone_outlined),
+              child: Icon(Icons.phone_iphone_outlined,
+                  color: Theme.of(context).textSelectionTheme.selectionColor),
               backgroundColor: Colors.red,
-              label: 'Ligar para a Empresa',
+              label: 'Ligar',
               labelStyle: GoogleFonts.montserrat(
                 fontSize: 14,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).primaryColor,
               ),
               onTap: () {
                 var celular = acheAquiController.cel.value
@@ -81,23 +85,26 @@ class EmpresaAcheAqui extends StatelessWidget {
                     .replaceAll(" ", "");
 
                 acheAquiController.cel.value == ''
-                    ? EdgeAlert.show(context,
-                        title: 'Telefone Vazio!',
-                        gravity: EdgeAlert.BOTTOM,
-                        backgroundColor: Colors.red,
-                        icon: Icons.highlight_off)
+                    ? showToastError(
+                        context,
+                        'Parabéns!',
+                      )
                     : detalhesAcheAquiController.launched =
                         detalhesAcheAquiController
                             .launchInBrowser('tel:$celular');
               },
             ),
             SpeedDialChild(
-              child: Icon(FontAwesome.whatsapp),
+              child: Image.asset(
+                'images/whatsapp.png',
+                width: 38, // Defina a largura desejada da imagem
+                height: 38, // Defina a altura desejada da imagem
+              ),
               backgroundColor: Colors.green,
               label: 'Whatsapp',
               labelStyle: GoogleFonts.montserrat(
                 fontSize: 14,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).primaryColor,
               ),
               onTap: () {
                 var celular = acheAquiController.cel
@@ -119,12 +126,14 @@ class EmpresaAcheAqui extends StatelessWidget {
               },
             ),
             SpeedDialChild(
-              child: Icon(Icons.mail_outline),
+              child: Icon(
+                Icons.mail_outline,
+              ),
               backgroundColor: Colors.blue,
               label: 'E-Mail',
               labelStyle: GoogleFonts.montserrat(
                 fontSize: 14,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).primaryColor,
               ),
               onTap: () {
                 detalhesAcheAquiController.launched = detalhesAcheAquiController
@@ -132,12 +141,15 @@ class EmpresaAcheAqui extends StatelessWidget {
               },
             ),
             SpeedDialChild(
-              child: Icon(Icons.where_to_vote_outlined),
+              child: Icon(
+                Icons.where_to_vote_outlined,
+                size: 24,
+              ),
               backgroundColor: Colors.amber,
               label: 'Localização',
               labelStyle: GoogleFonts.montserrat(
                 fontSize: 14,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).primaryColor,
               ),
               onTap: () {
                 detalhesAcheAquiController.launched =
@@ -146,12 +158,15 @@ class EmpresaAcheAqui extends StatelessWidget {
               },
             ),
             SpeedDialChild(
-              child: Icon(Icons.language_outlined),
+              child: Icon(
+                Icons.language_outlined,
+                color: Theme.of(context).primaryColorLight,
+              ),
               backgroundColor: Theme.of(context).colorScheme.secondary,
               label: 'Site',
               labelStyle: GoogleFonts.montserrat(
                 fontSize: 14,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).primaryColor,
               ),
               onTap: () {
                 if (acheAquiController.site.value != '') {

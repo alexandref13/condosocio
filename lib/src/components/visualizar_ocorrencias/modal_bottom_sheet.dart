@@ -1,7 +1,7 @@
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,8 +23,8 @@ void ocorrenciasModalBottomSheet(
                 ListTile(
                     leading: status == '0'
                         ? Icon(
-                            Feather.alert_triangle,
-                            color: Theme.of(context).errorColor,
+                            Icons.warning_amber,
+                            color: Theme.of(context).colorScheme.error,
                             size: 40,
                           )
                         : Icon(
@@ -36,16 +36,18 @@ void ocorrenciasModalBottomSheet(
                       titulo,
                       style: GoogleFonts.montserrat(
                         fontSize: 14,
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
                       ),
                     ),
                     subtitle: Text(
                       '$data $hora',
                       style: GoogleFonts.montserrat(
                         fontSize: 14,
-                        color:
-                            Theme.of(context).textSelectionTheme.selectionColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
                       ),
                     )),
                 Divider(
@@ -65,7 +67,9 @@ void ocorrenciasModalBottomSheet(
                           )),
                           elevation: MaterialStateProperty.all(0),
                           backgroundColor: MaterialStateProperty.all(
-                            Theme.of(context).textSelectionTheme.selectionColor,
+                            Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
                           ),
                         ),
                         onPressed: () {
@@ -93,14 +97,14 @@ void ocorrenciasModalBottomSheet(
                             )),
                             elevation: MaterialStateProperty.all(0),
                             backgroundColor: MaterialStateProperty.all(
-                              Theme.of(context).errorColor,
+                              Theme.of(context).colorScheme.error,
                             )),
                         onPressed: () {
                           deleteAlert(
                             context,
                             'Deseja deletar a ocorrência?',
                             () {
-                              edgeAlertWidget(context, 'Parabéns!',
+                              showToast(context, 'Parabéns!',
                                   'Ocorrência excluída com sucesso.');
                             },
                           );

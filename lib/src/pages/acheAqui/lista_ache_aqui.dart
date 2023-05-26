@@ -15,7 +15,7 @@ class ListaAcheAqui extends StatelessWidget {
           acheAquiController.tema.value,
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
         ),
       ),
@@ -48,7 +48,7 @@ class ListaAcheAqui extends StatelessWidget {
                                   fontSize: 14.0,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -82,7 +82,7 @@ class ListaAcheAqui extends StatelessWidget {
                                         fontSize: 14,
                                         color: Theme.of(context)
                                             .textSelectionTheme
-                                            .selectionColor,
+                                            .selectionColor!,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -90,7 +90,7 @@ class ListaAcheAqui extends StatelessWidget {
                                   Icons.arrow_right,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                   size: 30,
                                 ),
                               ),

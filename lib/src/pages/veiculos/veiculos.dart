@@ -1,7 +1,7 @@
 import 'package:condosocio/src/pages/veiculos/adiciona_veiculos.dart';
 import 'package:condosocio/src/pages/veiculos/pagVagasLimit.dart';
 import 'package:condosocio/src/pages/veiculos/visualizar_veiculos.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,7 +39,7 @@ class _VeiculosState extends State<Veiculos> {
               'Veículos',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
             ),
             centerTitle: true,
@@ -47,7 +47,7 @@ class _VeiculosState extends State<Veiculos> {
               IconButton(
                 icon: Icon(
                   AntDesign.infocirlce,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 onPressed: () {
                   onAlertButtonPressed(context,
@@ -57,7 +57,7 @@ class _VeiculosState extends State<Veiculos> {
             ],*/
             bottom: TabBar(
               indicatorColor:
-                  Theme.of(context).textSelectionTheme.selectionColor,
+                  Theme.of(context).textSelectionTheme.selectionColor!,
               indicatorPadding: EdgeInsets.all(-8),
               tabs: <Widget>[
                 Text(
@@ -65,13 +65,13 @@ class _VeiculosState extends State<Veiculos> {
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+                          Theme.of(context).textSelectionTheme.selectionColor!),
                 ),
                 Text(
                   'Adicionar',
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                 ),
               ],

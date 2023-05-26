@@ -4,14 +4,13 @@ import 'package:condosocio/src/components/utils/circular_progress_indicator.dart
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/controllers/acessos/saida/visualizar_acessos_saida_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class DetalhesAcessosSaida extends StatefulWidget {
-  const DetalhesAcessosSaida({Key key}) : super(key: key);
+  const DetalhesAcessosSaida({Key? key}) : super(key: key);
 
   @override
   _DetalhesAcessosSaidaState createState() => _DetalhesAcessosSaidaState();
@@ -22,14 +21,14 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
       Get.put(VisualizarAcessosSaidaController());
 
   final picker = ImagePicker();
-  File selectedFile;
+  File? selectedFile;
 
   getImage(ImageSource source) async {
     this.setState(() {});
     // ignore: deprecated_member_use
-    PickedFile image = await picker.getImage(source: source);
+    PickedFile? image = await picker.getImage(source: source);
     if (image != null) {
-      File cropped = await ImageCropper().cropImage(
+      File? cropped = await ImageCropper().cropImage(
           sourcePath: image.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 80,
@@ -47,7 +46,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
         selectedFile = File(image.path);
         selectedFile = cropped;
         if (cropped != null) {
-          saidaController.editarFoto(selectedFile.path);
+          saidaController.editarFoto(selectedFile!.path);
         }
       });
     }
@@ -58,7 +57,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
         context: context,
         builder: (BuildContext bc) {
           return Container(
-            color: Theme.of(context).textSelectionTheme.selectionColor,
+            color: Theme.of(context).textSelectionTheme.selectionColor!,
             margin: EdgeInsets.only(bottom: 30),
             child: Wrap(
               children: <Widget>[
@@ -71,17 +70,17 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                 ))),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 ListTile(
                   leading: new Icon(
                     Icons.camera_alt,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                   title: new Text('Câmera'),
                   trailing: new Icon(
                     Icons.arrow_right,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                   onTap: () => {
                     getImage(ImageSource.camera),
@@ -89,16 +88,16 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                 ),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 ListTile(
                   leading: new Icon(Icons.collections,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+                          Theme.of(context).textSelectionTheme.selectionColor!),
                   title: new Text('Galeria de Fotos'),
                   trailing: new Icon(Icons.arrow_right,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+                          Theme.of(context).textSelectionTheme.selectionColor!),
                   onTap: () => {
                     getImage(
                       ImageSource.gallery,
@@ -107,7 +106,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                 ),
                 Divider(
                   height: 20,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 SizedBox(
                   height: 15,
@@ -129,7 +128,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
             'Saída',
             style: GoogleFonts.montserrat(
               fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
             ),
           ),
         ),
@@ -160,17 +159,17 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                             fontWeight: FontWeight.bold,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                       ),
                                       Row(
                                         children: [
                                           Icon(
-                                            Feather.calendar,
+                                            Icons.calendar_month,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                             size: 20,
                                           ),
                                           Container(
@@ -181,7 +180,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                                 fontSize: 14,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
-                                                    .selectionColor,
+                                                    .selectionColor!,
                                               ),
                                             ),
                                           )
@@ -201,7 +200,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                       Icons.watch_later_outlined,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                       size: 20,
                                     ),
                                     Container(
@@ -211,7 +210,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                         style: GoogleFonts.montserrat(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                           fontSize: 14,
                                         ),
                                       ),
@@ -233,7 +232,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                 width: 1,
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                               )),
                           padding: EdgeInsets.all(10),
                           child: Row(
@@ -260,7 +259,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                             fontWeight: FontWeight.bold,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                         Text(
@@ -269,7 +268,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                             fontSize: 13,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor,
+                                                .selectionColor!,
                                           ),
                                         ),
                                       ],
@@ -295,10 +294,12 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                           size: 20,
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor,
+                                              .selectionColor!,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: Theme.of(context).errorColor,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
                                           shape: BoxShape.circle,
                                         ),
                                       ),
@@ -308,11 +309,9 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                   height: 200,
                                   decoration: BoxDecoration(
                                     image: new DecorationImage(
-                                      image: selectedFile != null
-                                          ? FileImage(selectedFile)
-                                          : NetworkImage(
-                                              'https://www.alvocomtec.com.br/acond/downloads/autsaida/${saidaController.image.value}',
-                                            ),
+                                      image: NetworkImage(
+                                        'https://www.alvocomtec.com.br/acond/downloads/autsaida/${saidaController.image.value}',
+                                      ),
                                       fit: BoxFit.contain,
                                     ),
                                   ),
@@ -329,7 +328,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                       width: .5,
                                       color: Theme.of(context)
                                           .textSelectionTheme
-                                          .selectionColor,
+                                          .selectionColor!,
                                     ),
                                   ),
                                 ),
@@ -395,7 +394,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                             style: GoogleFonts.montserrat(
                                               color: Theme.of(context)
                                                   .textSelectionTheme
-                                                  .selectionColor,
+                                                  .selectionColor!,
                                               fontSize: 14,
                                             ),
                                           ),

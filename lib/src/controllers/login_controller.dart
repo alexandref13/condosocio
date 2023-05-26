@@ -62,7 +62,7 @@ class LoginController extends GetxController {
     refreshController.loadComplete();
   }
 
-  Future<void> launched;
+  late Future<void> launched;
 
   Future<void> launchInBrowser(String url) async {
     if (await canLaunch(url)) {

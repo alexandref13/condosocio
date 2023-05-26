@@ -37,12 +37,12 @@ class Convite extends StatelessWidget {
               'Convites',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
-                color: Theme.of(context).textSelectionTheme.selectionColor,
+                color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
             ),
             bottom: TabBar(
               indicatorColor:
-                  Theme.of(context).textSelectionTheme.selectionColor,
+                  Theme.of(context).textSelectionTheme.selectionColor!,
               indicatorPadding: EdgeInsets.all(-8),
               tabs: <Widget>[
                 Text(
@@ -50,13 +50,13 @@ class Convite extends StatelessWidget {
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color:
-                          Theme.of(context).textSelectionTheme.selectionColor),
+                          Theme.of(context).textSelectionTheme.selectionColor!),
                 ),
                 Text(
                   'Visualizar',
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
-                    color: Theme.of(context).textSelectionTheme.selectionColor,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
                   ),
                 ),
               ],

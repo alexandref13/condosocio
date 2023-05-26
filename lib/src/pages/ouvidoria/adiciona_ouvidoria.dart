@@ -40,7 +40,7 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                             border: Border.all(
                               color: Theme.of(context)
                                   .textSelectionTheme
-                                  .selectionColor,
+                                  .selectionColor!,
                               width: 1,
                             ),
                           ),
@@ -53,12 +53,12 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                             ),
                             iconEnabledColor: Theme.of(context)
                                 .textSelectionTheme
-                                .selectionColor,
+                                .selectionColor!,
                             dropdownColor: Theme.of(context).primaryColor,
                             style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
-                                    .selectionColor,
+                                    .selectionColor!,
                                 fontSize: 14),
                             items: ouvidoriaController.assuntos
                                 .map((String dropDownStringItem) {
@@ -67,8 +67,8 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                                 child: Text(dropDownStringItem),
                               );
                             }).toList(),
-                            onChanged: (String novoItemSelecionado) {
-                              _dropDownItemSelected(novoItemSelecionado);
+                            onChanged: (String? novoItemSelecionado) {
+                              _dropDownItemSelected(novoItemSelecionado!);
                               ouvidoriaController.itemSelecionado.value =
                                   novoItemSelecionado;
                             },
@@ -83,7 +83,7 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                           child: customTextField(
                             context,
                             "Mensagem",
-                            null,
+                            '',
                             true,
                             5,
                             true,
@@ -125,13 +125,13 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                                       confirmedButtonPressed(
                                         context,
                                         'Enviado com sucesso!',
-                                        null,
+                                        '',
                                       );
                                     } else if (response == 'vazio') {
                                       onAlertButtonPressed(
                                           context,
                                           'Assunto e Mensagem são campos obrigátorios',
-                                          null,
+                                          '',
                                           'sim');
                                     } else {
                                       onAlertButtonPressed(
@@ -149,7 +149,7 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
                                       .textSelectionTheme
-                                      .selectionColor,
+                                      .selectionColor!,
                                 ),
                               ),
                             ),
