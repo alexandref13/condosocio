@@ -57,7 +57,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                           ocorrenciasController.search.value,
                           ocorrenciasController.onSearchTextChanged,
                           "Pesquise por Título..."),
-                      Container(
+                      /* Container(
                         padding: EdgeInsets.all(10),
                         color: Theme.of(context).colorScheme.secondary,
                         child: Row(
@@ -65,7 +65,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                           children: [
                             Container(
                               child: Text(
-                                'CRIADO',
+                                'CRIADA EM',
                                 style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
                                   color: Theme.of(context)
@@ -85,7 +85,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            Text(
+                            /*Text(
                               'DATA',
                               style: GoogleFonts.montserrat(
                                 fontSize: 12.0,
@@ -94,7 +94,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                                     .selectionColor!,
                                 fontWeight: FontWeight.w400,
                               ),
-                            ),
+                            ),*/
                             Container(
                               child: Text(
                                 'STATUS',
@@ -112,7 +112,7 @@ class VisualizarOcorrencias extends StatelessWidget {
                             ),
                           ],
                         ),
-                      ),
+                      ),*/
                       Expanded(
                           child: SmartRefresher(
                         controller: ocorrenciasController.refreshController,
@@ -152,101 +152,66 @@ class VisualizarOcorrencias extends StatelessWidget {
 
                                       Get.toNamed('/respostaOcorrencia');
                                     },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                        bottom: BorderSide(
-                                            width: 1, color: Colors.grey),
-                                      )),
-                                      padding: EdgeInsets.all(10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.2,
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "${ocorrencia.data} ${ocorrencia.hora}",
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                      ),
+                                      color: ocorrencia.status != '0'
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .secondary
+                                          : Theme.of(context).primaryColorDark,
+                                      child: ListTile(
+                                          leading: RichText(
+                                            text: TextSpan(
+                                              style: GoogleFonts.montserrat(
+                                                  fontSize: 12,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor!),
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                    text: ocorrencia.dia + "  ",
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                TextSpan(
+                                                  text: ocorrencia.mes,
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 12,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor!,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
+                                                      fontSize: 14,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor!,
+                                                      letterSpacing: 2),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                            child: Text(
-                                              ocorrencia.titulo,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              softWrap: false,
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
+                                          title: Container(
+                                            child: Center(
+                                              child: Text(
+                                                ocorrencia.titulo,
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 12,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor!,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.2,
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "${ocorrencia.dataoco} ${ocorrencia.horaoco}",
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 12,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor!,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.1,
-                                            child: Icon(
-                                              ocorrencia.status == '1'
-                                                  ? Icons.done
-                                                  : Icons.schedule_outlined,
-                                              size: 24,
-                                              color: ocorrencia.status == '1'
-                                                  ? Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor!
-                                                  : Colors.yellow,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                            child: Icon(Icons.arrow_right),
-                                          )
-                                        ],
-                                      ),
+                                          trailing: Icon(
+                                            Icons.arrow_right,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor!,
+                                            size: 30,
+                                          )),
                                     ),
                                   );
                                 },
@@ -282,101 +247,66 @@ class VisualizarOcorrencias extends StatelessWidget {
 
                                       Get.toNamed('/respostaOcorrencia');
                                     },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                        bottom: BorderSide(
-                                            width: 1, color: Colors.grey),
-                                      )),
-                                      padding: EdgeInsets.all(10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.2,
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "${ocorrencia.data} ${ocorrencia.hora}",
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                      ),
+                                      color: ocorrencia.status != '0'
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .secondary
+                                          : Theme.of(context).primaryColorDark,
+                                      child: ListTile(
+                                          leading: RichText(
+                                            text: TextSpan(
+                                              style: GoogleFonts.montserrat(
+                                                  fontSize: 12,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor!),
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                    text: ocorrencia.dia + "  ",
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                TextSpan(
+                                                  text: ocorrencia.mes,
                                                   style: GoogleFonts.montserrat(
-                                                    fontSize: 12,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor!,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
+                                                      fontSize: 14,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor!,
+                                                      letterSpacing: 2),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                            child: Text(
-                                              ocorrencia.titulo,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              softWrap: false,
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
+                                          title: Container(
+                                            child: Center(
+                                              child: Text(
+                                                ocorrencia.titulo,
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 12,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor!,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.2,
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "${ocorrencia.dataoco} ${ocorrencia.horaoco}",
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 12,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor!,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.1,
-                                            child: Icon(
-                                              ocorrencia.status == '1'
-                                                  ? Icons.done
-                                                  : Icons.schedule_outlined,
-                                              size: 24,
-                                              color: ocorrencia.status == '1'
-                                                  ? Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor!
-                                                  : Colors.yellow,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                            child: Icon(Icons.arrow_right),
-                                          )
-                                        ],
-                                      ),
+                                          trailing: Icon(
+                                            Icons.arrow_right,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor!,
+                                            size: 30,
+                                          )),
                                     ),
                                   );
                                 },

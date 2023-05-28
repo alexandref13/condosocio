@@ -1,11 +1,8 @@
 import 'package:condosocio/src/pages/veiculos/adiciona_veiculos.dart';
-import 'package:condosocio/src/pages/veiculos/pagVagasLimit.dart';
 import 'package:condosocio/src/pages/veiculos/visualizar_veiculos.dart';
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../controllers/veiculos/veiculos_controller.dart';
 

@@ -29,19 +29,19 @@ class MapaEvento {
       required this.status});
 
   MapaEvento.fromJson(Map<String, dynamic> json) {
-    validausu = json['validausu'];
-    idevento = json['idevento'];
-    img = json['img'];
-    nome = json['nome'];
-    unidade = json['unidade'];
-    titulo = json['titulo'];
-    descricao = json['descricao'];
-    respevent = json['respevent'];
-    areacom = json['areacom'];
-    dataAgenda = json['data_agenda'];
-    horaAgenda = json['hora_agenda'];
-    ctl = json['ctl'];
-    status = json['status'];
+    validausu = json['validausu'] ?? '';
+    idevento = json['idevento'] ?? '';
+    img = json['img'] ?? '';
+    nome = json['nome'] ?? '';
+    unidade = json['unidade'] ?? '';
+    titulo = json['titulo'] ?? '';
+    descricao = json['descricao'] ?? '';
+    respevent = json['respevent'] ?? '';
+    areacom = json['areacom'] ?? '';
+    dataAgenda = json['data_agenda'] ?? '';
+    horaAgenda = json['hora_agenda'] ?? '';
+    ctl = json['ctl'] ?? '';
+    status = json['status'] ?? '';
   }
 
   Map<String, dynamic> toJson() {

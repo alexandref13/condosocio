@@ -227,7 +227,12 @@ class _VisualizarVeiculosState extends State<VisualizarVeiculos> {
                                                   .size
                                                   .width *
                                               0.01,
-                                          child: Icon(Icons.arrow_right),
+                                          child: Icon(
+                                            Icons.arrow_right,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor,
+                                          ),
                                         )
                                       ],
                                     ),

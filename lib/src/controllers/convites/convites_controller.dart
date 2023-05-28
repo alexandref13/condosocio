@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';

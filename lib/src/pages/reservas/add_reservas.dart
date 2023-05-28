@@ -179,6 +179,11 @@ class _AddReservasState extends State<AddReservas> {
                                       margin: EdgeInsets.only(bottom: 10),
                                       child: Text.rich(TextSpan(
                                           text: '\nLi e concordo com os ',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor!,
+                                          ),
                                           children: [
                                             TextSpan(
                                               text:

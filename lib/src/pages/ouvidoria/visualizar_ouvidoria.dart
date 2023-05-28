@@ -4,7 +4,6 @@ import 'package:condosocio/src/controllers/ouvidoria/visualizar_ouvidoria_contro
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:condosocio/src/components/visualizar_ouvidoria/lista_visualizar_ouvidoria.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class VisualizarOuvidoria extends StatefulWidget {
   @override
@@ -29,7 +28,7 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                       visualizarOuvidoria.search.value,
                       visualizarOuvidoria.onSearchTextChanged,
                       "Pesquise por Título..."),
-                  Container(
+                  /*Container(
                     padding: EdgeInsets.all(10),
                     color: Theme.of(context).colorScheme.secondary,
                     child: Row(
@@ -73,8 +72,8 @@ class _VisualizarOuvidoriaState extends State<VisualizarOuvidoria> {
                         Container(),
                       ],
                     ),
-                  ),
-                  Expanded(child: listaVisualizarOuvidoria())
+                  ),*/
+                  Expanded(child: listaVisualizarOuvidoria(context))
                 ],
               );
       },

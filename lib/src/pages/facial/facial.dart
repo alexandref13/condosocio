@@ -36,139 +36,130 @@ class _FacialState extends State<Facial> {
   Widget getImageWidget() {
     if (_selectedFile != null) {
       return GestureDetector(
-        onTap: () => {
-          loginController.ctlfacial.value == "0" &&
-                  loginController.imgfacial.value == ""
-              ? getImage(ImageSource.camera)
-              : Get.toNamed('/fotoFacial'),
-        },
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                  margin: EdgeInsets.only(left: 100, bottom: 5),
-                  child: Center(
-                    child: loginController.ctlfacial.value != "1"
-                        ? Icon(
-                            Icons.edit,
-                            size: 20,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                          )
-                        : Icon(
-                            Icons.search,
-                            size: 20,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                          ),
-                  ),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).colorScheme.secondary,
-                  )),
-            ],
-          ),
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: new DecorationImage(
-              image: new FileImage(_selectedFile!),
-              fit: BoxFit.cover,
+          onTap: () => {
+                loginController.ctlfacial.value == "0" &&
+                        loginController.imgfacial.value == ""
+                    ? getImage(ImageSource.camera)
+                    : Get.toNamed('/fotoFacial'),
+              },
+          child: Hero(
+            tag: 'fotoFacial',
+            child: Container(
+              margin: EdgeInsets.only(left: 100, bottom: 5),
+              child: Center(
+                child: loginController.ctlfacial.value != "1"
+                    ? Icon(
+                        Icons.edit,
+                        size: 20,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
+                      )
+                    : Icon(
+                        Icons.search,
+                        size: 20,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
+                      ),
+              ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
-          ),
-        ),
-      );
+          ));
     } else {
       return GestureDetector(
-        onTap: () => {
-          loginController.ctlfacial.value == "0" &&
-                  loginController.imgfacial.value == ""
-              ? getImage(ImageSource.camera)
-              : Get.toNamed('/fotoFacial'),
-        },
-        child: loginController.imgfacial.value == ''
-            ? Container(
-                child: Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 40),
-                      child: Center(
-                        child: loginController.ctlfacial.value != "1"
-                            ? Icon(
-                                Icons.edit,
-                                size: 20,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor!,
-                              )
-                            : Icon(
-                                Icons.search,
-                                size: 20,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor!,
-                              ),
+          onTap: () => {
+                loginController.ctlfacial.value == "0" &&
+                        loginController.imgfacial.value == ""
+                    ? getImage(ImageSource.camera)
+                    : Get.toNamed('/fotoFacial'),
+              },
+          child: loginController.imgfacial.value == ''
+              ? Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 40),
+                        child: Center(
+                          child: loginController.ctlfacial.value != "1"
+                              ? Icon(
+                                  Icons.edit,
+                                  size: 20,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                )
+                              : Icon(
+                                  Icons.search,
+                                  size: 20,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                ),
+                        ),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
                       ),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).colorScheme.secondary,
+                    ],
+                  ),
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage('images/user.png'),
+                    ),
+                  ),
+                )
+              : Hero(
+                  tag: 'fotoFacial',
+                  transitionOnUserGestures: true,
+                  child: Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 105, bottom: 0),
+                          child: Center(
+                            child: loginController.ctlfacial.value != "1" &&
+                                    loginController.imgfacial.value == ''
+                                ? Icon(
+                                    Icons.edit,
+                                    size: 20,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor!,
+                                  )
+                                : Icon(
+                                    Icons.search,
+                                    size: 20,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor!,
+                                  ),
+                          ),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),
                       ),
                     ),
-                  ],
-                ),
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage('images/user.png'),
                   ),
-                ),
-              )
-            : Container(
-                child: Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 105, bottom: 0),
-                      child: Center(
-                        child: loginController.ctlfacial.value != "1" &&
-                                loginController.imgfacial.value == null
-                            ? Icon(
-                                Icons.edit,
-                                size: 20,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor!,
-                              )
-                            : Icon(
-                                Icons.search,
-                                size: 20,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor!,
-                              ),
-                      ),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                    ),
-                  ],
-                ),
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),
-                  ),
-                ),
-              ),
-      );
+                ));
     }
   }
 
@@ -399,14 +390,17 @@ class _FacialState extends State<Facial> {
                                       children: [
                                       SizedBox(height: 10),
                                       Container(
-                                        padding: EdgeInsets.all(16.0),
-                                        color: Colors.amber,
+                                        padding: EdgeInsets.all(20),
+                                        // color: Colors.amber,
                                         child: Text(
-                                          'Para alterar a sua imagem da biometria facial, solicitamos que você entre em contato com a administração do seu condomínio, para a exclusão da imagem atual. Dessa forma, você poderá fornecer uma nova imagem para atualização dos registros biométricos.',
+                                          'Para alterar a imagem da sua biometria facial, solicitamos que você entre em contato com a administração condominial.',
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(
-                                              fontSize: 14.0,
-                                              color: Colors.black87),
+                                            fontSize: 16.0,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor!,
+                                          ),
                                         ),
                                       ),
                                     ])),

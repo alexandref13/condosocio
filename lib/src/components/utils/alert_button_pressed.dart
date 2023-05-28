@@ -10,7 +10,7 @@ onAlertButtonPressed(context, String text, String page, String img) {
     barrierDismissible: false,
     animationType: DialogTransitionType.fadeScale,
     curve: Curves.fastOutSlowIn,
-    duration: Duration(seconds: 1),
+    duration: Duration(milliseconds: 500),
     builder: (BuildContext context) {
       return Dialog(
         backgroundColor: Colors.white, // Definir a cor de fundo desejada
@@ -23,10 +23,10 @@ onAlertButtonPressed(context, String text, String page, String img) {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              img != null
+              img != ''
                   ? Image.asset(
-                      "images/error.png",
-                      width: 50, // Defina o tamanho desejado da imagem
+                      img,
+                      width: 60, // Defina o tamanho desejado da imagem
                     )
                   : Container(),
               SizedBox(height: 10),
@@ -48,7 +48,7 @@ onAlertButtonPressed(context, String text, String page, String img) {
                   ),
                 ),
                 onPressed: () {
-                  if (page != null) {
+                  if (page != '') {
                     Get.offNamedUntil('$page', ModalRoute.withName('$page'));
                   } else {
                     Get.back();

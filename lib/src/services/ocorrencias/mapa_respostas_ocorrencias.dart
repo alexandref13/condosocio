@@ -23,16 +23,16 @@ class MapaRespostasOcorrencia {
       required this.horaraiz});
 
   MapaRespostasOcorrencia.fromJson(Map<String, dynamic> json) {
-    idusu = json['idusu'];
-    nomeusu = json['nomeusu'];
-    imgperfil = json['imgperfil'];
-    tipousu = json['tipousu'];
-    texto = json['texto'];
-    data = json['data'];
-    hora = json['hora'];
-    idraiz = json['idraiz'];
-    dataraiz = json['dataraiz'];
-    horaraiz = json['horaraiz'];
+    idusu = json['idusu'] ?? '';
+    nomeusu = json['nomeusu'] ?? '';
+    imgperfil = json['imgperfil'] ?? '';
+    tipousu = json['tipousu'] ?? '';
+    texto = json['texto'] ?? '';
+    data = json['data'] ?? '';
+    hora = json['hora'] ?? '';
+    idraiz = json['idraiz'] ?? '';
+    dataraiz = json['dataraiz'] ?? '';
+    horaraiz = json['horaraiz'] ?? '';
   }
 
   Map<String, dynamic> toJson() {

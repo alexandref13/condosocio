@@ -83,16 +83,16 @@ class Login extends StatelessWidget {
                                       borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor!!,
+                                              .selectionColor!,
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(10.0),
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor!!)),
+                                                .selectionColor!)),
                                     labelText: 'Entre com o e-mail',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
@@ -142,7 +142,7 @@ class Login extends StatelessWidget {
                                       borderSide: BorderSide(
                                           color: Theme.of(context)
                                               .textSelectionTheme
-                                              .selectionColor!!,
+                                              .selectionColor!,
                                           width: 1.0),
                                     ),
                                     enabledBorder: OutlineInputBorder(
@@ -151,7 +151,7 @@ class Login extends StatelessWidget {
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor!!)),
+                                                .selectionColor!)),
                                     labelText: 'Entre com a senha',
                                     labelStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
@@ -289,7 +289,7 @@ class Login extends StatelessWidget {
                                             context,
                                             'Campo e-mail ou senha vazio!',
                                             '',
-                                            'sim');
+                                            'images/error.png');
                                       }
                                       if (_formKey.currentState!.validate()) {
                                         loginController.login().then(
@@ -301,7 +301,7 @@ class Login extends StatelessWidget {
                                                   context,
                                                   'E-mail ou Senha Inválidos! \n Tente Novamente',
                                                   '',
-                                                  'sim');
+                                                  'images/error.png');
                                             } else {
                                               loginController
                                                   .password.value.text = '';
@@ -426,7 +426,7 @@ class Login extends StatelessWidget {
                                           context,
                                           'Você precisa aceitar os termos de uso e a política de privacidade para entrar!',
                                           '',
-                                          'sim');
+                                          'images/error.png');
                                     }
                                   },
                                   child: loginController.isLoading.value

@@ -9,8 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+import '../../components/utils/delete_alert.dart';
 
 class DetalhesReservas extends StatelessWidget {
   final VisualizarReservasController visualizarReservasController =
@@ -24,55 +26,69 @@ class DetalhesReservas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     confirmDelete(String text, VoidCallback function) {
-      Alert(
-        /*image: Icon(
-          Icons.highlight_off,
-          color: Colors.yellowAccent,
-          size: 60,
-        ),*/
-        style: AlertStyle(
-          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
-          animationType: AnimationType.fromTop,
-          isCloseButton: false,
-          isOverlayTapDismiss: false,
-          //descStyle: GoogleFonts.poppins(color: Colors.red,),
-          animationDuration: Duration(milliseconds: 300),
-          titleStyle: GoogleFonts.poppins(
-            color: Theme.of(context).colorScheme.error,
-            fontSize: 18,
-          ),
-        ),
+      showAnimatedDialog(
         context: context,
-        title: text,
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Cancelar",
-              style: GoogleFonts.montserrat(
-                color: Theme.of(context).textSelectionTheme.selectionColor!,
-                fontSize: 16,
+        barrierDismissible: false,
+        animationType: DialogTransitionType.fadeScale,
+        curve: Curves.fastOutSlowIn,
+        duration: Duration(milliseconds: 500),
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            backgroundColor:
+                Theme.of(context).textSelectionTheme.selectionColor,
+            content: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.warning,
+                    color: Colors.orange,
+                    size: 54,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    text,
+                    style: GoogleFonts.poppins(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
-            onPressed: () {
-              Get.back();
-            },
-            width: 80,
-            color: Theme.of(context).colorScheme.error,
-          ),
-          DialogButton(
-            child: Text(
-              "OK",
-              style: GoogleFonts.montserrat(
-                color: Theme.of(context).textSelectionTheme.selectionColor!,
-                fontSize: 16,
+            actions: [
+              TextButton(
+                child: Text(
+                  "Cancelar",
+                  style: GoogleFonts.montserrat(
+                      color: Theme.of(context).colorScheme.error,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
-            ),
-            onPressed: function,
-            width: 80,
-            color: Theme.of(context).primaryColor,
-          )
-        ],
-      ).show();
+              TextButton(
+                child: Text(
+                  "OK",
+                  style: GoogleFonts.montserrat(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+                onPressed: function,
+              ),
+            ],
+          );
+        },
+      );
     }
 
     var day = DateTime.parse(detalhesReservasController.data.value);
@@ -82,9 +98,9 @@ class DetalhesReservas extends StatelessWidget {
     var isBefore = visualizarReservasController.dataDetalhes.isBefore(day);
 
     return Scaffold(
-      backgroundColor: Color(0xff100329),
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        backgroundColor: Color(0xff100329),
+        //backgroundColor: Color(0xff100329),
         title: Text(
           'Reservas',
           style: GoogleFonts.montserrat(
@@ -104,7 +120,7 @@ class DetalhesReservas extends StatelessWidget {
                   children: [
                     Center(
                       child: Container(
-                        height: MediaQuery.of(context).size.height * .45,
+                        height: MediaQuery.of(context).size.height * .3,
                         width: MediaQuery.of(context).size.width * .9,
                         child: Card(
                           color: detalhesReservasController.status.value ==
@@ -376,8 +392,9 @@ class DetalhesReservas extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
-                                  confirmDelete(
-                                    'Deseja cancelar a reserva\n ${detalhesReservasController.titulo.value}?',
+                                  deleteAlert(
+                                    context,
+                                    'Deseja excluir a reserva\n ${detalhesReservasController.titulo.value}?',
                                     () {
                                       detalhesReservasController
                                           .deleteReserva()
@@ -402,7 +419,7 @@ class DetalhesReservas extends StatelessWidget {
                                   );
                                 },
                                 child: Text(
-                                  "Cancelar Evento",
+                                  "Excluir",
                                   style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context)

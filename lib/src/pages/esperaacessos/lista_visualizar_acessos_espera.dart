@@ -59,7 +59,8 @@ Widget listaVisualizarAcessosEspera() {
                           acessos.idconv,
                           acessos.imgfacial,
                           acessos.idvis,
-                          "0");
+                          "0",
+                          "");
                     },
                     child: Column(
                       children: [
@@ -235,7 +236,8 @@ Widget listaVisualizarAcessosEspera() {
                           acessos.idconv,
                           acessos.imgfacial,
                           acessos.idvis,
-                          "0");
+                          "0",
+                          "");
                     },
                     child: Column(
                       children: [

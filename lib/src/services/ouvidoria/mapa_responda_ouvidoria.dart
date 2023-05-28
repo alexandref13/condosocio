@@ -27,18 +27,18 @@ class MapaRespondaOuvidoria {
       required this.hora});
 
   MapaRespondaOuvidoria.fromJson(Map<String, dynamic> json) {
-    idusuraiz = json['idusuraiz'];
-    msgraiz = json['msgraiz'];
-    tipoouv = json['tipoouv'];
-    dataraiz = json['dataraiz'];
-    horaraiz = json['horaraiz'];
-    idusu = json['idusu'];
-    nomeusu = json['nomeusu'];
-    imgperfil = json['imgperfil'];
-    tipousu = json['tipousu'];
-    texto = json['texto'];
-    data = json['data'];
-    hora = json['hora'];
+    idusuraiz = json['idusuraiz'] ?? '';
+    msgraiz = json['msgraiz'] ?? '';
+    tipoouv = json['tipoouv'] ?? '';
+    dataraiz = json['dataraiz'] ?? '';
+    horaraiz = json['horaraiz'] ?? '';
+    idusu = json['idusu'] ?? '';
+    nomeusu = json['nomeusu'] ?? '';
+    imgperfil = json['imgperfil'] ?? '';
+    tipousu = json['tipousu'] ?? '';
+    texto = json['texto'] ?? '';
+    data = json['data'] ?? '';
+    hora = json['hora'] ?? '';
   }
 
   Map<String, dynamic> toJson() {

@@ -6,7 +6,6 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import '../../components/utils/alert_button_pressed.dart';
 import '../../components/utils/edge_alert_error_widget.dart';
@@ -27,7 +26,7 @@ class VotarEnquete extends StatelessWidget {
         barrierDismissible: false,
         animationType: DialogTransitionType.fadeScale,
         curve: Curves.fastOutSlowIn,
-        duration: Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 500),
         builder: (BuildContext context) {
           return AlertDialog(
             contentPadding: EdgeInsets.zero,

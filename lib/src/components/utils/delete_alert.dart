@@ -10,7 +10,7 @@ void deleteAlert(BuildContext context, String text, VoidCallback function) {
     barrierDismissible: false,
     animationType: DialogTransitionType.fadeScale,
     curve: Curves.fastOutSlowIn,
-    duration: Duration(seconds: 1),
+    duration: Duration(milliseconds: 500),
     builder: (BuildContext context) {
       return Center(
         child: AlertDialog(
@@ -52,14 +52,14 @@ void deleteAlert(BuildContext context, String text, VoidCallback function) {
                     child: Text(
                       "OK",
                       style: GoogleFonts.montserrat(
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!,
-                        fontSize: 14,
-                      ),
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
                     ),
                     onPressed: function,
-                    width: 80,
+                    width: 100,
                     color: Theme.of(context).primaryColor,
                   ),
                   SizedBox(width: 20),
@@ -67,16 +67,16 @@ void deleteAlert(BuildContext context, String text, VoidCallback function) {
                     child: Text(
                       "CANCELAR",
                       style: GoogleFonts.montserrat(
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!,
-                        fontSize: 12,
-                      ),
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
                     ),
                     onPressed: () {
                       Get.back();
                     },
-                    width: 80,
+                    width: 100,
                     color: Theme.of(context).colorScheme.error,
                   ),
                 ],

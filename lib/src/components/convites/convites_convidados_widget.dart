@@ -1,18 +1,15 @@
 import 'package:condosocio/src/components/utils/alertInvite.dart';
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../controllers/acessos/agenda_contatos_controller.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ConvitesConvidadosWidget extends StatelessWidget {
   const ConvitesConvidadosWidget({Key? key}) : super(key: key);
@@ -91,10 +88,11 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   autofocus: false,
                                   isExpanded: true,
                                   underline: Container(),
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_down,
-                                    size: 27,
-                                  ),
+                                  icon: Icon(Icons.keyboard_arrow_right,
+                                      size: 27,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor!),
                                   dropdownColor: Theme.of(context).primaryColor,
                                   style: GoogleFonts.montserrat(
                                       fontSize: 14,
@@ -411,6 +409,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       'App Mobilidade',
                                       style: GoogleFonts.montserrat(
                                         fontSize: 14,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor,
                                       ),
                                     ),
                                   ),
@@ -419,8 +420,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   padding: EdgeInsets.all(7),
                                   child: customTextField(
                                     context,
-                                    'Nome do motorista',
                                     '',
+                                    'Nome do motorista',
                                     false,
                                     1,
                                     true,
@@ -442,7 +443,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     enableSuggestions: false,
                                     textCapitalization:
                                         TextCapitalization.characters,
-                                    maxLength: 9,
+                                    maxLength: 7,
                                     controller:
                                         convitesController.carBoard.value,
                                     style: GoogleFonts.montserrat(
@@ -602,7 +603,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                   context,
                                                   'Campo nome ou placa vazio!',
                                                   '',
-                                                  'sim');
+                                                  'images/error.png');
                                             } else {
                                               convitesController
                                                   .handleAddAppList();
@@ -652,8 +653,10 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     child: Text(
                                       'Adicione um Convidado',
                                       style: GoogleFonts.montserrat(
-                                        fontSize: 14,
-                                      ),
+                                          fontSize: 14,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!),
                                     ),
                                   ),
                                 ),
@@ -704,8 +707,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                   padding: EdgeInsets.all(7),
                                   child: customTextField(
                                     context,
-                                    'Nome ou empresa',
                                     '',
+                                    'Nome ou empresa',
                                     false,
                                     1,
                                     true,
@@ -872,7 +875,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                     context,
                                                     'Campo nome ou tipo de visitante vazio!',
                                                     '',
-                                                    'sim');
+                                                    'images/error.png');
                                               } else {
                                                 convitesController
                                                     .handleAddGuestList();
@@ -930,10 +933,13 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(right: 20),
                               child: Icon(
-                                Icons.account_circle_outlined,
+                                convitesController.guestList[i]['tel'] != null
+                                    ? Icons.person_2_outlined
+                                    : Icons.directions_car_outlined,
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor!,
+                                size: 30,
                               ),
                             ),
                             Flexible(
@@ -964,30 +970,28 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                           convitesController.guestList[i]
                                               ['tel'],
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 15,
+                                            fontSize: 14,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor!,
                                           ),
                                         )
-                                      : Container(
-                                          child: convitesController.guestList[i]
-                                                      ['placa'] !=
-                                                  null
-                                              ? Text(
-                                                  convitesController
-                                                      .guestList[i]['placa']
-                                                      .toString()
-                                                      .toUpperCase(),
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 15,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor!,
-                                                  ),
-                                                )
-                                              : Container(),
-                                        )
+                                      : convitesController.guestList[i]
+                                                  ['placa'] !=
+                                              null
+                                          ? Text(
+                                              convitesController.guestList[i]
+                                                      ['placa']
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.montserrat(
+                                                fontSize: 14,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor!,
+                                              ),
+                                            )
+                                          : Container(),
                                 ],
                               ),
                             ),
@@ -1116,7 +1120,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                             context,
                                             'Algo deu errado \n Tente novamente',
                                             '/home',
-                                            'sim');
+                                            'images/error.png');
                                       }
                                     });
                                   } else {
@@ -1172,7 +1176,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                               context,
                                               'Algo deu errado \n Tente novamente',
                                               '/home',
-                                              'sim');
+                                              'images/error.png');
                                         }
                                       },
                                     );

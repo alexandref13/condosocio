@@ -51,9 +51,12 @@ class VisualizarOuvidoriaController extends GetxController {
 
     print(lista);
 
-    ouvidoria.value =
-        lista.map((model) => MapaOuvidoria.fromJson(model)).toList();
+    ouvidoria.assignAll(
+      lista.map((model) => MapaOuvidoria.fromJson(model)).toList(),
+    );
 
+    // ouvidoria.value =  lista.map((model) => MapaOuvidoria.fromJson(model)).toList();
+    print('Ouvidoria: $ouvidoria');
     isLoading(false);
   }
 

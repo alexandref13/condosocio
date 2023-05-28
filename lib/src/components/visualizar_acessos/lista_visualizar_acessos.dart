@@ -54,7 +54,8 @@ Widget listaVisualizarAcessos() {
                           acessos.idconv,
                           acessos.imgfacial,
                           acessos.idvis,
-                          "1");
+                          "1",
+                          "facialacesso");
                     },
                     child: Column(
                       children: [
@@ -229,7 +230,8 @@ Widget listaVisualizarAcessos() {
                           acessos.idconv,
                           acessos.imgfacial,
                           acessos.idvis,
-                          "1");
+                          "1",
+                          "facialacesso");
                     },
                     child: Column(
                       children: [
@@ -534,7 +536,12 @@ Widget listaVisualizarAcessos() {
                                 ),
                               ),
                               Container(
-                                child: Icon(Icons.arrow_right),
+                                child: Icon(
+                                  Icons.arrow_right,
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor,
+                                ),
                               )
                             ],
                           ),

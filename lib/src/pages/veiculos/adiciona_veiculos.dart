@@ -100,6 +100,9 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                   icon: Icon(
                                     Icons.keyboard_arrow_down,
                                     size: 27,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor!,
                                   ),
                                   dropdownColor: Theme.of(context).primaryColor,
                                   style: GoogleFonts.montserrat(
@@ -251,6 +254,9 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                   icon: Icon(
                                     Icons.keyboard_arrow_down,
                                     size: 27,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor!,
                                   ),
                                   dropdownColor: Theme.of(context).primaryColor,
                                   style: GoogleFonts.montserrat(
@@ -412,16 +418,22 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                           onPressed: () {
                             veiculosController.sendVeiculos().then((value) {
                               if (value == 1) {
-                                showToast(context, 'Parabéns!',
-                                    'Veículo cadastrado com sucesso.');
+                                showToast(
+                                    context,
+                                    'Parabéns! Veículo cadastrado com sucesso.',
+                                    '');
                               } else if (value == "vazio") {
                                 onAlertButtonPressed(
-                                    context, 'Algum Campo Vazio!', '', 'sim');
+                                    context,
+                                    'Algum Campo Vazio!',
+                                    '',
+                                    'images/error.png');
                               } else if (value == 2) {
-                                onAlertButtonPressedVagas(
+                                onAlertButtonPressed(
                                     context,
                                     'Número de Vagas Excedidas! Exclua algum veículo ou procure a administração do seu condomínio',
-                                    '/home');
+                                    '/home',
+                                    'images/vagas.png');
                               } else {
                                 onAlertButtonPressed(
                                     context,

@@ -27,7 +27,7 @@ class FotoFacial extends StatelessWidget {
           height: MediaQuery.of(context).size.height * .9,
           child: Hero(
             transitionOnUserGestures: true,
-            tag: 'FotoFacial',
+            tag: 'fotoFacial',
             child: Image(
               image: NetworkImage(
                   'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),

@@ -97,7 +97,11 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                           child: Text(
                     "Inserir Imagem",
                     style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.w600, fontSize: 18),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor!,
+                    ),
                   ))),
                   Divider(
                     height: 20,
@@ -109,7 +113,15 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
-                    title: new Text('Câmera'),
+                    title: new Text(
+                      'Câmera',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
+                      ),
+                    ),
                     trailing: new Icon(
                       Icons.arrow_right,
                       color:
@@ -128,7 +140,15 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                         color: Theme.of(context)
                             .textSelectionTheme
                             .selectionColor!),
-                    title: new Text('Galeria de Fotos'),
+                    title: new Text(
+                      'Galeria de Fotos',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!,
+                      ),
+                    ),
                     trailing: new Icon(Icons.arrow_right,
                         color: Theme.of(context)
                             .textSelectionTheme

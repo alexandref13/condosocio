@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../controllers/acessos/acessos_controller.dart';
 
 class FacialAcesso extends StatelessWidget {
@@ -37,7 +36,7 @@ class FacialAcesso extends StatelessWidget {
           ),
           child: Hero(
             transitionOnUserGestures: true,
-            tag: 'FotoFacial',
+            tag: 'facialacesso',
             child: Image(
               image: NetworkImage(
                   'https://alvocomtec.com.br/acond/downloads/${acessosController.tipoimgfacial.value}/${acessosController.imgfacial.value}'),

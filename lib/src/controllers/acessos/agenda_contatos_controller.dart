@@ -2,7 +2,6 @@ import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 import 'acessos_controller.dart';
 
 class AgendaContatosController extends GetxController {

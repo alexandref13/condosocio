@@ -91,13 +91,6 @@ class RespostaOcorrencias extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.calendar_month,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                    size: 12,
-                                  ),
                                   Text(
                                     ' ${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}h',
                                     style: GoogleFonts.montserrat(
@@ -110,24 +103,71 @@ class RespostaOcorrencias extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            Container(
+                              padding: EdgeInsets.only(top: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'STATUS: ',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 12,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor!,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    ocorrenciasController.status.value == '0'
+                                        ? 'Pendente'
+                                        : 'Resolvida',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 12,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor!,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                             ocorrenciasController.imagem.value != ''
-                                ? GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed('/fotoOcorrencia');
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.only(top: 10),
-                                      child: Hero(
-                                        transitionOnUserGestures: true,
-                                        tag: 'FotoOcorrencia',
-                                        child: Image(
-                                          image: NetworkImage(
-                                            'https://alvocomtec.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+                                ? Container(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            Get.toNamed('/fotoOcorrencia');
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.only(top: 10),
+                                            child: Hero(
+                                              transitionOnUserGestures: true,
+                                              tag: 'FotoOcorrencia',
+                                              child: Image(
+                                                image: NetworkImage(
+                                                  'https://alvocomtec.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+                                                ),
+                                                width: 45,
+                                                height: 45,
+                                              ),
+                                            ),
                                           ),
-                                          width: 45,
-                                          height: 45,
                                         ),
-                                      ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Clique na imagem para ampliar',
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 12,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor!,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   )
                                 : Container(),
@@ -142,7 +182,7 @@ class RespostaOcorrencias extends StatelessWidget {
                               respostaOcorrenciasController.resposta[i];
                           return Column(
                             children: [
-                              resposta.idraiz != null
+                              resposta.idraiz != ''
                                   ? Container(
                                       alignment: Alignment(1, 0),
                                       padding:

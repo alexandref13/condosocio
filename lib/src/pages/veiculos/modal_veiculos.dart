@@ -1,13 +1,10 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
-
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../../controllers/veiculos/veiculos_controller.dart';
 
 void veiculosModalBottomSheet(
@@ -40,7 +37,7 @@ void veiculosModalBottomSheet(
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor!,
-                              size: 30,
+                              size: 36,
                             ),
                           ),
                         ],
@@ -50,13 +47,21 @@ void veiculosModalBottomSheet(
                     ),
                     title: Text(
                       placa,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                      ),
                     ),
                     subtitle: Text(
                       '$marca / $modelo',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        color:
+                            Theme.of(context).textSelectionTheme.selectionColor,
+                      ),
                     ),
                   ),
                   Divider(
@@ -90,8 +95,8 @@ void veiculosModalBottomSheet(
                                       veiculosController.getVeiculos();
                                       showToast(
                                         context,
-                                        'Parabéns!',
-                                        ' excluído com sucesso.',
+                                        'Parabéns! Veículo excluído com sucesso.',
+                                        '',
                                       );
                                       Get.back();
                                       Get.back();

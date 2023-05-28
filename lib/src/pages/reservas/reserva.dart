@@ -27,14 +27,14 @@ class Reserva extends StatelessWidget {
             indicatorPadding: EdgeInsets.all(-8),
             tabs: <Widget>[
               Text(
-                'Adicionar',
+                'Visualizar',
                 style: GoogleFonts.montserrat(
                     fontSize: 14,
                     color:
                         Theme.of(context).textSelectionTheme.selectionColor!),
               ),
               Text(
-                'Visualizar',
+                'Adicionar',
                 style: GoogleFonts.montserrat(
                     fontSize: 14,
                     color:
@@ -44,7 +44,7 @@ class Reserva extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: [AreasComuns(), VisualizarReservas()],
+          children: [VisualizarReservas(), AreasComuns()],
         ),
       ),
     );

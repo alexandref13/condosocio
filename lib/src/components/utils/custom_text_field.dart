@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget customTextField(BuildContext context, String labelText, String hintText,
+Widget customTextField(BuildContext context, String hintText, String labelText,
     bool linesBool, int lines, bool enabled, TextEditingController controller) {
   return TextField(
     onTap: () {
@@ -18,6 +18,9 @@ Widget customTextField(BuildContext context, String labelText, String hintText,
       color: Theme.of(context).textSelectionTheme.selectionColor!,
     ),
     decoration: InputDecoration(
+      counterStyle: TextStyle(
+        color: Theme.of(context).textSelectionTheme.selectionColor!,
+      ),
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(

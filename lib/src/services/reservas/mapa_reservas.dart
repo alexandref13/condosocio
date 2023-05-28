@@ -20,14 +20,14 @@ class MapaReservas {
   });
 
   MapaReservas.fromJson(Map<String, dynamic> json) {
-    idarea = json['idarea'];
-    nome = json['nome'];
-    qtdMaxConvidados = json['qtd_max_convidados'];
-    termo = json['termo'];
-    aprova = json['aprova'];
-    multi = json['multi'];
-    tipo = json['tipo'];
-    lastTime = json['lastTime'];
+    idarea = json['idarea'] ?? '';
+    nome = json['nome'] ?? '';
+    qtdMaxConvidados = json['qtd_max_convidados'] ?? '';
+    termo = json['termo'] ?? '';
+    aprova = json['aprova'] ?? '';
+    multi = json['multi'] ?? '';
+    tipo = json['tipo'] ?? '';
+    lastTime = json['lastTime'] ?? '';
   }
 
   Map<String, dynamic> toJson() {

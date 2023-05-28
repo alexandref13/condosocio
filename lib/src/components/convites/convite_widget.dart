@@ -38,7 +38,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
       builder: (BuildContext context, Widget? child) {
         return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-            child: child!!);
+            child: child!);
       },
     );
   }
@@ -50,7 +50,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
       builder: (BuildContext context, Widget? child) {
         return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-            child: child!!);
+            child: child!);
       },
     );
   }
@@ -184,11 +184,11 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               onTap: () async {
                                 startSelectedDate =
                                     (await selectDateTime(context))!;
-                                if (startSelectedDate == null) return;
+                                if (startSelectedDate == '') return;
 
                                 startSelectedTime =
                                     (await selectTime(context))!;
-                                if (startSelectedTime == null) return;
+                                if (startSelectedTime == '') return;
 
                                 setState(() {
                                   startSelectedDate = DateTime(
@@ -238,11 +238,11 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               onTap: () async {
                                 endSelectedDate =
                                     (await selectDateOnEndTime(context))!;
-                                if (endSelectedDate == null) return;
+                                if (endSelectedDate == '') return;
 
                                 endSelectedTime =
                                     (await selectEndTime(context))!;
-                                if (endSelectedTime == null) return;
+                                if (endSelectedTime == '') return;
 
                                 setState(() {
                                   endSelectedDate = DateTime(
@@ -286,21 +286,19 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               ),
                             ],
                           ),
-                          Column(
-                            children: [
-                              ValueBuilder<bool>(
-                                  initialValue:
-                                      convitesController.isChecked.value,
-                                  builder: (isChecked, updateFn) => Switch(
-                                        value: isChecked,
-                                        onChanged: (newValue) =>
-                                            updateFn(newValue),
-                                        activeColor:
-                                            Theme.of(context).shadowColor,
-                                      ),
-                                  onUpdate: (svalue) => convitesController
-                                      .isChecked.value = svalue),
-                            ],
+                          Obx(
+                            () => Column(
+                              children: [
+                                Switch(
+                                  value: convitesController.isChecked.value,
+                                  onChanged: (newValue) {
+                                    convitesController.isChecked.value =
+                                        newValue;
+                                  },
+                                  activeColor: Theme.of(context).shadowColor,
+                                ),
+                              ],
+                            ),
                           ),
                           Spacer(),
                         ],

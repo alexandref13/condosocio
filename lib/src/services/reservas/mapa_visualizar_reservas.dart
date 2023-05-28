@@ -8,6 +8,9 @@ class MapaVisualizarReservas {
   late String status;
   late String resposta;
   late String termo;
+  late String dia;
+  late String mes;
+  late String semana;
 
   MapaVisualizarReservas({
     required this.idevento,
@@ -19,18 +22,24 @@ class MapaVisualizarReservas {
     required this.status,
     required this.resposta,
     required this.termo,
+    required this.dia,
+    required this.mes,
+    required this.semana,
   });
 
   MapaVisualizarReservas.fromJson(Map<String, dynamic> json) {
-    idevento = json['idevento'];
-    titulo = json['titulo'];
-    descricao = json['descricao'];
-    areacom = json['areacom'];
-    dataAgenda = json['data_agenda'];
-    horaAgenda = json['hora_agenda'];
-    status = json['status'];
-    resposta = json['resposta'];
-    termo = json['termo'];
+    idevento = json['idevento'] ?? '';
+    titulo = json['titulo'] ?? '';
+    descricao = json['descricao'] ?? '';
+    areacom = json['areacom'] ?? '';
+    dataAgenda = json['data_agenda'] ?? '';
+    horaAgenda = json['hora_agenda'] ?? '';
+    status = json['status'] ?? '';
+    resposta = json['resposta'] ?? '';
+    termo = json['termo'] ?? '';
+    dia = json['dia'] ?? '';
+    mes = json['mes'] ?? '';
+    semana = json['semana'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -44,6 +53,9 @@ class MapaVisualizarReservas {
     data['status'] = this.status;
     data['resposta'] = this.resposta;
     data['termo'] = this.termo;
+    data['dia'] = this.dia;
+    data['mes'] = this.mes;
+    data['semana'] = this.semana;
     return data;
   }
 }

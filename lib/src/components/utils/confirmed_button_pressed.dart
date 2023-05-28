@@ -9,7 +9,7 @@ confirmedButtonPressed(context, String text, String page) {
     barrierDismissible: false,
     animationType: DialogTransitionType.fadeScale,
     curve: Curves.fastOutSlowIn,
-    duration: Duration(seconds: 1),
+    duration: Duration(milliseconds: 500),
     builder: (BuildContext context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(

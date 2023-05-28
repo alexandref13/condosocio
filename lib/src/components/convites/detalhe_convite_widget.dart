@@ -322,7 +322,15 @@ class DetalheConviteWidget extends StatelessWidget {
                                           Padding(
                                             padding: EdgeInsets.only(right: 10),
                                             child: Icon(
-                                                Icons.account_circle_outlined),
+                                                convidados[x]['placa'] != null
+                                                    ? Icons
+                                                        .directions_car_outlined
+                                                    : Icons
+                                                        .account_circle_outlined,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor!,
+                                                size: 30),
                                           ),
                                           Column(
                                             crossAxisAlignment:
@@ -406,21 +414,21 @@ class DetalheConviteWidget extends StatelessWidget {
                                                   convidados[x]['tel'] != null
                                                       ? InkWell(
                                                           child: Icon(
-                                                            convidados[x]['idfav'] ==
-                                                                        null ||
-                                                                    convidados[x]
-                                                                            [
-                                                                            'idfav'] ==
-                                                                        '0'
-                                                                ? Icons
-                                                                    .favorite_border // Ícone vazio
-                                                                : Icons
-                                                                    .favorite, // Ícone preenchido
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .textSelectionTheme
-                                                                .selectionColor!,
-                                                          ),
+                                                              convidados[x]['idfav'] ==
+                                                                          null ||
+                                                                      convidados[x]
+                                                                              [
+                                                                              'idfav'] ==
+                                                                          '0'
+                                                                  ? Icons
+                                                                      .favorite_border // Ícone vazio
+                                                                  : Icons
+                                                                      .favorite, // Ícone preenchido
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .textSelectionTheme
+                                                                  .selectionColor!,
+                                                              size: 26),
                                                           onTap: () {
                                                             acessosController
                                                                     .idfav
@@ -461,8 +469,8 @@ class DetalheConviteWidget extends StatelessWidget {
                                                       ? IconButton(
                                                           icon: Image.asset(
                                                             'images/whatsapp.png',
-                                                            width: 24,
-                                                            height: 24,
+                                                            width: 40,
+                                                            height: 40,
                                                           ),
                                                           onPressed: () {
                                                             var celular;
@@ -604,6 +612,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 deleteAlert(context,
                                                     'Deseja deletar este convite?',
                                                     () {
+                                                  Navigator.of(context).pop();
                                                   visualizarConvitesController
                                                       .deleteAConvite()
                                                       .then((value) {
@@ -612,8 +621,8 @@ class DetalheConviteWidget extends StatelessWidget {
                                                           .getConvites();
                                                       showToast(
                                                           context,
-                                                          'Parabéns!',
-                                                          'Convite deletado com sucesso.');
+                                                          'Parabéns! Convite deletado com sucesso',
+                                                          '');
                                                       Get.offNamedUntil('home',
                                                           (route) => false);
                                                     } else {

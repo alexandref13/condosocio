@@ -9,6 +9,8 @@ class MapaOcorrencias {
   late String horaoco;
   late String status;
   late String tipoco;
+  late String dia;
+  late String mes;
 
   MapaOcorrencias({
     required this.id,
@@ -21,19 +23,23 @@ class MapaOcorrencias {
     required this.horaoco,
     required this.status,
     required this.tipoco,
+    required this.dia,
+    required this.mes,
   });
 
   MapaOcorrencias.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    titulo = json['titulo'];
-    desc = json['desc'];
-    imgoco = json['imgoco'];
-    data = json['data'];
-    hora = json['hora'];
-    dataoco = json['dataoco'];
-    horaoco = json['horaoco'];
-    status = json['status'];
-    tipoco = json['tipoco'];
+    id = json['id'] ?? '';
+    titulo = json['titulo'] ?? '';
+    desc = json['desc'] ?? '';
+    imgoco = json['imgoco'] ?? '';
+    data = json['data'] ?? '';
+    hora = json['hora'] ?? '';
+    dataoco = json['dataoco'] ?? '';
+    horaoco = json['horaoco'] ?? '';
+    status = json['status'] ?? '0';
+    tipoco = json['tipoco'] ?? '';
+    dia = json['dia'] ?? '';
+    mes = json['mes'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -48,6 +54,8 @@ class MapaOcorrencias {
     data['horaoco'] = this.horaoco;
     data['status'] = this.status;
     data['tipoco'] = this.tipoco;
+    data['dia'] = this.dia;
+    data['mes'] = this.mes;
     return data;
   }
 }

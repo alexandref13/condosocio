@@ -49,7 +49,36 @@ class AreasComuns extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Icon(
-                                          Icons.store_mall_directory,
+                                          areas.tipo == 'CHURRASQUEIRA'
+                                              ? Icons.store_mall_directory
+                                              : areas.tipo ==
+                                                      'QUADRA DE FUTEBOL'
+                                                  ? Icons.sports_soccer
+                                                  : areas.tipo ==
+                                                          'QUADRA DE TÊNIS'
+                                                      ? Icons.sports_tennis
+                                                      : areas.tipo ==
+                                                              'QUADRA DE VOLEY'
+                                                          ? Icons
+                                                              .sports_volleyball
+                                                          : areas.tipo ==
+                                                                  'QUADRA POLIESPORTIVA'
+                                                              ? Icons
+                                                                  .sports_basketball
+                                                              : areas.tipo ==
+                                                                      'QUIOSQUE'
+                                                                  ? Icons
+                                                                      .local_dining
+                                                                  : areas.tipo ==
+                                                                          'SALÃO DE FESTA'
+                                                                      ? Icons
+                                                                          .cake
+                                                                      : areas.tipo ==
+                                                                              'SALÃO GOURMET'
+                                                                          ? Icons
+                                                                              .local_bar
+                                                                          : Icons
+                                                                              .person,
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor!,

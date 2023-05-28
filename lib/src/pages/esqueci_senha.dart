@@ -6,7 +6,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:ui';
 
 class Esqueci extends StatefulWidget {
   @override
@@ -171,7 +170,7 @@ class _EsqueciState extends State<Esqueci> {
                                               context,
                                               "E-mail não existe em nosso banco de dados!Tente novamente.",
                                               '',
-                                              'sim');
+                                              'images/error.png');
                                         }
                                       });
                                     }

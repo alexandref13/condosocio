@@ -38,7 +38,7 @@ class DetalhesOuvidoria extends StatelessWidget {
 
                             return Column(
                               children: [
-                                resposta.idusuraiz != null
+                                resposta.idusuraiz != ''
                                     ? Container(
                                         alignment: Alignment(1, 0),
                                         padding:

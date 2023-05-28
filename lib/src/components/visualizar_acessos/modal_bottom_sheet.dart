@@ -4,10 +4,7 @@ import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:flutter/material.dart';
-
-//import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
-
 import '../../controllers/acessos/acessos_controller_espera.dart';
 import '../../controllers/esperaacessos/visualizar_acessos_espera_controller.dart';
 
@@ -25,6 +22,7 @@ void configurandoModalBottomSheet(
   String imgfacial,
   String idvis,
   String espera,
+  String heroTag,
 ) {
   showModalBottomSheet(
       context: context,
@@ -52,37 +50,49 @@ void configurandoModalBottomSheet(
             child: Wrap(
               children: <Widget>[
                 ListTile(
-                  leading: imgfacial == null
+                  leading: imgfacial == ''
                       ? tipo == "App Mobilidade"
                           ? new Icon(
                               Icons.car_crash_outlined,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor!,
-                              size: 24,
+                              size: 40,
                             )
                           : new Icon(
                               Icons.person,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor!,
-                              size: 30,
+                              size: 40,
                             )
-                      : Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                tipo == 'Morador'
-                                    ? 'https://www.alvocomtec.com.br/acond/downloads/fotosperfil/$imgfacial'
-                                    : 'https://www.alvocomtec.com.br/acond/downloads/fotosvisitantes/$imgfacial',
+                      : GestureDetector(
+                          onTap: () {
+                            if (imgfacial != '') {
+                              Navigator.of(context).pop();
+                              Get.toNamed('/facialacesso');
+                            }
+                          },
+                          child: Hero(
+                            transitionOnUserGestures: true,
+                            tag:
+                                heroTag, // Defina um tag exclusivo para cada imagem
+                            child: Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    tipo == 'Morador'
+                                        ? 'https://www.alvocomtec.com.br/acond/downloads/fotosperfil/$imgfacial'
+                                        : 'https://www.alvocomtec.com.br/acond/downloads/fotosvisitantes/$imgfacial',
+                                  ),
+                                ),
                               ),
-                              // image: AssetImage('images/user.png'),
                             ),
                           ),
                         ),
-                  trailing: imgfacial != null
+                  trailing: imgfacial != ''
                       ? Icon(
                           Icons.arrow_right,
                           color: Theme.of(context)
@@ -92,11 +102,20 @@ void configurandoModalBottomSheet(
                       : Text(''),
                   title: Text(
                     pessoa,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                    ),
                   ),
                   subtitle: Text(
                     tipo,
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor,
+                    ),
                   ),
                   onTap: () {
                     acessosController.imgfacial.value = imgfacial;
@@ -105,7 +124,7 @@ void configurandoModalBottomSheet(
                         : acessosController.tipoimgfacial.value =
                             "fotosvisitantes";
 
-                    if (imgfacial != null) {
+                    if (imgfacial != '') {
                       Navigator.of(context).pop();
                       Get.toNamed('/facialacesso');
                     }
@@ -130,8 +149,24 @@ void configurandoModalBottomSheet(
                         ),
                         title: Obx(
                           () => visualizarAcessosController.fav.value == true
-                              ? Text('Remover Favorito')
-                              : Text('Adicionar à Favoritos'),
+                              ? Text(
+                                  'Remover Favorito',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                )
+                              : Text(
+                                  'Adicionar à Favoritos',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor,
+                                  ),
+                                ),
                         ),
                         trailing: Icon(
                           Icons.arrow_right,

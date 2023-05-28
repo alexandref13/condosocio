@@ -39,9 +39,9 @@ class VisualizarReservas extends StatelessWidget {
                             //child: Icon(Icons.block, size: 34, color: Colors.red[900]),
                           ),
                           Text(
-                            'Sem registros',
+                            'Ainda não foi feita\nnenhuma reserva!',
                             style: GoogleFonts.montserrat(
-                              fontSize: 14.0,
+                              fontSize: 18,
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor!,
@@ -137,7 +137,7 @@ class VisualizarReservas extends StatelessWidget {
                                             bottom: 5,
                                           ),
                                           child: Text(
-                                            '${newData[2]}/${newData[1]}/${newData[0]} ${reservas.horaAgenda}h',
+                                            '${reservas.semana}, ${newData[2]}/${newData[1]}/${newData[0]} às ${reservas.horaAgenda}h',
                                             style: GoogleFonts.montserrat(
                                               fontSize: 12,
                                               color: Colors.black,
@@ -202,7 +202,7 @@ class VisualizarReservas extends StatelessWidget {
                                             bottom: 5,
                                           ),
                                           child: Text(
-                                            '${newData[2]}/${newData[1]}/${newData[0]} ${reservas.horaAgenda}h',
+                                            '${reservas.semana}, ${newData[2]}/${newData[1]}/${newData[0]} às ${reservas.horaAgenda}h',
                                             style: GoogleFonts.montserrat(
                                               fontSize: 12,
                                               color: Theme.of(context)
