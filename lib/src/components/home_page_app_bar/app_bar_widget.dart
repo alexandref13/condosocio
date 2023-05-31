@@ -25,12 +25,11 @@ class AppBarWidget extends PreferredSize {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: Icon(
-                          Icons.menu,
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor!,
-                        ),
+                        icon: Icon(Icons.menu,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                            size: 28),
                         onPressed: onTap,
                       ),
                       Container(

@@ -42,25 +42,25 @@ class MapaAcessosEspera {
   });
 
   MapaAcessosEspera.fromJson(Map<String, dynamic> json) {
-    idfav = json['idfav'];
-    pessoa = json['pessoa'];
-    idace = json['idace'];
-    placa = json['placa'];
-    tipodoc = json['tipodoc'];
-    documento = json['documento'];
-    datahora = json['datahora'];
-    nomedep = json['nome_dep'];
-    dataent = json['dataent'];
-    datasai = json['datasai'];
-    tipopessoa = json['tipopessoa'];
-    cel = json['cel'];
-    idconv = json['idconv'];
-    imgfacial = json['imgfacial'];
-    idvis = json['idvis'];
-    ctlfacial = json['ctlfacial'];
-    ctlreg = json['ctlreg'];
-    portao = json['portao'];
-    acessotipo = json['acessotipo'];
+    idfav = json['idfav'] ?? '';
+    pessoa = json['pessoa'] ?? '';
+    idace = json['idace'] ?? '';
+    placa = json['placa'] ?? '';
+    tipodoc = json['tipodoc'] ?? '';
+    documento = json['documento'] ?? '';
+    datahora = json['datahora'] ?? '';
+    nomedep = json['nome_dep'] ?? '';
+    dataent = json['dataent'] ?? '';
+    datasai = json['datasai'] ?? '';
+    tipopessoa = json['tipopessoa'] ?? '';
+    cel = json['cel'] ?? '';
+    idconv = json['idconv'] ?? '';
+    imgfacial = json['imgfacial'] ?? '';
+    idvis = json['idvis'] ?? '';
+    ctlfacial = json['ctlfacial'] ?? '';
+    ctlreg = json['ctlreg'] ?? '';
+    portao = json['portao'] ?? '';
+    acessotipo = json['acessotipo'] ?? '';
   }
 
   Map<String, dynamic> toJson() {

@@ -96,7 +96,9 @@ class DetalhesAcheAqui extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  detalhes.mediaAvaliacoes,
+                                  detalhes.mediaAvaliacoes != 'nan'
+                                      ? detalhes.mediaAvaliacoes
+                                      : '',
                                   style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     color: Theme.of(context)

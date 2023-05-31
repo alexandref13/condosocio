@@ -95,7 +95,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                   ListTile(
                       title: Center(
                           child: Text(
-                    "Inserir Imagem",
+                    "Anexar Imagem",
                     style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -141,7 +141,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                             .textSelectionTheme
                             .selectionColor!),
                     title: new Text(
-                      'Galeria de Fotos',
+                      'Galeria',
                       style: GoogleFonts.montserrat(
                         fontSize: 16,
                         color: Theme.of(context)
@@ -234,8 +234,8 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                         margin: EdgeInsets.symmetric(horizontal: 10),
                         child: customTextField(
                           context,
-                          'Titulo',
                           '',
+                          'Titulo',
                           false,
                           1,
                           true,
@@ -281,7 +281,6 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                         onTap: () async {
                           startSelectedTime = (await selectTime(context))!;
                           if (startSelectedTime == null) return;
-
                           setState(() {
                             startSelectedDate = DateTime(
                                 startSelectedDate.year,
@@ -313,8 +312,8 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                         margin: EdgeInsets.symmetric(horizontal: 10),
                         child: customTextField(
                           context,
-                          'Descrição',
                           '',
+                          'Descrição',
                           true,
                           5,
                           true,
@@ -442,22 +441,24 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                                       : selectedFile!.path,
                                 )
                                     .then((value) {
-                                  print('valor $value');
                                   if (value == 'vazio') {
-                                    onAlertButtonPressed(context,
-                                        'Campo Obrigatório Vazio', '', 'sim');
+                                    onAlertButtonPressed(
+                                        context,
+                                        'Campo Obrigatório Vazio',
+                                        '',
+                                        'images/error.png');
                                   } else if (value == '1') {
                                     confirmedButtonPressed(
                                       context,
                                       'Sua Ocorrência foi Enviada com Sucesso!',
-                                      '',
+                                      'ocorrencias',
                                     );
                                   } else {
                                     onAlertButtonPressed(
                                         context,
                                         'Houve algum problema!\n Tente novamente',
                                         '/home',
-                                        'sim');
+                                        'images/error.png');
                                   }
                                 });
                               },

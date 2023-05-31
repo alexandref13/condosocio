@@ -393,14 +393,7 @@ class Login extends StatelessWidget {
                                                           .nome.value,
                                                       'sobrenome':
                                                           loginController
-                                                              .sobrenome.value,
-                                                      'idcond': loginController
-                                                          .idcond.value,
-                                                      'tipousuario':
-                                                          loginController
-                                                              .tipo.value,
-                                                      'genero': loginController
-                                                          .genero.value,
+                                                              .idcond.value,
                                                     };
 
                                                     OneSignal.shared

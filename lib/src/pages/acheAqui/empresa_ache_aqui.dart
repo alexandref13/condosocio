@@ -10,6 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import '../../components/utils/edge_alert_error_widget.dart';
+import '../../controllers/home_page_controller.dart';
+import '../../controllers/login_controller.dart';
 
 class EmpresaAcheAqui extends StatelessWidget {
   @override
@@ -17,6 +19,8 @@ class EmpresaAcheAqui extends StatelessWidget {
     AcheAquiController acheAquiController = Get.put(AcheAquiController());
     DetalhesAcheAquiController detalhesAcheAquiController =
         Get.put(DetalhesAcheAquiController());
+    final HomePageController homePageController = Get.put(HomePageController());
+    final LoginController loginController = Get.put(LoginController());
 
     return DefaultTabController(
       length: 2,
@@ -114,15 +118,23 @@ class EmpresaAcheAqui extends StatelessWidget {
                     .replaceAll("-", "")
                     .replaceAll(" ", "");
 
-                var message =
-                    'Encontrei a sua empresa pelo aplicativo *CondoSócio*';
+                var message = 'Sou ' +
+                    loginController.nome.value +
+                    ', encontrei a sua empresa através do *Ache Aqui* no aplicativo *CondoSócio*. Gostaria de obter mais informações, por favor.';
 
-                /* FlutterOpenWhatsapp.sendSingleMessage(
-                  celular.length == 11 ? '55$celular' : celular,
-                  Uri.encodeFull(
-                    message,
-                  ),
-                );*/
+                // Remova qualquer caractere especial da mensagem
+                message = Uri.encodeComponent(message);
+
+                // Substitua os espaços por "%20" para URL
+                message = message.replaceAll(' ', '%20');
+
+                homePageController.launched =
+                    homePageController.launchInBrowser(
+                  'https://api.whatsapp.com/send?phone=55' +
+                      celular +
+                      '&text=' +
+                      message,
+                );
               },
             ),
             SpeedDialChild(

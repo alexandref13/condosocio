@@ -102,18 +102,13 @@ class AuthController extends GetxController {
               var sendTags = {
                 'idusu': loginController.id.value,
                 'nome': loginController.nome.value,
-                'sobrenome': loginController.sobrenome.value,
-                'idcond': loginController.idcond.value,
-                'tipousuario': loginController.tipo.value,
-                'genero': loginController.genero.value,
-                'tipoun': loginController.tipoun.value,
-                'logradouro': loginController.logradouro.value,
+                'sobrenome': loginController.idcond.value,
               };
 
               OneSignal.shared.sendTags(sendTags).then((response) {
                 print("Successfully sent tags with response: $response");
               }).catchError((error) {
-                print("Encountered an error sending tags: $error");
+                print("Auth Encountered an error sending tags: $error");
               });
 
               if (rota.value.text == "") {

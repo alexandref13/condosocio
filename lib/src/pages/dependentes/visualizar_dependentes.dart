@@ -229,7 +229,12 @@ class VisualizarDependentes extends StatelessWidget {
                                                         .size
                                                         .width *
                                                     0.05,
-                                                child: Icon(Icons.arrow_right),
+                                                child: Icon(
+                                                  Icons.arrow_right,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor!,
+                                                ),
                                               )
                                             ],
                                           ),
@@ -349,7 +354,10 @@ class VisualizarDependentes extends StatelessWidget {
                                                         .size
                                                         .width *
                                                     0.05,
-                                                child: Icon(Icons.arrow_right),
+                                                child: Icon(Icons.arrow_right,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor!),
                                               )
                                             ],
                                           ),

@@ -7,7 +7,6 @@ import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:condosocio/src/pages/home/home_widget_bottomtab.dart';
 import 'package:flutter/services.dart';
-
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,9 +14,7 @@ import 'dart:io';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
-
 import '../../components/utils/edge_alert_error_widget.dart';
-import '../../controllers/perfil_controller.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -243,7 +240,10 @@ class _HomePageState extends State<HomePage> {
                         child: Text(
                   "Alterar Imagem",
                   style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.w600, fontSize: 18),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      color:
+                          Theme.of(context).textSelectionTheme.selectionColor!),
                 ))),
                 Divider(
                   height: 20,
@@ -255,7 +255,14 @@ class _HomePageState extends State<HomePage> {
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
-                    title: new Text('Câmera'),
+                    title: new Text(
+                      'Câmera',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!),
+                    ),
                     trailing: new Icon(
                       Icons.arrow_right,
                       color:
@@ -271,7 +278,14 @@ class _HomePageState extends State<HomePage> {
                         color: Theme.of(context)
                             .textSelectionTheme
                             .selectionColor!),
-                    title: new Text('Galeria de Fotos'),
+                    title: new Text(
+                      'Galeria',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!),
+                    ),
                     trailing: new Icon(Icons.arrow_right,
                         color: Theme.of(context)
                             .textSelectionTheme

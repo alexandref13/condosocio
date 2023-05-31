@@ -157,18 +157,13 @@ class LoginController extends GetxController {
       var sendTags = {
         'idusu': id.value,
         'nome': nome.value,
-        'sobrenome': sobrenome.value,
-        'idcond': idcond.value,
-        'tipousuario': tipo.value,
-        'genero': genero.value,
-        'tipoun': tipoun.value,
-        'logradouro': logradouro.value,
+        'sobrenome': idcond.value,
       };
 
       OneSignal.shared.sendTags(sendTags).then((response) {
         print("Successfully sent tags with response: $response");
       }).catchError((error) {
-        print("Encountered an error sending tags: $error");
+        print("Login Encountered an error sending tags: $error");
       });
 
       storageId();

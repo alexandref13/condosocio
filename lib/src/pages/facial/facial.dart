@@ -6,11 +6,13 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:http/http.dart' as http;
-
+import '../../components/utils/alert_button_pressed.dart';
+import '../../components/utils/confirmed_button_pressed.dart';
 import '../../components/utils/edge_alert_error_widget.dart';
+import '../../components/utils/edge_alert_widget.dart';
 import '../../controllers/facial_controller.dart';
+import '../../controllers/ouvidoria/ouvidoria_controller.dart';
 
 class Facial extends StatefulWidget {
   @override
@@ -20,12 +22,13 @@ class Facial extends StatefulWidget {
 class _FacialState extends State<Facial> {
   LoginController loginController = Get.put(LoginController());
   FacialController facialController = Get.put(FacialController());
+  OuvidoriaController ouvidoriaController = Get.put(OuvidoriaController());
 
-  File? _selectedFile;
   final _picker = ImagePicker();
+  File? _selectedFile;
 
   final uri =
-      Uri.parse("https://www.alvocomtec.com.br/flutter/upload_imagem.php");
+      Uri.parse("https://alvocomtec.com.br/flutter/upload_imagem_facial.php");
 
   void refreshPage() {
     setState(() {
@@ -119,43 +122,49 @@ class _FacialState extends State<Facial> {
               : Hero(
                   tag: 'fotoFacial',
                   transitionOnUserGestures: true,
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(left: 105, bottom: 0),
-                          child: Center(
-                            child: loginController.ctlfacial.value != "1" &&
-                                    loginController.imgfacial.value == ''
-                                ? Icon(
-                                    Icons.edit,
-                                    size: 20,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                  )
-                                : Icon(
-                                    Icons.search,
-                                    size: 20,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                  ),
+                  child: Material(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    borderRadius: BorderRadius.circular(10),
+                    elevation: 10,
+                    color: Theme.of(context).primaryColor,
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: 105, bottom: 0),
+                            child: Center(
+                              child: loginController.ctlfacial.value != "1" &&
+                                      loginController.imgfacial.value == ''
+                                  ? Icon(
+                                      Icons.edit,
+                                      size: 20,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor!,
+                                    )
+                                  : Icon(
+                                      Icons.search,
+                                      size: 20,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor!,
+                                    ),
+                            ),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
                           ),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
+                        ],
+                      ),
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),
                         ),
-                      ],
-                    ),
-                    width: 120,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),
                       ),
                     ),
                   ),
@@ -186,25 +195,29 @@ class _FacialState extends State<Facial> {
         _selectedFile = cropped;
         if (cropped != null) {
           uploadImage();
-          refreshPage();
+          //Get.back();
+          Get.toNamed('/facial');
         }
       });
     }
   }
 
   Future uploadImage() async {
-    facialController.isLoading.value = true;
     var request = http.MultipartRequest('POST', uri);
     request.fields['idusu'] = loginController.id.value;
     var pic = await http.MultipartFile.fromPath("image", _selectedFile!.path);
+    print(" meu arquivo => ${_selectedFile!.path}");
     request.files.add(pic);
     var response = await request.send();
+    print(response.request);
     if (response.statusCode == 200) {
       loginController.newLogin(loginController.id.value);
-      showToastError(context, 'Imagem Facial Inserida com Sucesso!');
+      showToast(context, 'Parabéns!', 'Imagem Facial Enviada com Sucesso!');
+    } else if (response.statusCode == 404) {
+      loginController.imgfacial.value = '';
     } else {
       Navigator.of(context).pop();
-      showToastError(context, 'Houve Algum Problema! Tente Novamente!');
+      showToastError(context, 'Houve Algum Problema! Tente novamente');
     }
     _selectedFile = null;
   }
@@ -252,7 +265,7 @@ class _FacialState extends State<Facial> {
                                             ? Text(
                                                 'Clique para fazer o selfie',
                                                 style: GoogleFonts.montserrat(
-                                                  fontSize: 14,
+                                                  fontSize: 10,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
                                                       .selectionColor!,
@@ -261,7 +274,7 @@ class _FacialState extends State<Facial> {
                                             : Text(
                                                 'Clique para ampliar imagem',
                                                 style: GoogleFonts.montserrat(
-                                                  fontSize: 14,
+                                                  fontSize: 10,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
                                                       .selectionColor!,
@@ -289,77 +302,77 @@ class _FacialState extends State<Facial> {
                                             Text(
                                               'Para inserir a sua biometria facial, siga os passos abaixo:',
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                              ),
+                                                  fontSize: 12,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor!,
+                                                  fontWeight: FontWeight.w500),
                                             ),
-                                            SizedBox(height: 16.0),
+                                            SizedBox(height: 18.0),
                                             Text(
                                               '1) Clique na imagem acima:',
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor!,
                                               ),
                                             ),
-                                            SizedBox(height: 8.0),
+                                            SizedBox(height: 18.0),
                                             Text(
                                               '2) Ao clicar na imagem, a câmera do seu dispositivo será ativada automaticamente.',
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor!,
                                               ),
                                             ),
-                                            SizedBox(height: 8.0),
+                                            SizedBox(height: 18.0),
                                             Text(
                                               '3) Posicione-se em frente, olhe diretamente para a câmera e faça um selfie, garantindo que seu rosto esteja bem visível.',
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor!,
                                               ),
                                             ),
-                                            SizedBox(height: 8.0),
+                                            SizedBox(height: 18.0),
                                             Text(
                                               '4) Não utilize máscaras faciais ou óculos durante a captura da imagem.',
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor!,
                                               ),
                                             ),
-                                            SizedBox(height: 8.0),
+                                            SizedBox(height: 18.0),
                                             Text(
                                               '5) Garanta que a imagem capturada esteja nítida e bem iluminada, para garantir uma identificação precisa.',
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor!,
                                               ),
                                             ),
-                                            SizedBox(height: 8.0),
+                                            SizedBox(height: 18.0),
                                             Text(
                                               '6) Após capturar o selfie, você poderá revisar a imagem e confirmar se está satisfeito com ela.',
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor!,
                                               ),
                                             ),
-                                            SizedBox(height: 8.0),
+                                            SizedBox(height: 18.0),
                                             Text(
                                               '7) Caso esteja satisfeito, prossiga com o envio da foto. Caso contrário, repita o processo para obter uma nova imagem.',
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor!,
@@ -368,7 +381,7 @@ class _FacialState extends State<Facial> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 16.0),
+                                      /*SizedBox(height: 16.0),
                                       Container(
                                         padding: EdgeInsets.all(16.0),
                                         color: Colors.amber,
@@ -379,7 +392,7 @@ class _FacialState extends State<Facial> {
                                               fontSize: 14.0,
                                               color: Colors.black87),
                                         ),
-                                      ),
+                                      ),*/
                                     ],
                                   ),
                                 )
@@ -393,7 +406,7 @@ class _FacialState extends State<Facial> {
                                         padding: EdgeInsets.all(20),
                                         // color: Colors.amber,
                                         child: Text(
-                                          'Para alterar a imagem da sua biometria facial, solicitamos que você entre em contato com a administração condominial.',
+                                          'Para garantir a segurança, é necessário solicitar a autorização da administração do condomínio para realizar a alteração da imagem da sua biometria facial.',
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(
                                             fontSize: 16.0,
@@ -402,6 +415,91 @@ class _FacialState extends State<Facial> {
                                                 .selectionColor!,
                                           ),
                                         ),
+                                      ),
+                                      Center(
+                                        child: Container(
+                                            padding: EdgeInsets.all(20),
+                                            child: ButtonTheme(
+                                              height: 50.0,
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty
+                                                          .resolveWith<Color>(
+                                                    (Set<MaterialState>
+                                                        states) {
+                                                      return Theme.of(context)
+                                                          .colorScheme
+                                                          .secondary;
+                                                    },
+                                                  ),
+                                                  elevation:
+                                                      MaterialStateProperty
+                                                          .resolveWith<
+                                                              double>((Set<
+                                                                  MaterialState>
+                                                              states) {
+                                                    return 3;
+                                                  }),
+                                                  shape: MaterialStateProperty
+                                                      .resolveWith<
+                                                          OutlinedBorder>(
+                                                    (Set<MaterialState>
+                                                        states) {
+                                                      return RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10.0),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  ouvidoriaController
+                                                          .message.value.text =
+                                                      'Solicito o reset de minha imagem facial (mensagem pelo app)';
+                                                  ouvidoriaController
+                                                          .itemSelecionado
+                                                          .value =
+                                                      'Alteração facial';
+                                                  ouvidoriaController
+                                                      .sendOuvidoria()
+                                                      .then(
+                                                    (response) {
+                                                      if (response == 1) {
+                                                        confirmedButtonPressed(
+                                                          context,
+                                                          'Enviado com sucesso!',
+                                                          'ouvidoria',
+                                                        );
+                                                      } else if (response ==
+                                                          'vazio') {
+                                                        onAlertButtonPressed(
+                                                            context,
+                                                            'Assunto e Mensagem são campos obrigátorios',
+                                                            '',
+                                                            'images/error.png');
+                                                      } else {
+                                                        onAlertButtonPressed(
+                                                            context,
+                                                            'Algo deu errado\n Tente novamente',
+                                                            '/home',
+                                                            'images/error.png');
+                                                      }
+                                                    },
+                                                  );
+                                                },
+                                                child: Text(
+                                                  "Solicitar Alteração da Imagem",
+                                                  style: GoogleFonts.montserrat(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionColor!,
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
                                       ),
                                     ])),
                         ],

@@ -193,8 +193,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                             visible: _isVisible,
                             child: customTextField(
                               context,
-                              'Nome',
                               '',
+                              'Nome',
                               false,
                               1,
                               true,
@@ -206,8 +206,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                           ),
                           customTextField(
                             context,
-                            'Sobrenome',
                             '',
+                            'Sobrenome',
                             false,
                             1,
                             true,

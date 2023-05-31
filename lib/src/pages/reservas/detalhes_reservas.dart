@@ -120,7 +120,7 @@ class DetalhesReservas extends StatelessWidget {
                   children: [
                     Center(
                       child: Container(
-                        height: MediaQuery.of(context).size.height * .3,
+                        height: MediaQuery.of(context).size.height * .33,
                         width: MediaQuery.of(context).size.width * .9,
                         child: Card(
                           color: detalhesReservasController.status.value ==
@@ -276,36 +276,23 @@ class DetalhesReservas extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 14,
-                                  horizontal: 10,
-                                ),
-                                child: Row(
-                                  children: [
-                                    detalhesReservasController.status.value ==
-                                            "Recusado"
-                                        ? Text(
-                                            'Motivo: ',
+                              detalhesReservasController.status.value ==
+                                      "Recusado"
+                                  ? Container(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 14,
+                                        horizontal: 10,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            'MOTIVO: ',
                                             style: GoogleFonts.montserrat(
                                               fontSize: 12,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
                                             ),
-                                          )
-                                        : Container(),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
+                                          ),
                                           Text(
                                             detalhesReservasController
                                                 .respevent.value,
@@ -316,10 +303,8 @@ class DetalhesReservas extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              )
+                                    )
+                                  : Container(),
                             ],
                           ),
                         ),

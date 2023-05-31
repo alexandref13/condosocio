@@ -187,13 +187,12 @@ class _ComunicadosState extends State<Comunicados> {
                                           ),
                                         ),
                                       ),
-                                      trailing: IconButton(
-                                        icon: Icon(Icons.download),
+                                      trailing: Icon(
+                                        Icons.download,
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor!,
-                                        iconSize: 36,
-                                        onPressed: () {},
+                                        size: 26,
                                       )),
                                 ),
                               );
@@ -266,13 +265,12 @@ class _ComunicadosState extends State<Comunicados> {
                                           ),
                                         ),
                                       ),
-                                      trailing: IconButton(
-                                        icon: Icon(Icons.download),
+                                      trailing: Icon(
+                                        Icons.download,
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor!,
-                                        iconSize: 26,
-                                        onPressed: () {},
+                                        size: 26,
                                       )),
                                 ),
                               );

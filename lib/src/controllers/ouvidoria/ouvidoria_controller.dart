@@ -20,7 +20,7 @@ class OuvidoriaController extends GetxController {
     'Boleto 2ª via',
     'Acordo para pagamento',
     'Alteração de titularidade',
-    'Alteração de usuário',
+    'Alteração facial',
     'Outro'
   ];
   var itemSelecionado = 'Selecione'.obs;

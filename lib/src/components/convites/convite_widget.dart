@@ -303,6 +303,22 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                           Spacer(),
                         ],
                       ),
+                      Center(
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            convitesController.isChecked.value == true
+                                ? 'Com o acesso livre, os convidados têm a liberdade de entrar e sair quantas vezes desejarem durante todo o período do evento.'
+                                : 'Com o único acesso, os convidados terão permissão para entrar no evento apenas uma vez durante todo o período.',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor!,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ),
                       Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 10),

@@ -241,17 +241,20 @@ class _AddReservasState extends State<AddReservas> {
                                         context,
                                         'Campo Nome do Evento, Hora Inicial ou Termos de Uso vazio(s)!',
                                         '',
-                                        'sim');
+                                        'images/error.png');
                                   } else if (value == 'hora invalida') {
-                                    onAlertButtonPressed(context,
-                                        'Hora Inicial Inválida!', '', 'sim');
+                                    onAlertButtonPressed(
+                                        context,
+                                        'Hora Inicial Inválida!',
+                                        '',
+                                        'images/error.png');
                                   } else {
                                     if (value == 3) {
                                       onAlertButtonPressed(
                                           context,
                                           'Horário indisponível\n Tente outro horário',
                                           '/home',
-                                          'sim');
+                                          'images/error.png');
                                     }
                                     if (value == 1) {
                                       confirmedButtonPressed(
@@ -265,7 +268,7 @@ class _AddReservasState extends State<AddReservas> {
                                           context,
                                           'Algo deu errado \n Tente novamente',
                                           '/home',
-                                          'sim');
+                                          'images/error.png');
                                     }
                                   }
                                 });

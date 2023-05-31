@@ -190,7 +190,7 @@ class VisualizarReservas extends StatelessWidget {
                                           child: Text(
                                             reservas.areacom,
                                             style: GoogleFonts.montserrat(
-                                              fontSize: 12,
+                                              fontSize: 10,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
                                                   .selectionColor!,
@@ -204,7 +204,7 @@ class VisualizarReservas extends StatelessWidget {
                                           child: Text(
                                             '${reservas.semana}, ${newData[2]}/${newData[1]}/${newData[0]} às ${reservas.horaAgenda}h',
                                             style: GoogleFonts.montserrat(
-                                              fontSize: 12,
+                                              fontSize: 10,
                                               color: Theme.of(context)
                                                   .textSelectionTheme
                                                   .selectionColor!,

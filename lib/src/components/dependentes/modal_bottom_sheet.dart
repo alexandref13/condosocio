@@ -2,7 +2,6 @@ import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/components/utils/whatsapp_send.dart';
-import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +24,7 @@ void dependentesModalBottomSheet(
       builder: (BuildContext bc) {
         DependentesController dependentesController =
             Get.put(DependentesController());
-        VisualizarConvitesController visualizarConvitesController =
-            Get.put(VisualizarConvitesController());
+
         LoginController loginController = Get.put(LoginController());
         return Container(
           color: Theme.of(context).colorScheme.secondary,
@@ -43,7 +41,7 @@ void dependentesModalBottomSheet(
                                   Container(
                                     margin: EdgeInsets.only(left: 10, top: 10),
                                     child: Icon(
-                                      Icons.person,
+                                      Icons.person_outline,
                                       color: Theme.of(context)
                                           .textSelectionTheme
                                           .selectionColor!,
@@ -81,11 +79,21 @@ void dependentesModalBottomSheet(
                       title: Text(
                         '$nome $sobrenome\n($tipousuario)',
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 14),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                        ),
                       ),
                       subtitle: Text(
                         tipousuario == 'Morador' ? email : cel,
-                        style: TextStyle(fontSize: 14),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                        ),
                       )),
                   Divider(
                     height: 20,
@@ -105,7 +113,7 @@ void dependentesModalBottomSheet(
                                     )),
                                     elevation: MaterialStateProperty.all(0),
                                     backgroundColor: MaterialStateProperty.all(
-                                      Theme.of(context).splashColor,
+                                      Theme.of(context).primaryColorDark,
                                     )),
                                 onPressed: () {
                                   deleteAlert(
@@ -119,8 +127,8 @@ void dependentesModalBottomSheet(
                                                 .getDependentes();
                                             showToast(
                                               context,
-                                              'Parabéns!',
-                                              'Face resetada com sucesso.',
+                                              'Parabéns! Face resetada com sucesso.',
+                                              '',
                                             );
                                             Get.back();
                                             Get.back();
@@ -129,7 +137,7 @@ void dependentesModalBottomSheet(
                                                 context,
                                                 'Algo deu errado\n Tente novamente',
                                                 '/home',
-                                                'sim');
+                                                'images/error.png');
                                           }
                                         },
                                       );
@@ -139,7 +147,7 @@ void dependentesModalBottomSheet(
                                 child: Text(
                                   "Resetar Face ",
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 18),
+                                      color: Colors.white, fontSize: 16),
                                 ),
                               )),
                         )
@@ -159,7 +167,7 @@ void dependentesModalBottomSheet(
                                         elevation: MaterialStateProperty.all(0),
                                         backgroundColor:
                                             MaterialStateProperty.all(
-                                          Theme.of(context).splashColor,
+                                          Theme.of(context).primaryColorDark,
                                         )),
                                     onPressed: () {
                                       var celular = cel
@@ -189,15 +197,15 @@ void dependentesModalBottomSheet(
                                                 context,
                                                 'Algo deu errado\n Tente novamente',
                                                 '/home',
-                                                'sim');
+                                                'images/error.png');
                                           }
                                         },
                                       );
                                     },
                                     child: Text(
-                                      "Enviar link via Whatsapp",
+                                      "Enviar Via Whatsapp",
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 18),
+                                          color: Colors.white, fontSize: 16),
                                     ),
                                   )),
                             )
@@ -216,7 +224,7 @@ void dependentesModalBottomSheet(
                                         elevation: MaterialStateProperty.all(0),
                                         backgroundColor:
                                             MaterialStateProperty.all(
-                                          Theme.of(context).splashColor,
+                                          Theme.of(context).primaryColorDark,
                                         )),
                                     onPressed: () {
                                       dependentesController
@@ -225,17 +233,17 @@ void dependentesModalBottomSheet(
                                         dependentesController.getDependentes();
                                         showToast(
                                           context,
-                                          'Parabéns!',
-                                          value,
+                                          'Parabéns! ' + value,
+                                          '',
                                         );
                                         Get.back();
                                         Get.back();
                                       });
                                     },
                                     child: Text(
-                                      "Reenviar e-mail",
+                                      "Reenviar E-mail",
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 18),
+                                          color: Colors.white, fontSize: 16),
                                     ),
                                   )),
                             ),
@@ -256,7 +264,7 @@ void dependentesModalBottomSheet(
                                     )),
                                     elevation: MaterialStateProperty.all(0),
                                     backgroundColor: MaterialStateProperty.all(
-                                      Theme.of(context).splashColor,
+                                      Theme.of(context).primaryColorDark,
                                     )),
                                 onPressed: () {
                                   dependentesController
@@ -269,7 +277,7 @@ void dependentesModalBottomSheet(
                                 child: Text(
                                   "Suspender",
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 18),
+                                      color: Colors.white, fontSize: 16),
                                 ),
                               )),
                         )
@@ -286,7 +294,7 @@ void dependentesModalBottomSheet(
                                     )),
                                     elevation: MaterialStateProperty.all(0),
                                     backgroundColor: MaterialStateProperty.all(
-                                      Theme.of(context).splashColor,
+                                      Theme.of(context).primaryColorDark,
                                     )),
                                 onPressed: () {
                                   dependentesController
@@ -299,7 +307,7 @@ void dependentesModalBottomSheet(
                                 child: Text(
                                   "Normalizar",
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 18),
+                                      color: Colors.white, fontSize: 16),
                                 ),
                               )),
                         ),
@@ -332,8 +340,8 @@ void dependentesModalBottomSheet(
                                       dependentesController.getDependentes();
                                       showToast(
                                         context,
-                                        'Parabéns!',
-                                        'Usuário excluído com sucesso.',
+                                        'Parabéns! Usuário excluído com sucesso.',
+                                        '',
                                       );
                                       Get.back();
                                       Get.back();
@@ -342,7 +350,7 @@ void dependentesModalBottomSheet(
                                           context,
                                           'Algo deu errado\n Tente novamente',
                                           '/home',
-                                          'sim');
+                                          'images/error.png');
                                     }
                                   },
                                 );
@@ -351,7 +359,7 @@ void dependentesModalBottomSheet(
                           },
                           child: Text(
                             "Excluir",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                         )),
                   ),

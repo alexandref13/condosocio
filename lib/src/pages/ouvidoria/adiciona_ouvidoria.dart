@@ -125,20 +125,20 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                                       confirmedButtonPressed(
                                         context,
                                         'Enviado com sucesso!',
-                                        '',
+                                        'ouvidoria',
                                       );
                                     } else if (response == 'vazio') {
                                       onAlertButtonPressed(
                                           context,
                                           'Assunto e Mensagem são campos obrigátorios',
                                           '',
-                                          'sim');
+                                          'images/error.png');
                                     } else {
                                       onAlertButtonPressed(
                                           context,
                                           'Algo deu errado\n Tente novamente',
                                           '/home',
-                                          'sim');
+                                          'images/error.png');
                                     }
                                   },
                                 );

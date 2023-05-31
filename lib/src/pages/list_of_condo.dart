@@ -41,14 +41,8 @@ class ListOfCondo extends StatelessWidget {
                             var sendTags = {
                               'idusu': loginController.newId.value,
                               'nome': loginController.nomeusu.value,
-                              'sobrenome': loginController.sobrenomeusu.value,
-                              'idcond': loginController.idcond.value,
-                              'tipousuario': loginController.tipo.value,
-                              'genero': loginController.genero.value,
-                              'tipoun': loginController.tipoun.value,
-                              'logradouro': loginController.logradouro.value,
+                              'sobrenome': loginController.idcond.value,
                             };
-
                             OneSignal.shared
                                 .sendTags(sendTags)
                                 .then((response) {
@@ -56,7 +50,7 @@ class ListOfCondo extends StatelessWidget {
                                   "Successfully sent tags with response: $response");
                             }).catchError((error) {
                               print(
-                                  "Encountered an error sending tags: $error");
+                                  "List_Condo Encountered an error sending tags: $error");
                             });
                           },
                           child: Card(
