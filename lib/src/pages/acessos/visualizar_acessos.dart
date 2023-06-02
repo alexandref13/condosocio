@@ -1,10 +1,8 @@
-import 'package:condosocio/src/components/acessos_saidas/widget_saida_acessos.dart';
 import 'package:condosocio/src/components/visualizar_acessos/visualizar_acessos_entrada.dart';
 import 'package:condosocio/src/pages/esperaacessos/acessos_espera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../components/convites/visualizar_convite_widget.dart';
 
 class VisualizarAcessos extends StatelessWidget {
   @override
@@ -48,14 +46,14 @@ class VisualizarAcessos extends StatelessWidget {
               indicatorPadding: EdgeInsets.all(-8),
               tabs: <Widget>[
                 Text(
-                  'Aguardando',
+                  'Acessos',
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor!),
                 ),
                 Text(
-                  'Acessos',
+                  'Aguardando',
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
                     color: Theme.of(context).textSelectionTheme.selectionColor!,
@@ -65,7 +63,7 @@ class VisualizarAcessos extends StatelessWidget {
             ),
           ),
           body: TabBarView(
-            children: [AcessosEspera(), VisualizarAcessosEntrada()],
+            children: [VisualizarAcessosEntrada(), AcessosEspera()],
           ),
         ),
       ),

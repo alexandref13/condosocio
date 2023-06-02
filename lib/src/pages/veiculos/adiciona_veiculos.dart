@@ -439,7 +439,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
                                     context,
                                     'Houve algum problema!Tente novamente',
                                     '',
-                                    'sim');
+                                    'images/error.png');
                               }
                             });
                           },

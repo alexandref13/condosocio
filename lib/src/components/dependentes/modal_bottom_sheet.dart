@@ -53,26 +53,31 @@ void dependentesModalBottomSheet(
                               width: 70,
                               height: 70,
                             )
-                          : Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                      margin: EdgeInsets.only(left: 10),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      )),
-                                ],
-                              ),
-                              width: 70,
-                              height: 70,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://alvocomtec.com.br/acond/downloads/fotosperfil/$img'),
+                          : Material(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              borderRadius: BorderRadius.circular(5),
+                              color: Theme.of(context).primaryColor,
+                              elevation: 10,
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        margin: EdgeInsets.only(left: 10),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        )),
+                                  ],
+                                ),
+                                width: 45,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        'https://alvocomtec.com.br/acond/downloads/fotosperfil/$img'),
+                                  ),
                                 ),
                               ),
                             ),
@@ -183,7 +188,7 @@ void dependentesModalBottomSheet(
                                         (value) {
                                           if (value != 0) {
                                             String message =
-                                                'Olá! o Sr(a) ${loginController.nome.value} enviou este link para a liberação de acesso na portaria do condomínio ${loginController.nomeCondo.value}, preencha os campos os campos abertos e insira uma foto de perfil sem utilizacão de óculos ou máscaras . Grato! https://alvocomtec.com.br/paginas/acesso_prestador?chave=${value['idusu']}';
+                                                'Olá! o Sr(a) ${loginController.nome.value} enviou este link para a liberação de acesso na portaria do condomínio ${loginController.nomeCondo.value}, preencha os campos os campos abertos e insira uma foto de perfil sem utilizacão de óculos ou máscaras . Grato! https://alvocomtec.com.br/paginas/acesso_prestador.php?chave=${value['idusu']}';
 
                                             whatsAppSend(
                                               context,
@@ -236,7 +241,6 @@ void dependentesModalBottomSheet(
                                           'Parabéns! ' + value,
                                           '',
                                         );
-                                        Get.back();
                                         Get.back();
                                       });
                                     },

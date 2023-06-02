@@ -314,7 +314,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                               color: Theme.of(context)
                                   .textSelectionTheme
                                   .selectionColor!,
-                              fontSize: 10,
+                              fontSize: 12,
                             ),
                           ),
                         ),

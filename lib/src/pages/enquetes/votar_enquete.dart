@@ -296,7 +296,7 @@ class VotarEnquete extends StatelessWidget {
                                                             context,
                                                             'Houve algum problema!Tente novamente',
                                                             '',
-                                                            'sim');
+                                                            'images/error.png');
                                                   });
                                                 },
                                               );

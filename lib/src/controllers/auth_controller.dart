@@ -36,7 +36,8 @@ class AuthController extends GetxController {
     var id = box.read('id');
     var email = box.read('email');
     var idcond = box.read('idcondController');
-    if (id != null) {
+
+    if (id != '') {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
         /*biometricOnly: true,
@@ -111,7 +112,7 @@ class AuthController extends GetxController {
                 print("Auth Encountered an error sending tags: $error");
               });
 
-              if (rota.value.text == "") {
+              if (rota.value.text == "" && dados['valida'] != 0) {
                 Get.toNamed('/home');
               } else {
                 Get.toNamed(rota.value.text);

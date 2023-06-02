@@ -1,6 +1,5 @@
 import 'package:condosocio/src/components/utils/alertInvite.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/perfil_controller.dart';
@@ -9,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:condosocio/src/components/utils/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import '../../components/utils/alert_button_pressed.dart';
 import '../../components/utils/whatsapp_send.dart';
 
@@ -376,6 +374,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                           ),
                         ),
                       ),
+                    /*  
+                      AQUI INSERIR OS HORÁRIOS DO PRESTADOR 
                     if (dependentesController.tipoUsuario.value != "Morador")
                       Visibility(
                         visible: _isVisible,
@@ -398,18 +398,16 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                             ),
                             Column(
                               children: [
-                                ValueBuilder<bool>(
-                                    initialValue:
+                                GetBuilder<DependentesController>(
+                                  builder: (dependentesController) => Switch(
+                                    value:
                                         dependentesController.isChecked.value,
-                                    builder: (isChecked, updateFn) => Switch(
-                                          value: isChecked,
-                                          onChanged: (newValue) =>
-                                              updateFn(newValue),
-                                          activeColor:
-                                              Theme.of(context).shadowColor,
-                                        ),
-                                    onUpdate: (svalue) => dependentesController
-                                        .isChecked.value = svalue),
+                                    onChanged: (newValue) =>
+                                        dependentesController.isChecked.value =
+                                            newValue,
+                                    activeColor: Theme.of(context).shadowColor,
+                                  ),
+                                ),
                               ],
                             ),
                             Spacer(),
@@ -521,7 +519,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                             ),
                           ],
                         ),
-                      ),
+                      ),*/
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.only(bottom: 20, left: 10, right: 10),
@@ -571,6 +569,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                     dependentesController.tipoUsuario.value ==
                                             "Morador"
                                         ? () {
+                                            // dependentesController.getDependentes();
                                             Get.back();
                                             Get.back();
                                           }
@@ -583,7 +582,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                               (value) {
                                                 if (value != 0) {
                                                   String message =
-                                                      'Olá! o Sr(a) ${loginController.nome.value} enviou este link para a liberação de acesso na portaria do condomínio ${loginController.nomeCondo.value}, preencha os campos os campos abertos e insira uma foto de perfil sem utilizacão de óculos ou máscaras . Grato! https://alvocomtec.com.br/paginas/acesso_prestador?chave=${value['idusu']}';
+                                                      'Olá! o Sr(a) ${loginController.nome.value} enviou este link para a liberação de acesso na portaria do condomínio ${loginController.nomeCondo.value}, preencha os campos os campos abertos e insira uma foto de perfil sem utilizacão de óculos ou máscaras . Grato! https://alvocomtec.com.br/paginas/acesso_prestador.php?chave=${value['idusu']}';
 
                                                   var celular =
                                                       dependentesController
@@ -607,7 +606,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                                       context,
                                                       'Algo deu errado\n Tente novamente',
                                                       '/home',
-                                                      'sim');
+                                                      'images/error.png');
                                                 }
                                               },
                                             );
@@ -620,14 +619,21 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                 //'Número máximo de usuários excedido!\nFale com a adminstração do condomínio',
                                 // null);
                               } else if (value == 3) {
-                                onAlertButtonPressed(context,
-                                    'Usuário já cadastrado!', '', 'sim');
+                                onAlertButtonPressed(
+                                    context,
+                                    '${dependentesController.tipoUsuario.value} já cadastrado!',
+                                    '',
+                                    'images/error.png');
+                                Get.back();
                               } else if (value == "vazio") {
                                 onAlertButtonPressed(
-                                    context, 'Algum campo vazio!', '', 'sim');
+                                    context,
+                                    'Algum campo vazio!',
+                                    '',
+                                    'images/error.png');
                               } else if (value == 'invalido') {
-                                onAlertButtonPressed(
-                                    context, 'E-mail inválido!', '', 'sim');
+                                onAlertButtonPressed(context,
+                                    'E-mail inválido!', '', 'images/error.png');
                               } else {
                                 onAlertButtonPressed(
                                     context,

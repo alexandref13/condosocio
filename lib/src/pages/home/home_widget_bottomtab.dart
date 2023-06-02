@@ -295,7 +295,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    Icons.directions_car,
+                                    Icons.directions_car_outlined,
                                     size: 40,
                                     color: Theme.of(context)
                                         .textSelectionTheme
@@ -476,7 +476,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                             const EdgeInsets.only(bottom: 10),
                                         child: Icon(
                                           Icons.group_outlined,
-                                          size: 35,
+                                          size: 40,
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor!,
@@ -525,7 +525,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                             const EdgeInsets.only(bottom: 10),
                                         child: Icon(
                                           Icons.group_outlined,
-                                          size: 35,
+                                          size: 40,
                                           color: Theme.of(context)
                                               .textSelectionTheme
                                               .selectionColor!
@@ -570,7 +570,7 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Icon(
-                                    Icons.comment,
+                                    Icons.comment_outlined,
                                     size: 35,
                                     color: Theme.of(context)
                                         .textSelectionTheme

@@ -178,10 +178,7 @@ class _PerfilState extends State<Perfil> {
     var response = await request.send();
     if (response.statusCode == 200) {
       loginController.newLogin(loginController.id.value);
-      showToastError(
-        context,
-        'Imagem do perfil alterada!',
-      );
+      showToast(context, 'Parabéns! Imagem do perfil alterada!', '');
     } else {
       Navigator.of(context).pop();
       showToastError(
@@ -533,14 +530,17 @@ class _PerfilState extends State<Perfil> {
                                       'Seu perfil foi atualizado com sucesso.',
                                     );
                                   } else if (value == "vazio") {
-                                    onAlertButtonPressed(context,
-                                        'Algum Campo Vazio!', '', 'sim');
+                                    onAlertButtonPressed(
+                                        context,
+                                        'Algum Campo Vazio!',
+                                        '',
+                                        'images/error.png');
                                   } else {
                                     onAlertButtonPressed(
                                         context,
                                         'Algo deu errado\n Tente novamente',
                                         '',
-                                        'sim');
+                                        'images/error.png');
                                   }
                                 });
                               },

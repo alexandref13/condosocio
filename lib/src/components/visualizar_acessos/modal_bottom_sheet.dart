@@ -77,15 +77,21 @@ void configurandoModalBottomSheet(
                             transitionOnUserGestures: true,
                             tag:
                                 heroTag, // Defina um tag exclusivo para cada imagem
-                            child: Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    tipo == 'Morador'
-                                        ? 'https://www.alvocomtec.com.br/acond/downloads/fotosperfil/$imgfacial'
-                                        : 'https://www.alvocomtec.com.br/acond/downloads/fotosvisitantes/$imgfacial',
+                            child: Material(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              borderRadius: BorderRadius.circular(5),
+                              color: Theme.of(context).primaryColor,
+                              elevation: 10,
+                              child: Container(
+                                width: 40,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      tipo == 'Morador'
+                                          ? 'https://www.alvocomtec.com.br/acond/downloads/fotosperfil/$imgfacial'
+                                          : 'https://www.alvocomtec.com.br/acond/downloads/fotosvisitantes/$imgfacial',
+                                    ),
                                   ),
                                 ),
                               ),
@@ -237,7 +243,7 @@ void configurandoModalBottomSheet(
                                             context,
                                             'Algo deu errado\n Tente novamente',
                                             '/home',
-                                            'sim');
+                                            'images/error.png');
                                       }
                                     });
                                   } else {
@@ -259,7 +265,7 @@ void configurandoModalBottomSheet(
                                             context,
                                             'Algo deu errado\n Tente novamente',
                                             '/home',
-                                            'sim');
+                                            'images/error.png');
                                       }
                                     });
                                   }

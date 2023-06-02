@@ -487,38 +487,15 @@ class DetalheConviteWidget extends StatelessWidget {
                                                             visualizarConvitesController
                                                                 .verificaWhatsApp()
                                                                 .then((value) {
-                                                              value != 0
-                                                                  ? celular = value[
-                                                                      'celular']
-                                                                  : convidados[x]['tel'] !=
-                                                                          null
-                                                                      ? celular = convidados[x][
-                                                                              'tel']
-                                                                          .replaceAll(
-                                                                              "+",
-                                                                              "")
-                                                                          .replaceAll(
-                                                                              "(",
-                                                                              "")
-                                                                          .replaceAll(
-                                                                              ")",
-                                                                              "")
-                                                                          .replaceAll(
-                                                                              "-",
-                                                                              "")
-                                                                          .replaceAll(
-                                                                              " ",
-                                                                              "")
-                                                                      : celular =
-                                                                          '';
+                                                              print(
+                                                                  'CELULAR VERIFICAR:$value ');
                                                               visualizarConvitesController
                                                                   .whatsappNumber
                                                                   .value
-                                                                  .text = celular;
-
-                                                              if (celular
+                                                                  .text = value!;
+                                                              if (value
                                                                       .length ==
-                                                                  11) {
+                                                                  13) {
                                                                 visualizarConvitesController
                                                                     .sendWhatsApp()
                                                                     .then(
@@ -531,7 +508,7 @@ class DetalheConviteWidget extends StatelessWidget {
 
                                                                       whatsAppSend(
                                                                         context,
-                                                                        "55${visualizarConvitesController.whatsappNumber.value.text}",
+                                                                        "${visualizarConvitesController.whatsappNumber.value.text}",
                                                                         Uri.encodeFull(
                                                                           message,
                                                                         ),
@@ -541,7 +518,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                           context,
                                                                           'Algo deu errado\n Tente novamente',
                                                                           '/home',
-                                                                          'sim');
+                                                                          'images/error.png');
                                                                     }
                                                                   },
                                                                 );
@@ -593,7 +570,8 @@ class DetalheConviteWidget extends StatelessWidget {
                                                         .resolveWith<Color>(
                                                   (Set<MaterialState> states) {
                                                     return Theme.of(context)
-                                                        .errorColor;
+                                                        .colorScheme
+                                                        .error;
                                                   },
                                                 ),
                                                 shape: MaterialStateProperty

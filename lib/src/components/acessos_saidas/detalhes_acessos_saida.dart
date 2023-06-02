@@ -382,7 +382,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                                           context,
                                                           'Algo deu errado\n Tente novamente',
                                                           '/home',
-                                                          'sim');
+                                                          'images/error.png');
                                                     }
                                                   },
                                                 );

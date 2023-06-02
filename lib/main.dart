@@ -112,6 +112,8 @@ class MyApp extends StatelessWidget {
         authController.rota.value.text = '/visualizarOcorrencias';
       } else if (titulo == 'RECONHECIMENTO FACIAL') {
         authController.rota.value.text = '/visualizarAcessos';
+      } else if (titulo == 'CADASTRO FACIAL') {
+        authController.rota.value.text = '/dependentes';
       } else {}
     });
 

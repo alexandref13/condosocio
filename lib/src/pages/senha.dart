@@ -215,7 +215,7 @@ class _SenhaState extends State<Senha> {
                                               context,
                                               "Algo deu errado.\n Tente novamente mais tarde.",
                                               '/home',
-                                              'sim');
+                                              'images/error.png');
                                         }
                                       });
                                     }

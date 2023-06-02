@@ -18,6 +18,7 @@ class MapaAcessos {
   late String ctlreg;
   late String portao;
   late String acessotipo;
+  late String tipoacesso;
 
   MapaAcessos({
     required this.idfav,
@@ -39,6 +40,7 @@ class MapaAcessos {
     required this.ctlreg,
     required this.portao,
     required this.acessotipo,
+    required this.tipoacesso,
   });
 
   MapaAcessos.fromJson(Map<String, dynamic> json) {
@@ -61,6 +63,7 @@ class MapaAcessos {
     ctlreg = json['ctlreg'] ?? '';
     portao = json['portao'] ?? '';
     acessotipo = json['acessotipo'] ?? '';
+    tipoacesso = json['tipoacesso'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -84,6 +87,7 @@ class MapaAcessos {
     data['ctlreg'] = this.ctlreg;
     data['portao'] = this.portao;
     data['acessotipo'] = this.acessotipo;
+    data['tipoacesso'] = this.tipoacesso;
     return data;
   }
 }

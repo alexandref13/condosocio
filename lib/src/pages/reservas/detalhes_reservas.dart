@@ -396,7 +396,7 @@ class DetalhesReservas extends StatelessWidget {
                                                 context,
                                                 'Algo deu errado \n Tente novamente mais tarde',
                                                 '/home',
-                                                'sim');
+                                                'images/error.png');
                                           }
                                         },
                                       );

@@ -636,8 +636,11 @@ class DetalhesOuvidoria extends StatelessWidget {
                   respondaController.sendRespondaOuvidoria().then((value) {
                     print('valor $value');
                     if (value == 0) {
-                      onAlertButtonPressed(context,
-                          'Algo deu errado\n Tente novamente', '/home', 'sim');
+                      onAlertButtonPressed(
+                          context,
+                          'Algo deu errado\n Tente novamente',
+                          '/home',
+                          'images/error.png');
                     }
                   });
                 },

@@ -105,7 +105,7 @@ void veiculosModalBottomSheet(
                                           context,
                                           'Algo deu errado\n Tente novamente',
                                           '/home',
-                                          'sim');
+                                          'images/error.png');
                                     }
                                   },
                                 );

@@ -167,7 +167,8 @@ Widget listaVisualizarAcessos() {
                                 child: Column(
                                   children: [
                                     Text(
-                                      acessos.pessoa,
+                                      visualizarAcessosController
+                                          .acessos[index].pessoa,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       softWrap: false,
@@ -203,15 +204,15 @@ Widget listaVisualizarAcessos() {
                                   children: [
                                     Row(
                                       children: [
-                                        (visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "0" ||
-                                                    visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "2") &&
-                                                newDataEnt != ""
+                                        visualizarAcessosController
+                                                        .acessos[index]
+                                                        .ctlfacial ==
+                                                    '0' ||
+                                                visualizarAcessosController
+                                                        .acessos[index]
+                                                        .ctlreg ==
+                                                    '0'
+                                            //newDataEnt != ""
                                             ? Icon(
                                                 Icons.verified_user_outlined,
                                                 size: 24,
@@ -266,94 +267,41 @@ Widget listaVisualizarAcessos() {
                                                   )
                                                 : Container(),
                                         SizedBox(width: 5),
-                                        (visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "0" ||
-                                                    visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "1") &&
-                                                newDataEnt == ""
+                                        visualizarAcessosController
+                                                    .acessos[index]
+                                                    .tipoacesso ==
+                                                'SAIDA'
                                             ? Icon(
-                                                Icons.hourglass_top_outlined,
-                                                size: 18,
+                                                Icons.logout_outlined,
+                                                size: 24,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor,
                                               )
-                                            : visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "2" ||
-                                                    visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "3"
-                                                ? Icon(
-                                                    Icons.logout_outlined,
-                                                    size: 24,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  )
-                                                : Icon(
-                                                    Icons.login_outlined,
-                                                    size: 24,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  )
+                                            : Icon(
+                                                Icons.login_outlined,
+                                                size: 24,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor,
+                                              )
                                       ],
                                     ),
                                     SizedBox(height: 5),
                                     Row(children: [
-                                      (visualizarAcessosController
-                                                          .acessos[index]
-                                                          .ctlfacial ==
-                                                      "0" ||
-                                                  visualizarAcessosController
-                                                          .acessos[index]
-                                                          .ctlreg ==
-                                                      "2") &&
-                                              newDataEnt != ""
-                                          ? Text(
-                                              'PORTARIA',
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              softWrap: false,
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor,
-                                                // fontWeight: FontWeight.bold,
-                                              ),
-                                            )
-                                          : (visualizarAcessosController
-                                                              .acessos[index]
-                                                              .ctlfacial ==
-                                                          "1" ||
-                                                      visualizarAcessosController
-                                                              .acessos[index]
-                                                              .ctlreg ==
-                                                          "3") &&
-                                                  newDataEnt != ""
-                                              ? Text(
-                                                  '${visualizarAcessosController.acessos[index].portao}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  softWrap: false,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 12,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    // fontWeight: FontWeight.bold,
-                                                  ),
-                                                )
-                                              : Container(),
+                                      Text(
+                                        '${visualizarAcessosController.acessos[index].tipoacesso} ${visualizarAcessosController.acessos[index].portao}',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        softWrap: false,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 12,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          // fontWeight: FontWeight.bold,
+                                        ),
+                                      )
                                     ])
                                   ],
                                 ),
@@ -566,15 +514,15 @@ Widget listaVisualizarAcessos() {
                                   children: [
                                     Row(
                                       children: [
-                                        (visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "0" ||
-                                                    visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "2") &&
-                                                newDataEnt != ""
+                                        visualizarAcessosController
+                                                        .acessos[index]
+                                                        .ctlfacial ==
+                                                    '0' ||
+                                                visualizarAcessosController
+                                                        .acessos[index]
+                                                        .ctlreg ==
+                                                    '0'
+                                            //newDataEnt != ""
                                             ? Icon(
                                                 Icons.verified_user_outlined,
                                                 size: 24,
@@ -629,94 +577,41 @@ Widget listaVisualizarAcessos() {
                                                   )
                                                 : Container(),
                                         SizedBox(width: 5),
-                                        (visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "0" ||
-                                                    visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "1") &&
-                                                newDataEnt == ""
+                                        visualizarAcessosController
+                                                    .acessos[index]
+                                                    .tipoacesso ==
+                                                'SAIDA'
                                             ? Icon(
-                                                Icons.hourglass_top_outlined,
-                                                size: 18,
+                                                Icons.logout_outlined,
+                                                size: 24,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor,
                                               )
-                                            : visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "2" ||
-                                                    visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlreg ==
-                                                        "3"
-                                                ? Icon(
-                                                    Icons.logout_outlined,
-                                                    size: 24,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  )
-                                                : Icon(
-                                                    Icons.login_outlined,
-                                                    size: 24,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                  )
+                                            : Icon(
+                                                Icons.login_outlined,
+                                                size: 24,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor,
+                                              )
                                       ],
                                     ),
                                     SizedBox(height: 5),
                                     Row(children: [
-                                      (visualizarAcessosController
-                                                          .acessos[index]
-                                                          .ctlfacial ==
-                                                      "0" ||
-                                                  visualizarAcessosController
-                                                          .acessos[index]
-                                                          .ctlreg ==
-                                                      "2") &&
-                                              newDataEnt != ""
-                                          ? Text(
-                                              'PORTARIA',
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              softWrap: false,
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor,
-                                                // fontWeight: FontWeight.bold,
-                                              ),
-                                            )
-                                          : (visualizarAcessosController
-                                                              .acessos[index]
-                                                              .ctlfacial ==
-                                                          "1" ||
-                                                      visualizarAcessosController
-                                                              .acessos[index]
-                                                              .ctlreg ==
-                                                          "3") &&
-                                                  newDataEnt != ""
-                                              ? Text(
-                                                  '${visualizarAcessosController.acessos[index].portao}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  softWrap: false,
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 12,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor,
-                                                    // fontWeight: FontWeight.bold,
-                                                  ),
-                                                )
-                                              : Container(),
+                                      Text(
+                                        '${visualizarAcessosController.acessos[index].tipoacesso} ${visualizarAcessosController.acessos[index].portao}',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        softWrap: false,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 12,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor,
+                                          // fontWeight: FontWeight.bold,
+                                        ),
+                                      )
                                     ])
                                   ],
                                 ),

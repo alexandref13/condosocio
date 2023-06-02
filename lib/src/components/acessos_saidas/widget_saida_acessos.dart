@@ -279,7 +279,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                                           context,
                                           'Houve algum problema!\n Tente novamente',
                                           '/home',
-                                          'sim');
+                                          'images/error.png');
                                     }
                                   },
                                 );

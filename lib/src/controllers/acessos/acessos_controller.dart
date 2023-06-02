@@ -27,6 +27,7 @@ class AcessosController extends GetxController {
   var status = [].obs;
   var imgfacial = ''.obs;
   var tipoimgfacial = ''.obs;
+  var tipoacesso = ''.obs;
 
   var tipos = [
     'Selecione o tipo de visitante',

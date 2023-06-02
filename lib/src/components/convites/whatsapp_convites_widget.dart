@@ -147,7 +147,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                                 context,
                                 'Algo deu errado\n Tente novamente',
                                 '/home',
-                                'sim');
+                                'images/error.png');
                           }
                         },
                       );
@@ -156,7 +156,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                           context,
                           'Este número está com formato incorreto \n ex: 91988881234',
                           '',
-                          'sim');
+                          'images/error.png');
                     }
                   },
                   child: Text(
