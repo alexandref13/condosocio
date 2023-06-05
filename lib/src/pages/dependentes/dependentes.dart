@@ -1,12 +1,9 @@
 import 'package:condosocio/src/controllers/dependentes_controller.dart';
 import 'package:condosocio/src/pages/dependentes/adiciona_dependentes.dart';
 import 'package:condosocio/src/pages/dependentes/visualizar_dependentes.dart';
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-
 import '../../components/utils/alert_button_pressed.dart';
 
 class Dependentes extends StatefulWidget {

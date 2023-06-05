@@ -11,7 +11,7 @@ void showToast(BuildContext context, String title, String description) {
     backgroundColor: (const Color.fromARGB(255, 23, 121, 26)),
     textColor: Colors.white,
     fontSize: 16.0,
-    timeInSecForIosWeb: 1,
+    timeInSecForIosWeb: 2,
   );
 }
 

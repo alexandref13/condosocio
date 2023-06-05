@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/services/dependentes/api_dependentes.dart';
 import 'package:condosocio/src/services/dependentes/mapa_dependentes.dart';
 import 'package:email_validator/email_validator.dart';

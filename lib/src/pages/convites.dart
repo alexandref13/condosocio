@@ -16,7 +16,7 @@ class Convite extends StatelessWidget {
       length: 2,
       child: WillPopScope(
         onWillPop: () async {
-          Get.offNamed('/home');
+          Get.offNamedUntil('home', (route) => false);
           return false;
         },
         child: Scaffold(

@@ -933,8 +933,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(right: 20),
                               child: Icon(
-                                convitesController.guestList[i]['tel'] != null
-                                    ? Icons.person_2_outlined
+                                convitesController.guestList[i]['placa'] == null
+                                    ? Icons.account_circle_outlined
                                     : Icons.directions_car_outlined,
                                 color: Theme.of(context)
                                     .textSelectionTheme
@@ -995,42 +995,6 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            /* convitesController.guestList[i]['idfav'] != null
-                                ? IconButton(
-                                    icon: Icon(
-                                      Icons.delete_outline,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor!,
-                                    ),
-                                    onPressed: () {
-                                      acessosController.firstId.value =
-                                          convitesController.guestList[i]
-                                              ['idfav'];
-
-                                      acessosController
-                                          .deleteFav()
-                                          .then((value) {
-                                        convitesController.guestList
-                                            .removeAt(i);
-                                        print('value $value');
-                                        if (value == 1) {
-                                          confirmedButtonPressed(
-                                            context,
-                                            'Favorito deletado!',
-                                            '/convites',
-                                          );
-                                        } else {
-                                          onAlertButtonPressed(
-                                            context,
-                                            'Algo deu errado\n Tente novamente',
-                                            '/home',
-                                          );
-                                        }
-                                      });
-                                    },
-                                  )
-                                : Container(),*/
                             IconButton(
                               icon: Icon(
                                 Icons.delete_forever_outlined,
@@ -1079,6 +1043,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   if (convitesController.isEdited.value) {
+                                    print('PEGOU EDIÇÃO');
                                     convitesController
                                         .editAInvite()
                                         .then((value) {
@@ -1124,6 +1089,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       }
                                     });
                                   } else {
+                                    print('PEGOU INVITE');
                                     convitesController
                                         .sendConvites(
                                       convitesController.startDate.value,
@@ -1136,7 +1102,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                             'Retorno Dados do convites_inc.php $value');
                                         if (value != 0) {
                                           convitesController.guestList.clear();
+
                                           convitesController.getConvites();
+
                                           visualizarConvitesController
                                                   .endDate.value =
                                               convitesController.endDate.value;
@@ -1144,6 +1112,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                   .qtdconv.value =
                                               convitesController
                                                   .guestList.length;
+
                                           if (convitesController
                                                   .inviteName.value.text ==
                                               '') {

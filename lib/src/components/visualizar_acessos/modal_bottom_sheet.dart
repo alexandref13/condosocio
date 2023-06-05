@@ -88,7 +88,8 @@ void configurandoModalBottomSheet(
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                      tipo == 'Morador'
+                                      tipo == 'Morador' ||
+                                              tipo == 'Prestador de Serviço'
                                           ? 'https://www.alvocomtec.com.br/acond/downloads/fotosperfil/$imgfacial'
                                           : 'https://www.alvocomtec.com.br/acond/downloads/fotosvisitantes/$imgfacial',
                                     ),
@@ -125,7 +126,7 @@ void configurandoModalBottomSheet(
                   ),
                   onTap: () {
                     acessosController.imgfacial.value = imgfacial;
-                    tipo == 'Morador'
+                    tipo == 'Morador' || tipo == 'Prestador de Serviço'
                         ? acessosController.tipoimgfacial.value = "fotosperfil"
                         : acessosController.tipoimgfacial.value =
                             "fotosvisitantes";
@@ -140,7 +141,7 @@ void configurandoModalBottomSheet(
                   height: 20,
                   color: Colors.blueGrey,
                 ),
-                dataEntrada != ''
+                dataEntrada != '' && tipo == 'Convidado'
                     ? ListTile(
                         leading: Obx(
                           () => Icon(

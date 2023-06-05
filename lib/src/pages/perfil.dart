@@ -525,10 +525,9 @@ class _PerfilState extends State<Perfil> {
                                   print('VALUE:$value');
                                   if (value == 1) {
                                     showToast(
-                                      context,
-                                      'Parabéns!',
-                                      'Seu perfil foi atualizado com sucesso.',
-                                    );
+                                        context,
+                                        'Parabéns! Seu perfil foi atualizado com sucesso.',
+                                        '');
                                   } else if (value == "vazio") {
                                     onAlertButtonPressed(
                                         context,

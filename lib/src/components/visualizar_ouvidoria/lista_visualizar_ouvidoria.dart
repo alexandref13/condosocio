@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../utils/box_search.dart';
-
 Widget listaVisualizarOuvidoria(BuildContext context) {
   VisualizarOuvidoriaController visualizarOuvidoria = Get.put(
     VisualizarOuvidoriaController(),

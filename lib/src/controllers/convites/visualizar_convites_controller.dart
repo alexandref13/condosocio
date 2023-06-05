@@ -44,8 +44,8 @@ class VisualizarConvitesController extends GetxController {
     isLoading(true);
     var response = await ApiConvites.getAConvites(id);
     var data = json.decode(response.body);
-    print(data);
     invite = data;
+    print('DADOS DO CONVITE: $invite');
     Get.toNamed('/detalhesConvite');
 
     isLoading(false);

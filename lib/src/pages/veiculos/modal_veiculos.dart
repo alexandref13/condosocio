@@ -1,8 +1,6 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
-import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
-import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/veiculos/veiculos_controller.dart';
@@ -13,11 +11,6 @@ void veiculosModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
         VeiculosController veiculosController = Get.put(VeiculosController());
-
-        VisualizarConvitesController visualizarConvitesController =
-            Get.put(VisualizarConvitesController());
-
-        LoginController loginController = Get.put(LoginController());
 
         return Container(
           color: Theme.of(context).colorScheme.secondary,

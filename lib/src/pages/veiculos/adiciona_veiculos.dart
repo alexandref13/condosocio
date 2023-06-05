@@ -489,7 +489,7 @@ class _AdicionaVeiculosState extends State<AdicionaVeiculos> {
             ),
           ),
           onPressed: () {
-            page != null
+            page != ''
                 ? Get.offNamedUntil('$page', ModalRoute.withName('$page'))
                 : Get.back();
           },

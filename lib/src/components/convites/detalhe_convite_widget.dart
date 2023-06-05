@@ -4,7 +4,6 @@ import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
 import 'package:condosocio/src/components/utils/whatsapp_send.dart';
 import 'package:condosocio/src/controllers/acessos/acessos_controller.dart';
-import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
@@ -12,6 +11,7 @@ import 'package:flutter/material.dart';
 
 //import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -24,11 +24,7 @@ class DetalheConviteWidget extends StatelessWidget {
         Get.put(VisualizarConvitesController());
     ConvitesController convitesController = Get.put(ConvitesController());
     LoginController loginController = Get.put(LoginController());
-    VisualizarAcessosController visualizarAcessosController =
-        Get.put(VisualizarAcessosController());
     AcessosController acessosController = Get.put(AcessosController());
-    VisualizarConvitesController visualizarConviteController =
-        Get.put(VisualizarConvitesController());
 
     var date = DateTime.now();
     var endDate = DateTime.parse(visualizarConvitesController.endDate.value);
@@ -69,10 +65,10 @@ class DetalheConviteWidget extends StatelessWidget {
 
                       List convidados = invite['convidados'];
 
-                      print(convidados);
+                      print("DADOS DETALHES CONVITES: $convidados");
 
                       for (var convidado in convidados) {
-                        visualizarConviteController.convidados.add(convidado);
+                        visualizarConvitesController.convidados.add(convidado);
                       }
 
                       var startDate = invite['datainicial'];
@@ -419,6 +415,10 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                       convidados[x]
                                                                               [
                                                                               'idfav'] ==
+                                                                          '' ||
+                                                                      convidados[x]
+                                                                              [
+                                                                              'idfav'] ==
                                                                           '0'
                                                                   ? Icons
                                                                       .favorite_border // Ícone vazio
@@ -449,11 +449,13 @@ class DetalheConviteWidget extends StatelessWidget {
                                                             acessosController
                                                                 .sendFavoriteConvite()
                                                                 .then((value) {
+                                                              print(
+                                                                  'Value Idfav: $value');
                                                               acessosController
                                                                   .getFavoritos();
-                                                              visualizarConviteController
+                                                              visualizarConvitesController
                                                                   .getAConvite(
-                                                                      visualizarConviteController
+                                                                      visualizarConvitesController
                                                                           .idConv
                                                                           .value);
                                                               // Get.toNamed('/detalhesConvite');
@@ -473,7 +475,6 @@ class DetalheConviteWidget extends StatelessWidget {
                                                             height: 40,
                                                           ),
                                                           onPressed: () {
-                                                            var celular;
                                                             visualizarConvitesController
                                                                     .tel.value =
                                                                 convidados[x]
@@ -484,15 +485,16 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                 convidados[x]
                                                                     ['nome'];
 
+                                                            print(
+                                                                "Idconv ${visualizarConvitesController.idConv.value}");
+
                                                             visualizarConvitesController
                                                                 .verificaWhatsApp()
                                                                 .then((value) {
-                                                              print(
-                                                                  'CELULAR VERIFICAR:$value ');
                                                               visualizarConvitesController
                                                                   .whatsappNumber
                                                                   .value
-                                                                  .text = value!;
+                                                                  .text = value;
                                                               if (value
                                                                       .length ==
                                                                   13) {
@@ -500,6 +502,8 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                     .sendWhatsApp()
                                                                     .then(
                                                                   (value) {
+                                                                    print(
+                                                                        'ValueSend: $value');
                                                                     if (value !=
                                                                         0) {
                                                                       String
@@ -508,7 +512,10 @@ class DetalheConviteWidget extends StatelessWidget {
 
                                                                       whatsAppSend(
                                                                         context,
-                                                                        "${visualizarConvitesController.whatsappNumber.value.text}",
+                                                                        visualizarConvitesController
+                                                                            .whatsappNumber
+                                                                            .value
+                                                                            .text,
                                                                         Uri.encodeFull(
                                                                           message,
                                                                         ),
@@ -523,6 +530,11 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                   },
                                                                 );
                                                               } else {
+                                                                visualizarConvitesController
+                                                                        .whatsappNumber
+                                                                        .value
+                                                                        .text =
+                                                                    '${visualizarConvitesController.whatsappNumber.value.text}';
                                                                 Get.toNamed(
                                                                     '/whatsAppConvite');
                                                               }
@@ -653,14 +665,11 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 ),
                                               ),
                                               onPressed: () {
-                                                convitesController.guestList
-                                                    .clear();
                                                 convitesController
                                                     .isEdited.value = true;
+
                                                 for (var i = 0;
-                                                    i <
-                                                        visualizarConvitesController
-                                                            .convidados.length;
+                                                    i < convidados.length;
                                                     i++) {
                                                   convitesController.guestList
                                                       .addAll({
@@ -684,6 +693,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                     }
                                                   });
                                                 }
+
                                                 convitesController
                                                         .inviteName.value.text =
                                                     visualizarConvitesController
@@ -699,6 +709,9 @@ class DetalheConviteWidget extends StatelessWidget {
 
                                                 convitesController.page.value =
                                                     2;
+
+                                                print(
+                                                    'GUESTLIST: ${convitesController.guestList}');
                                                 Get.toNamed('/convites');
                                               },
                                               child: Text(

@@ -69,9 +69,7 @@ Widget listaVisualizarAcessos() {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              visualizarAcessosController
-                                          .acessos[index].dataent ==
-                                      ' '
+                              acessos.dataent == ' '
                                   ? Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.2,
@@ -106,12 +104,8 @@ Widget listaVisualizarAcessos() {
                                   : Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.2,
-                                      child: visualizarAcessosController
-                                                      .acessos[index].ctlreg ==
-                                                  '0' ||
-                                              visualizarAcessosController
-                                                      .acessos[index].ctlreg ==
-                                                  '1'
+                                      child: acessos.ctlreg == '0' ||
+                                              acessos.ctlreg == '1'
                                           ? Column(
                                               children: [
                                                 Text(
@@ -167,8 +161,7 @@ Widget listaVisualizarAcessos() {
                                 child: Column(
                                   children: [
                                     Text(
-                                      visualizarAcessosController
-                                          .acessos[index].pessoa,
+                                      acessos.pessoa,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       softWrap: false,
@@ -182,8 +175,7 @@ Widget listaVisualizarAcessos() {
                                     ),
                                     SizedBox(height: 5),
                                     Text(
-                                      visualizarAcessosController
-                                          .acessos[index].tipopessoa,
+                                      acessos.tipopessoa,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       softWrap: false,
@@ -204,14 +196,8 @@ Widget listaVisualizarAcessos() {
                                   children: [
                                     Row(
                                       children: [
-                                        visualizarAcessosController
-                                                        .acessos[index]
-                                                        .ctlfacial ==
-                                                    '0' ||
-                                                visualizarAcessosController
-                                                        .acessos[index]
-                                                        .ctlreg ==
-                                                    '0'
+                                        acessos.ctlfacial == '0' ||
+                                                acessos.ctlreg == '0'
                                             //newDataEnt != ""
                                             ? Icon(
                                                 Icons.verified_user_outlined,
@@ -220,10 +206,7 @@ Widget listaVisualizarAcessos() {
                                                     .textSelectionTheme
                                                     .selectionColor,
                                               )
-                                            : visualizarAcessosController
-                                                        .acessos[index]
-                                                        .ctlfacial ==
-                                                    "1"
+                                            : acessos.ctlfacial == "1"
                                                 ? Icon(
                                                     Icons.face_5_sharp,
                                                     size: 24,
@@ -233,10 +216,7 @@ Widget listaVisualizarAcessos() {
                                                   )
                                                 : Container(),
                                         SizedBox(width: 5),
-                                        visualizarAcessosController
-                                                        .acessos[index]
-                                                        .acessotipo ==
-                                                    "VEICULO" &&
+                                        acessos.acessotipo == "VEICULO" &&
                                                 visualizarAcessosController
                                                         .acessos[index]
                                                         .ctlfacial ==
@@ -249,14 +229,9 @@ Widget listaVisualizarAcessos() {
                                                     .textSelectionTheme
                                                     .selectionColor,
                                               )
-                                            : visualizarAcessosController
-                                                            .acessos[index]
-                                                            .acessotipo ==
+                                            : acessos.acessotipo ==
                                                         "PEDESTRE" &&
-                                                    visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlfacial ==
-                                                        '1' &&
+                                                    acessos.ctlfacial == '1' &&
                                                     newDataEnt != ""
                                                 ? Icon(
                                                     Icons.directions_walk,
@@ -416,12 +391,8 @@ Widget listaVisualizarAcessos() {
                                   : Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.2,
-                                      child: visualizarAcessosController
-                                                      .acessos[index].ctlreg ==
-                                                  '0' ||
-                                              visualizarAcessosController
-                                                      .acessos[index].ctlreg ==
-                                                  '1'
+                                      child: acessos.ctlreg == '0' ||
+                                              acessos.ctlreg == '1'
                                           ? Column(
                                               children: [
                                                 Text(
@@ -559,14 +530,9 @@ Widget listaVisualizarAcessos() {
                                                     .textSelectionTheme
                                                     .selectionColor,
                                               )
-                                            : visualizarAcessosController
-                                                            .acessos[index]
-                                                            .acessotipo ==
+                                            : acessos.acessotipo ==
                                                         "PEDESTRE" &&
-                                                    visualizarAcessosController
-                                                            .acessos[index]
-                                                            .ctlfacial ==
-                                                        '1' &&
+                                                    acessos.ctlfacial == '1' &&
                                                     newDataEnt != ""
                                                 ? Icon(
                                                     Icons.directions_walk,

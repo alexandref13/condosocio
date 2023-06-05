@@ -9,7 +9,7 @@ void showToastError(BuildContext context, String title) {
     backgroundColor: Theme.of(context).colorScheme.error,
     textColor: Colors.white,
     fontSize: 16.0,
-    timeInSecForIosWeb: 1,
+    timeInSecForIosWeb: 2,
   );
 }
 /*showToastError(context, String title) {

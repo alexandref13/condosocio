@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
@@ -91,11 +90,13 @@ class ApiConvites {
         Get.put(VisualizarConvitesController());
     print(
         'Celular Whatsapp: ${visualizarConvitesController.whatsappNumber.value.text}');
+    print('Celular Raiz: ${visualizarConvitesController.tel.value}');
     return await http.get(
       Uri.https(
           'www.alvocomtec.com.br', '/flutter/convites_whatsapp_chave.php', {
         'idconv': visualizarConvitesController.idConv.value,
         'nome': visualizarConvitesController.nameGuest.value,
+        'celraiz': visualizarConvitesController.tel.value,
         'whatsapp': visualizarConvitesController.whatsappNumber.value.text,
       }),
     );
@@ -104,11 +105,12 @@ class ApiConvites {
   static Future verificaWhatsApp() async {
     VisualizarConvitesController visualizarConvitesController =
         Get.put(VisualizarConvitesController());
-
+    print('IDCONV VERIFICAR : ${visualizarConvitesController.idConv.value}');
     return await http.get(
       Uri.https(
           'www.alvocomtec.com.br', '/flutter/convites_whatsapp_verificar.php', {
         'celular': visualizarConvitesController.tel.value,
+        'idconv': visualizarConvitesController.idConv.value,
       }),
     );
   }

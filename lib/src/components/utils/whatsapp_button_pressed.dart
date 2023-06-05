@@ -44,7 +44,7 @@ onWhatsappButtonPressed(context, String page) {
           ),
         ),
         onPressed: () {
-          page != null ? Get.offAllNamed('$page') : Get.back();
+          page != '' ? Get.offAllNamed('$page') : Get.back();
         },
         width: 80,
         color: Color(0xffa3000b),

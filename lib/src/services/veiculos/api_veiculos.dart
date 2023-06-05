@@ -33,8 +33,6 @@ class ApiVeiculos {
   }
 
   static Future getMar() async {
-    LoginController loginController = Get.put(LoginController());
-
     return await http.get(
       Uri.https(
         'www.alvocomtec.com.br',

@@ -105,12 +105,10 @@ class _EsqueciState extends State<Esqueci> {
                                         fontSize: 14),
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .error)),
+                                            color: Colors.red[500]!)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color: Colors.red[900]!)),
+                                            color: Colors.red[500]!)),
                                     errorStyle: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .colorScheme

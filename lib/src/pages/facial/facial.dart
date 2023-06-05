@@ -203,20 +203,33 @@ class _FacialState extends State<Facial> {
   }
 
   Future uploadImage() async {
+    // Mostrar indicador de progresso
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
     var request = http.MultipartRequest('POST', uri);
     request.fields['idusu'] = loginController.id.value;
     var pic = await http.MultipartFile.fromPath("image", _selectedFile!.path);
-    print(" meu arquivo => ${_selectedFile!.path}");
+    print("Meu arquivo => ${_selectedFile!.path}");
     request.files.add(pic);
     var response = await request.send();
     print(response.request);
     if (response.statusCode == 200) {
       loginController.newLogin(loginController.id.value);
+      Navigator.of(context).pop(); // Fechar o indicador de progresso
       showToast(context, 'Parabéns!', 'Imagem Facial Enviada com Sucesso!');
     } else if (response.statusCode == 404) {
       loginController.imgfacial.value = '';
+      Navigator.of(context).pop(); // Fechar o indicador de progresso
     } else {
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(); // Fechar o indicador de progresso
       showToastError(context, 'Houve Algum Problema! Tente novamente');
     }
     _selectedFile = null;
