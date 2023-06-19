@@ -292,6 +292,7 @@ class DetalhesAcheAqui extends StatelessWidget {
                                   '',
                                   true,
                                   3,
+                                  1000,
                                   true,
                                   detalhesAcheAquiController.comentario.value,
                                 );

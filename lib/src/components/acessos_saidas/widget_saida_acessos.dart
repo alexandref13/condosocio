@@ -121,6 +121,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                             '',
                             false,
                             1,
+                            150,
                             true,
                             saidaController.nameController.value),
                       ),
@@ -130,7 +131,7 @@ class _SaidaAcessosState extends State<SaidaAcessos> {
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 10),
                         child: customTextField(context, 'Observações', '', true,
-                            5, true, saidaController.obs.value),
+                            5, 1500, true, saidaController.obs.value),
                       ),
                       SizedBox(
                         height: 10,

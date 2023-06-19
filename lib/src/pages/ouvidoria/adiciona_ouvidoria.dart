@@ -86,6 +86,7 @@ class _AdicionaOuvidoriaState extends State<AdicionaOuvidoria> {
                             '',
                             true,
                             5,
+                            1500,
                             true,
                             ouvidoriaController.message.value,
                           ),

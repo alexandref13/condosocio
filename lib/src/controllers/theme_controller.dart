@@ -42,6 +42,11 @@ class ThemeController extends GetxController {
       Get.changeThemeMode(
         ThemeMode.light,
       );
+    } else if (condo == 'violet') {
+      Get.changeTheme(violet);
+      Get.changeThemeMode(
+        ThemeMode.light,
+      );
     }
   }
 }

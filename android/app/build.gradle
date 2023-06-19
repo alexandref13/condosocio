@@ -18,7 +18,7 @@ if (flutterVersionCode == null) {
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '9.0.0'
+    flutterVersionName = '9.1.0'
 }
 
 apply plugin: 'com.android.application'
@@ -46,8 +46,8 @@ android {
         applicationId "com.condosocionovo"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 22
-        versionName '9.0.0'
+        versionCode 23
+        versionName '9.1.0'
         multiDexEnabled true
     }
 

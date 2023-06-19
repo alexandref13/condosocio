@@ -25,12 +25,17 @@ class Login extends StatelessWidget {
             return Stack(
               children: <Widget>[
                 Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                          "images/bannertopo.png"), // Substitua pelo caminho da sua imagem de fundo
+                      fit: BoxFit.cover,
                     ),
-                    child: Column(children: <Widget>[
+                  ),
+                  child: Column(
+                    children: <Widget>[
                       Center(
                         child: Container(
                           padding: const EdgeInsets.only(top: 90),
@@ -41,18 +46,29 @@ class Login extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ])),
+                    ],
+                  ),
+                ),
                 Positioned(
                   top: 200,
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
-                        )),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 156, 83, 252),
+                          Color.fromARGB(255, 116, 16, 247),
+                          Color(0xFF114CB0), // Cor inicial #114CB0
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40),
+                      ),
+                    ),
                   ),
                 ),
                 Column(
@@ -102,15 +118,13 @@ class Login extends StatelessWidget {
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
                                             color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary)),
+                                                .textSelectionTheme
+                                                .selectionColor!)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color: Colors.red[900]!)),
+                                            color: Colors.amber)),
                                     errorStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .error),
+                                        color: Colors.amber),
                                   ),
                                   keyboardType: TextInputType.emailAddress,
                                   validator: (valueEmail) {
@@ -161,15 +175,13 @@ class Login extends StatelessWidget {
                                     errorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
                                             color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary)),
+                                                .textSelectionTheme
+                                                .selectionColor!)),
                                     focusedErrorBorder: new OutlineInputBorder(
                                         borderSide: new BorderSide(
-                                            color: Colors.red[900]!)),
+                                            color: Colors.amber)),
                                     errorStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .error),
+                                        color: Colors.amber),
                                   ),
                                   validator: (valueSenha) {
                                     if (valueSenha!.isEmpty) {
@@ -190,6 +202,17 @@ class Login extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Checkbox(
+                                        fillColor:
+                                            MaterialStateColor.resolveWith(
+                                                (states) {
+                                          if (states.contains(
+                                              MaterialState.selected)) {
+                                            return Color.fromARGB(199, 14, 17,
+                                                196); // Define a cor do quadrado quando selecionado
+                                          }
+                                          return Colors
+                                              .white70; // Define a cor do quadrado quando não selecionado
+                                        }),
                                         value: loginController.isChecked.value,
                                         onChanged: (bool? value) {
                                           loginController.isChecked.value =
@@ -264,9 +287,7 @@ class Login extends StatelessWidget {
                                     backgroundColor: MaterialStateProperty
                                         .resolveWith<Color>(
                                       (Set<MaterialState> states) {
-                                        return Theme.of(context)
-                                            .colorScheme
-                                            .secondary;
+                                        return Color.fromARGB(199, 14, 17, 196);
                                       },
                                     ),
                                     shape: MaterialStateProperty.resolveWith<
@@ -470,7 +491,10 @@ class Login extends StatelessWidget {
                                   child: Text(
                                     "Esqueceu a senha?",
                                     style: GoogleFonts.montserrat(
-                                        color: Colors.amber, fontSize: 12),
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor!,
+                                        fontSize: 12),
                                     textDirection: TextDirection.ltr,
                                   ),
                                 ),
@@ -503,7 +527,10 @@ class Login extends StatelessWidget {
                                   child: Text(
                                     "Acesse o nosso site",
                                     style: GoogleFonts.montserrat(
-                                        color: Colors.amber, fontSize: 12),
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor!,
+                                        fontSize: 12),
                                     textDirection: TextDirection.ltr,
                                   ),
                                 ),

@@ -1,6 +1,4 @@
 PODS:
-  - camera_avfoundation (0.0.1):
-    - Flutter
   - contacts_service (0.2.2):
     - Flutter
   - Flutter (1.0.0)
@@ -41,7 +39,6 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - contacts_service (from `.symlinks/plugins/contacts_service/ios`)
   - Flutter (from `Flutter`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -62,8 +59,6 @@ SPEC REPOS:
     - TOCropViewController
 
 EXTERNAL SOURCES:
-  camera_avfoundation:
-    :path: ".symlinks/plugins/camera_avfoundation/ios"
   contacts_service:
     :path: ".symlinks/plugins/contacts_service/ios"
   Flutter:
@@ -88,7 +83,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
   contacts_service: 849e1f84281804c8bfbec1b4c3eedcb23c5d3eca
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   fluttertoast: fafc4fa4d01a6a9e4f772ecd190ffa525e9e2d9c

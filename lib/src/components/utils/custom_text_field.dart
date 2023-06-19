@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget customTextField(BuildContext context, String hintText, String labelText,
-    bool linesBool, int lines, bool enabled, TextEditingController controller) {
+Widget customTextField(
+    BuildContext context,
+    String hintText,
+    String labelText,
+    bool linesBool,
+    int lines,
+    int caracteres,
+    bool enabled,
+    TextEditingController controller) {
   return TextField(
     onTap: () {
       FocusScopeNode currentFocus = FocusScope.of(context);
@@ -10,7 +17,7 @@ Widget customTextField(BuildContext context, String hintText, String labelText,
         currentFocus.focusedChild!.unfocus();
       }
     },
-    maxLength: linesBool ? 1500 : null,
+    maxLength: linesBool ? caracteres : null,
     controller: controller,
     maxLines: linesBool ? lines : 1,
     style: GoogleFonts.montserrat(

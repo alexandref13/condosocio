@@ -13,7 +13,18 @@ class ListOfCondo extends StatelessWidget {
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
     return Scaffold(
-        appBar: AppBar(),
+        backgroundColor: Color.fromARGB(255, 116, 16, 247),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 116, 16, 247),
+          title: Text(
+            'Unidades',
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
+            ),
+          ),
+          centerTitle: true,
+        ),
         body: Obx(() {
           return loginController.isLoading.value
               ? CircularProgressIndicatorWidget()
@@ -26,6 +37,7 @@ class ListOfCondo extends StatelessWidget {
                       itemCount: loginController.listOfCondo.length,
                       itemBuilder: (_, i) {
                         var condo = loginController.listOfCondo[i];
+
                         return GestureDetector(
                           onTap: () {
                             loginController.tipoun.value = condo.tipoun;
@@ -57,7 +69,7 @@ class ListOfCondo extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             ),
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Color.fromARGB(199, 14, 17, 196),
                             child: ListTile(
                               leading: Container(
                                 height: 50,

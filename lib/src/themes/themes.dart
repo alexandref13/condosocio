@@ -144,3 +144,26 @@ ThemeData orange = ThemeData(
       .copyWith(secondary: Color(0xff8b410d))
       .copyWith(error: Color(0xffa3000b)),
 );
+
+ThemeData violet = ThemeData(
+  primaryColor: Color.fromARGB(255, 116, 16, 247),
+  textSelectionTheme: TextSelectionThemeData(
+    selectionColor: Color(0xffe2e3d3),
+  ),
+  scaffoldBackgroundColor: Color.fromARGB(255, 116, 16, 247),
+  appBarTheme: AppBarTheme(
+    iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
+    titleTextStyle: GoogleFonts.montserrat(
+      fontSize: 16,
+      color: Color(0xffe2e3d3),
+    ),
+    elevation: 0,
+    centerTitle: true,
+    backgroundColor: Color.fromARGB(255, 116, 16, 247),
+  ),
+  colorScheme: ColorScheme.fromSwatch()
+      .copyWith(
+        secondary: Color.fromARGB(199, 14, 17, 196),
+      )
+      .copyWith(error: Color(0xffa3000b)),
+);
