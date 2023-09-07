@@ -48,6 +48,13 @@ class ApiReservas {
     ReservasController reservasController = Get.put(ReservasController());
     AddReservasController addReservasController =
         Get.put(AddReservasController());
+    print('idcond: ${loginController.idcond.value}');
+    print('idusu: ${loginController.id.value}');
+    print('idarea: ${reservasController.idarea.value}');
+    print('titulo: ${addReservasController.titulo.value.text}');
+    print('data_evento: ${addReservasController.date.value}');
+    print('hora_evento: ${addReservasController.hora.value}');
+    print('aprova: ${reservasController.aprova.value}');
 
     return await http.post(
       Uri.https("www.alvocomtec.com.br", "/flutter/reservas_inc.php"),

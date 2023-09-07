@@ -68,7 +68,15 @@ class ApiConvites {
       String startDate, String endDate, bool acesso) async {
     LoginController loginController = Get.put(LoginController());
     ConvitesController convitesController = Get.put(ConvitesController());
-    print(acesso.toString());
+    print('idusu: ${loginController.id.value}');
+    print('idcond: ${loginController.idcond.value}');
+    print(
+        'titulo: ${convitesController.inviteName.value.text == '' ? 'Convite de ${loginController.nome.value}' : convitesController.inviteName.value.text}');
+    print('datainicial: $startDate');
+    print('datafinal: $endDate');
+    print('convidados: ${json.encode(convitesController.guestList)}');
+    print('acesso: $acesso');
+
     return await http.post(
       Uri.https('www.alvocomtec.com.br', '/flutter/convites_inc.php'),
       body: {
@@ -91,6 +99,12 @@ class ApiConvites {
     print(
         'Celular Whatsapp: ${visualizarConvitesController.whatsappNumber.value.text}');
     print('Celular Raiz: ${visualizarConvitesController.tel.value}');
+    print('idconv: ${visualizarConvitesController.idConv.value}');
+    print('nome: ${visualizarConvitesController.nameGuest.value}');
+    print('celraiz: ${visualizarConvitesController.tel.value}');
+    print(
+        'whatsapp: ${visualizarConvitesController.whatsappNumber.value.text}');
+
     return await http.get(
       Uri.https(
           'www.alvocomtec.com.br', '/flutter/convites_whatsapp_chave.php', {

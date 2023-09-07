@@ -422,14 +422,27 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     context,
                                     '',
                                     'Nome do motorista',
-                                    false,
+                                    true,
                                     1,
-                                    150,
+                                    30,
                                     true,
                                     acessosController.name.value,
                                   ),
                                 ),
                                 Container(
+                                  padding: EdgeInsets.all(7),
+                                  child: customTextField(
+                                    context,
+                                    '',
+                                    'Placa do veículo',
+                                    true,
+                                    1,
+                                    7,
+                                    true,
+                                    convitesController.carBoard.value,
+                                  ),
+                                ),
+                                /*Container(
                                   margin: EdgeInsets.only(bottom: 5),
                                   padding: EdgeInsets.all(7),
                                   child: TextField(
@@ -492,7 +505,7 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                ),
+                                ),*/
                                 Row(
                                   children: [
                                     Expanded(
@@ -710,9 +723,9 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     context,
                                     '',
                                     'Nome ou empresa',
-                                    false,
+                                    true,
                                     1,
-                                    150,
+                                    30,
                                     true,
                                     acessosController.name.value,
                                   ),

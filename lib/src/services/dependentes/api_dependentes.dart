@@ -9,6 +9,19 @@ class ApiDependentes {
     DependentesController dependentesController =
         Get.put(DependentesController());
     print(dependentesController.isChecked.value);
+
+    print('idusu: ${loginController.id.value}');
+    print('idcond: ${loginController.idcond.value}');
+    print('nome: ${dependentesController.nome.value.text}');
+    print('sobrenome: ${dependentesController.sobrenome.value.text}');
+    print('email: ${dependentesController.email.value.text}');
+    print('genero: ${dependentesController.itemSelecionado.value}');
+    print('celular: ${dependentesController.celular.value.text}');
+    print('tipo: ${dependentesController.tipoUsuario.value}');
+    print('horaEnt: ${dependentesController.startDate.value}');
+    print('horaSai: ${dependentesController.endDate.value}');
+    print('acesso: ${dependentesController.isChecked.value.toString()}');
+
     return await http.post(
       Uri.https("www.alvocomtec.com.br", "/flutter/dependentes_incluir.php"),
       body: {

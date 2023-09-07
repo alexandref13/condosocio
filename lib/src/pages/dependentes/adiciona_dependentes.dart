@@ -553,6 +553,8 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                             dependentesController
                                 .sendDependentes()
                                 .then((value) {
+                              print('VALOR DO SENDDEPENDENTE: $value');
+
                               if (value == 1) {
                                 confirmedInviteAlert(
                                     context,
@@ -613,20 +615,12 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                               },
                                             );
                                           });
-                                /*showToast(context, 'Parabéns!',
-                                    'Usuário cadastrado com sucesso.');*/
-                                // } else if (value == 4) {
-                                // onAlertButtonPressed(
-                                // context,
-                                //'Número máximo de usuários excedido!\nFale com a adminstração do condomínio',
-                                // null);
                               } else if (value == 3) {
                                 onAlertButtonPressed(
                                     context,
-                                    '${dependentesController.tipoUsuario.value} já cadastrado!',
+                                    'Celular já cadastrado para outro usuário no sistema!',
                                     '',
                                     'images/error.png');
-                                Get.back();
                               } else if (value == "vazio") {
                                 onAlertButtonPressed(
                                     context,
