@@ -31,7 +31,10 @@ class ApiReservas {
   static Future agendaReservas() async {
     LoginController loginController = Get.put(LoginController());
     ReservasController reservasController = Get.put(ReservasController());
-
+    print('idcond: ${loginController.idcond.value}');
+    print('idusu: ${loginController.id.value}');
+    print('nomearea: ${reservasController.nome.value}');
+    print('idarea: ${reservasController.idarea.value}');
     return await http.post(
       Uri.https("www.alvocomtec.com.br", "/flutter/reservas_agenda.php"),
       body: {

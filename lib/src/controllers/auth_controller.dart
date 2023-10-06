@@ -37,7 +37,10 @@ class AuthController extends GetxController {
     var email = box.read('email');
     var idcond = box.read('idcondController');
 
-    if (id != '') {
+// verificar variaveis
+    print("$id | $email | $idcond");
+
+    if (id != null) {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
         /*biometricOnly: true,
