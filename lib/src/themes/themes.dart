@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData admin = ThemeData(
   primaryColor: Color(0xff1A936F),
+  primaryColorDark: Color.fromARGB(255, 22, 58, 47),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffF3E9D2),
   ),
@@ -21,6 +22,7 @@ ThemeData admin = ThemeData(
 
 ThemeData magenta = ThemeData(
   primaryColor: Color(0xff833545),
+  primaryColorDark: Color.fromARGB(255, 58, 30, 35),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -42,6 +44,7 @@ ThemeData magenta = ThemeData(
 
 ThemeData turquoise = ThemeData(
   primaryColor: Color(0xff054437),
+  primaryColorDark: Color.fromARGB(255, 16, 41, 36),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -63,6 +66,7 @@ ThemeData turquoise = ThemeData(
 
 ThemeData blue = ThemeData(
   primaryColor: Color(0xff375a70),
+  primaryColorDark: Color.fromARGB(255, 16, 32, 43),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -84,6 +88,7 @@ ThemeData blue = ThemeData(
 
 ThemeData grayscale = ThemeData(
   primaryColor: Color(0xff150811),
+  primaryColorDark: Color.fromARGB(255, 99, 4, 70),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -126,6 +131,7 @@ ThemeData red = ThemeData(
 
 ThemeData orange = ThemeData(
   primaryColor: Color(0xff792404),
+  primaryColorDark: Color.fromARGB(255, 67, 34, 22),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
@@ -147,6 +153,7 @@ ThemeData orange = ThemeData(
 
 ThemeData violet = ThemeData(
   primaryColor: Color.fromARGB(255, 130, 10, 209),
+  primaryColorDark: Color.fromARGB(255, 47, 22, 63),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),

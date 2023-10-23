@@ -110,10 +110,9 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                               .getAConvite(convites.idconv);
                                         },
                                         child: Card(
-                                          color: before
+                                          color: !before
                                               ? Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary
+                                                  .primaryColorDark
                                               : Theme.of(context)
                                                   .colorScheme
                                                   .secondary,
@@ -122,6 +121,35 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                 BorderRadius.circular(10),
                                           ),
                                           child: ListTile(
+                                            leading: RichText(
+                                              text: TextSpan(
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 12,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor!,
+                                                ),
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                      text: convites.dia + "  ",
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
+                                                  TextSpan(
+                                                    text: convites.mes,
+                                                    style: GoogleFonts.montserrat(
+                                                        fontSize: 14,
+                                                        color: Theme.of(context)
+                                                            .textSelectionTheme
+                                                            .selectionColor!,
+                                                        letterSpacing: 2),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             title: Text(
                                               convites.titulo,
                                               maxLines: 1,
@@ -142,19 +170,6 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                     .textSelectionTheme
                                                     .selectionColor!,
                                               ),
-                                            ),
-                                            leading: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.email_outlined,
-                                                  size: 30,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor!,
-                                                ),
-                                              ],
                                             ),
                                             trailing: Column(
                                               mainAxisAlignment:
@@ -181,6 +196,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                   var date = DateTime.now();
                                   var endDate =
                                       DateTime.parse(convites.datafinal);
+
                                   var before = endDate.isBefore(date);
                                   return Container(
                                       margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
@@ -205,8 +221,7 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                         child: Card(
                                           color: before
                                               ? Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary
+                                                  .primaryColorDark
                                               : Theme.of(context)
                                                   .colorScheme
                                                   .secondary,
@@ -215,6 +230,35 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                 BorderRadius.circular(10),
                                           ),
                                           child: ListTile(
+                                            leading: RichText(
+                                              text: TextSpan(
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 12,
+                                                  color: Theme.of(context)
+                                                      .textSelectionTheme
+                                                      .selectionColor!,
+                                                ),
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                      text: convites.dia + "  ",
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
+                                                  TextSpan(
+                                                    text: convites.mes,
+                                                    style: GoogleFonts.montserrat(
+                                                        fontSize: 14,
+                                                        color: Theme.of(context)
+                                                            .textSelectionTheme
+                                                            .selectionColor!,
+                                                        letterSpacing: 2),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             title: Text(
                                               convites.titulo,
                                               maxLines: 1,
@@ -235,19 +279,6 @@ class _VisualizarConviteState extends State<VisualizarConvite> {
                                                     .textSelectionTheme
                                                     .selectionColor!,
                                               ),
-                                            ),
-                                            leading: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.email_outlined,
-                                                  size: 30,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor!,
-                                                ),
-                                              ],
                                             ),
                                             trailing: Column(
                                               mainAxisAlignment:

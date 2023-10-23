@@ -22,6 +22,8 @@ class VisualizarConvitesController extends GetxController {
   var isEdited = false.obs;
   var isLoading = false.obs;
   var isBefore = false.obs;
+  var dia = ''.obs;
+  var mes = ''.obs;
 
   var platformStringVersion = 'Unknown'.obs;
 

@@ -4,13 +4,17 @@ class ConvitesMapa {
   late int qtdconv;
   late String datafinal;
   late String acesso;
+  late String dia;
+  late String mes;
 
   ConvitesMapa(
       {required this.idconv,
       required this.titulo,
       required this.qtdconv,
       required this.datafinal,
-      required this.acesso});
+      required this.acesso,
+      required this.dia,
+      required this.mes});
 
   ConvitesMapa.fromJson(Map<String, dynamic> json) {
     idconv = json['idconv'];
@@ -18,6 +22,8 @@ class ConvitesMapa {
     qtdconv = json['qtdconv'];
     datafinal = json['datafinal'];
     acesso = json['acesso'];
+    dia = json['dia'];
+    mes = json['mes'];
   }
 
   Map<String, dynamic> toJson() {
@@ -27,6 +33,8 @@ class ConvitesMapa {
     data['qtdconv'] = this.qtdconv;
     data['datafinal'] = this.datafinal;
     data['acesso'] = this.acesso;
+    data['dia'] = this.dia;
+    data['mes'] = this.mes;
     return data;
   }
 }
