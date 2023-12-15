@@ -640,7 +640,7 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                             });
                           },
                           child: Text(
-                            'Enviar',
+                            'Adicionar',
                             style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context)

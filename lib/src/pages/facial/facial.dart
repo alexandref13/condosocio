@@ -172,7 +172,7 @@ class _FacialState extends State<Facial> {
     }
   }
 
-  getImage(ImageSource source) async {
+  /*getImage(ImageSource source) async {
     this.setState(() {});
     PickedFile? image = await _picker.getImage(source: source);
     if (image != null) {
@@ -194,6 +194,43 @@ class _FacialState extends State<Facial> {
         _selectedFile = File(image.path);
         _selectedFile = cropped;
         if (cropped != null) {
+          uploadImage();
+          //Get.back();
+          Get.toNamed('/facial');
+        }
+      });
+    }
+  }*/
+
+  Future<void> getImage(ImageSource source) async {
+    final image = await _picker.pickImage(source: source);
+    if (image != null) {
+      final CroppedFile? cropped = await ImageCropper().cropImage(
+        sourcePath: image.path,
+        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+        compressQuality: 80,
+        maxWidth: 400,
+        maxHeight: 400,
+        compressFormat: ImageCompressFormat.jpg,
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarTitle: 'Imagem Para Acesso de Saída',
+            toolbarColor: Colors.deepOrange,
+            initAspectRatio: CropAspectRatioPreset.original,
+            statusBarColor: Colors.deepOrange.shade900,
+            backgroundColor: Colors.white,
+            lockAspectRatio: false,
+          ),
+          IOSUiSettings(
+            title: 'Cortar Imagem',
+          ),
+        ],
+      );
+
+      this.setState(() {
+        _selectedFile = File(image.path);
+        if (cropped != null) {
+          _selectedFile = File(cropped.path);
           uploadImage();
           //Get.back();
           Get.toNamed('/facial');

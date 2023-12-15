@@ -78,10 +78,21 @@ class PerfilController extends GetxController {
   init() {
     imgperfil.value = loginController.imgperfil.value;
     name.value.text = loginController.nome.value;
-    phone.value.text = loginController.phone.value;
     secondName.value.text = loginController.sobrenome.value;
-    var date = loginController.birthdate.value.replaceAll('-', '/').split('/');
-    birthdate.value.text = '${date[2]}/${date[1]}/${date[0]}';
+    phone.value.text = loginController.phone.value;
+
+    var birthdateValue = loginController.birthdate.value;
+    if (birthdateValue.isNotEmpty) {
+      var date =
+          loginController.birthdate.value.replaceAll('-', '/').split('/');
+      birthdate.value.text = '${date[2]}/${date[1]}/${date[0]}';
+      print('DATA NIVER: $date');
+    } else {
+      // Tratar o caso em que a string de data está vazia
+      print('A string de data está vazia.');
+      birthdate.value.text = "00/00/0000";
+    }
+
     itemSelecionado.value = loginController.genero.value;
   }
 

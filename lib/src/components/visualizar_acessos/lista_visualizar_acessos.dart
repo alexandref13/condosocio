@@ -319,6 +319,9 @@ Widget listaVisualizarAcessos() {
                   var newDataSai = dataSai[0];
                   var newHoraSai = dataSai[1];
 
+                  print(
+                      'ACESSO TIPO = ${visualizarAcessosController.acessos[index].acessotipo}');
+
                   return GestureDetector(
                     onTap: () {
                       acessosController.idAce.value = acessos.idace;

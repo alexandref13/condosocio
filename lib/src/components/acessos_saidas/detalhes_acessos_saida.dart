@@ -23,32 +23,37 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
   final picker = ImagePicker();
   File? selectedFile;
 
-  getImage(ImageSource source) async {
-    this.setState(() {});
-    // ignore: deprecated_member_use
-    PickedFile? image = await picker.getImage(source: source);
+  Future<void> getImage(ImageSource source) async {
+    final image = await picker.pickImage(source: source);
     if (image != null) {
-      File? cropped = await ImageCropper().cropImage(
-          sourcePath: image.path,
-          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-          compressQuality: 80,
-          maxWidth: 400,
-          maxHeight: 400,
-          compressFormat: ImageCompressFormat.jpg,
-          androidUiSettings: AndroidUiSettings(
+      final CroppedFile? cropped = await ImageCropper().cropImage(
+        sourcePath: image.path,
+        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+        compressQuality: 80,
+        maxWidth: 400,
+        maxHeight: 400,
+        compressFormat: ImageCompressFormat.jpg,
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarTitle: 'Imagem Para Acesso de Saída',
             toolbarColor: Colors.deepOrange,
-            toolbarTitle: "Imagem Para Acesso de Saída",
+            initAspectRatio: CropAspectRatioPreset.original,
             statusBarColor: Colors.deepOrange.shade900,
             backgroundColor: Colors.white,
-          ));
+            lockAspectRatio: false,
+          ),
+          IOSUiSettings(
+            title: 'Cortar Imagem',
+          ),
+        ],
+      );
 
-      this.setState(() {
-        selectedFile = File(image.path);
-        selectedFile = cropped;
-        if (cropped != null) {
+      if (cropped != null) {
+        setState(() {
+          selectedFile = File(cropped.path);
           saidaController.editarFoto(selectedFile!.path);
-        }
-      });
+        });
+      }
     }
   }
 

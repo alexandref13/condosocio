@@ -270,50 +270,105 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                                     ],
                                   )),
                             ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/veiculos');
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).colorScheme.secondary,
-                              boxShadow: [
-                                BoxShadow(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  spreadRadius: 3,
-                                  blurRadius: 1,
-                                  offset: Offset(
-                                      0, 2), // changes position of shadow
-                                ),
-                              ],
+                      loginController.dep.value == '0'
+                          ? GestureDetector(
+                              onTap: () {
+                                Get.toNamed('/veiculos');
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                        spreadRadius: 3,
+                                        blurRadius: 1,
+                                        offset: Offset(
+                                            0, 2), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: Icon(
+                                          Icons.directions_car_outlined,
+                                          size: 40,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Veículos",
+                                        style: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                          fontSize: 11,
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                //Get.toNamed('/veiculos');
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary
+                                        .withOpacity(0.5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                        spreadRadius: 3,
+                                        blurRadius: 1,
+                                        offset: Offset(
+                                            0, 2), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: Icon(
+                                          Icons.directions_car_outlined,
+                                          size: 40,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!
+                                              .withOpacity(0.5),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Veículos",
+                                        style: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!
+                                              .withOpacity(0.5),
+                                          fontSize: 11,
+                                        ),
+                                      ),
+                                    ],
+                                  )),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Icon(
-                                    Icons.directions_car_outlined,
-                                    size: 40,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                  ),
-                                ),
-                                Text(
-                                  "Veículos",
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
                       GestureDetector(
                         onTap: () {
                           Get.toNamed('/reserva');
