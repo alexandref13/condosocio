@@ -315,7 +315,7 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                   decoration: BoxDecoration(
                                     image: new DecorationImage(
                                       image: NetworkImage(
-                                        'https://www.alvocomtec.com.br/acond/downloads/autsaida/${saidaController.image.value}',
+                                        'https://www.condosocio.com.br/acond/downloads/autsaida/${saidaController.image.value}',
                                       ),
                                       fit: BoxFit.contain,
                                     ),

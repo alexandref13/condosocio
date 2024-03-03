@@ -11,7 +11,7 @@ class DetalhesReservasController extends GetxController {
   var unidade = ''.obs;
   var data = ''.obs;
   var titulo = ''.obs;
-  var area = ''.obs;
+  var areacom = ''.obs;
   var status = ''.obs;
   var hora = ''.obs;
   var respevent = ''.obs;
@@ -33,7 +33,7 @@ class DetalhesReservasController extends GetxController {
     unidade(newUnidade);
     data(newData);
     titulo(newTitulo);
-    area(newArea);
+    areacom(newArea);
     status(newStatus);
     hora(newHora);
     respevent(newResp);

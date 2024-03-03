@@ -43,6 +43,7 @@ class CalendarioReservasController extends GetxController {
                 idevento: eventos['idevento'] ?? '',
                 img: eventos['img'] ?? '',
                 nome: eventos['nome'] ?? '',
+                areacom: eventos['areacom'] ?? '',
                 respevent: eventos['respevent'] ?? '',
                 status: eventos['status'] ?? '',
                 titulo: eventos['titulo'] ?? '',
@@ -50,7 +51,6 @@ class CalendarioReservasController extends GetxController {
                 horaAgenda: eventos['hora_agenda'] ?? '',
                 validausu: eventos['validausu'] ??
                     0, // Ajuste para um valor numérico padrão, se necessário
-                areacom: '',
                 ctl: '',
               ),
             );

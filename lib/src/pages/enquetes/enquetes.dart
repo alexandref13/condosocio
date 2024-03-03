@@ -33,110 +33,146 @@ class Enquetes extends StatelessWidget {
           body: Obx(() {
             return visualizarEnquetesController.isLoading.value
                 ? CircularProgressIndicatorWidget()
-                : Container(
-                    padding: EdgeInsets.all(8),
-                    margin: EdgeInsets.only(bottom: 6),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    height: MediaQuery.of(context).size.height,
-                    child: ListView.builder(
-                      itemCount: visualizarEnquetesController.enquetes.length,
-                      itemBuilder: (context, index) {
-                        var enquetes =
-                            visualizarEnquetesController.enquetes[index];
-
-                        var day = enquetes.datacreate.split('/');
-
-                        if (day[1] == '01') {
-                          visualizarEnquetesController.month.value = 'Jan';
-                        } else if (day[1] == '02') {
-                          visualizarEnquetesController.month.value = 'Fev';
-                        } else if (day[1] == '03') {
-                          visualizarEnquetesController.month.value = 'Mar';
-                        } else if (day[1] == '04') {
-                          visualizarEnquetesController.month.value = 'Abr';
-                        } else if (day[1] == '05') {
-                          visualizarEnquetesController.month.value = 'Mai';
-                        } else if (day[1] == '06') {
-                          visualizarEnquetesController.month.value = 'Jul';
-                        } else if (day[1] == '07') {
-                          visualizarEnquetesController.month.value = 'Jun';
-                        } else if (day[1] == '08') {
-                          visualizarEnquetesController.month.value = 'Ago';
-                        } else if (day[1] == '09') {
-                          visualizarEnquetesController.month.value = 'Set';
-                        } else if (day[1] == '10') {
-                          visualizarEnquetesController.month.value = 'Out';
-                        } else if (day[1] == '11') {
-                          visualizarEnquetesController.month.value = 'Nov';
-                        } else if (day[1] == '12') {
-                          visualizarEnquetesController.month.value = 'Dez';
-                        }
-
-                        return GestureDetector(
-                          onTap: () {
-                            visualizarEnquetesController.titulo.value =
-                                enquetes.titulo;
-                            visualizarEnquetesController.idenq.value =
-                                enquetes.idenq;
-                            Get.toNamed('/votarEnquetes');
-                          },
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
+                : visualizarEnquetesController.enquetes.isEmpty
+                    ? Stack(
+                        children: <Widget>[
+                          Container(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.black12,
+                            child: Image.asset(
+                              'images/semregistro.png',
+                              fit: BoxFit.fitWidth,
                             ),
-                            color: enquetes.datavalida == 'Votação Encerrada'
-                                ? Theme.of(context).colorScheme.secondary
-                                : Theme.of(context).primaryColorDark,
-                            child: ListTile(
-                                leading: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      enquetes.datacreate,
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 14,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor!,
-                                        letterSpacing: 2,
-                                      ),
-                                    ),
-                                  ],
+                          ),
+                          Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(top: 100),
                                 ),
-                                title: Container(
-                                  child: Text(
-                                    enquetes.titulo,
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor!,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                subtitle: Text(
-                                  enquetes.datavalida,
+                                Text(
+                                  'AINDA SEM ENQUETES',
                                   style: GoogleFonts.montserrat(
-                                    fontSize: 11,
+                                    fontSize: 16.0,
                                     color: Theme.of(context)
                                         .textSelectionTheme
                                         .selectionColor!,
                                   ),
                                 ),
-                                trailing: Icon(
-                                  Icons.arrow_right,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                  size: 30,
-                                )),
-                          ),
-                        );
-                      },
-                    ),
-                  );
+                              ],
+                            ),
+                          )
+                        ],
+                      )
+                    : Container(
+                        padding: EdgeInsets.all(8),
+                        margin: EdgeInsets.only(bottom: 6),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        height: MediaQuery.of(context).size.height,
+                        child: ListView.builder(
+                          itemCount:
+                              visualizarEnquetesController.enquetes.length,
+                          itemBuilder: (context, index) {
+                            var enquetes =
+                                visualizarEnquetesController.enquetes[index];
+
+                            var day = enquetes.datacreate.split('/');
+
+                            if (day[1] == '01') {
+                              visualizarEnquetesController.month.value = 'Jan';
+                            } else if (day[1] == '02') {
+                              visualizarEnquetesController.month.value = 'Fev';
+                            } else if (day[1] == '03') {
+                              visualizarEnquetesController.month.value = 'Mar';
+                            } else if (day[1] == '04') {
+                              visualizarEnquetesController.month.value = 'Abr';
+                            } else if (day[1] == '05') {
+                              visualizarEnquetesController.month.value = 'Mai';
+                            } else if (day[1] == '06') {
+                              visualizarEnquetesController.month.value = 'Jul';
+                            } else if (day[1] == '07') {
+                              visualizarEnquetesController.month.value = 'Jun';
+                            } else if (day[1] == '08') {
+                              visualizarEnquetesController.month.value = 'Ago';
+                            } else if (day[1] == '09') {
+                              visualizarEnquetesController.month.value = 'Set';
+                            } else if (day[1] == '10') {
+                              visualizarEnquetesController.month.value = 'Out';
+                            } else if (day[1] == '11') {
+                              visualizarEnquetesController.month.value = 'Nov';
+                            } else if (day[1] == '12') {
+                              visualizarEnquetesController.month.value = 'Dez';
+                            }
+
+                            return GestureDetector(
+                              onTap: () {
+                                visualizarEnquetesController.titulo.value =
+                                    enquetes.titulo;
+                                visualizarEnquetesController.idenq.value =
+                                    enquetes.idenq;
+                                Get.toNamed('/votarEnquetes');
+                              },
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                color: enquetes.datavalida ==
+                                        'Votação Encerrada'
+                                    ? Theme.of(context).colorScheme.secondary
+                                    : Theme.of(context).primaryColorDark,
+                                child: ListTile(
+                                    leading: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          enquetes.datacreate,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor!,
+                                            letterSpacing: 2,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    title: Container(
+                                      child: Text(
+                                        enquetes.titulo,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 12,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor!,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      enquetes.datavalida,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 11,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor!,
+                                      ),
+                                    ),
+                                    trailing: Icon(
+                                      Icons.arrow_right,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor!,
+                                      size: 30,
+                                    )),
+                              ),
+                            );
+                          },
+                        ),
+                      );
           })),
     );
   }

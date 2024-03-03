@@ -37,7 +37,7 @@ class VisualizarAcessosController extends GetxController {
     });
   }
 
-  void getAcessos() {
+  getAcessos() {
     isLoading(true);
     ApiAcessos.getAcessos().then((response) {
       Iterable lista = json.decode(response.body);
@@ -49,9 +49,9 @@ class VisualizarAcessosController extends GetxController {
     });
   }
 
-  @override
+  /*@override
   void onInit() {
     super.onInit();
     getAcessos();
-  }
+  }*/
 }

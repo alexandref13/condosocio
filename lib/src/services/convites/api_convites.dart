@@ -10,7 +10,7 @@ class ApiConvites {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', '/flutter/convites_buscar.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/convites_buscar.php'),
       body: {
         'idusu': loginController.id.value,
       },
@@ -19,7 +19,7 @@ class ApiConvites {
 
   static Future getAConvites(String id) async {
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', '/flutter/convites_info2.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/convites_info2.php'),
       body: {
         'idconv': id,
       },
@@ -29,7 +29,7 @@ class ApiConvites {
   static Future getBannerTelaInicial() async {
     LoginController loginController = Get.put(LoginController());
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', '/flutter/bannerTelaInicial.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/bannerTelaInicial.php'),
       body: {
         'idusu': loginController.id.value,
       },
@@ -38,7 +38,7 @@ class ApiConvites {
 
   static Future deleleAConvite(String id) async {
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', '/flutter/convites_excluir.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/convites_excluir.php'),
       body: {
         'idconv': id,
       },
@@ -54,7 +54,7 @@ class ApiConvites {
     print('idConv: ${visualizarConvitesController.idConv.value}');
     return await http.post(
       Uri.https(
-          'www.alvocomtec.com.br', '/flutter/convites_excluir_convidados.php'),
+          'www.condosocio.com.br', '/flutter/convites_excluir_convidados.php'),
       body: {
         'idconv': visualizarConvitesController.idConv.value,
         'convidados': json.encode(convitesController.guestList),
@@ -78,7 +78,7 @@ class ApiConvites {
     print('acesso: $acesso');
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', '/flutter/convites_inc.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/convites_inc.php'),
       body: {
         'idusu': loginController.id.value,
         'idcond': loginController.idcond.value,
@@ -107,7 +107,7 @@ class ApiConvites {
 
     return await http.get(
       Uri.https(
-          'www.alvocomtec.com.br', '/flutter/convites_whatsapp_chave.php', {
+          'www.condosocio.com.br', '/flutter/convites_whatsapp_chave.php', {
         'idconv': visualizarConvitesController.idConv.value,
         'nome': visualizarConvitesController.nameGuest.value,
         'celraiz': visualizarConvitesController.tel.value,
@@ -122,7 +122,7 @@ class ApiConvites {
     print('IDCONV VERIFICAR : ${visualizarConvitesController.idConv.value}');
     return await http.get(
       Uri.https(
-          'www.alvocomtec.com.br', '/flutter/convites_whatsapp_verificar.php', {
+          'www.condosocio.com.br', '/flutter/convites_whatsapp_verificar.php', {
         'celular': visualizarConvitesController.tel.value,
         'idconv': visualizarConvitesController.idConv.value,
       }),

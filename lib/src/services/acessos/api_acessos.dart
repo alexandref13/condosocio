@@ -11,7 +11,7 @@ class ApiAcessos {
     LoginController loginController = Get.put(LoginController());
     print("idUsu Acessovis: ${loginController.id.value}");
     return await http.get(
-      Uri.https("www.alvocomtec.com.br", "/flutter/acessovis.php", {
+      Uri.https("www.condosocio.com.br", "/flutter/acessovis.php", {
         "idUsu": loginController.id.value,
       }),
     );
@@ -22,7 +22,7 @@ class ApiAcessos {
     AcessosController acessosController = Get.put(AcessosController());
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', '/flutter/visitantes_inc.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/visitantes_inc.php'),
       body: {
         'id': loginController.id.value,
         'idcond': loginController.idcond.value,
@@ -39,7 +39,7 @@ class ApiAcessos {
     if (espera == "1") {
       AcessosController acessosController = Get.put(AcessosController());
       return await http.get(
-        Uri.https('www.alvocomtec.com.br', '/flutter/acesso_excluir.php', {
+        Uri.https('www.condosocio.com.br', '/flutter/acesso_excluir.php', {
           'idace': acessosController.idAce.value,
           'idcond': loginController.idcond.value,
           'idvis': acessosController.idvis.value,
@@ -49,7 +49,7 @@ class ApiAcessos {
       AcessosEsperaController acessosEsperaController =
           Get.put(AcessosEsperaController());
       return await http.get(
-        Uri.https('www.alvocomtec.com.br', '/flutter/acesso_excluir.php', {
+        Uri.https('www.condosocio.com.br', '/flutter/acesso_excluir.php', {
           'idace': acessosEsperaController.idAce.value,
           'idcond': loginController.idcond.value,
           'idvis': acessosEsperaController.idvis.value,
@@ -62,7 +62,7 @@ class ApiAcessos {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-        Uri.https('www.alvocomtec.com.br', '/flutter/favoritos_buscar.php'),
+        Uri.https('www.condosocio.com.br', '/flutter/favoritos_buscar.php'),
         body: {'idusu': loginController.id.value});
   }
 
@@ -70,7 +70,7 @@ class ApiAcessos {
     AcessosController acessosController = Get.put(AcessosController());
     return await http.get(
       Uri.https(
-        'www.alvocomtec.com.br',
+        'www.condosocio.com.br',
         '/flutter/favorito_escolhido.php',
         {"idfav": acessosController.firstId.value},
       ),
@@ -81,7 +81,7 @@ class ApiAcessos {
     AcessosController acessosController = Get.put(AcessosController());
 
     return await http.get(Uri.https(
-        'www.alvocomtec.com.br',
+        'www.condosocio.com.br',
         '/flutter/favorito_excluir.php',
         {"idfav": acessosController.firstId.value}));
   }
@@ -93,7 +93,7 @@ class ApiAcessos {
 
       return await http.get(
         Uri.https(
-          "www.alvocomtec.com.br",
+          "www.condosocio.com.br",
           "/flutter/favoritos_alternar.php",
           {
             "idusu": loginController.id.value,
@@ -110,7 +110,7 @@ class ApiAcessos {
 
       return await http.get(
         Uri.https(
-          "www.alvocomtec.com.br",
+          "www.condosocio.com.br",
           "/flutter/favoritos_alternar.php",
           {
             "idusu": loginController.id.value,
@@ -140,7 +140,7 @@ class ApiAcessos {
 
     return await http.get(
       Uri.https(
-        "www.alvocomtec.com.br",
+        "www.condosocio.com.br",
         "/flutter/favoritos_alternar_convite.php",
         {
           "idusu": loginController.id.value,

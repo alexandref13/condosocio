@@ -8,7 +8,7 @@ class ApiSenha {
     LoginController loginController = Get.put(LoginController());
     SenhaController senhaController = Get.put(SenhaController());
     return await http.post(
-      Uri.https('alvocomtec.com.br', '/flutter/senha_alterar.php'),
+      Uri.https('condosocio.com.br', '/flutter/senha_alterar.php'),
       body: {
         'idusu': loginController.id.value,
         'senha': senhaController.senhanova.value.text,

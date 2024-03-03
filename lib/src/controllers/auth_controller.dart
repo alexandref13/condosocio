@@ -59,7 +59,11 @@ class AuthController extends GetxController {
 
       if (isAuthenticated) {
         loginController.isLoading.value = true;
-        http.post(Uri.https('www.alvocomtec.com.br', '/flutter/dados_usu.php'),
+
+// Registra o tempo inicial
+        DateTime startTime = DateTime.now();
+
+        http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
             body: {"id": id}).then((response) {
           loginController.hasMoreEmail(email).then((value) {
             print('idcond autentic: $idcond');
@@ -73,6 +77,11 @@ class AuthController extends GetxController {
               } else {
                 loginController.haveListOfCondo.value = false;
               }
+              // Calcula o tempo de resposta
+              DateTime endTime = DateTime.now();
+              Duration responseTime = endTime.difference(startTime);
+              print(
+                  'Tempo de resposta da API: ${responseTime.inMilliseconds}ms');
               var dados = json.decode(response.body);
               print('auth: $dados');
 

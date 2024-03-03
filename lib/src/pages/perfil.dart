@@ -31,7 +31,7 @@ class _PerfilState extends State<Perfil> {
   final _picker = ImagePicker();
 
   final uri =
-      Uri.parse("https://www.alvocomtec.com.br/flutter/upload_imagem.php");
+      Uri.parse("https://www.condosocio.com.br/flutter/upload_imagem.php");
 
   Widget getImageWidget() {
     if (_selectedFile != null) {
@@ -133,7 +133,7 @@ class _PerfilState extends State<Perfil> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
+                        'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
                   ),
                 ),
               ),

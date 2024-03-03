@@ -83,7 +83,7 @@ class LoginController extends GetxController {
     await GetStorage.init();
     final box = GetStorage();
     box.write('email', emailS);
-    final response = await http.get(Uri.https('www.alvocomtec.com.br',
+    final response = await http.get(Uri.https('www.condosocio.com.br',
         '/flutter/unidadesLista.php', {"email": emailS}));
     var dados = json.decode(response.body);
     listOfCondo = dados.map((model) => ListOfCondo.fromJson(model)).toList();
@@ -93,16 +93,26 @@ class LoginController extends GetxController {
 
   login() async {
     isLoading(true);
+
+    // Registra o tempo inicial
+    DateTime startTime = DateTime.now();
+
     final response = await http
-        .post(Uri.https("alvocomtec.com.br", '/flutter/login.php'), body: {
+        .post(Uri.https("www.condosocio.com.br", '/flutter/login.php'), body: {
       "login": email.value.text,
       "senha": password.value.text,
     });
-    isLoading(false);
+
+    // Calcula o tempo de resposta
+    DateTime endTime = DateTime.now();
+    Duration responseTime = endTime.difference(startTime);
+    print('Tempo de resposta da API: ${responseTime.inMilliseconds}ms');
 
     var dadosUsuario = json.decode(response.body);
     print(dadosUsuario);
+
     if (dadosUsuario['valida'] == 1) {
+      isLoading(false);
       return dadosUsuario;
     } else {
       return null;
@@ -127,7 +137,7 @@ class LoginController extends GetxController {
 
   newLogin(String newId) {
     isLoading(true);
-    http.post(Uri.https('www.alvocomtec.com.br', '/flutter/dados_usu.php'),
+    http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
         body: {"id": newId}).then((response) {
       var dados = json.decode(response.body);
 

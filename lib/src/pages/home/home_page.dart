@@ -37,7 +37,8 @@ class _HomePageState extends State<HomePage> {
   final _picker = ImagePicker();
   File? _selectedFile;
 
-  final uri = Uri.parse("https://alvocomtec.com.br/flutter/upload_imagem.php");
+  final uri =
+      Uri.parse("https://www.condosocio.com.br/flutter/upload_imagem.php");
 
   Future<void> logoutUser() async {
     await GetStorage.init();
@@ -189,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
+                        'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
                   ),
                 ),
               ),
@@ -445,10 +446,16 @@ class _HomePageState extends State<HomePage> {
                               ),
                             )
                           : Container(),
-                      Divider(
-                        height: 5,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                      loginController.idadm.value != '0'
+                          ? Divider(
+                              height: 1,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor!
+                                  .withOpacity(
+                                      0.5), // Ajuste o valor de opacidade conforme necessário
+                            )
+                          : Container(),
                       loginController.haveListOfCondo.value
                           ? Container(
                               child: ListTile(
@@ -481,6 +488,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             )
                           : Container(),
+
                       /*loginController.dep.value == '0'
                           ? Container(
                               child: ListTile(
@@ -510,8 +518,11 @@ class _HomePageState extends State<HomePage> {
                             )
                           : Container(),*/
                       Divider(
-                        height: 5,
-                        color: Theme.of(context).primaryColor,
+                        height: 1,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!
+                            .withOpacity(0.3),
                       ),
                       Container(
                         child: ListTile(
@@ -540,7 +551,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Divider(
                         height: 5,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!
+                            .withOpacity(0.3),
                       ),
                       Container(
                         child: ListTile(
@@ -569,7 +583,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Divider(
                         height: 5,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!
+                            .withOpacity(0.3),
                       ),
                       Container(
                         child: ListTile(
@@ -598,7 +615,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Divider(
                         height: 5,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!
+                            .withOpacity(0.3),
                       ),
                       Container(
                         child: ListTile(
@@ -623,13 +643,16 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             homePageController.launched =
                                 homePageController.launchInBrowser(
-                                    'https://alvocomtec.com.br/termo.html');
+                                    'https://www.condosocio.com.br/termo.html');
                           },
                         ),
                       ),
                       Divider(
                         height: 5,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!
+                            .withOpacity(0.3),
                       ),
                       Container(
                         child: ListTile(
@@ -654,13 +677,16 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             homePageController.launched =
                                 homePageController.launchInBrowser(
-                                    'https://alvocomtec.com.br/privacidade.html');
+                                    'https://www.condosocio.com.br/privacidade.html');
                           },
                         ),
                       ),
                       Divider(
                         height: 5,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!
+                            .withOpacity(0.3),
                       ),
                       Container(
                         child: ListTile(
@@ -690,7 +716,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Divider(
                         height: 5,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!
+                            .withOpacity(0.3),
                       ),
                       /*Container(
                         child: ListTile(
@@ -751,7 +780,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Divider(
                         height: 15,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!
+                            .withOpacity(0.3),
                       ),
                       Container(
                         child: Padding(
@@ -769,7 +801,7 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           children: [
                             Text(
-                              'Versão 9.6.0',
+                              'Versão 10.0.3',
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme

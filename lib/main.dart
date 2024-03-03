@@ -66,9 +66,15 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'src/components/convites/detalhe_convite_widget.dart';
 import 'src/pages/list_of_condo.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:camera/camera.dart';
 
-void main() {
+List<CameraDescription> cameras = [];
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   runApp(MyApp());
+  print('CAMERAS ABERTAS: ${cameras.length}');
 }
 
 class MyApp extends StatelessWidget {

@@ -90,7 +90,7 @@ class Editais extends StatelessWidget {
                                         onPressed: () {
                                           editaisController.launched =
                                               editaisController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${editaisController.searchResult[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${editaisController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -132,7 +132,7 @@ class Editais extends StatelessWidget {
                                         onPressed: () {
                                           editaisController.launched =
                                               editaisController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${editaisController.editais[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${editaisController.editais[index].imgdoc}");
                                         },
                                       ),
                                     ),

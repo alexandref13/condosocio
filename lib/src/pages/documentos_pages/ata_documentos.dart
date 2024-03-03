@@ -82,7 +82,7 @@ class Ata extends StatelessWidget {
                                         iconSize: 26,
                                         onPressed: () {
                                           ata.launched = ata.launchInBrowser(
-                                              "https://alvocomtec.com.br/acond/downloads/documentos/${ata.searchResult[index].imgdoc}");
+                                              "https://www.condosocio.com.br/acond/downloads/documentos/${ata.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -123,7 +123,7 @@ class Ata extends StatelessWidget {
                                         iconSize: 26,
                                         onPressed: () {
                                           ata.launched = ata.launchInBrowser(
-                                              "https://alvocomtec.com.br/acond/downloads/documentos/${ata.atas[index].imgdoc}");
+                                              "https://www.condosocio.com.br/acond/downloads/documentos/${ata.atas[index].imgdoc}");
                                         },
                                       ),
                                     ),

@@ -39,7 +39,7 @@ class FacialAcesso extends StatelessWidget {
             tag: 'facialacesso',
             child: Image(
               image: NetworkImage(
-                  'https://alvocomtec.com.br/acond/downloads/${acessosController.tipoimgfacial.value}/${acessosController.imgfacial.value}'),
+                  'https://www.condosocio.com.br/acond/downloads/${acessosController.tipoimgfacial.value}/${acessosController.imgfacial.value}'),
             ),
           ),
         ),

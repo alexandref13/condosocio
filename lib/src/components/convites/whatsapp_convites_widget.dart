@@ -148,7 +148,7 @@ class WhatsAppConvitesWidget extends StatelessWidget {
                       visualizarConvitesController.sendWhatsApp().then((value) {
                         if (value != 0) {
                           String message =
-                              'Olá! Você foi convidado por ${loginController.nome.value}, morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em aberto. Grato! https://alvocomtec.com.br/paginas/a.php?chave=${value['idace']}';
+                              'Olá! Você foi convidado por ${loginController.nome.value}, morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em aberto. Grato! https://www.condosocio.com.br/paginas/a.php?chave=${value['idace']}';
 
                           whatsAppSend(
                             context,

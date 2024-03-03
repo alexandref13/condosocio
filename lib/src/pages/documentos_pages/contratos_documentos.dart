@@ -91,7 +91,7 @@ class Contratos extends StatelessWidget {
                                         onPressed: () {
                                           contratosController.launched =
                                               contratosController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${contratosController.searchResult[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${contratosController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -135,7 +135,7 @@ class Contratos extends StatelessWidget {
                                         onPressed: () {
                                           contratosController.launched =
                                               contratosController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${contratosController.contratos[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${contratosController.contratos[index].imgdoc}");
                                         },
                                       ),
                                     ),

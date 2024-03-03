@@ -9,7 +9,7 @@ class ApiEncomendas {
     print(loginController.id.value);
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', 'flutter/encomendas_vis.php'),
+      Uri.https('www.condosocio.com.br', 'flutter/encomendas_vis.php'),
       body: {
         'idusu': loginController.id.value,
       },
@@ -21,7 +21,7 @@ class ApiEncomendas {
 
     return await http.get(
       Uri.https(
-        'www.alvocomtec.com.br',
+        'www.condosocio.com.br',
         'flutter/encomendas_qrcode_recept.php',
         {
           'idenc': encomendasController.id.value,

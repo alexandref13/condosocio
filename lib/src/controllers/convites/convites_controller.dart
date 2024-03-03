@@ -186,9 +186,9 @@ class ConvitesController extends GetxController {
     return data;
   }
 
-  @override
+  /* @override
   void onInit() {
     getConvites();
     super.onInit();
-  }
+  }*/
 }

@@ -43,7 +43,6 @@ class ListOfCondo extends StatelessWidget {
                             loginController.tipoun.value = condo.tipoun;
                             loginController.logradouro.value = condo.logradouro;
                             loginController.newId.value = condo.idusu;
-                            loginController.newLogin(condo.idusu);
                             loginController.idcond.value = condo.idcond;
                             loginController.tipousu.value = condo.tipousu;
                             loginController.nomeusu.value = condo.nomeusu;
@@ -64,6 +63,7 @@ class ListOfCondo extends StatelessWidget {
                               print(
                                   "List_Condo Encountered an error sending tags: $error");
                             });
+                            loginController.newLogin(condo.idusu);
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -77,7 +77,7 @@ class ListOfCondo extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://www.alvocomtec.com.br/acond/downloads/logocondo/${condo.imglogo}'),
+                                        'https://www.condosocio.com.br/acond/downloads/logocondo/${condo.imglogo}'),
                                   ),
                                 ),
                               ),

@@ -19,6 +19,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF114CB0),
       body: SingleChildScrollView(
         child: Obx(
           () {
@@ -241,7 +242,7 @@ class Login extends StatelessWidget {
                                                                   .launched =
                                                               loginController
                                                                   .launchInBrowser(
-                                                            'https://alvocomtec.com.br/termo.html',
+                                                            'https://www.condosocio.com.br/termo.html',
                                                           );
                                                         },
                                                 ),
@@ -266,7 +267,7 @@ class Login extends StatelessWidget {
                                                                   .launched =
                                                               loginController
                                                                   .launchInBrowser(
-                                                            'https://alvocomtec.com.br/privacidade.html',
+                                                            'https://www.condosocio.com.br/privacidade.html',
                                                           );
                                                         },
                                                 ),
@@ -318,6 +319,8 @@ class Login extends StatelessWidget {
                                             if (value == null) {
                                               loginController
                                                   .password.value.text = '';
+                                              loginController.isLoading.value =
+                                                  false;
                                               onAlertButtonPressed(
                                                   context,
                                                   'E-mail ou Senha Inválidos! \n Tente Novamente',
@@ -344,6 +347,7 @@ class Login extends StatelessWidget {
                                                     loginController
                                                         .haveListOfCondo
                                                         .value = true;
+
                                                     Get.toNamed('/listOfCondo');
                                                   } else {
                                                     loginController
@@ -436,6 +440,7 @@ class Login extends StatelessWidget {
                                         );
                                       }
                                     } else {
+                                      loginController.isLoading.value = false;
                                       onAlertButtonPressed(
                                           context,
                                           'Você precisa aceitar os termos de uso e a política de privacidade para entrar!',
@@ -457,7 +462,7 @@ class Login extends StatelessWidget {
                                           ),
                                         )
                                       : Text(
-                                          "Entrar",
+                                          "Acessar",
                                           style: GoogleFonts.montserrat(
                                             fontWeight: FontWeight.bold,
                                             color: Theme.of(context)
@@ -521,7 +526,7 @@ class Login extends StatelessWidget {
                                     // Get.toNamed('/esqueci');
                                     loginController.launched =
                                         loginController.launchInBrowser(
-                                      'https://alvocomtec.com.br',
+                                      'https://www.condosocio.com.br',
                                     );
                                   },
                                   child: Text(

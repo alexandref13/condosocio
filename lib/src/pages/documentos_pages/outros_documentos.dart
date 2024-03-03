@@ -89,7 +89,7 @@ class Outros extends StatelessWidget {
                                         onPressed: () {
                                           outrosController.launched =
                                               outrosController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${outrosController.searchResult[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${outrosController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -131,7 +131,7 @@ class Outros extends StatelessWidget {
                                         onPressed: () {
                                           outrosController.launched =
                                               outrosController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${outrosController.outros[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${outrosController.outros[index].imgdoc}");
                                         },
                                       ),
                                     ),

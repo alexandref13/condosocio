@@ -1,9 +1,9 @@
 name: condosocio
-description: A new Flutter project.
+description: A tecnologia que transforma.
 publish_to: "none"
-version: 7.0.1+1
+version: 10.0.1+1
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -18,7 +18,7 @@ dependencies:
   get: null
   get_storage: null
   google_fonts: ^6.1.0
-  http: ^1.1.0
+  http: ^1.2.1
   image_cropper: ^5.0.0
   image_picker: ^1.0.4
   local_auth: ^2.1.2
@@ -29,15 +29,19 @@ dependencies:
   shared_preferences: ^2.0.3
   url_launcher: ^6.1.6
   flutter_speed_dial: ^7.0.0
-  onesignal_flutter: ^3.5.1
+  onesignal_flutter: ^3.5.0
   qr_flutter: ^4.1.0
   intl: ^0.18.0
   table_calendar: ^3.0.0
   carousel_slider: ^4.2.1
   flutter_animated_dialog: ^2.0.1
-  lottie: ^2.3.2
+  lottie: ^3.1.0
   fluttertoast: ^8.2.2
   intl_phone_field: ^3.1.0
+  camera: ^0.10.3
+  google_mlkit_face_detection: ^0.6.0
+  image: ^4.1.7
+  path_provider: ^2.0.14
 
 dev_dependencies:
   flutter_test:

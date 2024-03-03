@@ -13,7 +13,7 @@ class ApiOcorrencias {
 
     return await http.get(
       Uri.https(
-        "www.alvocomtec.com.br",
+        "www.condosocio.com.br",
         "/flutter/ocovis.php",
         {"idUsu": loginController.id.value},
       ),
@@ -31,7 +31,7 @@ class ApiOcorrencias {
     print(ocorrenciasController.date.value.text);
     print(ocorrenciasController.hour.value.text);
     var uri =
-        Uri.parse("https://www.alvocomtec.com.br/flutter/ocorrencias_inc.php");
+        Uri.parse("https://www.condosocio.com.br/flutter/ocorrencias_inc.php");
 
     var request = http.MultipartRequest('POST', uri);
 
@@ -70,7 +70,7 @@ class ApiOcorrencias {
         Get.put(VisualizarOcorrenciasController());
 
     return await http.post(
-      Uri.https("www.alvocomtec.com.br", "flutter/ocorrencias_resp_vis.php"),
+      Uri.https("www.condosocio.com.br", "flutter/ocorrencias_resp_vis.php"),
       body: {
         'idoco': visualizarOcorrenciasController.idoco.value,
       },
@@ -85,7 +85,7 @@ class ApiOcorrencias {
         Get.put(RespostaOcorrenciasController());
 
     return await http.post(
-      Uri.https("www.alvocomtec.com.br", "flutter/ocorrencias_resp_inc.php"),
+      Uri.https("www.condosocio.com.br", "flutter/ocorrencias_resp_inc.php"),
       body: {
         'idusu': loginController.id.value,
         'idcond': loginController.idcond.value,

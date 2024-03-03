@@ -18,10 +18,10 @@ class VisualizarEnquetesController extends GetxController {
 
     Iterable dados = json.decode(response.body);
 
-    print(dados);
+    print('Enquetes Dados: $dados');
 
     enquetes = dados.map((model) => MapaEnquetes.fromJson(model)).toList();
-
+    print('Enquetes: $enquetes');
     isLoading(false);
   }
 

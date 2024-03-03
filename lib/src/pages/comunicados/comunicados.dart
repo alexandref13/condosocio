@@ -139,7 +139,7 @@ class _ComunicadosState extends State<Comunicados> {
                               return GestureDetector(
                                 onTap: () {
                                   launchInBrowser(
-                                      "https://alvocomtec.com.br/acond/downloads/comunicados_arq/${search.arquivo}");
+                                      "https://www.condosocio.com.br/acond/downloads/comunicados_arq/${search.arquivo}");
                                 },
                                 child: Card(
                                   shape: RoundedRectangleBorder(
@@ -217,7 +217,7 @@ class _ComunicadosState extends State<Comunicados> {
                               return GestureDetector(
                                 onTap: () {
                                   launchInBrowser(
-                                      "https://alvocomtec.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
+                                      "https://www.condosocio.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
                                 },
                                 child: Card(
                                   shape: RoundedRectangleBorder(

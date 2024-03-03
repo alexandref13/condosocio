@@ -24,7 +24,12 @@ class Reserva extends StatelessWidget {
           bottom: TabBar(
             indicatorColor:
                 Theme.of(context).textSelectionTheme.selectionColor!,
-            indicatorPadding: EdgeInsets.all(-8),
+            indicatorPadding: EdgeInsets.all(-4),
+            indicatorSize: TabBarIndicatorSize.tab,
+            dividerColor: Theme.of(context)
+                .textSelectionTheme
+                .selectionColor!
+                .withOpacity(0),
             tabs: <Widget>[
               Text(
                 'Visualizar',

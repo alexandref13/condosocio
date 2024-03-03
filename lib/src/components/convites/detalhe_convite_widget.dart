@@ -508,7 +508,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                                         0) {
                                                                       String
                                                                           message =
-                                                                          'Olá! você foi convidado pelo ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://alvocomtec.com.br/paginas/a.php?chave=${value['idace']}';
+                                                                          'Olá! você foi convidado por ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://www.condosocio.com.br/paginas/a.php?chave=${value['idace']}';
 
                                                                       whatsAppSend(
                                                                         context,

@@ -11,7 +11,7 @@ class ApiAcheAqui {
 
     return await http.post(
       Uri.https(
-          'www.alvocomtec.com.br', 'flutter/acheaqui_pesq_atividades.php'),
+          'www.condosocio.com.br', 'flutter/acheaqui_pesq_atividades.php'),
       body: {
         'tema': acheAquiController.tema.value,
       },
@@ -23,7 +23,7 @@ class ApiAcheAqui {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', 'flutter/acheaqui_pesq_forn.php'),
+      Uri.https('www.condosocio.com.br', 'flutter/acheaqui_pesq_forn.php'),
       body: {
         'idcond': loginController.idcond.value,
         'idativ': acheAquiController.id.value,
@@ -36,7 +36,7 @@ class ApiAcheAqui {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', 'flutter/acheaqui_desc_forn.php'),
+      Uri.https('www.condosocio.com.br', 'flutter/acheaqui_desc_forn.php'),
       body: {
         'idusu': loginController.idcond.value,
         'idforn': acheAquiController.idForm.value,
@@ -49,7 +49,7 @@ class ApiAcheAqui {
         Get.put(PesquisaAcheAquiController());
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', 'flutter/pesquisar_Ache.php'),
+      Uri.https('www.condosocio.com.br', 'flutter/pesquisar_Ache.php'),
       body: {
         'pesquisa': pesquisaAcheAquiController.pesquisa.value.text,
       },
@@ -62,7 +62,7 @@ class ApiAcheAqui {
     print(acheAquiController.idForm.value);
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', 'flutter/acheaqui_avaliacao.php'),
+      Uri.https('www.condosocio.com.br', 'flutter/acheaqui_avaliacao.php'),
       body: {
         'idforn': acheAquiController.idForm.value,
       },
@@ -76,7 +76,7 @@ class ApiAcheAqui {
         Get.put(DetalhesAcheAquiController());
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', 'flutter/acheaqui_avaliacao_inc.php'),
+      Uri.https('www.condosocio.com.br', 'flutter/acheaqui_avaliacao_inc.php'),
       body: {
         'idusu': loginController.id.value,
         'idforn': acheAquiController.idForm.value,

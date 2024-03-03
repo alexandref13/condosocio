@@ -44,10 +44,10 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.condosocionovo"
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 25
-        versionName '9.6.0'
+        versionCode 28
+        versionName '10.0.3'
         multiDexEnabled true
     }
 

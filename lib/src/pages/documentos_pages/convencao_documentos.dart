@@ -90,7 +90,7 @@ class Convencao extends StatelessWidget {
                                         onPressed: () {
                                           convencaoController.launched =
                                               convencaoController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${convencaoController.searchResult[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${convencaoController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -134,7 +134,7 @@ class Convencao extends StatelessWidget {
                                         onPressed: () {
                                           convencaoController.launched =
                                               convencaoController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${convencaoController.convencao[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${convencaoController.convencao[index].imgdoc}");
                                         },
                                       ),
                                     ),

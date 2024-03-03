@@ -174,7 +174,7 @@ class PesquisaAcheAqui extends StatelessWidget {
                                                       height: 50,
                                                       child: Image(
                                                         image: NetworkImage(
-                                                            'https://alvocomtec.com.br/acond/downloads/logofornecedores/${pesquisa.imgforn}'),
+                                                            'https://www.condosocio.com.br/acond/downloads/logofornecedores/${pesquisa.imgforn}'),
                                                       ),
                                                     )
                                                   : null,

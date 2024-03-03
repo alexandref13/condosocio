@@ -242,7 +242,7 @@ class DetalhesReservas extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      detalhesReservasController.area.value,
+                                      detalhesReservasController.areacom.value,
                                       style: GoogleFonts.montserrat(
                                         fontSize: 12,
                                         color: Colors.black,
@@ -350,7 +350,7 @@ class DetalhesReservas extends StatelessWidget {
                         : Container(),
                     !same &&
                             isBefore &&
-                            detalhesReservasController.validaUsu.value != null
+                            detalhesReservasController.validaUsu.value != 0
                         ? Container(
                             margin: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 25),
@@ -404,7 +404,7 @@ class DetalhesReservas extends StatelessWidget {
                                   );
                                 },
                                 child: Text(
-                                  "Excluir",
+                                  "Cancelar",
                                   style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context)

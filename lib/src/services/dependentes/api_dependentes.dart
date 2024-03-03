@@ -23,7 +23,7 @@ class ApiDependentes {
     print('acesso: ${dependentesController.isChecked.value.toString()}');
 
     return await http.post(
-      Uri.https("www.alvocomtec.com.br", "/flutter/dependentes_incluir.php"),
+      Uri.https("www.condosocio.com.br", "/flutter/dependentes_incluir.php"),
       body: {
         'idusu': loginController.id.value,
         'idcond': loginController.idcond.value,
@@ -44,7 +44,7 @@ class ApiDependentes {
     LoginController loginController = Get.put(LoginController());
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', '/flutter/dependentes_buscar.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/dependentes_buscar.php'),
       body: {
         'idusu': loginController.id.value,
         'idcond': loginController.idcond.value,
@@ -58,7 +58,7 @@ class ApiDependentes {
 
     return await http.get(
       Uri.https(
-          'www.alvocomtec.com.br',
+          'www.condosocio.com.br',
           '/flutter/dependentes_status_mudar.php',
           {'idep': dependentesController.idep.value, 'status': status}),
     );
@@ -69,7 +69,7 @@ class ApiDependentes {
         Get.put(DependentesController());
 
     return await http.post(
-      Uri.https('www.alvocomtec.com.br', '/acond/enviarEmail.php'),
+      Uri.https('www.condosocio.com.br', '/acond/enviarEmail.php'),
       body: {
         'idusu': dependentesController.idep.value,
         'email': email,
@@ -82,7 +82,7 @@ class ApiDependentes {
         Get.put(DependentesController());
 
     return await http.get(
-      Uri.https('www.alvocomtec.com.br', '/flutter/dependente_excluir.php',
+      Uri.https('www.condosocio.com.br', '/flutter/dependente_excluir.php',
           {'idep': dependentesController.idep.value}),
     );
   }
@@ -92,7 +92,7 @@ class ApiDependentes {
         Get.put(DependentesController());
 
     return await http.get(
-      Uri.https('www.alvocomtec.com.br', '/flutter/face_excluir.php',
+      Uri.https('www.condosocio.com.br', '/flutter/face_excluir.php',
           {'idep': dependentesController.idep.value}),
     );
   }
@@ -101,7 +101,7 @@ class ApiDependentes {
     LoginController loginController = Get.put(LoginController());
     return await http.get(
       Uri.https(
-          'www.alvocomtec.com.br', '/flutter/prestador_whatsapp_chave.php', {
+          'www.condosocio.com.br', '/flutter/prestador_whatsapp_chave.php', {
         'celular': celular,
         'idusu': loginController.id.value,
       }),

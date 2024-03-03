@@ -90,8 +90,8 @@ void configurandoModalBottomSheet(
                                     image: NetworkImage(
                                       tipo == 'Morador' ||
                                               tipo == 'Prestador de Serviço'
-                                          ? 'https://www.alvocomtec.com.br/acond/downloads/fotosperfil/$imgfacial'
-                                          : 'https://www.alvocomtec.com.br/acond/downloads/fotosvisitantes/$imgfacial',
+                                          ? 'https://www.condosocio.com.br/acond/downloads/fotosperfil/$imgfacial'
+                                          : 'https://www.condosocio.com.br/acond/downloads/fotosvisitantes/$imgfacial',
                                     ),
                                   ),
                                 ),

@@ -65,7 +65,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
         context: context,
         initialDate: startSelectedDate,
         firstDate: startSelectedDate,
-        lastDate: DateTime(2030),
+        lastDate: DateTime.now().add(Duration(days: 30)),
       );
 
   @override
@@ -297,7 +297,11 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                                     convitesController.isChecked.value =
                                         newValue;
                                   },
-                                  activeColor: Theme.of(context).shadowColor,
+                                  activeTrackColor: Colors
+                                      .white, // Cor da trilha quando ativado
+                                  activeColor: Theme.of(context).primaryColor,
+                                  inactiveThumbColor:
+                                      Theme.of(context).primaryColor,
                                 ),
                               ],
                             ),
@@ -307,7 +311,7 @@ class _ConviteWidgetState extends State<ConviteWidget> {
                       ),
                       Center(
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          margin: EdgeInsets.symmetric(horizontal: 12),
                           child: Text(
                             convitesController.isChecked.value == true
                                 ? 'Com o acesso livre, os convidados têm a liberdade de entrar e sair quantas vezes desejarem durante todo o período do evento.'

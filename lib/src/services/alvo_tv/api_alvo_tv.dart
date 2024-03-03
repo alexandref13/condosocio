@@ -7,7 +7,7 @@ class ApiAlvoTv {
     LoginController loginController = Get.put(LoginController());
     print(loginController.id.value);
     return await http.get(
-      Uri.https("www.alvocomtec.com.br", "/flutter/videosvisual.php",
+      Uri.https("www.condosocio.com.br", "/flutter/videosvisual.php",
           {'idcond': loginController.idcond.value}),
     );
   }

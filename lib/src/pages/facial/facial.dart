@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
+import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
+import 'package:condosocio/src/pages/acessos/face_detection.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,8 @@ import '../../components/utils/confirmed_button_pressed.dart';
 import '../../components/utils/edge_alert_error_widget.dart';
 import '../../components/utils/edge_alert_widget.dart';
 import '../../controllers/facial_controller.dart';
-import '../../controllers/ouvidoria/ouvidoria_controller.dart';
+//import '../../controllers/ouvidoria/ouvidoria_controller.dart';
+import 'package:lottie/lottie.dart';
 
 class Facial extends StatefulWidget {
   @override
@@ -22,13 +25,13 @@ class Facial extends StatefulWidget {
 class _FacialState extends State<Facial> {
   LoginController loginController = Get.put(LoginController());
   FacialController facialController = Get.put(FacialController());
-  OuvidoriaController ouvidoriaController = Get.put(OuvidoriaController());
+  //OuvidoriaController ouvidoriaController = Get.put(OuvidoriaController());
 
   final _picker = ImagePicker();
   File? _selectedFile;
 
-  final uri =
-      Uri.parse("https://alvocomtec.com.br/flutter/upload_imagem_facial.php");
+  final uri = Uri.parse(
+      "https://www.condosocio.com.br/flutter/upload_imagem_facial.php");
 
   void refreshPage() {
     setState(() {
@@ -81,7 +84,7 @@ class _FacialState extends State<Facial> {
                     : Get.toNamed('/fotoFacial'),
               },
           child: loginController.imgfacial.value == ''
-              ? Container(
+              ? /*Container(
                   child: Column(
                     children: [
                       Container(
@@ -116,6 +119,65 @@ class _FacialState extends State<Facial> {
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: AssetImage('images/user.png'),
+                    ),
+                  ),
+                )*/
+              Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.only(bottom: 20, left: 10, right: 10),
+                  child: ButtonTheme(
+                    height: 50.0,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            return Theme.of(context).colorScheme.secondary;
+                          },
+                        ),
+                        shape:
+                            MaterialStateProperty.resolveWith<OutlinedBorder>(
+                          (Set<MaterialState> states) {
+                            return RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            );
+                          },
+                        ),
+                      ),
+                      onPressed: () {
+                        loginController.ctlfacial.value == "0" &&
+                                loginController.imgfacial.value == ""
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const FaceDetectionPage(),
+                                ),
+                              ) //getImage(ImageSource.camera)
+                            : Get.toNamed('/fotoFacial');
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.camera_alt,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                          ),
+                          SizedBox(
+                              width: 8.0), // Espaço entre o ícone e o texto
+                          Text(
+                            'Abrir a Câmera',
+                            style: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor!,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 )
@@ -163,7 +225,7 @@ class _FacialState extends State<Facial> {
                         shape: BoxShape.rectangle,
                         image: DecorationImage(
                           image: NetworkImage(
-                              'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),
+                              'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),
                         ),
                       ),
                     ),
@@ -280,13 +342,31 @@ class _FacialState extends State<Facial> {
       child: Scaffold(
           appBar: AppBar(
             title: Text(
-              'Biometria Facial',
+              'Cadastro Facial',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
                 color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
             ),
             centerTitle: true,
+            actions: [
+              if (loginController.ctlfacial.value == "0" &&
+                  loginController.imgfacial.value == "")
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FaceDetectionPage(),
+                      ),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.camera_alt,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
+                  ),
+                ),
+            ],
           ),
           body: Obx(() {
             return facialController.isLoading.value
@@ -295,47 +375,10 @@ class _FacialState extends State<Facial> {
                     child: Container(
                       margin: EdgeInsets.only(top: 10),
                       padding: EdgeInsets.all(8),
-                      height: MediaQuery.of(context).size.height * .95,
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Column(
-                            children: [
-                              getImageWidget(),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              GestureDetector(
-                                onTap: () => {getImage(ImageSource.camera)},
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child:
-                                        loginController.ctlfacial.value != "1"
-                                            ? Text(
-                                                'Clique para fazer o selfie',
-                                                style: GoogleFonts.montserrat(
-                                                  fontSize: 10,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor!,
-                                                ),
-                                              )
-                                            : Text(
-                                                'Clique para ampliar imagem',
-                                                style: GoogleFonts.montserrat(
-                                                  fontSize: 10,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor!,
-                                                ),
-                                              )),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
                           loginController.ctlfacial.value == "0" &&
                                   loginController.imgfacial.value == ""
                               ? Container(
@@ -344,105 +387,173 @@ class _FacialState extends State<Facial> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Para inserir a sua biometria facial, siga os passos abaixo:',
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 12,
+                                      Center(
+                                        //color: Color(0xfff5f5f5),
+                                        child: Lottie.asset(
+                                          'images/imgface.json', // Substitua pelo caminho do seu arquivo JSON
+                                        ),
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        'Para garantir o sucesso do procedimento de reconhecimento facial, siga as orientações abaixo:',
+                                        textAlign: TextAlign.justify,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 12,
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      SizedBox(height: 18.0),
+                                      Card(
+                                        elevation:
+                                            5.0, // Adiciona uma sombra ao Card
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.light_mode_outlined,
+                                                size: 30,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              SizedBox(width: 8.0),
+                                              Expanded(
+                                                child: Text(
+                                                  'Esteja em um ambiente iluminado e sem pessoas e objetos ao fundo.',
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 12,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionHandleColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 18.0),
+                                      Card(
+                                        elevation:
+                                            5.0, // Adiciona uma sombra ao Card
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.face_5_outlined,
+                                                size: 30,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              SizedBox(width: 8.0),
+                                              Expanded(
+                                                child: Text(
+                                                  'Mantenha seu rosto completamente visível, evitando o uso de chapéus, óculos ou qualquer item que possa ocultar alguma parte dele.',
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 12,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionHandleColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 18.0),
+                                      Card(
+                                        elevation:
+                                            5.0, // Adiciona uma sombra ao Card
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.phonelink_setup,
+                                                size: 30,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              SizedBox(width: 8.0),
+                                              Expanded(
+                                                child: Text(
+                                                  'Segure o celular na altura do seu rosto, recomendamos apoiar os cotovelos em uma mesa para garantir estabilidade.',
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 12,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionHandleColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 18.0),
+                                      Card(
+                                        elevation:
+                                            5.0, // Adiciona uma sombra ao Card
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.crop,
+                                                size: 30,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              SizedBox(width: 8.0),
+                                              Expanded(
+                                                child: Text(
+                                                  'Mantenha sua cabeça posicionada dentro do enquadramento e direcione seu olhar para a câmera.',
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 12,
+                                                    color: Theme.of(context)
+                                                        .textSelectionTheme
+                                                        .selectionHandleColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 18.0),
+                                      Column(
+                                        children: [
+                                          getImageWidget(),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () =>
+                                                getImage(ImageSource.camera),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(2),
+                                              child: Text(
+                                                loginController
+                                                            .ctlfacial.value !=
+                                                        "1"
+                                                    ? ''
+                                                    : 'Clique para ampliar imagem',
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 10,
                                                   color: Theme.of(context)
                                                       .textSelectionTheme
                                                       .selectionColor!,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            SizedBox(height: 18.0),
-                                            Text(
-                                              '1) Clique na imagem acima:',
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
+                                                ),
                                               ),
                                             ),
-                                            SizedBox(height: 18.0),
-                                            Text(
-                                              '2) Ao clicar na imagem, a câmera do seu dispositivo será ativada automaticamente.',
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                              ),
-                                            ),
-                                            SizedBox(height: 18.0),
-                                            Text(
-                                              '3) Posicione-se em frente, olhe diretamente para a câmera e faça um selfie, garantindo que seu rosto esteja bem visível.',
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                              ),
-                                            ),
-                                            SizedBox(height: 18.0),
-                                            Text(
-                                              '4) Não utilize máscaras faciais ou óculos durante a captura da imagem.',
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                              ),
-                                            ),
-                                            SizedBox(height: 18.0),
-                                            Text(
-                                              '5) Garanta que a imagem capturada esteja nítida e bem iluminada, para garantir uma identificação precisa.',
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                              ),
-                                            ),
-                                            SizedBox(height: 18.0),
-                                            Text(
-                                              '6) Após capturar o selfie, você poderá revisar a imagem e confirmar se está satisfeito com ela.',
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                              ),
-                                            ),
-                                            SizedBox(height: 18.0),
-                                            Text(
-                                              '7) Caso esteja satisfeito, prossiga com o envio da foto. Caso contrário, repita o processo para obter uma nova imagem.',
-                                              style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      /*SizedBox(height: 16.0),
-                                      Container(
-                                        padding: EdgeInsets.all(16.0),
-                                        color: Colors.amber,
-                                        child: Text(
-                                          'A biometria facial é uma medida de segurança que nos permite validar a sua identidade de forma confiável e proteger suas informações. Garantimos que suas imagens serão tratadas com sigilo e privacidade, sendo utilizadas exclusivamente para a finalidade de autenticação.',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                              fontSize: 14.0,
-                                              color: Colors.black87),
-                                        ),
-                                      ),*/
                                     ],
                                   ),
                                 )
@@ -451,12 +562,28 @@ class _FacialState extends State<Facial> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
+                                      Center(
+                                          child:
+                                              getImageWidget()), // Adiciona o getImageWidget
+                                      SizedBox(height: 8),
+                                      Center(
+                                        child: Text(
+                                          'Clique para ampliar imagem',
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 10,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor!,
+                                          ),
+                                        ),
+                                      ),
                                       SizedBox(height: 10),
+
                                       Container(
                                         padding: EdgeInsets.all(20),
                                         // color: Colors.amber,
                                         child: Text(
-                                          'Para garantir a segurança, é necessário solicitar a autorização da administração do condomínio para realizar a alteração da imagem da sua biometria facial.',
+                                          'Para atualizar sua imagem facial, clique no botão abaixo e repita o processo para inserir a nova face.',
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(
                                             fontSize: 16.0,
@@ -505,42 +632,39 @@ class _FacialState extends State<Facial> {
                                                   ),
                                                 ),
                                                 onPressed: () {
-                                                  ouvidoriaController
-                                                          .message.value.text =
-                                                      'Solicito o reset de minha imagem facial (mensagem pelo app)';
-                                                  ouvidoriaController
-                                                          .itemSelecionado
-                                                          .value =
-                                                      'Alteração facial';
-                                                  ouvidoriaController
-                                                      .sendOuvidoria()
-                                                      .then(
-                                                    (response) {
-                                                      if (response == 1) {
-                                                        confirmedButtonPressed(
-                                                          context,
-                                                          'Enviado com sucesso!',
-                                                          'ouvidoria',
-                                                        );
-                                                      } else if (response ==
-                                                          'vazio') {
-                                                        onAlertButtonPressed(
+                                                  deleteAlert(context,
+                                                      'Deseja resetar a sua biometria facial?',
+                                                      () {
+                                                    Get.back();
+                                                    facialController.ResetFace()
+                                                        .then(
+                                                      (response) {
+                                                        if (response == 1) {
+                                                          Get.back();
+                                                          loginController
+                                                              .newLogin(
+                                                                  loginController
+                                                                      .id
+                                                                      .value);
+                                                          confirmedButtonPressed(
                                                             context,
-                                                            'Assunto e Mensagem são campos obrigátorios',
-                                                            '',
-                                                            'images/error.png');
-                                                      } else {
-                                                        onAlertButtonPressed(
-                                                            context,
-                                                            'Algo deu errado\n Tente novamente',
+                                                            'Imagem facial resetada com sucesso!',
                                                             '/home',
-                                                            'images/error.png');
-                                                      }
-                                                    },
-                                                  );
+                                                          );
+                                                        } else {
+                                                          Get.back();
+                                                          onAlertButtonPressed(
+                                                              context,
+                                                              'Algo deu errado\n Tente novamente',
+                                                              '/home',
+                                                              'images/error.png');
+                                                        }
+                                                      },
+                                                    );
+                                                  });
                                                 },
                                                 child: Text(
-                                                  "Solicitar Alteração da Imagem",
+                                                  "Resetar Imagem",
                                                   style: GoogleFonts.montserrat(
                                                     fontWeight: FontWeight.bold,
                                                     color: Theme.of(context)

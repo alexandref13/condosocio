@@ -37,7 +37,7 @@ class VisualizarAcessosEsperaController extends GetxController {
     });
   }
 
-  void getAcessosEspera() {
+  getAcessosEspera() {
     isLoading(true);
     ApiAcessosEspera.getAcessosEspera().then((response) {
       Iterable lista = json.decode(response.body);
@@ -49,9 +49,9 @@ class VisualizarAcessosEsperaController extends GetxController {
     });
   }
 
-  @override
+  /*@override
   void onInit() {
     super.onInit();
     getAcessosEspera();
-  }
+  }*/
 }

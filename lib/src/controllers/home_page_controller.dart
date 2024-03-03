@@ -24,7 +24,7 @@ class HomePageController extends GetxController {
   static Future<List<String>> getBannersHome() async {
     LoginController loginController = Get.put(LoginController());
     final response = await http.post(
-      Uri.https('www.alvocomtec.com.br', '/flutter/banners_home_buscar.php'),
+      Uri.https('www.condosocio.com.br', '/flutter/banners_home_buscar.php'),
       body: {
         'idcond': loginController.idcond.value,
       },
@@ -34,7 +34,7 @@ class HomePageController extends GetxController {
 
     final bannersHome = data
         .map((obj) =>
-            "http://www.alvocomtec.com.br/images/bannereventos/${obj['imgbanner'] as String}")
+            "http://www.condosocio.com.br/images/bannereventos/${obj['imgbanner'] as String}")
         .toList();
 
     return bannersHome;

@@ -91,7 +91,7 @@ class Regulamento extends StatelessWidget {
                                         onPressed: () {
                                           regulamentoController.launched =
                                               regulamentoController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${regulamentoController.searchResult[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${regulamentoController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -136,7 +136,7 @@ class Regulamento extends StatelessWidget {
                                         onPressed: () {
                                           regulamentoController.launched =
                                               regulamentoController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${regulamentoController.regulamento[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${regulamentoController.regulamento[index].imgdoc}");
                                         },
                                       ),
                                     ),

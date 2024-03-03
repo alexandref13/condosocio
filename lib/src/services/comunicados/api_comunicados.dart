@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class ApiComunicados {
   static Future getComunicados() async {
     LoginController loginController = Get.put(LoginController());
-    return await http.get(Uri.https("www.alvocomtec.com.br",
+    return await http.get(Uri.https("www.condosocio.com.br",
         "/flutter/comunicados_real.php", {"idusu": loginController.id.value}));
   }
 }

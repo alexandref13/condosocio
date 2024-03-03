@@ -90,7 +90,7 @@ class Prestacao extends StatelessWidget {
                                         onPressed: () {
                                           prestacaoController.launched =
                                               prestacaoController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${prestacaoController.searchResult[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${prestacaoController.searchResult[index].imgdoc}");
                                         },
                                       ),
                                     ),
@@ -134,7 +134,7 @@ class Prestacao extends StatelessWidget {
                                         onPressed: () {
                                           prestacaoController.launched =
                                               prestacaoController.launchInBrowser(
-                                                  "https://alvocomtec.com.br/acond/downloads/documentos/${prestacaoController.prestacao[index].imgdoc}");
+                                                  "https://www.condosocio.com.br/acond/downloads/documentos/${prestacaoController.prestacao[index].imgdoc}");
                                         },
                                       ),
                                     ),

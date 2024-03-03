@@ -30,7 +30,7 @@ class FotoFacial extends StatelessWidget {
             tag: 'fotoFacial',
             child: Image(
               image: NetworkImage(
-                  'https://alvocomtec.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),
+                  'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),
             ),
           ),
         ),
