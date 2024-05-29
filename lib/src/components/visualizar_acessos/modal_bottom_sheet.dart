@@ -126,7 +126,7 @@ void configurandoModalBottomSheet(
                   ),
                   onTap: () {
                     acessosController.imgfacial.value = imgfacial;
-                    tipo == 'Morador' || tipo == 'Prestador de Serviço'
+                    tipo != 'Convidado'
                         ? acessosController.tipoimgfacial.value = "fotosperfil"
                         : acessosController.tipoimgfacial.value =
                             "fotosvisitantes";

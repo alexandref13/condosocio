@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../controllers/esperaacessos/visualizar_acessos_espera_controller.dart';
 import '../../controllers/home_page_controller.dart';
 import '../../controllers/login_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeBottomTab extends StatefulWidget {
   @override
@@ -29,13 +30,15 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
     return Column(
       children: [
         Center(
-          child: FutureBuilder<List<String>>(
+          child: FutureBuilder<List<Map<String, String>>>(
             future: HomePageController.getBannersHome(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return CircularProgressIndicator();
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return Text('No banners available');
               } else {
                 return CarouselSlider(
                   options: CarouselOptions(
@@ -48,17 +51,31 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
                   ),
                   items: snapshot.data!
                       .map(
-                        (e) => ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: <Widget>[
-                              Image.network(
-                                e,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              )
-                            ],
+                        (banner) => GestureDetector(
+                          onTap: () async {
+                            final url = Uri.parse(banner['url']!);
+                            if (await canLaunchUrl(url)) {
+                              await launchUrl(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: <Widget>[
+                                Image.network(
+                                  banner['imgUrl']!,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Center(
+                                        child: Text('Failed to load image'));
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       )

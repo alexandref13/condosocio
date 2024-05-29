@@ -21,22 +21,37 @@ class HomePageController extends GetxController {
     }
   }
 
-  static Future<List<String>> getBannersHome() async {
-    LoginController loginController = Get.put(LoginController());
-    final response = await http.post(
-      Uri.https('www.condosocio.com.br', '/flutter/banners_home_buscar.php'),
-      body: {
-        'idcond': loginController.idcond.value,
-      },
-    );
+  static Future<List<Map<String, String>>> getBannersHome() async {
+    try {
+      LoginController loginController = Get.put(LoginController());
+      final response = await http.post(
+        Uri.https('www.condosocio.com.br', '/flutter/banners_home_buscar.php'),
+        body: {
+          'idcond': loginController.idcond.value,
+        },
+      );
 
-    final data = jsonDecode(response.body) as List<dynamic>;
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body) as List<dynamic>;
 
-    final bannersHome = data
-        .map((obj) =>
-            "http://www.condosocio.com.br/images/bannereventos/${obj['imgbanner'] as String}")
-        .toList();
+        final bannersHome = data.map((obj) {
+          final imgUrl =
+              "http://www.condosocio.com.br/images/bannereventos/${obj['imgbanner'] as String}";
+          final url = obj['url'] as String;
+          print('Image URL: $imgUrl');
+          print('Link URL: $url');
+          return {
+            'imgUrl': imgUrl,
+            'url': url,
+          };
+        }).toList();
 
-    return bannersHome;
+        return bannersHome;
+      } else {
+        throw Exception('Failed to load banners');
+      }
+    } catch (e) {
+      throw Exception('Failed to load banners: $e');
+    }
   }
 }
