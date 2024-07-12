@@ -26,9 +26,6 @@ class VisualizarBoletos extends StatelessWidget {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Boletos 2ª Via'),
-        ),
         body: boleto.length == 0
             ? Stack(
                 children: <Widget>[
@@ -67,6 +64,7 @@ class VisualizarBoletos extends StatelessWidget {
                 child: Container(
                   child: Column(
                     children: [
+                      SizedBox(height: 20), // Adiciona um espaço de 20 pixels
                       for (var i = 0; i < boletoController.boletos.length; i++)
                         GestureDetector(
                           onTap: () {
@@ -84,10 +82,27 @@ class VisualizarBoletos extends StatelessWidget {
                                 onPressed: () {},
                               ),
                               title: Text(
-                                  'Valor Corrigido: R\$ ${boleto[i]['encargos']['valorcorrigido']}'),
+                                'Valor Corrigido: R\$ ${boleto[i]['encargos']['valorcorrigido']}',
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                ),
+                              ),
                               subtitle: Text(
-                                  'Vencido em:  ${getFormatedDate(boleto[i]['dt_vencimento_recb'])}\nDias de atraso: ${boleto[i]['encargos']['diasatraso']}'),
-                              trailing: Icon(Icons.more_vert),
+                                'Vencido em: ${getFormatedDate(boleto[i]['dt_vencimento_recb'])}\nDias de atraso: ${boleto[i]['encargos']['diasatraso']}',
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                ),
+                              ),
+                              trailing: Icon(
+                                Icons.more_vert,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                              ),
                             ),
                           ),
                         ),

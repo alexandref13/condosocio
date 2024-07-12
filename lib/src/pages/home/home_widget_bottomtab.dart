@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
@@ -8,6 +9,8 @@ import '../../controllers/esperaacessos/visualizar_acessos_espera_controller.dar
 import '../../controllers/home_page_controller.dart';
 import '../../controllers/login_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:rate_my_app/rate_my_app.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class HomeBottomTab extends StatefulWidget {
   @override
@@ -24,6 +27,110 @@ class _HomeBottomTabState extends State<HomeBottomTab> {
       Get.put(VisualizarAcessosEsperaController());
   final LoginController loginController = Get.put(LoginController());
   final HomePageController homePageController = Get.put(HomePageController());
+
+  final RateMyApp rateMyApp = RateMyApp(
+    preferencesPrefix: 'rateMyApp_',
+    minDays: 3, // Reduzido para facilitar o teste
+    minLaunches: 3, // Reduzido para facilitar o teste
+    remindDays: 0, // Reduzido para facilitar o teste
+    remindLaunches: 5, // Reduzido para facilitar o teste
+    googlePlayIdentifier: 'com.condosocionovo',
+    appStoreIdentifier: '1262911877',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+      await rateMyApp.init();
+
+      if (rateMyApp.shouldOpenDialog) {
+        showCustomRateDialog();
+      }
+    });
+  }
+
+  void showCustomRateDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          title: Column(
+            children: [
+              Image.asset(
+                'images/logocolor.png', // Substitua pelo caminho da sua imagem
+                height: 70, // Altura da imagem
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Você gosta do nosso App? Deixe uma avaliação na loja de aplicativos e ajude mais pessoas a descobrirem nossos serviços! Seu feedback é muito importante para nós!',
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 15),
+              RatingBar.builder(
+                initialRating: 0,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: false,
+                itemCount: 5,
+                itemSize: 30,
+                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Theme.of(context).primaryColor,
+                ),
+                onRatingUpdate: (rating) async {
+                  if (rating >= 4) {
+                    final url = Platform.isIOS
+                        ? 'https://apps.apple.com/app/id1262911877?action=write-review'
+                        : 'https://play.google.com/store/apps/details?id=com.condosocionovo';
+
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      print('Could not launch $url');
+                    }
+                  } else {
+                    String message = "Nos informe como podemos melhorar?";
+                    String whatsappUrl =
+                        "https://api.whatsapp.com/send?phone=5591981220670&text=${Uri.encodeComponent(message)}";
+
+                    if (await canLaunch(whatsappUrl)) {
+                      await launch(whatsappUrl);
+                    } else {
+                      print('Could not launch $whatsappUrl');
+                    }
+                  }
+
+                  await rateMyApp
+                      .callEvent(RateMyAppEventType.rateButtonPressed);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                rateMyApp.callEvent(RateMyAppEventType.laterButtonPressed);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

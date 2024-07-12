@@ -56,6 +56,8 @@ class ApiDependentes {
     DependentesController dependentesController =
         Get.put(DependentesController());
 
+    print('idep: ${dependentesController.idep.value} | status: $status');
+
     return await http.get(
       Uri.https(
           'www.condosocio.com.br',
@@ -73,6 +75,17 @@ class ApiDependentes {
       body: {
         'idusu': dependentesController.idep.value,
         'email': email,
+      },
+    );
+  }
+
+  static Future ativarNotificacoes(String idep, String ctl) async {
+    print('IDEP: $idep CTL: $ctl');
+    return await http.post(
+      Uri.https('www.condosocio.com.br', '/flutter/ativarnotificacoes.php'),
+      body: {
+        'idep': idep,
+        'ctl': ctl,
       },
     );
   }

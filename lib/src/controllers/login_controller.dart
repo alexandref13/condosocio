@@ -44,6 +44,7 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   var isChecked = false.obs;
   var haveListOfCondo = false.obs;
+  var selectedIndex = 0.obs;
 
   var listOfCondo = [];
 

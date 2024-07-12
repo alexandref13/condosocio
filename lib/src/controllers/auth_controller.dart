@@ -105,7 +105,6 @@ class AuthController extends GetxController {
               loginController.condofacial(dados['condofacial']);
               loginController.ctlfacial(dados['ctlfacial']);
               loginController.imgfacial(dados['imgfacial']);
-
               loginController
                   .websiteAdministradora(dados['website_administradora']);
               loginController.licenca(dados['licenca']);

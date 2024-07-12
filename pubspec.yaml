@@ -42,6 +42,9 @@ dependencies:
   google_mlkit_face_detection: ^0.6.0
   image: ^4.1.7
   path_provider: ^2.0.14
+  font_awesome_flutter: ^10.7.0
+  rate_my_app: ^2.2.0
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

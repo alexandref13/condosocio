@@ -18,7 +18,9 @@ void dependentesModalBottomSheet(
     String cel,
     String facial,
     String tipousuario,
-    String idep) {
+    String idep,
+    String condominio_facial,
+    String ctlnotificacao) {
   showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
@@ -254,67 +256,126 @@ void dependentesModalBottomSheet(
                   SizedBox(
                     height: 15,
                   ),
-                  status == 'Normal'
-                      ? Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 50,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
-                                    elevation: MaterialStateProperty.all(0),
-                                    backgroundColor: MaterialStateProperty.all(
-                                      Theme.of(context).primaryColorDark,
-                                    )),
-                                onPressed: () {
-                                  dependentesController
-                                      .changeStatus('2')
-                                      .then((value) {
-                                    dependentesController.getDependentes();
-                                    Get.back();
-                                  });
-                                },
-                                child: Text(
-                                  "Suspender",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
-                                ),
-                              )),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 50,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
-                                    elevation: MaterialStateProperty.all(0),
-                                    backgroundColor: MaterialStateProperty.all(
-                                      Theme.of(context).primaryColorDark,
-                                    )),
-                                onPressed: () {
-                                  dependentesController
-                                      .changeStatus('1')
-                                      .then((value) {
-                                    dependentesController.getDependentes();
-                                    Get.back();
-                                  });
-                                },
-                                child: Text(
-                                  "Normalizar",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
-                                ),
-                              )),
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                                elevation: MaterialStateProperty.all(0),
+                                backgroundColor: MaterialStateProperty.all(
+                                  Theme.of(context).primaryColorDark,
+                                )),
+                            onPressed: () {
+                              dependentesController
+                                  .ativarNotificacoes(idep, ctlnotificacao)
+                                  .then((value) {
+                                dependentesController.getDependentes();
+
+                                if (ctlnotificacao == "0") {
+                                  showToast(
+                                    context,
+                                    'As Notificações Foram Ativadas para o Usuário!',
+                                    '',
+                                  );
+                                  Get.back();
+                                } else {
+                                  showToast(
+                                    context,
+                                    'As Notificações Foram Desativadas para o Usuário!',
+                                    '',
+                                  );
+                                  Get.back();
+                                }
+                              });
+                            },
+                            child: ctlnotificacao == "0"
+                                ? Text(
+                                    "Ativar Notificações",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
+                                  )
+                                : Text(
+                                    "Desativar Notificações",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
+                                  ))),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  condominio_facial != 'SIM'
+                      ? status == 'Normal'
+                          ? Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 50,
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
+                                        elevation: MaterialStateProperty.all(0),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                          Theme.of(context).primaryColorDark,
+                                        )),
+                                    onPressed: () {
+                                      dependentesController
+                                          .changeStatus('2')
+                                          .then((value) {
+                                        dependentesController.getDependentes();
+                                        Get.back();
+                                      });
+                                    },
+                                    child: Text(
+                                      "Suspender",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 16),
+                                    ),
+                                  )),
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 50,
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )),
+                                        elevation: MaterialStateProperty.all(0),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                          Theme.of(context).primaryColorDark,
+                                        )),
+                                    onPressed: () {
+                                      dependentesController
+                                          .changeStatus('1')
+                                          .then((value) {
+                                        dependentesController.getDependentes();
+                                        Get.back();
+                                      });
+                                    },
+                                    child: Text(
+                                      "Normalizar",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 16),
+                                    ),
+                                  )),
+                            )
+                      : Container(),
                   SizedBox(
                     height: 15,
                   ),

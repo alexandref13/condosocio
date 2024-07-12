@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:condosocio/src/services/acessos/api_acessos.dart';
 import 'package:condosocio/src/services/acessos/mapa_acessos.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class VisualizarAcessosController extends GetxController {
   var isLoading = true.obs;
   var search = TextEditingController().obs;
   var searchResult = [].obs;
-  var fav = false.obs;
+  RxBool fav = false.obs; // Exemplo de inicialização
   var favoritos = [];
 
   RefreshController refreshController =
@@ -22,7 +23,6 @@ class VisualizarAcessosController extends GetxController {
   }
 
   void onLoading() async {
-    print('loading');
     refreshController.loadComplete();
   }
 
@@ -35,6 +35,13 @@ class VisualizarAcessosController extends GetxController {
       if (details.pessoa.toLowerCase().contains(text.toLowerCase()))
         searchResult.add(details);
     });
+  }
+
+  Future<dynamic> sendFavorite(bool favValue) async {
+    final response = await ApiAcessos.addFav(favValue);
+    var dados = json.decode(response.body);
+    print("DADOS API; $dados");
+    return dados;
   }
 
   getAcessos() {

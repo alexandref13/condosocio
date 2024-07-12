@@ -1,6 +1,7 @@
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/edge_alert_error_widget.dart';
 import 'package:condosocio/src/controllers/boleto_controller.dart';
+import 'package:condosocio/src/controllers/home_page_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +13,12 @@ class BoletoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
     BoletoController boletoController = Get.put(BoletoController());
+    final HomePageController homePageController = Get.put(HomePageController());
+
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Boleto 2º Via',
+            'Boleto 2º Via Login',
             style: GoogleFonts.montserrat(
               fontSize: 16,
               color: Theme.of(context).textSelectionTheme.selectionColor!,
@@ -32,7 +35,7 @@ class BoletoPage extends StatelessWidget {
                       children: [
                         Image.asset(
                           'images/2ViaBoleto.png',
-                          height: 280,
+                          height: 200,
                         ),
                         Padding(
                           padding: EdgeInsets.all(20),
@@ -197,6 +200,45 @@ class BoletoPage extends StatelessWidget {
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor!,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          child: ButtonTheme(
+                            height: 50.0,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    return Theme.of(context)
+                                        .colorScheme
+                                        .onPrimary;
+                                  },
+                                ),
+                                shape: MaterialStateProperty.resolveWith<
+                                    OutlinedBorder>(
+                                  (Set<MaterialState> states) {
+                                    return RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    );
+                                  },
+                                ),
+                              ),
+                              onPressed: () {
+                                var website =
+                                    loginController.websiteAdministradora.value;
+                                homePageController.launched =
+                                    homePageController.launchInBrowser(website);
+                              },
+                              child: Text(
+                                "Primeiro Acesso",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).primaryColorDark,
                                 ),
                               ),
                             ),

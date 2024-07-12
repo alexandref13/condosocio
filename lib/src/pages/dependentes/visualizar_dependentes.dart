@@ -131,6 +131,7 @@ class VisualizarDependentes extends StatelessWidget {
                                           dependentes.idep;
                                       dependentesController.status.value =
                                           dependentes.status;
+
                                       dependentesModalBottomSheet(
                                         context,
                                         dependentes.nome,
@@ -142,6 +143,8 @@ class VisualizarDependentes extends StatelessWidget {
                                         dependentes.facial,
                                         dependentes.tipousuario,
                                         dependentes.idep,
+                                        dependentes.condominio_facial,
+                                        dependentes.ctlnotificacao,
                                       );
                                     },
                                     child: Column(
@@ -267,6 +270,8 @@ class VisualizarDependentes extends StatelessWidget {
                                         dependentes.facial,
                                         dependentes.tipousuario,
                                         dependentes.idep,
+                                        dependentes.condominio_facial,
+                                        dependentes.ctlnotificacao,
                                       );
                                     },
                                     child: Column(

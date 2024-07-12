@@ -86,42 +86,31 @@ class ApiAcessos {
         {"idfav": acessosController.firstId.value}));
   }
 
-  static Future addFav(String espera) async {
+  static Future addFav(bool fav) async {
     LoginController loginController = Get.put(LoginController());
-    if (espera == "1") {
-      AcessosController acessosController = Get.put(AcessosController());
+    AcessosController acessosController = Get.put(AcessosController());
 
-      return await http.get(
-        Uri.https(
-          "www.condosocio.com.br",
-          "/flutter/favoritos_alternar.php",
-          {
-            "idusu": loginController.id.value,
-            "idfav": acessosController.idfav.value,
-            "idace": acessosController.idAce.value,
-            "nome": acessosController.name.value.text,
-            "tel": acessosController.tel.value,
-          },
-        ),
-      );
-    } else {
-      AcessosEsperaController acessosEsperaController =
-          Get.put(AcessosEsperaController());
+    print("FAV api_acessos: $fav");
+    var favString = fav ? '1' : '0';
 
-      return await http.get(
-        Uri.https(
-          "www.condosocio.com.br",
-          "/flutter/favoritos_alternar.php",
-          {
-            "idusu": loginController.id.value,
-            "idfav": acessosEsperaController.idfav.value,
-            "idace": acessosEsperaController.idAce.value,
-            "nome": acessosEsperaController.name.value.text,
-            "tel": acessosEsperaController.tel.value,
-          },
-        ),
-      );
-    }
+    print("FAVString: $favString");
+
+    print(
+        "${loginController.id.value.toString()} | $favString | ${acessosController.idAce.value.toString()}  | ${acessosController.name.value.text} |  ${acessosController.tel.value.toString()} ");
+
+    return await http.get(
+      Uri.https(
+        "www.condosocio.com.br",
+        "/flutter/favoritos_alternar.php",
+        {
+          "idusu": loginController.id.value.toString(),
+          "idfav": favString, // Convertendo bool para string
+          "idace": acessosController.idAce.value.toString(),
+          "nome": acessosController.name.value.text,
+          "tel": acessosController.tel.value.toString(),
+        },
+      ),
+    );
   }
 
   static Future addFavConvite() async {

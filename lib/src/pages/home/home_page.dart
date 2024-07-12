@@ -1,12 +1,14 @@
 import 'package:condosocio/src/components/home_page_app_bar/app_bar_widget.dart';
 import 'package:condosocio/src/components/utils/delete_alert.dart';
 import 'package:condosocio/src/components/utils/edge_alert_widget.dart';
+import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:condosocio/src/controllers/home_page_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:condosocio/src/pages/home/home_widget_bottomtab.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,14 +27,35 @@ class _HomePageState extends State<HomePage> {
   final LoginController loginController = Get.put(LoginController());
   final ThemeController themeController = Get.put(ThemeController());
   final HomePageController homePageController = Get.put(HomePageController());
-
-  int selectedIndex = 0;
+  ConvitesController convitesController = Get.put(ConvitesController());
 
   void onItemTapped(int index) {
     setState(() {
+      loginController.selectedIndex.value = index;
+    });
+
+    if (loginController.selectedIndex.value == 0) {
+      scaffoldKey.currentState!.openDrawer();
+    }
+
+    if (loginController.selectedIndex.value == 1) {
+      Get.toNamed('/perfil');
+    }
+    if (loginController.selectedIndex.value == 2) {
+      Get.toNamed('/senha');
+    }
+    if (loginController.selectedIndex.value == 3) {
+      convitesController.page.value = 1;
+      Get.toNamed('/convites');
+    }
+  }
+  //int selectedIndex = 0;
+
+  /*void onItemTapped(int index) {
+    setState(() {
       selectedIndex = index;
     });
-  }
+  }*/
 
   final _picker = ImagePicker();
   File? _selectedFile;
@@ -721,12 +744,12 @@ class _HomePageState extends State<HomePage> {
                             .selectionColor!
                             .withOpacity(0.3),
                       ),
-                      /*Container(
+                      Container(
                         child: ListTile(
                           contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
                           dense: true,
                           title: Text(
-                            'Ajuda',
+                            'Tutoriais',
                             style: GoogleFonts.montserrat(
                               color: Theme.of(context)
                                   .textSelectionTheme
@@ -735,24 +758,24 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           leading: Icon(
-                            FontAwesome.question_circle,
+                            FontAwesomeIcons.bookOpenReader,
                             color: Theme.of(context)
                                 .textSelectionTheme
                                 .selectionColor!,
                             size: 22,
                           ),
                           onTap: () {
-                            homePageController.launched =
-                                homePageController.launchInBrowser(
-                              'https://api.whatsapp.com/send?phone=5591981220670',
-                            );
+                            Get.toNamed('/Tutoriais');
                           },
                         ),
                       ),
                       Divider(
                         height: 5,
-                        color: Theme.of(context).primaryColor,
-                      ),*/
+                        color: Theme.of(context)
+                            .textSelectionTheme
+                            .selectionColor!
+                            .withOpacity(0.3),
+                      ),
                       Container(
                         child: ListTile(
                           contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
@@ -801,23 +824,129 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           children: [
                             Text(
-                              'Versão 10.0.3',
+                              'Versão 11.4',
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor!,
-                                fontSize: 9,
+                                fontSize: 12,
                               ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  icon: FaIcon(FontAwesomeIcons.globe),
+                                  onPressed: () {
+                                    // Link para Facebook
+                                    homePageController.launched =
+                                        homePageController.launchInBrowser(
+                                            'https://www.condosocio.com.br');
+                                  },
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                ),
+                                IconButton(
+                                  icon: FaIcon(FontAwesomeIcons.facebook),
+                                  onPressed: () {
+                                    // Link para Facebook
+                                    homePageController.launched =
+                                        homePageController.launchInBrowser(
+                                            'https://www.facebook.com/condosocio');
+                                  },
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                ),
+                                IconButton(
+                                  icon: FaIcon(FontAwesomeIcons.youtube),
+                                  onPressed: () {
+                                    // Link para YouTube
+                                    homePageController.launched =
+                                        homePageController.launchInBrowser(
+                                            'https://www.youtube.com/channel/UCLPOsAW7jbawmz7nB3UeDvg');
+                                  },
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                ),
+                                IconButton(
+                                  icon: FaIcon(FontAwesomeIcons.instagram),
+                                  onPressed: () {
+                                    // Link para Instagram
+                                    homePageController.launched =
+                                        homePageController.launchInBrowser(
+                                            'https://www.instagram.com/condosocioapp');
+                                  },
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                ),
+                                IconButton(
+                                  icon: FaIcon(FontAwesomeIcons.whatsapp),
+                                  onPressed: () {
+                                    // Link para Facebook
+                                    homePageController.launched =
+                                        homePageController.launchInBrowser(
+                                      'https://api.whatsapp.com/send?phone=5591981220670',
+                                    );
+                                  },
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   )
                 ],
               ),
             ),
           ),
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Theme.of(context).primaryColorDark,
+            type: BottomNavigationBarType.fixed,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                ),
+                label: 'Menu',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.account_circle_outlined,
+                ),
+                label: 'Perfil',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.lock_outline,
+                ),
+                label: 'Senha',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.contact_mail_outlined,
+                ),
+                label: 'Convites',
+              ),
+            ],
+            selectedIconTheme:
+                IconThemeData(color: Theme.of(context).dialogBackgroundColor),
+            //IconThemeData(color: Theme.of(context).primaryColor),
+            unselectedIconTheme: IconThemeData(color: Colors.white),
+            selectedItemColor: Theme.of(context).dialogBackgroundColor,
+            unselectedItemColor: Colors.white,
+            currentIndex: loginController.selectedIndex.value,
+            onTap: onItemTapped,
+          ),
+          // body: bottomNavigationList[loginController.selectedIndex.value],
+
           body: Center(child: HomeBottomTab()),
         ),
       ),

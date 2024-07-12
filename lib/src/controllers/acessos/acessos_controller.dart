@@ -69,7 +69,7 @@ class AcessosController extends GetxController {
     return dados;
   }
 
-  sendFavorite(String espera) async {
+  sendFavorite(bool espera) async {
     final response = await ApiAcessos.addFav(espera);
     var dados = json.decode(response.body);
     return dados;

@@ -23,12 +23,12 @@ class BoletoController extends GetxController {
         var response = await ApiBoleto.linkBoleto(session);
 
         var dados = json.decode(response.body);
-
+        print('Dados: $dados');
         boletos.assignAll(dados['data']);
 
         isLoading(false);
 
-        Get.toNamed('/visualizarBoletos');
+        Get.toNamed('/boletos');
       }
 
       boleto();

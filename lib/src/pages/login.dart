@@ -1,10 +1,12 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/controllers/auth_controller.dart';
+import 'package:condosocio/src/controllers/home_page_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -13,6 +15,7 @@ class Login extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
   final AuthController authController = Get.put(AuthController());
   final ThemeController themeController = Get.put(ThemeController());
+  final HomePageController homePageController = Get.put(HomePageController());
 
   final _formKey = GlobalKey<FormState>();
 
@@ -94,39 +97,41 @@ class Login extends StatelessWidget {
                                         .selectionColor!,
                                   ),
                                   decoration: InputDecoration(
-                                    contentPadding: new EdgeInsets.symmetric(
-                                        vertical: 15, horizontal: 15),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor!,
-                                          width: 1.0),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
+                                      contentPadding: new EdgeInsets.symmetric(
+                                          vertical: 15, horizontal: 15),
+                                      focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor!)),
-                                    labelText: 'Entre com o e-mail',
-                                    labelStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor!,
-                                        fontSize: 14),
-                                    errorBorder: new OutlineInputBorder(
-                                        borderSide: new BorderSide(
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor!)),
-                                    focusedErrorBorder: new OutlineInputBorder(
-                                        borderSide: new BorderSide(
-                                            color: Colors.amber)),
-                                    errorStyle: GoogleFonts.montserrat(
-                                        color: Colors.amber),
-                                  ),
+                                                .selectionColor!,
+                                            width: 1.0),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          borderSide: BorderSide(
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor!)),
+                                      labelText: 'Entre com o e-mail',
+                                      labelStyle: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                          fontSize: 14),
+                                      errorBorder: new OutlineInputBorder(
+                                          borderSide: new BorderSide(
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor!)),
+                                      focusedErrorBorder:
+                                          new OutlineInputBorder(
+                                              borderSide: new BorderSide(
+                                                  color: Color.fromARGB(
+                                                      255, 163, 7, 27))),
+                                      errorStyle: GoogleFonts.montserrat(
+                                          color:
+                                              Color.fromARGB(255, 163, 7, 27))),
                                   keyboardType: TextInputType.emailAddress,
                                   validator: (valueEmail) {
                                     if (!EmailValidator.validate(valueEmail!)) {
@@ -151,39 +156,41 @@ class Login extends StatelessWidget {
                                         .selectionColor!,
                                   ),
                                   decoration: InputDecoration(
-                                    contentPadding: new EdgeInsets.symmetric(
-                                        vertical: 15, horizontal: 15),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor!,
-                                          width: 1.0),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                      contentPadding: new EdgeInsets.symmetric(
+                                          vertical: 15, horizontal: 15),
+                                      focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: Theme.of(context)
                                                 .textSelectionTheme
-                                                .selectionColor!)),
-                                    labelText: 'Entre com a senha',
-                                    labelStyle: GoogleFonts.montserrat(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor!,
-                                        fontSize: 14),
-                                    errorBorder: new OutlineInputBorder(
-                                        borderSide: new BorderSide(
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor!)),
-                                    focusedErrorBorder: new OutlineInputBorder(
-                                        borderSide: new BorderSide(
-                                            color: Colors.amber)),
-                                    errorStyle: GoogleFonts.montserrat(
-                                        color: Colors.amber),
-                                  ),
+                                                .selectionColor!,
+                                            width: 1.0),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          borderSide: BorderSide(
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor!)),
+                                      labelText: 'Entre com a senha',
+                                      labelStyle: GoogleFonts.montserrat(
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                          fontSize: 14),
+                                      errorBorder: new OutlineInputBorder(
+                                          borderSide: new BorderSide(
+                                              color: Theme.of(context)
+                                                  .textSelectionTheme
+                                                  .selectionColor!)),
+                                      focusedErrorBorder:
+                                          new OutlineInputBorder(
+                                              borderSide: new BorderSide(
+                                                  color: Color.fromARGB(
+                                                      255, 163, 7, 27))),
+                                      errorStyle: GoogleFonts.montserrat(
+                                          color:
+                                              Color.fromARGB(255, 163, 7, 27))),
                                   validator: (valueSenha) {
                                     if (valueSenha!.isEmpty) {
                                       return 'Campo senha vazio!';
@@ -208,11 +215,11 @@ class Login extends StatelessWidget {
                                                 (states) {
                                           if (states.contains(
                                               MaterialState.selected)) {
-                                            return Color.fromARGB(199, 14, 17,
-                                                196); // Define a cor do quadrado quando selecionado
+                                            return Colors
+                                                .black; // Define a cor do quadrado quando selecionado
                                           }
                                           return Colors
-                                              .white70; // Define a cor do quadrado quando não selecionado
+                                              .white; // Define a cor do quadrado quando não selecionado
                                         }),
                                         value: loginController.isChecked.value,
                                         onChanged: (bool? value) {
@@ -494,50 +501,95 @@ class Login extends StatelessWidget {
                                     Get.toNamed('/esqueci');
                                   },
                                   child: Text(
-                                    "Esqueceu a senha?",
+                                    "Esqueci a senha",
                                     style: GoogleFonts.montserrat(
                                         color: Theme.of(context)
                                             .textSelectionTheme
                                             .selectionColor!,
-                                        fontSize: 12),
+                                        fontSize: 14),
                                     textDirection: TextDirection.ltr,
                                   ),
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                              child: ButtonTheme(
-                                height: 50,
-                                child: TextButton(
-                                  style: ButtonStyle(
-                                    overlayColor: MaterialStateProperty.all(
-                                      Theme.of(context)
-                                          .colorScheme
-                                          .secondary
-                                          .withOpacity(.5),
+                              padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        IconButton(
+                                          icon: FaIcon(FontAwesomeIcons.globe),
+                                          onPressed: () {
+                                            // Link para Facebook
+                                            homePageController.launched =
+                                                homePageController.launchInBrowser(
+                                                    'https://www.condosocio.com.br');
+                                          },
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                        ),
+                                        IconButton(
+                                          icon:
+                                              FaIcon(FontAwesomeIcons.facebook),
+                                          onPressed: () {
+                                            // Link para Facebook
+                                            homePageController.launched =
+                                                homePageController.launchInBrowser(
+                                                    'https://www.facebook.com/condosocio');
+                                          },
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                        ),
+                                        IconButton(
+                                          icon:
+                                              FaIcon(FontAwesomeIcons.youtube),
+                                          onPressed: () {
+                                            // Link para YouTube
+                                            homePageController.launched =
+                                                homePageController.launchInBrowser(
+                                                    'https://www.youtube.com/channel/UCLPOsAW7jbawmz7nB3UeDvg');
+                                          },
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                        ),
+                                        IconButton(
+                                          icon: FaIcon(
+                                              FontAwesomeIcons.instagram),
+                                          onPressed: () {
+                                            // Link para Instagram
+                                            homePageController.launched =
+                                                homePageController.launchInBrowser(
+                                                    'https://www.instagram.com/condosocioapp');
+                                          },
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                        ),
+                                        IconButton(
+                                          icon:
+                                              FaIcon(FontAwesomeIcons.whatsapp),
+                                          onPressed: () {
+                                            // Link para Facebook
+                                            homePageController.launched =
+                                                homePageController
+                                                    .launchInBrowser(
+                                              'https://api.whatsapp.com/send?phone=5591981220670',
+                                            );
+                                          },
+                                          color: Theme.of(context)
+                                              .textSelectionTheme
+                                              .selectionColor!,
+                                        ),
+                                      ],
                                     ),
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
-                                  ),
-                                  onPressed: () {
-                                    // Get.toNamed('/esqueci');
-                                    loginController.launched =
-                                        loginController.launchInBrowser(
-                                      'https://www.condosocio.com.br',
-                                    );
-                                  },
-                                  child: Text(
-                                    "Acesse o nosso site",
-                                    style: GoogleFonts.montserrat(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor!,
-                                        fontSize: 12),
-                                    textDirection: TextDirection.ltr,
-                                  ),
+                                  ],
                                 ),
                               ),
                             ),

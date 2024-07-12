@@ -89,7 +89,12 @@ void configurandoModalBottomSheet(
                                   image: DecorationImage(
                                     image: NetworkImage(
                                       tipo == 'Morador' ||
-                                              tipo == 'Prestador de Serviço'
+                                              tipo == 'Prestador' ||
+                                              tipo == 'Inquilino' ||
+                                              tipo == 'NM' ||
+                                              tipo == 'Prestador de Serviço' ||
+                                              tipo == 'Administrador' ||
+                                              tipo == 'Sindico'
                                           ? 'https://www.condosocio.com.br/acond/downloads/fotosperfil/$imgfacial'
                                           : 'https://www.condosocio.com.br/acond/downloads/fotosvisitantes/$imgfacial',
                                     ),
@@ -183,16 +188,21 @@ void configurandoModalBottomSheet(
                         ),
                         onTap: () {
                           print("Espera: $espera");
-                          if (espera == "1") {
-                            visualizarAcessosController.fav.value =
-                                !visualizarAcessosController.fav.value;
-                            acessosController
-                                .sendFavorite(espera)
-                                .then((value) {
-                              visualizarAcessosController.getAcessos();
-                              acessosController.getFavoritos();
-                            });
-                          } else {
+                          // if (espera == "1") {
+                          visualizarAcessosController.fav.value =
+                              !visualizarAcessosController.fav.value;
+                          print(
+                              "IDFAV: ${visualizarAcessosController.fav.value}");
+                          visualizarAcessosController
+                              .sendFavorite(
+                                  visualizarAcessosController.fav.value)
+                              .then((dados) {
+                            print(dados); // Imprimir os dados retornados
+
+                            visualizarAcessosController.getAcessos();
+                            acessosController.getFavoritos();
+                          });
+                          /*} else {
                             visualizarAcessosEsperaController.fav.value =
                                 !visualizarAcessosEsperaController.fav.value;
                             acessosEsperaController
@@ -202,7 +212,7 @@ void configurandoModalBottomSheet(
                                   .getAcessosEspera();
                               acessosEsperaController.getFavoritos();
                             });
-                          }
+                          }*/
                           Get.back();
                         })
                     : Container(),

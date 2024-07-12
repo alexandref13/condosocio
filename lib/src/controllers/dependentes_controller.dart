@@ -97,6 +97,7 @@ class DependentesController extends GetxController {
     var dados = json.decode(response.body);
     dependentes.value =
         dados.map((model) => DependentesMapa.fromJson(model)).toList();
+
     isLoading(false);
     return dados;
   }
@@ -109,6 +110,12 @@ class DependentesController extends GetxController {
 
   reenviarEmail(String email) async {
     var response = await ApiDependentes.reenviarEmail(email);
+    var dados = response.body;
+    return dados;
+  }
+
+  ativarNotificacoes(String idep, String ctl) async {
+    var response = await ApiDependentes.ativarNotificacoes(idep, ctl);
     var dados = response.body;
     return dados;
   }

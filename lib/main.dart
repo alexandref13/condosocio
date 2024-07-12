@@ -15,6 +15,7 @@ import 'package:condosocio/src/pages/acheAqui/pesquisa_ache_aqui.dart';
 import 'package:condosocio/src/pages/avisos/avisos.dart';
 import 'package:condosocio/src/pages/avisos/detalhes_avisos.dart';
 import 'package:condosocio/src/pages/boleto/boleto.dart';
+import 'package:condosocio/src/pages/boleto/boleto_head.dart';
 import 'package:condosocio/src/pages/boleto/visualizar_boletos.dart';
 import 'package:condosocio/src/pages/encomendas/detalhes_encomendas.dart';
 import 'package:condosocio/src/pages/encomendas/encomendas.dart';
@@ -57,6 +58,7 @@ import 'package:condosocio/src/pages/reservas/reserva.dart';
 import 'package:condosocio/src/pages/encomendas/qrcode.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
+import 'package:condosocio/src/pages/tutoriais.dart';
 import 'package:condosocio/src/pages/veiculos/pagVagasLimit.dart';
 import 'package:condosocio/src/pages/veiculos/veiculos.dart';
 import 'package:flutter/material.dart';
@@ -147,6 +149,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/ouvidoria', page: () => Ouvidoria()),
         GetPage(name: '/ocorrencias', page: () => Ocorrencias()),
         GetPage(name: '/alvoTv', page: () => AlvoTv()),
+        GetPage(name: '/Tutoriais', page: () => Tutoriais()),
         GetPage(name: '/visualizarAcessos', page: () => VisualizarAcessos()),
         GetPage(name: '/detalhesOuvidoria', page: () => DetalhesOuvidoria()),
         GetPage(name: '/documentos', page: () => Documentos()),
@@ -191,6 +194,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/visualizarconvites', page: () => VisualizarConvite()),
         GetPage(name: '/boleto', page: () => BoletoPage()),
         GetPage(name: '/visualizarBoletos', page: () => VisualizarBoletos()),
+        GetPage(name: '/boletos', page: () => Boletos()),
         GetPage(name: '/visualizarReservas', page: () => VisualizarReservas()),
         GetPage(
             name: '/visualizarOcorrencias',

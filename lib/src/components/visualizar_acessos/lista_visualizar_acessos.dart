@@ -41,6 +41,7 @@ Widget listaVisualizarAcessos() {
                       acessosController.idfav.value = acessos.idfav;
                       acessosController.tel.value = acessos.datasai;
                       acessosController.idvis.value = acessos.idvis;
+
                       configurandoModalBottomSheet(
                           context,
                           acessos.pessoa,

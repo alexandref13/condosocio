@@ -11,6 +11,7 @@ class DependentesMapa {
   late String celular;
   late String facial;
   late String condominio_facial;
+  late String ctlnotificacao;
 
   DependentesMapa({
     required this.idep,
@@ -25,6 +26,7 @@ class DependentesMapa {
     required this.celular,
     required this.facial,
     required this.condominio_facial,
+    required this.ctlnotificacao,
   });
 
   DependentesMapa.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,7 @@ class DependentesMapa {
     celular = json['celular'];
     facial = json['facial'];
     condominio_facial = json['condominio_facial'];
+    ctlnotificacao = json['ctlnotificacao'];
   }
 
   Map<String, dynamic> toJson() {
@@ -56,6 +59,7 @@ class DependentesMapa {
     data['celular'] = this.celular;
     data['facial'] = this.facial;
     data['condominio_facial'] = this.condominio_facial;
+    data['ctlnotificacao'] = this.ctlnotificacao;
     return data;
   }
 }
