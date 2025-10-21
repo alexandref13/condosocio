@@ -2,84 +2,78 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import 'package:condosocio/src/components/utils/animated_dialog.dart'; // <- helper com showScaledDialog
 
-void deleteAlert(BuildContext context, String text, VoidCallback function) {
-  showAnimatedDialog(
+void deleteAlert(BuildContext context, String text, VoidCallback onOk) {
+  showScaledDialog(
     context: context,
     barrierDismissible: false,
-    animationType: DialogTransitionType.fadeScale,
-    curve: Curves.fastOutSlowIn,
-    duration: Duration(milliseconds: 500),
+    transitionDuration: const Duration(milliseconds: 500),
     builder: (BuildContext context) {
+      final theme = Theme.of(context);
+      final bg = theme.textSelectionTheme.selectionColor ?? Colors.white;
+
       return Center(
         child: AlertDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
+          backgroundColor: bg,
           titleTextStyle: GoogleFonts.poppins(
-            color: Theme.of(context).colorScheme.secondary,
+            color: theme.colorScheme.secondary,
             fontSize: 18,
           ),
-          title: Container(
-            child: Column(
-              children: [
-                Icon(
-                  Icons.warning,
-                  color: Colors.orange,
-                  size: 60,
-                ),
-                SizedBox(height: 10),
-                Text(
-                  text,
-                  style: GoogleFonts.poppins(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 18,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
+          title: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  DialogButton(
-                    child: Text(
-                      "OK",
-                      style: GoogleFonts.montserrat(
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor!,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
+              const Icon(Icons.warning, color: Colors.orange, size: 60),
+              const SizedBox(height: 10),
+              Text(
+                text,
+                style: GoogleFonts.poppins(
+                  color: theme.colorScheme.secondary,
+                  fontSize: 18,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          // --- Responsivo e simples: Wrap quebra linha quando faltar espaço ---
+          content: Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 12, // espaço horizontal entre os botões
+            runSpacing: 12, // espaço vertical quando quebrar de linha
+            children: [
+              SizedBox(
+                width: 160, // use 140~180 se preferir; pode remover pra auto
+                child: DialogButton(
+                  color: theme.primaryColor,
+                  onPressed: onOk,
+                  child: Text(
+                    "OK",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.montserrat(
+                      color: bg,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
                     ),
-                    onPressed: function,
-                    width: 100,
-                    color: Theme.of(context).primaryColor,
                   ),
-                  SizedBox(width: 20),
-                  DialogButton(
-                    child: Text(
-                      "CANCELAR",
-                      style: GoogleFonts.montserrat(
-                          color: Theme.of(context)
-                              .textSelectionTheme
-                              .selectionColor!,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
+                ),
+              ),
+              SizedBox(
+                width: 160,
+                child: DialogButton(
+                  color: theme.colorScheme.error,
+                  onPressed: Get.back,
+                  child: Text(
+                    "CANCELAR",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.montserrat(
+                      color: bg,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
                     ),
-                    onPressed: () {
-                      Get.back();
-                    },
-                    width: 100,
-                    color: Theme.of(context).colorScheme.error,
                   ),
-                ],
+                ),
               ),
             ],
           ),

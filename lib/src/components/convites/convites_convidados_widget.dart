@@ -518,7 +518,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                     .resolveWith<Color>(
                                               (Set<MaterialState> states) {
                                                 return Theme.of(context)
-                                                    .errorColor;
+                                                    .colorScheme
+                                                    .error;
                                               },
                                             ),
                                             elevation: MaterialStateProperty
@@ -533,7 +534,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                 return RoundedRectangleBorder(
                                                   side: BorderSide(
                                                       color: Theme.of(context)
-                                                          .errorColor),
+                                                          .colorScheme
+                                                          .error),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10.0),
@@ -797,7 +799,8 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                       .resolveWith<Color>(
                                                 (Set<MaterialState> states) {
                                                   return Theme.of(context)
-                                                      .errorColor;
+                                                      .colorScheme
+                                                      .error;
                                                 },
                                               ),
                                               elevation: MaterialStateProperty

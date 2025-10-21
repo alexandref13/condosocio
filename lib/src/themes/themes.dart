@@ -65,12 +65,12 @@ ThemeData turquoise = ThemeData(
 );
 
 ThemeData blue = ThemeData(
-  primaryColor: Color(0xff375a70),
+  primaryColor: Color(0xFF0C668D),
   primaryColorDark: Color.fromARGB(255, 16, 32, 43),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: Color(0xffe2e3d3),
   ),
-  scaffoldBackgroundColor: Color(0xff375a70),
+  scaffoldBackgroundColor: Color(0xFF0C668D),
   appBarTheme: AppBarTheme(
     iconTheme: IconThemeData(color: Color(0xffe2e3d3)),
     titleTextStyle: GoogleFonts.montserrat(
@@ -79,7 +79,7 @@ ThemeData blue = ThemeData(
     ),
     elevation: 0,
     centerTitle: true,
-    backgroundColor: Color(0xff375a70),
+    backgroundColor: Color(0xFF0C668D),
   ),
   colorScheme: ColorScheme.fromSwatch()
       .copyWith(secondary: Color(0xff2a5571))

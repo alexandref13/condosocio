@@ -111,23 +111,26 @@ class Encomendas extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          encomenda.codigo,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 14,
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor!,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
                                           encomenda.dataCriada,
                                           style: GoogleFonts.montserrat(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             color: Theme.of(context)
                                                 .textSelectionTheme
                                                 .selectionColor!,
                                           ),
                                         ),
+                                        Text(
+                                          encomenda.codigo.length > 14
+                                              ? "${encomenda.codigo.substring(0, 14)}..."
+                                              : encomenda.codigo,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .textSelectionTheme
+                                                .selectionColor!,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )
                                       ],
                                     ),
                                     subtitle: Text(

@@ -267,13 +267,14 @@ class _FaceDetectionPageState extends State<FaceDetectionPage> {
     var request = http.MultipartRequest('POST', uri);
     request.fields['idusu'] = loginController.id.value;
     var pic = await http.MultipartFile.fromPath("image", _selectedFile!.path);
-    print("Meu arquivo => ${_selectedFile!.path}");
+    print("Meu arquivo detextion => ${_selectedFile!.path}");
     request.files.add(pic);
     var response = await request.send();
     print(response.request);
     if (response.statusCode == 200) {
       loginController.newLogin(loginController.id.value);
       Navigator.of(context).pop(); // Fechar o indicador de progresso
+      //Get.offNamed('/facial');
       showToast(context, 'Parabéns!', 'Imagem Facial Enviada com Sucesso!');
     } else if (response.statusCode == 404) {
       loginController.imgfacial.value = '';

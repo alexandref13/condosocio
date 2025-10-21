@@ -35,6 +35,17 @@ void dependentesModalBottomSheet(
               padding: const EdgeInsets.only(bottom: 40),
               child: Wrap(
                 children: <Widget>[
+                  Center(
+                    child: Container(
+                      width: 40,
+                      height: 4,
+                      margin: const EdgeInsets.only(top: 12, bottom: 16),
+                      decoration: BoxDecoration(
+                        color: Colors.white60,
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                    ),
+                  ),
                   ListTile(
                       leading: img == ''
                           ? Container(
@@ -262,49 +273,57 @@ void dependentesModalBottomSheet(
                         width: MediaQuery.of(context).size.width,
                         height: 50,
                         child: ElevatedButton(
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                                elevation: MaterialStateProperty.all(0),
-                                backgroundColor: MaterialStateProperty.all(
-                                  Theme.of(context).primaryColorDark,
-                                )),
-                            onPressed: () {
-                              dependentesController
-                                  .ativarNotificacoes(idep, ctlnotificacao)
-                                  .then((value) {
-                                dependentesController.getDependentes();
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              )),
+                              elevation: MaterialStateProperty.all(0),
+                              backgroundColor: MaterialStateProperty.all(
+                                Theme.of(context).primaryColorDark,
+                              )),
+                          onPressed: () {
+                            dependentesController
+                                .ativarNotificacoes(idep, ctlnotificacao)
+                                .then((value) {
+                              dependentesController.getDependentes();
 
-                                if (ctlnotificacao == "0") {
-                                  showToast(
-                                    context,
-                                    'As Notificações Foram Ativadas para o Usuário!',
-                                    '',
-                                  );
-                                  Get.back();
-                                } else {
-                                  showToast(
-                                    context,
-                                    'As Notificações Foram Desativadas para o Usuário!',
-                                    '',
-                                  );
-                                  Get.back();
-                                }
-                              });
-                            },
-                            child: ctlnotificacao == "0"
-                                ? Text(
-                                    "Ativar Notificações",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16),
-                                  )
-                                : Text(
-                                    "Desativar Notificações",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16),
-                                  ))),
+                              if (ctlnotificacao == "0") {
+                                showToast(
+                                  context,
+                                  'Os Alertas Foram Ativadas para o Usuário!',
+                                  '',
+                                );
+                                Get.back();
+                              } else {
+                                showToast(
+                                  context,
+                                  'Os Alertas Foram Desativadas para o Usuário!',
+                                  '',
+                                );
+                                Get.back();
+                              }
+                            });
+                          },
+                          child: ctlnotificacao == "0"
+                              ? Text(
+                                  "Ativar recebimento de todos\n os alertas da unidade",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                  textAlign: TextAlign
+                                      .center, // força o alinhamento central
+                                )
+                              : Text(
+                                  "Desativar recebimento de todos\n os alertas da unidade",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                        )),
                   ),
                   SizedBox(
                     height: 15,

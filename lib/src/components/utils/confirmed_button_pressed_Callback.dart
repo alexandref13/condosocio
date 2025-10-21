@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import 'package:condosocio/src/components/utils/animated_dialog.dart';
 
-confirmedButtonPressed(context, String text, String page) {
-  showAnimatedDialog(
+void confirmedButtonPressed(BuildContext context, String text, String page) {
+  showScaledDialog(
     context: context,
     barrierDismissible: false,
-    animationType: DialogTransitionType.fadeScale,
-    curve: Curves.fastOutSlowIn,
-    duration: Duration(milliseconds: 500),
+    transitionDuration: const Duration(milliseconds: 500),
     builder: (BuildContext context) {
       return AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: Colors.white,
-        // Definir a cor de fundo desejada
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.check,
-              color: Colors.green,
-              size: 60,
-            ),
-            SizedBox(height: 10),
+            const Icon(Icons.check, color: Colors.green, size: 60),
+            const SizedBox(height: 10),
             Text(
               text,
               style: GoogleFonts.poppins(
@@ -38,20 +29,17 @@ confirmedButtonPressed(context, String text, String page) {
         ),
         actions: [
           TextButton(
-            child: Text(
-              "OK",
-              style: GoogleFonts.montserrat(
-                color: Colors.green,
-                fontSize: 18,
-              ),
-            ),
             onPressed: () {
-              if (page != '') {
-                Get.offNamedUntil('$page', ModalRoute.withName('$page'));
+              if (page.isNotEmpty) {
+                Get.offNamedUntil(page, ModalRoute.withName(page));
               } else {
                 Get.back();
               }
             },
+            child: Text(
+              'OK',
+              style: GoogleFonts.montserrat(color: Colors.green, fontSize: 18),
+            ),
           ),
         ],
       );

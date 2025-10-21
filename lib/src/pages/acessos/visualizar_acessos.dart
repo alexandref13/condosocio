@@ -9,29 +9,23 @@ class VisualizarAcessos extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: WillPopScope(
-        onWillPop: () async {
-          Get.offNamed('/home');
-          return false;
+      child: PopScope(
+        canPop: false, // bloqueia o pop padrão; você controla abaixo
+        onPopInvokedWithResult: (bool didPop, Object? result) {
+          if (didPop) return; // se o sistema já consumiu o pop, não faça nada
+          Get.offNamed('/home'); // sua navegação customizada ao voltar
         },
         child: Scaffold(
           appBar: AppBar(
             actions: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.add,
-                      size: 30,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor!,
-                    ),
-                    onPressed: () {
-                      Get.toNamed('/convites');
-                    },
-                  ),
-                ],
-              )
+              IconButton(
+                icon: Icon(
+                  Icons.add,
+                  size: 30,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
+                ),
+                onPressed: () => Get.toNamed('/convites'),
+              ),
             ],
             title: Text(
               'Acessos',
@@ -43,19 +37,19 @@ class VisualizarAcessos extends StatelessWidget {
             bottom: TabBar(
               indicatorColor:
                   Theme.of(context).textSelectionTheme.selectionColor!,
-              indicatorPadding: EdgeInsets.all(-4),
+              indicatorPadding: const EdgeInsets.all(-4),
               indicatorSize: TabBarIndicatorSize.tab,
               dividerColor: Theme.of(context)
                   .textSelectionTheme
                   .selectionColor!
                   .withOpacity(0),
-              tabs: <Widget>[
+              tabs: [
                 Text(
                   'Acessos',
                   style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor!),
+                    fontSize: 14,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
+                  ),
                 ),
                 Text(
                   'Aguardando',
@@ -67,8 +61,11 @@ class VisualizarAcessos extends StatelessWidget {
               ],
             ),
           ),
-          body: TabBarView(
-            children: [VisualizarAcessosEntrada(), AcessosEspera()],
+          body: const TabBarView(
+            children: [
+              VisualizarAcessosEntrada(),
+              AcessosEspera(),
+            ],
           ),
         ),
       ),

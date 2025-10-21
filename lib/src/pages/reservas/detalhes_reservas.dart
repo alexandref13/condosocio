@@ -1,6 +1,7 @@
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/components/utils/confirmed_button_pressed.dart';
+import 'package:condosocio/src/components/utils/animated_dialog.dart'; // <- usa showScaledDialog
 import 'package:condosocio/src/controllers/reservas/add_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/detalhes_reservas_controller.dart';
 import 'package:condosocio/src/controllers/reservas/reservas_controller.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../components/utils/delete_alert.dart';
@@ -23,38 +23,37 @@ class DetalhesReservas extends StatelessWidget {
   final AddReservasController addReservasController =
       Get.put(AddReservasController());
 
+  DetalhesReservas({super.key});
+
   @override
   Widget build(BuildContext context) {
-    confirmDelete(String text, VoidCallback function) {
-      showAnimatedDialog(
+    void confirmDelete(String text, VoidCallback onOk) {
+      showScaledDialog(
         context: context,
         barrierDismissible: false,
-        animationType: DialogTransitionType.fadeScale,
-        curve: Curves.fastOutSlowIn,
-        duration: Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 500),
         builder: (BuildContext context) {
+          final theme = Theme.of(context);
+          final bg = theme.textSelectionTheme.selectionColor ?? Colors.white;
+
           return AlertDialog(
             contentPadding: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            backgroundColor:
-                Theme.of(context).textSelectionTheme.selectionColor,
+            backgroundColor: bg,
             content: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.warning,
-                    color: Colors.orange,
-                    size: 54,
-                  ),
-                  SizedBox(height: 10),
+                  const Icon(Icons.warning, color: Colors.orange, size: 54),
+                  const SizedBox(height: 10),
                   Text(
                     text,
                     style: GoogleFonts.poppins(
-                      color: Theme.of(context).primaryColor,
+                      color: theme.primaryColor,
                       fontSize: 18,
                     ),
                     textAlign: TextAlign.center,
@@ -67,23 +66,26 @@ class DetalhesReservas extends StatelessWidget {
                 child: Text(
                   "Cancelar",
                   style: GoogleFonts.montserrat(
-                      color: Theme.of(context).colorScheme.error,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600),
+                    color: theme.colorScheme.error,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () => Navigator.of(context).pop(),
               ),
               TextButton(
                 child: Text(
                   "OK",
                   style: GoogleFonts.montserrat(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600),
+                    color: theme.primaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-                onPressed: function,
+                onPressed: () {
+                  Navigator.of(context).pop(); // fecha o diálogo
+                  onOk(); // executa ação
+                },
               ),
             ],
           );
@@ -91,16 +93,15 @@ class DetalhesReservas extends StatelessWidget {
       );
     }
 
-    var day = DateTime.parse(detalhesReservasController.data.value);
-    var newDate = DateFormat.yMMMMd('pt').format(day);
+    final day = DateTime.parse(detalhesReservasController.data.value);
+    final newDate = DateFormat.yMMMMd('pt').format(day);
 
-    var same = isSameDay(visualizarReservasController.dataDetalhes, day);
-    var isBefore = visualizarReservasController.dataDetalhes.isBefore(day);
+    final same = isSameDay(visualizarReservasController.dataDetalhes, day);
+    final isBefore = visualizarReservasController.dataDetalhes.isBefore(day);
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        //backgroundColor: Color(0xff100329),
         title: Text(
           'Reservas',
           style: GoogleFonts.montserrat(
@@ -111,15 +112,15 @@ class DetalhesReservas extends StatelessWidget {
       ),
       body: Obx(() {
         return detalhesReservasController.isLoading.value
-            ? CircularProgressIndicatorWidget()
-            : Container(
+            ? const CircularProgressIndicatorWidget()
+            : SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height * .33,
                         width: MediaQuery.of(context).size.width * .9,
                         child: Card(
@@ -142,7 +143,7 @@ class DetalhesReservas extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
-                                      padding: EdgeInsets.only(top: 10),
+                                      padding: const EdgeInsets.only(top: 10),
                                       child: Text(
                                         detalhesReservasController.nome.value,
                                         style: GoogleFonts.montserrat(
@@ -153,7 +154,7 @@ class DetalhesReservas extends StatelessWidget {
                                       ),
                                     ),
                                     Container(
-                                      padding: EdgeInsets.only(top: 3),
+                                      padding: const EdgeInsets.only(top: 3),
                                       child: Text(
                                         detalhesReservasController
                                             .unidade.value,
@@ -167,259 +168,151 @@ class DetalhesReservas extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 14,
-                                  horizontal: 10,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'EVENTO: ',
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      detalhesReservasController.titulo.value,
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 14,
-                                  horizontal: 10,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'DATA: ',
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      newDate,
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    Container(
-                                      child: Text(
-                                        ' às ${detalhesReservasController.hora.value}',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 14,
-                                  horizontal: 10,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'ÁREA COMUM: ',
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      detalhesReservasController.areacom.value,
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 14,
-                                  horizontal: 10,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'STATUS: ',
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      detalhesReservasController.status.value,
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              detalhesReservasController.status.value ==
-                                      "Recusado"
-                                  ? Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 14,
-                                        horizontal: 10,
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            'MOTIVO: ',
-                                            style: GoogleFonts.montserrat(
-                                              fontSize: 12,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          Text(
-                                            detalhesReservasController
-                                                .respevent.value,
-                                            style: GoogleFonts.montserrat(
-                                              fontSize: 12,
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  : Container(),
+                              _kvRow('EVENTO: ',
+                                  detalhesReservasController.titulo.value),
+                              _kvRow('DATA: ',
+                                  '$newDate às ${detalhesReservasController.hora.value}'),
+                              _kvRow('ÁREA COMUM: ',
+                                  detalhesReservasController.areacom.value),
+                              _kvRow('STATUS: ',
+                                  detalhesReservasController.status.value),
+                              if (detalhesReservasController.status.value ==
+                                  "Recusado")
+                                _kvRow('MOTIVO: ',
+                                    detalhesReservasController.respevent.value),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    reservasController.termo.value != ''
-                        ? Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 25),
-                            child: ButtonTheme(
-                              height: 50.0,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.resolveWith<Color>(
-                                    (Set<MaterialState> states) {
-                                      return Colors.white;
-                                    },
-                                  ),
-                                  shape: MaterialStateProperty.resolveWith<
-                                      OutlinedBorder>(
-                                    (Set<MaterialState> states) {
-                                      return RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Get.toNamed('/termos');
-                                },
-                                child: Text(
-                                  "Leia o Termo de Uso ${reservasController.nome.value}",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
+
+                    // Botão Termo
+                    if (reservasController.termo.value != '')
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 25),
+                        child: SizedBox(
+                          height: 50.0,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                      (_) => Colors.white),
+                              shape: MaterialStateProperty.resolveWith<
+                                  OutlinedBorder>(
+                                (_) => RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                               ),
                             ),
-                          )
-                        : Container(),
-                    !same &&
-                            isBefore &&
-                            detalhesReservasController.validaUsu.value != 0
-                        ? Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 25),
-                            child: ButtonTheme(
-                              height: 50.0,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.resolveWith<Color>(
-                                    (Set<MaterialState> states) {
-                                      return Theme.of(context)
-                                          .colorScheme
-                                          .error;
-                                    },
-                                  ),
-                                  shape: MaterialStateProperty.resolveWith<
-                                      OutlinedBorder>(
-                                    (Set<MaterialState> states) {
-                                      return RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                onPressed: () {
-                                  deleteAlert(
-                                    context,
-                                    'Deseja excluir a reserva\n ${detalhesReservasController.titulo.value}?',
-                                    () {
-                                      detalhesReservasController
-                                          .deleteReserva()
-                                          .then(
-                                        (value) {
-                                          if (value == 1) {
-                                            confirmedButtonPressed(
-                                              context,
-                                              'Sua reserva foi cancelada com sucesso',
-                                              '/home',
-                                            );
-                                          } else {
-                                            onAlertButtonPressed(
-                                                context,
-                                                'Algo deu errado \n Tente novamente mais tarde',
-                                                '/home',
-                                                'images/error.png');
-                                          }
-                                        },
-                                      );
-                                    },
-                                  );
-                                },
-                                child: Text(
-                                  "Cancelar",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                  ),
+                            onPressed: () => Get.toNamed('/termos'),
+                            child: Text(
+                              "Leia o Termo de Uso ${reservasController.nome.value}",
+                              style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    // Botão Cancelar (condicional)
+                    if (!same &&
+                        isBefore &&
+                        detalhesReservasController.validaUsu.value != 0)
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 25),
+                        child: SizedBox(
+                          height: 50.0,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                (_) => Theme.of(context).colorScheme.error,
+                              ),
+                              shape: MaterialStateProperty.resolveWith<
+                                  OutlinedBorder>(
+                                (_) => RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                               ),
                             ),
-                          )
-                        : Container(),
+                            onPressed: () {
+                              deleteAlert(
+                                context,
+                                'Deseja excluir a reserva\n ${detalhesReservasController.titulo.value}?',
+                                () {
+                                  detalhesReservasController
+                                      .deleteReserva()
+                                      .then((value) {
+                                    if (value == 1) {
+                                      confirmedButtonPressed(
+                                        context,
+                                        'Sua reserva foi cancelada com sucesso',
+                                        '/home',
+                                      );
+                                    } else {
+                                      onAlertButtonPressed(
+                                        context,
+                                        'Algo deu errado \n Tente novamente mais tarde',
+                                        '/home',
+                                        'images/error.png',
+                                      );
+                                    }
+                                  });
+                                },
+                              );
+                              // Alternativa usando o confirmDelete local (com a mesma UX):
+                              // confirmDelete('Deseja excluir a reserva\n ${detalhesReservasController.titulo.value}?', () { ... });
+                            },
+                            child: Text(
+                              "Cancelar",
+                              style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               );
       }),
+    );
+  }
+
+  // helper para reduzir repetição de linhas chave/valor
+  Widget _kvRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+      child: Row(
+        children: [
+          Text(
+            label,
+            style: GoogleFonts.montserrat(
+              fontSize: 12,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Flexible(
+            child: Text(
+              value,
+              style: GoogleFonts.montserrat(
+                fontSize: 12,
+                color: Colors.black,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

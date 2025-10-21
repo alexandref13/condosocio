@@ -11,6 +11,7 @@ Widget customTextField(
     bool enabled,
     TextEditingController controller) {
   return TextField(
+    textCapitalization: TextCapitalization.words,
     onTap: () {
       FocusScopeNode currentFocus = FocusScope.of(context);
       if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {

@@ -2,34 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import 'package:condosocio/src/components/utils/animated_dialog.dart';
 
-onAlertButtonPressed(context, String text, String page, String img) {
-  showAnimatedDialog(
+void onAlertButtonPressed(
+    BuildContext context, String text, String page, String img) {
+  showScaledDialog(
+    // <— substitui showAnimatedDialog
     context: context,
     barrierDismissible: false,
-    animationType: DialogTransitionType.fadeScale,
-    curve: Curves.fastOutSlowIn,
-    duration: Duration(milliseconds: 500),
+    transitionDuration: const Duration(milliseconds: 500),
     builder: (BuildContext context) {
       return Dialog(
-        backgroundColor: Colors.white, // Definir a cor de fundo desejada
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              img != ''
-                  ? Image.asset(
-                      img,
-                      width: 60, // Defina o tamanho desejado da imagem
-                    )
-                  : Container(),
-              SizedBox(height: 10),
+              if (img.isNotEmpty)
+                Image.asset(
+                  img,
+                  width: 60,
+                ),
+              const SizedBox(height: 10),
               Text(
                 text,
                 style: GoogleFonts.poppins(
@@ -38,7 +37,7 @@ onAlertButtonPressed(context, String text, String page, String img) {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               DialogButton(
                 child: Text(
                   "OK",
@@ -48,8 +47,8 @@ onAlertButtonPressed(context, String text, String page, String img) {
                   ),
                 ),
                 onPressed: () {
-                  if (page != '') {
-                    Get.offNamedUntil('$page', ModalRoute.withName('$page'));
+                  if (page.isNotEmpty) {
+                    Get.offNamedUntil(page, ModalRoute.withName(page));
                   } else {
                     Get.back();
                   }

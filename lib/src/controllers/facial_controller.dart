@@ -1,23 +1,20 @@
+// lib/src/controllers/facial_controller.dart
 import 'dart:convert';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class FacialController extends GetxController {
-  LoginController loginController = Get.put(LoginController());
+  final loginController = Get.put(LoginController());
 
-  var isLoading = false.obs;
-  var imgfacial = ''.obs;
+  final isLoading = false.obs;
+  final imgfacial = ''.obs;
 
-  ResetFace() async {
+  Future<dynamic> ResetFace() async {
     isLoading(true);
-
     final response = await ApiReset.resetFace();
-
-    var dados = json.decode(response.body);
-
+    final dados = json.decode(response.body);
     isLoading(false);
-
     return dados;
   }
 
@@ -28,10 +25,9 @@ class FacialController extends GetxController {
 }
 
 class ApiReset {
-  static Future resetFace() async {
-    LoginController loginController = Get.put(LoginController());
-
-    return await http.post(
+  static Future<http.Response> resetFace() {
+    final loginController = Get.put(LoginController());
+    return http.post(
       Uri.https("www.condosocio.com.br", "/flutter/resetFace.php"),
       body: {
         "idusu": loginController.id.value,

@@ -3,6 +3,7 @@ import 'package:condosocio/src/components/acessos_saidas/visualizar_acessos_said
 import 'package:condosocio/src/components/convites/visualizar_convite_widget.dart';
 import 'package:condosocio/src/components/convites/whatsapp_convites_widget.dart';
 import 'package:condosocio/src/controllers/auth_controller.dart';
+import 'package:condosocio/src/controllers/convites/visualizar_convites_controller.dart';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:condosocio/src/pages/acessos/facial_acesso_detalhe.dart';
@@ -30,11 +31,13 @@ import 'package:condosocio/src/pages/ocorrencias/foto_ocorrencia_detalhe.dart';
 import 'package:condosocio/src/pages/ocorrencias/resposta_ocorrencias.dart';
 import 'package:condosocio/src/pages/ocorrencias/visualizar_ocorrencias.dart';
 import 'package:condosocio/src/pages/ouvidoria/visualizar_ouvidoria.dart';
-import 'package:condosocio/src/pages/reservas/calendario_reservas.dart';
 import 'package:condosocio/src/components/reservas/termos_reservas.dart';
 import 'package:condosocio/src/pages/dependentes/dependentes.dart';
+import 'package:condosocio/src/pages/pets/pets.dart';
 import 'package:condosocio/src/pages/reservas/add_reservas.dart';
+import 'package:condosocio/src/pages/reservas/calendario_reservas.dart';
 import 'package:condosocio/src/pages/reservas/detalhes_reservas.dart';
+import 'package:condosocio/src/pages/reservas/reserva.dart';
 import 'package:condosocio/src/pages/reservas/visualizar_reservas.dart';
 import 'package:condosocio/src/pages/senha.dart';
 import 'package:condosocio/src/pages/alvo_tv.dart';
@@ -54,16 +57,18 @@ import 'package:condosocio/src/pages/ocorrencias/ocorrencias.dart';
 import 'package:condosocio/src/pages/ouvidoria/ouvidoria.dart';
 import 'package:condosocio/src/pages/ouvidoria/detalhes_ouvidoria.dart';
 import 'package:condosocio/src/pages/perfil.dart';
-import 'package:condosocio/src/pages/reservas/reserva.dart';
 import 'package:condosocio/src/pages/encomendas/qrcode.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
 import 'package:condosocio/src/pages/tutoriais.dart';
 import 'package:condosocio/src/pages/veiculos/pagVagasLimit.dart';
 import 'package:condosocio/src/pages/veiculos/veiculos.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'src/components/convites/detalhe_convite_widget.dart';
 import 'src/pages/list_of_condo.dart';
@@ -72,39 +77,76 @@ import 'package:camera/camera.dart';
 
 List<CameraDescription> cameras = [];
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  cameras = await availableCameras();
-  runApp(MyApp());
-  print('CAMERAS ABERTAS: ${cameras.length}');
+
+  // (Opcional) trava orientação
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  try {
+    cameras = await availableCameras();
+  } catch (e) {
+    // Se falhar, deixa vazio (tela que usa câmera deve tratar lista vazia)
+    debugPrint('availableCameras() falhou: $e');
+    cameras = [];
+  }
+
+  Get.lazyPut<VisualizarConvitesController>(
+    () => VisualizarConvitesController(),
+    fenix: true,
+  );
+
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // Controllers com Get:
   final ThemeController themeController = Get.put(ThemeController());
   final LoginController loginController = Get.put(LoginController());
   final AuthController authController = Get.put(AuthController());
 
   @override
-  Widget build(BuildContext context) {
-    OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
-    OneSignal.shared.setAppId('d2a1bd8c-4a9a-4355-ac9b-e52691e7de23');
-    // final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  void initState() {
+    super.initState();
+    _initOneSignal();
+  }
 
-    OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
-      print("Accepted permission: $accepted");
+  Future<void> _initOneSignal() async {
+    // Logs detalhados (substitui setLogLevel antigo)
+    OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+
+    // Inicializa (substitui setAppId antigo)
+    OneSignal.initialize('d2a1bd8c-4a9a-4355-ac9b-e52691e7de23');
+
+    // iOS: pede permissão do sistema (substitui promptUserForPushNotificationPermission)
+    final accepted = await OneSignal.Notifications.requestPermission(true);
+    debugPrint('Accepted permission: $accepted');
+
+    // Exibir notificação quando app está em foreground (opcional)
+    OneSignal.Notifications.addForegroundWillDisplayListener((event) {
+      // Se quiser suprimir, não chame complete()
+      // event.complete(event.notification);
     });
 
-    OneSignal.shared
-        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
-      var titulo = result.notification.title;
-      var subtitulo = result.notification.subtitle;
-      print('SUBTITULO $subtitulo');
+    // Clique/abertura da notificação (substitui setNotificationOpenedHandler)
+    OneSignal.Notifications.addClickListener((event) {
+      final titulo = event.notification.title;
+      final subtitulo = event.notification.subtitle;
+      debugPrint('SUBTITULO $subtitulo');
+      debugPrint('NOTIFICACAO ABERTA: $titulo');
 
-      print('NOTIFICACAO ABERTA: $titulo');
       authController.rota.value.text = '/login';
+
       if (titulo == 'CONTROLE DE ACESSO') {
         authController.rota.value.text = '/visualizarAcessos';
-      } else if (titulo == 'AVISO!') {
+      } else if (titulo == 'AVISO') {
         authController.rota.value.text = '/avisos';
       } else if (titulo == 'COMUNICADO') {
         authController.rota.value.text = '/comunicados';
@@ -122,23 +164,35 @@ class MyApp extends StatelessWidget {
         authController.rota.value.text = '/visualizarAcessos';
       } else if (titulo == 'CADASTRO FACIAL') {
         authController.rota.value.text = '/dependentes';
-      } else {}
-    });
+      }
 
+      // Se quiser navegar imediatamente:
+      // Get.offAllNamed(authController.rota.value.text);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark, // ícones escuros
+        systemNavigationBarColor: Colors.white, // barra de navegação
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+    );
     return GetMaterialApp(
-      localizationsDelegates: [
+      localizationsDelegates: const [
         RefreshLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [Locale('pt')],
+      supportedLocales: const [Locale('pt')],
       theme: themeController.theme,
       darkTheme: themeController.theme,
       debugShowCheckedModeBanner: false,
       initialRoute: '/login',
-
-      // navigatorKey: navigatorKey,
       getPages: [
         GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/home', page: () => HomePage()),
@@ -167,10 +221,13 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/whatsAppConvite', page: () => WhatsAppConvitesWidget()),
         GetPage(name: '/dependentes', page: () => Dependentes()),
         GetPage(
-            name: '/visualizarAcessosSaidas',
-            page: () => VisualizarAcessosSaidas()),
+          name: '/visualizarAcessosSaidas',
+          page: () => VisualizarAcessosSaidas(),
+        ),
         GetPage(
-            name: '/detalhesAcessosSaida', page: () => DetalhesAcessosSaida()),
+          name: '/detalhesAcessosSaida',
+          page: () => DetalhesAcessosSaida(),
+        ),
         GetPage(name: '/addReservas', page: () => AddReservas()),
         GetPage(name: '/calendario', page: () => TableCalendarWidget()),
         GetPage(name: '/termos', page: () => TermosReservas()),
@@ -197,18 +254,24 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/boletos', page: () => Boletos()),
         GetPage(name: '/visualizarReservas', page: () => VisualizarReservas()),
         GetPage(
-            name: '/visualizarOcorrencias',
-            page: () => VisualizarOcorrencias()),
+          name: '/visualizarOcorrencias',
+          page: () => VisualizarOcorrencias(),
+        ),
         GetPage(
-            name: '/visualizarOuvidoria', page: () => VisualizarOuvidoria()),
+          name: '/visualizarOuvidoria',
+          page: () => VisualizarOuvidoria(),
+        ),
         GetPage(
-            name: '/verificarVisitantes', page: () => VerificarVisitantes()),
+          name: '/verificarVisitantes',
+          page: () => VerificarVisitantes(),
+        ),
         GetPage(name: '/veiculos', page: () => Veiculos()),
         GetPage(name: '/vagasexcedidas', page: () => VagasLimit()),
         GetPage(name: '/facial', page: () => Facial()),
         GetPage(name: '/fotoFacial', page: () => FotoFacial()),
         GetPage(name: '/facialacesso', page: () => FacialAcesso()),
         GetPage(name: '/acessosespera', page: () => AcessosEspera()),
+        GetPage(name: '/pets', page: () => Pets()),
       ],
     );
   }

@@ -428,14 +428,14 @@ class Login extends StatelessWidget {
                                                               .idcond.value,
                                                     };
 
-                                                    OneSignal.shared
-                                                        .sendTags(sendTags)
-                                                        .then((response) {
+                                                    OneSignal.User.addTags(
+                                                            sendTags)
+                                                        .then((_) {
                                                       print(
-                                                          "Successfully sent tags with response: $response");
+                                                          "Successfully sent tags: $sendTags");
                                                     }).catchError((error) {
                                                       print(
-                                                          "Encountered an error sending tags: $error");
+                                                          "Auth Encountered an error sending tags: $error");
                                                     });
 
                                                     Get.toNamed('/home');

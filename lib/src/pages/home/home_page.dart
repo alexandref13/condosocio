@@ -375,580 +375,575 @@ class _HomePageState extends State<HomePage> {
         });
         return false;
       },
-      child: SafeArea(
-        child: Scaffold(
-          key: scaffoldKey,
-          appBar: AppBarWidget(
-            context: context,
-            onTap: () {
-              scaffoldKey.currentState!.openDrawer();
-            },
-            image: loginController.imgcondo.value,
-          ),
-          drawer: Drawer(
-            child: Container(
-              color: Theme.of(context).colorScheme.secondary,
-              child: ListView(
-                children: <Widget>[
-                  DrawerHeader(
-                      padding: EdgeInsets.all(0),
-                      child: Container(
-                        padding: EdgeInsets.only(top: 20),
-                        color: Theme.of(context).primaryColor,
-                        child: Column(
-                          children: <Widget>[
-                            getImageWidget(),
-                            Container(
-                              child: Text(
-                                "${loginController.nome.value} ${loginController.sobrenome.value}",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                softWrap: false,
-                                style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 2),
-                              child: Text(
-                                '${loginController.emailUsu.value}',
-                                style: GoogleFonts.montserrat(
+      child: Scaffold(
+        key: scaffoldKey,
+        appBar: AppBarWidget(
+          onTap: () {
+            scaffoldKey.currentState!.openDrawer();
+          },
+          image: loginController.imgcondo.value,
+        ),
+        drawer: Drawer(
+          child: Container(
+            color: Theme.of(context).colorScheme.secondary,
+            child: ListView(
+              children: <Widget>[
+                DrawerHeader(
+                    padding: EdgeInsets.all(0),
+                    child: Container(
+                      padding: EdgeInsets.only(top: 20),
+                      color: Theme.of(context).primaryColor,
+                      child: Column(
+                        children: <Widget>[
+                          getImageWidget(),
+                          Container(
+                            child: Text(
+                              "${loginController.nome.value} ${loginController.sobrenome.value}",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: false,
+                              style: GoogleFonts.montserrat(
                                   color: Theme.of(context)
                                       .textSelectionTheme
                                       .selectionColor!,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 2),
-                              child: Text(
-                                '${loginController.logradouro.value} | ${loginController.tipoun.value}',
-                                style: GoogleFonts.montserrat(
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                  Column(
-                    children: <Widget>[
-                      loginController.idadm.value != '0'
-                          ? Container(
-                              child: ListTile(
-                                contentPadding:
-                                    EdgeInsets.fromLTRB(15, 0, 10, 0),
-                                dense: true,
-                                title: Text(
-                                  'Boleto 2ª Via',
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                leading: Icon(
-                                  Icons.paid_outlined,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                  size: 22,
-                                ),
-                                onTap: () {
-                                  Get.toNamed('/boleto');
-                                },
-                              ),
-                            )
-                          : Container(),
-                      loginController.idadm.value != '0'
-                          ? Divider(
-                              height: 1,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor!
-                                  .withOpacity(
-                                      0.5), // Ajuste o valor de opacidade conforme necessário
-                            )
-                          : Container(),
-                      loginController.haveListOfCondo.value
-                          ? Container(
-                              child: ListTile(
-                                contentPadding:
-                                    EdgeInsets.fromLTRB(15, 0, 10, 0),
-                                dense: true,
-                                title: Text(
-                                  'Unidades',
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                leading: Icon(
-                                  Icons.home,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                  size: 22,
-                                ),
-                                onTap: () {
-                                  loginController.idcond.value = '';
-                                  loginController.hasMoreEmail(
-                                    loginController.emailUsu.value,
-                                  );
-                                  Get.toNamed('/listOfCondo');
-                                },
-                              ),
-                            )
-                          : Container(),
-
-                      /*loginController.dep.value == '0'
-                          ? Container(
-                              child: ListTile(
-                                contentPadding:
-                                    EdgeInsets.fromLTRB(15, 0, 10, 0),
-                                dense: true,
-                                title: Text(
-                                  'Usuários',
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                leading: Icon(
-                                   Icons.persons,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                  size: 22,
-                                ),
-                                onTap: () {
-                                  Get.toNamed('/dependentes');
-                                },
-                              ),
-                            )
-                          : Container(),*/
-                      Divider(
-                        height: 1,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!
-                            .withOpacity(0.3),
-                      ),
-                      Container(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                          dense: true,
-                          title: Text(
-                            'Perfil',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor!,
-                              fontSize: 12,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
-                          leading: Icon(
-                            Icons.account_circle_outlined,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                            size: 22,
-                          ),
-                          onTap: () {
-                            Get.toNamed('/perfil');
-                          },
-                        ),
-                      ),
-                      Divider(
-                        height: 5,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!
-                            .withOpacity(0.3),
-                      ),
-                      Container(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                          dense: true,
-                          title: Text(
-                            'Senha',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor!,
-                              fontSize: 12,
-                            ),
-                          ),
-                          leading: Icon(
-                            Icons.lock_outline,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                            size: 22,
-                          ),
-                          onTap: () {
-                            Get.toNamed('/senha');
-                          },
-                        ),
-                      ),
-                      Divider(
-                        height: 5,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!
-                            .withOpacity(0.3),
-                      ),
-                      Container(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                          dense: true,
-                          title: Text(
-                            'Sobre',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor!,
-                              fontSize: 12,
-                            ),
-                          ),
-                          leading: Icon(
-                            Icons.info_outline_rounded,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                            size: 22,
-                          ),
-                          onTap: () {
-                            Get.toNamed('/sobre');
-                          },
-                        ),
-                      ),
-                      Divider(
-                        height: 5,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!
-                            .withOpacity(0.3),
-                      ),
-                      Container(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                          dense: true,
-                          title: Text(
-                            'Termos de Uso',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor!,
-                              fontSize: 12,
-                            ),
-                          ),
-                          leading: Icon(
-                            Icons.gavel_outlined,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                            size: 22,
-                          ),
-                          onTap: () {
-                            homePageController.launched =
-                                homePageController.launchInBrowser(
-                                    'https://www.condosocio.com.br/termo.html');
-                          },
-                        ),
-                      ),
-                      Divider(
-                        height: 5,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!
-                            .withOpacity(0.3),
-                      ),
-                      Container(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                          dense: true,
-                          title: Text(
-                            'Política de Privacidade',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor!,
-                              fontSize: 12,
-                            ),
-                          ),
-                          leading: Icon(
-                            Icons.verified_user_outlined,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                            size: 22,
-                          ),
-                          onTap: () {
-                            homePageController.launched =
-                                homePageController.launchInBrowser(
-                                    'https://www.condosocio.com.br/privacidade.html');
-                          },
-                        ),
-                      ),
-                      Divider(
-                        height: 5,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!
-                            .withOpacity(0.3),
-                      ),
-                      Container(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                          dense: true,
-                          title: Text(
-                            'Avalie o app',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor!,
-                              fontSize: 12,
-                            ),
-                          ),
-                          leading: Icon(
-                            Icons.star_border_outlined,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                            size: 22,
-                          ),
-                          onTap: () {
-                            homePageController.launched = homePageController
-                                .launchInBrowser('http://onelink.to/r8p97m');
-                          },
-                        ),
-                      ),
-                      Divider(
-                        height: 5,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!
-                            .withOpacity(0.3),
-                      ),
-                      Container(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                          dense: true,
-                          title: Text(
-                            'Tutoriais',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor!,
-                              fontSize: 12,
-                            ),
-                          ),
-                          leading: Icon(
-                            FontAwesomeIcons.bookOpenReader,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                            size: 22,
-                          ),
-                          onTap: () {
-                            Get.toNamed('/Tutoriais');
-                          },
-                        ),
-                      ),
-                      Divider(
-                        height: 5,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!
-                            .withOpacity(0.3),
-                      ),
-                      Container(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                          dense: true,
-                          title: Text(
-                            'Sair',
-                            style: GoogleFonts.montserrat(
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .selectionColor!,
-                              fontSize: 12,
-                            ),
-                          ),
-                          leading: Icon(
-                            Icons.exit_to_app,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                            size: 22,
-                          ),
-                          onTap: () {
-                            logoutUser();
-                          },
-                        ),
-                      ),
-                      Divider(
-                        height: 15,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!
-                            .withOpacity(0.3),
-                      ),
-                      Container(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 10, bottom: 5),
-                          child: Container(
-                            //color: Color(0xfff5f5f5),
-                            child: Image.asset(
-                              'images/condosocio_logo.png',
-                              width: 80,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: Column(
-                          children: [
-                            Text(
-                              'Versão 11.4',
+                          Container(
+                            padding: EdgeInsets.only(top: 2),
+                            child: Text(
+                              '${loginController.emailUsu.value}',
                               style: GoogleFonts.montserrat(
                                 color: Theme.of(context)
                                     .textSelectionTheme
                                     .selectionColor!,
-                                fontSize: 12,
+                                fontSize: 10,
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  icon: FaIcon(FontAwesomeIcons.globe),
-                                  onPressed: () {
-                                    // Link para Facebook
-                                    homePageController.launched =
-                                        homePageController.launchInBrowser(
-                                            'https://www.condosocio.com.br');
-                                  },
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                ),
-                                IconButton(
-                                  icon: FaIcon(FontAwesomeIcons.facebook),
-                                  onPressed: () {
-                                    // Link para Facebook
-                                    homePageController.launched =
-                                        homePageController.launchInBrowser(
-                                            'https://www.facebook.com/condosocio');
-                                  },
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                ),
-                                IconButton(
-                                  icon: FaIcon(FontAwesomeIcons.youtube),
-                                  onPressed: () {
-                                    // Link para YouTube
-                                    homePageController.launched =
-                                        homePageController.launchInBrowser(
-                                            'https://www.youtube.com/channel/UCLPOsAW7jbawmz7nB3UeDvg');
-                                  },
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                ),
-                                IconButton(
-                                  icon: FaIcon(FontAwesomeIcons.instagram),
-                                  onPressed: () {
-                                    // Link para Instagram
-                                    homePageController.launched =
-                                        homePageController.launchInBrowser(
-                                            'https://www.instagram.com/condosocioapp');
-                                  },
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                ),
-                                IconButton(
-                                  icon: FaIcon(FontAwesomeIcons.whatsapp),
-                                  onPressed: () {
-                                    // Link para Facebook
-                                    homePageController.launched =
-                                        homePageController.launchInBrowser(
-                                      'https://api.whatsapp.com/send?phone=5591981220670',
-                                    );
-                                  },
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .selectionColor!,
-                                ),
-                              ],
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(top: 2),
+                            child: Text(
+                              '${loginController.logradouro.value} | ${loginController.tipoun.value}',
+                              style: GoogleFonts.montserrat(
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                                fontSize: 10,
+                              ),
                             ),
-                          ],
+                          ),
+                        ],
+                      ),
+                    )),
+                Column(
+                  children: <Widget>[
+                    loginController.idadm.value != '0'
+                        ? Container(
+                            child: ListTile(
+                              contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                              dense: true,
+                              title: Text(
+                                'Boleto 2ª Via',
+                                style: GoogleFonts.montserrat(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              leading: Icon(
+                                Icons.paid_outlined,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                                size: 22,
+                              ),
+                              onTap: () {
+                                Get.toNamed('/boleto');
+                              },
+                            ),
+                          )
+                        : Container(),
+                    loginController.idadm.value != '0'
+                        ? Divider(
+                            height: 1,
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!
+                                .withOpacity(
+                                    0.5), // Ajuste o valor de opacidade conforme necessário
+                          )
+                        : Container(),
+                    loginController.haveListOfCondo.value
+                        ? Container(
+                            child: ListTile(
+                              contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                              dense: true,
+                              title: Text(
+                                'Unidades',
+                                style: GoogleFonts.montserrat(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              leading: Icon(
+                                Icons.home,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                                size: 22,
+                              ),
+                              onTap: () {
+                                loginController.idcond.value = '';
+                                loginController.hasMoreEmail(
+                                  loginController.emailUsu.value,
+                                );
+                                Get.toNamed('/listOfCondo');
+                              },
+                            ),
+                          )
+                        : Container(),
+
+                    /*loginController.dep.value == '0'
+                        ? Container(
+                            child: ListTile(
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(15, 0, 10, 0),
+                              dense: true,
+                              title: Text(
+                                'Usuários',
+                                style: GoogleFonts.montserrat(
+                                  color: Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              leading: Icon(
+                                 Icons.persons,
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                                size: 22,
+                              ),
+                              onTap: () {
+                                Get.toNamed('/dependentes');
+                              },
+                            ),
+                          )
+                        : Container(),*/
+                    Divider(
+                      height: 1,
+                      color: Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor!
+                          .withOpacity(0.3),
+                    ),
+                    Container(
+                      child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
+                        title: Text(
+                          'Perfil',
+                          style: GoogleFonts.montserrat(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                            fontSize: 12,
+                          ),
+                        ),
+                        leading: Icon(
+                          Icons.account_circle_outlined,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          size: 22,
+                        ),
+                        onTap: () {
+                          Get.toNamed('/perfil');
+                        },
+                      ),
+                    ),
+                    Divider(
+                      height: 5,
+                      color: Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor!
+                          .withOpacity(0.3),
+                    ),
+                    Container(
+                      child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
+                        title: Text(
+                          'Senha',
+                          style: GoogleFonts.montserrat(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                            fontSize: 12,
+                          ),
+                        ),
+                        leading: Icon(
+                          Icons.lock_outline,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          size: 22,
+                        ),
+                        onTap: () {
+                          Get.toNamed('/senha');
+                        },
+                      ),
+                    ),
+                    Divider(
+                      height: 5,
+                      color: Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor!
+                          .withOpacity(0.3),
+                    ),
+                    Container(
+                      child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
+                        title: Text(
+                          'Sobre',
+                          style: GoogleFonts.montserrat(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                            fontSize: 12,
+                          ),
+                        ),
+                        leading: Icon(
+                          Icons.info_outline_rounded,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          size: 22,
+                        ),
+                        onTap: () {
+                          Get.toNamed('/sobre');
+                        },
+                      ),
+                    ),
+                    Divider(
+                      height: 5,
+                      color: Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor!
+                          .withOpacity(0.3),
+                    ),
+                    Container(
+                      child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
+                        title: Text(
+                          'Termos de Uso',
+                          style: GoogleFonts.montserrat(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                            fontSize: 12,
+                          ),
+                        ),
+                        leading: Icon(
+                          Icons.gavel_outlined,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          size: 22,
+                        ),
+                        onTap: () {
+                          homePageController.launched =
+                              homePageController.launchInBrowser(
+                                  'https://www.condosocio.com.br/termo.html');
+                        },
+                      ),
+                    ),
+                    Divider(
+                      height: 5,
+                      color: Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor!
+                          .withOpacity(0.3),
+                    ),
+                    Container(
+                      child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
+                        title: Text(
+                          'Política de Privacidade',
+                          style: GoogleFonts.montserrat(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                            fontSize: 12,
+                          ),
+                        ),
+                        leading: Icon(
+                          Icons.verified_user_outlined,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          size: 22,
+                        ),
+                        onTap: () {
+                          homePageController.launched =
+                              homePageController.launchInBrowser(
+                                  'https://www.condosocio.com.br/privacidade.html');
+                        },
+                      ),
+                    ),
+                    Divider(
+                      height: 5,
+                      color: Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor!
+                          .withOpacity(0.3),
+                    ),
+                    Container(
+                      child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
+                        title: Text(
+                          'Avalie o app',
+                          style: GoogleFonts.montserrat(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                            fontSize: 12,
+                          ),
+                        ),
+                        leading: Icon(
+                          Icons.star_border_outlined,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          size: 22,
+                        ),
+                        onTap: () {
+                          homePageController.launched = homePageController
+                              .launchInBrowser('http://onelink.to/r8p97m');
+                        },
+                      ),
+                    ),
+                    Divider(
+                      height: 5,
+                      color: Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor!
+                          .withOpacity(0.3),
+                    ),
+                    Container(
+                      child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
+                        title: Text(
+                          'Tutoriais',
+                          style: GoogleFonts.montserrat(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                            fontSize: 12,
+                          ),
+                        ),
+                        leading: Icon(
+                          Icons.menu_book,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          size: 22,
+                        ),
+                        onTap: () {
+                          Get.toNamed('/Tutoriais');
+                        },
+                      ),
+                    ),
+                    Divider(
+                      height: 5,
+                      color: Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor!
+                          .withOpacity(0.3),
+                    ),
+                    Container(
+                      child: ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        dense: true,
+                        title: Text(
+                          'Sair',
+                          style: GoogleFonts.montserrat(
+                            color: Theme.of(context)
+                                .textSelectionTheme
+                                .selectionColor!,
+                            fontSize: 12,
+                          ),
+                        ),
+                        leading: Icon(
+                          Icons.exit_to_app,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                          size: 22,
+                        ),
+                        onTap: () {
+                          logoutUser();
+                        },
+                      ),
+                    ),
+                    Divider(
+                      height: 15,
+                      color: Theme.of(context)
+                          .textSelectionTheme
+                          .selectionColor!
+                          .withOpacity(0.3),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 10, bottom: 5),
+                        child: Container(
+                          //color: Color(0xfff5f5f5),
+                          child: Image.asset(
+                            'images/condosocio_logo.png',
+                            width: 80,
+                          ),
                         ),
                       ),
-                    ],
-                  )
-                ],
-              ),
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          Text(
+                            'Versão 12.0',
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context)
+                                  .textSelectionTheme
+                                  .selectionColor!,
+                              fontSize: 12,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                icon: FaIcon(FontAwesomeIcons.globe),
+                                onPressed: () {
+                                  // Link para Facebook
+                                  homePageController.launched =
+                                      homePageController.launchInBrowser(
+                                          'https://www.condosocio.com.br');
+                                },
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                              ),
+                              IconButton(
+                                icon: FaIcon(FontAwesomeIcons.facebook),
+                                onPressed: () {
+                                  // Link para Facebook
+                                  homePageController.launched =
+                                      homePageController.launchInBrowser(
+                                          'https://www.facebook.com/condosocio');
+                                },
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                              ),
+                              IconButton(
+                                icon: FaIcon(FontAwesomeIcons.youtube),
+                                onPressed: () {
+                                  // Link para YouTube
+                                  homePageController.launched =
+                                      homePageController.launchInBrowser(
+                                          'https://www.youtube.com/channel/UCLPOsAW7jbawmz7nB3UeDvg');
+                                },
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                              ),
+                              IconButton(
+                                icon: FaIcon(FontAwesomeIcons.instagram),
+                                onPressed: () {
+                                  // Link para Instagram
+                                  homePageController.launched =
+                                      homePageController.launchInBrowser(
+                                          'https://www.instagram.com/condosocioapp');
+                                },
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                              ),
+                              IconButton(
+                                icon: FaIcon(FontAwesomeIcons.whatsapp),
+                                onPressed: () {
+                                  // Link para Facebook
+                                  homePageController.launched =
+                                      homePageController.launchInBrowser(
+                                    'https://api.whatsapp.com/send?phone=5591981220670',
+                                  );
+                                },
+                                color: Theme.of(context)
+                                    .textSelectionTheme
+                                    .selectionColor!,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Theme.of(context).primaryColorDark,
-            type: BottomNavigationBarType.fixed,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                ),
-                label: 'Menu',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.account_circle_outlined,
-                ),
-                label: 'Perfil',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.lock_outline,
-                ),
-                label: 'Senha',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.contact_mail_outlined,
-                ),
-                label: 'Convites',
-              ),
-            ],
-            selectedIconTheme:
-                IconThemeData(color: Theme.of(context).dialogBackgroundColor),
-            //IconThemeData(color: Theme.of(context).primaryColor),
-            unselectedIconTheme: IconThemeData(color: Colors.white),
-            selectedItemColor: Theme.of(context).dialogBackgroundColor,
-            unselectedItemColor: Colors.white,
-            currentIndex: loginController.selectedIndex.value,
-            onTap: onItemTapped,
-          ),
-          // body: bottomNavigationList[loginController.selectedIndex.value],
-
-          body: Center(child: HomeBottomTab()),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Theme.of(context).primaryColorDark,
+          type: BottomNavigationBarType.fixed,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+              ),
+              label: 'Menu',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.account_circle_outlined,
+              ),
+              label: 'Perfil',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.lock_outline,
+              ),
+              label: 'Senha',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.contact_mail_outlined,
+              ),
+              label: 'Convites',
+            ),
+          ],
+          selectedIconTheme:
+              IconThemeData(color: Theme.of(context).dialogBackgroundColor),
+          //IconThemeData(color: Theme.of(context).primaryColor),
+          unselectedIconTheme: IconThemeData(color: Colors.white),
+          selectedItemColor: Theme.of(context).dialogBackgroundColor,
+          unselectedItemColor: Colors.white,
+          currentIndex: loginController.selectedIndex.value,
+          onTap: onItemTapped,
+        ),
+        // body: bottomNavigationList[loginController.selectedIndex.value],
+
+        body: Center(child: HomeBottomTab()),
       ),
     );
   }

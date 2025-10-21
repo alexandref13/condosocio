@@ -25,7 +25,8 @@ class HomePageController extends GetxController {
     try {
       LoginController loginController = Get.put(LoginController());
       final response = await http.post(
-        Uri.https('www.condosocio.com.br', '/flutter/banners_home_buscar.php'),
+        Uri.https(
+            'www.condosocio.com.br', '/flutter/banners_home_buscar_novo.php'),
         body: {
           'idcond': loginController.idcond.value,
         },
@@ -36,7 +37,7 @@ class HomePageController extends GetxController {
 
         final bannersHome = data.map((obj) {
           final imgUrl =
-              "http://www.condosocio.com.br/images/bannereventos/${obj['imgbanner'] as String}";
+              "http://www.condosocio.com.br/acond/downloads/bannerTelaInicial/${obj['imgbanner'] as String}";
           final url = obj['url'] as String;
           print('Image URL: $imgUrl');
           print('Link URL: $url');
@@ -48,10 +49,11 @@ class HomePageController extends GetxController {
 
         return bannersHome;
       } else {
-        throw Exception('Failed to load banners');
+        throw Exception(
+            'Falha no carregamento do banner: ${response.statusCode}');
       }
     } catch (e) {
-      throw Exception('Failed to load banners: $e');
+      throw Exception('Falha no carregamento do banner: $e');
     }
   }
 }

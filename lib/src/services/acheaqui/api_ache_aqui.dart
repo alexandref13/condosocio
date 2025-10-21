@@ -76,7 +76,8 @@ class ApiAcheAqui {
         Get.put(DetalhesAcheAquiController());
 
     return await http.post(
-      Uri.https('www.condosocio.com.br', 'flutter/acheaqui_avaliacao_inc.php'),
+      Uri.https(
+          'api-v4.condosocio.com.br', 'flutter/acheaqui_avaliacao_inc.php'),
       body: {
         'idusu': loginController.id.value,
         'idforn': acheAquiController.idForm.value,

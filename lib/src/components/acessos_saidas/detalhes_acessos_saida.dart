@@ -353,7 +353,8 @@ class _DetalhesAcessosSaidaState extends State<DetalhesAcessosSaida> {
                                                     .resolveWith<Color>(
                                               (Set<MaterialState> states) {
                                                 return Theme.of(context)
-                                                    .errorColor;
+                                                    .colorScheme
+                                                    .error;
                                               },
                                             ),
                                             shape: MaterialStateProperty

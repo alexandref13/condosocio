@@ -54,14 +54,11 @@ class ListOfCondo extends StatelessWidget {
                               'nome': loginController.nomeusu.value,
                               'sobrenome': loginController.idcond.value,
                             };
-                            OneSignal.shared
-                                .sendTags(sendTags)
-                                .then((response) {
-                              print(
-                                  "Successfully sent tags with response: $response");
+                            OneSignal.User.addTags(sendTags).then((_) {
+                              print("Successfully sent tags: $sendTags");
                             }).catchError((error) {
                               print(
-                                  "List_Condo Encountered an error sending tags: $error");
+                                  "Auth Encountered an error sending tags: $error");
                             });
                             loginController.newLogin(condo.idusu);
                           },

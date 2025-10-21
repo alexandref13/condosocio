@@ -23,7 +23,7 @@ class AcheAquiPage extends StatelessWidget {
                       primary: false,
                       slivers: <Widget>[
                         SliverPadding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 80),
                           sliver: SliverGrid.count(
                             crossAxisSpacing: 15,
                             mainAxisSpacing: 15,

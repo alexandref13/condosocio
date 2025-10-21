@@ -88,7 +88,7 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
         compressFormat: ImageCompressFormat.jpg,
         uiSettings: [
           AndroidUiSettings(
-            toolbarTitle: 'Imagem para o Perfil',
+            toolbarTitle: 'Imagem para a ocorrência',
             toolbarColor: Colors.deepOrange,
             initAspectRatio: CropAspectRatioPreset.original,
             statusBarColor: Colors.deepOrange.shade900,
@@ -101,13 +101,15 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
         ],
       );
 
-      this.setState(() {
-        selectedFile = File(image.path);
-        if (cropped != null) {
-          selectedFile = File(cropped.path);
-          Get.back();
-        }
-      });
+      if (cropped != null) {
+        setState(() {
+          selectedFile = File(cropped.path); // ✅ usa a foto cortada
+          if (Get.isBottomSheetOpen == true) {
+            print('[getImage] closing bottom sheet with Get.back()');
+            Get.back();
+          }
+        });
+      }
     }
   }
 
@@ -161,8 +163,10 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                       color:
                           Theme.of(context).textSelectionTheme.selectionColor!,
                     ),
-                    onTap: () => {
-                      getImage(ImageSource.camera),
+                    onTap: () async {
+                      Navigator.pop(context); // fecha o bottom sheet
+                      await getImage(
+                          ImageSource.camera); // depois abre picker/cropper
                     },
                   ),
                   Divider(
@@ -187,10 +191,9 @@ class _AdicionarOcorrenciasState extends State<AdicionarOcorrencias> {
                         color: Theme.of(context)
                             .textSelectionTheme
                             .selectionColor!),
-                    onTap: () => {
-                      getImage(
-                        ImageSource.gallery,
-                      ),
+                    onTap: () async {
+                      Navigator.pop(context);
+                      await getImage(ImageSource.gallery);
                     },
                   ),
                   Divider(

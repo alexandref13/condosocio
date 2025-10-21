@@ -29,15 +29,13 @@
 		<string>itms-apps</string>
 		<string>whatsapp</string>
 	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>MinimumOSVersion</key>
-	<string>12.0</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Play using while you are hiking</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
@@ -60,12 +58,18 @@
 	<string>Este aplicativo precisa acessar o microfone para gravar áudio durante as chamadas de vídeo.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>This app needs to be able to access your motion use</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Precisamos salvar imagens editadas na sua biblioteca quando você optar por isso.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Este aplicativo requer acesso à sua biblioteca de fotos para alterar a imagem no perfil ou inserir imagem nas ocorrências.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>reconhece a sua fala</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

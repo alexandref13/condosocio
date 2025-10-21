@@ -98,25 +98,41 @@ class LoginController extends GetxController {
     // Registra o tempo inicial
     DateTime startTime = DateTime.now();
 
-    final response = await http
-        .post(Uri.https("www.condosocio.com.br", '/flutter/login.php'), body: {
-      "login": email.value.text,
-      "senha": password.value.text,
-    });
+    try {
+      print("🔑 Iniciando login com email: ${email.value.text}");
 
-    // Calcula o tempo de resposta
-    DateTime endTime = DateTime.now();
-    Duration responseTime = endTime.difference(startTime);
-    print('Tempo de resposta da API: ${responseTime.inMilliseconds}ms');
+      final response = await http.post(
+        Uri.https("www.condosocio.com.br", '/flutter/login.php'),
+        body: {
+          "login": email.value.text,
+          "senha": password.value.text,
+        },
+      );
 
-    var dadosUsuario = json.decode(response.body);
-    print(dadosUsuario);
+      // Calcula o tempo de resposta
+      DateTime endTime = DateTime.now();
+      Duration responseTime = endTime.difference(startTime);
+      print(
+          '⏱ Tempo de resposta da API login: ${responseTime.inMilliseconds}ms');
 
-    if (dadosUsuario['valida'] == 1) {
-      isLoading(false);
-      return dadosUsuario;
-    } else {
+      print("📡 Status code: ${response.statusCode}");
+      print("📥 Body: ${response.body}");
+
+      var dadosUsuario = json.decode(response.body);
+
+      if (dadosUsuario['valida'] == 1) {
+        print("✅ Login válido para usuário: ${dadosUsuario['nome']}");
+        isLoading(false);
+        return dadosUsuario;
+      } else {
+        print("⚠️ Login inválido: ${dadosUsuario['msg'] ?? 'sem mensagem'}");
+        return null;
+      }
+    } catch (e) {
+      print("❌ Erro no login: $e");
       return null;
+    } finally {
+      isLoading(false);
     }
   }
 
@@ -138,8 +154,15 @@ class LoginController extends GetxController {
 
   newLogin(String newId) {
     isLoading(true);
-    http.post(Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
-        body: {"id": newId}).then((response) {
+    print("🔑 Iniciando newLogin com id: $newId");
+
+    http.post(
+      Uri.https('www.condosocio.com.br', '/flutter/dados_usu.php'),
+      body: {"id": newId},
+    ).then((response) {
+      print("📡 Status code (newLogin): ${response.statusCode}");
+      print("📥 Body (newLogin): ${response.body}");
+
       var dados = json.decode(response.body);
 
       id(dados['idusu']);
@@ -165,24 +188,29 @@ class LoginController extends GetxController {
       ctlfacial(dados['ctlfacial']);
       imgfacial(dados['imgfacial']);
 
+      print("✅ Usuário carregado: ${nome.value} ${sobrenome.value}");
+
       var sendTags = {
         'idusu': id.value,
         'nome': nome.value,
         'sobrenome': idcond.value,
       };
 
-      OneSignal.shared.sendTags(sendTags).then((response) {
-        print("Successfully sent tags with response: $response");
+      OneSignal.User.addTags(sendTags).then((_) {
+        print("📤 Successfully sent tags: $sendTags");
       }).catchError((error) {
-        print("Login Encountered an error sending tags: $error");
+        print("❌ Erro ao enviar tags para OneSignal: $error");
       });
 
       storageId();
-
       themeController.setTheme(condoTheme.value);
 
+      print("➡️ Redirecionando para /home");
       Get.offNamed('/home');
 
+      isLoading(false);
+    }).catchError((error) {
+      print("❌ Erro no newLogin: $error");
       isLoading(false);
     });
   }

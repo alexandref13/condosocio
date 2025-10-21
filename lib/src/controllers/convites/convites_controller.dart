@@ -13,8 +13,10 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class ConvitesController extends GetxController {
   AcessosController acessosController = Get.put(AcessosController());
   LoginController loginController = Get.put(LoginController());
-  VisualizarConvitesController visualizarConvitesController =
-      Get.put(VisualizarConvitesController());
+  //VisualizarConvitesController visualizarConvitesController = Get.put(VisualizarConvitesController());
+
+  VisualizarConvitesController get visualizarConvitesController =>
+      Get.find<VisualizarConvitesController>();
 
   var inviteName = TextEditingController().obs;
   var carBoard = TextEditingController().obs;

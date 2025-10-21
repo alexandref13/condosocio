@@ -130,6 +130,13 @@ class Sobre extends StatelessWidget {
                             "ouvidoria",
                             Icons.question_answer_outlined,
                           ),
+                          sobreLista(
+                            context,
+                            "Pets",
+                            "Cadastre o seu pet e tenha mais segurança e controle no condomínio",
+                            "pets",
+                            Icons.pets,
+                          ),
                         ],
                       ),
                     ),
