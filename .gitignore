@@ -44,3 +44,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/android/build/
+
+# iOS build artifacts
+ios/build/
+
+# Flutter plugins duplicates com espaço
+.flutter-plugins-dependencies\ 2
+.flutter-plugins-dependencies\ 3
+
+# Backup files
+ios/Runner/Info.plist_novo_backup
