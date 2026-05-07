@@ -23,12 +23,68 @@ class DetalhesEncomendas extends StatelessWidget {
       ),
       body: Obx(
         () {
+          final imageName = encomendasController.imgEncomenda.value.trim();
+          final imageUrl = imageName.isEmpty
+              ? ''
+              : 'https://www.condosocio.com.br/acond/downloads/encomendas/${Uri.encodeComponent(imageName)}';
+
           return encomendasController.isLoading.value
               ? CircularProgressIndicatorWidget()
               : Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      if (imageUrl.isNotEmpty)
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.network(
+                              key: ValueKey(imageUrl),
+                              imageUrl,
+                              height: 190,
+                              fit: BoxFit.cover,
+                              loadingBuilder: (_, child, progress) {
+                                if (progress == null) return child;
+                                return Container(
+                                  height: 190,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 3,
+                                      valueColor: AlwaysStoppedAnimation(
+                                        Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor!,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                              errorBuilder: (_, __, ___) => Container(
+                                height: 190,
+                                decoration: BoxDecoration(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: Center(
+                                  child: Icon(
+                                    Icons.image_not_supported_outlined,
+                                    color: Theme.of(context)
+                                        .textSelectionTheme
+                                        .selectionColor!,
+                                    size: 34,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       Container(
                         margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
                         child: Row(

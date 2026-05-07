@@ -4,14 +4,15 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ApiEncomendas {
-  static Future getEncomendas() async {
+  static Future getEncomendas({int page = 1, int limit = 20}) async {
     LoginController loginController = Get.put(LoginController());
-    print(loginController.id.value);
 
     return await http.post(
       Uri.https('www.condosocio.com.br', 'flutter/encomendas_vis.php'),
       body: {
         'idusu': loginController.id.value,
+        'page': '$page',
+        'limit': '$limit',
       },
     );
   }

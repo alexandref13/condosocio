@@ -18,4 +18,5 @@
 
 
     <color name="primary">#791BCB</color>
+    <color name="launch_overlay">#B006042A</color>
 </resources>

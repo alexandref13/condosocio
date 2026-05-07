@@ -6,16 +6,22 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ApiOcorrencias {
-  static Future getOcorrencias() async {
+  static Future getOcorrencias({
+    int page = 1,
+    int limit = 20,
+    String search = '',
+  }) async {
     LoginController loginController = Get.put(LoginController());
-
-    print(loginController.id.value);
-
     return await http.get(
       Uri.https(
         "www.condosocio.com.br",
         "/flutter/ocovis.php",
-        {"idUsu": loginController.id.value},
+        {
+          "idUsu": loginController.id.value,
+          "page": page.toString(),
+          "limit": limit.toString(),
+          "search": search,
+        },
       ),
     );
   }

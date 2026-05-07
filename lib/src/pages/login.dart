@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:condosocio/src/components/utils/alert_button_pressed.dart';
 import 'package:condosocio/src/controllers/auth_controller.dart';
 import 'package:condosocio/src/controllers/home_page_controller.dart';
@@ -5,13 +7,19 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/theme_controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   final LoginController loginController = Get.put(LoginController());
   final AuthController authController = Get.put(AuthController());
   final ThemeController themeController = Get.put(ThemeController());
@@ -19,589 +27,687 @@ class Login extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  late final AnimationController _animController;
+  late final Animation<double> _logoFade;
+  late final Animation<Offset> _logoSlide;
+  late final Animation<double> _textFade;
+  late final Animation<Offset> _textSlide;
+  final FocusNode _passwordFocus = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _passwordFocus.addListener(() {
+      if (_passwordFocus.hasFocus) {
+        _animController.forward(from: 0);
+      }
+    });
+    _animController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+
+    _logoFade = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _animController,
+        curve: const Interval(0.0, 0.6, curve: Curves.easeOut),
+      ),
+    );
+    _logoSlide = Tween<Offset>(
+      begin: const Offset(0, -0.3),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _animController,
+        curve: const Interval(0.0, 0.6, curve: Curves.easeOut),
+      ),
+    );
+
+    _textFade = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _animController,
+        curve: const Interval(0.35, 0.85, curve: Curves.easeOut),
+      ),
+    );
+    _textSlide = Tween<Offset>(
+      begin: const Offset(0, 0.4),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _animController,
+        curve: const Interval(0.35, 0.85, curve: Curves.easeOut),
+      ),
+    );
+
+    _animController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animController.dispose();
+    _passwordFocus.dispose();
+    super.dispose();
+  }
+
+  InputDecoration _fieldDecoration({
+    required String label,
+    required IconData icon,
+    Widget? suffixIcon,
+  }) {
+    return InputDecoration(
+      filled: true,
+      fillColor: Colors.white.withValues(alpha: 0.09),
+      prefixIcon: Icon(icon, color: Colors.white54, size: 20),
+      labelText: label,
+      labelStyle: GoogleFonts.montserrat(color: Colors.white54, fontSize: 14),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: BorderSide(color: Colors.white24),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: Colors.white70, width: 1.5),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: BorderSide(color: Colors.redAccent.withValues(alpha: 0.8)),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: Colors.redAccent, width: 1.5),
+      ),
+      errorStyle: GoogleFonts.montserrat(
+        color: Colors.redAccent.shade100,
+        fontSize: 11,
+      ),
+      suffixIcon: suffixIcon,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF114CB0),
-      body: SingleChildScrollView(
-        child: Obx(
-          () {
-            return Stack(
-              children: <Widget>[
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                          "images/bannertopo.png"), // Substitua pelo caminho da sua imagem de fundo
-                      fit: BoxFit.cover,
+      body: Stack(
+        children: [
+          // Background image
+          SizedBox.expand(
+            child: Image.asset('images/bannertopo.png', fit: BoxFit.cover),
+          ),
+          // Gradient overlay
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xDD06042A),
+                  Color(0xBB180048),
+                  Color(0xFF0E002E),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+          ),
+          // Main content
+          SafeArea(
+            bottom: false,
+            child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height,
+                ),
+                child: Obx(() {
+                  return IntrinsicHeight(
+                    child: Column(
+                      children: [
+                    const SizedBox(height: 64),
+                    // Logo
+                    FadeTransition(
+                      opacity: _logoFade,
+                      child: SlideTransition(
+                        position: _logoSlide,
+                        child: Image.asset(
+                          'images/condosocio_logo.png',
+                          width: 110,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Center(
-                        child: Container(
-                          padding: const EdgeInsets.only(top: 90),
-                          child: Image.asset(
-                            "images/condosocio_logo.png",
-                            fit: BoxFit.fill,
-                            width: 120,
+                    const SizedBox(height: 16),
+                    FadeTransition(
+                      opacity: _textFade,
+                      child: SlideTransition(
+                        position: _textSlide,
+                        child: Text(
+                          'A tecnologia que transforma',
+                          style: GoogleFonts.montserrat(
+                            color: Colors.white54,
+                            fontSize: 13,
+                            letterSpacing: 0.5,
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  top: 200,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 156, 83, 252),
-                          Color.fromARGB(255, 116, 16, 247),
-                          Color(0xFF114CB0), // Cor inicial #114CB0
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      ),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40),
-                      ),
                     ),
-                  ),
-                ),
-                Column(
-                  children: <Widget>[
-                    Center(
-                      child: Form(
-                        autovalidateMode: AutovalidateMode.always,
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(20, 310, 20, 20),
-                              child: Container(
-                                child: TextFormField(
+                    const SizedBox(height: 52),
+                    // Glass card
+                    Expanded(child: ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(36),
+                        topRight: Radius.circular(36),
+                      ),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.fromLTRB(22, 44, 22, 48),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.07),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(36),
+                              topRight: Radius.circular(36),
+                            ),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.12),
+                            ),
+                          ),
+                          child: Form(
+                            autovalidateMode: AutovalidateMode.disabled,
+                            key: _formKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                // Email
+                                TextFormField(
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
+                                    color: Colors.white,
+                                    fontSize: 14,
                                   ),
-                                  decoration: InputDecoration(
-                                      contentPadding: new EdgeInsets.symmetric(
-                                          vertical: 15, horizontal: 15),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor!,
-                                            width: 1.0),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor!)),
-                                      labelText: 'Entre com o e-mail',
-                                      labelStyle: GoogleFonts.montserrat(
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor!,
-                                          fontSize: 14),
-                                      errorBorder: new OutlineInputBorder(
-                                          borderSide: new BorderSide(
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor!)),
-                                      focusedErrorBorder:
-                                          new OutlineInputBorder(
-                                              borderSide: new BorderSide(
-                                                  color: Color.fromARGB(
-                                                      255, 163, 7, 27))),
-                                      errorStyle: GoogleFonts.montserrat(
-                                          color:
-                                              Color.fromARGB(255, 163, 7, 27))),
+                                  decoration: _fieldDecoration(
+                                    label: 'E-mail',
+                                    icon: Icons.email_outlined,
+                                  ),
                                   keyboardType: TextInputType.emailAddress,
-                                  validator: (valueEmail) {
-                                    if (!EmailValidator.validate(valueEmail!)) {
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.deny(
+                                        RegExp(r'\s')),
+                                    TextInputFormatter.withFunction(
+                                      (old, val) => val.copyWith(
+                                          text: val.text.toLowerCase()),
+                                    ),
+                                  ],
+                                  validator: (v) {
+                                    if (!EmailValidator.validate(v!)) {
                                       return 'Entre com e-mail válido!';
                                     }
                                     return null;
                                   },
                                   controller: loginController.email.value,
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                              child: Container(
-                                child: TextFormField(
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  obscureText: true,
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                  ),
-                                  decoration: InputDecoration(
-                                      contentPadding: new EdgeInsets.symmetric(
-                                          vertical: 15, horizontal: 15),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor!,
-                                            width: 1.0),
+                                const SizedBox(height: 20),
+                                // Password
+                                Obx(() => TextFormField(
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      obscureText:
+                                          loginController.obscurePassword.value,
+                                      style: GoogleFonts.montserrat(
+                                        color: Colors.white,
+                                        fontSize: 14,
                                       ),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor!)),
-                                      labelText: 'Entre com a senha',
-                                      labelStyle: GoogleFonts.montserrat(
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor!,
-                                          fontSize: 14),
-                                      errorBorder: new OutlineInputBorder(
-                                          borderSide: new BorderSide(
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor!)),
-                                      focusedErrorBorder:
-                                          new OutlineInputBorder(
-                                              borderSide: new BorderSide(
-                                                  color: Color.fromARGB(
-                                                      255, 163, 7, 27))),
-                                      errorStyle: GoogleFonts.montserrat(
-                                          color:
-                                              Color.fromARGB(255, 163, 7, 27))),
-                                  validator: (valueSenha) {
-                                    if (valueSenha!.isEmpty) {
-                                      return 'Campo senha vazio!';
-                                    }
-                                    return null;
-                                  },
-                                  controller: loginController.password.value,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.fromLTRB(7, 0, 0, 0),
-                              width: MediaQuery.of(context).size.width,
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Checkbox(
-                                        fillColor:
-                                            MaterialStateColor.resolveWith(
-                                                (states) {
-                                          if (states.contains(
-                                              MaterialState.selected)) {
-                                            return Colors
-                                                .black; // Define a cor do quadrado quando selecionado
-                                          }
-                                          return Colors
-                                              .white; // Define a cor do quadrado quando não selecionado
-                                        }),
-                                        value: loginController.isChecked.value,
-                                        onChanged: (bool? value) {
-                                          loginController.isChecked.value =
-                                              value!;
-                                        },
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          child: Text.rich(TextSpan(
-                                              text: 'Li e concordo com os ',
-                                              style: GoogleFonts.montserrat(
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor!,
-                                                  fontSize: 12),
-                                              children: [
-                                                TextSpan(
-                                                  text: 'Termos de Uso ',
-                                                  style: GoogleFonts.montserrat(
-                                                      color: Colors.amber,
-                                                      fontSize: 12),
-                                                  recognizer:
-                                                      TapGestureRecognizer()
-                                                        ..onTap = () {
-                                                          loginController
-                                                                  .launched =
-                                                              loginController
-                                                                  .launchInBrowser(
-                                                            'https://www.condosocio.com.br/termo.html',
-                                                          );
-                                                        },
-                                                ),
-                                                TextSpan(
-                                                  text: 'e com a ',
-                                                  style: GoogleFonts.montserrat(
-                                                      color: Theme.of(context)
-                                                          .textSelectionTheme
-                                                          .selectionColor!,
-                                                      fontSize: 12),
-                                                ),
-                                                TextSpan(
-                                                  text:
-                                                      'Política de Privacidade',
-                                                  style: GoogleFonts.montserrat(
-                                                      color: Colors.amber,
-                                                      fontSize: 12),
-                                                  recognizer:
-                                                      TapGestureRecognizer()
-                                                        ..onTap = () {
-                                                          loginController
-                                                                  .launched =
-                                                              loginController
-                                                                  .launchInBrowser(
-                                                            'https://www.condosocio.com.br/privacidade.html',
-                                                          );
-                                                        },
-                                                ),
-                                              ])),
+                                      decoration: _fieldDecoration(
+                                        label: 'Senha',
+                                        icon: Icons.lock_outline,
+                                        suffixIcon: IconButton(
+                                          icon: Icon(
+                                            loginController
+                                                    .obscurePassword.value
+                                                ? Icons.visibility_off_outlined
+                                                : Icons.visibility_outlined,
+                                            color: Colors.white38,
+                                            size: 20,
+                                          ),
+                                          onPressed: () => loginController
+                                                  .obscurePassword.value =
+                                              !loginController
+                                                  .obscurePassword.value,
                                         ),
-                                      )
+                                      ),
+                                      validator: (v) {
+                                        if (v!.isEmpty) {
+                                          return 'Campo senha vazio!';
+                                        }
+                                        return null;
+                                      },
+                                      focusNode: _passwordFocus,
+                                      controller:
+                                          loginController.password.value,
+                                    )),
+                                const SizedBox(height: 8),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.white38,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 0, vertical: 4),
+                                      minimumSize: Size.zero,
+                                      tapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                    onPressed: () => Get.toNamed('/esqueci'),
+                                    child: Text(
+                                      'Esqueceu a senha?',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 12,
+                                        color: Colors.white38,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 22),
+                                // Terms checkbox
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 24,
+                                      height: 24,
+                                      child: Checkbox(
+                                        materialTapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        side: const BorderSide(
+                                            color: Colors.white38),
+                                        fillColor: WidgetStateColor.resolveWith(
+                                            (states) {
+                                          return states.contains(
+                                                  WidgetState.selected)
+                                              ? const Color(0xFF7C4DFF)
+                                              : Colors.white24;
+                                        }),
+                                        checkColor: Colors.white,
+                                        value: loginController.isChecked.value,
+                                        onChanged: (v) => loginController
+                                            .isChecked.value = v!,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Text.rich(TextSpan(
+                                        text: 'Li e concordo com os ',
+                                        style: GoogleFonts.montserrat(
+                                          color: Colors.white54,
+                                          fontSize: 12,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text: 'Termos de Uso',
+                                            style: GoogleFonts.montserrat(
+                                              color: const Color(0xFFB39DDB),
+                                              fontSize: 12,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              decorationColor:
+                                                  const Color(0xFFB39DDB),
+                                            ),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                loginController.launched =
+                                                    loginController
+                                                        .launchInBrowser(
+                                                  'https://www.condosocio.com.br/termo.html',
+                                                );
+                                              },
+                                          ),
+                                          TextSpan(
+                                            text: ' e com a ',
+                                            style: GoogleFonts.montserrat(
+                                              color: Colors.white54,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: 'Política de Privacidade',
+                                            style: GoogleFonts.montserrat(
+                                              color: const Color(0xFFB39DDB),
+                                              fontSize: 12,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              decorationColor:
+                                                  const Color(0xFFB39DDB),
+                                            ),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                loginController.launched =
+                                                    loginController
+                                                        .launchInBrowser(
+                                                  'https://www.condosocio.com.br/privacidade.html',
+                                                );
+                                              },
+                                          ),
+                                        ],
+                                      )),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 40),
+                                // Login button
+                                Container(
+                                  height: 54,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF7C4DFF),
+                                    borderRadius: BorderRadius.circular(14),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: const Color(0xFF7C4DFF)
+                                            .withValues(alpha: 0.45),
+                                        blurRadius: 24,
+                                        offset: const Offset(0, 8),
+                                      ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
-                              child: ButtonTheme(
-                                height: 50.0,
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                        return Color.fromARGB(199, 14, 17, 196);
-                                      },
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.transparent,
+                                      shadowColor: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                      ),
                                     ),
-                                    shape: MaterialStateProperty.resolveWith<
-                                        OutlinedBorder>(
-                                      (Set<MaterialState> states) {
-                                        return RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    if (loginController.isChecked.value) {
-                                      if (loginController.email.value.text ==
-                                              '' ||
-                                          loginController.password.value.text ==
-                                              '') {
-                                        onAlertButtonPressed(
-                                            context,
-                                            'Campo e-mail ou senha vazio!',
-                                            '',
-                                            'images/error.png');
-                                      }
-                                      if (_formKey.currentState!.validate()) {
-                                        loginController.login().then(
-                                          (value) {
-                                            if (value == null) {
-                                              loginController
-                                                  .password.value.text = '';
+                                    onPressed: loginController.isLoading.value
+                                        ? null
+                                        : () {
+                                            if (loginController
+                                                .isChecked.value) {
+                                              if (loginController
+                                                          .email.value.text ==
+                                                      '' ||
+                                                  loginController.password.value
+                                                          .text ==
+                                                      '') {
+                                                onAlertButtonPressed(
+                                                    context,
+                                                    'Campo e-mail ou senha vazio!',
+                                                    '',
+                                                    'images/error.png');
+                                              }
+                                              if (_formKey.currentState!
+                                                  .validate()) {
+                                                loginController
+                                                    .login()
+                                                    .then((value) {
+                                                  if (value == null) {
+                                                    loginController.password
+                                                        .value.text = '';
+                                                    loginController.isLoading
+                                                        .value = false;
+                                                    onAlertButtonPressed(
+                                                        context,
+                                                        'E-mail ou Senha Inválidos! \n Tente Novamente',
+                                                        '',
+                                                        'images/error.png');
+                                                  } else {
+                                                    loginController.password
+                                                        .value.text = '';
+                                                    loginController.isLoading
+                                                        .value = false;
+                                                    loginController
+                                                        .hasMoreEmail(
+                                                      loginController
+                                                          .email.value.text,
+                                                    )
+                                                        .then((response) {
+                                                      if (response.length > 1 ||
+                                                          loginController.idcond
+                                                                  .value ==
+                                                              '') {
+                                                        loginController
+                                                            .haveListOfCondo
+                                                            .value = true;
+                                                        Get.offAllNamed(
+                                                            '/listOfCondo');
+                                                      } else {
+                                                        loginController
+                                                            .haveListOfCondo
+                                                            .value = false;
+                                                        loginController
+                                                                .id.value =
+                                                            value['idusu'];
+                                                        loginController
+                                                                .idcond.value =
+                                                            value['idcond'];
+                                                        loginController
+                                                                .tipo.value =
+                                                            value['tipo'];
+                                                        loginController
+                                                                .imgperfil
+                                                                .value =
+                                                            value['imgperfil'];
+                                                        loginController.emailUsu
+                                                                .value =
+                                                            value['email'];
+                                                        loginController
+                                                                .nomeCondo
+                                                                .value =
+                                                            value['nome_condo'];
+                                                        loginController.imgcondo
+                                                                .value =
+                                                            value['imgcondo'];
+                                                        loginController
+                                                                .nome.value =
+                                                            value['nome'];
+                                                        loginController
+                                                                .sobrenome
+                                                                .value =
+                                                            value['sobrenome'];
+                                                        loginController
+                                                                .condoTheme
+                                                                .value =
+                                                            value['cor'];
+                                                        loginController
+                                                                .logradouro
+                                                                .value =
+                                                            value['logradouro'];
+                                                        loginController
+                                                                .tipoun.value =
+                                                            value['tipoun'];
+                                                        loginController
+                                                                .dep.value =
+                                                            value['dep'];
+                                                        loginController
+                                                                .condofacial
+                                                                .value =
+                                                            value[
+                                                                'condofacial'];
+                                                        loginController
+                                                                .imgfacial
+                                                                .value =
+                                                            value['imgfacial'];
+                                                        loginController
+                                                                .idadm.value =
+                                                            value['idadm'];
+                                                        loginController
+                                                                .websiteAdministradora
+                                                                .value =
+                                                            value[
+                                                                'website_administradora'];
+                                                        loginController
+                                                                .licenca.value =
+                                                            value['licenca'];
+                                                        loginController
+                                                            .storageId();
+                                                        themeController
+                                                            .setTheme(
+                                                          loginController
+                                                              .condoTheme.value,
+                                                        );
+                                                        var sendTags = {
+                                                          'idusu':
+                                                              loginController
+                                                                  .id.value,
+                                                          'nome':
+                                                              loginController
+                                                                  .nome.value,
+                                                          'sobrenome':
+                                                              loginController
+                                                                  .idcond.value,
+                                                        };
+                                                        OneSignal.User.addTags(
+                                                                sendTags)
+                                                            .then((_) {
+                                                          print(
+                                                              "Successfully sent tags: $sendTags");
+                                                        }).catchError((error) {
+                                                          print(
+                                                              "Auth Encountered an error sending tags: $error");
+                                                        });
+                                                        Get.offAllNamed(
+                                                            '/home');
+                                                      }
+                                                    });
+                                                  }
+                                                });
+                                              }
+                                            } else {
                                               loginController.isLoading.value =
                                                   false;
                                               onAlertButtonPressed(
                                                   context,
-                                                  'E-mail ou Senha Inválidos! \n Tente Novamente',
+                                                  'Você precisa aceitar os termos de uso e a política de privacidade para entrar!',
                                                   '',
                                                   'images/error.png');
-                                            } else {
-                                              loginController
-                                                  .password.value.text = '';
-                                              loginController.isLoading.value =
-                                                  false;
-                                              loginController
-                                                  .hasMoreEmail(
-                                                loginController
-                                                    .email.value.text,
-                                              )
-                                                  .then(
-                                                (response) {
-                                                  print(
-                                                      'Emails numeros ${response.length}');
-                                                  if (response.length > 1 ||
-                                                      loginController
-                                                              .idcond.value ==
-                                                          '') {
-                                                    loginController
-                                                        .haveListOfCondo
-                                                        .value = true;
-
-                                                    Get.toNamed('/listOfCondo');
-                                                  } else {
-                                                    loginController
-                                                        .haveListOfCondo
-                                                        .value = false;
-                                                    loginController.id.value =
-                                                        value['idusu'];
-                                                    loginController
-                                                            .idcond.value =
-                                                        value['idcond'];
-                                                    loginController.tipo.value =
-                                                        value['tipo'];
-                                                    loginController
-                                                            .imgperfil.value =
-                                                        value['imgperfil'];
-                                                    loginController.emailUsu
-                                                        .value = value['email'];
-                                                    loginController
-                                                            .nomeCondo.value =
-                                                        value['nome_condo'];
-                                                    loginController
-                                                            .imgcondo.value =
-                                                        value['imgcondo'];
-                                                    loginController.nome.value =
-                                                        value['nome'];
-                                                    loginController
-                                                            .sobrenome.value =
-                                                        value['sobrenome'];
-                                                    loginController.condoTheme
-                                                        .value = value['cor'];
-                                                    loginController
-                                                            .logradouro.value =
-                                                        value['logradouro'];
-                                                    loginController
-                                                            .tipoun.value =
-                                                        value['tipoun'];
-                                                    loginController.dep.value =
-                                                        value['dep'];
-                                                    loginController
-                                                            .condofacial.value =
-                                                        value['condofacial'];
-                                                    loginController
-                                                            .imgfacial.value =
-                                                        value['imgfacial'];
-                                                    loginController.idadm
-                                                        .value = value['idadm'];
-
-                                                    loginController
-                                                            .websiteAdministradora
-                                                            .value =
-                                                        value[
-                                                            'website_administradora'];
-                                                    loginController
-                                                            .licenca.value =
-                                                        value['licenca'];
-
-                                                    loginController.storageId();
-
-                                                    themeController.setTheme(
-                                                      loginController
-                                                          .condoTheme.value,
-                                                    );
-
-                                                    var sendTags = {
-                                                      'idusu': loginController
-                                                          .id.value,
-                                                      'nome': loginController
-                                                          .nome.value,
-                                                      'sobrenome':
-                                                          loginController
-                                                              .idcond.value,
-                                                    };
-
-                                                    OneSignal.User.addTags(
-                                                            sendTags)
-                                                        .then((_) {
-                                                      print(
-                                                          "Successfully sent tags: $sendTags");
-                                                    }).catchError((error) {
-                                                      print(
-                                                          "Auth Encountered an error sending tags: $error");
-                                                    });
-
-                                                    Get.toNamed('/home');
-                                                  }
-                                                },
-                                              );
                                             }
                                           },
-                                        );
-                                      }
-                                    } else {
-                                      loginController.isLoading.value = false;
-                                      onAlertButtonPressed(
-                                          context,
-                                          'Você precisa aceitar os termos de uso e a política de privacidade para entrar!',
-                                          '',
-                                          'images/error.png');
-                                    }
-                                  },
-                                  child: loginController.isLoading.value
-                                      ? SizedBox(
-                                          height: 20,
-                                          width: 20,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 2,
-                                            valueColor: AlwaysStoppedAnimation(
-                                              Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor!,
-                                            ),
-                                          ),
-                                        )
-                                      : Text(
-                                          "Acessar",
-                                          style: GoogleFonts.montserrat(
-                                            fontWeight: FontWeight.bold,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor!,
-                                          ),
-                                        ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                              child: ButtonTheme(
-                                height: 50,
-                                child: TextButton(
-                                  style: ButtonStyle(
-                                    overlayColor: MaterialStateProperty.all(
-                                      Theme.of(context)
-                                          .colorScheme
-                                          .secondary
-                                          .withOpacity(.5),
+                                    child: Text(
+                                      'Acessar',
+                                      style: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                        letterSpacing: 0.5,
+                                      ),
                                     ),
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    )),
-                                  ),
-                                  onPressed: () {
-                                    Get.toNamed('/esqueci');
-                                  },
-                                  child: Text(
-                                    "Esqueci a senha",
-                                    style: GoogleFonts.montserrat(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor!,
-                                        fontSize: 14),
-                                    textDirection: TextDirection.ltr,
                                   ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
-                              child: Container(
-                                child: Column(
+                                const SizedBox(height: 32),
+                                // Divider
+                                Row(
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        IconButton(
-                                          icon: FaIcon(FontAwesomeIcons.globe),
-                                          onPressed: () {
-                                            // Link para Facebook
-                                            homePageController.launched =
-                                                homePageController.launchInBrowser(
-                                                    'https://www.condosocio.com.br');
-                                          },
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor!,
+                                    Expanded(
+                                      child: Container(
+                                        height: 1,
+                                        color: Colors.white12,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12),
+                                      child: Text(
+                                        'Siga-nos',
+                                        style: GoogleFonts.montserrat(
+                                          color: Colors.white24,
+                                          fontSize: 11,
                                         ),
-                                        IconButton(
-                                          icon:
-                                              FaIcon(FontAwesomeIcons.facebook),
-                                          onPressed: () {
-                                            // Link para Facebook
-                                            homePageController.launched =
-                                                homePageController.launchInBrowser(
-                                                    'https://www.facebook.com/condosocio');
-                                          },
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor!,
-                                        ),
-                                        IconButton(
-                                          icon:
-                                              FaIcon(FontAwesomeIcons.youtube),
-                                          onPressed: () {
-                                            // Link para YouTube
-                                            homePageController.launched =
-                                                homePageController.launchInBrowser(
-                                                    'https://www.youtube.com/channel/UCLPOsAW7jbawmz7nB3UeDvg');
-                                          },
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor!,
-                                        ),
-                                        IconButton(
-                                          icon: FaIcon(
-                                              FontAwesomeIcons.instagram),
-                                          onPressed: () {
-                                            // Link para Instagram
-                                            homePageController.launched =
-                                                homePageController.launchInBrowser(
-                                                    'https://www.instagram.com/condosocioapp');
-                                          },
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor!,
-                                        ),
-                                        IconButton(
-                                          icon:
-                                              FaIcon(FontAwesomeIcons.whatsapp),
-                                          onPressed: () {
-                                            // Link para Facebook
-                                            homePageController.launched =
-                                                homePageController
-                                                    .launchInBrowser(
-                                              'https://api.whatsapp.com/send?phone=5591981220670',
-                                            );
-                                          },
-                                          color: Theme.of(context)
-                                              .textSelectionTheme
-                                              .selectionColor!,
-                                        ),
-                                      ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        height: 1,
+                                        color: Colors.white12,
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
+                                const SizedBox(height: 20),
+                                // Social icons
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    _socialIcon(
+                                      FontAwesomeIcons.globe,
+                                      () => homePageController.launched =
+                                          homePageController.launchInBrowser(
+                                              'https://www.condosocio.com.br'),
+                                    ),
+                                    _socialIcon(
+                                      FontAwesomeIcons.facebook,
+                                      () => homePageController.launched =
+                                          homePageController.launchInBrowser(
+                                              'https://www.facebook.com/condosocio'),
+                                    ),
+                                    _socialIcon(
+                                      FontAwesomeIcons.youtube,
+                                      () => homePageController.launched =
+                                          homePageController.launchInBrowser(
+                                              'https://www.youtube.com/channel/UCLPOsAW7jbawmz7nB3UeDvg'),
+                                    ),
+                                    _socialIcon(
+                                      FontAwesomeIcons.instagram,
+                                      () => homePageController.launched =
+                                          homePageController.launchInBrowser(
+                                              'https://www.instagram.com/condosocioapp'),
+                                    ),
+                                    _socialIcon(
+                                      FontAwesomeIcons.whatsapp,
+                                      () => homePageController.launched =
+                                          homePageController.launchInBrowser(
+                                              'https://api.whatsapp.com/send?phone=5591981220670'),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                    )),
                   ],
-                ),
-              ],
-            );
-          },
+                    ),
+                  );
+                }),
+              ),
+            ),
+          ),
+          // Loading overlay
+          Obx(() => loginController.isLoading.value
+              ? Positioned.fill(
+                  child: Container(
+                    color: Colors.black.withValues(alpha: 0.6),
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                    ),
+                  ),
+                )
+              : const SizedBox.shrink()),
+        ],
+      ),
+    );
+  }
+
+  Widget _socialIcon(IconData icon, VoidCallback onTap) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(20),
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.08),
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white12),
+          ),
+          child: Center(
+            child: FaIcon(icon, color: Colors.white54, size: 16),
+          ),
         ),
       ),
     );

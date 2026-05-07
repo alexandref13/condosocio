@@ -13,12 +13,15 @@ class MapaAcessos {
   late String cel;
   late String idconv;
   late String imgfacial;
+  late String imgplaca;
   late String idvis;
   late String ctlfacial;
   late String ctlreg;
   late String portao;
   late String acessotipo;
   late String tipoacesso;
+  String foiportaria = '';
+  String agenteportaria = '';
 
   MapaAcessos({
     required this.idfav,
@@ -35,12 +38,15 @@ class MapaAcessos {
     required this.cel,
     required this.idconv,
     required this.imgfacial,
+    required this.imgplaca,
     required this.idvis,
     required this.ctlfacial,
     required this.ctlreg,
     required this.portao,
     required this.acessotipo,
     required this.tipoacesso,
+    required this.foiportaria,
+    required this.agenteportaria,
   });
 
   MapaAcessos.fromJson(Map<String, dynamic> json) {
@@ -58,12 +64,15 @@ class MapaAcessos {
     cel = json['cel'] ?? '';
     idconv = json['idconv'] ?? '';
     imgfacial = json['imgfacial'] ?? '';
+    imgplaca = json['imgplaca'] ?? '';
     idvis = json['idvis'] ?? '';
     ctlfacial = json['ctlfacial'] ?? '';
     ctlreg = json['ctlreg'] ?? '';
     portao = json['portao'] ?? '';
     acessotipo = json['acessotipo'] ?? '';
     tipoacesso = json['tipoacesso'] ?? '';
+    foiportaria = json['foiportaria'] ?? '';
+    agenteportaria = json['agenteportaria'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -82,12 +91,15 @@ class MapaAcessos {
     data['cel'] = this.cel;
     data['idconv'] = this.idconv;
     data['imgfacial'] = this.imgfacial;
+    data['imgplaca'] = this.imgplaca;
     data['idvis'] = this.idvis;
     data['ctlfacial'] = this.ctlfacial;
     data['ctlreg'] = this.ctlreg;
     data['portao'] = this.portao;
     data['acessotipo'] = this.acessotipo;
     data['tipoacesso'] = this.tipoacesso;
+    data['foiportaria'] = this.foiportaria;
+    data['agenteportaria'] = this.agenteportaria;
     return data;
   }
 }

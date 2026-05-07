@@ -28,6 +28,7 @@ class _HomeBottomTabState extends State<HomeBottomTab>
       Get.put(VisualizarAcessosEsperaController());
   final LoginController loginController = Get.put(LoginController());
   final HomePageController homePageController = Get.put(HomePageController());
+  final Set<String> _loggedBannerSources = <String>{};
 
   final RateMyApp rateMyApp = RateMyApp(
     preferencesPrefix: 'rateMyApp_',
@@ -71,26 +72,121 @@ class _HomeBottomTabState extends State<HomeBottomTab>
     }
   }
 
+  Future<void> _openBannerDestination(Map<String, String> banner) async {
+    final rawUrl = (banner['url'] ?? '').trim();
+    final rawTipoLink = (banner['tipolink'] ?? '').trim().toLowerCase();
+    final imageUrl = banner['imgUrl'] ?? '(sem imagem)';
+    debugPrint('Banner clicado: $banner');
+
+    if (rawUrl.isEmpty) {
+      debugPrint('Banner $imageUrl clicado sem destino configurado');
+      return;
+    }
+
+    if (rawTipoLink.contains('local')) {
+      final route = rawUrl.startsWith('/') ? rawUrl : '/$rawUrl';
+      debugPrint('Banner $imageUrl redirecionando para rota local $route');
+      Get.toNamed(route);
+      return;
+    }
+
+    if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+      debugPrint('Banner $imageUrl abrindo URL externa $rawUrl');
+      homePageController.launched =
+          homePageController.launchInAppBrowser(rawUrl);
+      await homePageController.launched;
+      return;
+    }
+
+    final route = rawUrl.startsWith('/') ? rawUrl : '/$rawUrl';
+    debugPrint(
+      'Banner $imageUrl sem tipolink reconhecido, usando rota local $route',
+    );
+    Get.toNamed(route);
+  }
+
   Future<List<Map<String, String>>> _loadBannersAndPrecache(
       BuildContext context) async {
     final data = await HomePageController.getBannersHome();
     if (data.isNotEmpty) {
-      // Precarrega todas as imagens antes de exibir o carrossel
+      // Precarrega as imagens já persistidas em disco e usa rede como fallback.
       await Future.wait(
         data.map((b) async {
-          final url = b['imgUrl'];
-          if (url != null && url.isNotEmpty) {
-            final image = Image.network(url).image;
-            try {
-              await precacheImage(image, context);
-            } catch (_) {
-              // Ignora erros de cache, deixamos o errorBuilder tratar na UI
-            }
+          final imageProvider = _resolveBannerImageProvider(b);
+          if (imageProvider == null) {
+            return;
+          }
+
+          try {
+            await precacheImage(imageProvider, context);
+          } catch (_) {
+            // Ignora erros de cache, deixamos o errorBuilder tratar na UI
           }
         }),
       );
     }
     return data;
+  }
+
+  ImageProvider? _resolveBannerImageProvider(Map<String, String> banner) {
+    final localPath = banner['localPath'];
+    if (localPath != null && localPath.isNotEmpty) {
+      final file = File(localPath);
+      if (file.existsSync()) {
+        return FileImage(file);
+      }
+    }
+
+    final imageUrl = banner['imgUrl'];
+    if (imageUrl != null && imageUrl.isNotEmpty) {
+      return NetworkImage(imageUrl);
+    }
+
+    return null;
+  }
+
+  Widget _buildBannerImage(Map<String, String> banner) {
+    final localPath = banner['localPath'];
+
+    if (localPath != null && localPath.isNotEmpty) {
+      final file = File(localPath);
+      if (file.existsSync()) {
+        _logBannerSource(banner, 'cache');
+        return Image.file(
+          file,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return _buildNetworkBannerImage(banner);
+          },
+        );
+      }
+    }
+
+    return _buildNetworkBannerImage(banner);
+  }
+
+  Widget _buildNetworkBannerImage(Map<String, String> banner) {
+    final imageUrl = banner['imgUrl'] ?? '';
+    _logBannerSource(banner, 'rede');
+
+    return Image.network(
+      imageUrl,
+      fit: BoxFit.cover,
+      errorBuilder: (context, error, stackTrace) {
+        return const Center(
+          child: Text('Erro ao carregar imagem'),
+        );
+      },
+    );
+  }
+
+  void _logBannerSource(Map<String, String> banner, String source) {
+    final imageUrl = banner['imgUrl'] ?? '(sem url)';
+    final logKey = '$source|$imageUrl';
+
+    if (_loggedBannerSources.add(logKey)) {
+      debugPrint('Banner $imageUrl carregado via $source');
+    }
   }
 
   void showCustomRateDialog() {
@@ -174,116 +270,110 @@ class _HomeBottomTabState extends State<HomeBottomTab>
           key: const PageStorageKey<String>('homeScrollKey'),
           primary: false,
           slivers: <Widget>[
-            // Banner
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(5, 0, 5, 25),
-                child: FutureBuilder<List<Map<String, String>>>(
-                  future: _loadBannersAndPrecache(context),
-                  builder: (context, snapshot) {
-                    final spinnerColor =
-                        Theme.of(context).textSelectionTheme.selectionColor ??
-                            Theme.of(context).colorScheme.primary;
+            // Banner fixo (sticky)
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: _BannerDelegate(
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(5, 8, 5, 12),
+                  child: FutureBuilder<List<Map<String, String>>>(
+                    future: _loadBannersAndPrecache(context),
+                    builder: (context, snapshot) {
+                      final spinnerColor =
+                          Theme.of(context).textSelectionTheme.selectionColor ??
+                              Theme.of(context).colorScheme.primary;
 
-                    if (snapshot.connectionState != ConnectionState.done) {
-                      // Mantém a altura fixa enquanto carrega TUDO
-                      return SizedBox(
-                        height: 160,
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 4,
-                            valueColor: AlwaysStoppedAnimation(spinnerColor),
-                          ),
-                        ),
-                      );
-                    }
-
-                    if (snapshot.hasError) {
-                      return SizedBox(
-                        height: 160,
-                        child: Center(
-                          child: Text(
-                            'Erro: ${snapshot.error}',
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      );
-                    }
-
-                    final banners =
-                        snapshot.data ?? const <Map<String, String>>[];
-                    if (banners.isEmpty) {
-                      return const SizedBox(
-                        height: 160,
-                        child: Center(child: Text('Nenhum banner disponível')),
-                      );
-                    }
-
-                    return CarouselSlider(
-                      options: CarouselOptions(
-                        height: 160,
-                        enlargeCenterPage: true,
-                        viewportFraction: 0.85,
-                        autoPlay: true,
-                        autoPlayAnimationDuration:
-                            const Duration(milliseconds: 800),
-                        autoPlayInterval: const Duration(seconds: 5),
-                      ),
-                      items: banners.map((banner) {
-                        return GestureDetector(
-                          onTap: () async {
-                            final url = banner['url'];
-                            if (url != null && url.isNotEmpty) {
-                              await _launchExternal(
-                                  url); // sua função já existente
-                            }
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 6),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 6,
-                                  offset: Offset(0, 3),
-                                ),
-                              ],
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Stack(
-                                fit: StackFit.expand,
-                                children: [
-                                  Image.network(
-                                    banner['imgUrl'] ?? '',
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return const Center(
-                                        child: Text('Erro ao carregar imagem'),
-                                      );
-                                    },
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Colors.black.withOpacity(0.2),
-                                          Colors.transparent,
-                                        ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                      if (snapshot.connectionState != ConnectionState.done) {
+                        return SizedBox(
+                          height: 160,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 4,
+                              valueColor: AlwaysStoppedAnimation(spinnerColor),
                             ),
                           ),
                         );
-                      }).toList(),
-                    );
-                  },
+                      }
+
+                      if (snapshot.hasError) {
+                        return SizedBox(
+                          height: 160,
+                          child: Center(
+                            child: Text(
+                              'Erro: ${snapshot.error}',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+
+                      final banners =
+                          snapshot.data ?? const <Map<String, String>>[];
+                      if (banners.isEmpty) {
+                        return const SizedBox(
+                          height: 160,
+                          child:
+                              Center(child: Text('Nenhum banner disponível')),
+                        );
+                      }
+
+                      return CarouselSlider(
+                        options: CarouselOptions(
+                          height: 160,
+                          enlargeCenterPage: true,
+                          viewportFraction: 0.85,
+                          autoPlay: true,
+                          autoPlayAnimationDuration:
+                              const Duration(milliseconds: 800),
+                          autoPlayInterval: const Duration(seconds: 5),
+                        ),
+                        items: banners.map((banner) {
+                          return GestureDetector(
+                            onTap: () async {
+                              await _openBannerDestination(banner);
+                            },
+                            child: Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 6),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 6,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: Stack(
+                                  fit: StackFit.expand,
+                                  children: [
+                                    _buildBannerImage(banner),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Colors.black.withValues(
+                                                alpha: 0.2),
+                                            Colors.transparent,
+                                          ],
+                                          begin: Alignment.bottomCenter,
+                                          end: Alignment.topCenter,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
@@ -515,6 +605,28 @@ class _HomeBottomTabState extends State<HomeBottomTab>
       ),
     );
   }
+}
+
+class _BannerDelegate extends SliverPersistentHeaderDelegate {
+  final Widget child;
+  final Color backgroundColor;
+  static const double _height = 180;
+
+  const _BannerDelegate({required this.child, required this.backgroundColor});
+
+  @override
+  double get minExtent => _height;
+  @override
+  double get maxExtent => _height;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(color: backgroundColor, child: child);
+  }
+
+  @override
+  bool shouldRebuild(_BannerDelegate old) => old.backgroundColor != backgroundColor;
 }
 
 // ===== Widgets =====

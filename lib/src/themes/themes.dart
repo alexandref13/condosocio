@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const _noSwipe = PageTransitionsTheme(
+  builders: {
+    TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+    TargetPlatform.android: ZoomPageTransitionsBuilder(),
+  },
+);
+
 ThemeData admin = ThemeData(
   primaryColor: Color(0xff1A936F),
   primaryColorDark: Color.fromARGB(255, 22, 58, 47),
@@ -18,6 +25,7 @@ ThemeData admin = ThemeData(
   colorScheme: ColorScheme.fromSwatch()
       .copyWith(secondary: Color(0xff114B5F))
       .copyWith(error: Color(0xffa3000b)),
+  pageTransitionsTheme: _noSwipe,
 );
 
 ThemeData magenta = ThemeData(
@@ -40,6 +48,7 @@ ThemeData magenta = ThemeData(
   colorScheme: ColorScheme.fromSwatch()
       .copyWith(secondary: Color(0xff49182d))
       .copyWith(error: Color(0xffa3000b)),
+  pageTransitionsTheme: _noSwipe,
 );
 
 ThemeData turquoise = ThemeData(
@@ -62,6 +71,7 @@ ThemeData turquoise = ThemeData(
   colorScheme: ColorScheme.fromSwatch()
       .copyWith(secondary: Color(0xff247557))
       .copyWith(error: Color(0xffa3000b)),
+  pageTransitionsTheme: _noSwipe,
 );
 
 ThemeData blue = ThemeData(
@@ -84,6 +94,7 @@ ThemeData blue = ThemeData(
   colorScheme: ColorScheme.fromSwatch()
       .copyWith(secondary: Color(0xff2a5571))
       .copyWith(error: Color(0xffa3000b)),
+  pageTransitionsTheme: _noSwipe,
 );
 
 ThemeData grayscale = ThemeData(
@@ -106,6 +117,7 @@ ThemeData grayscale = ThemeData(
   colorScheme: ColorScheme.fromSwatch()
       .copyWith(secondary: Color(0xff380036))
       .copyWith(error: Color(0xffa3000b)),
+  pageTransitionsTheme: _noSwipe,
 );
 
 ThemeData red = ThemeData(
@@ -127,6 +139,7 @@ ThemeData red = ThemeData(
   colorScheme: ColorScheme.fromSwatch()
       .copyWith(secondary: Color(0xffb83a2d))
       .copyWith(error: Color(0xffa3000b)),
+  pageTransitionsTheme: _noSwipe,
 );
 
 ThemeData orange = ThemeData(
@@ -149,6 +162,7 @@ ThemeData orange = ThemeData(
   colorScheme: ColorScheme.fromSwatch()
       .copyWith(secondary: Color(0xff8b410d))
       .copyWith(error: Color(0xffa3000b)),
+  pageTransitionsTheme: _noSwipe,
 );
 
 ThemeData violet = ThemeData(
@@ -173,4 +187,5 @@ ThemeData violet = ThemeData(
         secondary: Color.fromARGB(198, 12, 14, 145),
       )
       .copyWith(error: Color(0xffa3000b)),
+  pageTransitionsTheme: _noSwipe,
 );

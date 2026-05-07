@@ -37,6 +37,20 @@ class AlvoTvController extends GetxController {
     }
   }
 
+  Future<void> launchInAppBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   getVideos() async {
     isLoading(true);
 
@@ -52,6 +66,13 @@ class AlvoTvController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    refreshController = RefreshController(initialRefresh: false);
     getVideos();
+  }
+
+  @override
+  void onClose() {
+    refreshController.dispose();
+    super.onClose();
   }
 }

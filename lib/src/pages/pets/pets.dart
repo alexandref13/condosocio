@@ -4,7 +4,7 @@ import 'package:condosocio/src/pages/pets/adiciona_pets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class Pets extends StatefulWidget {
   @override
@@ -13,6 +13,32 @@ class Pets extends StatefulWidget {
 
 class _PetsState extends State<Pets> {
   PetsController petsController = Get.put(PetsController());
+
+  Widget _infoItem(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 3, right: 8),
+            child: Icon(Icons.check_circle_rounded,
+                size: 16, color: Colors.white),
+          ),
+          Expanded(
+            child: Text(
+              text,
+              style: GoogleFonts.montserrat(
+                fontSize: 13,
+                height: 1.45,
+                color: Colors.white.withValues(alpha: 0.9),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,38 +55,100 @@ class _PetsState extends State<Pets> {
               ),
             ),
             centerTitle: true,
-            /*actions: [
+            actions: [
               IconButton(
                 icon: Icon(
-                  Icons.info_outline,
+                  Icons.info_outline_rounded,
                   color: Theme.of(context).textSelectionTheme.selectionColor!,
                 ),
                 onPressed: () {
-                  onAlertButtonPressed(
-                    context,
-                    'Os moradores receberão automaticamente um e-mail para definir sua senha e obter acesso ao CondoSócio. Assim, poderão aproveitar todos os serviços oferecidos pela plataforma, incluindo a possibilidade de cadastrar sua face (para condomínios que possuem essa tecnologia). É importante lembrar que você só deve cadastrar pessoas que residem com você no condomínio. O descumprimento dessa norma sujeitará você a penalidades conforme o regulamento interno e/ou a Convenção.\n\nNo caso de prestadores de serviço, após o cadastro, você precisará clicar no ícone do WhatsApp para enviar o link de cadastramento de documentos e da face (para condomínios com essa tecnologia).',
-                    '',
-                    '',
+                  showDialog(
+                    context: context,
+                    builder: (dialogContext) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        insetPadding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 24),
+                        child: Container(
+                          padding: const EdgeInsets.fromLTRB(20, 18, 20, 12),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      'Sobre os Pets',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Theme.of(context)
+                                            .textSelectionTheme
+                                            .selectionColor!,
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () =>
+                                        Navigator.of(dialogContext).pop(),
+                                    icon: const Icon(Icons.close,
+                                        color: Colors.white, size: 20),
+                                    padding: EdgeInsets.zero,
+                                    constraints: const BoxConstraints(),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 14),
+                              _infoItem('Cadastre os animais que residem com você no condomínio.'),
+                              _infoItem('Informe nome, espécie, raça e adicione uma foto do pet.'),
+                              _infoItem('O cadastro facilita o controle e a segurança no condomínio.'),
+                              _infoItem('Mantenha os dados atualizados para evitar inconvenientes na portaria.'),
+                              const SizedBox(height: 8),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton(
+                                  onPressed: () =>
+                                      Navigator.of(dialogContext).pop(),
+                                  child: Text(
+                                    'Fechar',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
-              )
-            ],*/
+              ),
+            ],
             bottom: TabBar(
               indicatorColor:
                   Theme.of(context).textSelectionTheme.selectionColor!,
-              indicatorPadding: EdgeInsets.all(-4),
+              indicatorPadding: const EdgeInsets.all(-4),
               indicatorSize: TabBarIndicatorSize.tab,
               dividerColor: Theme.of(context)
                   .textSelectionTheme
                   .selectionColor!
-                  .withOpacity(0),
-              tabs: <Widget>[
+                  .withValues(alpha: 0),
+              tabs: [
                 Text(
                   'Visualizar',
                   style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor!),
+                    fontSize: 14,
+                    color: Theme.of(context).textSelectionTheme.selectionColor!,
+                  ),
                 ),
                 Text(
                   'Adicionar',
@@ -72,6 +160,7 @@ class _PetsState extends State<Pets> {
               ],
             ),
           ),
+          bottomNavigationBar: CondoNavBar(),
           body: TabBarView(children: [VisualizarPets(), AdicionaPets()]),
         ),
       ),

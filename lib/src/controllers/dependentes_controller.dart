@@ -8,6 +8,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class DependentesController extends GetxController {
   var isLoading = false.obs;
+  var isSubmitting = false.obs;
   var nome = TextEditingController().obs;
   var sobrenome = TextEditingController().obs;
   var email = TextEditingController().obs;
@@ -16,6 +17,7 @@ class DependentesController extends GetxController {
   var status = ''.obs;
   var dependentes = [].obs;
   var search = TextEditingController().obs;
+  var searchQuery = ''.obs;
   var searchResult = [].obs;
   var isChecked = true.obs;
   var startDate = ''.obs;
@@ -50,17 +52,49 @@ class DependentesController extends GetxController {
   var tipoUsuario = 'Morador'.obs;
   var tipoUsuario2 = 'Morador'.obs;
 
-  onSearchTextChanged(String text) {
+  String _normalizeSearchText(String value) {
+    const accents = {
+      'a': 'áàãâä',
+      'e': 'éèêë',
+      'i': 'íìîï',
+      'o': 'óòõôö',
+      'u': 'úùûü',
+      'c': 'ç',
+      'n': 'ñ',
+    };
+
+    var normalized = value.toLowerCase().trim();
+    accents.forEach((plain, variants) {
+      for (final char in variants.split('')) {
+        normalized = normalized.replaceAll(char, plain);
+      }
+    });
+    return normalized;
+  }
+
+  void onSearchTextChanged(String text) {
+    searchQuery(text.trim());
     searchResult.clear();
-    if (text.isEmpty) {
+
+    if (searchQuery.value.isEmpty) {
       return;
     }
 
-    dependentes.forEach((details) {
-      if (details.nome.toLowerCase().contains(text.toLowerCase()) ||
-          details.sobrenome.toLowerCase().contains(text.toLowerCase()))
-        searchResult.add(details);
-    });
+    final query = _normalizeSearchText(searchQuery.value);
+    searchResult.assignAll(
+      dependentes.where((details) {
+        final nome = _normalizeSearchText(details.nome.toString());
+        final sobrenome = _normalizeSearchText(details.sobrenome.toString());
+        final nomeCompleto = '$nome $sobrenome';
+        final tipoUsuario =
+            _normalizeSearchText(details.tipousuario.toString());
+
+        return nome.contains(query) ||
+            sobrenome.contains(query) ||
+            nomeCompleto.contains(query) ||
+            tipoUsuario.contains(query);
+      }).toList(),
+    );
   }
 
   var cellMaskFormatter = new MaskTextInputFormatter(
@@ -79,27 +113,37 @@ class DependentesController extends GetxController {
         tipoUsuario == "Morador") {
       return 'invalido';
     } else {
-      isLoading(true);
-
-      var response = await ApiDependentes.sendDependentes();
-
-      var dados = json.decode(response.body);
-
-      isLoading(false);
-
-      return dados;
+      isSubmitting(true);
+      try {
+        var response = await ApiDependentes.sendDependentes();
+        var dados = json.decode(response.body);
+        return dados;
+      } finally {
+        isSubmitting(false);
+      }
     }
   }
 
   getDependentes() async {
     isLoading(true);
-    var response = await ApiDependentes.getDependentes();
-    var dados = json.decode(response.body);
-    dependentes.value =
-        dados.map((model) => DependentesMapa.fromJson(model)).toList();
+    try {
+      var response = await ApiDependentes.getDependentes();
+      var dados = json.decode(response.body);
+      dependentes.value =
+          dados.map((model) => DependentesMapa.fromJson(model)).toList();
 
-    isLoading(false);
-    return dados;
+      if (searchQuery.value.isNotEmpty) {
+        onSearchTextChanged(searchQuery.value);
+      }
+
+      return dados;
+    } catch (_) {
+      dependentes.clear();
+      searchResult.clear();
+      return [];
+    } finally {
+      isLoading(false);
+    }
   }
 
   changeStatus(String status) async {
@@ -135,7 +179,6 @@ class DependentesController extends GetxController {
   sendWhatsApp(String celular) async {
     var response = await ApiDependentes.sendWhatsApp(celular);
     var data = json.decode(response.body);
-    isLoading(false);
     return data;
   }
 
@@ -143,5 +186,17 @@ class DependentesController extends GetxController {
   void onInit() {
     getDependentes();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    nome.value.dispose();
+    sobrenome.value.dispose();
+    email.value.dispose();
+    celular.value.dispose();
+    search.value.dispose();
+    hourEnt.value.dispose();
+    hourSai.value.dispose();
+    super.onClose();
   }
 }

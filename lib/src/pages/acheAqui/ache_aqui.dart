@@ -4,6 +4,7 @@ import 'package:condosocio/src/pages/acheAqui/pesquisa_ache_aqui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class AcheAqui extends StatelessWidget {
   const AcheAqui({Key? key}) : super(key: key);
@@ -33,6 +34,7 @@ class AcheAqui extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: CondoNavBar(),
       body: Obx(() {
         return acheAquiController.isSearch.value
             ? PesquisaAcheAqui()

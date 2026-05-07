@@ -1,0 +1,12 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="320" rx="36" fill="#C1121F"/>
+  <rect x="18" y="18" width="1164" height="284" rx="28" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="2"/>
+  <circle cx="170" cy="160" r="92" fill="#FFFFFF" fill-opacity="0.12"/>
+  <circle cx="170" cy="160" r="66" fill="#FFFFFF"/>
+  <path d="M151 124.5C151 119.53 156.479 116.559 160.621 119.253L222.093 159.252C225.877 161.714 225.877 167.286 222.093 169.748L160.621 209.747C156.479 212.441 151 209.47 151 204.5V124.5Z" fill="#C1121F"/>
+  <text x="300" y="122" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" letter-spacing="3">ALVO TV NO YOUTUBE</text>
+  <text x="300" y="178" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800">INSCREVA-SE NO CANAL</text>
+  <text x="300" y="232" fill="#FFE5E7" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="500">Acompanhe os proximos videos, novidades e conteudos exclusivos.</text>
+  <rect x="927" y="110" width="185" height="96" rx="22" fill="#FFFFFF"/>
+  <text x="1019.5" y="169" text-anchor="middle" fill="#C1121F" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800">Inscrever-se</text>
+</svg>

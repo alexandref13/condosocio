@@ -11,8 +11,23 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../controllers/acessos/agenda_contatos_controller.dart';
 
-class ConvitesConvidadosWidget extends StatelessWidget {
+class ConvitesConvidadosWidget extends StatefulWidget {
   const ConvitesConvidadosWidget({Key? key}) : super(key: key);
+
+  @override
+  State<ConvitesConvidadosWidget> createState() =>
+      _ConvitesConvidadosWidgetState();
+}
+
+class _ConvitesConvidadosWidgetState extends State<ConvitesConvidadosWidget> {
+  bool _didShowInfoDialog = false;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +48,33 @@ class ConvitesConvidadosWidget extends StatelessWidget {
     }
 
     return Obx(() {
+      if (!_didShowInfoDialog &&
+          !convitesController.isLoading.value &&
+          !acessosController.isLoading.value) {
+        _didShowInfoDialog = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            _showInfoDialog(context);
+          }
+        });
+      }
+
       return convitesController.isLoading.value ||
               acessosController.isLoading.value
           ? CircularProgressIndicatorWidget()
           : SingleChildScrollView(
+              controller: _scrollController,
               child: Container(
                 padding: EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      child: _buildInfoTrigger(context),
+                    ),
+                    SizedBox(
+                      height: 14,
+                    ),
                     Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 10,
@@ -105,14 +139,22 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                       child: Text(item['pessoa']),
                                     );
                                   }).toList(),
-                                  onChanged: (String? novoItemSelecionado) {
+                                  onChanged:
+                                      (String? novoItemSelecionado) async {
                                     dropDownFavoriteSelected(
                                         novoItemSelecionado!);
                                     acessosController.firstId.value =
                                         novoItemSelecionado;
-                                    acessosController.firstId.value != '0'
-                                        ? convitesController.getAFavorite()
-                                        : acessosController.cleanController();
+                                    if (acessosController.firstId.value !=
+                                        '0') {
+                                      final result = await convitesController
+                                          .getAFavorite();
+                                      if (result == 'duplicate_phone') {
+                                        _showDuplicatePhoneAlert(context);
+                                      }
+                                    } else {
+                                      acessosController.cleanController();
+                                    }
                                   },
                                   value: acessosController.firstId.value,
                                 ),
@@ -136,8 +178,12 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                             height: 10,
                           ),
                           GestureDetector(
-                            onTap: () {
-                              agendaContatosController.pickContact();
+                            onTap: () async {
+                              final result =
+                                  await agendaContatosController.pickContact();
+                              if (result == 'duplicate_phone') {
+                                _showDuplicatePhoneAlert(context);
+                              }
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -178,8 +224,13 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                           },
                                         ),
                                       ),
-                                      onPressed: () {
-                                        agendaContatosController.pickContact();
+                                      onPressed: () async {
+                                        final result =
+                                            await agendaContatosController
+                                                .pickContact();
+                                        if (result == 'duplicate_phone') {
+                                          _showDuplicatePhoneAlert(context);
+                                        }
                                       },
                                       child: Text(
                                         "Procurar nos contatos",
@@ -199,8 +250,13 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                           .textSelectionTheme
                                           .selectionColor!,
                                     ),
-                                    onPressed: () {
-                                      agendaContatosController.pickContact();
+                                    onPressed: () async {
+                                      final result =
+                                          await agendaContatosController
+                                              .pickContact();
+                                      if (result == 'duplicate_phone') {
+                                        _showDuplicatePhoneAlert(context);
+                                      }
                                     },
                                   )
                                 ],
@@ -895,8 +951,14 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                                     '',
                                                     'images/error.png');
                                               } else {
-                                                convitesController
-                                                    .handleAddGuestList();
+                                                final result =
+                                                    convitesController
+                                                        .handleAddGuestList();
+                                                if (result ==
+                                                    'duplicate_phone') {
+                                                  _showDuplicatePhoneAlert(
+                                                      context);
+                                                }
                                               }
                                             },
                                             child: acessosController
@@ -1065,7 +1127,13 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                     convitesController
                                         .editAInvite()
                                         .then((value) {
-                                      if (value != 0) {
+                                      final status =
+                                          value is Map ? (value['status'] ?? 0) : value;
+                                      final idconv = value is Map
+                                          ? (value['idconv'] ?? 0).toString()
+                                          : value.toString();
+
+                                      if (status == 1) {
                                         acessosController.getAcessos();
                                         convitesController.guestList.clear();
                                         convitesController.getConvites();
@@ -1094,10 +1162,16 @@ class ConvitesConvidadosWidget extends StatelessWidget {
                                           'Fechar',
                                           () {
                                             visualizarConvitesController
-                                                .getAConvite(value.toString());
+                                                .getAConvite(idconv);
                                             Get.back();
                                           },
                                         );
+                                      } else if (status == 2) {
+                                        onAlertButtonPressed(
+                                            context,
+                                            'Esse convidado já possui registro de entrada ou saída e não pode ser excluído.',
+                                            '',
+                                            'images/error.png');
                                       } else {
                                         onAlertButtonPressed(
                                             context,
@@ -1189,6 +1263,194 @@ class ConvitesConvidadosWidget extends StatelessWidget {
               ),
             );
     });
+  }
+
+  Widget _buildInfoTrigger(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(14),
+      onTap: () => _showInfoDialog(context),
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(.05),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: Colors.white.withOpacity(.12),
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.info_outline_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+              size: 20,
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                'Como adicionar múltiplos convidados',
+                style: GoogleFonts.montserrat(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
+                ),
+              ),
+            ),
+            Icon(
+              Icons.keyboard_arrow_right,
+              color: Theme.of(context).textSelectionTheme.selectionColor!,
+              size: 22,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showInfoDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(20, 18, 20, 12),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Como adicionar seus convidados',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Theme.of(context)
+                              .textSelectionTheme
+                              .selectionColor!,
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () => Navigator.of(dialogContext).pop(),
+                      icon: const Icon(Icons.close,
+                          color: Colors.white, size: 20),
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 14),
+                _buildInfoCard(context),
+                SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () => Navigator.of(dialogContext).pop(),
+                    child: Text(
+                      'Fechar',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildInfoCard(BuildContext context) {
+    final accentColor = Theme.of(context).colorScheme.secondary;
+    final textColor = Theme.of(context).textSelectionTheme.selectionColor!;
+
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.zero,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildInfoItem(
+            context,
+            'Você pode inserir múltiplos convidados na mesma autorização.',
+          ),
+          _buildInfoItem(
+            context,
+            'Escolha um favorito, busque nos contatos ou adicione manualmente quantas pessoas precisar.',
+          ),
+          _buildInfoItem(
+            context,
+            'Para enviar o convite pelo WhatsApp, use a opção Procurar nos contatos.',
+          ),
+          _buildInfoItem(
+            context,
+            'Se você não tiver o telefone do convidado, use Adicione um convidado. Nesse caso, o sistema não enviará o convite, apenas liberará a autorização para a portaria.',
+          ),
+          _buildInfoItem(
+            context,
+            'Se for corrida por app, use a opção App mobilidade e informe nome do motorista e placa.',
+          ),
+          _buildInfoItem(
+            context,
+            'Confira a lista criada abaixo e toque em AUTORIZAR quando terminar.',
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInfoItem(BuildContext context, String text) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 3, right: 8),
+            child: Icon(
+              Icons.check_circle_rounded,
+              size: 16,
+              color: Colors.white,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              text,
+              style: GoogleFonts.montserrat(
+                fontSize: 13,
+                height: 1.45,
+                color: Theme.of(context)
+                    .textSelectionTheme
+                    .selectionColor!
+                    .withOpacity(.92),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showDuplicatePhoneAlert(BuildContext context) {
+    onAlertButtonPressed(
+      context,
+      'Já existe um convidado com esse celular na lista.',
+      '/home',
+      'images/error.png',
+    );
   }
 
   /* confirmedInviteAlert(context, String text, VoidCallback onTap) {

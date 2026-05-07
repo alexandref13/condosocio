@@ -94,6 +94,10 @@ class PetsController extends GetxController {
     return dados;
   }
 
+  static Future<String> updatePetImage(String idpet, String path) async {
+    return await ApiPets.updatePetImage(idpet, path);
+  }
+
   static Future<void> deletePets(String idpet, String idusu) async {
     try {
       final response = await ApiPets.deletePets(idpet, idusu);

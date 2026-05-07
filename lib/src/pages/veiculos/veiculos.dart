@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../controllers/veiculos/veiculos_controller.dart';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class Veiculos extends StatefulWidget {
   @override
@@ -40,18 +41,6 @@ class _VeiculosState extends State<Veiculos> {
               ),
             ),
             centerTitle: true,
-            /*actions: [
-              IconButton(
-                icon: Icon(
-                  AntDesign.infocirlce,
-                  color: Theme.of(context).textSelectionTheme.selectionColor!,
-                ),
-                onPressed: () {
-                  onAlertButtonPressed(context,
-                      'Moradores receberão automaticamente um e-mail para definicão de senha e terão assim acesso ao CondoSócio e poderão cadastrar a face (para condomínios com essa tecnologia), além de utilizar todos os serviços da plataforma. Lembramos que você deverá cadastrar apenas pessoas que residem com você no condomínio, se houver descumprimento desta norma, estará sujeito às penalidades dispostas no regulamento interno e ou Convenção.\n\n Prestadores de serviço após o cadastro deste, você deverá clicar no ícone do whatsapp para o envio do link de cadastramento dos documentos e face (para condomínios com essa tecnologia).');
-                },
-              )
-            ],*/
             bottom: TabBar(
               indicatorColor:
                   Theme.of(context).textSelectionTheme.selectionColor!,
@@ -79,10 +68,16 @@ class _VeiculosState extends State<Veiculos> {
               ],
             ),
           ),
-          body:
-              TabBarView(children: [VisualizarVeiculos(), AdicionaVeiculos()]),
+          bottomNavigationBar: CondoNavBar(),
+          body: TabBarView(
+            children: [
+              VisualizarVeiculos(),
+              AdicionaVeiculos(),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+

@@ -7,10 +7,11 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class VisualizarOuvidoriaController extends GetxController {
-  var ouvidoria = [].obs;
+  var ouvidoria = <MapaOuvidoria>[].obs;
   var search = TextEditingController().obs;
+  var searchQuery = ''.obs;
   var isLoading = false.obs;
-  var searchResult = [].obs;
+  var searchResult = <MapaOuvidoria>[].obs;
 
   var data = ''.obs;
   var hora = ''.obs;
@@ -28,19 +29,25 @@ class VisualizarOuvidoriaController extends GetxController {
   }
 
   void onLoading() async {
-    print('loading');
     refreshController.loadComplete();
   }
 
   onSearchTextChanged(String text) {
-    searchResult.clear();
-    if (text.isEmpty) {
+    searchQuery(text.trim());
+    if (searchQuery.value.isEmpty) {
+      searchResult.clear();
       return;
     }
-    ouvidoria.forEach((details) {
-      if (details.assunto.toLowerCase().contains(text.toLowerCase()))
-        searchResult.add(details);
-    });
+    _applySearch();
+  }
+
+  void _applySearch() {
+    final query = searchQuery.value.toLowerCase();
+    searchResult.assignAll(
+      ouvidoria.where(
+        (details) => details.assunto.toLowerCase().contains(query),
+      ),
+    );
   }
 
   Future<void> getOuvidoria() async {
@@ -49,14 +56,13 @@ class VisualizarOuvidoriaController extends GetxController {
 
     Iterable lista = json.decode(response.body);
 
-    print(lista);
-
     ouvidoria.assignAll(
       lista.map((model) => MapaOuvidoria.fromJson(model)).toList(),
     );
 
-    // ouvidoria.value =  lista.map((model) => MapaOuvidoria.fromJson(model)).toList();
-    print('Ouvidoria: $ouvidoria');
+    if (searchQuery.value.isNotEmpty) {
+      _applySearch();
+    }
     isLoading(false);
   }
 
@@ -64,5 +70,11 @@ class VisualizarOuvidoriaController extends GetxController {
   void onInit() {
     getOuvidoria();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    search.value.dispose();
+    super.onClose();
   }
 }

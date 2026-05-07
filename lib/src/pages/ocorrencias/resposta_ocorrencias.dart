@@ -4,762 +4,171 @@ import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/ocorrencias/resposta_ocorrencias_controller.dart';
 import 'package:condosocio/src/controllers/ocorrencias/visualizar_ocorrencias_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RespostaOcorrencias extends StatelessWidget {
+class RespostaOcorrencias extends StatefulWidget {
+  const RespostaOcorrencias({super.key});
+
+  @override
+  State<RespostaOcorrencias> createState() => _RespostaOcorrenciasState();
+}
+
+class _RespostaOcorrenciasState extends State<RespostaOcorrencias> {
+  late final FocusNode _replyFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _replyFocusNode = FocusNode();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _replyFocusNode.requestFocus();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _replyFocusNode.dispose();
+    super.dispose();
+  }
+
+  String _formatDateTime(String data, String hora) {
+    final cleanDate = data.trim();
+    final cleanHour = hora.trim();
+    if (cleanDate.isEmpty && cleanHour.isEmpty) return '';
+    if (cleanHour.isEmpty) return cleanDate;
+    return '$cleanDate ${cleanHour.endsWith('h') ? cleanHour : '${cleanHour}h'}';
+  }
+
   @override
   Widget build(BuildContext context) {
-    LoginController loginController = Get.put(LoginController());
-    RespostaOcorrenciasController respostaOcorrenciasController =
+    final LoginController loginController = Get.put(LoginController());
+    final RespostaOcorrenciasController respostaOcorrenciasController =
         Get.put(RespostaOcorrenciasController());
-    VisualizarOcorrenciasController ocorrenciasController =
+    final VisualizarOcorrenciasController ocorrenciasController =
         Get.put(VisualizarOcorrenciasController());
+
+    final textColor =
+        Theme.of(context).textSelectionTheme.selectionColor ?? Colors.white;
+    final isResolved = ocorrenciasController.status.value != '0';
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          ocorrenciasController.titulo.value,
-          style: GoogleFonts.montserrat(
-            fontSize: 16,
-            color: Theme.of(context).textSelectionTheme.selectionColor!,
-          ),
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: Icon(Icons.arrow_back_ios, color: textColor),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              ocorrenciasController.titulo.value,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.montserrat(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: textColor,
+              ),
+            ),
+            Text(
+              ocorrenciasController.tipo.value,
+              style: GoogleFonts.montserrat(
+                fontSize: 11,
+                color: textColor.withValues(alpha: 0.7),
+              ),
+            ),
+          ],
         ),
       ),
       body: Obx(() {
-        return respostaOcorrenciasController.isLoading.value
-            ? CircularProgressIndicatorWidget()
-            : Container(
-                child: Column(
-                  children: [
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            width: 1,
-                            color: Theme.of(context)
-                                .textSelectionTheme
-                                .selectionColor!,
-                          ),
+        if (respostaOcorrenciasController.isLoading.value) {
+          return CircularProgressIndicatorWidget();
+        }
+
+        final respostas = respostaOcorrenciasController.resposta.toList();
+
+        return Column(
+          children: [
+            _OcorrenciaResumoCard(
+              isResolved: isResolved,
+              textColor: textColor,
+              ocorrenciasController: ocorrenciasController,
+            ),
+            Expanded(
+              child: respostas.isEmpty
+                  ? Center(
+                      child: Text(
+                        'Nenhuma resposta ainda.',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 13,
+                          color: textColor.withValues(alpha: 0.7),
                         ),
-                        padding: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 10,
-                        ),
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 6,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'TIPO: ',
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 12,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  ocorrenciasController.tipo.value,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 12,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 10),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'OCORRIDO EM: ',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor!,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    ' ${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}h',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor!,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 10),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'STATUS: ',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor!,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    ocorrenciasController.status.value == '0'
-                                        ? 'Pendente'
-                                        : 'Resolvida',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor!,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            ocorrenciasController.imagem.value != ''
-                                ? Container(
-                                    padding: EdgeInsets.only(top: 10),
-                                    child: Row(
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            Get.toNamed('/fotoOcorrencia');
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.only(top: 10),
-                                            child: Hero(
-                                              transitionOnUserGestures: true,
-                                              tag: 'FotoOcorrencia',
-                                              child: Image(
-                                                image: NetworkImage(
-                                                  'https://www.condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
-                                                ),
-                                                width: 45,
-                                                height: 45,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'Clique na imagem para ampliar',
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 12,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor!,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                : Container(),
-                          ],
-                        )),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount:
-                            respostaOcorrenciasController.resposta.length,
-                        itemBuilder: (_, i) {
-                          var resposta =
-                              respostaOcorrenciasController.resposta[i];
-                          return Column(
-                            children: [
-                              resposta.idraiz != ''
-                                  ? Container(
-                                      alignment: Alignment(1, 0),
-                                      padding:
-                                          EdgeInsets.only(bottom: 10, top: 5),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .92,
-                                            child: Row(
-                                              children: [
-                                                loginController
-                                                            .imgperfil.value ==
-                                                        ''
-                                                    ? Container(
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              margin: EdgeInsets
-                                                                  .only(
-                                                                      left: 40,
-                                                                      bottom:
-                                                                          5),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .secondary,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        width: 60,
-                                                        height: 60,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          image:
-                                                              DecorationImage(
-                                                            image: AssetImage(
-                                                                'images/user.png'),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    : Container(
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              margin: EdgeInsets
-                                                                  .only(
-                                                                left: 40,
-                                                                bottom: 5,
-                                                              ),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .secondary,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        width: 50,
-                                                        height: 50,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          image:
-                                                              DecorationImage(
-                                                            image: NetworkImage(
-                                                                'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                Expanded(
-                                                  child: Container(
-                                                    padding: EdgeInsets.only(
-                                                        left: 5),
-                                                    child: Card(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15.0),
-                                                      ),
-                                                      color: Colors.green[600],
-                                                      child: Column(
-                                                        children: [
-                                                          Container(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(
-                                                                    7, 5, 7, 0),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Container(
-                                                                      width: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          .5,
-                                                                      child:
-                                                                          Text(
-                                                                        loginController
-                                                                            .nome
-                                                                            .value,
-                                                                        style: GoogleFonts
-                                                                            .montserrat(
-                                                                          fontSize:
-                                                                              12,
-                                                                          color: Theme.of(context)
-                                                                              .textSelectionTheme
-                                                                              .selectionColor!,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      '${resposta.dataraiz} ${resposta.horaraiz}',
-                                                                      style: GoogleFonts
-                                                                          .montserrat(
-                                                                        fontSize:
-                                                                            10,
-                                                                        color: Theme.of(context)
-                                                                            .textSelectionTheme
-                                                                            .selectionColor!,
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                                Container(
-                                                                  child: Text(
-                                                                    loginController
-                                                                        .tipo
-                                                                        .value,
-                                                                    style: GoogleFonts
-                                                                        .montserrat(
-                                                                      fontSize:
-                                                                          10,
-                                                                      color: Theme.of(
-                                                                              context)
-                                                                          .textSelectionTheme
-                                                                          .selectionColor!,
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                .9,
-                                                            child: Text(
-                                                              ocorrenciasController
-                                                                  .descricao
-                                                                  .value,
-                                                              style: GoogleFonts
-                                                                  .montserrat(
-                                                                fontSize: 12,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .textSelectionTheme
-                                                                    .selectionColor!,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  : resposta.idusu == loginController.id.value
-                                      ? Container(
-                                          alignment: Alignment(1, 0),
-                                          padding: EdgeInsets.only(
-                                              bottom: 10, top: 5),
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .92,
-                                                child: Row(
-                                                  children: [
-                                                    loginController.imgperfil
-                                                                .value ==
-                                                            ''
-                                                        ? Container(
-                                                            child: Column(
-                                                              children: [
-                                                                Container(
-                                                                  margin: EdgeInsets
-                                                                      .only(
-                                                                          left:
-                                                                              40,
-                                                                          bottom:
-                                                                              5),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .colorScheme
-                                                                        .secondary,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            width: 60,
-                                                            height: 60,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              image:
-                                                                  DecorationImage(
-                                                                image: AssetImage(
-                                                                    'images/user.png'),
-                                                              ),
-                                                            ),
-                                                          )
-                                                        : Container(
-                                                            child: Column(
-                                                              children: [
-                                                                Container(
-                                                                  margin:
-                                                                      EdgeInsets
-                                                                          .only(
-                                                                    left: 40,
-                                                                    bottom: 5,
-                                                                  ),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .colorScheme
-                                                                        .secondary,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            width: 50,
-                                                            height: 50,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              image:
-                                                                  DecorationImage(
-                                                                image: NetworkImage(
-                                                                    'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                    Expanded(
-                                                      child: Container(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 5),
-                                                        child: Card(
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        15.0),
-                                                          ),
-                                                          color:
-                                                              Colors.green[600],
-                                                          child: Column(
-                                                            children: [
-                                                              Container(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .fromLTRB(
-                                                                            7,
-                                                                            5,
-                                                                            7,
-                                                                            0),
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        Container(
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * .5,
-                                                                          child:
-                                                                              Text(
-                                                                            resposta.nomeusu,
-                                                                            style:
-                                                                                GoogleFonts.montserrat(
-                                                                              fontSize: 12,
-                                                                              color: Theme.of(context).textSelectionTheme.selectionColor!,
-                                                                              fontWeight: FontWeight.bold,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        Text(
-                                                                          '${resposta.data} ${resposta.hora}',
-                                                                          style:
-                                                                              GoogleFonts.montserrat(
-                                                                            fontSize:
-                                                                                10,
-                                                                            color:
-                                                                                Theme.of(context).textSelectionTheme.selectionColor!,
-                                                                          ),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                    Container(
-                                                                      child:
-                                                                          Text(
-                                                                        resposta
-                                                                            .tipousu,
-                                                                        style: GoogleFonts
-                                                                            .montserrat(
-                                                                          fontSize:
-                                                                              10,
-                                                                          color: Theme.of(context)
-                                                                              .textSelectionTheme
-                                                                              .selectionColor!,
-                                                                        ),
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            10),
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    .9,
-                                                                child: Text(
-                                                                  resposta
-                                                                      .texto,
-                                                                  style: GoogleFonts
-                                                                      .montserrat(
-                                                                    fontSize:
-                                                                        12,
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .textSelectionTheme
-                                                                        .selectionColor!,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      : Container(
-                                          alignment: Alignment(-1, 0),
-                                          padding: EdgeInsets.only(bottom: 10),
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .92,
-                                                child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Container(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                right: 5),
-                                                        child: Card(
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        15.0),
-                                                          ),
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .colorScheme
-                                                                  .secondary,
-                                                          child: Column(
-                                                            children: [
-                                                              Container(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            15),
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .end,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        Text(
-                                                                          '${resposta.data} ${resposta.hora}h',
-                                                                          style:
-                                                                              GoogleFonts.montserrat(
-                                                                            fontSize:
-                                                                                10,
-                                                                            color:
-                                                                                Theme.of(context).textSelectionTheme.selectionColor!,
-                                                                          ),
-                                                                        ),
-                                                                        Container(
-                                                                          child:
-                                                                              Text(
-                                                                            resposta.nomeusu,
-                                                                            style:
-                                                                                GoogleFonts.montserrat(
-                                                                              fontSize: 12,
-                                                                              color: Theme.of(context).textSelectionTheme.selectionColor!,
-                                                                              fontWeight: FontWeight.bold,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Container(
-                                                                      child:
-                                                                          Text(
-                                                                        resposta
-                                                                            .tipousu,
-                                                                        style: GoogleFonts
-                                                                            .montserrat(
-                                                                          fontSize:
-                                                                              10,
-                                                                          color: Theme.of(context)
-                                                                              .textSelectionTheme
-                                                                              .selectionColor!,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            10),
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    .9,
-                                                                child: Text(
-                                                                  resposta
-                                                                      .texto,
-                                                                  style: GoogleFonts
-                                                                      .montserrat(
-                                                                    fontSize:
-                                                                        12,
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .textSelectionTheme
-                                                                        .selectionColor!,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      child: Column(
-                                                        children: [
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                              left: 40,
-                                                              bottom: 5,
-                                                            ),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .colorScheme
-                                                                  .secondary,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      width: 40,
-                                                      height: 40,
-                                                      decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        image: DecorationImage(
-                                                          image: NetworkImage(
-                                                              'https://www.condosocio.com.br/acond/downloads/logocondo/${loginController.imgcondo.value}'),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                            ],
-                          );
-                        },
                       ),
+                    )
+                  : ListView.separated(
+                      padding: const EdgeInsets.fromLTRB(12, 6, 12, 96),
+                      itemCount: respostas.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 10),
+                      itemBuilder: (_, i) {
+                        final resposta = respostas[i];
+                        final isRoot = resposta.idraiz.trim().isNotEmpty;
+                        final isMine = isRoot ||
+                            resposta.idusu == loginController.id.value;
+
+                        final nome = isRoot
+                            ? loginController.nome.value
+                            : resposta.nomeusu;
+                        final tipo = isRoot
+                            ? loginController.tipo.value
+                            : resposta.tipousu;
+                        final texto = isRoot
+                            ? ocorrenciasController.descricao.value
+                            : resposta.texto;
+                        final dataHora = isRoot
+                            ? _formatDateTime(
+                                resposta.dataraiz,
+                                resposta.horaraiz,
+                              )
+                            : _formatDateTime(
+                                resposta.data,
+                                resposta.hora,
+                              );
+                        final imgPerfil = isRoot
+                            ? loginController.imgperfil.value
+                            : resposta.imgperfil;
+
+                        return _RespostaBubbleCard(
+                          isMine: isMine,
+                          nome: nome,
+                          tipo: tipo,
+                          texto: texto,
+                          dataHora: dataHora,
+                          imgPerfil: imgPerfil,
+                          textColor: textColor,
+                        );
+                      },
                     ),
-                  ],
-                ),
-              );
+            ),
+          ],
+        );
       }),
       bottomSheet: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         color: Theme.of(context).primaryColor,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(18),
             color: Theme.of(context).textSelectionTheme.selectionColor!,
           ),
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
             children: <Widget>[
               Expanded(
                 child: TextField(
+                  focusNode: _replyFocusNode,
                   controller: respostaOcorrenciasController.texto.value,
                   textCapitalization: TextCapitalization.sentences,
                   style: GoogleFonts.montserrat(
@@ -767,7 +176,7 @@ class RespostaOcorrencias extends StatelessWidget {
                     color: Theme.of(context).colorScheme.secondary,
                   ),
                   decoration: InputDecoration(
-                    fillColor: Theme.of(context).colorScheme.secondary,
+                    border: InputBorder.none,
                     hintText: 'Envie uma resposta',
                     hintStyle: GoogleFonts.montserrat(
                       fontSize: 12,
@@ -777,8 +186,8 @@ class RespostaOcorrencias extends StatelessWidget {
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.send),
-                iconSize: 25.0,
+                icon: const Icon(Icons.send),
+                iconSize: 25,
                 color: Theme.of(context).colorScheme.secondary,
                 onPressed: () {
                   respostaOcorrenciasController
@@ -786,10 +195,11 @@ class RespostaOcorrencias extends StatelessWidget {
                       .then((value) {
                     if (value == 0) {
                       onAlertButtonPressed(
-                          context,
-                          'Algo deu errado\n Tente novamente',
-                          '/home',
-                          'images/error.png');
+                        context,
+                        'Algo deu errado\n Tente novamente',
+                        '/home',
+                        'images/error.png',
+                      );
                     }
                   });
                 },
@@ -797,6 +207,340 @@ class RespostaOcorrencias extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _OcorrenciaResumoCard extends StatelessWidget {
+  final bool isResolved;
+  final Color textColor;
+  final VisualizarOcorrenciasController ocorrenciasController;
+
+  const _OcorrenciaResumoCard({
+    required this.isResolved,
+    required this.textColor,
+    required this.ocorrenciasController,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(12, 12, 12, 6),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: isResolved
+                      ? Colors.green.withValues(alpha: 0.15)
+                      : Colors.orange.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: isResolved
+                        ? Colors.green.withValues(alpha: 0.5)
+                        : Colors.orange.withValues(alpha: 0.5),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      isResolved
+                          ? Icons.check_circle_outline
+                          : Icons.pending_outlined,
+                      size: 13,
+                      color: isResolved ? Colors.green : Colors.orange,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      isResolved ? 'Resolvida' : 'Pendente',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: isResolved ? Colors.green : Colors.orange,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Spacer(),
+              if (ocorrenciasController.imagem.value.isNotEmpty)
+                GestureDetector(
+                  onTap: () => Get.toNamed('/fotoOcorrencia'),
+                  child: Hero(
+                    transitionOnUserGestures: true,
+                    tag: 'FotoOcorrencia',
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.network(
+                            'https://www.condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
+                            width: 62,
+                            height: 62,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) => Container(
+                              width: 62,
+                              height: 62,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: const Icon(
+                                Icons.broken_image_outlined,
+                                color: Colors.grey,
+                                size: 26,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          right: 3,
+                          bottom: 3,
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                              color: Colors.black54,
+                              borderRadius: BorderRadius.circular(999),
+                            ),
+                            child: const Icon(
+                              Icons.zoom_in,
+                              color: Colors.white,
+                              size: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Icon(
+                Icons.event_outlined,
+                size: 15,
+                color: textColor.withValues(alpha: 0.6),
+              ),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  '${ocorrenciasController.dataoco.value} às ${ocorrenciasController.houroco.value}h',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 12,
+                    color: textColor.withValues(alpha: 0.85),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          if (ocorrenciasController.descricao.value.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                ocorrenciasController.descricao.value,
+                style: GoogleFonts.montserrat(
+                  fontSize: 12,
+                  color: textColor.withValues(alpha: 0.75),
+                  height: 1.5,
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _RespostaBubbleCard extends StatelessWidget {
+  final bool isMine;
+  final String nome;
+  final String tipo;
+  final String texto;
+  final String dataHora;
+  final String imgPerfil;
+  final Color textColor;
+
+  const _RespostaBubbleCard({
+    required this.isMine,
+    required this.nome,
+    required this.tipo,
+    required this.texto,
+    required this.dataHora,
+    required this.imgPerfil,
+    required this.textColor,
+  });
+
+  String _profileUrl(String imageName) {
+    if (imageName.trim().isEmpty) return '';
+    return 'https://www.condosocio.com.br/acond/downloads/fotosperfil/$imageName';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final bubbleColor = isMine
+        ? Colors.green.shade600
+        : Theme.of(context).colorScheme.secondary.withValues(alpha: 0.92);
+    final alignment = isMine ? MainAxisAlignment.end : MainAxisAlignment.start;
+    final borderRadius = BorderRadius.circular(24);
+    final subtitleText = tipo.trim().isEmpty ? ' ' : tipo;
+
+    return Row(
+      mainAxisAlignment: alignment,
+      children: [
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width * 0.88,
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: bubbleColor,
+              borderRadius: borderRadius,
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 8,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (!isMine) ...[
+                  _RespostaAvatar(
+                    imgPerfil: imgPerfil,
+                    textColor: textColor,
+                  ),
+                  const SizedBox(width: 10),
+                ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  nome.trim().isEmpty ? 'Usuário' : nome,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                    color: textColor,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 2),
+                                  child: Text(
+                                    subtitleText,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 10,
+                                      color: textColor.withValues(alpha: 0.75),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            dataHora,
+                            textAlign: TextAlign.right,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 10,
+                              color: textColor.withValues(alpha: 0.72),
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (texto.trim().isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(
+                            texto,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              color: textColor,
+                              height: 1.45,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                if (isMine) ...[
+                  const SizedBox(width: 10),
+                  _RespostaAvatar(
+                    imgPerfil: imgPerfil,
+                    textColor: textColor,
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _RespostaAvatar extends StatelessWidget {
+  final String imgPerfil;
+  final Color textColor;
+
+  const _RespostaAvatar({
+    required this.imgPerfil,
+    required this.textColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final imageUrl = imgPerfil.trim().isEmpty
+        ? ''
+        : 'https://www.condosocio.com.br/acond/downloads/fotosperfil/$imgPerfil';
+
+    return ClipOval(
+      child: Container(
+        width: 46,
+        height: 46,
+        color: Theme.of(context).primaryColorDark.withValues(alpha: 0.25),
+        child: imageUrl.isEmpty
+            ? Icon(Icons.person, color: textColor, size: 26)
+            : Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) =>
+                    Icon(Icons.person, color: textColor, size: 26),
+              ),
       ),
     );
   }

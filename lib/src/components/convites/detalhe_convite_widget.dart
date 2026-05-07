@@ -15,36 +15,188 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+DateTime? _parseConviteDate(String value) {
+  final normalized = value.trim();
+  if (normalized.isEmpty) {
+    return null;
+  }
+
+  final isoParsed = DateTime.tryParse(normalized);
+  if (isoParsed != null) {
+    return isoParsed;
+  }
+
+  final match = RegExp(
+    r'^(\d{2})\/(\d{2})\/(\d{2,4})(?: (\d{2}):(\d{2})(?::(\d{2}))?)?$',
+  ).firstMatch(normalized);
+
+  if (match == null) {
+    return null;
+  }
+
+  final day = int.tryParse(match.group(1) ?? '');
+  final month = int.tryParse(match.group(2) ?? '');
+  final rawYear = int.tryParse(match.group(3) ?? '');
+  final hour = int.tryParse(match.group(4) ?? '') ?? 0;
+  final minute = int.tryParse(match.group(5) ?? '') ?? 0;
+  final second = int.tryParse(match.group(6) ?? '') ?? 0;
+
+  if (day == null || month == null || rawYear == null) {
+    return null;
+  }
+
+  final year = rawYear < 100 ? 2000 + rawYear : rawYear;
+  return DateTime(year, month, day, hour, minute, second);
+}
+
+String _formatConviteDay(String value) {
+  final date = _parseConviteDate(value);
+  if (date == null) {
+    final parts = value.trim().split(' ');
+    return parts.isNotEmpty ? parts.first : '-';
+  }
+  return DateFormat('dd/MM/yy').format(date);
+}
+
+String _formatConviteHour(String value) {
+  final date = _parseConviteDate(value);
+  if (date == null) {
+    final parts = value.trim().split(' ');
+    if (parts.length > 1 && parts[1].trim().isNotEmpty) {
+      return parts[1];
+    }
+    return '--:--';
+  }
+  return DateFormat('HH:mm').format(date);
+}
+
+String _guestImageUrl(Map convidado) {
+  final imageName = (convidado['imgfacial'] ??
+          convidado['imagem'] ??
+          convidado['foto'] ??
+          '')
+      .toString()
+      .trim();
+
+  if (imageName.isEmpty) {
+    return '';
+  }
+
+  final tipo = (convidado['tipo'] ?? '').toString();
+  final isProfileFolder = [
+    'Morador',
+    'Prestador',
+    'Inquilino',
+    'NM',
+    'Prestador de Serviço',
+    'Administrador',
+    'Sindico',
+    'Master',
+  ].contains(tipo);
+
+  final folder = isProfileFolder ? 'fotosperfil' : 'fotosvisitantes';
+  return 'https://www.condosocio.com.br/acond/downloads/$folder/$imageName';
+}
+
+IconData _guestLeadingIcon(Map convidado) {
+  final tipo = (convidado['tipo'] ?? '').toString().trim().toLowerCase();
+  final hasPlate =
+      (convidado['placa'] ?? '').toString().trim().isNotEmpty;
+
+  if (hasPlate) {
+    return Icons.directions_car_outlined;
+  }
+
+  if (tipo == 'prestador' || tipo == 'prestador de serviço') {
+    return Icons.engineering_outlined;
+  }
+
+  if (tipo == 'appmobil' ||
+      tipo == 'app mobilidade' ||
+      tipo == 'app de mobilidade') {
+    return Icons.local_taxi_outlined;
+  }
+
+  return Icons.person_add_alt_1_outlined;
+}
+
 class DetalheConviteWidget extends StatelessWidget {
   const DetalheConviteWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     VisualizarConvitesController visualizarConvitesController =
-        Get.put(VisualizarConvitesController());
-    ConvitesController convitesController = Get.put(ConvitesController());
-    LoginController loginController = Get.put(LoginController());
-    AcessosController acessosController = Get.put(AcessosController());
+        Get.find<VisualizarConvitesController>();
+    ConvitesController convitesController = Get.find<ConvitesController>();
+    LoginController loginController = Get.find<LoginController>();
+    AcessosController acessosController = Get.find<AcessosController>();
+
+    void voltarParaVisualizarConvites() {
+      convitesController.page.value = 1;
+      convitesController.selectedTabIndex.value = 1;
+
+      if (Navigator.of(context).canPop()) {
+        Get.back();
+      } else {
+        Get.offNamedUntil('/convites', (route) => false);
+      }
+    }
+
+    Future<void> removeGuestFromInvite(List convidados, int index) async {
+      final updatedGuests = convidados
+          .asMap()
+          .entries
+          .where((entry) => entry.key != index)
+          .map((entry) => Map<String, dynamic>.from(entry.value))
+          .toList();
+
+      convitesController.guestList.assignAll(updatedGuests);
+
+      final value = await convitesController.editAInvite();
+      final status = value is Map ? (value['status'] ?? 0) : value;
+
+      if (status == 1) {
+        convitesController.getConvites();
+        convitesController.page.value = 1;
+        convitesController.selectedTabIndex.value = 1;
+        showToast(context, 'Parabéns!', 'Visitante excluído com sucesso.');
+        voltarParaVisualizarConvites();
+      } else if (status == 2) {
+        onAlertButtonPressed(
+          context,
+          'Esse convidado já possui registro de entrada ou saída e não pode ser excluído.',
+          '',
+          'images/error.png',
+        );
+      } else {
+        onAlertButtonPressed(
+          context,
+          'Algo deu errado!\nTente novamente',
+          '',
+          'images/error.png',
+        );
+      }
+    }
 
     var date = DateTime.now();
-    var endDate = DateTime.parse(visualizarConvitesController.endDate.value);
-
-    var formatEndDateDay = DateFormat("dd/MM/yy").format(
-      endDate,
-    );
-    var formatEndDateHour = DateFormat("HH:mm").format(
-      endDate,
-    );
+    final endDate =
+        _parseConviteDate(visualizarConvitesController.endDate.value);
+    final formatEndDateDay =
+        _formatConviteDay(visualizarConvitesController.endDate.value);
+    final formatEndDateHour =
+        _formatConviteHour(visualizarConvitesController.endDate.value);
 
     return WillPopScope(
       onWillPop: () async {
-        convitesController.page.value == 1;
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/home', ModalRoute.withName('/home'));
+        voltarParaVisualizarConvites();
         return false;
       },
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: voltarParaVisualizarConvites,
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
           title: Text(
             visualizarConvitesController.titulo.value,
             style: GoogleFonts.montserrat(
@@ -71,14 +223,15 @@ class DetalheConviteWidget extends StatelessWidget {
                         visualizarConvitesController.convidados.add(convidado);
                       }
 
-                      var startDate = invite['datainicial'];
+                      var startDate = (invite['datainicial'] ?? '').toString();
                       visualizarConvitesController.startDate.value = startDate;
-                      var formatStartDate = startDate.split(' ');
+                      final formatStartDateDay =
+                          _formatConviteDay(startDate);
+                      final formatStartDateHour =
+                          _formatConviteHour(startDate);
 
-                      var formatStartDateDay = formatStartDate[0];
-                      var formatStartDateHour = formatStartDate[1];
-
-                      var isBefore = date.isBefore(endDate);
+                      final isBefore =
+                          endDate == null ? false : date.isBefore(endDate);
 
                       return Container(
                         child: Column(
@@ -293,262 +446,289 @@ class DetalheConviteWidget extends StatelessWidget {
                               ),
                             ),
                             for (var x = 0; x < convidados.length; x++)
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                  vertical: 10,
-                                  horizontal: 10,
-                                ),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                      width: 1,
+                              Builder(
+                                builder: (context) {
+                                  final convidado = convidados[x];
+                                  final textColor = Theme.of(context)
+                                      .textSelectionTheme
+                                      .selectionColor!;
+                                  final previewUrl = _guestImageUrl(convidado);
+                                  final leadingIcon =
+                                      _guestLeadingIcon(convidado);
+                                  final secondaryInfo =
+                                      convidado['tel'] != null &&
+                                              convidado['tel']
+                                                  .toString()
+                                                  .trim()
+                                                  .isNotEmpty
+                                          ? convidado['tel'].toString()
+                                          : (convidado['placa'] ?? '')
+                                              .toString()
+                                              .toUpperCase();
+                                  final guestType =
+                                      (convidado['tipo'] ?? 'Convidado')
+                                          .toString();
+
+                                  return Container(
+                                    margin: EdgeInsets.symmetric(
+                                      vertical: 5,
+                                      horizontal: 16,
+                                    ),
+                                    decoration: BoxDecoration(
                                       color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor!,
-                                    )),
-                                padding: EdgeInsets.all(8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.all(8.0),
+                                          .colorScheme
+                                          .secondary,
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Colors.black26,
+                                          blurRadius: 4,
+                                          offset: Offset(0, 2),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 14,
+                                        vertical: 12,
+                                      ),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(right: 10),
-                                            child: Icon(
-                                                convidados[x]['placa'] != null
-                                                    ? Icons
-                                                        .directions_car_outlined
-                                                    : Icons
-                                                        .account_circle_outlined,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                                size: 30),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .55,
-                                                child: Text(
-                                                  convidados[x]['nome'],
-                                                  style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor!,
-                                                  ),
-                                                ),
-                                              ),
-                                              convidados[x]['tel'] != null
+                                          ClipOval(
+                                            child: SizedBox(
+                                              width: 52,
+                                              height: 52,
+                                              child: previewUrl.isEmpty
                                                   ? Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              .55,
-                                                      child: Text(
-                                                        convidados[x]['tel'],
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                          fontSize: 15,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .textSelectionTheme
-                                                              .selectionColor!,
-                                                        ),
+                                                      color: Theme.of(context)
+                                                          .primaryColorDark,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Icon(
+                                                        leadingIcon,
+                                                        size: 28,
+                                                        color: textColor,
                                                       ),
                                                     )
-                                                  : Container(
-                                                      child: convidados[x]
-                                                                  ['placa'] !=
-                                                              null
-                                                          ? Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  .55,
-                                                              child: Text(
-                                                                convidados[x][
-                                                                        'placa']
-                                                                    .toString()
-                                                                    .toUpperCase(),
-                                                                style: GoogleFonts
-                                                                    .montserrat(
-                                                                  fontSize: 15,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .textSelectionTheme
-                                                                      .selectionColor!,
-                                                                ),
-                                                              ),
-                                                            )
-                                                          : Container(),
-                                                    )
-                                            ],
+                                                  : Image.network(
+                                                      previewUrl,
+                                                      fit: BoxFit.cover,
+                                                      errorBuilder:
+                                                          (_, __, ___) =>
+                                                              Container(
+                                                        color: Theme.of(context)
+                                                            .primaryColorDark,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Icon(
+                                                          leadingIcon,
+                                                          size: 28,
+                                                          color: textColor,
+                                                        ),
+                                                      ),
+                                                    ),
+                                            ),
                                           ),
+                                          SizedBox(width: 14),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  convidado['nome'] ?? '',
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style:
+                                                      GoogleFonts.montserrat(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w700,
+                                                    color: textColor,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 4),
+                                                Text(
+                                                  guestType,
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style:
+                                                      GoogleFonts.montserrat(
+                                                    fontSize: 13,
+                                                    color: textColor.withValues(
+                                                        alpha: 0.82),
+                                                  ),
+                                                ),
+                                                if (secondaryInfo
+                                                    .trim()
+                                                    .isNotEmpty) ...[
+                                                  SizedBox(height: 6),
+                                                  Text(
+                                                    secondaryInfo,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow
+                                                        .ellipsis,
+                                                    style: GoogleFonts
+                                                        .montserrat(
+                                                      fontSize: 12,
+                                                      color: textColor
+                                                          .withValues(
+                                                              alpha: 0.62),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ],
+                                            ),
+                                          ),
+                                          if (isBefore)
+                                            Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                IconButton(
+                                                  icon: Icon(
+                                                    Icons.delete_outline,
+                                                    color: textColor,
+                                                    size: 24,
+                                                  ),
+                                                  onPressed: () {
+                                                    deleteAlert(
+                                                      context,
+                                                      'Deseja excluir este visitante?',
+                                                      () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                        removeGuestFromInvite(
+                                                            convidados, x);
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                                if (convidado['tel'] != null)
+                                                  InkWell(
+                                                    child: Icon(
+                                                      convidado['idfav'] ==
+                                                                  null ||
+                                                              convidado['idfav'] ==
+                                                                  '' ||
+                                                              convidado['idfav'] ==
+                                                                  '0'
+                                                          ? Icons.favorite_border
+                                                          : Icons.favorite,
+                                                      color: textColor,
+                                                      size: 24,
+                                                    ),
+                                                    onTap: () {
+                                                      acessosController
+                                                              .idfav.value =
+                                                          convidado['idfav'];
+                                                      acessosController.tel
+                                                              .value =
+                                                          convidado['tel'];
+                                                      acessosController
+                                                              .name
+                                                              .value
+                                                              .text =
+                                                          convidado['nome'];
+
+                                                      acessosController
+                                                          .sendFavoriteConvite()
+                                                          .then((value) {
+                                                        acessosController
+                                                            .getFavoritos();
+                                                        visualizarConvitesController
+                                                            .getAConvite(
+                                                          visualizarConvitesController
+                                                              .idConv.value,
+                                                        );
+                                                      });
+                                                    },
+                                                  ),
+                                                if (convidado['tel'] != null)
+                                                  IconButton(
+                                                    icon: Image.asset(
+                                                      'images/whatsapp.png',
+                                                      width: 34,
+                                                      height: 34,
+                                                    ),
+                                                    onPressed: () {
+                                                      visualizarConvitesController
+                                                              .tel.value =
+                                                          convidado['tel'];
+                                                      visualizarConvitesController
+                                                              .nameGuest.value =
+                                                          convidado['nome'];
+
+                                                      visualizarConvitesController
+                                                          .verificaWhatsApp()
+                                                          .then((res) {
+                                                        final numero =
+                                                            (res['numero'] ??
+                                                                    '')
+                                                                .toString();
+                                                        final wame =
+                                                            (res['wame'] ?? '')
+                                                                .toString();
+                                                        final valido =
+                                                            res['valido'] ==
+                                                                true;
+
+                                                        visualizarConvitesController
+                                                            .whatsappNumber
+                                                            .value
+                                                            .text = numero;
+
+                                                        if (valido) {
+                                                          visualizarConvitesController
+                                                              .sendWhatsApp()
+                                                              .then((value) {
+                                                            if (value !=
+                                                                    null &&
+                                                                value['idace'] !=
+                                                                    null &&
+                                                                value['idace']
+                                                                    .toString()
+                                                                    .isNotEmpty) {
+                                                              final message =
+                                                                  'Olá! você foi convidado por ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. '
+                                                                  'Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! '
+                                                                  'https://www.condosocio.com.br/paginas/a.php?chave=${value['idace']}';
+                                                              whatsAppSend(
+                                                                context,
+                                                                wame,
+                                                                Uri.encodeFull(
+                                                                  message,
+                                                                ),
+                                                              ).then((_) {
+                                                                Get.offAllNamed(
+                                                                    '/home');
+                                                              });
+                                                            } else {
+                                                              onAlertButtonPressed(
+                                                                context,
+                                                                'Algo deu errado\nTente novamente',
+                                                                '/home',
+                                                                'images/error.png',
+                                                              );
+                                                            }
+                                                          });
+                                                        } else {
+                                                          Get.toNamed(
+                                                            '/whatsAppConvite',
+                                                            arguments: numero,
+                                                          );
+                                                        }
+                                                      });
+                                                    },
+                                                  ),
+                                              ],
+                                            ),
                                         ],
                                       ),
                                     ),
-                                    isBefore
-                                        ? Container(
-                                            child: Row(
-                                            children: [
-                                              Column(
-                                                children: [
-                                                  convidados[x]['tel'] != null
-                                                      ? InkWell(
-                                                          child: Icon(
-                                                              convidados[x]['idfav'] ==
-                                                                          null ||
-                                                                      convidados[x]
-                                                                              [
-                                                                              'idfav'] ==
-                                                                          '' ||
-                                                                      convidados[x]
-                                                                              [
-                                                                              'idfav'] ==
-                                                                          '0'
-                                                                  ? Icons
-                                                                      .favorite_border // Ícone vazio
-                                                                  : Icons
-                                                                      .favorite, // Ícone preenchido
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .textSelectionTheme
-                                                                  .selectionColor!,
-                                                              size: 26),
-                                                          onTap: () {
-                                                            acessosController
-                                                                    .idfav
-                                                                    .value =
-                                                                convidados[x]
-                                                                    ['idfav'];
-                                                            acessosController
-                                                                    .tel.value =
-                                                                convidados[x]
-                                                                    ['tel'];
-                                                            acessosController
-                                                                    .name
-                                                                    .value
-                                                                    .text =
-                                                                convidados[x]
-                                                                    ['nome'];
-
-                                                            acessosController
-                                                                .sendFavoriteConvite()
-                                                                .then((value) {
-                                                              print(
-                                                                  'Value Idfav: $value');
-                                                              acessosController
-                                                                  .getFavoritos();
-                                                              visualizarConvitesController
-                                                                  .getAConvite(
-                                                                      visualizarConvitesController
-                                                                          .idConv
-                                                                          .value);
-                                                              // Get.toNamed('/detalhesConvite');
-                                                            });
-                                                          },
-                                                        )
-                                                      : Container(),
-                                                ],
-                                              ),
-                                              Column(
-                                                children: [
-                                                  convidados[x]['tel'] != null
-                                                      ? IconButton(
-                                                          icon: Image.asset(
-                                                            'images/whatsapp.png',
-                                                            width: 40,
-                                                            height: 40,
-                                                          ),
-                                                          onPressed: () {
-                                                            visualizarConvitesController
-                                                                    .tel.value =
-                                                                convidados[x]
-                                                                    ['tel'];
-                                                            visualizarConvitesController
-                                                                    .nameGuest
-                                                                    .value =
-                                                                convidados[x]
-                                                                    ['nome'];
-
-                                                            print(
-                                                                "Idconv ${visualizarConvitesController.idConv.value}");
-
-                                                            visualizarConvitesController
-                                                                .verificaWhatsApp()
-                                                                .then((value) {
-                                                              visualizarConvitesController
-                                                                  .whatsappNumber
-                                                                  .value
-                                                                  .text = value;
-                                                              if (value
-                                                                      .length ==
-                                                                  13) {
-                                                                visualizarConvitesController
-                                                                    .sendWhatsApp()
-                                                                    .then(
-                                                                  (value) {
-                                                                    print(
-                                                                        'ValueSend: $value');
-                                                                    if (value !=
-                                                                        0) {
-                                                                      String
-                                                                          message =
-                                                                          'Olá! você foi convidado por ${loginController.nome.value} morador do condomínio ${loginController.nomeCondo.value}. Agilize seu acesso clicando no link e preencha os campos em abertos. Grato! https://www.condosocio.com.br/paginas/a.php?chave=${value['idace']}';
-
-                                                                      whatsAppSend(
-                                                                        context,
-                                                                        visualizarConvitesController
-                                                                            .whatsappNumber
-                                                                            .value
-                                                                            .text,
-                                                                        Uri.encodeFull(
-                                                                          message,
-                                                                        ),
-                                                                      );
-                                                                    } else {
-                                                                      onAlertButtonPressed(
-                                                                          context,
-                                                                          'Algo deu errado\n Tente novamente',
-                                                                          '/home',
-                                                                          'images/error.png');
-                                                                    }
-                                                                  },
-                                                                );
-                                                              } else {
-                                                                visualizarConvitesController
-                                                                        .whatsappNumber
-                                                                        .value
-                                                                        .text =
-                                                                    '${visualizarConvitesController.whatsappNumber.value.text}';
-                                                                Get.toNamed(
-                                                                    '/whatsAppConvite');
-                                                              }
-                                                            });
-                                                          },
-                                                        )
-                                                      : Container(),
-                                                ],
-                                              ),
-                                            ],
-                                          ))
-                                        : Container(),
-                                  ],
-                                ),
+                                  );
+                                },
                               ),
                             isBefore
                                 ? Container(
@@ -609,11 +789,17 @@ class DetalheConviteWidget extends StatelessWidget {
                                                     if (value == 1) {
                                                       convitesController
                                                           .getConvites();
+                                                      convitesController
+                                                          .page.value = 1;
+                                                      convitesController
+                                                          .selectedTabIndex
+                                                          .value = 1;
                                                       showToast(
                                                           context,
                                                           'Parabéns! Convite deletado com sucesso',
                                                           '');
-                                                      Get.offNamedUntil('home',
+                                                      Get.offNamedUntil(
+                                                          '/convites',
                                                           (route) => false);
                                                     } else {
                                                       onAlertButtonPressed(
@@ -626,7 +812,7 @@ class DetalheConviteWidget extends StatelessWidget {
                                                 });
                                               },
                                               child: Text(
-                                                "Deletar",
+                                                "Excluir Convite",
                                                 style: GoogleFonts.montserrat(
                                                   fontWeight: FontWeight.bold,
                                                   color: Theme.of(context)

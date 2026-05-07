@@ -25,6 +25,7 @@ class ConvitesController extends GetxController {
   var endDate = ''.obs;
 
   var page = 1.obs;
+  var selectedTabIndex = 0.obs;
 
   var count = false.obs;
   var countApp = false.obs;
@@ -36,6 +37,7 @@ class ConvitesController extends GetxController {
 
   var isEdited = false.obs;
   var isLoading = false.obs;
+  var hasLoadedConvites = false.obs;
 
   var isChecked = false.obs;
 
@@ -78,16 +80,46 @@ class ConvitesController extends GetxController {
     countApp(false);
   }
 
-  handleAddGuestList() {
-    guestList.addAll({
-      {
-        'nome': acessosController.name.value.text,
-        'tipo': acessosController.itemSelecionado.value,
+  String _normalizePhone(String? phone) {
+    return (phone ?? '').replaceAll(RegExp(r'[^0-9]'), '');
+  }
+
+  bool hasGuestWithPhone(String? phone) {
+    final normalizedPhone = _normalizePhone(phone);
+    if (normalizedPhone.isEmpty) {
+      return false;
+    }
+
+    return guestList.any((guest) {
+      if (guest is! Map) {
+        return false;
       }
+
+      final guestPhone = _normalizePhone(guest['tel']?.toString());
+      return guestPhone.isNotEmpty && guestPhone == normalizedPhone;
     });
+  }
+
+  String handleAddGuestList() {
+    final phone = acessosController.phone.value.text;
+    if (hasGuestWithPhone(phone)) {
+      return 'duplicate_phone';
+    }
+
+    final guest = <String, dynamic>{
+      'nome': acessosController.name.value.text,
+      'tipo': acessosController.itemSelecionado.value,
+    };
+
+    if (phone.isNotEmpty) {
+      guest['tel'] = phone;
+    }
+
+    guestList.add(guest);
     acessosController.name.value.text = '';
     acessosController.phone.value.text = '';
     count(false);
+    return 'success';
   }
 
   handleAddAppList() {
@@ -103,23 +135,42 @@ class ConvitesController extends GetxController {
     countApp(false);
   }
 
-  getAFavorite() async {
+  Future<String> getAFavorite() async {
     acessosController.isLoading.value = true;
     final response = await ApiAcessos.getAFavorite();
     var dados = json.decode(response.body);
     print(dados);
     acessosController.favorito = await dados.map((item) => item).toList();
 
-    guestList.addAll({
-      {
-        'idfav': acessosController.favorito[0]['idfav'].toString(),
-        'nome': acessosController.favorito[0]['pessoa'].toString(),
-        'tel': acessosController.favorito[0]['cel'].toString(),
-        'tipo': 'Convidado',
-      }
+    final favoritePhone = acessosController.favorito[0]['cel'].toString();
+    if (hasGuestWithPhone(favoritePhone)) {
+      acessosController.isLoading.value = false;
+      return 'duplicate_phone';
+    }
+
+    guestList.add({
+      'idfav': acessosController.favorito[0]['idfav'].toString(),
+      'nome': acessosController.favorito[0]['pessoa'].toString(),
+      'tel': favoritePhone,
+      'tipo': 'Convidado',
     });
 
     acessosController.isLoading.value = false;
+    return 'success';
+  }
+
+  String addContactGuest(String name, String phone) {
+    if (hasGuestWithPhone(phone)) {
+      return 'duplicate_phone';
+    }
+
+    guestList.add({
+      'nome': name,
+      'tel': phone,
+      'tipo': 'Convidado',
+    });
+
+    return 'success';
   }
 
   sendConvites(String startDate, String endDate, bool acesso) async {
@@ -138,15 +189,17 @@ class ConvitesController extends GetxController {
   getConvites() async {
     visualizarConvitesController.isLoading(true);
     isLoading(true);
-
-    var response = await ApiConvites.getConvites();
-
-    Iterable lista = json.decode(response.body);
-    convites
-        .assignAll(lista.map((model) => ConvitesMapa.fromJson(model)).toList());
-
-    isLoading(false);
-    visualizarConvitesController.isLoading(false);
+    try {
+      var response = await ApiConvites.getConvites();
+      Iterable lista = json.decode(response.body);
+      convites.assignAll(
+          lista.map((model) => ConvitesMapa.fromJson(model)).toList());
+    } catch (_) {
+    } finally {
+      hasLoadedConvites(true);
+      isLoading(false);
+      visualizarConvitesController.isLoading(false);
+    }
   }
 
   getBannerTelaInicial() async {
@@ -171,10 +224,18 @@ class ConvitesController extends GetxController {
 
   handleAddPage() {
     page.value = 2;
+    selectedTabIndex.value = 0;
   }
 
   handleMinusPage() {
     page.value = 1;
+    selectedTabIndex.value = 0;
+  }
+
+  openVisualizarTab() {
+    page.value = 1;
+    selectedTabIndex.value = 1;
+    getConvites();
   }
 
   editAInvite() async {
@@ -188,9 +249,10 @@ class ConvitesController extends GetxController {
     return data;
   }
 
-  /* @override
+  @override
   void onInit() {
     getConvites();
+    ever(loginController.idcond, (_) => getConvites());
     super.onInit();
-  }*/
+  }
 }

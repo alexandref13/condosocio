@@ -7,12 +7,13 @@ import 'package:http/http.dart' as http;
 import '../../controllers/acessos/acessos_controller_espera.dart';
 
 class ApiAcessos {
-  static Future getAcessos() async {
+  static Future getAcessos({int page = 0}) async {
     LoginController loginController = Get.put(LoginController());
-    print("idUsu Acessovis: ${loginController.id.value}");
+    print("idUsu Acessovis: ${loginController.id.value} page: $page");
     return await http.get(
       Uri.https("www.condosocio.com.br", "/flutter/acessovis.php", {
         "idUsu": loginController.id.value,
+        "page": page.toString(),
       }),
     );
   }

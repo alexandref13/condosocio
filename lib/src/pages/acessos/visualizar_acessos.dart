@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 import 'package:condosocio/src/components/visualizar_acessos/visualizar_acessos_entrada.dart';
 import 'package:condosocio/src/pages/esperaacessos/acessos_espera.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +62,7 @@ class VisualizarAcessos extends StatelessWidget {
               ],
             ),
           ),
+          bottomNavigationBar: const CondoNavBar(),
           body: const TabBarView(
             children: [
               VisualizarAcessosEntrada(),

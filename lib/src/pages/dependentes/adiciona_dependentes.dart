@@ -18,10 +18,12 @@ class AdicionaDependentes extends StatefulWidget {
 
 class _AdicionaDependentesState extends State<AdicionaDependentes> {
   DependentesController dependentesController =
-      Get.put(DependentesController());
+      Get.find<DependentesController>();
   final LoginController loginController = Get.put(LoginController());
   PerfilController perfilController = Get.put(PerfilController());
   bool _isVisible = true;
+  late final VoidCallback _nomeListener;
+  late final VoidCallback _sobrenomeListener;
 
   var startSelectedDate = DateTime.now();
   var startSelectedTime = TimeOfDay.now();
@@ -75,8 +77,32 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
     dependentesController.firstId.value = novoItem;
   }
 
+  void _normalizePrimeiraLetraMaiuscula(TextEditingController controller) {
+    final text = controller.text;
+
+    if (text.isEmpty) return;
+
+    final normalized = text[0].toUpperCase() + text.substring(1);
+    if (normalized == text) return;
+
+    controller.value = controller.value.copyWith(
+      text: normalized,
+      selection: controller.selection,
+      composing: TextRange.empty,
+    );
+  }
+
   @override
   void initState() {
+    _nomeListener = () =>
+        _normalizePrimeiraLetraMaiuscula(dependentesController.nome.value);
+    _sobrenomeListener = () => _normalizePrimeiraLetraMaiuscula(
+          dependentesController.sobrenome.value,
+        );
+
+    dependentesController.nome.value.addListener(_nomeListener);
+    dependentesController.sobrenome.value.addListener(_sobrenomeListener);
+
     var formatDate = dependentesController.endDate.value != ''
         ? DateTime.parse(dependentesController.endDate.value)
         : null;
@@ -116,9 +142,16 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
   }
 
   @override
+  void dispose() {
+    dependentesController.nome.value.removeListener(_nomeListener);
+    dependentesController.sobrenome.value.removeListener(_sobrenomeListener);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return dependentesController.isLoading.value
+      return dependentesController.isSubmitting.value
           ? CircularProgressIndicatorWidget()
           : SingleChildScrollView(
               child: Container(
@@ -161,21 +194,13 @@ class _AdicionaDependentesState extends State<AdicionaDependentes> {
                                     .textSelectionTheme
                                     .selectionColor!,
                               ),
-                              items: loginController.condofacial.value == 'SIM'
-                                  ? dependentesController.tiposUsuarios
-                                      .map((String dropDownStringItem) {
-                                      return DropdownMenuItem<String>(
-                                        value: dropDownStringItem,
-                                        child: Text(dropDownStringItem),
-                                      );
-                                    }).toList()
-                                  : dependentesController.tiposUsuarios2
-                                      .map((String dropDownStringItem) {
-                                      return DropdownMenuItem<String>(
-                                        value: dropDownStringItem,
-                                        child: Text(dropDownStringItem),
-                                      );
-                                    }).toList(),
+                              items: dependentesController.tiposUsuarios
+                                  .map((String dropDownStringItem) {
+                                return DropdownMenuItem<String>(
+                                  value: dropDownStringItem,
+                                  child: Text(dropDownStringItem),
+                                );
+                              }).toList(),
                               onChanged: (String? novoItemSelecionado) {
                                 dropDownFavoriteSelected(novoItemSelecionado!);
                                 dependentesController.tipoUsuario.value =

@@ -33,38 +33,73 @@ class AcessosEspera extends StatelessWidget {
                 ),
               )
             : acessosEsperaController.acessos.length == 0
-                ? Stack(
-                    children: <Widget>[
-                      Container(
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width,
-                        child: Image.asset(
-                          'images/semregistro.png',
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                      Center(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(top: 100),
-                              //child: Icon(Icons.block, size: 34, color: Colors.red[900]),
-                            ),
-                            Text(
-                              'Sem registros',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 14.0,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .selectionColor!,
-                                fontWeight: FontWeight.bold,
+                ? LayoutBuilder(
+                    builder: (context, constraints) {
+                      final textColor =
+                          Theme.of(context).textSelectionTheme.selectionColor!;
+                      return Center(
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxWidth: constraints.maxWidth * 0.72,
+                                  maxHeight: constraints.maxHeight * 0.48,
+                                ),
+                                child: Image.asset(
+                                  'images/semregistro.png',
+                                  fit: BoxFit.contain,
+                                ),
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 20),
+                              Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 18,
+                                  vertical: 16,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondary
+                                      .withValues(alpha: 0.42),
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(
+                                    color: Colors.white.withValues(alpha: 0.10),
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Nenhum acesso aguardando',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: textColor,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Quando houver visitantes aguardando entrada, eles aparecerão aqui.',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 12,
+                                        height: 1.45,
+                                        color: textColor.withValues(alpha: 0.78),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      )
-                    ],
+                      );
+                    },
                   )
                 : Column(
                     children: [

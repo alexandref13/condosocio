@@ -13,6 +13,14 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+gradle.afterProject { proj ->
+    if (proj.plugins.hasPlugin('com.android.library')) {
+        proj.android {
+            compileSdkVersion 36
+        }
+    }
+}
+
 tasks.register("clean", Delete) {
     delete rootProject.layout.buildDirectory
 }

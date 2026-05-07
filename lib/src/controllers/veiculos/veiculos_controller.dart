@@ -16,6 +16,7 @@ class VeiculosController extends GetxController {
   var contagem = TextEditingController().obs;
   var idvei = ''.obs;
   var search = TextEditingController().obs;
+  var searchQuery = ''.obs;
   var searchResult = [].obs;
   var isChecked = true.obs;
   var veiculos = [].obs;
@@ -65,17 +66,48 @@ class VeiculosController extends GetxController {
     idmodelo.value = '0';
   }
 
-  onSearchTextChanged(String text) {
+  String _normalizeSearchText(String value) {
+    const accents = {
+      'a': 'áàãâä',
+      'e': 'éèêë',
+      'i': 'íìîï',
+      'o': 'óòõôö',
+      'u': 'úùûü',
+      'c': 'ç',
+      'n': 'ñ',
+    };
+
+    var normalized = value.toLowerCase().trim();
+    accents.forEach((plain, variants) {
+      for (final char in variants.split('')) {
+        normalized = normalized.replaceAll(char, plain);
+      }
+    });
+    return normalized;
+  }
+
+  void onSearchTextChanged(String text) {
+    searchQuery(text.trim());
     searchResult.clear();
-    if (text.isEmpty) {
+
+    if (searchQuery.value.isEmpty) {
       return;
     }
-    veiculos.forEach((details) {
-      if (details.marca.toLowerCase().contains(text.toLowerCase()) ||
-          details.modelo.toLowerCase().contains(text.toLowerCase()) ||
-          details.placa.toLowerCase().contains(text.toLowerCase()))
-        searchResult.add(details);
-    });
+
+    final query = _normalizeSearchText(searchQuery.value);
+    searchResult.assignAll(
+      veiculos.where((details) {
+        final marca = _normalizeSearchText(details.marca.toString());
+        final modelo = _normalizeSearchText(details.modelo.toString());
+        final placa = _normalizeSearchText(details.placa.toString());
+        final marcaModelo = '$marca $modelo';
+
+        return marca.contains(query) ||
+            modelo.contains(query) ||
+            placa.contains(query) ||
+            marcaModelo.contains(query);
+      }).toList(),
+    );
   }
 
   Future<dynamic> sendVeiculos() async {
@@ -106,6 +138,11 @@ class VeiculosController extends GetxController {
     var dados = json.decode(response.body);
     veiculos.value =
         dados.map((model) => VeiculosMapa.fromJson(model)).toList();
+
+    if (searchQuery.value.isNotEmpty) {
+      onSearchTextChanged(searchQuery.value);
+    }
+
     isLoading(false);
     return dados;
   }
@@ -144,5 +181,18 @@ class VeiculosController extends GetxController {
     getVeiculos();
     getMarcas();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    marca.value.dispose();
+    modelo.value.dispose();
+    cor.value.dispose();
+    ano.value.dispose();
+    placa.value.dispose();
+    qtdVagas.value.dispose();
+    contagem.value.dispose();
+    search.value.dispose();
+    super.onClose();
   }
 }

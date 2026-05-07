@@ -27,39 +27,77 @@ class VisualizarPets extends StatelessWidget {
       final list =
           isSearching ? petsController.searchResult : petsController.pets;
 
-      // CASO 1: sem busca e sem registros -> tela antiga com imagem
       if (!isSearching && list.isEmpty) {
-        return Stack(
-          children: <Widget>[
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child:
-                  Image.asset('images/semregistro.png', fit: BoxFit.fitWidth),
-            ),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  const SizedBox(height: 100),
-                  Text(
-                    'Sem registros',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 14.0,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor!,
-                      fontWeight: FontWeight.bold,
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final textColor =
+                Theme.of(context).textSelectionTheme.selectionColor!;
+            return Center(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: constraints.maxWidth * 0.72,
+                        maxHeight: constraints.maxHeight * 0.48,
+                      ),
+                      child: Image.asset(
+                        'images/semregistro.png',
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 16,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withValues(alpha: 0.42),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.10),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Nenhum pet cadastrado',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: textColor,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Quando houver pets cadastrados na sua unidade, eles aparecerão aqui.',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              height: 1.45,
+                              color: textColor.withValues(alpha: 0.78),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )
-          ],
+            );
+          },
         );
       }
 
-      // CASOS 2 e 3: sempre mostra pesquisa + cabeçalho;
-      // o corpo pode ser lista ou a mensagem central "Nenhum pet encontrado"
       return Column(
         children: [
           const SizedBox(height: 20),
@@ -69,111 +107,178 @@ class VisualizarPets extends StatelessWidget {
             petsController.onSearchTextChanged,
             "Pesquise por Nome...",
           ),
-
-          // Cabeçalho (3 colunas)
-          Container(
-            padding: const EdgeInsets.all(16),
-            color: Theme.of(context).colorScheme.secondary,
-            child: Row(
-              children: const [
-                _HeaderCell('NOME', flex: 3),
-                _HeaderCell('TIPO', flex: 2),
-                _HeaderCell('RAÇA', flex: 3),
-              ],
-            ),
-          ),
-
-          // Corpo
           Expanded(
             child: list.isEmpty
-                // CASO 2: buscando e sem resultados -> mensagem central
-                ? Center(
-                    child: Text(
-                      'Nenhum pet encontrado',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.8,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!,
-                      ),
-                    ),
-                  )
-                // CASO 3: há resultados -> lista normal
-                : ListView.separated(
-                    itemCount: list.length,
-                    separatorBuilder: (_, __) => const Divider(height: 1),
-                    itemBuilder: (_, i) {
-                      final pet = list[i];
-                      final String nome = pet.nome ?? '';
-                      final String tipo = pet.tipo ?? '';
-                      final String raca = pet.raca ?? '';
-
-                      return InkWell(
-                        onTap: () {
-                          petsController.idpet.value = pet.idpet;
-
-                          petsModalBottomSheet(
-                              context,
-                              pet.nome,
-                              pet.tipo,
-                              pet.raca,
-                              pet.sexo,
-                              pet.birthdate,
-                              pet.imgpet,
-                              petsController.idpet.value);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 14),
-                          child: Row(
+                ? LayoutBuilder(
+                    builder: (context, constraints) {
+                      final textColor =
+                          Theme.of(context).textSelectionTheme.selectionColor!;
+                      return Center(
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Expanded(
-                                flex: 3,
-                                child: Text(
-                                  nome,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                  ),
+                              ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxWidth: constraints.maxWidth * 0.72,
+                                  maxHeight: constraints.maxHeight * 0.48,
+                                ),
+                                child: Image.asset(
+                                  'images/semregistro.png',
+                                  fit: BoxFit.contain,
                                 ),
                               ),
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  tipo,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 12,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
+                              const SizedBox(height: 20),
+                              Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 18,
+                                  vertical: 16,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondary
+                                      .withValues(alpha: 0.42),
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(
+                                    color: Colors.white.withValues(alpha: 0.10),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Text(
-                                  raca,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 12,
-                                    color: Theme.of(context)
-                                        .textSelectionTheme
-                                        .selectionColor!,
-                                  ),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Nenhum pet encontrado',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: textColor,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Tente buscar por outro nome de pet.',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 12,
+                                        height: 1.45,
+                                        color: textColor.withValues(alpha: 0.78),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    itemCount: list.length,
+                    itemBuilder: (_, i) {
+                      final pet = list[i];
+                      final imageUrl = (pet.imgpet.trim().isEmpty)
+                          ? null
+                          : 'https://www.condosocio.com.br/acond/downloads/fotospets/${pet.imgpet}';
+                      final textColor = Theme.of(context).textSelectionTheme.selectionColor!;
+
+                      return GestureDetector(
+                        onTap: () {
+                          petsController.idpet.value = pet.idpet;
+                          petsModalBottomSheet(
+                            context,
+                            pet.nome,
+                            pet.tipo,
+                            pet.raca,
+                            pet.sexo,
+                            pet.birthdate,
+                            pet.imgpet,
+                            petsController.idpet.value,
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary,
+                            borderRadius: BorderRadius.circular(14),
+                            boxShadow: const [
+                              BoxShadow(color: Colors.black26, blurRadius: 6, offset: Offset(0, 3)),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(14),
+                            child: Row(
+                              children: [
+                                // Foto circular
+                                ClipOval(
+                                  child: SizedBox(
+                                    width: 64,
+                                    height: 64,
+                                    child: imageUrl == null
+                                        ? Container(
+                                            color: Theme.of(context).primaryColorDark,
+                                            alignment: Alignment.center,
+                                            child: Icon(Icons.pets, size: 32, color: textColor),
+                                          )
+                                        : Image.network(
+                                            imageUrl,
+                                            fit: BoxFit.cover,
+                                            loadingBuilder: (_, child, progress) =>
+                                                progress == null
+                                                    ? child
+                                                    : Container(
+                                                        color: Theme.of(context).primaryColorDark,
+                                                        alignment: Alignment.center,
+                                                        child: const CircularProgressIndicator(
+                                                          strokeWidth: 2,
+                                                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                                        ),
+                                                      ),
+                                            errorBuilder: (_, __, ___) => Container(
+                                              color: Theme.of(context).primaryColorDark,
+                                              alignment: Alignment.center,
+                                              child: Icon(Icons.pets, size: 32, color: textColor),
+                                            ),
+                                          ),
+                                  ),
+                                ),
+                                const SizedBox(width: 14),
+                                // Informações
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        pet.nome,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700,
+                                          color: textColor,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        pet.tipo.isEmpty ? '—' : pet.tipo,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 12,
+                                          color: textColor.withValues(alpha: 0.8),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Icon(Icons.chevron_right, color: textColor.withValues(alpha: 0.5)),
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -183,39 +288,5 @@ class VisualizarPets extends StatelessWidget {
         ],
       );
     });
-  }
-}
-
-// Helpers visuais para manter alinhamento
-class _HeaderCell extends StatelessWidget {
-  final String text;
-  final int flex;
-  const _HeaderCell(this.text, {this.flex = 1});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      flex: flex,
-      child: Text(
-        text,
-        style: GoogleFonts.montserrat(
-          fontSize: 12.0,
-          letterSpacing: 2,
-          fontWeight: FontWeight.w500,
-          color: Theme.of(context).textSelectionTheme.selectionColor!,
-        ),
-      ),
-    );
-  }
-}
-
-class _Cell extends StatelessWidget {
-  final Widget child;
-  final int flex;
-  const _Cell(this.child, {this.flex = 1});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(flex: flex, child: child);
   }
 }

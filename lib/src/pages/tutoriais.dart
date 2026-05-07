@@ -1,14 +1,15 @@
 import 'package:condosocio/src/components/lista_videos_tutoriais.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/controllers/alvo_tv_controller.dart';
+import 'package:condosocio/src/controllers/tutoriais_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class Tutoriais extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    AlvoTvController alvoTv = Get.put(AlvoTvController());
+    final TutoriaisController tutoriais = Get.put(TutoriaisController());
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -25,9 +26,10 @@ class Tutoriais extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: CondoNavBar(),
       body: Obx(
         () {
-          return alvoTv.isLoading.value
+          return tutoriais.isLoading.value
               ? CircularProgressIndicatorWidget()
               : listaVideosTutoriais(context);
         },

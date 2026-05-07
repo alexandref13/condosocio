@@ -13,6 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
 import '../components/utils/edge_alert_error_widget.dart';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class Perfil extends StatefulWidget {
   @override
@@ -320,6 +321,7 @@ class _PerfilState extends State<Perfil> {
             ),
             centerTitle: true,
           ),
+          bottomNavigationBar: CondoNavBar(),
           body: Obx(() {
             return perfilController.isLoading.value
                 ? CircularProgressIndicatorWidget()

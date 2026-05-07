@@ -1,12 +1,15 @@
 import 'package:condosocio/src/components/utils/box_search.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
-import 'package:condosocio/src/controllers/comunicados/comunicados_controller.dart';
 import 'package:condosocio/src/controllers/comunicados/visualizar_comunicados_controller.dart';
+import 'package:condosocio/src/services/comunicados/mapa_comunicados.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class Comunicados extends StatefulWidget {
   @override
@@ -14,32 +17,76 @@ class Comunicados extends StatefulWidget {
 }
 
 class _ComunicadosState extends State<Comunicados> {
-  VisualizarComunicadosController visualizarComunicadosController =
+  final VisualizarComunicadosController visualizarComunicadosController =
       Get.put(VisualizarComunicadosController());
-  ComunicadosController comunicadosController =
-      Get.put(ComunicadosController());
 
-  Future<void> launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
-      );
-    } else {
-      throw 'Could not launch $url';
+  Future<void> _abrirArquivo(String url, String titulo) async {
+    if (Platform.isAndroid) {
+      // Android WebView não renderiza PDF nativamente — usa o Google Docs viewer
+      final viewerUrl =
+          'https://docs.google.com/gview?embedded=true&url=${Uri.encodeComponent(url)}';
+      Get.toNamed('/webview', arguments: {'url': viewerUrl, 'titulo': titulo});
+      return;
     }
+
+    // iOS: SFSafariViewController renderiza PDF nativamente dentro do app
+    final uri = Uri.parse(url);
+    if (await launchUrl(uri, mode: LaunchMode.inAppBrowserView)) return;
+    if (await launchUrl(uri, mode: LaunchMode.externalApplication)) return;
   }
 
-  @override
-  void initState() {
-    super.initState();
-    comunicadosController.getComunicados();
+  List<DadosComunicados> _comunicadosVisiveis() {
+    final bool hasSearch =
+        visualizarComunicadosController.searchQuery.value.isNotEmpty;
+
+    if (hasSearch) {
+      return visualizarComunicadosController.searchResult.toList();
+    }
+
+    return visualizarComunicadosController.comunicados.toList();
+  }
+
+  String _anoDoComunicado(DadosComunicados comunicado) {
+    final partes = comunicado.dataCompleta.split('/');
+    if (partes.length == 3) {
+      return partes[2];
+    }
+    return 'Sem data';
+  }
+
+  List<Widget> _buildComunicadosAgrupados(List<DadosComunicados> comunicados) {
+    final widgets = <Widget>[];
+    String? anoAtual;
+
+    for (final comunicado in comunicados) {
+      final ano = _anoDoComunicado(comunicado);
+
+      if (ano != anoAtual) {
+        widgets.add(_YearHeader(ano: ano));
+        anoAtual = ano;
+      }
+
+      widgets.add(
+        _ComunicadoCard(
+          comunicado: comunicado,
+          onTap: () {
+            _abrirArquivo(
+              'https://www.condosocio.com.br/acond/downloads/comunicados_arq/${comunicado.arquivo}',
+              comunicado.titulo,
+            );
+          },
+        ),
+      );
+    }
+
+    return widgets;
   }
 
   @override
   Widget build(BuildContext context) {
+    final textColor =
+        Theme.of(context).textSelectionTheme.selectionColor ?? Colors.white;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -47,237 +94,305 @@ class _ComunicadosState extends State<Comunicados> {
             onPressed: () {
               Get.offNamed('/home');
             },
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
           ),
           title: Text(
             'Comunicados',
             style: GoogleFonts.montserrat(
               fontSize: 16,
-              color: Theme.of(context).textSelectionTheme.selectionColor!,
+              color: textColor,
             ),
           ),
           centerTitle: true,
         ),
-        body: Obx(
-          () {
-            return comunicadosController.isLoading.value
-                ? CircularProgressIndicatorWidget()
-                : Column(
+        bottomNavigationBar: CondoNavBar(),
+        body: Obx(() {
+          final bool isLoading =
+              visualizarComunicadosController.isLoading.value;
+          final bool hasSearch =
+              visualizarComunicadosController.searchQuery.value.isNotEmpty;
+          final comunicados = _comunicadosVisiveis();
+
+          if (isLoading && comunicados.isEmpty) {
+            return CircularProgressIndicatorWidget();
+          }
+
+          return Column(
+            children: [
+              const SizedBox(height: 12),
+              boxSearch(
+                context,
+                visualizarComunicadosController.search.value,
+                visualizarComunicadosController.onSearchTextChanged,
+                'Pesquise os Comunicados...',
+              ),
+              Expanded(
+                child: comunicados.isEmpty
+                    ? _EmptyState(hasSearch: hasSearch)
+                    : SmartRefresher(
+                        controller:
+                            visualizarComunicadosController.refreshController,
+                        enablePullDown: true,
+                        enablePullUp: !hasSearch &&
+                            visualizarComunicadosController.hasMore.value,
+                        onRefresh: visualizarComunicadosController.onRefresh,
+                        onLoading: visualizarComunicadosController.onLoading,
+                        footer: ClassicFooter(
+                          loadingText: 'Carregando mais comunicados...',
+                          idleText: 'Puxe para carregar mais',
+                          noDataText: 'Todos os comunicados foram carregados',
+                        ),
+                        child: ListView(
+                          padding: const EdgeInsets.fromLTRB(16, 8, 16, 20),
+                          children: _buildComunicadosAgrupados(comunicados),
+                        ),
+                      ),
+              ),
+            ],
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class _ComunicadoCard extends StatelessWidget {
+  final DadosComunicados comunicado;
+  final VoidCallback onTap;
+
+  const _ComunicadoCard({
+    required this.comunicado,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final textColor =
+        Theme.of(context).textSelectionTheme.selectionColor ?? Colors.white;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondary,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 8,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 62,
+              height: 62,
+              decoration: BoxDecoration(
+                color:
+                    Theme.of(context).primaryColorDark.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(
+                  color: Theme.of(context)
+                      .primaryColorDark
+                      .withValues(alpha: 0.45),
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    comunicado.dia,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: textColor,
+                    ),
+                  ),
+                  Text(
+                    comunicado.mes.toUpperCase(),
+                    style: GoogleFonts.montserrat(
+                      fontSize: 11,
+                      letterSpacing: 1.2,
+                      fontWeight: FontWeight.w600,
+                      color: textColor.withValues(alpha: 0.8),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    comunicado.titulo,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: textColor,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
                     children: [
-                      boxSearch(
-                          context,
-                          visualizarComunicadosController.search.value,
-                          visualizarComunicadosController.onSearchTextChanged,
-                          "Pesquise os Comunicados..."),
+                      Icon(
+                        Icons.file_download_outlined,
+                        size: 16,
+                        color: textColor.withValues(alpha: 0.75),
+                      ),
+                      const SizedBox(width: 6),
                       Expanded(
-                        child: _listaComunicados(),
-                      )
+                        child: Text(
+                          'Toque para baixar o comunicado',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 11,
+                            color: textColor.withValues(alpha: 0.72),
+                          ),
+                        ),
+                      ),
                     ],
-                  );
-          },
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 10),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 15,
+              color: textColor.withValues(alpha: 0.7),
+            ),
+          ],
         ),
       ),
     );
   }
+}
 
-  _listaComunicados() {
-    if (comunicadosController.comunicados.length == 0) {
-      return Stack(
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Image.asset(
-              'images/semregistro.png',
-              fit: BoxFit.fitWidth,
+class _YearHeader extends StatelessWidget {
+  final String ano;
+
+  const _YearHeader({required this.ano});
+
+  @override
+  Widget build(BuildContext context) {
+    final textColor =
+        Theme.of(context).textSelectionTheme.selectionColor ?? Colors.white;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 8, bottom: 10),
+      child: Row(
+        children: [
+          Text(
+            ano,
+            style: GoogleFonts.montserrat(
+              fontSize: 18,
+              fontWeight: FontWeight.w800,
+              color: textColor,
             ),
           ),
-          Center(
+          const SizedBox(width: 10),
+          Expanded(
+            child: Container(
+              height: 1,
+              color: textColor.withValues(alpha: 0.22),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  final bool hasSearch;
+
+  const _EmptyState({required this.hasSearch});
+
+  @override
+  Widget build(BuildContext context) {
+    final textColor =
+        Theme.of(context).textSelectionTheme.selectionColor ?? Colors.white;
+    final title = hasSearch
+        ? 'Nenhum comunicado encontrado'
+        : 'Nenhum comunicado cadastrado';
+    final subtitle = hasSearch
+        ? 'Tente buscar por outro título de comunicado.'
+        : 'Quando houver comunicados publicados pela administração, eles aparecerão aqui.';
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Center(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 100),
-                  //child: Icon(Icons.block, size: 34, color: Colors.red[900]),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: constraints.maxWidth * 0.72,
+                    maxHeight: constraints.maxHeight * 0.48,
+                  ),
+                  child: Image.asset(
+                    'images/semregistro.png',
+                    fit: BoxFit.contain,
+                  ),
                 ),
-                Text(
-                  'Sem registros',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14.0,
-                    color: Theme.of(context).textSelectionTheme.selectionColor!,
-                    fontWeight: FontWeight.bold,
+                const SizedBox(height: 20),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 18,
+                    vertical: 16,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .secondary
+                        .withValues(alpha: 0.42),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.10),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: textColor,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        subtitle,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          height: 1.45,
+                          color: textColor.withValues(alpha: 0.78),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-          )
-        ],
-      );
-    } else {
-      return SmartRefresher(
-        controller: visualizarComunicadosController.refreshController,
-        onRefresh: visualizarComunicadosController.onRefresh,
-        onLoading: visualizarComunicadosController.onLoading,
-        child: visualizarComunicadosController.searchResult.isNotEmpty ||
-                visualizarComunicadosController.search.value.text.isNotEmpty
-            ? Container(
-                padding: EdgeInsets.all(8),
-                child: ListView(
-                  children: [
-                    Container(
-                        padding: EdgeInsets.only(bottom: 30),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        height: MediaQuery.of(context).size.height,
-                        child: ListView.builder(
-                            itemCount: visualizarComunicadosController
-                                .searchResult.length,
-                            itemBuilder: (context, index) {
-                              var search = visualizarComunicadosController
-                                  .searchResult[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  launchInBrowser(
-                                      "https://www.condosocio.com.br/acond/downloads/comunicados_arq/${search.arquivo}");
-                                },
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  child: ListTile(
-                                      leading: RichText(
-                                        text: TextSpan(
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12,
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor!),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                                text: search.dia + "  ",
-                                                style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            TextSpan(
-                                              text: search.mes,
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor!,
-                                                  letterSpacing: 2),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      title: Container(
-                                        child: Center(
-                                          child: Text(
-                                            search.titulo,
-                                            style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                      trailing: Icon(
-                                        Icons.download,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor!,
-                                        size: 26,
-                                      )),
-                                ),
-                              );
-                            }))
-                  ],
-                ))
-            : Container(
-                padding: EdgeInsets.all(8),
-                child: ListView(
-                  children: [
-                    Container(
-                        padding: EdgeInsets.only(bottom: 30),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        height: MediaQuery.of(context).size.height,
-                        child: ListView.builder(
-                            itemCount: comunicadosController.comunicados.length,
-                            itemBuilder: (context, index) {
-                              var comunicados =
-                                  comunicadosController.comunicados[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  launchInBrowser(
-                                      "https://www.condosocio.com.br/acond/downloads/comunicados_arq/${comunicados.arquivo}");
-                                },
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  child: ListTile(
-                                      leading: RichText(
-                                        text: TextSpan(
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12,
-                                              color: Theme.of(context)
-                                                  .textSelectionTheme
-                                                  .selectionColor!),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                                text: comunicados.dia + "  ",
-                                                style: GoogleFonts.montserrat(
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            TextSpan(
-                                              text: comunicados.mes,
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .textSelectionTheme
-                                                      .selectionColor!,
-                                                  letterSpacing: 2),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      title: Container(
-                                        child: Center(
-                                          child: Text(
-                                            comunicados.titulo,
-                                            style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .textSelectionTheme
-                                                    .selectionColor!,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                      trailing: Icon(
-                                        Icons.download,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .selectionColor!,
-                                        size: 26,
-                                      )),
-                                ),
-                              );
-                            }))
-                  ],
-                )),
-      );
-    }
+          ),
+        );
+      },
+    );
   }
 }

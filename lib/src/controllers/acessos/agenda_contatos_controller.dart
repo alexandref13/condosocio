@@ -10,7 +10,7 @@ class AgendaContatosController extends GetxController {
   Contact? contacts;
   var phone;
 
-  Future<void> pickContact() async {
+  Future<String> pickContact() async {
     try {
       final contact = await FlutterContacts.openExternalPick();
 
@@ -19,16 +19,18 @@ class AgendaContatosController extends GetxController {
         final phones = contact.phones.map((e) => e.number);
 
         if (phones.isNotEmpty) {
-          convitesController.guestList.add({
-            'nome': contact.displayName,
-            'tel': phones.first,
-            'tipo': 'Convidado',
-          });
+          final result = convitesController.addContactGuest(
+            contact.displayName,
+            phones.first,
+          );
+          return result;
         }
       }
     } catch (e) {
       print('Erro ao selecionar contato: $e');
     }
+
+    return 'cancelled';
   }
 
   Future<bool> getPermission() async {

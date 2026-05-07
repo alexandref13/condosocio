@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class Senha extends StatefulWidget {
   @override
@@ -27,6 +28,7 @@ class _SenhaState extends State<Senha> {
           ),
         ),
       ),
+      bottomNavigationBar: const CondoNavBar(activeIndex: 1),
       body: SingleChildScrollView(
         child: Obx(
           () {

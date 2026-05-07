@@ -1,3 +1,4 @@
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 import 'package:condosocio/src/components/lista_videos_alvo_tv.dart';
 import 'package:condosocio/src/components/utils/circular_progress_indicator.dart';
 import 'package:condosocio/src/controllers/alvo_tv_controller.dart';
@@ -5,17 +6,33 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AlvoTv extends StatelessWidget {
+class AlvoTv extends StatefulWidget {
+  @override
+  State<AlvoTv> createState() => _AlvoTvState();
+}
+
+class _AlvoTvState extends State<AlvoTv> {
+  late final AlvoTvController alvoTv;
+
+  @override
+  void initState() {
+    super.initState();
+    alvoTv = Get.put(AlvoTvController());
+  }
+
+  @override
+  void dispose() {
+    Get.delete<AlvoTvController>();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    AlvoTvController alvoTv = Get.put(AlvoTvController());
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Get.offNamed('/home');
-          },
-          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Get.offNamed('/home'),
+          icon: const Icon(Icons.arrow_back_ios),
         ),
         title: Text(
           'CondoPlay',
@@ -25,12 +42,11 @@ class AlvoTv extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: const CondoNavBar(activeIndex: 3),
       body: Obx(
-        () {
-          return alvoTv.isLoading.value
-              ? CircularProgressIndicatorWidget()
-              : listaVideos(context);
-        },
+        () => alvoTv.isLoading.value
+            ? CircularProgressIndicatorWidget()
+            : listaVideos(context),
       ),
     );
   }

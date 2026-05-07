@@ -7,6 +7,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class BoletoPage extends StatelessWidget {
   @override
@@ -25,6 +26,7 @@ class BoletoPage extends StatelessWidget {
             ),
           ),
         ),
+        bottomNavigationBar: CondoNavBar(),
         body: Obx(() {
           return boletoController.isLoading.value
               ? CircularProgressIndicatorWidget()

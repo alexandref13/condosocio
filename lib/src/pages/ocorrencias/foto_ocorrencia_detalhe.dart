@@ -33,6 +33,14 @@ class FotoOcorrencia extends StatelessWidget {
               image: NetworkImage(
                 'https://www.condosocio.com.br/acond/downloads/ocorrencias/${ocorrenciasController.imagem.value}',
               ),
+              errorBuilder: (context, error, stackTrace) => Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.broken_image_outlined, size: 64, color: Colors.grey),
+                  SizedBox(height: 12),
+                  Text('Imagem não disponível', style: TextStyle(color: Colors.grey)),
+                ],
+              ),
             ),
           ),
         ),

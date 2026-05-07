@@ -4,9 +4,8 @@ import 'package:condosocio/src/services/enquetes/mapa_enquetes.dart';
 import 'package:get/get.dart';
 
 class VisualizarEnquetesController extends GetxController {
-  List<MapaEnquetes> enquetes = [];
+  var enquetes = <MapaEnquetes>[].obs;
 
-  var month = ''.obs;
   var idenq = ''.obs;
   var titulo = ''.obs;
 
@@ -17,11 +16,9 @@ class VisualizarEnquetesController extends GetxController {
     var response = await ApiEnquetes.getEnquetes();
 
     Iterable dados = json.decode(response.body);
-
-    print('Enquetes Dados: $dados');
-
-    enquetes = dados.map((model) => MapaEnquetes.fromJson(model)).toList();
-    print('Enquetes: $enquetes');
+    enquetes.assignAll(
+      dados.map((model) => MapaEnquetes.fromJson(model)).toList(),
+    );
     isLoading(false);
   }
 

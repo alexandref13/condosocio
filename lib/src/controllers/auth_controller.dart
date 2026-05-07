@@ -10,7 +10,6 @@ import 'package:http/http.dart' as http;
 import 'package:local_auth/local_auth.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 
 class AuthController extends GetxController {
   ThemeController themeController = Get.put(ThemeController());
@@ -22,11 +21,44 @@ class AuthController extends GetxController {
   bool isAuthenticating = false;
   var rota = TextEditingController().obs;
 
+  void _showConnectionErrorSnackbar() {
+    final overlayContext = Get.overlayContext;
+    if (overlayContext == null) {
+      debugPrint(
+        'Overlay indisponível para mostrar snackbar de erro de conexão.',
+      );
+      return;
+    }
+
+    Get.snackbar(
+      'Erro de conexão',
+      'Não foi possível conectar. Verifique sua internet e tente novamente.',
+      snackPosition: SnackPosition.BOTTOM,
+      duration: const Duration(seconds: 4),
+      backgroundColor: Theme.of(overlayContext).colorScheme.error,
+      colorText: Colors.white,
+      margin: const EdgeInsets.all(12),
+      borderRadius: 8,
+      icon: const Icon(Icons.wifi_off, color: Colors.white),
+    );
+  }
+
   // ====== público (mantido) ======
   authenticate() async {
     if (await _isBiometricAvailable()) {
       await autoLogIn();
     }
+  }
+
+  Future<bool> hasSavedSession() async {
+    await GetStorage.init();
+    final box = GetStorage();
+    final savedId = box.read('id');
+    return savedId != null && savedId.toString().isNotEmpty;
+  }
+
+  Future<bool> canAuthenticateWithBiometrics() async {
+    return _isBiometricAvailable();
   }
 
   // ====== checagens de biometria ======
@@ -35,8 +67,17 @@ class AuthController extends GetxController {
       final supported = await localAuthentication.isDeviceSupported();
       final canCheck = await localAuthentication.canCheckBiometrics;
       availableBiometrics = await localAuthentication.getAvailableBiometrics();
-      canCheckBiometrics =
-          supported && canCheck && availableBiometrics.isNotEmpty;
+
+      if (!supported) return false;
+
+      if (Platform.isAndroid) {
+        // getAvailableBiometrics() retorna lista vazia em alguns Androids mesmo
+        // com biometria enrolada. canCheckBiometrics=true já é garantia suficiente.
+        canCheckBiometrics = canCheck;
+      } else {
+        canCheckBiometrics = canCheck && availableBiometrics.isNotEmpty;
+      }
+
       return canCheckBiometrics;
     } catch (_) {
       return false;
@@ -126,10 +167,15 @@ class AuthController extends GetxController {
 
     bool isAuthenticated = false;
     try {
+      // iOS: biometricOnly=true impede fallback para senha do dispositivo.
+      // Android: biometricOnly=true exige BIOMETRIC_STRONG (Classe 3), o que
+      // exclui face unlock (Classe 2) e pode lançar exceção em dispositivos que
+      // não tenham sensor certificado. Com false, aceita qualquer biometria
+      // enrollada (digital ou face) e permite PIN como último recurso.
       isAuthenticated = await localAuthentication.authenticate(
         localizedReason: "Autenticar para realizar Login na plataforma",
-        options: const AuthenticationOptions(
-          biometricOnly: true,
+        options: AuthenticationOptions(
+          biometricOnly: Platform.isIOS,
           stickyAuth: true,
           useErrorDialogs: true,
           sensitiveTransaction: true,
@@ -221,7 +267,7 @@ class AuthController extends GetxController {
       print('idcond autentic: $idcond');
 
       if (value.length > 1 && idcond == '') {
-        Get.toNamed('/listOfCondo');
+        Get.offAllNamed('/listOfCondo');
         loginController.haveListOfCondo.value = true;
         return;
       } else {
@@ -229,24 +275,13 @@ class AuthController extends GetxController {
       }
 
       if (rota.value.text == "" && dados['valida'] != 0) {
-        Get.toNamed('/home');
+        Get.offAllNamed('/home');
       } else {
-        Get.toNamed(rota.value.text);
+        Get.offAllNamed(rota.value.text);
       }
     } on TimeoutException {
       // estourou as duas tentativas (5s + 5s)
-      Get.snackbar(
-        'Erro de conexão',
-        'Não foi possível conectar. Verifique sua internet e tente novamente.',
-        snackPosition: SnackPosition.BOTTOM,
-        duration: const Duration(seconds: 4),
-        backgroundColor: Theme.of(Get.context!).colorScheme.error,
-        colorText: Colors.white, // texto branco
-        margin: const EdgeInsets.all(12), // opcional: dá um respiro nas bordas
-        borderRadius: 8, // opcional: cantos arredondados
-        icon:
-            const Icon(Icons.wifi_off, color: Colors.white), // opcional: ícone
-      );
+      _showConnectionErrorSnackbar();
     } catch (e) {
       print('autoLogIn error: $e');
     } finally {
@@ -254,13 +289,4 @@ class AuthController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    localAuthentication.isDeviceSupported().then((isSupported) {
-      if (isSupported) {
-        authenticate();
-      }
-    });
-    super.onInit();
-  }
 }

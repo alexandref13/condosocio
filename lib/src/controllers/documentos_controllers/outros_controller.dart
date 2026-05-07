@@ -29,16 +29,17 @@ class OutrosController extends GetxController {
   late Future<void> launched;
 
   Future<void> launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
-      );
-    } else {
-      throw 'Could not launch $url';
+    final uri = Uri.parse(url);
+
+    if (await launchUrl(uri, mode: LaunchMode.inAppBrowserView)) {
+      return;
     }
+
+    if (await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      return;
+    }
+
+    throw 'Could not launch $url';
   }
 
   onSearchTextChanged(String text) {

@@ -42,6 +42,7 @@ class LoginController extends GetxController {
   var nomeusu = ''.obs;
   var sobrenomeusu = ''.obs;
   var isLoading = false.obs;
+  var obscurePassword = true.obs;
   var isChecked = false.obs;
   var haveListOfCondo = false.obs;
   var selectedIndex = 0.obs;
@@ -150,6 +151,9 @@ class LoginController extends GetxController {
     if (box.hasData('email')) {
       email.value.text = box.read('email');
     }
+    if (box.hasData('id')) {
+      id.value = box.read('id').toString();
+    }
   }
 
   newLogin(String newId) {
@@ -206,7 +210,7 @@ class LoginController extends GetxController {
       themeController.setTheme(condoTheme.value);
 
       print("➡️ Redirecionando para /home");
-      Get.offNamed('/home');
+      Get.offAllNamed('/home');
 
       isLoading(false);
     }).catchError((error) {

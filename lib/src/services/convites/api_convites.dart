@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 class ApiConvites {
   static Future getConvites() async {
     LoginController loginController = Get.put(LoginController());
+    print('getConvites idusu: ${loginController.id.value}');
 
     return await http.post(
       Uri.https('www.condosocio.com.br', '/flutter/convites_buscar.php'),
@@ -49,7 +50,7 @@ class ApiConvites {
     ConvitesController convitesController = Get.put(ConvitesController());
     LoginController loginController = Get.put(LoginController());
     VisualizarConvitesController visualizarConvitesController =
-        Get.put(VisualizarConvitesController());
+        Get.find<VisualizarConvitesController>();
 
     print('idConv: ${visualizarConvitesController.idConv.value}');
     return await http.post(
@@ -95,7 +96,7 @@ class ApiConvites {
 
   static Future sendWhatsApp() async {
     VisualizarConvitesController visualizarConvitesController =
-        Get.put(VisualizarConvitesController());
+        Get.find<VisualizarConvitesController>();
     print(
         'Celular Whatsapp: ${visualizarConvitesController.whatsappNumber.value.text}');
     print('Celular Raiz: ${visualizarConvitesController.tel.value}');
@@ -107,7 +108,7 @@ class ApiConvites {
 
     return await http.get(
       Uri.https(
-          'www.condosocio.com.br', '/flutter/convites_whatsapp_chave.php', {
+          'www.condosocio.com.br', '/flutter/convites_whatsapp_chaveNovo.php', {
         'idconv': visualizarConvitesController.idConv.value,
         'nome': visualizarConvitesController.nameGuest.value,
         'celraiz': visualizarConvitesController.tel.value,
@@ -118,11 +119,12 @@ class ApiConvites {
 
   static Future verificaWhatsApp() async {
     VisualizarConvitesController visualizarConvitesController =
-        Get.put(VisualizarConvitesController());
-    print('IDCONV VERIFICAR : ${visualizarConvitesController.idConv.value}');
+        Get.find<VisualizarConvitesController>();
+    print('IDCONV API CONVITES : ${visualizarConvitesController.idConv.value}');
+    print('CELULAR API CONVITES : ${visualizarConvitesController.tel.value}');
     return await http.get(
-      Uri.https(
-          'www.condosocio.com.br', '/flutter/convites_whatsapp_verificar.php', {
+      Uri.https('www.condosocio.com.br',
+          '/flutter/convites_whatsapp_verificarNovo.php', {
         'celular': visualizarConvitesController.tel.value,
         'idconv': visualizarConvitesController.idConv.value,
       }),

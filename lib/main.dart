@@ -60,15 +60,16 @@ import 'package:condosocio/src/pages/perfil.dart';
 import 'package:condosocio/src/pages/encomendas/qrcode.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
+import 'package:condosocio/src/pages/splash_intro.dart';
 import 'package:condosocio/src/pages/tutoriais.dart';
 import 'package:condosocio/src/pages/veiculos/pagVagasLimit.dart';
 import 'package:condosocio/src/pages/veiculos/veiculos.dart';
+import 'package:condosocio/src/pages/webview_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'src/components/convites/detalhe_convite_widget.dart';
 import 'src/pages/list_of_condo.dart';
@@ -192,8 +193,9 @@ class _MyAppState extends State<MyApp> {
       theme: themeController.theme,
       darkTheme: themeController.theme,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: '/splash',
       getPages: [
+        GetPage(name: '/splash', page: () => const SplashIntro()),
         GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/home', page: () => HomePage()),
         GetPage(name: '/senha', page: () => Senha()),
@@ -272,6 +274,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/facialacesso', page: () => FacialAcesso()),
         GetPage(name: '/acessosespera', page: () => AcessosEspera()),
         GetPage(name: '/pets', page: () => Pets()),
+        GetPage(name: '/webview', page: () => const WebViewPage()),
       ],
     );
   }

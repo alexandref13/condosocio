@@ -2,11 +2,20 @@ import 'dart:convert';
 import 'package:condosocio/src/services/encomendas/api_encomendas.dart';
 import 'package:condosocio/src/services/encomendas/mapa_encomendas.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class EncomendasController extends GetxController {
+  static const int _pageSize = 20;
+
   var isLoading = false.obs;
+  var isLoadingMore = false.obs;
+  var hasMore = true.obs;
 
   var encomendas = <MapaEncomendas>[].obs;
+  int _page = 1;
+
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
 
   var id = ''.obs;
   var codigo = ''.obs;
@@ -19,22 +28,69 @@ class EncomendasController extends GetxController {
   var admEntrega = ''.obs;
   var idcript = ''.obs;
   var dataEntrega = ''.obs;
+  var imgEncomenda = ''.obs;
 
-  getEncomendas() async {
-    isLoading(true);
+  void onRefresh() async {
+    await getEncomendas(reset: true);
+  }
 
-    var response = await ApiEncomendas.getEncomendas();
+  void onLoading() async {
+    if (!hasMore.value || isLoadingMore.value) {
+      if (!hasMore.value) {
+        refreshController.loadNoData();
+      } else {
+        refreshController.loadComplete();
+      }
+      return;
+    }
 
-    // var lista = json.decode(response.body);
+    await getEncomendas();
+  }
 
-    // print(lista);
+  getEncomendas({bool reset = false}) async {
+    if (reset) {
+      _page = 1;
+      hasMore(true);
+      refreshController.resetNoData();
+    }
 
-    Iterable dados = json.decode(response.body);
+    if (isLoadingMore.value || (!hasMore.value && !reset)) return;
 
-    encomendas.assignAll(
-        dados.map((model) => MapaEncomendas.fromJson(model)).toList());
+    if (_page == 1) {
+      isLoading(true);
+    } else {
+      isLoadingMore(true);
+    }
 
-    isLoading(false);
+    try {
+      var response = await ApiEncomendas.getEncomendas(
+        page: _page,
+        limit: _pageSize,
+      );
+
+      Iterable dados = json.decode(response.body);
+      final novos =
+          dados.map((model) => MapaEncomendas.fromJson(model)).toList();
+
+      if (reset || _page == 1) {
+        encomendas.assignAll(novos);
+      } else {
+        encomendas.addAll(novos);
+      }
+
+      hasMore(novos.length == _pageSize);
+      _page++;
+
+      refreshController.refreshCompleted();
+      if (hasMore.value) {
+        refreshController.loadComplete();
+      } else {
+        refreshController.loadNoData();
+      }
+    } finally {
+      isLoading(false);
+      isLoadingMore(false);
+    }
   }
 
   sendEncomendas() async {

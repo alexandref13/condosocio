@@ -90,6 +90,28 @@ class ApiPets {
     return response;
   }
 
+  static Future<String> updatePetImage(String idpet, String path) async {
+    try {
+      final uri =
+          Uri.parse("https://www.condosocio.com.br/flutter/pet_upd_img.php");
+      final request = http.MultipartRequest('POST', uri)
+        ..fields['idpet'] = idpet;
+
+      if (path.isNotEmpty) {
+        request.files.add(await http.MultipartFile.fromPath('image', path));
+      }
+
+      final streamed = await request.send();
+      final res = await http.Response.fromStream(streamed);
+      final body = res.body.trim();
+      print('pet_upd_img.php -> status=${res.statusCode} body="$body"');
+      return (res.statusCode == 200) ? body : '0';
+    } catch (e) {
+      print('ApiPets.updatePetImage ERROR: $e');
+      return '0';
+    }
+  }
+
   /// Converte "dd/MM/yyyy" para "yyyy-MM-dd".
   static String _toIsoDate(String ddmmyyyy) {
     final p = ddmmyyyy.split('/');

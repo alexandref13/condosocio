@@ -39,50 +39,18 @@ class _FacialState extends State<Facial> {
     });
   }
 
+  bool get _canCaptureNewFaceImage =>
+      loginController.ctlfacial.value == "0" &&
+      loginController.imgfacial.value == "";
+
   Widget getImageWidget() {
     if (_selectedFile != null) {
-      return GestureDetector(
-          onTap: () => {
-                loginController.ctlfacial.value == "0" &&
-                        loginController.imgfacial.value == ""
-                    ? getImage(ImageSource.camera)
-                    : Get.toNamed('/fotoFacial'),
-              },
-          child: Hero(
-            tag: 'fotoFacial',
-            child: Container(
-              margin: EdgeInsets.only(left: 100, bottom: 5),
-              child: Center(
-                child: loginController.ctlfacial.value != "1"
-                    ? Icon(
-                        Icons.edit,
-                        size: 20,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!,
-                      )
-                    : Icon(
-                        Icons.search,
-                        size: 20,
-                        color: Theme.of(context)
-                            .textSelectionTheme
-                            .selectionColor!,
-                      ),
-              ),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-            ),
-          ));
+      return const SizedBox.shrink();
     } else {
       return GestureDetector(
-          onTap: () => {
-                loginController.ctlfacial.value == "0" &&
-                        loginController.imgfacial.value == ""
-                    ? getImage(ImageSource.camera)
-                    : Get.toNamed('/fotoFacial'),
-              },
+          onTap: _canCaptureNewFaceImage
+              ? () => getImage(ImageSource.camera)
+              : null,
           child: loginController.imgfacial.value == ''
               ? /*Container(
                   child: Column(
@@ -98,11 +66,11 @@ class _FacialState extends State<Facial> {
                                       .textSelectionTheme
                                       .selectionColor!,
                                 )
-                              : Icon(
-                                  Icons.search,
-                                  size: 20,
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
+                                  : Icon(
+                                      Icons.check_rounded,
+                                      size: 20,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
                                       .selectionColor!,
                                 ),
                         ),
@@ -186,46 +154,47 @@ class _FacialState extends State<Facial> {
                   transitionOnUserGestures: true,
                   child: Material(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                    borderRadius: BorderRadius.circular(10),
-                    elevation: 10,
-                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(26),
+                    elevation: 14,
+                    color: Colors.transparent,
                     child: Container(
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(left: 105, bottom: 0),
-                            child: Center(
-                              child: loginController.ctlfacial.value != "1" &&
-                                      loginController.imgfacial.value == ''
-                                  ? Icon(
-                                      Icons.edit,
-                                      size: 20,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor!,
-                                    )
-                                  : Icon(
-                                      Icons.search,
-                                      size: 20,
-                                      color: Theme.of(context)
-                                          .textSelectionTheme
-                                          .selectionColor!,
-                                    ),
-                            ),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
+                      width: 170,
+                      height: 190,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(26),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white.withOpacity(0.16),
+                            Colors.white.withOpacity(0.06),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.18),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.22),
+                            blurRadius: 24,
+                            offset: const Offset(0, 14),
                           ),
                         ],
                       ),
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}'),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.network(
+                                  'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgfacial.value}',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -342,7 +311,7 @@ class _FacialState extends State<Facial> {
       child: Scaffold(
           appBar: AppBar(
             title: Text(
-              'Cadastro Facial',
+              'Biometria Facial',
               style: GoogleFonts.montserrat(
                 fontSize: 16,
                 color: Theme.of(context).textSelectionTheme.selectionColor!,
@@ -560,75 +529,105 @@ class _FacialState extends State<Facial> {
                               : Container(
                                   child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          CrossAxisAlignment.stretch,
                                       children: [
+                                      const SizedBox(height: 6),
                                       Center(
-                                          child:
-                                              getImageWidget()), // Adiciona o getImageWidget
-                                      SizedBox(height: 8),
-                                      Center(
-                                        child: Text(
-                                          'Clique para ampliar imagem',
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 10,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor!,
-                                          ),
-                                        ),
+                                        child: getImageWidget(),
                                       ),
-                                      SizedBox(height: 10),
-
+                                      const SizedBox(height: 24),
                                       Container(
-                                        padding: EdgeInsets.all(20),
-                                        // color: Colors.amber,
-                                        child: Text(
-                                          'Para atualizar sua imagem facial, clique no botão abaixo e repita o processo para inserir a nova face.',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 16.0,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .selectionColor!,
-                                          ),
+                                        margin: const EdgeInsets.symmetric(
+                                          horizontal: 18,
                                         ),
-                                      ),
-                                      Center(
-                                        child: Container(
-                                            padding: EdgeInsets.all(20),
-                                            child: ButtonTheme(
-                                              height: 50.0,
-                                              child: ElevatedButton(
-                                                style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStateProperty
-                                                          .resolveWith<Color>(
-                                                    (Set<MaterialState>
-                                                        states) {
-                                                      return Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary;
-                                                    },
+                                        padding: const EdgeInsets.all(22),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.07),
+                                          borderRadius:
+                                              BorderRadius.circular(24),
+                                          border: Border.all(
+                                            color:
+                                                Colors.white.withOpacity(0.10),
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black
+                                                  .withOpacity(0.10),
+                                              blurRadius: 18,
+                                              offset: const Offset(0, 10),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 42,
+                                                  height: 42,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white
+                                                        .withOpacity(0.10),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            14),
                                                   ),
-                                                  elevation:
-                                                      MaterialStateProperty
-                                                          .resolveWith<
-                                                              double>((Set<
-                                                                  MaterialState>
-                                                              states) {
-                                                    return 3;
-                                                  }),
-                                                  shape: MaterialStateProperty
-                                                      .resolveWith<
-                                                          OutlinedBorder>(
-                                                    (Set<MaterialState>
-                                                        states) {
-                                                      return RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10.0),
-                                                      );
-                                                    },
+                                                  child: const Icon(
+                                                    Icons
+                                                        .face_retouching_natural_rounded,
+                                                    color: Colors.white,
+                                                    size: 22,
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 12),
+                                                Expanded(
+                                                  child: Text(
+                                                    'Atualização da biometria facial',
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      color: Theme.of(context)
+                                                          .textSelectionTheme
+                                                          .selectionColor!,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 16),
+                                            Text(
+                                              'Para atualizar sua imagem facial, repita o processo de captura para cadastrar uma nova face com mais segurança.',
+                                              style: GoogleFonts.montserrat(
+                                                fontSize: 14,
+                                                height: 1.5,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor!
+                                                    .withOpacity(0.88),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 18),
+                                            SizedBox(
+                                              width: double.infinity,
+                                              child: ElevatedButton.icon(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .secondary,
+                                                  elevation: 6,
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    vertical: 16,
+                                                  ),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            16),
                                                   ),
                                                 ),
                                                 onPressed: () {
@@ -663,17 +662,22 @@ class _FacialState extends State<Facial> {
                                                     );
                                                   });
                                                 },
-                                                child: Text(
+                                                icon: const Icon(
+                                                  Icons.restart_alt_rounded,
+                                                  color: Colors.white,
+                                                ),
+                                                label: Text(
                                                   "Resetar Imagem",
                                                   style: GoogleFonts.montserrat(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Theme.of(context)
-                                                        .textSelectionTheme
-                                                        .selectionColor!,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: Colors.white,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                               ),
-                                            )),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ])),
                         ],

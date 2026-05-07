@@ -63,19 +63,26 @@ class VisualizarConvitesController extends GetxController {
 
   sendWhatsApp() async {
     isLoading(true);
-    var response = await ApiConvites.sendWhatsApp();
-    var data = json.decode(response.body);
-    isLoading(false);
-    return data;
+    try {
+      var response = await ApiConvites.sendWhatsApp();
+      return json.decode(response.body);
+    } catch (_) {
+      return null;
+    } finally {
+      isLoading(false);
+    }
   }
 
   verificaWhatsApp() async {
     isLoading(true);
-    var response = await ApiConvites.verificaWhatsApp();
-    var data = json.decode(response.body);
-    isLoading(false);
-
-    return data;
+    try {
+      var response = await ApiConvites.verificaWhatsApp();
+      return json.decode(response.body);
+    } catch (_) {
+      return {'numero': '', 'valido': false};
+    } finally {
+      isLoading(false);
+    }
   }
 
   Future<void> initPlatformState() async {

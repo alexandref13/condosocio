@@ -10,6 +10,7 @@ class MapaEncomendas {
   late String admEntrega;
   late String idcript;
   late String dataEntrega;
+  late String imgEncomenda;
 
   MapaEncomendas(
       {required this.idenc,
@@ -22,7 +23,8 @@ class MapaEncomendas {
       required this.dataCriada,
       required this.admEntrega,
       required this.idcript,
-      required this.dataEntrega});
+      required this.dataEntrega,
+      required this.imgEncomenda});
 
   MapaEncomendas.fromJson(Map<String, dynamic> json) {
     idenc = json['idenc'];
@@ -36,6 +38,7 @@ class MapaEncomendas {
     admEntrega = json['adm_entrega'];
     idcript = json['idcript'];
     dataEntrega = json['data_entrega'];
+    imgEncomenda = json['img_encomenda'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +54,7 @@ class MapaEncomendas {
     data['adm_entrega'] = this.admEntrega;
     data['idcript'] = this.idcript;
     data['data_entrega'] = this.dataEntrega;
+    data['img_encomenda'] = this.imgEncomenda;
     return data;
   }
 }

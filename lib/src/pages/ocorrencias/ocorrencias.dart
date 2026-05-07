@@ -3,8 +3,7 @@ import 'package:condosocio/src/pages/ocorrencias/visualizar_ocorrencias.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../components/utils/alert_button_pressed.dart';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class Ocorrencias extends StatefulWidget {
   @override
@@ -12,6 +11,32 @@ class Ocorrencias extends StatefulWidget {
 }
 
 class _OcorrenciasState extends State<Ocorrencias> {
+  Widget _infoItem(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 3, right: 8),
+            child: Icon(Icons.check_circle_rounded,
+                size: 16, color: Colors.white),
+          ),
+          Expanded(
+            child: Text(
+              text,
+              style: GoogleFonts.montserrat(
+                fontSize: 13,
+                height: 1.45,
+                color: Colors.white.withValues(alpha: 0.9),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -19,10 +44,8 @@ class _OcorrenciasState extends State<Ocorrencias> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {
-              Get.offNamed('/home');
-            },
-            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Get.offNamed('/home'),
+            icon: const Icon(Icons.arrow_back_ios),
           ),
           title: Text(
             'Ocorrências',
@@ -38,24 +61,87 @@ class _OcorrenciasState extends State<Ocorrencias> {
                 color: Theme.of(context).textSelectionTheme.selectionColor!,
               ),
               onPressed: () {
-                onAlertButtonPressed(
-                    context,
-                    'Comunique qualquer ocorrência à administração do condomínio. Adicione uma imagem e um breve relato para ajudar na compreensão. Suas informações serão mantidas em sigilo e apenas a administração terá acesso. Use o app para acompanhar o andamento da sua ocorrência em tempo real. Fique tranquilo sabendo que sua demanda será atendida da melhor maneira possível.',
-                    '',
-                    '');
+                showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return Dialog(
+                      backgroundColor: Colors.transparent,
+                      insetPadding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 24),
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(20, 18, 20, 12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Sobre as Ocorrências',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .selectionColor!,
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () =>
+                                      Navigator.of(dialogContext).pop(),
+                                  icon: const Icon(Icons.close,
+                                      color: Colors.white, size: 20),
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 14),
+                            _infoItem('Registre problemas ou incidentes que precisem da atenção da administração.'),
+                            _infoItem('Informe o que aconteceu com clareza e adicione uma foto sempre que possível.'),
+                            _infoItem('Apenas a administração terá acesso ao conteúdo enviado.'),
+                            _infoItem('Acompanhe as respostas e o andamento pelo próprio aplicativo.'),
+                            const SizedBox(height: 8),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: TextButton(
+                                onPressed: () =>
+                                    Navigator.of(dialogContext).pop(),
+                                child: Text(
+                                  'Fechar',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
               },
-            )
+            ),
           ],
           bottom: TabBar(
             indicatorColor:
                 Theme.of(context).textSelectionTheme.selectionColor!,
-            indicatorPadding: EdgeInsets.all(-4),
+            indicatorPadding: const EdgeInsets.all(-4),
             indicatorSize: TabBarIndicatorSize.tab,
             dividerColor: Theme.of(context)
                 .textSelectionTheme
                 .selectionColor!
-                .withOpacity(0),
-            tabs: <Widget>[
+                .withValues(alpha: 0),
+            tabs: [
               Text(
                 'Visualizar',
                 style: GoogleFonts.montserrat(
@@ -66,13 +152,14 @@ class _OcorrenciasState extends State<Ocorrencias> {
               Text(
                 'Adicionar',
                 style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    color:
-                        Theme.of(context).textSelectionTheme.selectionColor!),
+                  fontSize: 14,
+                  color: Theme.of(context).textSelectionTheme.selectionColor!,
+                ),
               ),
             ],
           ),
         ),
+        bottomNavigationBar: CondoNavBar(),
         body: TabBarView(
           children: [VisualizarOcorrencias(), AdicionarOcorrencias()],
         ),
@@ -80,43 +167,3 @@ class _OcorrenciasState extends State<Ocorrencias> {
     );
   }
 }
-
-/*onAlertButtonPressed(context, String texto) {
-  Alert(
-    image: Icon(
-      Icons.warning_sharp,
-      color: Colors.orange,
-      size: 50,
-    ),
-    style: AlertStyle(
-      backgroundColor: Theme.of(context).textSelectionTheme.selectionColor!,
-      animationType: AnimationType.fromTop,
-      isCloseButton: false,
-      isOverlayTapDismiss: false,
-      //descStyle: GoogleFonts.poppins(color: Colors.red,),
-      animationDuration: Duration(milliseconds: 300),
-      titleStyle: GoogleFonts.poppins(
-        color: Theme.of(context).colorScheme.secondary,
-        fontSize: 14,
-      ),
-    ),
-    context: context,
-    title: texto,
-    buttons: [
-      DialogButton(
-        child: Text(
-          "Fechar",
-          style: GoogleFonts.montserrat(
-            color: Colors.white,
-            fontSize: 12,
-          ),
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        width: 80,
-        color: Theme.of(context).colorScheme.secondary,
-      )
-    ],
-  ).show();
-}*/

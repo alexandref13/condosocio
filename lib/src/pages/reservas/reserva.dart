@@ -4,6 +4,7 @@ import 'package:condosocio/src/pages/reservas/visualizar_reservas.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:condosocio/src/components/condo_nav_bar.dart';
 
 class Reserva extends StatelessWidget {
   final ReservasController reservasController = Get.put(ReservasController());
@@ -48,6 +49,7 @@ class Reserva extends StatelessWidget {
             ],
           ),
         ),
+        bottomNavigationBar: CondoNavBar(),
         body: TabBarView(
           children: [VisualizarReservas(), AreasComuns()],
         ),

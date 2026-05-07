@@ -5,7 +5,13 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:condosocio/src/components/utils/animated_dialog.dart';
 
 void onAlertButtonPressed(
-    BuildContext context, String text, String page, String img) {
+  BuildContext context,
+  String text,
+  String page,
+  String img, {
+  IconData? topIcon,
+  Color? topIconColor,
+}) {
   showScaledDialog(
     // <— substitui showAnimatedDialog
     context: context,
@@ -23,10 +29,28 @@ void onAlertButtonPressed(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              if (topIcon != null)
+                Container(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    color: (topIconColor ?? Theme.of(context).colorScheme.error)
+                        .withValues(alpha: 0.12),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    topIcon,
+                    size: 30,
+                    color: topIconColor ?? Theme.of(context).colorScheme.error,
+                  ),
+                ),
               if (img.isNotEmpty)
-                Image.asset(
-                  img,
-                  width: 60,
+                Padding(
+                  padding: EdgeInsets.only(top: topIcon != null ? 10 : 0),
+                  child: Image.asset(
+                    img,
+                    width: 60,
+                  ),
                 ),
               const SizedBox(height: 10),
               Text(

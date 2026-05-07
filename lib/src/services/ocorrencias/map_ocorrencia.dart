@@ -11,6 +11,7 @@ class MapaOcorrencias {
   late String tipoco;
   late String dia;
   late String mes;
+  late String dataCompleta;
 
   MapaOcorrencias({
     required this.id,
@@ -25,6 +26,7 @@ class MapaOcorrencias {
     required this.tipoco,
     required this.dia,
     required this.mes,
+    required this.dataCompleta,
   });
 
   MapaOcorrencias.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,7 @@ class MapaOcorrencias {
     tipoco = json['tipoco'] ?? '';
     dia = json['dia'] ?? '';
     mes = json['mes'] ?? '';
+    dataCompleta = json['data_completa'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
