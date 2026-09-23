@@ -18,6 +18,18 @@ class FacialController extends GetxController {
     return dados;
   }
 
+  /// Same endpoint the web admin's "Atualizar Face" button in cadusu.php
+  /// calls: removes and resends the resident's face to every device in the
+  /// condo. Here the resident updates their own record, so idusu and
+  /// idusuUpdate are both their own id.
+  Future<Map<String, dynamic>> AtualizarFace() async {
+    isLoading(true);
+    final response = await ApiAtualizar.atualizarFace();
+    final dados = json.decode(response.body) as Map<String, dynamic>;
+    isLoading(false);
+    return dados;
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -31,6 +43,20 @@ class ApiReset {
       Uri.https("www.condosocio.com.br", "/flutter/resetFace.php"),
       body: {
         "idusu": loginController.id.value,
+        "idcond": loginController.idcond.value,
+      },
+    );
+  }
+}
+
+class ApiAtualizar {
+  static Future<http.Response> atualizarFace() {
+    final loginController = Get.put(LoginController());
+    return http.post(
+      Uri.https("www.condosocio.com.br", "/acond/atualizarFace.php"),
+      body: {
+        "idusu": loginController.id.value,
+        "idusuUpdate": loginController.id.value,
         "idcond": loginController.idcond.value,
       },
     );

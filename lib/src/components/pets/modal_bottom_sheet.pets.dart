@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:condosocio/src/controllers/login_controller.dart';
 import 'package:condosocio/src/controllers/pets_controller.dart';
+import 'package:condosocio/src/pages/pets/pet_seguro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,8 +18,11 @@ void petsModalBottomSheet(
   String sexo,
   String birthdate,
   String imgpet,
-  String idpet,
-) {
+  String idpet, {
+  bool assinaturaAtiva = false,
+  String assinaturaAquisicao = '',
+  String assinaturaVigencia = '',
+}) {
   final messenger = ScaffoldMessenger.of(context);
   final errorColor = Theme.of(context).colorScheme.error;
 
@@ -293,6 +297,53 @@ void petsModalBottomSheet(
 
                   const SizedBox(height: 20),
 
+                  // Botão Assinatura Pet Seguro
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton.icon(
+                      icon: Icon(
+                        assinaturaAtiva ? Icons.verified : Icons.pets,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                      label: Text(
+                        assinaturaAtiva
+                            ? 'Assinatura Efetivada'
+                            : 'Assinatura Pet Seguro',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 15,
+                          color: Colors.white,
+                          letterSpacing: 0.5,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: assinaturaAtiva
+                            ? Colors.green.shade600
+                            : Theme.of(context).primaryColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        elevation: 0,
+                      ),
+                      onPressed: () {
+                        if (assinaturaAtiva) {
+                          _showAssinaturaInfo(
+                            context,
+                            textColor,
+                            formatBirthdate(assinaturaAquisicao),
+                            formatBirthdate(assinaturaVigencia),
+                          );
+                        } else {
+                          Get.back();
+                          Get.to(() => PetSeguroPage(idpet: idpet));
+                        }
+                      },
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
                   // Botão Excluir
                   SizedBox(
                     width: double.infinity,
@@ -387,6 +438,57 @@ class _InfoRow extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showAssinaturaInfo(
+  BuildContext context,
+  Color textColor,
+  String dataAquisicao,
+  String dataVigencia,
+) {
+  showDialog(
+    context: context,
+    builder: (ctx) {
+      return AlertDialog(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        title: Row(
+          children: [
+            const Icon(Icons.verified, color: Colors.green, size: 22),
+            const SizedBox(width: 8),
+            Text(
+              'Assinatura Efetivada',
+              style: GoogleFonts.montserrat(
+                  fontSize: 16, fontWeight: FontWeight.w700, color: textColor),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _InfoRow(
+                label: 'Data de aquisição',
+                value: dataAquisicao,
+                color: textColor),
+            _InfoRow(
+                label: 'Vigência até', value: dataVigencia, color: textColor),
+          ],
+        ),
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: Text(
+              'Fechar',
+              style: GoogleFonts.montserrat(
+                  fontSize: 14, color: textColor, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }
 
 Future<bool?> _confirmDelete(BuildContext context, Color textColor) {

@@ -134,7 +134,7 @@ class _PerfilState extends State<Perfil> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
+                        'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}?v=${loginController.imgperfilVersion.value}'),
                   ),
                 ),
               ),
@@ -173,38 +173,51 @@ class _PerfilState extends State<Perfil> {
   }*/
   Future<void> getImage(ImageSource source) async {
     print('CHEGOU GET IMAGEM');
-    final image = await _picker.pickImage(source: source);
-    if (image != null) {
-      final CroppedFile? cropped = await ImageCropper().cropImage(
-        sourcePath: image.path,
-        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-        compressQuality: 80,
-        maxWidth: 400,
-        maxHeight: 400,
-        compressFormat: ImageCompressFormat.jpg,
-        uiSettings: [
-          AndroidUiSettings(
-            toolbarTitle: 'Imagem Para Perfil',
-            toolbarColor: Colors.deepOrange,
-            initAspectRatio: CropAspectRatioPreset.original,
-            statusBarColor: Colors.deepOrange.shade900,
-            backgroundColor: Colors.white,
-            lockAspectRatio: false,
-          ),
-          IOSUiSettings(
-            title: 'Cortar Imagem',
-          ),
-        ],
-      );
-
-      this.setState(() {
-        _selectedFile = File(image.path);
-        if (cropped != null) {
-          _selectedFile = File(cropped.path);
-          uploadImage();
-          Get.back();
+    try {
+      final image = await _picker.pickImage(source: source);
+      if (image != null) {
+        if (source == ImageSource.camera) {
+          // Evita corrida no iOS: a UIImagePickerController da câmera ainda
+          // está sendo dispensada quando o cropper tenta se apresentar,
+          // e a tela de corte é silenciosamente ignorada.
+          await Future.delayed(const Duration(milliseconds: 600));
         }
-      });
+        final CroppedFile? cropped = await ImageCropper().cropImage(
+          sourcePath: image.path,
+          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+          compressQuality: 80,
+          maxWidth: 400,
+          maxHeight: 400,
+          compressFormat: ImageCompressFormat.jpg,
+          uiSettings: [
+            AndroidUiSettings(
+              toolbarTitle: 'Imagem Para Perfil',
+              toolbarColor: Colors.deepOrange,
+              initAspectRatio: CropAspectRatioPreset.original,
+              statusBarColor: Colors.deepOrange.shade900,
+              backgroundColor: Colors.white,
+              lockAspectRatio: false,
+            ),
+            IOSUiSettings(
+              title: 'Cortar Imagem',
+            ),
+          ],
+        );
+
+        this.setState(() {
+          _selectedFile = File(image.path);
+          if (cropped != null) {
+            _selectedFile = File(cropped.path);
+            uploadImage();
+            Get.back();
+          }
+        });
+      }
+    } catch (e, st) {
+      print('Erro ao obter/cortar imagem (source: $source): $e\n$st');
+      if (mounted) {
+        showToastError(context, 'Não foi possível obter a imagem. Tente novamente.');
+      }
     }
   }
 
@@ -215,6 +228,7 @@ class _PerfilState extends State<Perfil> {
     request.files.add(pic);
     var response = await request.send();
     if (response.statusCode == 200) {
+      loginController.imgperfilVersion.value = DateTime.now().millisecondsSinceEpoch;
       loginController.newLogin(loginController.id.value);
       showToast(context, 'Parabéns! Imagem do perfil alterada!', '');
     } else {

@@ -199,6 +199,9 @@ class VisualizarPets extends StatelessWidget {
                             pet.birthdate,
                             pet.imgpet,
                             petsController.idpet.value,
+                            assinaturaAtiva: pet.assinaturaAtiva,
+                            assinaturaAquisicao: pet.assinaturaAquisicao,
+                            assinaturaVigencia: pet.assinaturaVigencia,
                           );
                         },
                         child: Container(

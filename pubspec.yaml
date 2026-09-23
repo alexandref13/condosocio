@@ -1,7 +1,7 @@
 name: condosocio
 description: A tecnologia que transforma.
 publish_to: "none"
-version: 13.0.0+60003
+version: 13.1.0+60003
 environment:
   sdk: ">=3.5.0 <4.0.0"
 
@@ -47,7 +47,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   camera: ^0.11.2
   camera_android: ^0.10.10+7
-  google_mlkit_face_detection: ^0.13.1
+  google_mlkit_face_detection: ^0.14.0
   youtube_player_flutter: ^9.1.3
   share_plus: ^11.1.0
   webview_flutter: ^4.10.0

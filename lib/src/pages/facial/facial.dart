@@ -287,18 +287,23 @@ class _FacialState extends State<Facial> {
     var pic = await http.MultipartFile.fromPath("image", _selectedFile!.path);
     print("Meu arquivo => ${_selectedFile!.path}");
     request.files.add(pic);
-    var response = await request.send();
-    print(response.request);
-    if (response.statusCode == 200) {
+    var streamedResponse = await request.send();
+    final responseBody = await streamedResponse.stream.bytesToString();
+
+    print(
+        '[upload_facial] status=${streamedResponse.statusCode} body=$responseBody');
+
+    if (streamedResponse.statusCode == 200) {
       loginController.newLogin(loginController.id.value);
-      Navigator.of(context).pop(); // Fechar o indicador de progresso
+      Navigator.of(context).pop();
       showToast(context, 'Parabéns!', 'Imagem Facial Enviada com Sucesso!');
-    } else if (response.statusCode == 404) {
+    } else if (streamedResponse.statusCode == 404) {
       loginController.imgfacial.value = '';
-      Navigator.of(context).pop(); // Fechar o indicador de progresso
+      Navigator.of(context).pop();
     } else {
-      Navigator.of(context).pop(); // Fechar o indicador de progresso
-      showToastError(context, 'Houve Algum Problema! Tente novamente');
+      Navigator.of(context).pop();
+      showToastError(
+          context, 'Erro ${streamedResponse.statusCode}: $responseBody');
     }
     _selectedFile = null;
   }
@@ -562,55 +567,95 @@ class _FacialState extends State<Facial> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Row(
-                                              children: [
-                                                Container(
-                                                  width: 42,
-                                                  height: 42,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white
-                                                        .withOpacity(0.10),
+                                            SizedBox(
+                                              width: double.infinity,
+                                              child: ElevatedButton.icon(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .primaryColor,
+                                                  elevation: 6,
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    vertical: 16,
+                                                  ),
+                                                  shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            14),
+                                                            16),
                                                   ),
-                                                  child: const Icon(
-                                                    Icons
-                                                        .face_retouching_natural_rounded,
+                                                ),
+                                                onPressed: () {
+                                                  deleteAlert(context,
+                                                      'Isso vai remover e reenviar sua biometria facial para todos os dispositivos do condomínio.\nDeseja continuar?',
+                                                      () {
+                                                    Get.back();
+                                                    facialController
+                                                            .AtualizarFace()
+                                                        .then(
+                                                      (response) {
+                                                        final status = (response[
+                                                                    'status']
+                                                                as String?) ??
+                                                            '';
+                                                        final sucesso = status
+                                                            .toUpperCase()
+                                                            .contains(
+                                                                'SUCESSO');
+                                                        if (sucesso) {
+                                                          Get.back();
+                                                          confirmedButtonPressed(
+                                                            context,
+                                                            'Biometria facial atualizada nos dispositivos!',
+                                                            '/home',
+                                                          );
+                                                        } else {
+                                                          Get.back();
+                                                          onAlertButtonPressed(
+                                                              context,
+                                                              status.isNotEmpty
+                                                                  ? status
+                                                                  : 'Algo deu errado\n Tente novamente',
+                                                              '/home',
+                                                              'images/error.png');
+                                                        }
+                                                      },
+                                                    ).catchError((e) {
+                                                      Get.back();
+                                                      onAlertButtonPressed(
+                                                          context,
+                                                          'Algo deu errado\n Tente novamente',
+                                                          '/home',
+                                                          'images/error.png');
+                                                    });
+                                                  });
+                                                },
+                                                icon: const Icon(
+                                                  Icons.cloud_upload_rounded,
+                                                  color: Colors.white,
+                                                ),
+                                                label: Text(
+                                                  "Atualizar Biometria Facial",
+                                                  style: GoogleFonts.montserrat(
+                                                    fontWeight: FontWeight.w700,
                                                     color: Colors.white,
-                                                    size: 22,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
-                                                const SizedBox(width: 12),
-                                                Expanded(
-                                                  child: Text(
-                                                    'Atualização da biometria facial',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      fontSize: 17,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      color: Theme.of(context)
-                                                          .textSelectionTheme
-                                                          .selectionColor!,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                              ),
                                             ),
-                                            const SizedBox(height: 16),
+                                            const SizedBox(height: 6),
                                             Text(
-                                              'Para atualizar sua imagem facial, repita o processo de captura para cadastrar uma nova face com mais segurança.',
+                                              'Atualize a biometria facial em todos os dispositivos',
                                               style: GoogleFonts.montserrat(
-                                                fontSize: 14,
-                                                height: 1.5,
+                                                fontSize: 12,
                                                 color: Theme.of(context)
                                                     .textSelectionTheme
                                                     .selectionColor!
-                                                    .withOpacity(0.88),
+                                                    .withOpacity(0.65),
                                               ),
                                             ),
-                                            const SizedBox(height: 18),
+                                            const SizedBox(height: 16),
                                             SizedBox(
                                               width: double.infinity,
                                               child: ElevatedButton.icon(
@@ -667,13 +712,24 @@ class _FacialState extends State<Facial> {
                                                   color: Colors.white,
                                                 ),
                                                 label: Text(
-                                                  "Resetar Imagem",
+                                                  "Resetar Biometria Facial",
                                                   style: GoogleFonts.montserrat(
                                                     fontWeight: FontWeight.w700,
                                                     color: Colors.white,
                                                     fontSize: 14,
                                                   ),
                                                 ),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 6),
+                                            Text(
+                                              'Exclua a sua biometria facial atual e refaça os procedimentos para uma nova',
+                                              style: GoogleFonts.montserrat(
+                                                fontSize: 12,
+                                                color: Theme.of(context)
+                                                    .textSelectionTheme
+                                                    .selectionColor!
+                                                    .withOpacity(0.65),
                                               ),
                                             ),
                                           ],

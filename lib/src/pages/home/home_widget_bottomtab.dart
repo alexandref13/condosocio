@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:condosocio/src/components/home_banner_modal/banner_modal_home.dart';
 import 'package:condosocio/src/controllers/acessos/visualizar_acessos_controller.dart';
 import 'package:condosocio/src/controllers/convites/convites_controller.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,8 @@ class _HomeBottomTabState extends State<HomeBottomTab>
     super.initState();
     // pós-frame: inicializa rating dialog com segurança
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _showBannerModal();
+      if (!mounted) return;
       await rateMyApp.init();
       if (mounted && rateMyApp.shouldOpenDialog) {
         showCustomRateDialog();
@@ -63,6 +66,28 @@ class _HomeBottomTabState extends State<HomeBottomTab>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) setState(() {});
     });
+  }
+
+  // Exibe o modal "Home Modal" uma vez por abertura do app.
+  static bool _bannerModalShown = false;
+
+  Future<void> _showBannerModal() async {
+    if (_bannerModalShown) return;
+    _bannerModalShown = true;
+
+    try {
+      final banner = await HomePageController.getBannerModalHome();
+      if (banner == null || !mounted) return;
+
+      // Só abre o modal depois que a imagem estiver totalmente carregada.
+      await precacheImage(NetworkImage(banner['imgUrl']!), context)
+          .timeout(const Duration(seconds: 15));
+      if (!mounted) return;
+
+      await showBannerModalHome(context, banner);
+    } catch (e) {
+      debugPrint('Falha ao carregar banner modal da home: $e');
+    }
   }
 
   Future<void> _launchExternal(String url) async {

@@ -87,6 +87,36 @@ class HomePageController extends GetxController {
     }
   }
 
+  /// Último banner com ESPACO = 'Home Modal', ou null se não houver.
+  static Future<Map<String, String>?> getBannerModalHome() async {
+    final loginController = Get.put(LoginController());
+    final response = await http.post(
+      Uri.https(
+        'www.condosocio.com.br',
+        '/flutter/banner_modal_home_buscar.php',
+      ),
+      body: {'idcond': loginController.idcond.value},
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('HTTP ${response.statusCode}');
+    }
+
+    final data = jsonDecode(response.body) as List<dynamic>;
+    if (data.isEmpty) return null;
+
+    final obj = data.first as Map<String, dynamic>;
+    final imgbanner = (obj['imgbanner'] ?? '').toString();
+    if (imgbanner.isEmpty) return null;
+
+    return <String, String>{
+      'imgUrl':
+          'http://www.condosocio.com.br/acond/downloads/bannerTelaInicial/$imgbanner',
+      'botao': (obj['botao'] ?? '').toString(),
+      'urlLocal': (obj['urllocal'] ?? '').toString(),
+    };
+  }
+
   static Future<List<dynamic>> _fetchBannerPayload(String idcond) async {
     Object? lastError;
 

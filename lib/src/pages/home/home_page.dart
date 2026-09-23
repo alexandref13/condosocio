@@ -35,8 +35,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     PackageInfo.fromPlatform().then((info) {
-      final parts = info.version.split('.');
-      setState(() => _version = '${parts[0]}.${parts.length > 1 ? parts[1] : '0'}');
+      setState(() => _version = info.version);
     });
   }
 
@@ -106,6 +105,7 @@ class _HomePageState extends State<HomePage> {
     print(response.request);
 
     if (response.statusCode == 200) {
+      loginController.imgperfilVersion.value = DateTime.now().millisecondsSinceEpoch;
       loginController.newLogin(loginController.id.value);
 
       showToast(context, 'Parabéns!', 'Imagem do perfil alterada com sucesso.');
@@ -217,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}'),
+                        'https://www.condosocio.com.br/acond/downloads/fotosperfil/${loginController.imgperfil.value}?v=${loginController.imgperfilVersion.value}'),
                   ),
                 ),
               ),
@@ -255,38 +255,51 @@ class _HomePageState extends State<HomePage> {
   }*/
 
   Future<void> getImage(ImageSource source) async {
-    final image = await _picker.pickImage(source: source);
-    if (image != null) {
-      final CroppedFile? cropped = await ImageCropper().cropImage(
-        sourcePath: image.path,
-        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-        compressQuality: 80,
-        maxWidth: 400,
-        maxHeight: 400,
-        compressFormat: ImageCompressFormat.jpg,
-        uiSettings: [
-          AndroidUiSettings(
-            toolbarTitle: 'Imagem para o Perfil',
-            toolbarColor: Colors.deepOrange,
-            initAspectRatio: CropAspectRatioPreset.original,
-            statusBarColor: Colors.deepOrange.shade900,
-            backgroundColor: Colors.white,
-            lockAspectRatio: false,
-          ),
-          IOSUiSettings(
-            title: 'Cortar Imagem',
-          ),
-        ],
-      );
-
-      this.setState(() {
-        _selectedFile = File(image.path);
-        if (cropped != null) {
-          _selectedFile = File(cropped.path);
-          uploadImage();
-          Get.back();
+    try {
+      final image = await _picker.pickImage(source: source);
+      if (image != null) {
+        if (source == ImageSource.camera) {
+          // Evita corrida no iOS: a UIImagePickerController da câmera ainda
+          // está sendo dispensada quando o cropper tenta se apresentar,
+          // e a tela de corte é silenciosamente ignorada.
+          await Future.delayed(const Duration(milliseconds: 600));
         }
-      });
+        final CroppedFile? cropped = await ImageCropper().cropImage(
+          sourcePath: image.path,
+          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+          compressQuality: 80,
+          maxWidth: 400,
+          maxHeight: 400,
+          compressFormat: ImageCompressFormat.jpg,
+          uiSettings: [
+            AndroidUiSettings(
+              toolbarTitle: 'Imagem para o Perfil',
+              toolbarColor: Colors.deepOrange,
+              initAspectRatio: CropAspectRatioPreset.original,
+              statusBarColor: Colors.deepOrange.shade900,
+              backgroundColor: Colors.white,
+              lockAspectRatio: false,
+            ),
+            IOSUiSettings(
+              title: 'Cortar Imagem',
+            ),
+          ],
+        );
+
+        this.setState(() {
+          _selectedFile = File(image.path);
+          if (cropped != null) {
+            _selectedFile = File(cropped.path);
+            uploadImage();
+            Get.back();
+          }
+        });
+      }
+    } catch (e, st) {
+      print('Erro ao obter/cortar imagem (source: $source): $e\n$st');
+      if (mounted) {
+        showToastError(context, 'Não foi possível obter a imagem. Tente novamente.');
+      }
     }
   }
 
@@ -588,6 +601,12 @@ class _HomePageState extends State<HomePage> {
                       icon: Icons.lock_outline,
                       title: 'Senha',
                       onTap: () => Get.toNamed('/senha'),
+                    ),
+                    _drawerItem(
+                      context: context,
+                      icon: Icons.settings_outlined,
+                      title: 'Configurações',
+                      onTap: () => Get.toNamed('/configuracoes'),
                     ),
                     _drawerItem(
                       context: context,

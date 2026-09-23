@@ -54,8 +54,6 @@
 	<string>A localização é necessária para termos sua localização pontual pelo app.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Sua localização é necessária para benefícios para você</string>
-	<key>NSMotionUsageDescription</key>
-	<string>This app needs to be able to access your motion use</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Precisamos salvar imagens editadas na sua biblioteca quando você optar por isso.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

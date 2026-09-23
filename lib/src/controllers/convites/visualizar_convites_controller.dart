@@ -65,8 +65,13 @@ class VisualizarConvitesController extends GetxController {
     isLoading(true);
     try {
       var response = await ApiConvites.sendWhatsApp();
-      return json.decode(response.body);
-    } catch (_) {
+      print('sendWhatsApp status: ${response.statusCode}');
+      print('sendWhatsApp body: ${response.body}');
+      final data = json.decode(response.body);
+      print('sendWhatsApp decoded: $data');
+      return data;
+    } catch (e) {
+      print('sendWhatsApp ERRO: $e');
       return null;
     } finally {
       isLoading(false);
@@ -77,8 +82,13 @@ class VisualizarConvitesController extends GetxController {
     isLoading(true);
     try {
       var response = await ApiConvites.verificaWhatsApp();
-      return json.decode(response.body);
-    } catch (_) {
+      print('verificaWhatsApp status: ${response.statusCode}');
+      print('verificaWhatsApp body: ${response.body}');
+      final data = json.decode(response.body);
+      print('verificaWhatsApp decoded: $data');
+      return data;
+    } catch (e) {
+      print('verificaWhatsApp ERRO: $e');
       return {'numero': '', 'valido': false};
     } finally {
       isLoading(false);

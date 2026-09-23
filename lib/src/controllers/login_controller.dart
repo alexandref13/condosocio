@@ -20,6 +20,7 @@ class LoginController extends GetxController {
   var tipo = ''.obs;
   var imgperfil = ''.obs;
   var imgfacial = ''.obs;
+  var imgperfilVersion = 0.obs;
   var emailUsu = ''.obs;
   var nomeCondo = ''.obs;
   var imgcondo = ''.obs;

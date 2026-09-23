@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **CondoSócio** is a Flutter mobile app (Portuguese) for condominium management. Residents access features like access control, facial recognition, visitor/vehicle management, reservations, communications, documents, and push notifications.
 
-- **Version**: 13.0.0 | **Dart SDK**: >=3.5.0 <4.0.0 | **iOS**: 15.5+ | **Android**: NDK r28
+- **Version**: 13.1.0 | **Dart SDK**: >=3.5.0 <4.0.0 | **iOS**: 15.5+ | **Android**: NDK r28
 - **Backend**: `https://www.condosocio.com.br` (hardcoded base URL)
 
 ---

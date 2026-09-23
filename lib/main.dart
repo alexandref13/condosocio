@@ -58,6 +58,7 @@ import 'package:condosocio/src/pages/ouvidoria/ouvidoria.dart';
 import 'package:condosocio/src/pages/ouvidoria/detalhes_ouvidoria.dart';
 import 'package:condosocio/src/pages/perfil.dart';
 import 'package:condosocio/src/pages/encomendas/qrcode.dart';
+import 'package:condosocio/src/pages/configuracoes.dart';
 import 'package:condosocio/src/pages/sobre.dart';
 import 'package:condosocio/src/pages/acessos/visualizar_acessos.dart';
 import 'package:condosocio/src/pages/splash_intro.dart';
@@ -202,6 +203,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/perfil', page: () => Perfil()),
         GetPage(name: '/comunicados', page: () => Comunicados()),
         GetPage(name: '/sobre', page: () => Sobre()),
+        GetPage(name: '/configuracoes', page: () => const Configuracoes()),
         GetPage(name: '/ouvidoria', page: () => Ouvidoria()),
         GetPage(name: '/ocorrencias', page: () => Ocorrencias()),
         GetPage(name: '/alvoTv', page: () => AlvoTv()),
